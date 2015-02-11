@@ -62,19 +62,42 @@ define([
 				break;
 			}
 
+			var __url = 'images/icons/hotspots.png';
+			var __posx =  posx+"|00|32|32";
 			this.openWindowEditor(modalView);
 			showWindow = this.showWindow;
 			var krpano = document.getElementById("krpanoSWFObject");
 			krpano.call("addhotspot(spot"+this.hotspotCount+")");
-			krpano.set("hotspot[spot"+this.hotspotCount+"].url", 'images/icons/hotspots.png');
-			var _ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45); 
-		    var _atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
-			krpano.set("hotspot[spot"+this.hotspotCount+"].ath", _ath);
-			krpano.set("hotspot[spot"+this.hotspotCount+"].atv", _atv);
-			krpano.set("hotspot[spot"+this.hotspotCount+"].crop", posx+"|00|32|32");
+			krpano.set("hotspot[spot"+this.hotspotCount+"].url", __url);
+			var __ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45); 
+		    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
+			krpano.set("hotspot[spot"+this.hotspotCount+"].ath", __ath);
+			krpano.set("hotspot[spot"+this.hotspotCount+"].atv", __atv);
+			krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
 			krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
     		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+this.hotspotCount+')) );');
     		$(".overlay").addClass("hotspotwindow");
+
+    		var hotspot = {
+    			_ath:__ath,
+    			_atv:__atv,
+    			_url:__url,
+    			_crop:__posx,
+    			_type:"image",
+    			_visible:true,
+    		}
+
+    		_.each(tourData.krpano.scene,function(elem){
+				if(elem._name == $("#tour").data("scene")._name){
+					if(!elem.hotspots){
+						elem.hotspots = [];
+						elem.hotspots.push(hotspot)	
+					}
+				$("#tour").data("scene",elem);		
+				$("#sceneMenu").find("#"+elem._name).data("scene",elem)
+				}
+			})
+
 		},
 		showWindow:function(num) {
 			$("#spot"+num).fadeIn()
