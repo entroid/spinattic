@@ -1,0 +1,23 @@
+<div id="sceneSettings-menu" class="submenu land-submenu">
+	<div class="inner">
+	<label for="scenetitle">Scene title:</label>
+	<input type="text" name="scenetitle" id="scenetitle" value="<%=data.title %>">
+	
+	<label for="filename">File name:</label>
+	<input type="text" name="filename" id="filename" value="<%=data.filename %>">
+	
+	<label for="friendlyURL">Frienly URL: <sub>(A-Z a-z 0-9)</sub></label>
+	<span class="friendlyURL">http://spinattic.com/username/tourname?</span><input type="text" name="friendlyURL" id="friendlyURL" value="<%=data._urlname%>" class="friendlyURL">
+
+	<h3>Thumbnail:</h3>
+	<figure>
+		<img src="<%=data.thumburl%>">
+		<figcaption>Change thumbnail</figcaption>
+	</figure>
+	
+	<div class="gmap-wrapper"></div>
+
+	<label for="scene-description">Scene Description</label>
+	<textarea name="scene-description" id="scene-description" cols="30" rows="10"></textarea>
+	</div>
+</div>

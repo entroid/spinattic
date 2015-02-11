@@ -1,0 +1,78 @@
+#tooltip{
+	color:$dark-gray;
+	background:#FFF;
+	position:absolute;
+	min-width:100px;
+	text-align:center;
+	padding:10px 4px;
+	font-weight:bold;
+	z-index:4;
+	&.footer{
+		margin-top:-50px;
+		margin-left:-4px;
+
+		&:after{
+			position: absolute;
+			display: block;
+			content: "";
+			border-color: #FFF transparent transparent transparent;
+			border-style: solid;
+			border-width: 20px;
+			height: 0;
+			width: 0;
+			bottom: -35px;
+			left: 50%;
+			margin-left: -20px;	
+			}
+
+	}
+
+	&.hotSpots{
+		margin-left:-115px;
+	}
+	&.viewSettings{
+		margin-left:-115px;
+	}
+	&.sceneSettings{
+		margin-left:-115px;
+	}
+	&.virtualTourSettings{
+		margin-left:-145px;
+	}
+	&.skinCustomizer{
+		margin-left:-115px;
+	}
+
+	&.aside{
+		margin-top:4px;
+		&:after{
+			position: absolute;
+			display: block;
+			content: "";
+			border-color:  transparent transparent transparent #FFF ;
+			border-style: solid;
+			border-width: 7px;
+			height: 0;
+			width: 0;
+			top: 7px;
+			right: -14px;
+			}
+
+	}
+
+	&.help{
+		width:350px;
+		margin-left:-370px;
+		margin-top:-5px;
+		line-height:14px;
+		text-align:left;
+	}
+}
+
+.bluring{
+	 @include filter(blur, 2px);
+}
+
+.scaling{
+	@include scale(1.1);
+}

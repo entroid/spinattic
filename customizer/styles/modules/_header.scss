@@ -1,0 +1,284 @@
+header.main-header{
+	@extend %full-width;
+	height:70px;
+	z-index:2;
+	position:relative;
+
+	h1{
+		background:url(../images/logo.png);
+		text-indent:-10000px;
+		width:304px;
+		height:51px;
+		top:10px;
+		left:15px;
+		position:relative;
+		float:left;
+	}
+
+	.header-side{
+
+		width:435px;
+		float:right;
+
+		.user{
+			width:65px;
+			float:right;
+			position:relative;
+			margin-top:7px;
+			.user-wrapper{
+				.avatar{
+				width:52px;
+				border-radius:38px;
+				overflow:hidden;
+				height:50px;
+				cursor:pointer;
+				img {
+					width:100%;
+					}
+				}
+				.notification{
+					border-radius:35px;
+					background:white;
+					width:25px;
+					height:20px;
+					position:absolute;
+					top:30px;
+					left:-10px;
+					text-align:center;
+					padding-top:5px;
+					cursor:pointer;
+
+					@include shadow-btn(2px, 2px, 0.5, "");
+
+					&:hover, &:active {
+						background:$light-blue; 
+					}
+
+					&:active {
+						@include shadow-btn(1px, 1px, 0.4, "inset");
+					}
+
+					.fa-bell{
+						color:$red;
+
+					}	
+				}
+
+			}
+
+			.menu-list{
+				position: absolute;
+				background: #FFF;
+				top: 70px;
+				left: -200px;
+				width:250px;
+				display:none;
+				font-size:1.4rem;
+				&:after{
+					top: -15px;
+					right: 15px;
+					bottom: auto;
+					left: auto;
+					border-width: 0 10px 15px;
+					border-color: #fFF transparent;
+					content: "";
+					position: absolute;
+					border-style: solid;
+					display: block;
+					width: 0;
+
+				}
+
+				.header-user-menu{
+					border-bottom:1px solid $lighter-gray;
+					float:left;
+					li{
+						float:left;
+						width:115px;
+						padding:5px;
+						height:30px;
+						color:#54afdf;
+						line-height:30px;
+						font-size:1.2rem;
+						span{
+							margin-right:5px;
+						}
+					}
+				}
+
+				.main-user-menu{
+				}
+
+				.production-user-menu{
+				}
+
+				.main-user-menu, .production-user-menu{
+					float:left;
+					clear:left;
+					width:100%;
+				}
+
+
+				.main-user-menu li, .production-user-menu li{
+						
+					border-bottom:1px solid $lighter-gray;
+					font-weight:bold;
+
+					span{
+						margin-right:10px;
+					}
+
+					a{
+						padding:10px;
+					
+						color:$dark-gray;
+						display:block;
+						text-decoration:none;
+						&:hover{
+						background:#54afdf;
+						color:#FFFFFF;
+						}
+					}
+					
+				}
+			
+			h2{
+					border-bottom:1px solid $lighter-gray;
+					background:#dfdfdf;
+					text-transform:uppercase;
+					padding:10px;
+					float:left;
+					width:230px;
+					font-weight:bold;	
+					span{
+						margin-right:10px;
+					}			
+			}
+				
+			}
+		}
+
+		#publishController{
+			width:355px;
+			float:left;
+			margin-top:20px;
+			div{
+				float:left;
+				border:1px solid #000;
+				margin-right:5px;
+			}
+
+			#live{
+				h4{
+					color:$green;
+				}
+			}
+
+			#publish{
+				color:white;
+				font-size:22px;
+				padding:5px;
+				cursor:pointer; 
+
+				&:hover {
+					color:$middle-gray;
+				}
+			}
+
+			#draft{
+
+				h4{
+					color:$yellow;
+				}
+
+			}
+
+			#live, #draft{
+				background:$dark-gray-2; 
+				width:103px;
+				text-align:center;
+				padding:3px 5px;
+				h4{
+					font-weight:bold;
+					margin-bottom:5px;
+				}
+
+				.date{
+					color:$light-gray;
+					font-style:italic;
+				}
+			}
+
+
+.onoffswitch {
+		    position: relative; width: 70px;
+		    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+		    float:left;
+		    border:none;
+		    margin-top:6px;
+		}
+		.onoffswitch-checkbox {
+		    display: none;
+		}
+		.onoffswitch-label {
+		    display: block; overflow: hidden; cursor: pointer;
+		    border-radius: 11px;
+		    width:auto;
+		    border:1px solid #000;
+		}
+		.onoffswitch-inner {
+		    display: block; width: 200%; margin-left: -100%;
+		    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+		    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+
+		}
+		.onoffswitch-inner:before, .onoffswitch-inner:after {
+		    display: block; float: left; width: 50%; height: 20px; padding: 0; line-height: 20px;
+		    font-size: 1rem; color: white; 
+		    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+			font-size:1.3rem;
+		}
+		.onoffswitch-inner:before {
+		    content: "LIVE";
+		    color:$green;
+		    padding-left: 10px;
+		    background-color: $middle-gray; 
+		}
+		.onoffswitch-inner:after {
+		    content: "DRAFT";
+			color:$yellow;
+		    padding-right: 10px;
+		    background-color: $dark-gray; 
+		    text-align: right;
+		}
+		.onoffswitch-switch {
+		    /*display: block; width: 12px; margin: 2px;
+		    background: $light-gray;
+		    border-radius: 11px;
+		    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+		    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+		    height:16px;
+		    -webkit-transform:rotate(90deg);
+		    -moz-transform:rotate(90deg);
+		    -o-transform:rotate(90deg);
+		    transform:rotate(90deg);
+		    
+		    padding-left:4px;
+		    line-height:1.9rem;
+		    color:#999;*/
+
+		    right: 50px;
+
+		   }
+		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+		    margin-left: 0;
+		}
+		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+		    right: 0px; 
+		}
+
+
+			
+		}
+	}
+}

@@ -1,0 +1,27 @@
+<div class="user">
+	<div class="user-wrapper">
+		<% user = jsonObj[0] %>
+		<div class="avatar"><img src="<%= user.avatar %>"></div>
+		<div class="notification">
+			<span class="fa fa-bell fa-lg"></span>
+		</div>
+	</div>
+	<div class="menu-list">
+		<ul class="header-user-menu">
+			<li><span class="fa fa-sign-out"></span>Log out</li>
+			<li><span class="fa fa-user"></span>Account settings</li>
+		</ul>
+		<ul class="main-user-menu">
+			<li><a href="#"><span class="fa fa-home"></span>Home</a></li>
+			<li><a href="#"><span class="fa fa-user"></span>My profile</a></li>
+			<li><a href="#"><span class="fa fa-users"></span>Followers</a></li>
+			<li><a href="#"><span class="fa fa-users"></span>Following</a></li>
+		</ul>
+		<h2><span class="fa fa-wrench"></span>Production</h2>
+		<ul class="production-user-menu">
+			<li><a href="#"><span class="fa fa-plus-circle red"></span>Create new tour</a></li>
+			<li><a href="#"><span class="fa fa-picture-o"></span>Manage tours</a></li>
+			<li><a href="#"><span class="fa fa-file-picture-o"></span>Manage pano files</a></li>
+		</ul>
+	</div>
+</div>

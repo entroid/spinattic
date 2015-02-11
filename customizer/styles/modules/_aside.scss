@@ -1,0 +1,640 @@
+aside{
+	width:50px;
+	background:$dark-gray;
+	height:100%;
+	position:absolute;
+	top:0;
+	right:0;
+	display:none;
+	ul.main-menu{
+		position:relative;
+		top:80px;
+		li{
+			@extend %button-gray;
+			width:40px;
+			height:40px;
+			margin-bottom:5px;
+			text-align:center;
+			line-height:40px;
+			margin-left:4px;
+			&:hover{
+				@extend %button-gray-hover;
+			}
+			&#hotSpots{
+				background:$blue;
+
+				&:hover{
+					@include linear-gradient(#60bce9, #449fe0);
+				}
+				&.selected{
+					background:#51ace4;
+				}
+			}
+			&.selected{
+					-webkit-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
+					-moz-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
+					box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
+				}
+		}
+	}
+
+	.submenu{
+		position:absolute;
+		right:50px;
+		display:none;
+		color:#FFF;
+		background-color:rgba(0,0,0,0.5);
+
+		input, textarea{
+			@extend %form-text;
+		}
+
+
+		label,input,figure,textarea,h3{
+			float:left;
+			clear:left;
+		}
+
+
+		label,h3{
+			margin-bottom:10px;
+			font-weight:bold;
+			font-size:1.4rem;
+		}
+
+		span.friendlyURL{
+			float:left;
+			font-size:1rem;
+			clear:left;
+			line-height:35px;
+			padding-right:2px;
+		}
+
+		input.friendlyURL{
+			clear:none;
+			width:103px;
+		}
+
+		textarea{
+			width:290px;
+			font-size:1.4rem;
+			padding:14px;
+		}
+
+
+		.map{
+			float:left;
+		}
+
+
+
+		span.check{
+			display:block;
+			float:left;
+			clear:left;
+		}
+
+		span.help{
+			color:$light-gray;
+			padding:3px 5px 0 0;
+		}
+
+		.geoMap{
+		margin-top:15px;
+
+			label{
+				width:50px;
+			}
+
+			input{
+				width:218px;
+				clear:none;
+			}
+		}
+
+		.location{
+				margin-bottom:1px;
+				left:0 !important;
+				width:279px;
+			}
+
+		.gmnoprint{
+				margin-top:40px !important;
+			}
+
+	}
+
+	.land-submenu{
+		top:0;
+		height:100%;
+	
+		.inner{
+			margin-top:60px;
+			padding:15px 0 0 10px;
+			overflow:auto;
+			width:345px;
+		}
+
+	}	
+
+	.land-submenu{
+		width:350px;
+	}
+
+	#hotSpots-menu, #hotSpots-menu ul, #hotSpots-menu h2{
+		width: 260px;
+	}
+
+	#hotSpots-menu{
+		height: 60px;
+		top: 81px;
+		background: $blue;
+		color:#FFF;
+
+		h2{
+			font-size: 1.0rem;
+			text-align:center;
+			margin-top:5px;
+		}
+		ul{
+			margin-top:10px;
+			margin-left:10px;
+			li{
+				border:1px solid;
+				width:38px;
+				height:23px;
+				position:relative;
+				text-align:center;
+				margin-right:10px;
+				float:left;
+				cursor:pointer;
+				&:hover{
+					background:#097bc1;
+					span{
+					background:#097bc1;
+					}
+				}
+				span{
+					height: 27px;
+					background: #4faddf;
+					margin-top: -4px;
+					position: relative;
+					top: 2px;
+					width: 20px;
+					line-height: 29px;
+				} 
+			}
+		}
+	}
+	#viewSettings-menu{
+		top:127px;
+		width:270px;
+		height:235px;
+
+		header{
+			background:$purple;
+			padding-top:15px;
+			height:30px;
+			width:270px;
+			h2{
+				margin-left:20px;
+				padding-right:5px;
+			}
+			h2,dl,dt,dd{
+				float:left;
+			}
+			dd{
+				padding-right:5px;
+			}
+		}
+		section,footer{
+			padding:5px 20px;
+			width:230px;
+		}
+
+		section{
+			h2{
+				padding:10px 0 20px 0;
+			}
+			input{
+				margin-right:2px;
+			}
+
+			
+		}
+
+		footer{
+			label{
+				width:176px;
+				display:block;
+				float:left;
+			}
+
+			label, input{
+					margin-bottom:4px;
+			}
+		}
+
+		h2{
+			font-weight:bold;
+		}
+		input{
+			width:40px;
+			height:18px;
+			text-align:center;
+			clear:none;
+			float:none;
+		}
+		label{
+				clear:none;
+				font-weight:normal;
+				font-size:1.1rem;
+				float:none;
+				padding-left:4px;
+			}
+
+	}
+
+
+	#sceneSettings-menu{
+		
+	
+		label[for="scenetitle"]{
+			font-size:1.8rem;
+			margin-top:20px;
+		}
+
+
+
+		label[for="friendlyURL"] {
+
+			sub{
+				font-size:1rem;
+				font-weight:normal;
+			}
+		}
+
+		label[for="filename"]{
+			line-height:15px;
+			padding-right:2px;
+		}
+
+		#filename{
+			clear:none;
+			background:none;
+			border:none;
+			padding-left:2px;
+		}
+		
+		#scenetitle, #mapscene{
+			padding:14px;
+			width:290px;
+		}
+
+		figure{
+			width:170px;
+			height:80px;
+			border:1px solid #000;
+			margin-bottom:20px;
+			position:relative;
+		
+			img{
+				opacity:0.5;
+				max-width:100%;
+			}
+
+			
+			figcaption{
+				position:absolute;
+				top:35px;
+				width:100%;
+				text-align:center;
+			}
+		}
+
+
+		input{
+			height:30px;
+			padding-left:2px;
+
+		}
+
+		#scenetitle{
+			font-size:1.6rem;
+			height:10px;
+		}
+
+		#mapscene{
+			font-size:1.4rem;
+		}
+	}
+
+
+	#virtualTourSettings-menu, #skinCustomizer-menu{
+		li{
+
+			background: rgba(0,0,0,0.5);
+			color:#FFF;
+			border:1px solid $light-gray;
+			width:300px;
+			margin-bottom:15px;
+			float:left;
+			padding:0 10px 0 20px;
+			
+			h3{
+			height:30px;
+			padding:2px;
+			line-height:40px;
+			padding-left:0px;
+			padding-right:10px;
+			cursor:pointer;
+			float:none;
+			clear:none;
+
+				.left{
+					margin-right:10px;
+				}
+
+				.right{
+					float:right;
+					margin-top:8px;
+					margin-top:15px;
+					margin-right:-10px;
+				}
+			}
+
+			.sub-items{
+				display:none;
+				float:left;
+				margin-bottom:20px;
+				padding-top:10px;
+			}
+			
+		}
+	}
+
+
+	#virtualTourSettings-menu{
+		li{
+
+
+			h2{
+				font-size:1.4rem;
+				margin-bottom:10px;
+				line-height:18px;
+			}
+
+			.sub-items{
+				
+
+				label{
+					font-weight:normal;
+
+				&.onoffswitch-label{
+					width:auto;
+					}	
+				}
+
+
+				input, select{
+					width:268px;
+					padding:7px;
+				}
+
+				input.friendlyURL{
+					width:58px;
+				}
+
+				textarea{
+					width:280px;
+					font-size:1.1rem;
+					padding:8px;
+				}
+
+				.map-wrapper{
+					float:left;
+				}
+
+				li{
+					border:none;
+					background:none;
+					width:auto;
+				}
+			
+			&.short{
+					label{
+						width:245px;
+							&.onoffswitch-label{
+						width:auto !important;
+						}
+					}
+					input{
+						width:30px;
+						clear:none;
+						}
+				}
+
+
+			
+			label[for="mouseType"]{
+				width:205px;
+			}
+
+			label[for="move-to-horizon"],label[for="move-to-fov"]{
+			
+				width:180px;
+			}
+			
+
+			#move-to-horizon, #move-to-fov{
+				margin-left:14px;
+			}
+
+			#friendlyURLTour{
+				padding:0;
+				width:95px;
+			}
+
+			.dropdown{
+						h2{
+							font-size:1.2rem;
+						}
+
+						li{
+							margin-bottom:0;
+							padding:0;
+							border:1px solid $middle-gray;
+							width:100%;
+							height:30px;
+							line-height:30px;
+							span{
+								padding:10px;
+							}
+
+							&:hover{
+								background:$light-gray;
+								color:#000;
+							}
+
+						}
+					}
+
+			}
+
+		.check-group, .checkboxes{
+
+			margin-top:10px;
+			float:left;
+
+			li{
+				font-size:1.2rem;
+				padding-left:5px;
+				clear:left;
+				cursor:pointer;
+				span{
+					margin-right:10px;
+					color:$light-gray;
+				}
+			}
+		}	
+
+		&.location-submenu{
+			h2{
+			}
+			span.help{
+				display:block;
+				float:left;
+				height:40px;
+			}
+		}	
+		
+		&.general-settings{
+			.dropdown{
+				width:284px;
+			}
+		}
+
+		}
+	
+	}
+
+
+	#skinCustomizer-menu{
+		header{
+			background:rgba(0,0,0,0.5);
+			float: left;
+			margin-left: -10px;
+			width: 330px;
+			margin-top: -5px;
+			padding: 10px;
+			margin-bottom: 20px;
+
+			h2{
+				font-size:1.4rem;
+				font-weight:bold;
+				width:280px;
+				float:left;
+			}
+
+			.fa-save{
+				margin-right:15px;
+			}
+		}
+
+		.hotspotstyles{
+			.left{
+				margin-left:20px;
+			}
+
+			.row{
+				margin-left:-5px;	
+				table{
+					width:285px;
+					border-collapse:inherit;
+					border-spacing:5px;
+					float:left;
+					tr{
+						td{
+							border-top:1px solid $light-gray; 
+							border-left:1px solid $light-gray; 
+							background:$middle-gray;
+							width:20%;
+							height:50px;
+							vertical-align: middle;
+							height: 50px;
+							text-align: center;
+
+							.add{
+								width:50px;
+								display:block;
+								line-height:50px;
+								height:50px;
+								cursor:pointer;
+
+								.fa-plus{
+									display:none;
+									color:$dark-gray;
+								}
+								&:hover{
+									line-height:50px;
+									.fa-plus{
+										display:block;
+										padding-top:15px;
+									}
+								}
+							}
+
+
+
+						}
+					}
+
+				&.default{
+					
+					td{
+
+						div{
+							width:32px;
+							height: 32px;
+							background: url(../images/icons/hotspots.png) no-repeat;	
+							margin-left:auto;
+							margin-right: auto;
+
+						}
+					}
+
+					}	
+				}
+			}
+			.fa-close{
+				float:left;
+				padding-top:20px;
+				font-size:15px;
+				padding-left:5px;
+				cursor:pointer;
+			}
+
+			
+		}
+
+		.add-link{
+				float:left;
+				font-weight:bold;
+				font-size:1.4rem;
+				padding-top:10px;
+				cursor:pointer;
+			}
+	}
+
+	.gm-style .gm-style-iw{
+		color:#222;
+		}
+
+	.map_canvas {
+		height:265px;
+		width:284px;
+		float:left;
+		margin-bottom:30px;
+	}
+
+}

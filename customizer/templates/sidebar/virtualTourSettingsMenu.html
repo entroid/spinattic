@@ -1,0 +1,142 @@
+<div id="virtualTourSettings-menu" class="submenu land-submenu">
+	<div class="inner">
+		<ul>
+			<li class="general-settings">
+				<h3><span class="fa fa-gear fa-lg left"></span>General Settings:<span class="fa fa-caret-down fa-lg right"></span></h3>
+				<div class="sub-items">
+					<label for="tourTitle">Tour Title:</label>
+					<input type="text" value="tour Title" id="tourTitle" name="tourTitle">
+					<label for="friendlyURLTour">Frienly URL: <sub>(A-Z a-z 0-9)</sub></label>
+					<span class="friendlyURL">http://spinattic.com/username/tourname?</span><input type="text" name="friendlyURLTour" id="friendlyURLTour" value="tourname" class="friendlyURL">
+					<label for="tour-description">Tour Description</label>
+					<textarea name="tour-description" id="tour-description" cols="30" rows="10"></textarea>
+					<label for="tagsTour"><span class="fa fa-tags fa-lg"></span>Tags</label>
+					<input type="text" value="tour Title" id="tagsTour" name="tagsTour">
+					<label for="Category"><span class="fa fa-list-ul fa-lg"></span> Category</label>
+					<div name="Category" id="Category" class="dropdown dd-settingmenu">
+						<h2><span class="title">Choose Category</span><span class="fa fa-caret-down fa-lg right"></span></h2>
+						<ul>
+							<li value="op1"><span>op1</span></li>
+							<li value="op2"><span>op2</span></li>
+							<li value="op3"><span>op3</span></li>
+							<li value="op4"><span>op4</span></li>
+						</ul>
+					</div>
+					<label for="privacyConf"><span class="fa fa-lock fa-lg"></span> Privacy Configuration</label>
+					<div title="privacyConf" id="privacyConf" class="dropdown  dd-settingmenu">
+						<h2><span class="title">Public</span><span class="fa fa-caret-down fa-lg right"></span></h2>
+						<ul>
+							<li data-value="op1"><span>public</span></li>
+							<li data-value="op2"><span>private</span></li>
+						</ul>
+					</div>
+					<ul class="check-group">
+						<li><span class="fa fa-check-square fa-lg"></span> Allow Comments</li>
+						<li><span class="fa fa-check-square fa-lg"></span> Allow Social Sharing</li>
+						<li><span class="fa fa-check-square fa-lg"></span> Allow Embed Code</li>
+						<li><span class="fa fa-check-square fa-lg"></span> Allow User Votes</li>
+					</ul>
+				</div>
+			</li>
+			<li class="location-submenu">
+				<h3><span class="fa fa-map-marker fa-lg left"></span>Location:<span class="fa fa-caret-down fa-lg right"></span></h3>
+				<div class="sub-items">
+					<h2><span class="help fa fa-question-circle" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></span> Choose how you want to locate your tour on Spinattic's world map</h2>
+					<ul class="checkboxes">
+						<li data-evt="singleLoc"><span class="fa fa-circle-o fa-lg"></span>Single location for the all tour on the map</li>
+						<li data-evt="eachScene"><span class="fa fa-circle fa-lg"></span>Each Scene with their location on the map</li>
+						<li data-evt="noMap"><span class="fa fa-circle fa-lg"></span>Don't display the tour on world map at all</li>
+					</ul>
+					<div class="gmap-wrapper"></div>
+				
+				</div>
+			</li>
+			<li class="mouse-control-settings">
+				<h3><span class="fa fa-arrows-v fa-lg left"></span>Mouse control settings<span class="fa fa-caret-down fa-lg right"></span></h3>
+				<div class="sub-items short">
+					<label for="mouseType"><span class="help fa fa-question-circle"></span> Mouse Type</label>
+					<div title="Mouse" id="Mouse" class="dropdown dd-settingmenu">
+						<h2><span class="title">MoveTo</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+						<ul>
+							<li data-value="op1"><span>MoveTo</span></li>
+							<li data-value="op2"><span>op2</span></li>
+						</ul>
+					</div>
+					<label for="zoomToCursor"><span class="help fa fa-question-circle"></span> Zoom to Cursor</label>
+					<input type="hidden" name="zoomToCursor" id="zoomToCursor">
+					<div class="onoffswitch">
+					    <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
+					    <label class="onoffswitch-label" for="myonoffswitch1">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+					    </label>
+					</div>
+					<label for="zoomoutCursor"><span class="help fa fa-question-circle"></span> Zoom out cursor</label>
+					<input type="hidden" name="zoomoutCursor" id="zoomoutCursor">
+					<div class="onoffswitch">
+					    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" >
+					    <label class="onoffswitch-label" for="myonoffswitch2">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+					    </label>
+					</div>
+					<label for="mouseaccelerate"><span class="help fa fa-question-circle"></span> Mouse accelerate</label>
+					<input type="number" name="mouseaccelerate" id="mouseaccelerate" step="0.1" value="1.0">
+					<label for="mousespeed"><span class="help fa fa-question-circle"></span> Mouse speed</label>
+					<input type="number" name="mousespeed" id="mousespeed" step="0.1" value="1.0">
+					<label for="mousefriction"><span class="help fa fa-question-circle"></span> Mouse friction</label>
+					<input type="number" name="mousefriction" id="mousefriction" step="0.1" value="1.0">
+					<label for="mousefovchange"><span class="help fa fa-question-circle"></span> Mouse fov change</label>
+					<input type="number" name="mousefovchange" id="mousefovchange" step="0.1" value="1.0">
+					<label for="FOVspeed"><span class="help fa fa-question-circle"></span> FOV speed</label>
+					<input type="number" name="FOVspeed" id="FOVspeed" step="0.1" value="1.0">
+					<label for="FOVfriction"><span class="help fa fa-question-circle"></span> FOV friction</label>
+					<input type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="1.0">
+				</div>
+			</li>
+			<li class="autorotate-settings">
+				<h3><span class="fa fa-rotate-left fa-lg left "></span>Autorotate settings<span class="fa fa-caret-down fa-lg right"></span></h3>
+				<div class="sub-items short">
+					<h2>Auto-rotation, moving and zooming when there's no interaction with the panorama</h2>
+					<label for="enabledautorotate"><span class="help fa fa-question-circle"></span> Enabled</label>
+					<div class="onoffswitch">
+					    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
+					    <label class="onoffswitch-label" for="myonoffswitch3">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch"></span>
+					    </label>
+					</div>
+					<label for="waittime"><span class="help fa fa-question-circle"></span> Wait time</label>
+					<input type="number" id="waittime" name="waittime" value="15.5">
+					<label for="acceleration"><span class="help fa fa-question-circle"></span> Acceleration</label>
+					<input type="number" id="acceleration" name="acceleration" value="1.0">
+					<label for="speed"><span class="help fa fa-question-circle"></span> Speed</label>
+					<input type="number" id="speed" name="speed" value="10.0">
+					<label for="move-to-horizon"><span class="help fa fa-question-circle"></span> Move to Horizon</label>
+					<div class="onoffswitch">
+					    <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" checked>
+					    <label class="onoffswitch-label" for="myonoffswitch4">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch"></span>
+					    </label>
+					</div>
+					<input type="number" id="move-to-horizon" name="move-to-horizon" value="0.0">
+					<label for="move-to-fov"><span class="help fa fa-question-circle"></span> Move to Fov</label>
+					<div class="onoffswitch">
+					    <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" checked>
+					    <label class="onoffswitch-label" for="myonoffswitch5">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch"></span>
+					    </label>
+					</div>
+					<input type="number" id="move-to-fov" name="move-to-fov" value="135.0">
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

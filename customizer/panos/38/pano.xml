@@ -1,0 +1,17 @@
+<krpano version="1.17.5">
+	
+<autorotate enabled="true" waittime="0" accel="2.0" speed="10" horizon="on" tofov="on" />
+
+	<view hlookat="0" vlookat="0" maxpixelzoom="1.0" fovmax="150" limitview="auto" />
+	
+
+	<preview url="pano.tiles/preview.jpg" />
+
+	<image>
+		<cube url="pano.tiles/pano_%s.jpg" />
+		<mobile>
+			<cube url="pano.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+
+</krpano>
