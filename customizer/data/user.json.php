@@ -5,7 +5,7 @@ require_once("conex.inc");
 //require_once("inc/functions.inc");
 
 session_start();
-$_SESSION['usr'] = 69;
+$_SESSION['usr'] = 41;
 $user_id = $_SESSION['usr'];
 
 if($user_id != ''){

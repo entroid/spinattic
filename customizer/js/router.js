@@ -76,11 +76,11 @@ define([
 					sceneMenuView.render();
 
 
-			/*if(!userCollection.length){
-				userCollection = new UserCollection(obj.user);
+			if(!userCollection.length){
+				userCollection = new UserCollection(obj);
 				userView = new UserView({ collection: userCollection});
 				userView.render();
-			}*/
+			}
 			var mainMenuView = new MainMenuView();
 			mainMenuView.render();
 			
