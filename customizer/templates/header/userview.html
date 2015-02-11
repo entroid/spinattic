@@ -3,7 +3,13 @@
 		<% user = jsonObj[0] %>
 		<div class="avatar"><img src="../images/users/<%= user.avatar %>"></div>
 		<div class="notification">
-			<span class="fa fa-bell fa-lg"></span>
+			<% if(user.unread_notifications != 0){ %>
+				<span><%= user.unread_notifications %></span>
+				<span class="fa fa-bell fa-lg"></span>
+			<%}else{%>
+				<span class="fa fa-bell fa-lg"></span>
+			<%}%>
+			
 		</div>
 	</div>
 	<div class="menu-list">
@@ -14,14 +20,14 @@
 		<ul class="main-user-menu">
 			<li><a href="#"><span class="fa fa-home"></span>Home</a></li>
 			<li><a href="#"><span class="fa fa-user"></span>My profile</a></li>
-			<li><a href="#"><span class="fa fa-users"></span>Followers</a></li>
-			<li><a href="#"><span class="fa fa-users"></span>Following</a></li>
+			<li><a href="#"><span class="fa fa-users"></span>Followers</a><span><%= user.followers_length %></span></li>
+			<li><a href="#"><span class="fa fa-users"></span>Following</a><span><%= user.following_length %></span></li>
 		</ul>
 		<h2><span class="fa fa-wrench"></span>Production</h2>
 		<ul class="production-user-menu">
 			<li><a href="#"><span class="fa fa-plus-circle red"></span>Create new tour</a></li>
-			<li><a href="#"><span class="fa fa-picture-o"></span>Manage tours</a></li>
-			<li><a href="#"><span class="fa fa-file-picture-o"></span>Manage pano files</a></li>
+			<li><a href="#"><span class="fa fa-picture-o"></span>Manage tours</a><span><%= user.tours_length %></span></li>
+			<li><a href="#"><span class="fa fa-file-picture-o"></span>Manage pano files</a><span><%= user.panos_length %></span></li>
 		</ul>
 	</div>
 </div>
