@@ -50,8 +50,9 @@ define([
 		// Note the variable in the route definition being passed in here
 			$.ajax({
 		  dataType:"json",
-		  url:  "data/data.json",
+		  url:  "data/user.json.php",
 		 }).done(function(obj){
+		 	console.log(obj)
 		 	var xmlpath ="data/tour.xml?id="+id;
 		 	$.ajax({
    			 url: xmlpath,
@@ -75,11 +76,11 @@ define([
 					sceneMenuView.render();
 
 
-			if(!userCollection.length){
+			/*if(!userCollection.length){
 				userCollection = new UserCollection(obj.user);
 				userView = new UserView({ collection: userCollection});
 				userView.render();
-			}
+			}*/
 			var mainMenuView = new MainMenuView();
 			mainMenuView.render();
 			
