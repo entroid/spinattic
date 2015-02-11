@@ -2,9 +2,9 @@
 	color:$dark-gray;
 	background:#FFF;
 	position:absolute;
-	min-width:100px;
+	/*min-width:100px;*/
 	text-align:center;
-	padding:10px 4px;
+	padding:15px 30px;
 	font-weight:bold;
 	z-index:4;
 	&.footer{
@@ -28,19 +28,19 @@
 	}
 
 	&.hotSpots{
-		margin-left:-115px;
+		margin-left:-120px;
 	}
 	&.viewSettings{
-		margin-left:-115px;
-	}
-	&.sceneSettings{
-		margin-left:-115px;
-	}
-	&.virtualTourSettings{
 		margin-left:-145px;
 	}
+	&.sceneSettings{
+		margin-left:-150px;
+	}
+	&.virtualTourSettings{
+		margin-left:-190px;
+	}
 	&.skinCustomizer{
-		margin-left:-115px;
+		margin-left:-160px;
 	}
 
 	&.aside{

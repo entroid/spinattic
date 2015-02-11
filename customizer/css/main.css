@@ -3545,7 +3545,7 @@ footer.main-footer menu.left-footer-menu i {
 footer.main-footer menu.right-footer-menu {
   float: right; }
 footer.main-footer menu.right-footer-menu menuitem {
-  /*border:none;*/
+  border: none;
   margin-right: 0;
   padding: 0 10px;
   margin-top: 4px; }
@@ -3556,9 +3556,9 @@ footer.main-footer menu.right-footer-menu menuitem i {
   color: #232323;
   background: #FFF;
   position: absolute;
-  min-width: 100px;
+  /*min-width:100px;*/
   text-align: center;
-  padding: 10px 4px;
+  padding: 15px 30px;
   font-weight: bold;
   z-index: 4; }
 #tooltip.footer {
@@ -3577,15 +3577,15 @@ footer.main-footer menu.right-footer-menu menuitem i {
   left: 50%;
   margin-left: -20px; }
 #tooltip.hotSpots {
-  margin-left: -115px; }
+  margin-left: -120px; }
 #tooltip.viewSettings {
-  margin-left: -115px; }
-#tooltip.sceneSettings {
-  margin-left: -115px; }
-#tooltip.virtualTourSettings {
   margin-left: -145px; }
+#tooltip.sceneSettings {
+  margin-left: -150px; }
+#tooltip.virtualTourSettings {
+  margin-left: -190px; }
 #tooltip.skinCustomizer {
-  margin-left: -115px; }
+  margin-left: -160px; }
 #tooltip.aside {
   margin-top: 4px; }
 #tooltip.aside:after {
