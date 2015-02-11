@@ -3,8 +3,9 @@ define([
 	'underscore',
 	'backbone',
 	'lib/krpano/embedpano',
+	'text!templates/main/setStartup.html',
 
-], function($, _, Backbone, userview,jaddress){
+], function($, _, Backbone, userview,setStartup){
 
 	var TourView = Backbone.View.extend({
 		el: $(".main-section .inner"),
@@ -16,8 +17,10 @@ define([
 
 		},
 		render: function(){
+			console.log(setStartup)
 			var xmlpath = this.model.get("xmlpath");
 			$pano_wrapper = $('<div id="tour"></div>');
+			$(this.el).append( setStartup ); 
 			$(this.el).append( $pano_wrapper ); 
 			embedpano({
 				swf:"player/tour.swf", 
