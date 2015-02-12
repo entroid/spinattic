@@ -64,10 +64,11 @@ define([
 
 			var __url = 'images/icons/hotspots.png';
 			var __posx =  posx+"|00|32|32";
+			var __name = "spot"+this.hotspotCount;
 			this.openWindowEditor(modalView);
 			showWindow = this.showWindow;
 			var krpano = document.getElementById("krpanoSWFObject");
-			krpano.call("addhotspot(spot"+this.hotspotCount+")");
+			krpano.call("addhotspot("+__name+")");
 			krpano.set("hotspot[spot"+this.hotspotCount+"].url", __url);
 			var __ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45); 
 		    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
@@ -79,6 +80,7 @@ define([
     		$(".overlay").addClass("hotspotwindow");
 
     		var hotspot = {
+    			_name: __name,
     			_ath:__ath,
     			_atv:__atv,
     			_url:__url,
@@ -89,12 +91,13 @@ define([
 
     		_.each(tourData.krpano.scene,function(elem){
 				if(elem._name == $("#tour").data("scene")._name){
-					if(!elem.hotspots){
-						elem.hotspots = [];
-						elem.hotspots.push(hotspot)	
+					if(!elem.hotspot){
+						elem.hotspot = [];
+						elem.hotspot.push(hotspot);
+					}else{
+						elem.hotspot.push(hotspot);
 					}
-				$("#tour").data("scene",elem);		
-				$("#sceneMenu").find("#"+elem._name).data("scene",elem)
+					$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
 				}
 			})
 

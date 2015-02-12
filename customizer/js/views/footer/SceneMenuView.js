@@ -2,6 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'x2js',
 	'jqueryui',
 	'text!templates/footer/sceneMenu.html',
 	'helpers/HelpFunctions',
@@ -12,7 +13,7 @@ define([
 	'views/sidebar/ViewSettingsMenuView'
 	
 	
-], function($, _, Backbone,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView){
+], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView){
 
 	var SceneMenuView = Backbone.View.extend({
 		el: $("footer.main-footer"),
@@ -74,12 +75,27 @@ define([
 			viewSettingsMenuView.refreshData();
 			
 			var krpano = document.getElementById("krpanoSWFObject");
+			//var param = helpFunctions.mapJSONToUriParams($thisli.data("scene"));
 			var param = helpFunctions.mapJSONToUriParams($thisli.data("scene"));
 				
 			param = param.replace(/:_/g,".");
-
 			krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
+			
+			if($thisli.data("hotspots")){
 
+				var hotspot = $thisli.data("hotspots");
+				_.each(hotspot,function(elem){
+
+					krpano.call("addhotspot("+elem._name+")");
+					krpano.set("hotspot["+elem._name+"].url", elem._url);
+					krpano.set("hotspot["+elem._name+"].ath", elem._ath);
+					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
+					krpano.set("hotspot["+elem._name+"].crop",elem._crop);
+					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
+		    		//krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+this.hotspotCount+')) );');
+
+				})
+			}
 			
 
 			$("#sceneMenu li").removeClass("selected");

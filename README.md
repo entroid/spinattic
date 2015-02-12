@@ -1,2 +1,0 @@
-# spinattic
-spinattic tools development
