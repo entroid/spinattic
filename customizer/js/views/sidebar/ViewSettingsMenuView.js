@@ -3,9 +3,11 @@ define([
 	'underscore',
 	'backbone',
 	'views/sidebar/SidebarSubMenu',
-	'text!templates/sidebar/viewSettingsMenu.html'
+	'text!templates/sidebar/viewSettingsMenu.html',
+	'helpers/ManageData'
 
-], function($, _, Backbone,SidebarSubMenu,viewSettingsMenu){
+
+], function($, _, Backbone,SidebarSubMenu,viewSettingsMenu,ManageData){
 
 	var ViewSettingsMenuView = SidebarSubMenu.extend({
 		
@@ -76,14 +78,9 @@ define([
 		},
 
 		updateData:function(e){
-			_.each(tourData.krpano.scene,function(elem){
-				if(elem._name == $("#viewSettings-menu").data("scenename")){
-					var newVal = $(e.target).val();
-					elem.view[$(e.target).data("obj")] = newVal;
-					$("#tour").data("scene",elem);
-					$("#sceneMenu").find("#"+$("#sceneSettings-menu").data("scenename")).data("scene",elem)
-				}
-			})
+
+			var manageData = new ManageData();
+			manageData.saveSceneOnTour($("#viewSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val(),"view")
 		}
 
 		
