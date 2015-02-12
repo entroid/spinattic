@@ -89,6 +89,7 @@ footer.main-footer{
 	menu{
 		height:40px;
 		padding:5px;
+		
 		menuitem{
 			@extend %button-gray;
 
@@ -99,13 +100,13 @@ footer.main-footer{
 			margin-left:5px;
 			font-weight:bold;
 
-      &:hover, &:active{
-        @include linear-gradient(#1c1c1c, #282828);
-      }
+            &:hover, &:active{
+                @include linear-gradient(#1c1c1c, #282828);
+            }
 
-      &:active {
-        @include shadow-btn(1px, 3px, 0.8, "inset");
-      }
+            &:active {
+                @include shadow-btn(1px, 3px, 0.8, "inset");
+            }
 		}
 	}
 
@@ -119,14 +120,18 @@ footer.main-footer{
 	menu.right-footer-menu{
 		float:right;
 		menuitem{
-			border:none;
+			border:1px solid $dark-gray;
 			margin-right: 0;
 			padding: 0 10px;
-      		margin-top: 4px;
+			margin-top: 4px;
 
 			i {
 				font-size: 1.5em;
 			}
+
+            &:hover {
+                border: 1px solid #000;
+            }
 		}
 	}
 

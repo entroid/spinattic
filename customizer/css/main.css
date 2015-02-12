@@ -2973,7 +2973,24 @@ header.main-header .header-side #publishController #publish {
   padding: 5px;
   cursor: pointer; }
 header.main-header .header-side #publishController #publish:hover {
-  color: #333333; }
+  background-color: #282828;
+  /* Fallback Color */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1c1c1c), to(#282828));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #1c1c1c, #282828);
+  /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient(top, #1c1c1c, #282828);
+  /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #1c1c1c, #282828);
+  /* IE10 */
+  background-image: -o-linear-gradient(top, #1c1c1c, #282828);
+  /* Opera 11.10+ */
+  background-image: linear-gradient(top, #1c1c1c, #282828);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1c1c1c', EndColorStr='#282828'); }
+header.main-header .header-side #publishController #publish:active {
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
+  -moz-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
+  box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset; }
 header.main-header .header-side #publishController #draft h4 {
   color: #fad368; }
 header.main-header .header-side #publishController #live, header.main-header .header-side #publishController #draft {
@@ -3104,27 +3121,26 @@ aside .submenu {
   right: 50px;
   display: none;
   color: #FFF;
-  background-color: rgba(0, 0, 0, 0.5); }
-aside .submenu label, aside .submenu input, aside .submenu figure, aside .submenu textarea, aside .submenu h3 {
-  float: left;
-  clear: left; }
+  background-color: rgba(0, 0, 0, 0.7);
+  /*label,input,figure,textarea,h3{
+  	float:left;
+  	clear:left;
+  }*/ }
 aside .submenu label, aside .submenu h3 {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: bold;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  display: block; }
 aside .submenu span.friendlyURL {
-  float: left;
+  display: inline-block;
   font-size: 1rem;
-  clear: left;
-  line-height: 35px;
-  padding-right: 2px; }
+  padding-right: 10px; }
 aside .submenu input.friendlyURL {
-  clear: none;
   width: 103px; }
 aside .submenu textarea {
   width: 290px;
   font-size: 1.4rem;
-  padding: 14px; }
+  padding: 9px; }
 aside .submenu .map {
   float: left; }
 aside .submenu span.check {
@@ -3138,25 +3154,31 @@ aside .submenu .geoMap {
   margin-top: 15px; }
 aside .submenu .geoMap label {
   width: 50px; }
-aside .submenu .geoMap input {
-  width: 218px;
+aside .submenu .geoMap .double-inputs {
+  display: inline-block; }
+aside .submenu .geoMap .double-inputs:first-child {
+  margin-right: 66px; }
+aside .submenu .geoMap .double-inputs input {
+  width: 110px;
   clear: none; }
 aside .submenu .location {
   margin-bottom: 1px;
   left: 0 !important;
-  width: 279px; }
+  width: 300px; }
 aside .submenu .gmnoprint {
   margin-top: 40px !important; }
 aside .land-submenu {
   top: 0;
-  height: 100%; }
+  height: 100%;
+  width: 350px; }
 aside .land-submenu .inner {
   margin-top: 60px;
-  padding: 15px 0 0 10px;
-  overflow: auto;
-  width: 345px; }
-aside .land-submenu {
-  width: 350px; }
+  padding: 20px;
+  overflow: auto; }
+aside .land-submenu .inner header h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px; }
 aside #hotSpots-menu, aside #hotSpots-menu ul, aside #hotSpots-menu h2 {
   width: 260px; }
 aside #hotSpots-menu {
@@ -3237,13 +3259,15 @@ aside #viewSettings-menu label {
   padding-left: 4px; }
 aside #sceneSettings-menu label[for="scenetitle"] {
   font-size: 1.8rem;
-  margin-top: 20px; }
+  display: block;
+  margin-bottom: 5px; }
 aside #sceneSettings-menu label[for="friendlyURL"] sub {
   font-size: 1rem;
   font-weight: normal; }
 aside #sceneSettings-menu label[for="filename"] {
   line-height: 15px;
-  padding-right: 2px; }
+  padding-right: 2px;
+  display: inline; }
 aside #sceneSettings-menu #filename {
   clear: none;
   background: none;
@@ -3251,12 +3275,12 @@ aside #sceneSettings-menu #filename {
   padding-left: 2px; }
 aside #sceneSettings-menu #scenetitle, aside #sceneSettings-menu #mapscene {
   padding: 14px;
-  width: 290px; }
+  width: 280px; }
 aside #sceneSettings-menu figure {
   width: 170px;
   height: 80px;
   border: 1px solid #000;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative; }
 aside #sceneSettings-menu figure img {
   opacity: 0.5;
@@ -3268,7 +3292,7 @@ aside #sceneSettings-menu figure figcaption {
   text-align: center; }
 aside #sceneSettings-menu input {
   height: 30px;
-  padding-left: 2px; }
+  padding: 0 4px; }
 aside #sceneSettings-menu #scenetitle {
   font-size: 1.6rem;
   height: 10px; }
@@ -3278,7 +3302,7 @@ aside #virtualTourSettings-menu li, aside #skinCustomizer-menu li {
   background: rgba(0, 0, 0, 0.5);
   color: #FFF;
   border: 1px solid #535353;
-  width: 300px;
+  width: 278px;
   margin-bottom: 15px;
   float: left;
   padding: 0 10px 0 20px; }
@@ -3327,11 +3351,11 @@ aside #virtualTourSettings-menu li .sub-items li {
   background: none;
   width: auto; }
 aside #virtualTourSettings-menu li .sub-items.short label {
-  width: 245px; }
+  width: 240px; }
 aside #virtualTourSettings-menu li .sub-items.short label.onoffswitch-label {
   width: auto !important; }
 aside #virtualTourSettings-menu li .sub-items.short input {
-  width: 30px;
+  width: 38px;
   clear: none; }
 aside #virtualTourSettings-menu li .sub-items label[for="mouseType"] {
   width: 205px; }
@@ -3382,10 +3406,9 @@ aside #skinCustomizer-menu header {
   padding: 10px;
   margin-bottom: 20px; }
 aside #skinCustomizer-menu header h2 {
-  font-size: 1.4rem;
-  font-weight: bold;
   width: 280px;
-  float: left; }
+  float: left;
+  margin-bottom: 0; }
 aside #skinCustomizer-menu header .fa-save {
   margin-right: 15px; }
 aside #skinCustomizer-menu .hotspotstyles .left {
@@ -3442,7 +3465,7 @@ aside .gm-style .gm-style-iw {
   color: #222; }
 aside .map_canvas {
   height: 265px;
-  width: 284px;
+  width: 100%;
   float: left;
   margin-bottom: 30px; }
 
@@ -3545,12 +3568,14 @@ footer.main-footer menu.left-footer-menu i {
 footer.main-footer menu.right-footer-menu {
   float: right; }
 footer.main-footer menu.right-footer-menu menuitem {
-  border: none;
+  border: 1px solid #232323;
   margin-right: 0;
   padding: 0 10px;
   margin-top: 4px; }
 footer.main-footer menu.right-footer-menu menuitem i {
   font-size: 1.5em; }
+footer.main-footer menu.right-footer-menu menuitem:hover {
+  border: 1px solid #000; }
 
 #tooltip {
   color: #232323;
