@@ -6,10 +6,11 @@ define([
 	'text!templates/sidebar/sceneSettingsMenu.html',
 	'mCustomScrollbar',
 	'helpers/HelpFunctions',
+	'helpers/ManageData',
 	'views/sidebar/MapView',
 
 
-], function($, _, Backbone,SidebarSubMenu,sceneSettingsMenu,mCustomScrollbar,HelpFunctions,MapView){
+], function($, _, Backbone,SidebarSubMenu,sceneSettingsMenu,mCustomScrollbar,HelpFunctions,ManageData,MapView){
 
 	var SceneSettingsMenuView = SidebarSubMenu.extend({
 		initialize: function () {
@@ -69,14 +70,8 @@ define([
 		},
 
 		updateData:function(e){
-			_.each(tourData.krpano.scene,function(elem){
-				if(elem._name == $("#sceneSettings-menu").data("scenename")){
-					var newVal = $(e.target).val();
-					elem[$(e.target).data("obj")] = newVal;
-					$("#tour").data("scene",elem);
-					$("#sceneMenu").find("#"+$("#sceneSettings-menu").data("scenename")).data("scene",elem).find("img").attr("title",$("#scenetitle").val())
-				}
-			})
+			var manageData = new ManageData();
+			manageData.saveSceneOnTour( $("#sceneSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val())
 		}
 
 		
