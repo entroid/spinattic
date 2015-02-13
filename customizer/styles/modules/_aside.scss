@@ -1,35 +1,41 @@
 aside{
-	width:50px;
-	background:$dark-gray;
-	height:100%;
-	position:absolute;
-	top:0;
-	right:0;
-	display:none;
+	width: 50px;
+	background: $dark-gray;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+
 	ul.main-menu{
-		position:relative;
-		top:80px;
+		position: relative;
+		top: 80px;
+
 		li{
 			@extend %button-gray;
-			width:40px;
-			height:40px;
-			margin-bottom:5px;
-			text-align:center;
-			line-height:40px;
-			margin-left:4px;
+			width: 40px;
+			height: 40px;
+			margin-bottom: 5px;
+			text-align: center;
+			line-height: 40px;
+			margin-left: 4px;
+
 			&:hover{
 				@extend %button-gray-hover;
 			}
+
 			&#hotSpots{
-				background:$blue;
+				background: $blue;
 
 				&:hover{
 					@include linear-gradient(#60bce9, #449fe0);
 				}
+
 				&.selected{
-					background:#51ace4;
+					background: #51ace4;
 				}
 			}
+
 			&.selected{
 					-webkit-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
 					-moz-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
@@ -39,69 +45,60 @@ aside{
 	}
 
 	.submenu{
-		position:absolute;
-		right:50px;
-		display:none;
-		color:#FFF;
-		background-color:rgba(0,0,0,0.7);
+		position: absolute;
+		right: 50px;
+		display: none;
+		color: #FFF;
+		background-color: rgba(0,0,0,0.7);
 
 		input, textarea{
 			@extend %form-text;
 		}
 
-
-		/*label,input,figure,textarea,h3{
-			float:left;
-			clear:left;
-		}*/
-
-
 		label,h3{
-			margin-bottom:5px;
-			font-weight:bold;
-			font-size:1.4rem;
+			margin-bottom: 5px;
+			font-weight: bold;
+			font-size: 1.4rem;
 			display: block;
 		}
 
 		span.friendlyURL{
 			display: inline-block;
-			font-size:1rem;
-			padding-right:10px;
+			font-size: 1rem;
+			padding-right: 10px;
 		}
 
 		input.friendlyURL{
-			width:103px;
+			width: 103px;
 		}
 
 		textarea{
-			width:290px;
-			font-size:1.4rem;
-			padding:9px;
+			width: 290px;
+			font-size: 1.4rem;
+			padding: 9px;  
 		}
 
 
 		.map{
-			float:left;
+			float:  left;
 		}
 
-
-
 		span.check{
-			display:block;
-			float:left;
-			clear:left;
+			display: block;
+			float: left;
+			clear: left;
 		}
 
 		span.help{
-			color:$light-gray;
-			padding:3px 5px 0 0;
+			color: $light-gray;
+			padding: 3px 5px 0 0;
 		}
 
 		.geoMap{
-		margin-top:15px;
+		margin-top: 15px;
 
 			label{
-				width:50px;
+				width: 50px;
 			}
 			
 			.double-inputs {
@@ -111,38 +108,38 @@ aside{
 				}
 
 				input{
-					width:110px;
-					clear:none;
+					width: 110px;
+					clear: none;
 				}
 			}
 		}
 
 		.location{
-				margin-bottom:1px;
-				left:0 !important;
-				width:300px;
+				margin-bottom: 1px;
+				left: 0 !important;
+				width: 300px;
 			}
 
 		.gmnoprint{
-				margin-top:40px !important;
+				margin-top: 40px !important;
 			}
 
 	}
 
 	.land-submenu{
-		top:0;
-		height:100%;
-		width:350px;
+		top: 0;
+		height: 100%;
+		width: 350px;
 
 		.inner{
-			margin-top:60px;
-			padding:20px;
-			overflow:auto;
+			margin-top: 60px;
+			padding: 20px;
+			overflow: auto;
 
 			header {
 				h2 {
-					font-size:1.8rem;
-					font-weight:bold;
+					font-size: 1.8rem;
+					font-weight: bold;
 					margin-bottom: 20px;
 				}
 			}
@@ -158,29 +155,33 @@ aside{
 		height: 60px;
 		top: 81px;
 		background: $blue;
-		color:#FFF;
+		color: #FFF;
 
 		h2{
 			font-size: 1.0rem;
-			text-align:center;
-			margin-top:5px;
+			text-align: center;
+			margin-top: 5px;
 		}
+
 		ul{
-			margin-top:10px;
-			margin-left:10px;
+			margin-top: 10px;
+			margin-left: 10px;
+
 			li{
-				border:1px solid;
-				width:38px;
-				height:23px;
-				position:relative;
-				text-align:center;
-				margin-right:10px;
-				float:left;
-				cursor:pointer;
+				border: 1px solid;
+				width: 38px;
+				height: 23px;
+				position: relative;
+				text-align: center;
+				margin-right: 10px;
+				float: left;
+				cursor: pointer;
+
 				&:hover{
-					background:#097bc1;
+					background: #097bc1;
+
 					span{
-					background:#097bc1;
+						background: #097bc1;
 					}
 				}
 				span{
@@ -196,37 +197,42 @@ aside{
 		}
 	}
 	#viewSettings-menu{
-		top:127px;
-		width:270px;
-		height:235px;
+		top: 127px;
+		width: 270px;
+		height: 235px;
 
 		header{
-			background:$purple;
-			padding-top:15px;
-			height:30px;
-			width:270px;
+			background: $purple;
+			padding-top: 15px;
+			height: 30px;
+			width: 270px;
+
 			h2{
-				margin-left:20px;
-				padding-right:5px;
+				margin-left: 20px;
+				padding-right: 5px;
 			}
+
 			h2,dl,dt,dd{
-				float:left;
+				float: left;
 			}
+
 			dd{
-				padding-right:5px;
+				padding-right: 5px;
 			}
 		}
+
 		section,footer{
-			padding:5px 20px;
-			width:230px;
+			padding: 5px 20px;
+			width: 230px;
 		}
 
 		section{
 			h2{
-				padding:10px 0 20px 0;
+				padding: 10px 0 20px 0;
 			}
+
 			input{
-				margin-right:2px;
+				margin-right: 2px;
 			}
 
 			
@@ -234,33 +240,36 @@ aside{
 
 		footer{
 			label{
-				width:176px;
-				display:block;
-				float:left;
+				width: 176px;
+				display: block;
+				float: left;
 			}
 
 			label, input{
-					margin-bottom:4px;
+					margin-bottom: 4px;
 			}
 		}
 
 		h2{
-			font-weight:bold;
+			font-weight: bold;
 		}
+
 		input{
-			width:40px;
-			height:18px;
-			text-align:center;
-			clear:none;
-			float:none;
+			width: 40px;
+			height: 18px;
+			text-align: center;
+			clear: none;
+			float: none;
 		}
+
 		label{
-				clear:none;
-				font-weight:normal;
-				font-size:1.1rem;
-				float:none;
-				padding-left:4px;
-			}
+			clear: none;
+			font-weight: normal;
+			font-size: 1.1rem;
+			float: none;
+			padding-left: 4px;
+			display: inline-block;
+		}
 
 	}
 
@@ -269,7 +278,7 @@ aside{
 		
 	
 		label[for="scenetitle"]{
-			font-size:1.8rem;
+			font-size: 1.8rem;
 			display: block;
 			margin-bottom: 5px;
 		}
@@ -279,260 +288,231 @@ aside{
 		label[for="friendlyURL"] {
 
 			sub{
-				font-size:1rem;
-				font-weight:normal;
+				font-size: 1rem;
+				font-weight: normal;
 			}
 		}
 
 		label[for="filename"]{
-			line-height:15px;
-			padding-right:2px;
+			line-height: 15px;
+			padding-right: 2px;
 			display: inline;
 		}
 
 		#filename{
-			clear:none;
-			background:none;
-			border:none;
-			padding-left:2px;
+			clear: none;
+			background: none;
+			border: none;
+			padding-left: 2px;
 		}
 		
 		#scenetitle, #mapscene{
-			padding:14px;
-			width:280px;
+			padding: 14px;
+			width: 280px;
 		}
 
 		figure{
-			width:170px;
-			height:80px;
-			border:1px solid #000;
-			margin-bottom:30px;
-			position:relative;
+			width: 170px;
+			height: 80px;
+			border: 1px solid #000;
+			margin-bottom: 30px;
+			position: relative;
 		
 			img{
-				opacity:0.5;
-				max-width:100%;
+				opacity: 0.5;
+				max-width: 100%;
 			}
-
 			
 			figcaption{
-				position:absolute;
-				top:35px;
-				width:100%;
-				text-align:center;
+				position: absolute;
+				top: 35px;
+				width: 100%;
+				text-align: center;
 			}
 		}
 
 
 		input{
-			height:30px;
-			padding:0 4px;
+			height: 30px;
+			padding: 0 4px;
 
 		}
 
 		#scenetitle{
-			font-size:1.6rem;
-			height:10px;
+			font-size: 1.6rem;
+			height: 10px;
 		}
 
 		#mapscene{
-			font-size:1.4rem;
+			font-size: 1.4rem;
 		}
 	}
-
 
 	#virtualTourSettings-menu, #skinCustomizer-menu{
 		li{
-
 			background: rgba(0,0,0,0.5);
-			color:#FFF;
-			border:1px solid $light-gray;
-			width:278px;
-			margin-bottom:15px;
-			float:left;
-			padding:0 10px 0 20px;
+			border: 1px solid $light-gray;
+			margin-bottom: 15px;
+			padding: 0 15px;
 			
 			h3{
-			height:30px;
-			padding:2px;
-			line-height:40px;
-			padding-left:0px;
-			padding-right:10px;
-			cursor:pointer;
-			float:none;
-			clear:none;
+			height: 30px;
+			padding: 4px 10px 10px 6px;
+			line-height: 40px;
+			cursor: pointer;
 
-				.left{
-					margin-right:10px;
+				.leftish{
+					margin-right: 10px;
 				}
 
 				.right{
-					float:right;
-					margin-top:8px;
-					margin-top:15px;
-					margin-right:-10px;
+					margin-top: 8px;
+					margin-top: 15px;
+					margin-right: -10px;
 				}
 			}
 
 			.sub-items{
-				display:none;
-				float:left;
-				margin-bottom:20px;
-				padding-top:10px;
+				display: none;
+				margin-bottom: 20px;
+				padding-top: 10px;
 			}
 			
 		}
 	}
 
-
 	#virtualTourSettings-menu{
 		li{
-
-
 			h2{
-				font-size:1.4rem;
-				margin-bottom:10px;
-				line-height:18px;
+				font-size: 1.4rem;
+				margin-bottom: 10px;
+				line-height: 18px;
 			}
 
 			.sub-items{
-				
-
 				label{
-					font-weight:normal;
+					font-weight: normal;
 
 				&.onoffswitch-label{
-					width:auto;
+					width: auto;
 					}	
 				}
 
-
 				input, select{
-					width:268px;
-					padding:7px;
+					@extend %fullWidthElement;
+					padding: 7px; 
 				}
 
 				input.friendlyURL{
-					width:58px;
+					width: 58px;
 				}
 
 				textarea{
-					width:280px;
-					font-size:1.1rem;
-					padding:8px;
+					@extend %fullWidthElement;
+					font-size: 1.1rem;
 				}
 
 				.map-wrapper{
-					float:left;
+					float: left;
 				}
 
 				li{
-					border:none;
-					background:none;
-					width:auto;
+					border: none;
+					background: none;
+					width: auto;
 				}
 			
-			&.short{
+				&.short{
 					label{
-						width:240px;
+						width: 240px;
 							&.onoffswitch-label{
-						width:auto !important;
+						width: auto !important;
 						}
 					}
 					input{
-						width:38px;
-						clear:none;
-						}
+						width: 38px;
+						clear: none;
+					}
+				}
+			
+				label[for="mouseType"]{
+					width: 205px;
 				}
 
+				label[for="move-to-horizon"],label[for="move-to-fov"]{			
+					width: 180px;
+				}
 
-			
-			label[for="mouseType"]{
-				width:205px;
-			}
+				#move-to-horizon, #move-to-fov{
+					margin-left: 14px;
+				}
 
-			label[for="move-to-horizon"],label[for="move-to-fov"]{
-			
-				width:180px;
-			}
-			
+				#friendlyURLTour{
+					width: 83px;
+				}
 
-			#move-to-horizon, #move-to-fov{
-				margin-left:14px;
-			}
-
-			#friendlyURLTour{
-				padding:0;
-				width:95px;
-			}
-
-			.dropdown{
-						h2{
-							font-size:1.2rem;
-						}
-
-						li{
-							margin-bottom:0;
-							padding:0;
-							border:1px solid $middle-gray;
-							width:100%;
-							height:30px;
-							line-height:30px;
-							span{
-								padding:10px;
-							}
-
-							&:hover{
-								background:$light-gray;
-								color:#000;
-							}
-
-						}
+				.dropdown{
+					h2{
+						font-size: 1.2rem;
 					}
 
+					li{
+						margin-bottom: 0;
+						padding: 0;
+						border: 1px solid $middle-gray;
+						width: 100%;
+						height: 30px;
+						line-height: 30px;
+
+						span{
+							padding: 10px;
+						}
+
+						&:hover{
+							background: $light-gray;
+							color: #000;
+						}
+					}
+				}
 			}
 
-		.check-group, .checkboxes{
+			.check-group, .checkboxes{
+				margin-top: 10px;
+				float: left;
 
-			margin-top:10px;
-			float:left;
+				li{
+					font-size: 1.2rem;
+					padding-left: 5px;
+					clear: left;
+					cursor: pointer;
 
-			li{
-				font-size:1.2rem;
-				padding-left:5px;
-				clear:left;
-				cursor:pointer;
-				span{
-					margin-right:10px;
-					color:$light-gray;
+					span{
+						margin-right: 10px;
+						color: $light-gray;
+					}
+				}
+			}	
+
+			&.location-submenu{
+				span.help{
+					display: block;
+					float: left;
+					height: 40px;
+				}
+			}	
+			
+			&.general-settings{
+				.dropdown{
+					@extend %fullWidthElement;
 				}
 			}
 		}	
-
-		&.location-submenu{
-			h2{
-			}
-			span.help{
-				display:block;
-				float:left;
-				height:40px;
-			}
-		}	
-		
-		&.general-settings{
-			.dropdown{
-				width:284px;
-			}
-		}
-
-		}
-	
 	}
 
 
 	#skinCustomizer-menu{
 		header{
-			background:rgba(0,0,0,0.5);
+			background: rgba(0,0,0,0.5);
 			float: left;
 			margin-left: -10px;
 			width: 330px;
@@ -541,110 +521,104 @@ aside{
 			margin-bottom: 20px;
 
 			h2{				
-				width:280px;
-				float:left;
+				width: 280px;
+				float: left;
 				margin-bottom: 0;
 			}
 
 			.fa-save{
-				margin-right:15px;
+				margin-right: 15px;
 			}
 		}
 
 		.hotspotstyles{
 			.left{
-				margin-left:20px;
+				margin-left: 20px;
 			}
 
 			.row{
-				margin-left:-5px;	
+				margin-left: -5px;	
+
 				table{
-					width:285px;
-					border-collapse:inherit;
-					border-spacing:5px;
-					float:left;
+					width: 285px;
+					border-collapse: inherit;
+					border-spacing: 5px;
+					float: left; 
+
 					tr{
 						td{
-							border-top:1px solid $light-gray; 
-							border-left:1px solid $light-gray; 
-							background:$middle-gray;
-							width:20%;
-							height:50px;
+							border-top: 1px solid $light-gray; 
+							border-left: 1px solid $light-gray; 
+							background: $middle-gray;
+							width: 20%;
+							height: 50px;
 							vertical-align: middle;
 							height: 50px;
 							text-align: center;
 
 							.add{
-								width:50px;
-								display:block;
-								line-height:50px;
-								height:50px;
-								cursor:pointer;
+								width: 50px;
+								display: block;
+								line-height: 50px;
+								height: 50px;
+								cursor: pointer;
 
 								.fa-plus{
-									display:none;
-									color:$dark-gray;
+									display: none;
+									color: $dark-gray;
 								}
 								&:hover{
-									line-height:50px;
+									line-height: 50px;
+
 									.fa-plus{
-										display:block;
-										padding-top:15px;
+										display: block;
+										padding-top: 15px;
 									}
 								}
 							}
-
-
-
 						}
 					}
 
-				&.default{
-					
-					td{
-
-						div{
-							width:32px;
-							height: 32px;
-							background: url(../images/icons/hotspots.png) no-repeat;	
-							margin-left:auto;
-							margin-right: auto;
-
+					&.default{						
+						td{
+							div{
+								width: 32px;
+								height: 32px;
+								background: url(../images/icons/hotspots.png) no-repeat;	
+								margin-left: auto;
+								margin-right: auto;
+							}
 						}
-					}
-
 					}	
 				}
 			}
-			.fa-close{
-				float:left;
-				padding-top:20px;
-				font-size:15px;
-				padding-left:5px;
-				cursor:pointer;
-			}
 
-			
+			.fa-close{
+				float: left;
+				padding-top: 20px;
+				font-size: 15px;
+				padding-left: 5px;
+				cursor: pointer;
+			}			
 		}
 
 		.add-link{
-				float:left;
-				font-weight:bold;
-				font-size:1.4rem;
-				padding-top:10px;
-				cursor:pointer;
-			}
+			float: left;
+			font-weight: bold;
+			font-size: 1.4rem;
+			padding-top: 10px;
+			cursor: pointer;
+		}
 	}
 
 	.gm-style .gm-style-iw{
-		color:#222;
-		}
-
-	.map_canvas {
-		height:265px;
-		width:100%;
-		float:left;
-		margin-bottom:30px;
+		color: #222;
 	}
 
+	.map_canvas {
+		height: 265px;
+		width: 100%;
+		float: left;
+		margin-bottom: 30px;
+	}
 }
