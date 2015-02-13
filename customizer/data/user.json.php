@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", 1);
+ini_set("display_errors", 0);
 //require_once("inc/auth.inc");
 require_once("conex.inc");
 //require_once("inc/functions.inc");

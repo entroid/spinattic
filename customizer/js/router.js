@@ -52,7 +52,6 @@ define([
 		  dataType:"json",
 		  url:  "data/user.json.php",
 		 }).done(function(obj){
-		 	console.log(obj)
 		 	var xmlpath ="data/tour.xml?id="+id;
 		 	$.ajax({
    			 url: xmlpath,
@@ -61,7 +60,6 @@ define([
 			    success: function(data) {
 			    var x2js = new X2JS({attributePrefix:"_"});
 			    tourData =  x2js.xml_str2json( data );
-			    console.log(data)
 			
 
 			var tourModel = new TourModel({xmlpath:xmlpath});

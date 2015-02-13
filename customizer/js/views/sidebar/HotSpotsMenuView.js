@@ -9,9 +9,11 @@ define([
 	'views/modal/PhotoHotspotEditorView',
 	'views/modal/VideoHotspotEditorView',
 	'views/modal/ArrowHotspotEditorView',
-	'models/main/HotSpotWindowModel'
+	'models/main/HotSpotWindowModel',
+	'helpers/ManageData',
 
-], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel){
+
+], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData){
 
 	var HotSpotsMenuView = SidebarSubMenu.extend({
 		hotspotCount: 0,
@@ -67,6 +69,7 @@ define([
 			var __name = "spot"+this.hotspotCount;
 			this.openWindowEditor(modalView);
 			showWindow = this.showWindow;
+			regPos = this.regPos;
 			var krpano = document.getElementById("krpanoSWFObject");
 			krpano.call("addhotspot("+__name+")");
 			krpano.set("hotspot[spot"+this.hotspotCount+"].url", __url);
@@ -76,7 +79,8 @@ define([
 			krpano.set("hotspot[spot"+this.hotspotCount+"].atv", __atv);
 			krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
 			krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
-    		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+this.hotspotCount+')) );');
+    		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
+    		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
     		$(".overlay").addClass("hotspotwindow");
 
     		var hotspot = {
@@ -88,23 +92,37 @@ define([
     			_type:"image",
     			_visible:true,
     		}
-
-    		_.each(tourData.krpano.scene,function(elem){
-				if(elem._name == $("#tour").data("scene")._name){
-					if(!elem.hotspot){
-						elem.hotspot = [];
-						elem.hotspot.push(hotspot);
-					}else{
-						elem.hotspot.push(hotspot);
-					}
-					$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
-				}
-			})
+    		var manageData = new ManageData();
+    		manageData.pushHotspot( $("#tour").data("scene")._name,hotspot)
+    	
 
 		},
-		showWindow:function(num) {
-			$("#spot"+num).fadeIn()
+		showWindow:function(elem) {
+			$("#"+elem).fadeIn()
 		},
+
+		regPos:function(elem){
+			var krpano = document.getElementById("krpanoSWFObject");
+			var ath = krpano.get("hotspot["+elem+"].ath");
+			var atv = krpano.get("hotspot["+elem+"].atv");
+			var crop = krpano.get("hotspot["+elem+"].crop");
+			var url = krpano.get("hotspot["+elem+"].url");
+		
+			var hotspot = {
+
+				_name : elem,
+				_ath  : ath,
+				_atv  : atv,
+				_crop : crop,
+				_url  : url,
+				_type:"image",
+    			_visible:true,
+
+			}
+			var manageData = new ManageData();
+    		manageData.changeDataInHotSpot( $("#tour").data("scene")._name,hotspot)
+		},
+
 		openWindowEditor:function(mView){
 				var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
 				var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
