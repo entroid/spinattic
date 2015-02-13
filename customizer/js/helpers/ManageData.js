@@ -8,6 +8,7 @@ define([
 
 			this.saveSceneOnTour = function(scenename,nodename,newVal,parent){
 
+		
 					_.each(tourData.krpano.scene,function(elem){
 					
 					if(elem._name == scenename){
@@ -19,8 +20,8 @@ define([
 						$("#tour").data("scene",elem);
 						$("#sceneMenu").find("#"+scenename).data("scene",elem);
 					}
-				})
 
+				})
 			}
 
 			this.pushHotspot = function(sceneName,hotspot){
