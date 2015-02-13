@@ -181,8 +181,11 @@ header.main-header{
 				cursor:pointer; 
 
 				&:hover {
-					color:$middle-gray;
+					@include linear-gradient(#1c1c1c, #282828);
 				}
+				&:active {
+	                @include shadow-btn(1px, 3px, 0.8, "inset");
+	            }
 			}
 
 			#draft{

@@ -17,7 +17,6 @@ define([
 
 		},
 		render: function(){
-			console.log(setStartup)
 			var xmlpath = this.model.get("xmlpath");
 			$pano_wrapper = $('<div id="tour"></div>');
 			$(this.el).append( setStartup ); 

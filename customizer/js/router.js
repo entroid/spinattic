@@ -61,6 +61,7 @@ define([
 			    success: function(data) {
 			    var x2js = new X2JS({attributePrefix:"_"});
 			    tourData =  x2js.xml_str2json( data );
+			    console.log(data)
 			
 
 			var tourModel = new TourModel({xmlpath:xmlpath});
