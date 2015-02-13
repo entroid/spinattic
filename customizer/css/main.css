@@ -2729,14 +2729,23 @@ aside .submenu input, aside .submenu textarea, .overlay .modal input, .overlay .
   color: #FFF;
   border: 1px solid #535353; }
 
+aside #virtualTourSettings-menu li .sub-items input, aside #virtualTourSettings-menu li .sub-items select, aside #virtualTourSettings-menu li .sub-items textarea, aside #virtualTourSettings-menu li.general-settings .dropdown {
+  width: 100%;
+  box-sizing: border-box; }
+
 textarea, input {
   outline: none; }
 
 textarea {
-  font-family: "Open Sans",sans-serif; }
+  font-family: "Open Sans", sans-serif; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
 
 .dropdown {
-  float: left;
   position: relative;
   cursor: pointer;
   color: #FFF; }
@@ -2744,8 +2753,8 @@ textarea {
   min-width: 75px;
   border: 1px solid #535353;
   padding: 5px; }
-.dropdown h2 .right {
-  float: right; }
+.dropdown h2 .arrow {
+  margin-top: 4px; }
 .dropdown ul {
   display: none;
   position: absolute;
@@ -3121,11 +3130,7 @@ aside .submenu {
   right: 50px;
   display: none;
   color: #FFF;
-  background-color: rgba(0, 0, 0, 0.7);
-  /*label,input,figure,textarea,h3{
-  	float:left;
-  	clear:left;
-  }*/ }
+  background-color: rgba(0, 0, 0, 0.7); }
 aside .submenu label, aside .submenu h3 {
   margin-bottom: 5px;
   font-weight: bold;
@@ -3256,7 +3261,8 @@ aside #viewSettings-menu label {
   font-weight: normal;
   font-size: 1.1rem;
   float: none;
-  padding-left: 4px; }
+  padding-left: 4px;
+  display: inline-block; }
 aside #sceneSettings-menu label[for="scenetitle"] {
   font-size: 1.8rem;
   display: block;
@@ -3300,31 +3306,22 @@ aside #sceneSettings-menu #mapscene {
   font-size: 1.4rem; }
 aside #virtualTourSettings-menu li, aside #skinCustomizer-menu li {
   background: rgba(0, 0, 0, 0.5);
-  color: #FFF;
   border: 1px solid #535353;
-  width: 278px;
   margin-bottom: 15px;
-  float: left;
-  padding: 0 10px 0 20px; }
+  padding: 0 15px; }
 aside #virtualTourSettings-menu li h3, aside #skinCustomizer-menu li h3 {
   height: 30px;
-  padding: 2px;
+  padding: 4px 10px 10px 6px;
   line-height: 40px;
-  padding-left: 0px;
-  padding-right: 10px;
-  cursor: pointer;
-  float: none;
-  clear: none; }
-aside #virtualTourSettings-menu li h3 .left, aside #skinCustomizer-menu li h3 .left {
+  cursor: pointer; }
+aside #virtualTourSettings-menu li h3 .leftish, aside #skinCustomizer-menu li h3 .leftish {
   margin-right: 10px; }
 aside #virtualTourSettings-menu li h3 .right, aside #skinCustomizer-menu li h3 .right {
-  float: right;
   margin-top: 8px;
   margin-top: 15px;
   margin-right: -10px; }
 aside #virtualTourSettings-menu li .sub-items, aside #skinCustomizer-menu li .sub-items {
   display: none;
-  float: left;
   margin-bottom: 20px;
   padding-top: 10px; }
 aside #virtualTourSettings-menu li h2 {
@@ -3336,14 +3333,11 @@ aside #virtualTourSettings-menu li .sub-items label {
 aside #virtualTourSettings-menu li .sub-items label.onoffswitch-label {
   width: auto; }
 aside #virtualTourSettings-menu li .sub-items input, aside #virtualTourSettings-menu li .sub-items select {
-  width: 268px;
   padding: 7px; }
 aside #virtualTourSettings-menu li .sub-items input.friendlyURL {
   width: 58px; }
 aside #virtualTourSettings-menu li .sub-items textarea {
-  width: 280px;
-  font-size: 1.1rem;
-  padding: 8px; }
+  font-size: 1.1rem; }
 aside #virtualTourSettings-menu li .sub-items .map-wrapper {
   float: left; }
 aside #virtualTourSettings-menu li .sub-items li {
@@ -3364,8 +3358,7 @@ aside #virtualTourSettings-menu li .sub-items label[for="move-to-horizon"], asid
 aside #virtualTourSettings-menu li .sub-items #move-to-horizon, aside #virtualTourSettings-menu li .sub-items #move-to-fov {
   margin-left: 14px; }
 aside #virtualTourSettings-menu li .sub-items #friendlyURLTour {
-  padding: 0;
-  width: 95px; }
+  width: 83px; }
 aside #virtualTourSettings-menu li .sub-items .dropdown h2 {
   font-size: 1.2rem; }
 aside #virtualTourSettings-menu li .sub-items .dropdown li {
@@ -3395,8 +3388,6 @@ aside #virtualTourSettings-menu li.location-submenu span.help {
   display: block;
   float: left;
   height: 40px; }
-aside #virtualTourSettings-menu li.general-settings .dropdown {
-  width: 284px; }
 aside #skinCustomizer-menu header {
   background: rgba(0, 0, 0, 0.5);
   float: left;
