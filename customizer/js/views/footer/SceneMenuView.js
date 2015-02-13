@@ -75,12 +75,10 @@ define([
 			viewSettingsMenuView.refreshData();
 			
 			var krpano = document.getElementById("krpanoSWFObject");
-			//var param = helpFunctions.mapJSONToUriParams($thisli.data("scene"));
 			var param = helpFunctions.mapJSONToUriParams($thisli.data("scene"));
 				
 			param = param.replace(/:_/g,".");
 			krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
-			
 			if($thisli.data("hotspots")){
 
 				var hotspot = $thisli.data("hotspots");
@@ -92,7 +90,8 @@ define([
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
 					krpano.set("hotspot["+elem._name+"].crop",elem._crop);
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
-		    		//krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+this.hotspotCount+')) );');
+		    		krpano.call('set(hotspot['+elem._name+'].onclick, js(showWindow('+elem._name+')) );');
+		    		krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
 
 				})
 			}
@@ -102,7 +101,6 @@ define([
 			$thisli.addClass("selected")
 
 		}
-
 		
 	});
 
