@@ -236,40 +236,23 @@ header.main-header{
 
 		}
 		.onoffswitch-inner:before, .onoffswitch-inner:after {
-		    display: block; float: left; width: 50%; height: 20px; padding: 0; line-height: 20px;
-		    font-size: 1rem; color: white; 
-		    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-			font-size:1.3rem;
+			font-size: 1.3rem;
+			font-weight: normal;
 		}
 		.onoffswitch-inner:before {
 		    content: "LIVE";
 		    color:$green;
-		    padding-left: 10px;
+		    padding-left: 12px;
 		    background-color: $middle-gray; 
 		}
 		.onoffswitch-inner:after {
 		    content: "DRAFT";
 			color:$yellow;
-		    padding-right: 10px;
+		    padding-right: 8px;
 		    background-color: $dark-gray; 
 		    text-align: right;
 		}
 		.onoffswitch-switch {
-		    /*display: block; width: 12px; margin: 2px;
-		    background: $light-gray;
-		    border-radius: 11px;
-		    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-		    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
-		    height:16px;
-		    -webkit-transform:rotate(90deg);
-		    -moz-transform:rotate(90deg);
-		    -o-transform:rotate(90deg);
-		    transform:rotate(90deg);
-		    
-		    padding-left:4px;
-		    line-height:1.9rem;
-		    color:#999;*/
-
 		    right: 50px;
 
 		   }

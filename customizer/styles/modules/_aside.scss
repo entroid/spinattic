@@ -1,5 +1,5 @@
 aside{
-	width: 50px;
+    width: 50px;
 	background: $dark-gray;
 	height: 100%;
 	position: absolute;
@@ -91,7 +91,7 @@ aside{
 
 		span.help{
 			color: $light-gray;
-			padding: 3px 5px 0 0;
+			padding: 3px 10px 0 0;
 		}
 
 		.geoMap{
@@ -103,13 +103,10 @@ aside{
 			
 			.double-inputs {
 				display: inline-block;
-				&:first-child {
-					margin-right: 66px;
-				}
 
 				input{
 					width: 110px;
-					clear: none;
+					padding: 7px;
 				}
 			}
 		}
@@ -239,15 +236,19 @@ aside{
 		}
 
 		footer{
-			label{
-				width: 176px;
-				display: block;
-				float: left;
-			}
+            .input-row {
+                position: relative;
+                height: 22px;
+                margin-bottom: 4px;
 
-			label, input{
-					margin-bottom: 4px;
-			}
+                input {
+                    @include absolute(0, 17px, initial, initial)
+                }
+
+                span {
+                    @include absolute(0, 0, initial, initial)
+                }
+            }
 		}
 
 		h2{
@@ -255,20 +256,14 @@ aside{
 		}
 
 		input{
-			width: 40px;
-			height: 18px;
-			text-align: center;
-			clear: none;
-			float: none;
+			width: 38px;
+            padding: 2px;
 		}
 
 		label{
-			clear: none;
 			font-weight: normal;
 			font-size: 1.1rem;
-			float: none;
-			padding-left: 4px;
-			display: inline-block;
+            display: inline-block;
 		}
 
 	}
@@ -352,12 +347,12 @@ aside{
 		li{
 			background: rgba(0,0,0,0.5);
 			border: 1px solid $light-gray;
-			margin-bottom: 15px;
+			margin-bottom: 20px;
 			padding: 0 15px;
 			
 			h3{
 			height: 30px;
-			padding: 4px 10px 10px 6px;
+			padding: 4px 10px 10px 0;
 			line-height: 40px;
 			cursor: pointer;
 
@@ -385,7 +380,7 @@ aside{
 		li{
 			h2{
 				font-size: 1.4rem;
-				margin-bottom: 10px;
+				margin-bottom: 20px;
 				line-height: 18px;
 			}
 
@@ -393,12 +388,12 @@ aside{
 				label{
 					font-weight: normal;
 
-				&.onoffswitch-label{
-					width: auto;
+				    &.onoffswitch-label{
+					   width: auto;
 					}	
 				}
 
-				input, select{
+				& > input, & > select{
 					@extend %fullWidthElement;
 					padding: 7px; 
 				}
@@ -413,7 +408,6 @@ aside{
 				}
 
 				.map-wrapper{
-					float: left;
 				}
 
 				li{
@@ -425,13 +419,14 @@ aside{
 				&.short{
 					label{
 						width: 240px;
-							&.onoffswitch-label{
-						width: auto !important;
+
+						&.onoffswitch-label{
+						  width: auto !important;
 						}
 					}
 					input{
 						width: 38px;
-						clear: none;
+						padding: 4px 2px;
 					}
 				}
 			
@@ -457,10 +452,10 @@ aside{
 					}
 
 					li{
+                        @extend %fullWidthElement;
 						margin-bottom: 0;
 						padding: 0;
 						border: 1px solid $middle-gray;
-						width: 100%;
 						height: 30px;
 						line-height: 30px;
 
@@ -477,17 +472,16 @@ aside{
 			}
 
 			.check-group, .checkboxes{
-				margin-top: 10px;
-				float: left;
+				margin-bottom: 30px;
 
 				li{
-					font-size: 1.2rem;
-					padding-left: 5px;
-					clear: left;
+					font-size: 1.3rem;
+					padding-left: 0;
 					cursor: pointer;
+                    line-height: 1.8rem;
 
 					span{
-						margin-right: 10px;
+						margin-right: 7px;
 						color: $light-gray;
 					}
 				}
@@ -507,6 +501,20 @@ aside{
 				}
 			}
 		}	
+
+        .mouse-control-settings{
+            .input-row{
+                height: 30px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .autorotate-settings{
+            .input-row{
+                height: 26px;
+                margin-bottom: 10px;
+            }
+        }
 	}
 
 

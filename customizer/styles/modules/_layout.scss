@@ -42,6 +42,18 @@ textarea{
 	float: left;
 }
 
+.positionRelative {
+    position: relative;
+}
+
+.absoluteRight {
+    @include absolute(0, 0, initial, initial); 
+}
+
+.middlePosition {
+    @include absolute(0, 50px, initial, initial);
+}
+
 .dropdown{
 	position: relative;
 	cursor: pointer;
@@ -78,11 +90,10 @@ textarea{
 
 /*on-off*/
 .onoffswitch {
-    position: relative; width: 50px;
     -webkit-user-select: none; 
     -moz-user-select: none; 
     -ms-user-select: none;
-    float: left;
+    width: 50px;
 }
 
 .onoffswitch-checkbox {
@@ -115,8 +126,10 @@ textarea{
     width: 50%; 
     height: 20px; 
     padding: 0; 
+    padding-top: 1px;
     line-height: 20px;
     font-size: 1rem; 
+    font-weight: bold;
     color: white; 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
@@ -131,7 +144,7 @@ textarea{
 }
 .onoffswitch-inner:after {
     content: "OFF";
-    padding-right: 10px;
+    padding-right: 5px;
     background-color: $dark-gray; 
     color: #999999;
     text-align: right;

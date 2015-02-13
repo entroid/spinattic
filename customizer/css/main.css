@@ -2729,7 +2729,7 @@ aside .submenu input, aside .submenu textarea, .overlay .modal input, .overlay .
   color: #FFF;
   border: 1px solid #535353; }
 
-aside #virtualTourSettings-menu li .sub-items input, aside #virtualTourSettings-menu li .sub-items select, aside #virtualTourSettings-menu li .sub-items textarea, aside #virtualTourSettings-menu li.general-settings .dropdown {
+aside #virtualTourSettings-menu li .sub-items > input, aside #virtualTourSettings-menu li .sub-items > select, aside #virtualTourSettings-menu li .sub-items textarea, aside #virtualTourSettings-menu li .sub-items .dropdown li, aside #virtualTourSettings-menu li.general-settings .dropdown {
   width: 100%;
   box-sizing: border-box; }
 
@@ -2744,6 +2744,23 @@ textarea {
 
 .left {
   float: left; }
+
+.positionRelative {
+  position: relative; }
+
+.absoluteRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: initial;
+  left: initial; }
+
+.middlePosition {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  bottom: initial;
+  left: initial; }
 
 .dropdown {
   position: relative;
@@ -2772,12 +2789,10 @@ textarea {
 
 /*on-off*/
 .onoffswitch {
-  position: relative;
-  width: 50px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  float: left; }
+  width: 50px; }
 
 .onoffswitch-checkbox {
   display: none; }
@@ -2805,8 +2820,10 @@ textarea {
   width: 50%;
   height: 20px;
   padding: 0;
+  padding-top: 1px;
   line-height: 20px;
   font-size: 1rem;
+  font-weight: bold;
   color: white;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -2820,7 +2837,7 @@ textarea {
 
 .onoffswitch-inner:after {
   content: "OFF";
-  padding-right: 10px;
+  padding-right: 5px;
   background-color: #232323;
   color: #999999;
   text-align: right; }
@@ -3040,44 +3057,20 @@ header.main-header .header-side #publishController .onoffswitch-inner {
   -o-transition: margin 0.3s ease-in 0s;
   transition: margin 0.3s ease-in 0s; }
 header.main-header .header-side #publishController .onoffswitch-inner:before, header.main-header .header-side #publishController .onoffswitch-inner:after {
-  display: block;
-  float: left;
-  width: 50%;
-  height: 20px;
-  padding: 0;
-  line-height: 20px;
-  font-size: 1rem;
-  color: white;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 1.3rem; }
+  font-size: 1.3rem;
+  font-weight: normal; }
 header.main-header .header-side #publishController .onoffswitch-inner:before {
   content: "LIVE";
   color: #497f3c;
-  padding-left: 10px;
+  padding-left: 12px;
   background-color: #333333; }
 header.main-header .header-side #publishController .onoffswitch-inner:after {
   content: "DRAFT";
   color: #fad368;
-  padding-right: 10px;
+  padding-right: 8px;
   background-color: #232323;
   text-align: right; }
 header.main-header .header-side #publishController .onoffswitch-switch {
-  /*display: block; width: 12px; margin: 2px;
-  background: $light-gray;
-  border-radius: 11px;
-  -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
-  height:16px;
-  -webkit-transform:rotate(90deg);
-  -moz-transform:rotate(90deg);
-  -o-transform:rotate(90deg);
-  transform:rotate(90deg);
-  
-  padding-left:4px;
-  line-height:1.9rem;
-  color:#999;*/
   right: 50px; }
 header.main-header .header-side #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
   margin-left: 0; }
@@ -3154,18 +3147,16 @@ aside .submenu span.check {
   clear: left; }
 aside .submenu span.help {
   color: #535353;
-  padding: 3px 5px 0 0; }
+  padding: 3px 10px 0 0; }
 aside .submenu .geoMap {
   margin-top: 15px; }
 aside .submenu .geoMap label {
   width: 50px; }
 aside .submenu .geoMap .double-inputs {
   display: inline-block; }
-aside .submenu .geoMap .double-inputs:first-child {
-  margin-right: 66px; }
 aside .submenu .geoMap .double-inputs input {
   width: 110px;
-  clear: none; }
+  padding: 7px; }
 aside .submenu .location {
   margin-bottom: 1px;
   left: 0 !important;
@@ -3242,26 +3233,30 @@ aside #viewSettings-menu section h2 {
   padding: 10px 0 20px 0; }
 aside #viewSettings-menu section input {
   margin-right: 2px; }
-aside #viewSettings-menu footer label {
-  width: 176px;
-  display: block;
-  float: left; }
-aside #viewSettings-menu footer label, aside #viewSettings-menu footer input {
+aside #viewSettings-menu footer .input-row {
+  position: relative;
+  height: 22px;
   margin-bottom: 4px; }
+aside #viewSettings-menu footer .input-row input {
+  position: absolute;
+  top: 0;
+  right: 17px;
+  bottom: initial;
+  left: initial; }
+aside #viewSettings-menu footer .input-row span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: initial;
+  left: initial; }
 aside #viewSettings-menu h2 {
   font-weight: bold; }
 aside #viewSettings-menu input {
-  width: 40px;
-  height: 18px;
-  text-align: center;
-  clear: none;
-  float: none; }
+  width: 38px;
+  padding: 2px; }
 aside #viewSettings-menu label {
-  clear: none;
   font-weight: normal;
   font-size: 1.1rem;
-  float: none;
-  padding-left: 4px;
   display: inline-block; }
 aside #sceneSettings-menu label[for="scenetitle"] {
   font-size: 1.8rem;
@@ -3307,11 +3302,11 @@ aside #sceneSettings-menu #mapscene {
 aside #virtualTourSettings-menu li, aside #skinCustomizer-menu li {
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #535353;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   padding: 0 15px; }
 aside #virtualTourSettings-menu li h3, aside #skinCustomizer-menu li h3 {
   height: 30px;
-  padding: 4px 10px 10px 6px;
+  padding: 4px 10px 10px 0;
   line-height: 40px;
   cursor: pointer; }
 aside #virtualTourSettings-menu li h3 .leftish, aside #skinCustomizer-menu li h3 .leftish {
@@ -3326,20 +3321,18 @@ aside #virtualTourSettings-menu li .sub-items, aside #skinCustomizer-menu li .su
   padding-top: 10px; }
 aside #virtualTourSettings-menu li h2 {
   font-size: 1.4rem;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   line-height: 18px; }
 aside #virtualTourSettings-menu li .sub-items label {
   font-weight: normal; }
 aside #virtualTourSettings-menu li .sub-items label.onoffswitch-label {
   width: auto; }
-aside #virtualTourSettings-menu li .sub-items input, aside #virtualTourSettings-menu li .sub-items select {
+aside #virtualTourSettings-menu li .sub-items > input, aside #virtualTourSettings-menu li .sub-items > select {
   padding: 7px; }
 aside #virtualTourSettings-menu li .sub-items input.friendlyURL {
   width: 58px; }
 aside #virtualTourSettings-menu li .sub-items textarea {
   font-size: 1.1rem; }
-aside #virtualTourSettings-menu li .sub-items .map-wrapper {
-  float: left; }
 aside #virtualTourSettings-menu li .sub-items li {
   border: none;
   background: none;
@@ -3350,7 +3343,7 @@ aside #virtualTourSettings-menu li .sub-items.short label.onoffswitch-label {
   width: auto !important; }
 aside #virtualTourSettings-menu li .sub-items.short input {
   width: 38px;
-  clear: none; }
+  padding: 4px 2px; }
 aside #virtualTourSettings-menu li .sub-items label[for="mouseType"] {
   width: 205px; }
 aside #virtualTourSettings-menu li .sub-items label[for="move-to-horizon"], aside #virtualTourSettings-menu li .sub-items label[for="move-to-fov"] {
@@ -3365,7 +3358,6 @@ aside #virtualTourSettings-menu li .sub-items .dropdown li {
   margin-bottom: 0;
   padding: 0;
   border: 1px solid #333333;
-  width: 100%;
   height: 30px;
   line-height: 30px; }
 aside #virtualTourSettings-menu li .sub-items .dropdown li span {
@@ -3374,20 +3366,25 @@ aside #virtualTourSettings-menu li .sub-items .dropdown li:hover {
   background: #535353;
   color: #000; }
 aside #virtualTourSettings-menu li .check-group, aside #virtualTourSettings-menu li .checkboxes {
-  margin-top: 10px;
-  float: left; }
+  margin-bottom: 30px; }
 aside #virtualTourSettings-menu li .check-group li, aside #virtualTourSettings-menu li .checkboxes li {
-  font-size: 1.2rem;
-  padding-left: 5px;
-  clear: left;
-  cursor: pointer; }
+  font-size: 1.3rem;
+  padding-left: 0;
+  cursor: pointer;
+  line-height: 1.8rem; }
 aside #virtualTourSettings-menu li .check-group li span, aside #virtualTourSettings-menu li .checkboxes li span {
-  margin-right: 10px;
+  margin-right: 7px;
   color: #535353; }
 aside #virtualTourSettings-menu li.location-submenu span.help {
   display: block;
   float: left;
   height: 40px; }
+aside #virtualTourSettings-menu .mouse-control-settings .input-row {
+  height: 30px;
+  margin-bottom: 10px; }
+aside #virtualTourSettings-menu .autorotate-settings .input-row {
+  height: 26px;
+  margin-bottom: 10px; }
 aside #skinCustomizer-menu header {
   background: rgba(0, 0, 0, 0.5);
   float: left;
@@ -3617,7 +3614,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: -14px; }
 #tooltip.help {
   width: 350px;
-  margin-left: -370px;
+  margin-left: -425px;
   margin-top: -5px;
   line-height: 14px;
   text-align: left; }

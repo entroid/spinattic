@@ -67,82 +67,136 @@
 			<li class="mouse-control-settings">
 				<h3><span class="fa fa-arrows-v fa-lg leftish"></span>Mouse control settings<span class="fa fa-caret-down fa-lg right"></span></h3>
 				<div class="sub-items short">
-					<label for="mouseType"><span class="help fa fa-question-circle"></span> Mouse Type</label>
-					<div title="Mouse" id="Mouse" class="dropdown dd-settingmenu">
-						<h2><span class="title">MoveTo</span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
-						<ul>
-							<li data-value="op1"><span>MoveTo</span></li>
-							<li data-value="op2"><span>op2</span></li>
-						</ul>
+					<div class="input-row positionRelative">
+						<label for="mouseType"><span class="help fa fa-question-circle"></span> Mouse Type</label>
+						<div class="absoluteRight ">
+							<div title="Mouse" id="Mouse" class="dropdown dd-settingmenu">
+								<h2><span class="title">MoveTo</span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
+								<ul>
+									<li data-value="op1"><span>MoveTo</span></li>
+									<li data-value="op2"><span>op2</span></li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<label for="zoomToCursor"><span class="help fa fa-question-circle"></span> Zoom to Cursor</label>
-					<input type="hidden" name="zoomToCursor" id="zoomToCursor">
-					<div class="onoffswitch">
-					    <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
-					    <label class="onoffswitch-label" for="myonoffswitch1">
-					        <span class="onoffswitch-inner"></span>
-					        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
-					    </label>
+
+					<div class="input-row positionRelative">
+						<label for="zoomToCursor"><span class="help fa fa-question-circle"></span> Zoom to Cursor</label>
+						<input type="hidden" name="zoomToCursor" id="zoomToCursor">
+						<div class="onoffswitch absoluteRight">
+						    <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
+						    <label class="onoffswitch-label" for="myonoffswitch1">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+						    </label>
+						</div>
 					</div>
-					<label for="zoomoutCursor"><span class="help fa fa-question-circle"></span> Zoom out cursor</label>
-					<input type="hidden" name="zoomoutCursor" id="zoomoutCursor">
-					<div class="onoffswitch">
-					    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" >
-					    <label class="onoffswitch-label" for="myonoffswitch2">
-					        <span class="onoffswitch-inner"></span>
-					        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
-					    </label>
+
+					<div class="input-row positionRelative">
+						<label for="zoomoutCursor"><span class="help fa fa-question-circle"></span> Zoom out cursor</label>
+						<input type="hidden" name="zoomoutCursor" id="zoomoutCursor">
+						<div class="onoffswitch absoluteRight">
+						    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" >
+						    
+						    <label class="onoffswitch-label" for="myonoffswitch2">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+						    </label>
+						</div>
 					</div>
-					<label for="mouseaccelerate"><span class="help fa fa-question-circle"></span> Mouse accelerate</label>
-					<input type="number" name="mouseaccelerate" id="mouseaccelerate" step="0.1" value="1.0">
-					<label for="mousespeed"><span class="help fa fa-question-circle"></span> Mouse speed</label>
-					<input type="number" name="mousespeed" id="mousespeed" step="0.1" value="1.0">
-					<label for="mousefriction"><span class="help fa fa-question-circle"></span> Mouse friction</label>
-					<input type="number" name="mousefriction" id="mousefriction" step="0.1" value="1.0">
-					<label for="mousefovchange"><span class="help fa fa-question-circle"></span> Mouse fov change</label>
-					<input type="number" name="mousefovchange" id="mousefovchange" step="0.1" value="1.0">
-					<label for="FOVspeed"><span class="help fa fa-question-circle"></span> FOV speed</label>
-					<input type="number" name="FOVspeed" id="FOVspeed" step="0.1" value="1.0">
-					<label for="FOVfriction"><span class="help fa fa-question-circle"></span> FOV friction</label>
-					<input type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="1.0">
+
+					<div class="input-row positionRelative">
+						<label for="mouseaccelerate"><span class="help fa fa-question-circle"></span> Mouse accelerate</label>
+						<input class="absoluteRight" type="number" name="mouseaccelerate" id="mouseaccelerate" step="0.1" value="1.0" min="-100" max="100" maxlength = "3">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="mousespeed"><span class="help fa fa-question-circle"></span> Mouse speed</label>
+						<input class="absoluteRight" type="number" name="mousespeed" id="mousespeed" step="0.1" value="1.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="mousefriction"><span class="help fa fa-question-circle"></span> Mouse friction</label>
+						<input class="absoluteRight" type="number" name="mousefriction" id="mousefriction" step="0.1" value="1.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="mousefovchange"><span class="help fa fa-question-circle"></span> Mouse fov change</label>
+						<input class="absoluteRight" type="number" name="mousefovchange" id="mousefovchange" step="0.1" value="1.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="FOVspeed"><span class="help fa fa-question-circle"></span> FOV speed</label>
+						<input class="absoluteRight" type="number" name="FOVspeed" id="FOVspeed" step="0.1" value="1.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="FOVfriction"><span class="help fa fa-question-circle"></span> FOV friction</label>
+						<input class="absoluteRight" type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="1.0">
+					</div>
 				</div>
 			</li>
 			<li class="autorotate-settings">
 				<h3><span class="fa fa-rotate-left fa-lg leftish "></span>Autorotate settings<span class="fa fa-caret-down fa-lg right"></span></h3>
 				<div class="sub-items short">
 					<h2>Auto-rotation, moving and zooming when there's no interaction with the panorama</h2>
-					<label for="enabledautorotate"><span class="help fa fa-question-circle"></span> Enabled</label>
-					<div class="onoffswitch">
-					    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-					    <label class="onoffswitch-label" for="myonoffswitch3">
-					        <span class="onoffswitch-inner"></span>
-					        <span class="onoffswitch-switch"></span>
-					    </label>
+
+					<div class="input-row positionRelative">
+						<label for="enabledautorotate"><span class="help fa fa-question-circle"></span> Enabled</label>
+						<div class="onoffswitch absoluteRight">
+						    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
+
+						    <label class="onoffswitch-label" for="myonoffswitch3">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+						    </label>
+						</div>
 					</div>
-					<label for="waittime"><span class="help fa fa-question-circle"></span> Wait time</label>
-					<input type="number" id="waittime" name="waittime" value="15.5">
-					<label for="acceleration"><span class="help fa fa-question-circle"></span> Acceleration</label>
-					<input type="number" id="acceleration" name="acceleration" value="1.0">
-					<label for="speed"><span class="help fa fa-question-circle"></span> Speed</label>
-					<input type="number" id="speed" name="speed" value="10.0">
-					<label for="move-to-horizon"><span class="help fa fa-question-circle"></span> Move to Horizon</label>
-					<div class="onoffswitch">
-					    <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" checked>
-					    <label class="onoffswitch-label" for="myonoffswitch4">
-					        <span class="onoffswitch-inner"></span>
-					        <span class="onoffswitch-switch"></span>
-					    </label>
+
+					<div class="input-row positionRelative">
+						<label for="waittime"><span class="help fa fa-question-circle"></span> Wait time</label>
+						<input class="absoluteRight" type="number" id="waittime" name="waittime" value="15.5">
 					</div>
-					<input type="number" id="move-to-horizon" name="move-to-horizon" value="0.0">
-					<label for="move-to-fov"><span class="help fa fa-question-circle"></span> Move to Fov</label>
-					<div class="onoffswitch">
-					    <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" checked>
-					    <label class="onoffswitch-label" for="myonoffswitch5">
-					        <span class="onoffswitch-inner"></span>
-					        <span class="onoffswitch-switch"></span>
-					    </label>
+
+					<div class="input-row positionRelative">
+						<label for="acceleration"><span class="help fa fa-question-circle"></span> Acceleration</label>
+						<input class="absoluteRight" type="number" id="acceleration" name="acceleration" value="1.0">
 					</div>
-					<input type="number" id="move-to-fov" name="move-to-fov" value="135.0">
+
+					<div class="input-row positionRelative">
+						<label for="speed"><span class="help fa fa-question-circle"></span> Speed</label>
+						<input class="absoluteRight" type="number" id="speed" name="speed" value="10.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="move-to-horizon"><span class="help fa fa-question-circle"></span> Move to Horizon</label>
+
+						<div class="onoffswitch middlePosition">
+						    <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" checked>
+
+						    <label class="onoffswitch-label" for="myonoffswitch4">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+						    </label>
+						</div>					
+
+						<input class="absoluteRight" type="number" id="move-to-horizon" name="move-to-horizon" value="0.0">
+					</div>
+
+					<div class="input-row positionRelative">
+						<label for="move-to-fov"><span class="help fa fa-question-circle"></span> Move to Fov</label>
+
+						<div class="onoffswitch middlePosition">
+						    <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" checked>
+
+						    <label class="onoffswitch-label" for="myonoffswitch5">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+						    </label>
+						</div>
+
+						<input class="absoluteRight" type="number" id="move-to-fov" name="move-to-fov" value="135.0">
+					</div>
 				</div>
 			</li>
 		</ul>
