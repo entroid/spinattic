@@ -73,9 +73,10 @@ define([
 
 			var viewSettingsMenuView = new ViewSettingsMenuView();
 			viewSettingsMenuView.refreshData();
-			
+			var customparam = jQuery.extend({},$thisli.data("scene"));
+			delete customparam.hotspot;
 			var krpano = document.getElementById("krpanoSWFObject");
-			var param = helpFunctions.mapJSONToUriParams($thisli.data("scene"));
+			var param = helpFunctions.mapJSONToUriParams(customparam);
 				
 			param = param.replace(/:_/g,".");
 			krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
