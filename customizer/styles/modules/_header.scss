@@ -1,57 +1,58 @@
 header.main-header{
 	@extend %full-width;
-	height:70px;
-	z-index:2;
-	position:relative;
+	height: 70px;
+	z-index: 2;
+	position: relative;
 
 	h1{
-		background:url(../images/logo.png);
-		text-indent:-10000px;
-		width:304px;
-		height:51px;
-		top:10px;
-		left:15px;
-		position:relative;
-		float:left;
+		background: url(../images/logo.png);
+		text-indent: -10000px;
+		width: 304px;
+		height: 51px;
+		top: 10px;
+		left: 15px;
+		position: relative;
+		float: left;
 	}
 
 	.header-side{
-
-		width:435px;
-		float:right;
+		width: 435px;
+		float: right;
 
 		.user{
-			width:65px;
-			float:right;
-			position:relative;
-			margin-top:7px;
+			width: 65px;
+			float: right;
+			position: relative;
+			margin-top: 7px;
+
 			.user-wrapper{
 				.avatar{
-				width:52px;
-				border-radius:38px;
-				overflow:hidden;
-				height:50px;
-				cursor:pointer;
-				img {
-					width:100%;
+					width: 52px;
+					border-radius: 38px;
+					overflow: hidden;
+					height: 50px;
+					cursor: pointer;
+
+					img {
+						width: 100%;
 					}
 				}
 				.notification{
-					border-radius:35px;
-					background:white;
-					width:25px;
-					height:20px;
-					position:absolute;
-					top:30px;
-					left:-10px;
-					text-align:center;
-					padding-top:5px;
-					cursor:pointer;
+					border-radius: 35px;
+					background: white;
+					width: 25px;
+					height: 20px;
+					position: absolute;
+					top: 30px;
+					left: -10px;
+					text-align: center;
+					padding-top: 5px;
+					cursor: pointer;
 
 					@include shadow-btn(2px, 2px, 0.5, "");
 
 					&:hover, &:active {
-						background:$light-blue; 
+						background: $light-blue; 
 					}
 
 					&:active {
@@ -59,11 +60,9 @@ header.main-header{
 					}
 
 					.fa-bell{
-						color:$red;
-
+						color: $red;
 					}	
 				}
-
 			}
 
 			.menu-list{
@@ -71,97 +70,89 @@ header.main-header{
 				background: #FFF;
 				top: 70px;
 				left: -200px;
-				width:250px;
-				display:none;
-				font-size:1.4rem;
+				width: 250px;
+				display: none;
+				font-size: 1.4rem;
+
 				&:after{
-					top: -15px;
-					right: 15px;
-					bottom: auto;
-					left: auto;
+					@include absolute(-15px, 15px, initial, initial);
 					border-width: 0 10px 15px;
-					border-color: #fFF transparent;
+					border-color: #fff transparent;
 					content: "";
-					position: absolute;
 					border-style: solid;
 					display: block;
 					width: 0;
-
 				}
 
 				.header-user-menu{
-					border-bottom:1px solid $lighter-gray;
-					float:left;
+					border-bottom: 1px solid $lighter-gray;
+					float: left;
+
 					li{
-						float:left;
-						width:115px;
-						padding:5px;
-						height:30px;
-						color:#54afdf;
-						line-height:30px;
-						font-size:1.2rem;
+						float: left;
+						width: 115px;
+						padding: 5px;
+						height: 30px;
+						color: #54afdf;
+						line-height: 30px;
+						font-size: 1.2rem;
+
 						span{
-							margin-right:5px;
+							margin-right: 5px;
 						}
 					}
-				}
-
-				.main-user-menu{
-				}
-
-				.production-user-menu{
 				}
 
 				.main-user-menu, .production-user-menu{
-					float:left;
-					clear:left;
-					width:100%;
+					float: left;
+					clear: left;
+					width: 100%;
 				}
-
 
 				.main-user-menu li, .production-user-menu li{
 						
-					border-bottom:1px solid $lighter-gray;
-					font-weight:bold;
+					border-bottom: 1px solid $lighter-gray;
+					font-weight: bold;
 
 					span{
-						margin-right:10px;
+						margin-right: 10px;
 					}
 
 					a{
-						padding:10px;
+						padding: 10px;
 					
-						color:$dark-gray;
-						display:block;
+						color: $dark-gray;
+						display: block;
 						text-decoration:none;
+
 						&:hover{
-						background:#54afdf;
-						color:#FFFFFF;
+							background: #54afdf;
+							color: #FFFFFF;
 						}
-					}
-					
+					}					
 				}
 			
-			h2{
-					border-bottom:1px solid $lighter-gray;
-					background:#dfdfdf;
-					text-transform:uppercase;
-					padding:10px;
-					float:left;
-					width:230px;
-					font-weight:bold;	
+				h2{
+					border-bottom: 1px solid $lighter-gray;
+					background: #dfdfdf;
+					text-transform: uppercase;
+					padding: 10px;
+					float: left;
+					width: 230px;
+					font-weight: bold;	
+
 					span{
-						margin-right:10px;
+						margin-right: 10px;
 					}			
-			}
-				
+				}				
 			}
 		}
 
 		#publishController{
-			width:355px;
-			float:left;
-			margin-top:20px;
+			width: 355px;
+			float: left;
+			margin-top: 20px;
+
 			div{
 				float:left;
 				border:1px solid #000;
@@ -170,15 +161,15 @@ header.main-header{
 
 			#live{
 				h4{
-					color:$green;
+					color: $green;
 				}
 			}
 
 			#publish{
-				color:white;
-				font-size:22px;
-				padding:5px;
-				cursor:pointer; 
+				color: white;
+				font-size: 22px;
+				padding: 5px;
+				cursor: pointer; 
 
 				&:hover {
 					@include linear-gradient(#1c1c1c, #282828);
@@ -189,82 +180,95 @@ header.main-header{
 			}
 
 			#draft{
-
 				h4{
-					color:$yellow;
+					color: $yellow;
 				}
-
 			}
 
 			#live, #draft{
-				background:$dark-gray-2; 
-				width:103px;
-				text-align:center;
-				padding:3px 5px;
+				background: $dark-gray-2; 
+				width: 103px;
+				text-align: center;
+				padding: 3px 5px;
+
 				h4{
-					font-weight:bold;
-					margin-bottom:5px;
+					font-weight: bold;
+					margin-bottom: 5px;
 				}
 
 				.date{
-					color:$light-gray;
-					font-style:italic;
+					color: $light-gray;
+					font-style: italic;
 				}
 			}
 
 
-.onoffswitch {
-		    position: relative; width: 70px;
-		    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-		    float:left;
-		    border:none;
-		    margin-top:6px;
-		}
-		.onoffswitch-checkbox {
-		    display: none;
-		}
-		.onoffswitch-label {
-		    display: block; overflow: hidden; cursor: pointer;
-		    border-radius: 11px;
-		    width:auto;
-		    border:1px solid #000;
-		}
-		.onoffswitch-inner {
-		    display: block; width: 200%; margin-left: -100%;
-		    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-		    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+			.onoffswitch {
+			    position: relative; 
+			    width: 70px;
+			    -webkit-user-select: none; 
+			    -moz-user-select: none; 
+			    -ms-user-select: none;
+			    float: left;
+			    border: none;
+			    margin-top: 6px;
+			}
 
-		}
-		.onoffswitch-inner:before, .onoffswitch-inner:after {
-			font-size: 1.3rem;
-			font-weight: normal;
-		}
-		.onoffswitch-inner:before {
-		    content: "LIVE";
-		    color:$green;
-		    padding-left: 12px;
-		    background-color: $middle-gray; 
-		}
-		.onoffswitch-inner:after {
-		    content: "DRAFT";
-			color:$yellow;
-		    padding-right: 8px;
-		    background-color: $dark-gray; 
-		    text-align: right;
-		}
-		.onoffswitch-switch {
-		    right: 50px;
+			.onoffswitch-checkbox {
+			    display: none;
+			}
 
-		   }
-		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-		    margin-left: 0;
-		}
-		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-		    right: 0px; 
-		}
+			.onoffswitch-label {
+			    display: block; 
+			    overflow: hidden; 
+			    cursor: pointer;
+			    border-radius: 11px;
+			    width: auto;
+			    border: 1px solid #000;
+			}
 
+			.onoffswitch-inner {
+			    display: block; 
+			    width: 200%; 
+			    margin-left: -100%;
+			    -moz-transition: margin 0.3s ease-in 0s; 
+			    -webkit-transition: margin 0.3s ease-in 0s;
+			    -o-transition: margin 0.3s ease-in 0s; 
+			    transition: margin 0.3s ease-in 0s;
 
-			
+			}
+
+			.onoffswitch-inner:before, .onoffswitch-inner:after {
+				font-size: 1.3rem;
+				font-weight: normal;
+			}
+
+			.onoffswitch-inner:before {
+			    content: "LIVE";
+			    color: $green;
+			    padding-left: 12px;
+			    background-color: $middle-gray; 
+			}
+
+			.onoffswitch-inner:after {
+			    content: "DRAFT";
+				color: $yellow;
+			    padding-right: 8px;
+			    background-color: $dark-gray; 
+			    text-align: right;
+			}
+
+			.onoffswitch-switch {
+			    right: 50px;
+			}
+
+			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+			    margin-left: 0;
+			}
+
+			.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+			    right: 0px; 
+			}			
 		}
 	}
 }

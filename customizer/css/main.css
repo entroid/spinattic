@@ -2932,14 +2932,14 @@ header.main-header .header-side .user .menu-list {
   display: none;
   font-size: 1.4rem; }
 header.main-header .header-side .user .menu-list:after {
+  position: absolute;
   top: -15px;
   right: 15px;
-  bottom: auto;
-  left: auto;
+  bottom: initial;
+  left: initial;
   border-width: 0 10px 15px;
-  border-color: #fFF transparent;
+  border-color: #fff transparent;
   content: "";
-  position: absolute;
   border-style: solid;
   display: block;
   width: 0; }
@@ -3168,8 +3168,8 @@ aside .land-submenu {
   height: 100%;
   width: 350px; }
 aside .land-submenu .inner {
-  margin-top: 60px;
-  padding: 20px;
+  margin-top: 70px;
+  padding: 10px 20px;
   overflow: auto; }
 aside .land-submenu .inner header h2 {
   font-size: 1.8rem;
@@ -3386,28 +3386,20 @@ aside #virtualTourSettings-menu .autorotate-settings .input-row {
   height: 26px;
   margin-bottom: 10px; }
 aside #skinCustomizer-menu header {
-  background: rgba(0, 0, 0, 0.5);
-  float: left;
-  margin-left: -10px;
-  width: 330px;
-  margin-top: -5px;
-  padding: 10px;
   margin-bottom: 20px; }
 aside #skinCustomizer-menu header h2 {
-  width: 280px;
-  float: left;
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 0; }
 aside #skinCustomizer-menu header .fa-save {
   margin-right: 15px; }
 aside #skinCustomizer-menu .hotspotstyles .left {
   margin-left: 20px; }
-aside #skinCustomizer-menu .hotspotstyles .row {
-  margin-left: -5px; }
 aside #skinCustomizer-menu .hotspotstyles .row table {
-  width: 285px;
-  border-collapse: inherit;
+  width: 100%;
+  border-collapse: initial;
   border-spacing: 5px;
-  float: left; }
+  margin: -5px 0 0 -5px; }
 aside #skinCustomizer-menu .hotspotstyles .row table tr td {
   border-top: 1px solid #535353;
   border-left: 1px solid #535353;
@@ -3417,6 +3409,9 @@ aside #skinCustomizer-menu .hotspotstyles .row table tr td {
   vertical-align: middle;
   height: 50px;
   text-align: center; }
+aside #skinCustomizer-menu .hotspotstyles .row table tr td.close {
+  border: none;
+  background-color: transparent; }
 aside #skinCustomizer-menu .hotspotstyles .row table tr td .add {
   width: 50px;
   display: block;
@@ -3437,18 +3432,20 @@ aside #skinCustomizer-menu .hotspotstyles .row table.default td div {
   background: url(../images/icons/hotspots.png) no-repeat;
   margin-left: auto;
   margin-right: auto; }
-aside #skinCustomizer-menu .hotspotstyles .fa-close {
-  float: left;
-  padding-top: 20px;
+aside #skinCustomizer-menu .hotspotstyles .row table .fa-close {
+  padding: 5px;
   font-size: 15px;
-  padding-left: 5px;
-  cursor: pointer; }
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: initial;
+  bottom: initial;
+  left: 0; }
 aside #skinCustomizer-menu .add-link {
-  float: left;
   font-weight: bold;
   font-size: 1.4rem;
   padding-top: 10px;
-  cursor: pointer; }
+  display: block; }
 aside .gm-style .gm-style-iw {
   color: #222; }
 aside .map_canvas {
@@ -3476,7 +3473,7 @@ footer.main-footer .scene-wrapper ul#sceneMenu li {
   float: left;
   width: 100px;
   height: 50px;
-  padding-right: 10px;
+  margin-right: 10px;
   position: relative; }
 footer.main-footer .scene-wrapper ul#sceneMenu li:hover img {
   border: 2px solid #FFF; }

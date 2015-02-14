@@ -129,8 +129,8 @@ aside{
 		width: 350px;
 
 		.inner{
-			margin-top: 60px;
-			padding: 20px;
+			margin-top: 70px;
+			padding: 10px 20px;
 			overflow: auto;
 
 			header {
@@ -520,18 +520,16 @@ aside{
 
 	#skinCustomizer-menu{
 		header{
-			background: rgba(0,0,0,0.5);
-			float: left;
-			margin-left: -10px;
-			width: 330px;
-			margin-top: -5px;
-			padding: 10px;
 			margin-bottom: 20px;
 
 			h2{				
-				width: 280px;
-				float: left;
+				font-size: 1.8rem;
+				font-weight: bold;
 				margin-bottom: 0;
+
+				span {
+
+				}
 			}
 
 			.fa-save{
@@ -545,13 +543,12 @@ aside{
 			}
 
 			.row{
-				margin-left: -5px;	
 
 				table{
-					width: 285px;
-					border-collapse: inherit;
+					width: 100%;
+					border-collapse: initial;
 					border-spacing: 5px;
-					float: left; 
+					margin: -5px 0 0 -5px;
 
 					tr{
 						td{
@@ -563,6 +560,11 @@ aside{
 							vertical-align: middle;
 							height: 50px;
 							text-align: center;
+
+							&.close {
+								border: none;
+								background-color: transparent;
+							}
 
 							.add{
 								width: 50px;
@@ -597,25 +599,25 @@ aside{
 								margin-right: auto;
 							}
 						}
+					}
+
+					.fa-close{
+						padding: 5px;
+						font-size: 15px;
+						cursor: pointer;
+						@include absolute(10px, initial, initial, 0);
 					}	
 				}
 			}
 
-			.fa-close{
-				float: left;
-				padding-top: 20px;
-				font-size: 15px;
-				padding-left: 5px;
-				cursor: pointer;
-			}			
+						
 		}
 
 		.add-link{
-			float: left;
 			font-weight: bold;
 			font-size: 1.4rem;
 			padding-top: 10px;
-			cursor: pointer;
+			display: block;
 		}
 	}
 

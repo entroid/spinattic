@@ -1,104 +1,110 @@
 footer.main-footer{
 	@extend %full-width;
-	position:fixed;
-	bottom:0;
-	height:120px;
-	border-top:2px solid #000;
-	z-index:2;
+	position: fixed;
+	bottom: 0;
+	height: 120px;
+	border-top: 2px solid #000;
+	z-index: 2;
+
 	.scene-wrapper{
-			@extend %full-width;
-			border-top:1px solid #333;
-			float:left;
-			height:70px;
-			overflow:auto;	
-			ul#sceneMenu{
-					clear:both;
-					float:left;
-					padding:10px;
-					li{
-						float:left;
-						width:100px;
-						height:50px;
-						padding-right:10px;
-						position:relative;
+		@extend %full-width;
+		border-top: 1px solid #333;
+		float: left;
+		height: 70px;
+		overflow: auto;	
 
-						&:hover{
-							img{
-								border:2px solid #FFF;
-							}
-							.fa-close{
-								display:block;
-							}
-						}
-						img{
-							border:2px solid $dark-gray;
-							max-width:100%;
-						}
-						.drag-icon{
-							background:url(../images/dragicon.png);
-							width:18px;
-							height:19px;
-							position:absolute;
-							top:4px;
-							left:4px;
-						}	
+		ul#sceneMenu{
+			clear: both;
+			float: left;
+			padding: 10px;
 
-						.fa-close{
-							color:#FFF;
-							top:5px;
-							right:10px;
-							position:absolute;
-							display:none;
-							cursor:pointer;
-						}
+			li{
+				float: left;
+				width: 100px;
+				height: 50px;
+				margin-right: 10px;
+				position: relative;
 
-						&.selected{
-							img{
-								border-color:#FFF;
-							}
-						}
+				&:hover{
+					img{
+						border: 2px solid #FFF;
 					}
-					li.empty{
-						border:dashed-pano(2px,$light-gray);
-						background:$middle-gray;
-						text-align:center;
-						color:$light-gray;
-						line-height:60px;
+
+					.fa-close{
+						display: block;
 					}
-			}
-			#mCSB_1_scrollbar_horizontal{
-				bottom:auto;
-				top:-1px;
-				height:10px;
+				}
 				
-				.mCSB_dragger_bar, .mCSB_draggerRail{
-					height:10px;
-					margin:0;
+				img{
+					border: 2px solid $dark-gray;
+					max-width: 100%;
 				}
 
-				.mCSB_draggerRail{
-					-webkit-border-radius: 0px;
-					-moz-border-radius: 0px;
-					border-radius: 0px;
-					background-color:#333;
+				.drag-icon{
+					background: url(../images/dragicon.png);
+					width: 18px;
+					height: 19px;
+					position: absolute;
+					top: 4px;
+					left: 4px;
+				}	
 
+				.fa-close{
+					color: #FFF;
+					top: 5px;
+					right: 10px;
+					position: absolute;
+					display: none;
+					cursor: pointer;
+				}
+
+				&.selected{
+					img{
+						border-color: #FFF;
+					}
 				}
 			}
+
+			li.empty{
+				border: dashed-pano(2px,$light-gray);
+				background: $middle-gray;
+				text-align: center;
+				color: $light-gray;
+				line-height: 60px;
+			}
+		}
+
+		#mCSB_1_scrollbar_horizontal{
+			bottom: auto;
+			top: -1px;
+			height: 10px;
+			
+			.mCSB_dragger_bar, .mCSB_draggerRail{
+				height: 10px;
+				margin: 0;
+			}
+
+			.mCSB_draggerRail{
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				border-radius: 0px;
+				background-color: #333;
+			}
+		}
 	}
 
 	menu{
-		height:40px;
-		padding:5px;
+		height: 40px;
+		padding: 5px;
 		
 		menuitem{
 			@extend %button-gray;
-
-			padding:5px 15px;
-			height:27px;
-			line-height:30px;
-			margin-right:10px;
-			margin-left:5px;
-			font-weight:bold;
+			padding: 5px 15px;
+			height: 27px;
+			line-height: 30px;
+			margin-right: 10px;
+			margin-left: 5px;
+			font-weight: bold;
 
             &:hover, &:active{
                 @include linear-gradient(#1c1c1c, #282828);
@@ -111,16 +117,19 @@ footer.main-footer{
 	}
 
 	menu.left-footer-menu{
-		float:left;
+		float: left;
+
 		i{
-			font-size:2.5rem;
-			margin-right:10px;
+			font-size: 2.5rem;
+			margin-right: 10px;
 		}
 	}
+
 	menu.right-footer-menu{
-		float:right;
+		float: right;
+
 		menuitem{
-			border:1px solid $dark-gray;
+			border: 1px solid $dark-gray;
 			margin-right: 0;
 			padding: 0 10px;
 			margin-top: 4px;
@@ -134,6 +143,4 @@ footer.main-footer{
             }
 		}
 	}
-
-
 }
