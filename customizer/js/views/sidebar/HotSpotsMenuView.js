@@ -94,7 +94,7 @@ define([
     		}
     		var manageData = new ManageData();
     		manageData.pushHotspot( $("#tour").data("scene")._name,hotspot)
-    	
+    		$("#spot"+this.hotspotCount).data("spotdata",hotspot)
 
 		},
 		showWindow:function(elem) {
@@ -105,22 +105,13 @@ define([
 			var krpano = document.getElementById("krpanoSWFObject");
 			var ath = krpano.get("hotspot["+elem+"].ath");
 			var atv = krpano.get("hotspot["+elem+"].atv");
-			var crop = krpano.get("hotspot["+elem+"].crop");
-			var url = krpano.get("hotspot["+elem+"].url");
-		
-			var hotspot = {
-
-				_name : elem,
-				_ath  : ath,
-				_atv  : atv,
-				_crop : crop,
-				_url  : url,
-				_type:"image",
-    			_visible:true,
-
-			}
+			var hotspot = $("#"+elem).data("spotdata");
+			hotspot._ath =  ath;
+			hotspot._atv = atv
 			var manageData = new ManageData();
     		manageData.changeDataInHotSpot( $("#tour").data("scene")._name,hotspot)
+			
+			$("#"+elem).data("spotdata",hotspot);
 		},
 
 		openWindowEditor:function(mView){

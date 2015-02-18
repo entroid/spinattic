@@ -22,7 +22,13 @@ define([
 		},
 
 		render: function(){
-			var compiledTemplate = _.template(virtualTourSettingsMenu);
+			var data = {
+
+				settings:tourData.krpano.settings,
+				autorotate:tourData.krpano.autorotate,
+				control:tourData.krpano.control,
+			}
+			var compiledTemplate = _.template(virtualTourSettingsMenu,{data:data});
 			$(this.el).append( compiledTemplate ); 
 			var elem = this.model.get("elem");
 			this.$elem = $("#"+elem);

@@ -3,22 +3,25 @@
 		<header>
 			<h2>Virtual Tour Settings</h2>
 		</header>
+		<%console.log(data)%>
 		<ul>
 			<li class="general-settings">
 				<h3><span class="fa fa-gear fa-lg leftish"></span>General Settings<span class="fa fa-caret-down fa-lg right"></span></h3>
 				
 				<div class="sub-items">
 					<label for="tourTitle">Tour Title:</label>
-					<input type="text" value="tour Title" id="tourTitle" name="tourTitle">
+					<input type="text" value="<%= data.settings._title %>" id="tourTitle" name="tourTitle">
 
 					<label for="friendlyURLTour">Frienly URL: <sub>(A-Z a-z 0-9)</sub></label>
 					<span class="friendlyURL">http://spinattic.com/username/tourname?</span>
-					<input type="text" name="friendlyURLTour" id="friendlyURLTour" value="tourname" class="friendlyURL">
+					<input type="text" name="friendlyURLTour" id="friendlyURLTour" value="<%= data.settings._name %>" class="friendlyURL">
 
 					<label for="tour-description">Tour Description</label>
-					<textarea name="tour-description" id="tour-description" cols="30" rows="10"></textarea>
+					<textarea name="tour-description" id="tour-description" cols="30" rows="10">
+						<%= data.settings._description %>
+					</textarea>
 					<label for="tagsTour"><span class="fa fa-tags fa-lg"></span>Tags</label>
-					<input type="text" value="tour Title" id="tagsTour" name="tagsTour">
+					<input type="text" value="tour tag" id="tagsTour" name="tagsTour">
 					<label for="Category"><span class="fa fa-list-ul fa-lg"></span> Category</label>
 					<div name="Category" id="Category" class="dropdown dd-settingmenu">
 						<h2><span class="title">Choose Category</span><span class="fa fa-caret-down fa-lg right arrow"></span></h2>
@@ -71,7 +74,7 @@
 						<label for="mouseType"><span class="help fa fa-question-circle"></span> Mouse Type</label>
 						<div class="absoluteRight ">
 							<div title="Mouse" id="Mouse" class="dropdown dd-settingmenu">
-								<h2><span class="title">MoveTo</span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
+								<h2><span class="title"><%= data.control._mousetype %></span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
 								<ul>
 									<li data-value="op1"><span>MoveTo</span></li>
 									<li data-value="op2"><span>op2</span></li>
@@ -84,7 +87,7 @@
 						<label for="zoomToCursor"><span class="help fa fa-question-circle"></span> Zoom to Cursor</label>
 						<input type="hidden" name="zoomToCursor" id="zoomToCursor">
 						<div class="onoffswitch absoluteRight">
-						    <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
+						    <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" <% if(data.control._zoomtocursor == "true"){ %>checked <%}%>>
 						    <label class="onoffswitch-label" for="myonoffswitch1">
 						        <span class="onoffswitch-inner"></span>
 						        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -96,7 +99,7 @@
 						<label for="zoomoutCursor"><span class="help fa fa-question-circle"></span> Zoom out cursor</label>
 						<input type="hidden" name="zoomoutCursor" id="zoomoutCursor">
 						<div class="onoffswitch absoluteRight">
-						    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" >
+						    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" <% if(data.control._zoomoutcursor == "true"){ %>checked <%}%>>
 						    
 						    <label class="onoffswitch-label" for="myonoffswitch2">
 						        <span class="onoffswitch-inner"></span>
@@ -107,32 +110,32 @@
 
 					<div class="input-row positionRelative">
 						<label for="mouseaccelerate"><span class="help fa fa-question-circle"></span> Mouse accelerate</label>
-						<input class="absoluteRight" type="number" name="mouseaccelerate" id="mouseaccelerate" step="0.1" value="1.0" min="-100" max="100" maxlength = "3">
+						<input class="absoluteRight" type="number" name="mouseaccelerate" id="mouseaccelerate" step="0.1" value="<%= data.control._mouseaccelerate %>" min="-100" max="100" maxlength = "3">
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="mousespeed"><span class="help fa fa-question-circle"></span> Mouse speed</label>
-						<input class="absoluteRight" type="number" name="mousespeed" id="mousespeed" step="0.1" value="1.0">
+						<input class="absoluteRight" type="number" name="mousespeed" id="mousespeed" step="0.1" value="<%= data.control._mousespeed %>">
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="mousefriction"><span class="help fa fa-question-circle"></span> Mouse friction</label>
-						<input class="absoluteRight" type="number" name="mousefriction" id="mousefriction" step="0.1" value="1.0">
+						<input class="absoluteRight" type="number" name="mousefriction" id="mousefriction" step="0.1" value="<%= data.control._mousefriction %>">
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="mousefovchange"><span class="help fa fa-question-circle"></span> Mouse fov change</label>
-						<input class="absoluteRight" type="number" name="mousefovchange" id="mousefovchange" step="0.1" value="1.0">
+						<input class="absoluteRight" type="number" name="mousefovchange" id="mousefovchange" step="0.1" value="<%= data.control._mousefovchange %>">
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="FOVspeed"><span class="help fa fa-question-circle"></span> FOV speed</label>
-						<input class="absoluteRight" type="number" name="FOVspeed" id="FOVspeed" step="0.1" value="1.0">
+						<input class="absoluteRight" type="number" name="FOVspeed" id="FOVspeed" step="0.1" value="<%= data.control._fovspeed %>">
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="FOVfriction"><span class="help fa fa-question-circle"></span> FOV friction</label>
-						<input class="absoluteRight" type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="1.0">
+						<input class="absoluteRight" type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="<%= data.control._fovfriction %>">
 					</div>
 				</div>
 			</li>
@@ -144,7 +147,7 @@
 					<div class="input-row positionRelative">
 						<label for="enabledautorotate"><span class="help fa fa-question-circle"></span> Enabled</label>
 						<div class="onoffswitch absoluteRight">
-						    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
+						    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" <% if(data.autorotate._enabled == "true"){ %>checked <%}%>>
 
 						    <label class="onoffswitch-label" for="myonoffswitch3">
 						        <span class="onoffswitch-inner"></span>
@@ -155,24 +158,24 @@
 
 					<div class="input-row positionRelative">
 						<label for="waittime"><span class="help fa fa-question-circle"></span> Wait time</label>
-						<input class="absoluteRight" type="number" id="waittime" name="waittime" value="15.5" maxlength='2'>
+						<input class="absoluteRight" type="number" id="waittime" name="waittime" step="0.1" value="<%= data.autorotate._waittime %>" maxlength='2'>
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="acceleration"><span class="help fa fa-question-circle"></span> Acceleration</label>
-						<input class="absoluteRight" type="number" id="acceleration" name="acceleration" value="1.0">
+						<input class="absoluteRight" type="number" id="acceleration" name="acceleration" value="<%= data.autorotate._accel %>" >
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="speed"><span class="help fa fa-question-circle"></span> Speed</label>
-						<input class="absoluteRight" type="number" id="speed" name="speed" value="10.0">
+						<input class="absoluteRight" type="number" id="speed" name="speed" value="<%= data.autorotate._speed %>" >
 					</div>
 
 					<div class="input-row positionRelative">
 						<label for="move-to-horizon"><span class="help fa fa-question-circle"></span> Move to Horizon</label>
 
 						<div class="onoffswitch middlePosition">
-						    <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" checked>
+						    <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" <% if(data.autorotate._horizon == "on"){ %>checked <%}%>>
 
 						    <label class="onoffswitch-label" for="myonoffswitch4">
 						        <span class="onoffswitch-inner"></span>
@@ -187,7 +190,7 @@
 						<label for="move-to-fov"><span class="help fa fa-question-circle"></span> Move to Fov</label>
 
 						<div class="onoffswitch middlePosition">
-						    <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" checked>
+						    <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" <% if(data.autorotate._tofov == "on"){ %>checked <%}%>>
 
 						    <label class="onoffswitch-label" for="myonoffswitch5">
 						        <span class="onoffswitch-inner"></span>
