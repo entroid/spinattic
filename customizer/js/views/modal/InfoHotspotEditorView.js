@@ -3,10 +3,12 @@ define([
 	'underscore',
 	'backbone',
 	'views/modal/Modal',
-    'text!templates/modal/hotspotinfo.html',
-    'helpers/HelpFunctions',
+	'text!templates/modal/hotspotinfo.html',
+	'helpers/HelpFunctions',
+	'helpers/ManageData',
 
-], function($, _, Backbone,Modal,hotspotinfo,HelpFunctions){
+
+], function($, _, Backbone,Modal,hotspotinfo,HelpFunctions,ManageData){
 
 	var InfoHotspotEditorView = Modal.extend({
 		
@@ -19,13 +21,35 @@ define([
 				 },
 		
 		renderExtend:function(){
+			var manageData = new ManageData();
 			var num = this.myid.replace("spot","");
-			$("#"+this.myid+" header h2").text("Info Hotspot. ID "+num+":")
+			var spotName =  this.myid;
+			$("#"+spotName+" header h2").text("Info Hotspot. ID "+num+":")
 			var compiledTemplate = _.template(hotspotinfo)
-			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
+			$("#"+spotName+" .inner-modal").html(compiledTemplate);
+			
+			
 			$("#"+this.myid+" header .fa-close").unbind("click")
-			$("#"+this.myid+" header .fa-close").click(function(){
+			var $me = $("#"+this.myid);
+			
+			$me.find("header .fa-close").click(function(){
+
+				var infoTitle = $me.find(".infotitle").val();
+				var infoText = $me.find(".infotext").val();
+				var hotspot = $me.data("spotdata");
+				hotspot._infotitle = infoTitle;
+				hotspot._infotext = infoText;
+				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				$(this).parents(".modal").fadeOut();
+			})
+
+			$me.find(".removeHotspot").click(function(){
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.call("removehotspot("+spotName+")");
+				$(this).parents(".modal").fadeOut(function(){
+					$(this).parent(".hotspotwindow").remove();
+				});
+				manageData.removeHotSpot($("#tour").data("scene")._name, spotName)
 			})
 
 		}

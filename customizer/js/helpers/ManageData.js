@@ -54,6 +54,29 @@ define([
 						}
 					})
 			},
+
+			this.removeHotSpot = function(sceneName,hotspotname){
+				_.each(tourData.krpano.scene,function(elem){
+						if(elem._name == sceneName){
+
+								_.each(elem.hotspot,function(hs,ind){
+									if(hs._name == hotspotname){
+											elem.hotspot[ind] = null;
+											delete elem.hotspot[ind];
+											elem.hotspot.splice(ind,1)
+										}
+								})
+							$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
+					
+							if(elem.hotspot[0] === undefined){
+									delete elem.hotspot;
+									$("#sceneMenu #"+elem._name).removeData("hotspots")
+							}
+						}
+					})
+
+			}
+
 			this.saveSettings = function(e){
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
 				console.log("cambio")
