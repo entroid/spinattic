@@ -7,8 +7,9 @@ define([
 	'mCustomScrollbar',
 	'helpers/HelpFunctions',
 	'views/sidebar/MapView',
-
-], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView){
+	'helpers/ManageData',
+	
+], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView,ManageData){
 
 	var VirtualTourSettingsMenuView = SidebarSubMenu.extend({
 
@@ -18,6 +19,10 @@ define([
 		  this.events[eventKey] = 'openSubItems';
 		  var checkboxesEvent = 'click #'+ this.model.get("elem") +' .checkboxes li';
 		  this.events[checkboxesEvent] = 'selectCheckboxes';
+		  var inputs = "keyup #virtualTourSettings-menu .tour-data";
+		  var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
+		  this.events[inputs] = 'insertData';
+		  this.events[inputsChange] = 'insertData';
 		  this.delegateEvents();
 		},
 
@@ -78,6 +83,14 @@ define([
 			}else{
 				$("#virtualTourSettings-menu .map-wrapper").hide()
 			}
+		},
+
+		insertData:function(e){
+
+			console.log(e)
+			var manageData = new ManageData();
+			manageData.saveSettings(e);
+		
 		}
 		
 	});
