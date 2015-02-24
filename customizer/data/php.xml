@@ -1,0 +1,124 @@
+<krpano onstart="startup();">
+	
+				<contextmenu fullscreen="true">
+				<item name="signature" caption="Spinattic.com" onclick="openurl(http://www.spinattic.com,_blank);">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</item>
+				
+				<events name="loadingbar" keep="true" onxmlcomplete="loadingbar_startloading();" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</events>
+		</contextmenu>
+				
+				<plugin name="skill_signature);" url="graphics/buttons_black.png);" align="bottomright" x="3" y="5" keep="true" alpha="0.6" onover="tween(alpha,1)" onout="tween(alpha,0.6)"    zorder="100"  parent="">
+				<item name="signature" caption="Spinattic.com" onclick="openurl(http://www.spinattic.com,_blank);">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</item>
+				
+				<events name="loadingbar" keep="true" onxmlcomplete="loadingbar_startloading();" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</events>
+		</plugin>
+				
+				<progress showload="none" showwait="none" showreloads="false" >
+				<item name="signature" caption="Spinattic.com" onclick="openurl(http://www.spinattic.com,_blank);">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</item>
+				
+				<events name="loadingbar" keep="true" onxmlcomplete="loadingbar_startloading();" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</events>
+		</progress>
+				
+				<include url="skills/hotspots/hotspots.xml">
+				<item name="signature" caption="Spinattic.com" onclick="openurl(http://www.spinattic.com,_blank);">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</item>
+				
+				<events name="loadingbar" keep="true" onxmlcomplete="loadingbar_startloading();" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</events>
+		</include>
+				
+				<action name="startup">
+				<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</layer>
+		</action>
+				
+				<autorotate enabled="true" waittime="3.0" accel="1.0" speed="5.0" horizon="on" tofov="on">
+				<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</layer>
+		</autorotate>
+				
+				<control mousetype="moveto" zoomtocursor="false" zoomoutcursor="true" mouseaccelerate="1.0" mousespeed="10.0" mousefriction="0.8" mousefovchange="1.0" fovspeed="3.0" fovfriction="0.9" touchfriction="0.87">
+				<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%"></layer>
+		</control>
+				
+				<settings name="toursettings" lat="" long="" title="" description=""></settings>
+				
+				<action name="loadingbar_startloading">
+				set(loadingbar_isloading, true);set(layer[loadingbar_bg].visible, true);asyncloop(loadingbar_isloading, mul(pv, progress.progress, 100); txtadd(pv, '%'); copy(layer[loadingbar_fill].width, pv););
+				</action>
+				
+				<action name="loadingbar_stoploading">
+				set(loadingbar_isloading,false);set(layer[loadingbar_bg].visible, false);
+				</action>
+		
+		<scene name="scene_21" urlname="" title="front0" onstart=""  thumburl="data/panos/15/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+			<view hlookat="000" vlookat="000" fovtype="" fov="" maxpixelzoom="" fovmin="" fovmax="" limitview=""  />
+
+			<preview url="data/panos/15/pano.tiles/preview.jpg" />
+
+			<image>
+
+				<cube url="data/panos/15/pano.tiles/pano_%s.jpg" />
+
+				<mobile>
+					<cube url="data/panos/15/pano.tiles/mobile_%s.jpg" />
+				</mobile>
+
+			</image>
+			<hotspot style="info_hotspot" kind="info" name="info_6" ath="-25" atv="-3" infotitle="titulo" infotext="texto" />
+		</scene>
+			<style name="hotspot_set1_arrow" url="skills/hotspots/hotspots_1.png" crop="00|00|32|32" onovercrop="32|00|32|32" ondowncrop="64|00|32|32" onhover="if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) );" onloaded="mul(scale,get(device.pixelratio));" onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );"/>
+			<style name="hotspot_set1_info" zorder="10" url="skills/hotspots/hotspots_1.png" crop="00|32|32|32" onovercrop="32|32|32|32" ondowncrop="64|32|32|32" onhover="if(get(infotitle) == null,,showtext(get(infotitle),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));" onclick="showinfo(get(infotitle),get(infotext));"/>
+			<style name="hotspot_set1_link" zorder="10" url="skills/hotspots/hotspots_1.png" crop="00|128|32|32" onovercrop="32|128|32|32" ondowncrop="64|128|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));" onclick="openurl(get(linkurl),_blank)"/>
+			<style name="hotspot_set1_photo" zorder="10" url="skills/hotspots/hotspots_1.png" crop="00|64|32|32" onovercrop="32|64|32|32" ondowncrop="64|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));" onclick="showpic(); seewait();"/>
+			<style name="hotspot_set1_video" zorder="10" url="skills/hotspots/hotspots_1.png" crop="00|96|32|32" onovercrop="32|96|32|32" ondowncrop="64|96|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));" onclick="showpic(); seewait();"/>
+		</krpano>

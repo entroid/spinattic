@@ -53,6 +53,7 @@ define([
 		  url:  "data/user.json.php",
 		 }).done(function(obj){
 		 	var xmlpath ="data/tour.xml?id="+id;
+		 	//var xmlpath ="data/xml.php?idtour=9";
 		 	$.ajax({
    			 url: xmlpath,
 			    type: "GET",

@@ -49,7 +49,6 @@ define([
 											elem.hotspot[ind] = hotspot;
 										}
 								})
-						console.log(elem.hotspot)		
 						$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
 						}
 					})
@@ -79,7 +78,6 @@ define([
 
 			this.saveSettings = function(e){
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
-				console.log("cambio")
 
 			}
 }

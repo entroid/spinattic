@@ -72,14 +72,15 @@ define([
 			regPos = this.regPos;
 			var krpano = document.getElementById("krpanoSWFObject");
 			krpano.call("addhotspot("+__name+")");
-			krpano.set("hotspot[spot"+this.hotspotCount+"].url", __url);
+			//krpano.set("hotspot[spot"+this.hotspotCount+"].url", __url);
 			var __ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45); 
 		    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
 			krpano.set("hotspot[spot"+this.hotspotCount+"].ath", __ath);
 			krpano.set("hotspot[spot"+this.hotspotCount+"].atv", __atv);
-			krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
+			krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_set1_arrow);");
+			//krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
 			krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
-    		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
+    		//krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
     		krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
     		$(".overlay").addClass("hotspotwindow");
 
