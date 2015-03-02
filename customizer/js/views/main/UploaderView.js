@@ -19,7 +19,7 @@ define([
 ], function($, _, Backbone, HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection){
 
 	var UploaderView = Backbone.View.extend({
-		el: $("section.main-section .inner"),
+		el: $("body"),
 		initialize: function () {
 
 			_.bindAll(this);
