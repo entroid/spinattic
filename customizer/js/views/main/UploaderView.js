@@ -119,10 +119,10 @@ define([
 						
 								$('.main-section').css('z-index', '100');
 								var posleft = $(".dragger-wrapper").offset().left;
-								$(".dragger-wrapper").css({
+								/*$(".dragger-wrapper").css({
 									'position':'fixed',
 									'left':posleft+20
-								})
+								})*/
 								
 								rollingOver = true;
 						}    
@@ -138,10 +138,10 @@ define([
 								$(".dragger-wrapper").removeClass("scaling")
 								$("footer.main-footer").removeClass("bluring")
 						
-								$(".dragger-wrapper").css({
+								/*$(".dragger-wrapper").css({
 									'position':'relative',
 									'left':'0'
-								})
+								})*/
 
 								rollingOver = false;
 						}    
