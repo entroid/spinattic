@@ -17,17 +17,52 @@
 			<li><span class="fa fa-sign-out"></span>Log out</li>
 			<li><span class="fa fa-user"></span>Account settings</li>
 		</ul>
+
 		<ul class="main-user-menu">
-			<li><a href="#"><span class="fa fa-home"></span>Home</a></li>
-			<li><a href="#"><span class="fa fa-user"></span>My profile</a></li>
-			<li><a href="#"><span class="fa fa-users"></span>Followers</a><span><%= user.followers_length %></span></li>
-			<li><a href="#"><span class="fa fa-users"></span>Following</a><span><%= user.following_length %></span></li>
+			<li><a href="#">
+				<span class="fa fa-home"></span>
+				Home
+			</a></li>
+
+			<li><a href="#">
+				<span class="fa fa-user"></span>
+				My profile
+			</a></li>
+
+			<li><a href="#">
+				<span class="fa fa-users"></span>
+				Followers
+				<span class="user-count right"><%= user.followers_length %></span>
+			</a></li>
+
+			<li><a href="#">
+				<span class="fa fa-users"></span>
+				Following
+				<span class="user-count right"><%= user.following_length %></span>
+			</a></li>
+
 		</ul>
+
 		<h2><span class="fa fa-wrench"></span>Production</h2>
+
 		<ul class="production-user-menu">
-			<li><a href="#"><span class="fa fa-plus-circle red"></span>Create new tour</a></li>
-			<li><a href="#"><span class="fa fa-picture-o"></span>Manage tours</a><span><%= user.tours_length %></span></li>
-			<li><a href="#"><span class="fa fa-file-picture-o"></span>Manage pano files</a><span><%= user.panos_length %></span></li>
+			<li><a href="#">
+				<span class="fa fa-plus-circle red"></span>
+				Create new tour
+			</a></li>
+
+			<li><a href="#">
+				<span class="fa fa-picture-o"></span>
+				Manage tours
+				<span class="user-count right"><%= user.tours_length %></span>
+			</a></li>
+
+			<li><a href="#">
+				<span class="fa fa-file-picture-o"></span>
+				Manage pano files
+				<span class="user-count right"><%= user.panos_length %></span>
+			</a></li>
 		</ul>
+		<div class="arrow"></div>
 	</div>
 </div>

@@ -74,13 +74,12 @@ header.main-header{
 				display: none;
 				font-size: 1.4rem;
 
-				&:after{
-					@include absolute(-15px, 15px, initial, initial);
+				.arrow{
+					/*@include absolute(-15px, 15px, initial, initial);*/
+					margin: -15px 0 0 85%;
 					border-width: 0 10px 15px;
 					border-color: #fff transparent;
-					content: "";
 					border-style: solid;
-					display: block;
 					width: 0;
 				}
 
@@ -144,6 +143,18 @@ header.main-header{
 					span{
 						margin-right: 10px;
 					}			
+				}
+
+				.user-count{
+					color: $red;
+					padding: 4px;
+					border: 1px solid $lighter-gray;
+					font-size: .8em;
+					width: 22px;
+					height: 10px;
+					text-align: center;
+					margin-top: -4px;
+					margin-right: 0!important;
 				}				
 			}
 		}

@@ -2931,17 +2931,12 @@ header.main-header .header-side .user .menu-list {
   width: 250px;
   display: none;
   font-size: 1.4rem; }
-header.main-header .header-side .user .menu-list:after {
-  position: absolute;
-  top: -15px;
-  right: 15px;
-  bottom: initial;
-  left: initial;
+header.main-header .header-side .user .menu-list .arrow {
+  /*@include absolute(-15px, 15px, initial, initial);*/
+  margin: -15px 0 0 85%;
   border-width: 0 10px 15px;
   border-color: #fff transparent;
-  content: "";
   border-style: solid;
-  display: block;
   width: 0; }
 header.main-header .header-side .user .menu-list .header-user-menu {
   border-bottom: 1px solid #e0e0e0;
@@ -2983,6 +2978,16 @@ header.main-header .header-side .user .menu-list h2 {
   font-weight: bold; }
 header.main-header .header-side .user .menu-list h2 span {
   margin-right: 10px; }
+header.main-header .header-side .user .menu-list .user-count {
+  color: #d32f31;
+  padding: 4px;
+  border: 1px solid #e0e0e0;
+  font-size: .8em;
+  width: 22px;
+  height: 10px;
+  text-align: center;
+  margin-top: -4px;
+  margin-right: 0 !important; }
 header.main-header .header-side #publishController {
   width: 355px;
   float: left;
@@ -3835,7 +3840,7 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
 
 .dragger-wrapper {
   position: absolute;
-  z-index: 20;
+  z-index: 200;
   top: -550px;
   left: 50%;
   width: 550px;
