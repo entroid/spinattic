@@ -3843,7 +3843,7 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   z-index: 200;
   top: -550px;
   left: 50%;
-  width: 550px;
+  width: 600px;
   margin: 90px auto; }
 .dragger-wrapper .inner-dragger {
   border: 4px dashed #535353;
@@ -3891,16 +3891,15 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   color: #535353;
   margin-top: 40px; }
 .dragger-wrapper .inner-dragger .pano-item-wrapper {
-  padding-bottom: 10px; }
+  padding: 10px;
+  max-height: 300px;
+  overflow: auto; }
 .dragger-wrapper .inner-dragger .pano-item {
   border: 1px solid #000;
   background: #333333;
   padding: 15px;
   height: 50px;
-  width: 500px;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 10px;
   position: relative; }
 .dragger-wrapper .inner-dragger .pano-item .thumb {
   width: 100px;
@@ -3921,17 +3920,20 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   margin-top: 25px;
   position: relative; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader .progress-wrapper .progress {
-  -webkit-border-radius: 4;
-  -moz-border-radius: 4;
-  -ms-border-radius: 4;
-  border-radius: 4;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
   height: 12px;
   background: #397999; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader .progress-wrapper .percentage {
   position: absolute;
   top: 0;
+  right: initial;
+  bottom: initial;
   left: 0;
-  width: 100%; }
+  width: 100%;
+  font-size: .9em; }
 .dragger-wrapper .inner-dragger .pano-item .right-uploader {
   float: right; }
 .dragger-wrapper .inner-dragger .pano-item .right-uploader .icon-msg {
@@ -3942,7 +3944,9 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   padding: 3px;
   position: absolute;
   top: 27px;
-  right: 30px; }
+  right: 20px; }
+.dragger-wrapper .inner-dragger .pano-item .right-uploader .icon-msg span {
+  margin-top: 4px; }
 .dragger-wrapper .inner-dragger .pano-item .fa-close {
   position: absolute;
   top: 5px;
@@ -3953,12 +3957,13 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   height: 40px;
   padding-top: 10px; }
 .dragger-wrapper .inner-dragger .uploader-footer p {
-  margin-top: 0;
+  margin-top: 10px;
+  margin-left: 5px;
   text-transform: uppercase;
   color: #FFF;
-  width: 430px;
+  width: 435px;
   text-align: right;
-  line-height: 30px;
+  line-height: 1em;
   float: left; }
 .dragger-wrapper .inner-dragger .uploader-footer .fa-clock-o {
   float: right;
@@ -3970,8 +3975,9 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   width: 110px;
   background: #333;
   border-radius: 7px;
-  margin-right: 5px;
-  line-height: 20px; }
+  margin-right: 10px;
+  line-height: 20px;
+  padding: 2px 4px; }
 .dragger-wrapper .inner-dragger .uploader-footer .save {
   background: #497f3c;
   font-size: 1.2rem;
