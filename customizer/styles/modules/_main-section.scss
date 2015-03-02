@@ -207,8 +207,8 @@ section.main-section {
 					position: relative;
 
 					.progress{
-						height: 10px;
-						border-radius: 30px;
+						@include border-radius(4);
+						height: 12px;						
 						background: #397999;
 					}
 
