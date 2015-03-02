@@ -101,11 +101,11 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 )
    	$elid = $row["elid"];
    	*/
     
-    $fil = fopen('count_pano.txt', r);
+    $fil = fopen('count_pano.txt', "r");
     $dat = fread($fil, filesize('count_pano.txt'));
     $elid = $dat+1;
     fclose($fil);
-    $fil = fopen('count_pano.txt', w);
+    $fil = fopen('count_pano.txt', "w");
     fwrite($fil, $dat+1);    
     
    	/* Inserto la scene con state = 0 para reservar el ID */
@@ -124,11 +124,11 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 )
 	$scene_id = $row["elid"];
 	*/
 	
-   	$fil = fopen('count_scene.txt', r);
+   	$fil = fopen('count_scene.txt', "r");
    	$dat = fread($fil, filesize('count_scene.txt'));
    	$scene_id = $dat+1;
    	fclose($fil);
-   	$fil = fopen('count_scene.txt', w);
+   	$fil = fopen('count_scene.txt', "w");
    	fwrite($fil, $dat+1);   	
    	
 	

@@ -1,4 +1,5 @@
 require.config({
+  waitSeconds: 500,
   paths: {
     jquery: 'lib/jquery/jquery-min',
     underscore: 'lib/underscore/underscore-min',

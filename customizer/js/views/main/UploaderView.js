@@ -184,6 +184,7 @@ define([
 
 									else
 										{
+											console.log(response)
 												if (response.result == 'ERROR'){
 														este.showMsg(response.msg);
 												}else{
@@ -259,7 +260,7 @@ define([
 		$.ajax({
 			url : 'php/send_report.php',
 			type: 'POST',
-			async: false,
+			async: true,
 			data: 'type='+type+'&extras='+extras,
 			cache : false,
 			success : function(response){}
@@ -273,7 +274,7 @@ define([
 								async: true,
 								data: 'file_name='+file_name+'&pano_id='+pano_id+'&scene_id='+scene_id,
 								success : function(response){
-
+									console.log(response)
 									response = jQuery.parseJSON(response);
 									if (response.result == 'SUCCESS' && response.num_of_files == "4")  {
 

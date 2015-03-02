@@ -61,7 +61,7 @@ if($_GET["step"] == 1){
     	
     	$salida = shell_exec('identify -format "%m|%w" '.$upload_dir . $pano_id.'/pano.' . get_extension($file_name));
     	
-    	//	echo $salida;
+    		echo $salida;
     	
     	$properties = explode('|', $salida);
     	$format = strtolower($properties[0]);
@@ -105,7 +105,7 @@ if($_GET["step"] == 1){
     	
     	exit_status(array(
     			'result' => 'SUCCESS',
-    			'msg' => 'Pano was created successfuly!',
+    			'msg' => $salida,
     			'num_of_files' => $num_of_files,
     			'params' => array(
     			'thumb_path' => str_replace('../', '', $upload_dir) . $pano_id . '/pano.tiles/thumb200x100.jpg'
@@ -147,7 +147,7 @@ if($_GET["step"] == 1){
 	//$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
 	
 	exit_status(array(
-			'result' => 'SUCCESS',
+			'result' => $salida,
 			'msg' => $salida,
 			'num_of_files' => $num_of_files,
 			'params' => array(

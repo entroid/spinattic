@@ -53,7 +53,7 @@ define([
 		  url:  "data/user.json.php",
 		 }).done(function(obj){
 		 	var xmlpath ="data/tour.xml?id="+id;
-		 	//var xmlpath ="data/xml.php?idtour=9";
+		 	//var xmlpath ="data/xml.php?idtour=9&c=1";
 		 	$.ajax({
    			 url: xmlpath,
 			    type: "GET",
@@ -62,27 +62,27 @@ define([
 			    var x2js = new X2JS({attributePrefix:"_"});
 			    tourData =  x2js.xml_str2json( data );
 			
-
-			var tourModel = new TourModel({xmlpath:xmlpath});
+			   	var xml2krpano = xmlpath.replace("&c=1","")
+				var tourModel = new TourModel({xmlpath:xml2krpano});
 			
-			var tourView = new TourView({ model: tourModel});
-			tourView.render();
+				var tourView = new TourView({ model: tourModel});
+				tourView.render();
 
 
 			    var scenes = tourData.krpano.scene;
 
-					var sceneCollection = new SceneCollection(scenes);
-					var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-					sceneMenuView.render();
+				var sceneCollection = new SceneCollection(scenes);
+				var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+				sceneMenuView.render();
 
 
-			if(!userCollection.length){
-				userCollection = new UserCollection(obj);
-				userView = new UserView({ collection: userCollection});
-				userView.render();
-			}
-			var mainMenuView = new MainMenuView();
-			mainMenuView.render();
+				if(!userCollection.length){
+					userCollection = new UserCollection(obj);
+					userView = new UserView({ collection: userCollection});
+					userView.render();
+				}
+				var mainMenuView = new MainMenuView();
+				mainMenuView.render();
 			
 
 			    }
@@ -100,9 +100,9 @@ define([
 
 				$.ajax({
 				  dataType:"json",
-				  url:  "data/data.json",
+				  url:  "data/user.json.php",
 				 }).done(function(obj){
-					userCollection = new UserCollection(obj.user);
+					userCollection = new UserCollection(obj);
 					userView = new UserView({ collection: userCollection});
 					userView.render();
 					uploaderview = new UploaderView();

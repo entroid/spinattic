@@ -21,7 +21,9 @@ define([
 		},
 
 		render: function(){
-			var compiledTemplate = _.template(skinCustomizerMenu);
+
+			var styles = tourData.krpano.style;
+			var compiledTemplate = _.template(skinCustomizerMenu,{styles:styles});
 			$(this.el).append( compiledTemplate );
 			elem =  this.model.get("elem");
 			this.$elem = $("#"+elem);

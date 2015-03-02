@@ -35,6 +35,7 @@ define([
 
 		initTool:function(){
 			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.call("registerattribute(int,0)");
 			krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
 			$("#tour").data("scene",tourData.krpano.scene[0])
 		}
