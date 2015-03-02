@@ -2,6 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'x2js',
 	'helpers/HelpFunctions',
 	'models/main/ModalModel',
 	'views/modal/AlertView',
@@ -16,10 +17,12 @@ define([
  
 	
 	
-], function($, _, Backbone, HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection){
+], function($, _, Backbone,x2js,HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection){
 
 	var UploaderView = Backbone.View.extend({
 		el: $("body"),
+		gNew_tour:true,
+		gTour_id:null,
 		initialize: function () {
 
 			_.bindAll(this);
@@ -84,14 +87,15 @@ define([
 			}
 		
 		},
+
+		drop:function(){
+			este.autocreateTour();
+		},
 		
 		uploadStarted:function(i, file, len){
 				
 
-				$(".dragger-wrapper").css({
-									'position':'relative',
-									'left':'0'
-								})
+				//$(".dragger-wrapper").fadeOut();
 								
 
 				if (rollingOver)
@@ -229,7 +233,7 @@ define([
 								$(".dragable").hide();
 						 }  
 							if($(".pano-item-wrapper").length == 0){
-								$('.dragger-wrapper').append('<div class="pano-item-wrapper"></div><div class="uploader-footer"><p></p><span class="fa fa-clock-o"></span></div>')
+								$('.dragger-wrapper .inner-dragger').append('<div class="pano-item-wrapper"></div><div class="uploader-footer"><p></p><span class="fa fa-clock-o"></span></div>')
 						 }
 						$('.dragger-wrapper .pano-item-wrapper').append(compiledTemplate);
 						
@@ -265,6 +269,30 @@ define([
 			cache : false,
 			success : function(response){}
 		});		
+	},
+
+
+	autocreateTour:function(){
+	    if (este.gNew_tour) 
+	    {
+
+
+			$.ajax({
+				url:'php/ultour.php',
+				type:'POST',
+				data:'autocreate=true',
+				success:function(response){
+					  var parsedObj = jQuery.parseJSON(response);
+	            		console.log(parsedObj)
+			            este.gTour_id    = parsedObj.params.tour_id;  
+			            var xml_version = parsedObj.params.xml_version;
+			    		console.log("se ha creado un tour desde autocreateTour")        
+			            este.gNew_tour = false;
+			                        
+				}
+			})
+	
+	    }    
 	},
 
 	launchImageProcessing:function(file_name,pano_id, scene_id, html_ref_id){
@@ -345,26 +373,51 @@ define([
 							myscenes.push(scene);
 						})
 
-						var tourModel = new TourModel({scenes:myscenes[0]});
-						var tourView = new TourView({ model: tourModel});
-						tourView.render();
+						
 						$(".dragger-wrapper").fadeOut(function(){
 							$(this).remove();
 						})
-						var mainMenuView = new MainMenuView();
-						mainMenuView.render();
+					
+						 	var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
+						 	console.log(xmlpath)
+						 	//var xmlpath ="data/xml.php?idtour=9&c=1";
+						 	$.ajax({
+				   			 url: xmlpath,
+							    type: "GET",
+							    dataType: "html",
+							    success: function(data) {
+							    console.log(data)
+							    var x2js = new X2JS({attributePrefix:"_"});
+							    tourData =  x2js.xml_str2json( data );
+							
+							   	var xml2krpano = xmlpath.replace("&c=1","")
+								var tourModel = new TourModel({xmlpath:xml2krpano});
+							
+								var tourView = new TourView({ model: tourModel});
+								tourView.render();
 
-						$("footer .scene-wrapper").remove();
-						var sceneCollection = new SceneCollection(myscenes);
-						var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-						sceneMenuView.render();
 
-						Backbone.history.navigate("tour/"+myscenes[0].id);
+							    var scenes = tourData.krpano.scene;
+
+								var sceneCollection = new SceneCollection(scenes);
+								var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+								sceneMenuView.render();
+								var mainMenuView = new MainMenuView();
+								mainMenuView.render();
+								Backbone.history.navigate("tour/"+este.gTour_id);
+
+							    }
+							});
+
+						 
+						
 						
 
 				})
 
-	}
+	},
+
+
 
 		
 	});
