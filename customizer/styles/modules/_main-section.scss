@@ -95,20 +95,20 @@ section.main-section {
 	z-index: 200;
 	top: -550px;
 	left: 50%;
-	width: 550px;
-	margin: 90px auto;
+	width: 600px;
+	margin: 0 auto;
 
 	.inner-dragger{
-		border: dashed-pano(4px,$light-gray);
+		border: dashed-pano(4px,$light-gray); 
 		background: $dark-gray;		
 		color: #FFF;
 		text-align: center;
 		position: relative;
-		left: -50%;
-		
+		left: -50%;		
 		
 		.dragable{
 			padding: 100px;
+			z-index: 1000;
 		}
 
 		input, .dropdown{
@@ -168,7 +168,9 @@ section.main-section {
 		}
 
 		.pano-item-wrapper{
-			padding-bottom: 10px;
+			padding: 10px;
+			max-height: 300px;
+			overflow: auto;
 		}
 
 		.pano-item{
@@ -176,10 +178,7 @@ section.main-section {
 			background: $middle-gray;
 			padding: 15px;
 			height: 50px;
-			width: 500px;
-			margin-top: 10px;
-			margin-left: auto;
-			margin-right: auto;
+			margin-bottom: 10px;
 			position: relative;
 			
 			.thumb{
@@ -207,16 +206,15 @@ section.main-section {
 					position: relative;
 
 					.progress{
-						height: 10px;
-						border-radius: 30px;
+						@include border-radius(4px);
+						height: 12px;						
 						background: #397999;
 					}
 
 					.percentage{
-						position: absolute;
-						top: 0;
-						left: 0;
+						@include absolute();
 						width: 100%;
+						font-size: .9em;
 					}
 				}
 			}
@@ -232,7 +230,11 @@ section.main-section {
 					padding: 3px;
 					position: absolute;
 					top: 27px;
-					right: 30px
+					right: 20px;
+
+					span{
+						margin-top: 4px;
+					}
 				}	
 			}
 
@@ -250,12 +252,13 @@ section.main-section {
 			padding-top: 10px;
 
 			p{
-				margin-top: 0;
+				margin-top: 10px;
+				margin-left: 5px;
 				text-transform: uppercase;
 				color: #FFF;
-				width: 430px;
+				width: 435px;
 				text-align: right;
-				line-height: 30px;
+				line-height: 1em;
 				float: left;
 			}
 
@@ -269,8 +272,9 @@ section.main-section {
 				width: 110px;
 				background: #333;
 				border-radius: 7px;
-				margin-right: 5px;
+				margin-right: 10px;
 				line-height: 20px;
+				padding: 2px 4px;
 			}
 
 			.save{
