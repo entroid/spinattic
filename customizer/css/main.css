@@ -3844,7 +3844,7 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   top: -550px;
   left: 50%;
   width: 600px;
-  margin: 90px auto; }
+  margin: 0 auto; }
 .dragger-wrapper .inner-dragger {
   border: 4px dashed #535353;
   background: #232323;
@@ -3853,7 +3853,8 @@ section.main-section .inner.withTour #setStartUpView .innerstarup {
   position: relative;
   left: -50%; }
 .dragger-wrapper .inner-dragger .dragable {
-  padding: 100px; }
+  padding: 100px;
+  z-index: 1000; }
 .dragger-wrapper .inner-dragger input, .dragger-wrapper .inner-dragger .dropdown {
   background: #535353;
   border: 1px solid #000; }

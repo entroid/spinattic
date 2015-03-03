@@ -96,19 +96,19 @@ section.main-section {
 	top: -550px;
 	left: 50%;
 	width: 600px;
-	margin: 90px auto;
+	margin: 0 auto;
 
 	.inner-dragger{
-		border: dashed-pano(4px,$light-gray);
+		border: dashed-pano(4px,$light-gray); 
 		background: $dark-gray;		
 		color: #FFF;
 		text-align: center;
 		position: relative;
-		left: -50%;
-		
+		left: -50%;		
 		
 		.dragable{
 			padding: 100px;
+			z-index: 1000;
 		}
 
 		input, .dropdown{
