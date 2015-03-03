@@ -55,7 +55,7 @@ define([
 		url: 'php/upload-files.php',
 
 		data:{
-			tour_id:"12"
+			tour_id:este.gTour_id
 		},
 
 		error: function(err, file) {
@@ -170,7 +170,7 @@ define([
                   var filename        = response.params.file_name;  
                   var scene_name      = response.params.file_name.replace(/\.jpg|\.jpeg|\.tiff/g, '');
                   var html_ref_id     = 'pano-'+scene_id;
-
+                  console.log(tour_id)
 
                   //$("#pano-"+i+" img").attr("src",$("#pano-"+i+" img").data("url"));
 									//$("#pano-"+i+" .progress").css("background","#497f3c")
@@ -389,7 +389,13 @@ define([
 							    console.log(data)
 							    var x2js = new X2JS({attributePrefix:"_"});
 							    tourData =  x2js.xml_str2json( data );
-							
+								if(tourData.krpano.scene.length == undefined){
+									var escenas = [];
+									escenas[0] = tourData.krpano.scene;
+									tourData.krpano.scene = escenas
+								}
+							   
+
 							   	var xml2krpano = xmlpath.replace("&c=1","")
 								var tourModel = new TourModel({xmlpath:xml2krpano});
 							
@@ -409,10 +415,7 @@ define([
 							    }
 							});
 
-						 
 						
-						
-
 				})
 
 	},

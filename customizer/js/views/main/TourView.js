@@ -21,6 +21,8 @@ define([
 			$pano_wrapper = $('<div id="tour"></div>');
 			$(this.el).append( setStartup ); 
 			$(this.el).append( $pano_wrapper ); 
+			console.log("xmlpath")
+			console.log(xmlpath)
 			embedpano({
 				swf:"player/tour.swf", 
 				xml:xmlpath, 
@@ -36,6 +38,7 @@ define([
 		initTool:function(){
 			var krpano = document.getElementById("krpanoSWFObject");
 			krpano.call("registerattribute(int,0)");
+			//krpano.call("loadscene(scene_01),null,MERGE,BLEND(1));");
 			krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
 			$("#tour").data("scene",tourData.krpano.scene[0])
 		}

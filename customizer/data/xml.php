@@ -1,6 +1,6 @@
 <?
 ini_set("display_errors", 0);
-require_once("conex.inc");
+require_once("../php/functions.php");
 
 /* Parametros por querystring
  * d (1/0) consulta draft o published
@@ -10,13 +10,10 @@ require_once("conex.inc");
  */
 
 
-$cdn = 'data';   //CAMBIAR A CDN VERDADERO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
 
 session_start();
 $_SESSION['usr'] = 96;
+
 $user_id = $_SESSION['usr'];
 
 $custom_attrs = 0;
@@ -45,6 +42,13 @@ if($user_id != ''){
 			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);			
 			
 			break;
+			
+		case 'htspts':
+			$id = $_GET['id'];
+			$prev_tag_ident = 0;
+			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);
+		
+			break;			
 		
 		default: //xml de un tour
 			
@@ -189,8 +193,11 @@ function get_template($template, $kind, $prev_tag_ident){
 	
 	switch ($template){
 		case 'skills':
-			$ssqlp = "SELECT * FROM customizer_skills_templates where skill_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			$ssqlp = "SELECT * FROM customizer_templates_skills where skill_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
 			break;
+		case 'htspts':
+			$ssqlp = "SELECT * FROM customizer_templates_htspts where htspt_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			break;			
 	}
 	
 	
@@ -297,8 +304,8 @@ function get_xml($segment, $kind, $prev_tag_ident){
 				$final_xml .= '>';
 				$final_xml .= $in_tag_code;
 				$final_xml .= get_xml($segment, $kind, $tag_ident);
-				$final_xml .= '</'.$tag_name.'>
-				';
+				if($tag_name!='krpano'){$final_xml .= '</'.$tag_name.'>
+				';}
 				$in_tag_code = '';
 			}
 			
@@ -337,8 +344,8 @@ function get_xml($segment, $kind, $prev_tag_ident){
 		$final_xml .= '>';
 		$final_xml .= $in_tag_code;
 		$final_xml .= get_xml($segment, $kind, $tag_ident);
-		$final_xml .= '</'.$tag_name.'>
-		';
+		if($tag_name!='krpano'){$final_xml .= '</'.$tag_name.'>
+		';}
 		$in_tag_code = '';
 	}
 	
@@ -361,7 +368,7 @@ function get_scenes(){
 	$ssqlp = "SELECT * FROM panosxtour".$draft_subscript." where idtour = ".$id." order by ord";
 
 	if($custom_attrs == 1){
-		$segment_html .= 'segment="SCENES"';
+		$segment_html .= ' segment="SCENES"';
 	}else{
 		$segment_html .= '';
 	}	
@@ -370,17 +377,17 @@ function get_scenes(){
 	while($row = mysql_fetch_array($result)){
 
 		$final_data.= '
-		<scene '.$segment_html.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
-			<view '.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" maxpixelzoom="'.$row["maxpixelzoom"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
+		<scene'.$segment_html.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
+			<view'.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" maxpixelzoom="'.$row["maxpixelzoom"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
 
-			<preview '.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/preview.jpg" />
+			<preview'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/preview.jpg" />
 
-			<image '.$segment_html.'>
+			<image'.$segment_html.'>
 
-				<cube '.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/pano_%s.jpg" />
+				<cube'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/pano_%s.jpg" />
 
-				<mobile '.$segment_html.'>
-					<cube '.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/mobile_%s.jpg" />
+				<mobile'.$segment_html.'>
+					<cube'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/mobile_%s.jpg" />
 				</mobile>
 
 			</image>';

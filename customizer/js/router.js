@@ -46,14 +46,41 @@ define([
 
 			});
 
+		jQuery.ajax({
+				type: "POST",
+				url: "php/ajax_chk_session.php",
+				data: "chklogout=true",
+				cache: false,
+				success: function(res){
+					console.log(res)
+					if(res == "1"){
+						location.href= "http://dev.spinattic.com/index.php?login";
+					}else{
+
+							$.ajax({
+								  dataType:"json",
+								  url:  "data/json.php?t=u",
+								 }).done(function(obj){
+									if(!userCollection.length){
+										userCollection = new UserCollection(obj);
+										userView = new UserView({ collection: userCollection});
+										userView.render();
+									}
+								 })
+
+					}
+				}
+			})
+
 		app_router.on('route:getTour', function (id) {
 		// Note the variable in the route definition being passed in here
 			$.ajax({
 		  dataType:"json",
-		  url:  "data/user.json.php",
+		  url:  "data/json.php?t=u",
 		 }).done(function(obj){
-		 	var xmlpath ="data/tour.xml?id="+id;
-		 	//var xmlpath ="data/xml.php?idtour=9&c=1";
+		 	console.log(obj)
+		 	//var xmlpath ="data/tour.xml?id="+id;
+		 	var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
 		 	$.ajax({
    			 url: xmlpath,
 			    type: "GET",
@@ -61,14 +88,19 @@ define([
 			    success: function(data) {
 			    var x2js = new X2JS({attributePrefix:"_"});
 			    tourData =  x2js.xml_str2json( data );
-			
+				if(tourData.krpano.scene.length == undefined){
+					var escenas = [];
+					escenas[0] = tourData.krpano.scene;
+					tourData.krpano.scene = escenas
+				}
+
 			   	var xml2krpano = xmlpath.replace("&c=1","")
 				var tourModel = new TourModel({xmlpath:xml2krpano});
 			
 				var tourView = new TourView({ model: tourModel});
 				tourView.render();
 
-
+				
 			    var scenes = tourData.krpano.scene;
 
 				var sceneCollection = new SceneCollection(scenes);
@@ -76,11 +108,7 @@ define([
 				sceneMenuView.render();
 
 
-				if(!userCollection.length){
-					userCollection = new UserCollection(obj);
-					userView = new UserView({ collection: userCollection});
-					userView.render();
-				}
+				
 				var mainMenuView = new MainMenuView();
 				mainMenuView.render();
 			
@@ -98,16 +126,12 @@ define([
 		var sceneMenuView = new SceneMenuView();
 		sceneMenuView.render();
 
-				$.ajax({
-				  dataType:"json",
-				  url:  "data/user.json.php",
-				 }).done(function(obj){
-					userCollection = new UserCollection(obj);
-					userView = new UserView({ collection: userCollection});
-					userView.render();
+
+
+				
 					uploaderview = new UploaderView();
 					uploaderview.render();
-				 })
+				
 
 
 
