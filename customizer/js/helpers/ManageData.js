@@ -22,6 +22,9 @@ define([
 					}
 
 				})
+				var jsonstr = JSON.stringify(tourData)
+				var id = location.hash.split("/")[1]
+				this.saveServer();		
 			}
 
 			this.pushHotspot = function(sceneName,hotspot){
@@ -74,11 +77,22 @@ define([
 						}
 					})
 
-			}
+			},
 
 			this.saveSettings = function(e){
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
 
+			},
+
+			this.saveServer = function(){
+				$.ajax({
+					url:'php/updater.php',
+					type:'POST',
+					data:'json='+jsonstr+"&id="+id;
+					success:function(res){
+						console.log(res)
+					}
+				})
 			}
 }
 

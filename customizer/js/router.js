@@ -87,6 +87,7 @@ define([
 			    dataType: "html",
 			    success: function(data) {
 			    var x2js = new X2JS({attributePrefix:"_"});
+			    console.log(data)
 			    tourData =  x2js.xml_str2json( data );
 				if(tourData.krpano.scene.length == undefined){
 					var escenas = [];
@@ -94,23 +95,30 @@ define([
 					tourData.krpano.scene = escenas
 				}
 
-			   	var xml2krpano = xmlpath.replace("&c=1","")
-				var tourModel = new TourModel({xmlpath:xml2krpano});
-			
-				var tourView = new TourView({ model: tourModel});
-				tourView.render();
+				$.ajax({
+					url:  "data/json.php?id="+id+"&d=1&t=t",
+					dataType:"json",
+					success:function(datatour){
 
-				
-			    var scenes = tourData.krpano.scene;
+						tourData.krpano.datatour = datatour;
+						console.log(tourData)
+						var xml2krpano = xmlpath.replace("&c=1","");
+						var tourModel = new TourModel({xmlpath:xml2krpano});
+					
+						var tourView = new TourView({ model: tourModel});
+						tourView.render();
+					    var scenes = tourData.krpano.scene;
 
-				var sceneCollection = new SceneCollection(scenes);
-				var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-				sceneMenuView.render();
+						var sceneCollection = new SceneCollection(scenes);
+						var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+						sceneMenuView.render();
+						
+						var mainMenuView = new MainMenuView();
+						mainMenuView.render();
 
-
-				
-				var mainMenuView = new MainMenuView();
-				mainMenuView.render();
+					}
+				})
+			   	
 			
 
 			    }
