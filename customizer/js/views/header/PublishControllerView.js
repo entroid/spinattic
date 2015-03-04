@@ -19,9 +19,10 @@ define([
         },
 
         render: function(){
+            console.log($("#tourTitleBar").length);
 
           var compiledTemplate = _.template(publishcontrollerview);
-          $(this.el).append( compiledTemplate );
+          $("#tourTitleBar").append( compiledTemplate );
 
         }    
     });
