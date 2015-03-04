@@ -165,9 +165,11 @@ header.main-header{
         clear: both;
         background-color: #000;
 		height: 50px;
+        position: relative;
 
         #tourTitleBar {
-            
+            display: inline-block;
+            padding: 10px;
         }
 
         #publishController{

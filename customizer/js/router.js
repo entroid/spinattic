@@ -15,10 +15,11 @@ define([
 	'models/main/TourModel',
 	'views/main/TourView',
 	// 'views/users/list'
-	'views/header/TourTitle'
+	'views/header/TourTitle',
+	'views/header/PublishControllerView'
 
 ], function($, _, Backbone, x2js, SceneMenuView, PanoMenuFooterView, SceneCollection, UserCollection, MainMenuView, 
-	UserView, UploaderView, HelpFunctions, TourModel, TourView, TourTitle){
+	UserView, UploaderView, HelpFunctions, TourModel, TourView, TourTitle, PublishControllerView){
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
@@ -41,6 +42,9 @@ define([
 
 		var tourTitle = new TourTitle();
 		tourTitle.render();
+
+		var publishControllerView = new PublishControllerView();
+        publishControllerView.render();
 		
 		$(window).resize(function(){
 			

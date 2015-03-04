@@ -8,7 +8,7 @@ define([
 
     var PublishControllerView = Backbone.View.extend({
 
-        //el: $("#tourTitleBar"),
+        el: $(".header-bottom"),
 
         initialize: function () {
           
@@ -20,8 +20,8 @@ define([
 
         render: function(){
 
-          var compiledTemplate = _.template(publishcontrollerview);
-          $("#tourTitleBar").append( compiledTemplate );
+            var compiledTemplate = _.template(publishcontrollerview);
+            $(this.el).append( compiledTemplate );
 
         }    
     });

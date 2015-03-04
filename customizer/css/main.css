@@ -2872,6 +2872,18 @@ textarea {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
 
+.grey-input {
+  background-color: #333333;
+  border: none;
+  color: #ccc;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.main-input {
+  height: 22px;
+  padding: 4px 6px;
+  width: 300px; }
+
 header.main-header {
   height: 70px;
   z-index: 2;
@@ -2992,7 +3004,11 @@ header.main-header .header-side .user .menu-list .user-count {
 header.main-header .header-bottom {
   clear: both;
   background-color: #000;
-  height: 50px; }
+  height: 50px;
+  position: relative; }
+header.main-header .header-bottom #tourTitleBar {
+  display: inline-block;
+  padding: 10px; }
 header.main-header .header-bottom #publishController {
   width: 355px;
   margin-top: 7px; }
