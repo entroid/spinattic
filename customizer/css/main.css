@@ -2887,7 +2887,8 @@ header.main-header h1 {
   float: left; }
 header.main-header .header-side {
   width: 435px;
-  float: right; }
+  float: right;
+  min-height: 70px; }
 header.main-header .header-side .user {
   width: 65px;
   float: right;
@@ -3081,6 +3082,8 @@ header.main-header .header-side #publishController .onoffswitch-checkbox:checked
   margin-left: 0; }
 header.main-header .header-side #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
+header.main-header .header-bottom {
+  clear: both; }
 
 aside {
   width: 50px;

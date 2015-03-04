@@ -1,29 +1,30 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'text!templates/header/publishcontrollerview.html'
+    'jquery',
+    'underscore',
+    'backbone',
+    'text!templates/header/publishcontrollerview.html'
 
 ], function($, _, Backbone, publishcontrollerview){
 
-  var PublishControllerView = Backbone.View.extend({
-    el: $(".header-side"),
-    initialize: function () {
+    var PublishControllerView = Backbone.View.extend({
 
-      
-    },
-    events:{
-    
-         },
-    render: function(){
-    
-      var compiledTemplate = _.template(publishcontrollerview);
-      $(this.el).append( compiledTemplate ); 
-   
-    }    
-    
-  });
+        el: $("#tourTitleBar"),
 
-  return PublishControllerView;
-  
+        initialize: function () {
+          
+        },
+
+        events:{  
+
+        },
+
+        render: function(){
+
+          var compiledTemplate = _.template(publishcontrollerview);
+          $(this.el).append( compiledTemplate );
+
+        }    
+    });
+
+    return PublishControllerView;  
 });

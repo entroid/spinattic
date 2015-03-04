@@ -2,28 +2,34 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/header/tourtitle.html'
+  'text!templates/header/tourtitle.html',
+  'views/header/PublishControllerView'
 
-], function($, _, Backbone, tourtitle){
+], function($, _, Backbone, tourtitle, PublishControllerView){
 
-  var TourTitle = Backbone.View.extend({
-    el: $(".header-side"),
-    initialize: function () {
+    var TourTitle = Backbone.View.extend({
 
-      
-    },
-    events:{
-    
-         },
-    render: function(){
-    
-      var compiledTemplate = _.template(tourtitle);
-      $(this.el).append( compiledTemplate ); 
-   
-    }    
-    
-  });
+        el: $(".header-bottom"),
 
-  return TourTitle;
+        initialize: function () {
+          
+        },
+
+        events:{
+
+        },
+
+        render: function(){
+
+            var compiledTemplate = _.template(tourtitle);
+            $(this.el).append( compiledTemplate );
+
+            var publishControllerView = new PublishControllerView();
+            publishControllerView.render();
+
+        }
+    });
+
+    return TourTitle;
   
 });
