@@ -1,4 +1,4 @@
-<?
+<?php
 
 $link=mysql_connect("54.69.210.2","root","Srca4SQ3");
 
