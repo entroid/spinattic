@@ -8,7 +8,7 @@ define([
 
     var PublishControllerView = Backbone.View.extend({
 
-        el: $("#tourTitleBar"),
+        el: $(".header-bottom"),
 
         initialize: function () {
           

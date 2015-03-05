@@ -1,11 +1,10 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'text!templates/header/tourtitle.html',
-  'views/header/PublishControllerView'
+    'jquery',
+    'underscore',
+    'backbone',
+    'text!templates/header/tourtitle.html'  
 
-], function($, _, Backbone, tourtitle, PublishControllerView){
+], function($, _, Backbone, tourtitle){
 
     var TourTitle = Backbone.View.extend({
 
@@ -22,10 +21,7 @@ define([
         render: function(){
 
             var compiledTemplate = _.template(tourtitle);
-            $(this.el).append( compiledTemplate );
-
-            var publishControllerView = new PublishControllerView();
-            publishControllerView.render();
+            $(this.el).append( compiledTemplate );           
 
         }
     });

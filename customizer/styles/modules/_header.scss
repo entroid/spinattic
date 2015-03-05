@@ -158,12 +158,23 @@ header.main-header{
 					margin-right: 0!important;
 				}				
 			}
-		}
+		}		
+	}
 
-		#publishController{
+    .header-bottom {
+        clear: both;
+        background-color: #000;
+		height: 50px;
+        position: relative;
+
+        #tourTitleBar {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        #publishController{
 			width: 355px;
-			float: left;
-			margin-top: 20px;
+			margin-top: 7px;
 
 			div{
 				float:left;
@@ -282,13 +293,5 @@ header.main-header{
 			    right: 0px; 
 			}			
 		}
-	}
-
-    .header-bottom {
-        clear: both;
-
-        .tourTitleBar {
-            
-        }
     }
 }

@@ -2872,6 +2872,18 @@ textarea {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
 
+.grey-input {
+  background-color: #333333;
+  border: none;
+  color: #ccc;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.main-input {
+  height: 22px;
+  padding: 4px 6px;
+  width: 300px; }
+
 header.main-header {
   height: 70px;
   z-index: 2;
@@ -2989,22 +3001,29 @@ header.main-header .header-side .user .menu-list .user-count {
   text-align: center;
   margin-top: -4px;
   margin-right: 0 !important; }
-header.main-header .header-side #publishController {
+header.main-header .header-bottom {
+  clear: both;
+  background-color: #000;
+  height: 50px;
+  position: relative; }
+header.main-header .header-bottom #tourTitleBar {
+  display: inline-block;
+  padding: 10px; }
+header.main-header .header-bottom #publishController {
   width: 355px;
-  float: left;
-  margin-top: 20px; }
-header.main-header .header-side #publishController div {
+  margin-top: 7px; }
+header.main-header .header-bottom #publishController div {
   float: left;
   border: 1px solid #000;
   margin-right: 5px; }
-header.main-header .header-side #publishController #live h4 {
+header.main-header .header-bottom #publishController #live h4 {
   color: #497f3c; }
-header.main-header .header-side #publishController #publish {
+header.main-header .header-bottom #publishController #publish {
   color: white;
   font-size: 22px;
   padding: 5px;
   cursor: pointer; }
-header.main-header .header-side #publishController #publish:hover {
+header.main-header .header-bottom #publishController #publish:hover {
   background-color: #282828;
   /* Fallback Color */
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1c1c1c), to(#282828));
@@ -3019,24 +3038,24 @@ header.main-header .header-side #publishController #publish:hover {
   /* Opera 11.10+ */
   background-image: linear-gradient(top, #1c1c1c, #282828);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1c1c1c', EndColorStr='#282828'); }
-header.main-header .header-side #publishController #publish:active {
+header.main-header .header-bottom #publishController #publish:active {
   -webkit-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
   -moz-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
   box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset; }
-header.main-header .header-side #publishController #draft h4 {
+header.main-header .header-bottom #publishController #draft h4 {
   color: #fad368; }
-header.main-header .header-side #publishController #live, header.main-header .header-side #publishController #draft {
+header.main-header .header-bottom #publishController #live, header.main-header .header-bottom #publishController #draft {
   background: #1a1a1a;
   width: 103px;
   text-align: center;
   padding: 3px 5px; }
-header.main-header .header-side #publishController #live h4, header.main-header .header-side #publishController #draft h4 {
+header.main-header .header-bottom #publishController #live h4, header.main-header .header-bottom #publishController #draft h4 {
   font-weight: bold;
   margin-bottom: 5px; }
-header.main-header .header-side #publishController #live .date, header.main-header .header-side #publishController #draft .date {
+header.main-header .header-bottom #publishController #live .date, header.main-header .header-bottom #publishController #draft .date {
   color: #535353;
   font-style: italic; }
-header.main-header .header-side #publishController .onoffswitch {
+header.main-header .header-bottom #publishController .onoffswitch {
   position: relative;
   width: 70px;
   -webkit-user-select: none;
@@ -3045,16 +3064,16 @@ header.main-header .header-side #publishController .onoffswitch {
   float: left;
   border: none;
   margin-top: 6px; }
-header.main-header .header-side #publishController .onoffswitch-checkbox {
+header.main-header .header-bottom #publishController .onoffswitch-checkbox {
   display: none; }
-header.main-header .header-side #publishController .onoffswitch-label {
+header.main-header .header-bottom #publishController .onoffswitch-label {
   display: block;
   overflow: hidden;
   cursor: pointer;
   border-radius: 11px;
   width: auto;
   border: 1px solid #000; }
-header.main-header .header-side #publishController .onoffswitch-inner {
+header.main-header .header-bottom #publishController .onoffswitch-inner {
   display: block;
   width: 200%;
   margin-left: -100%;
@@ -3062,28 +3081,26 @@ header.main-header .header-side #publishController .onoffswitch-inner {
   -webkit-transition: margin 0.3s ease-in 0s;
   -o-transition: margin 0.3s ease-in 0s;
   transition: margin 0.3s ease-in 0s; }
-header.main-header .header-side #publishController .onoffswitch-inner:before, header.main-header .header-side #publishController .onoffswitch-inner:after {
+header.main-header .header-bottom #publishController .onoffswitch-inner:before, header.main-header .header-bottom #publishController .onoffswitch-inner:after {
   font-size: 1.3rem;
   font-weight: normal; }
-header.main-header .header-side #publishController .onoffswitch-inner:before {
+header.main-header .header-bottom #publishController .onoffswitch-inner:before {
   content: "LIVE";
   color: #497f3c;
   padding-left: 12px;
   background-color: #333333; }
-header.main-header .header-side #publishController .onoffswitch-inner:after {
+header.main-header .header-bottom #publishController .onoffswitch-inner:after {
   content: "DRAFT";
   color: #fad368;
   padding-right: 8px;
   background-color: #232323;
   text-align: right; }
-header.main-header .header-side #publishController .onoffswitch-switch {
+header.main-header .header-bottom #publishController .onoffswitch-switch {
   right: 50px; }
-header.main-header .header-side #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+header.main-header .header-bottom #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
   margin-left: 0; }
-header.main-header .header-side #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+header.main-header .header-bottom #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
-header.main-header .header-bottom {
-  clear: both; }
 
 aside {
   width: 50px;

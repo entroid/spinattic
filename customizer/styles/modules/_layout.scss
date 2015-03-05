@@ -175,3 +175,18 @@ textarea{
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+.grey-input {
+    background-color: $middle-gray;
+    border: none;
+    color: $light-gray2;
+    font-size: 1.2em;
+    font-weight: bold;  
+}
+
+.main-input {
+    height: 22px;
+    padding: 4px 6px;
+    width: 300px;
+}
+
