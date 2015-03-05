@@ -33,6 +33,10 @@ define([
 			}else{
 				var jsonObj = [];
 			}
+
+			if($(".main-footer .scene-wrapper").length){
+				$(".main-footer .scene-wrapper").remove();
+			}
 			var compiledTemplate = _.template(bottomMenu,{jsonObj:jsonObj});
 			$(this.el).append( compiledTemplate ); 
  
@@ -46,7 +50,10 @@ define([
 			$("#sceneMenu").sortable();
 
 			liwidth = $("#sceneMenu li").outerWidth();
-			allwidth = liwidth * $("#sceneMenu li").length;
+			liright = $("#sceneMenu li").css("margin-right");
+			liright = parseInt(liright.replace("px",""));
+			liall = liwidth+liright;
+			allwidth = liall * $("#sceneMenu li").length;
 			$("#sceneMenu").width(allwidth+20);
 
 			$(".scene-wrapper").mCustomScrollbar({
@@ -68,16 +75,15 @@ define([
 
 			$thisli = $(e.target).parent();
 			$("#tour").data("scene",$thisli.data("scene"))
-			var sceneSettingsMenuView = new SceneSettingsMenuView();
-			sceneSettingsMenuView.refreshData();
-
-			var viewSettingsMenuView = new ViewSettingsMenuView();
-			viewSettingsMenuView.refreshData();
+			helpFunctions.refreshData();
 			var customparam = jQuery.extend({},$thisli.data("scene"));
+			delete customparam.view._segment;
+			delete customparam.preview._segment;
+			delete customparam.image._segment;
+			delete customparam._segment;
 			delete customparam.hotspot;
 			var krpano = document.getElementById("krpanoSWFObject");
 			var param = helpFunctions.mapJSONToUriParams(customparam);
-				
 			param = param.replace(/:_/g,".");
 			krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
 			if($thisli.data("hotspots")){

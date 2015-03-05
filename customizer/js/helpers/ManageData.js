@@ -84,7 +84,8 @@ define([
 			},
 
 			this.saveServer = function(){
-				console.log("me ejecuto y estoy mandando datos")
+				console.log("me ejecuto y estoy mandando datos");
+				console.log(tourData)
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1]
 				$.ajax({

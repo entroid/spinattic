@@ -201,7 +201,6 @@ function get_template($template, $kind, $prev_tag_ident){
 	}
 	
 	
-	
 	$result = mysql_query($ssqlp);
 
 
@@ -367,17 +366,20 @@ function get_scenes(){
 
 	$ssqlp = "SELECT * FROM panosxtour".$draft_subscript." where idtour = ".$id." order by ord";
 
-	if($custom_attrs == 1){
-		$segment_html .= ' segment="SCENES"';
-	}else{
-		$segment_html .= '';
-	}	
-
 	$result = mysql_query($ssqlp);
 	while($row = mysql_fetch_array($result)){
-
+		
+		if($custom_attrs == 1){
+			$segment_html = ' segment="SCENES"';
+			$id_html = ' scene_id="'.$row["id"].'"';
+		}else{
+			$segment_html = '';
+			$id_html = '';
+		}
+		
+		
 		$final_data.= '
-		<scene'.$segment_html.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
+		<scene'.$segment_html.$id_html.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
 			<view'.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" maxpixelzoom="'.$row["maxpixelzoom"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
 
 			<preview'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/preview.jpg" />
@@ -401,7 +403,7 @@ function get_scenes(){
 
 
 			$final_data.= '
-			<hotspot style="'.$row_htsp["style"].'" kind="'.htmlspecialchars($row_htsp["type"]).'" name="'.htmlspecialchars($row_htsp["name"]).'" ath="'.$row_htsp["ath"].'" atv="'.$row_htsp["atv"].'"';
+			<hotspot'.$segment_html.' style="'.$row_htsp["style"].'" kind="'.htmlspecialchars($row_htsp["type"]).'" name="'.htmlspecialchars($row_htsp["name"]).'" ath="'.$row_htsp["ath"].'" atv="'.$row_htsp["atv"].'"';
 
 			switch ($row_htsp["type"]) {
 				case "arrow":
@@ -413,6 +415,9 @@ function get_scenes(){
 				case "photo":
 					$final_data.= ' pic="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
 					break;
+				case "media":
+					$final_data.= ' video="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
+					break;					
 				case "link":
 					$final_data.= ' linkurl="'.$row_htsp["extra_linkurl"].'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
 					break;

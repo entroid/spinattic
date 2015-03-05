@@ -22,7 +22,7 @@ define([
 	 var UploaderView = Backbone.View.extend({
 			el: $("body"),
 			gNew_tour:null,
-			gTour_id:null,
+			gTour_id:"",
 			addingPane:null,
 			initialize: function () {
 
@@ -34,6 +34,10 @@ define([
 				 este = this;
 				 este.gNew_tour = this.model.get("gNewTour");
 				 este.addingPane =  this.model.get("addingPane")
+				 console.log(este.addingPane)
+				 if(location.hash.split("/")[1]){
+				 	este.gTour_id= location.hash.split("/")[1];
+				 }
 				 var compiledTemplate = _.template(upload);
 				 $(this.el).append( compiledTemplate ); 
 				 var helpFunctions = new HelpFunctions();
@@ -313,7 +317,7 @@ $(".cancel-process").click(function(){
 											 if (response.result == 'SUCCESS' && response.num_of_files == "4")  {
 
 												 $("#"+html_ref_id+" .percentage").text("Processing image (2/2)");
-												 $("#"+html_ref_id+" .thumb").attr("src",response.params.thumb_path);
+												
 
 												 $.ajax({
 													 url : 'php/image-processing.php?step=2',
@@ -323,7 +327,8 @@ $(".cancel-process").click(function(){
 													 success:function(responsest2){
 
 															responsest2 = jQuery.parseJSON(responsest2);
-
+															 $("#"+html_ref_id+" .thumb").attr("src",response.params.thumb_path);
+															 
 															if (responsest2.result == 'SUCCESS' && responsest2.num_of_files == "17"){
 
 
@@ -363,15 +368,57 @@ $(".cancel-process").click(function(){
 AllUploaded:function(){
  $(".uploader-footer p").html('All Done <span class="fa fa-smile-o"></span>');
  $(".fa-clock-o").addClass("save").text("SAVE AND CLOSE");
+ 
+ 		 $(".save").click(function(){
 
-		 $(".save").click(function(){
-
-					if(this.addingPane){
+					if(este.addingPane){
 					
-							var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
-							console.log("se agregó un pano y este es el xml "+xmlpath)
+												var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
+												console.log("se agregó un pano y este es el xml "+xmlpath);
+												$(".dragger-wrapper").fadeOut(function(){
+													 $(this).remove();
+											 	})
+												$("#tour").remove();
+
+												$.ajax({
+												 url: xmlpath,
+												 type: "GET",
+												 dataType: "html",
+												 success: function(data) {
+														 var x2js = new X2JS({attributePrefix:"_"});
+														 tourData =  x2js.xml_str2json( data );
+														 if(tourData.krpano.scene.length == undefined){
+															 var escenas = [];
+															 escenas[0] = tourData.krpano.scene;
+															 tourData.krpano.scene = escenas
+													 }
+
+													 $.ajax({
+																url:  "data/json.php?id="+este.gTour_id+"&d=1&t=t",
+																dataType:"json",
+																success:function(datatour){
+
+																tourData.krpano.datatour = datatour;
+																 var xml2krpano = xmlpath.replace("&c=1","")
+																 var tourModel = new TourModel({xmlpath:xml2krpano});
+
+																 var tourView = new TourView({ model: tourModel});
+																 tourView.render();
+
+
+																 var scenes = tourData.krpano.scene;
+
+																 var sceneCollection = new SceneCollection(scenes);
+																 var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+																 sceneMenuView.render();
+																}
+															})
+													 }
+									 });
+
 					
 					}else{
+
 					var myscenes = [];
 					$(".pano-item-wrapper .pano-item").each(function(ind,elem){
 						 var scene = {}
@@ -399,7 +446,6 @@ AllUploaded:function(){
 																		 type: "GET",
 																		 dataType: "html",
 																		 success: function(data) {
-																				 console.log(data)
 																				 var x2js = new X2JS({attributePrefix:"_"});
 																				 tourData =  x2js.xml_str2json( data );
 																				 if(tourData.krpano.scene.length == undefined){
@@ -408,22 +454,30 @@ AllUploaded:function(){
 																					 tourData.krpano.scene = escenas
 																			 }
 
+																			 $.ajax({
+																						url:  "data/json.php?id="+este.gTour_id+"&d=1&t=t",
+																						dataType:"json",
+																						success:function(datatour){
 
-																			 var xml2krpano = xmlpath.replace("&c=1","")
-																			 var tourModel = new TourModel({xmlpath:xml2krpano});
+																						tourData.krpano.datatour = datatour;
+																					
+																						 var xml2krpano = xmlpath.replace("&c=1","")
+																						 var tourModel = new TourModel({xmlpath:xml2krpano});
 
-																			 var tourView = new TourView({ model: tourModel});
-																			 tourView.render();
+																						 var tourView = new TourView({ model: tourModel});
+																						 tourView.render();
 
 
-																			 var scenes = tourData.krpano.scene;
+																						 var scenes = tourData.krpano.scene;
 
-																			 var sceneCollection = new SceneCollection(scenes);
-																			 var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-																			 sceneMenuView.render();
-																			 var mainMenuView = new MainMenuView();
-																			 mainMenuView.render();
-																			 Backbone.history.navigate("tour/"+este.gTour_id);
+																						 var sceneCollection = new SceneCollection(scenes);
+																						 var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+																						 sceneMenuView.render();
+																						 var mainMenuView = new MainMenuView();
+																						 mainMenuView.render();
+																						 Backbone.history.navigate("tour/"+este.gTour_id);
+																			}
+																		})
 
 																	 }
 															 });

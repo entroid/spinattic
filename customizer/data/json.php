@@ -119,14 +119,17 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$lon = $row["lon"];
 					$skin_id = $row["skin_id"];
 					$enable_title = $row["enable_title"];
+					$enable_avatar = $row["enable_avatar"];
 					$thumb_width = $row["thumb_width"];
 					$thumb_height = $row["thumb_height"];
 					$thumb_margin = $row["thumb_margin"];
+					$state = $row["state"];
 					
 				};
 				
 				echo json_encode(array(
-				
+						
+						'segment' => 'DATATOUR',
 						'title' => $title,
 						'category' => $category,
 						'tags' => $tags,
@@ -143,9 +146,11 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'lon' => $lon,
 						'skin_id' => $skin_id,
 						'enable_title' => $enable_title,
+						'enable_avatar' => $enable_avatar,
 						'thumb_width' => $thumb_width,
 						'thumb_height' => $thumb_height,
-						'thumb_margin' => $thumb_margin
+						'thumb_margin' => $thumb_margin,
+						'state' => $state
 						
 				
 				));			

@@ -85,7 +85,9 @@ define([
 		 }).done(function(obj){
 		 	console.log(obj)
 		 	//var xmlpath ="data/tour.xml?id="+id;
-		 	var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
+		 	var xmlpath ="data/tour209.xml";
+		 	//var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
+		 	console.log(xmlpath)
 		 	$.ajax({
    			 url: xmlpath,
 			    type: "GET",
@@ -109,7 +111,9 @@ define([
 
 							tourData.krpano.datatour = datatour;
 							console.log(tourData)
-							var xml2krpano = xmlpath.replace("&c=1","");
+							//var xml2krpano = xmlpath.replace("&c=1","");
+							var xml2krpano = "data/tour209em.xml"
+							
 							var tourModel = new TourModel({xmlpath:xml2krpano});
 						
 							var tourView = new TourView({ model: tourModel});
