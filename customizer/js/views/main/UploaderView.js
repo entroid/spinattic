@@ -21,8 +21,9 @@ define([
 
    var UploaderView = Backbone.View.extend({
       el: $("body"),
-      gNew_tour:true,
+      gNew_tour:null,
       gTour_id:null,
+      addingPane:null,
       initialize: function () {
 
          _.bindAll(this);
@@ -31,6 +32,8 @@ define([
      },
      render: function(){
          este = this;
+         este.gNew_tour = this.model.get("gNewTour");
+         este.addingPane =  this.model.get("addingPane")
          var compiledTemplate = _.template(upload);
          $(this.el).append( compiledTemplate ); 
          var helpFunctions = new HelpFunctions();
@@ -362,6 +365,10 @@ AllUploaded:function(){
  $(".fa-clock-o").addClass("save").text("SAVE AND CLOSE");
 
  $(".save").click(function(){
+
+  if(this.addingPane){
+
+  }else{
   var myscenes = [];
   $(".pano-item-wrapper .pano-item").each(function(ind,elem){
      var scene = {}
@@ -418,6 +425,7 @@ AllUploaded:function(){
                            }
                        });
 
+}
 
 })
 

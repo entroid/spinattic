@@ -128,11 +128,11 @@ define([
 
 	app_router.on('route:defaultAction', function(actions){
 
-	var sceneMenuView = new SceneMenuView();
-
-	sceneMenuView.render();
-			
-		uploaderview = new UploaderView();
+		var sceneMenuView = new SceneMenuView();
+		sceneMenuView.render();
+		var UploaderModel = Backbone.Model.extend({});
+		uploaderModer = new UploaderModel({gNewTour:true,addingPane:false});
+		uploaderview = new UploaderView({model:uploaderModer});
 		uploaderview.render();
 
 	});

@@ -22,8 +22,7 @@ define([
 					}
 
 				})
-				var jsonstr = JSON.stringify(tourData)
-				var id = location.hash.split("/")[1]
+
 				this.saveServer();		
 			}
 
@@ -85,10 +84,13 @@ define([
 			},
 
 			this.saveServer = function(){
+				console.log("me ejecuto y estoy mandando datos")
+				var jsonstr = JSON.stringify(tourData)
+				var id = location.hash.split("/")[1]
 				$.ajax({
 					url:'php/updater.php',
 					type:'POST',
-					data:'json='+jsonstr+"&id="+id;
+					data:"json="+jsonstr+"&id="+id,
 					success:function(res){
 						console.log(res)
 					}

@@ -53,7 +53,9 @@ define([
 
 		openPanoUpload:function(){
 
-			var uploaderview = new UploaderView();
+			var UploaderModel = Backbone.Model.extend({});
+			uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
+			uploaderview = new UploaderView({model:uploaderModer});
 			uploaderview.render();
 
 		}

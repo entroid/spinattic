@@ -21,7 +21,7 @@ define([
         render: function(){
 
           var compiledTemplate = _.template(publishcontrollerview);
-          $(this.el).append( compiledTemplate );
+           $(this.el).append( compiledTemplate );
 
         }    
     });
