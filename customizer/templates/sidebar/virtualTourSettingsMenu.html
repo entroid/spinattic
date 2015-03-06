@@ -4,24 +4,25 @@
 			<h2>Virtual Tour Settings</h2>
 		</header>
 		<%console.log(data)%>
+        
 		<ul>
 			<li class="general-settings">
 				<h3><span class="fa fa-gear fa-lg leftish"></span>General Settings<span class="fa fa-caret-down fa-lg right"></span></h3>
 				
 				<div class="sub-items">
-					<label for="tourTitle">Tour Title:</label>
-					<input type="text" value="<%= data.settings._title %>" id="tourTitle" name="tourTitle" class="tour-data" data-obj="settings" data-bind="_title">
+					<!-- <label for="tourTitle">Tour Title:</label>
+					<input type="text" value="<%= data.settings._title %>" id="tourTitle" name="tourTitle" class="tour-data" data-obj="settings" data-bind="_title"> -->
 
 					<label for="friendlyURLTour">Frienly URL: <sub>(A-Z a-z 0-9)</sub></label>
 					<span class="friendlyURL">http://spinattic.com/username/tourname?</span>
 					<input type="text" name="friendlyURLTour" id="friendlyURLTour" value="<%= data.settings._name %>" class="friendlyURL tour-data" data-obj="settings" data-bind="_name">
 
 					<label for="tour-description">Tour Description</label>
-					<textarea name="tour-description" id="tour-description" class="tour-data" cols="30" rows="10" data-obj="settings" data-bind="_description">
-						<%= data.settings._description %>
-					</textarea>
+					<textarea name="tour-description" id="tour-description" class="tour-data" cols="30" rows="10" data-obj="settings" data-bind="_description"><%= data.settings._description %></textarea>
+
 					<label for="tagsTour"><span class="fa fa-tags fa-lg"></span>Tags</label>
 					<input type="text" value="tour tag" id="tagsTour" name="tagsTour">
+
 					<label for="Category"><span class="fa fa-list-ul fa-lg"></span> Category</label>
 					<div name="Category" id="Category" class="dropdown dd-settingmenu">
 						<h2><span class="title">Choose Category</span><span class="fa fa-caret-down fa-lg right arrow"></span></h2>
@@ -32,6 +33,7 @@
 							<li value="op4"><span>op4</span></li>
 						</ul>
 					</div>
+
 					<label for="privacyConf"><span class="fa fa-lock fa-lg"></span> Privacy Configuration</label>
 					<div title="privacyConf" id="privacyConf" class="dropdown  dd-settingmenu">
 						<h2><span class="title">Public</span><span class="fa fa-caret-down fa-lg right arrow"></span></h2>
@@ -40,6 +42,7 @@
 							<li data-value="op2"><span>private</span></li>
 						</ul>
 					</div>
+
 					<ul class="check-group">
 						<li><span class="fa fa-check-square fa-lg"></span> Allow Comments</li>
 						<li><span class="fa fa-check-square fa-lg"></span> Allow Social Sharing</li>
@@ -67,6 +70,7 @@
 				
 				</div>
 			</li>
+
 			<li class="mouse-control-settings">
 				<h3><span class="fa fa-arrows-v fa-lg leftish"></span>Mouse control settings<span class="fa fa-caret-down fa-lg right"></span></h3>
 				<div class="sub-items short">

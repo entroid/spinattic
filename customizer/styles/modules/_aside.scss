@@ -9,7 +9,8 @@ aside{
 
 	ul.main-menu{
 		position: relative;
-		top: 80px;
+		top: $topSideBar;
+		overflow: auto;
 
 		li{
 			@extend %button-gray;
@@ -49,7 +50,7 @@ aside{
 		right: 50px;
 		display: none;
 		color: #FFF;
-		background-color: rgba(0,0,0,0.7);
+		background-color: rgba(0,0,0,0.80);
 
 		input, textarea{
 			@extend %form-text;
@@ -64,8 +65,8 @@ aside{
 
 		span.friendlyURL{
 			display: inline-block;
-			font-size: 1rem;
-			padding-right: 10px;
+			font-size: 1.1rem;
+			padding-right: 0;
 		}
 
 		input.friendlyURL{
@@ -129,7 +130,7 @@ aside{
 		width: 350px;
 
 		.inner{
-			margin-top: 70px;
+			margin-top: $topSideBar;
 			padding: 10px 20px;
 			overflow: auto;
 
@@ -150,7 +151,7 @@ aside{
 
 	#hotSpots-menu{
 		height: 60px;
-		top: 81px;
+		top: $topSideBar;
 		background: $blue;
 		color: #FFF;
 
@@ -194,7 +195,7 @@ aside{
 		}
 	}
 	#viewSettings-menu{
-		top: 127px;
+		top: $topSideBar;
 		width: 270px;
 		height: 235px;
 
@@ -395,7 +396,7 @@ aside{
 
 				& > input, & > select{
 					@extend %fullWidthElement;
-					padding: 7px; 
+					padding: 5px; 
 				}
 
 				input.friendlyURL{
@@ -404,7 +405,7 @@ aside{
 
 				textarea{
 					@extend %fullWidthElement;
-					font-size: 1.1rem;
+					font-size: 1.2rem;
 				}
 
 				.map-wrapper{
@@ -443,7 +444,7 @@ aside{
 				}
 
 				#friendlyURLTour{
-					width: 83px;
+					width: 80px;
 				}
 
 				.dropdown{
