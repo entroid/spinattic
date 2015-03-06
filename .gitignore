@@ -162,3 +162,5 @@ ultour.php
 user_profile.php
 user_profile_old.php
 customizer/php/*.txt
+customizer/css/*.css
+customizer/css/*.css.map
