@@ -18,7 +18,7 @@ define([
 
 	var HotSpotsMenuView = SidebarSubMenu.extend({
 		hotspotCount: 0,
-		
+		selectedset:"",
 		events:{
 			"click #hotSpots-menu li.htpt": "addHotSpot",
 			"click #hotspot-styles .selector":"selectStyleClick",
@@ -41,38 +41,37 @@ define([
 		addHotSpot:function(e){
 			this.hotspotCount++;
 			var name = $(e.target).prop("tagName")
-			if(name == "SPAN"){
+			if(name == "DIV"){
 			var myid = $(e.target).parent().attr("id");
 			}else{
 			var myid = $(e.target).attr("id");
 			}
 			var posx = "";
+			console.log(myid)
 			var modalView;
 			switch(myid){
-				case "hotspot-link":
+				case "link":
 					posx = "128";
 					modalView = LinkHotspotEditorView;
 				break;
-				case "hotspot-video":
+				case "video":
 					posx = "96";
 					modalView = VideoHotspotEditorView;
 				break;
-				case "hotspot-camera":
+				case "photo":
 					posx = "64";
 					modalView = PhotoHotspotEditorView;
 				break;
-				case "hotspot-info":
+				case "info":
 					posx = "32";
 					modalView = InfoHotspotEditorView;
 				break;
-				case "hotspot-chevron":
+				case "arrow":
 					posx = "00";
 					modalView = ArrowHotspotEditorView;
 				break;
 			}
 
-			var __url = 'images/icons/hotspots.png';
-			var __posx =  posx+"|00|32|32";
 			var __name = "spot"+this.hotspotCount;
 			this.openWindowEditor(modalView);
 			showWindow = this.showWindow;
@@ -84,7 +83,7 @@ define([
 		    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
 			krpano.set("hotspot[spot"+this.hotspotCount+"].ath", __ath);
 			krpano.set("hotspot[spot"+this.hotspotCount+"].atv", __atv);
-			krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_set1_arrow);");
+			krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
 			//krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
 			krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
     		//krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
@@ -95,8 +94,6 @@ define([
     			_name: __name,
     			_ath:__ath,
     			_atv:__atv,
-    			_url:__url,
-    			_crop:__posx,
     			_type:"image",
     			_visible:true,
     		}
@@ -123,9 +120,10 @@ define([
 		},
 
 		openWindowEditor:function(mView){
-				//var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
-				//var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
-				//linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
+				console.log(mView)
+				var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
+				var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
+				linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
 		},
 
 		selectStyleClick:function(ev){
@@ -149,6 +147,7 @@ define([
 						selected.push(elem)
 					}
 				});
+				this.selectedset = set;
 				$("#hotspots-menu-header ul").html("")
 				_.each(selected,function(elem,ind){ 
 					 var crop = elem._crop.split("|")

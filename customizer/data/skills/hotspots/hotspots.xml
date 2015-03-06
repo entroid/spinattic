@@ -2,9 +2,9 @@
 
 
 <textstyle name="hotspotTxt" font="arial" fontsize="14" bold="false" italic="false" 
-			   textcolor="0xFFFFFF" background="true" backgroundcolor="0x000000" border="false" bordercolor="0" 
-			   alpha="0.8" blendmode="normal" effect="glow(0x000000,1,10,100);"
-			   origin="cursor" edge="center" textalign="center" xoffset="4" yoffset="-25" noclip="true" showtime="0.1" fadetime="0" fadeintime="0" 
+	           textcolor="0xFFFFFF" background="true" backgroundcolor="0x000000" border="false" bordercolor="0" 
+	           alpha="0.8" blendmode="normal" effect="glow(0x000000,1,10,100);"
+	           origin="cursor" edge="center" textalign="center" xoffset="4" yoffset="-25" noclip="true" showtime="0.1" fadetime="0" fadeintime="0" 
 	/>
 
 
@@ -72,7 +72,7 @@
 		tween(hotspot[%1].rz,  get(hotspot[%1].oldrz));
 		set(opened,false);
 	</action>	       
-		   
+	       
 	<action name="showpic">
 		<!-- creates a new hotspot and fly it out -->
 		flyout(get(data[photo].content));
@@ -120,27 +120,7 @@
 		set(plugin[info_text].html,get(infoContent) );
 	);
 </action>
-<action name="draghotspot">
-	<![CDATA[
-		if(%1 != dragging,
-			spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery);
-			sub(drag_adjustx, mouse.stagex, hotspotcenterx); 
-			sub(drag_adjusty, mouse.stagey, hotspotcentery); 
-			draghotspot(dragging);
-		  ,
-			if(pressed,                                                                
-				sub(dx, mouse.stagex, drag_adjustx);
-				sub(dy, mouse.stagey, drag_adjusty);
-				screentosphere(dx, dy, ath, atv);
-				copy(print_ath, ath);
-				copy(print_atv, atv);
-				roundval(print_ath, 3);
-				roundval(print_atv, 3);				
-				delayedcall(0, draghotspot(dragging) );
-			  );
-		  );
-	]]>
-	</action>
+
 <action name="closeinfo">set(plugin[info_text].visible,false);</action>
 <style name="infoText" url="%SWFPATH%/plugins/textfield.swf" width="450" keep="true" align="center" autosize="true" css="data:cssInfo" padding="20" background="true" backgroundcolor="0x000000" backgroundalpha="0.8" handcursor="false" selectable="true" shadow="1.0" shadowrange="2.0" shadowangle="45" shadowcolor="0xFFFFFF" shadowalpha="0.7" onloaded="if(device.mobile,set(css,data:cssInfo_mobile));" />
 <data name="cssInfo">
