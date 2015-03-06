@@ -145,55 +145,88 @@ aside{
 
     }   
 
-    #hotSpots-menu, #hotSpots-menu ul, #hotSpots-menu h2{
-        width: 260px;
-    }
-
+  
     #hotSpots-menu{
-        height: 60px;
-        top: $topSideBar;
-        background: $blue;
-        color: #FFF;
+			top: $topSideBar;
+			width:320px;
+		#hotspots-menu-header{
+			width:320px;
+			height: 60px;
+			background: $blue;
+			color: #FFF;
+			float:left;
+			h2{
+				font-size: 1.0rem;
+				text-align: center;
+				margin-top: 5px;
+			}
 
-        h2{
-            font-size: 1.0rem;
-            text-align: center;
-            margin-top: 5px;
-        }
+			ul{
+				margin-top: 10px;
+				margin-left: 10px;
 
-        ul{
-            margin-top: 10px;
-            margin-left: 10px;
+				li{
+					border: 1px solid;
+					width: 38px;
+					height: 23px;
+					position: relative;
+					text-align: center;
+					margin-right: 10px;
+					float: left;
+					cursor: pointer;
 
-            li{
-                border: 1px solid;
-                width: 38px;
-                height: 23px;
-                position: relative;
-                text-align: center;
-                margin-right: 10px;
-                float: left;
-                cursor: pointer;
+					&:hover{
+						background: #097bc1;
 
-                &:hover{
-                    background: #097bc1;
+						span{
+							background: #097bc1;
+						}
+					}
+					div.selected{
+						height: 32px;
+						background: #4faddf;
+						margin-top: -4px;
+						position: relative;
+						top: 2px;
+						width: 32px;
+					} 
+					&.selected{
+						font-size:10rem;
+					}
+				}
+			}
+		}
+		#hotspot-styles{
+			display:none;
 
-                    span{
-                        background: #097bc1;
-                    }
-                }
-                span{
-                    height: 27px;
-                    background: #4faddf;
-                    margin-top: -4px;
-                    position: relative;
-                    top: 2px;
-                    width: 20px;
-                    line-height: 29px;
-                } 
-            }
-        }
-    }
+			.selector{
+				clear:left;
+				float:left;
+			}
+			
+			.rows{
+
+				.row{
+					float:left;
+					width:44px;
+					height:44px;
+					background:$light-gray;
+					margin-right: 5px;
+					margin-bottom: 5px;
+					
+					.rowinrow{
+						width:32px;
+						height:32px;
+						margin-left:5px;
+						margin-top:5px;
+						
+					}
+				}
+			}
+
+						
+		}
+	}
     #viewSettings-menu{
         top: $topSideBar + 46px;
         width: 285px;
