@@ -2739,6 +2739,10 @@ textarea, input {
 textarea {
   font-family: "Open Sans", sans-serif; }
 
+.none {
+  display: none; }
+
+/* posicion */
 .right {
   float: right; }
 
@@ -2762,6 +2766,7 @@ textarea {
   bottom: initial;
   left: initial; }
 
+/* dropdown */
 .dropdown {
   position: relative;
   cursor: pointer;
@@ -2871,6 +2876,18 @@ textarea {
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
+
+/* inputs */
+.input-label-3column {
+  display: inline-block;
+  margin-right: 7px; }
+.input-label-3column:last-child {
+  margin-right: 0; }
+
+.input-row {
+  position: relative;
+  height: 22px;
+  margin-bottom: 10px; }
 
 .grey-input {
   background-color: #333333;
@@ -3172,8 +3189,8 @@ aside .submenu span.check {
   float: left;
   clear: left; }
 aside .submenu span.help {
-  color: #535353;
-  padding: 3px 10px 0 0; }
+  color: white;
+  margin-left: 4px; }
 aside .submenu .geoMap {
   margin-top: 15px; }
 aside .submenu .geoMap label {
@@ -3237,53 +3254,51 @@ aside #hotSpots-menu ul li span {
   width: 20px;
   line-height: 29px; }
 aside #viewSettings-menu {
-  top: 124px;
-  width: 270px;
-  height: 235px; }
+  top: 170px;
+  width: 285px; }
 aside #viewSettings-menu header {
   background: #9259a8;
-  padding-top: 15px;
-  height: 30px;
-  width: 270px; }
+  padding: 15px;
+  font-size: 1.4rem;
+  /*h2,dl,dt,dd{
+      float: left;
+  }*/ }
 aside #viewSettings-menu header h2 {
-  margin-left: 20px;
-  padding-right: 5px; }
-aside #viewSettings-menu header h2, aside #viewSettings-menu header dl, aside #viewSettings-menu header dt, aside #viewSettings-menu header dd {
-  float: left; }
+  margin-bottom: 10px; }
 aside #viewSettings-menu header dd {
   padding-right: 5px; }
-aside #viewSettings-menu section, aside #viewSettings-menu footer {
-  padding: 5px 20px;
-  width: 230px; }
+aside #viewSettings-menu section {
+  padding: 20px 16px; }
 aside #viewSettings-menu section h2 {
-  padding: 10px 0 20px 0; }
+  margin-bottom: 15px;
+  margin-top: 5px;
+  font-size: 1.4rem; }
 aside #viewSettings-menu section input {
   margin-right: 2px; }
-aside #viewSettings-menu footer .input-row {
-  position: relative;
-  height: 22px;
-  margin-bottom: 4px; }
-aside #viewSettings-menu footer .input-row input {
+aside #viewSettings-menu section .input-row input {
   position: absolute;
   top: 0;
-  right: 17px;
+  right: 18px;
   bottom: initial;
   left: initial; }
-aside #viewSettings-menu footer .input-row span {
+aside #viewSettings-menu section .input-row span {
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
   bottom: initial;
-  left: initial; }
+  left: initial;
+  font-size: 1.4rem; }
 aside #viewSettings-menu h2 {
   font-weight: bold; }
 aside #viewSettings-menu input {
   width: 38px;
-  padding: 2px; }
+  padding: 2px;
+  margin-bottom: 0; }
 aside #viewSettings-menu label {
   font-weight: normal;
-  font-size: 1.1rem;
-  display: inline-block; }
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-top: 6px; }
 aside #sceneSettings-menu label[for="scenetitle"] {
   font-size: 1.8rem;
   display: block;
@@ -3446,6 +3461,57 @@ aside .map_canvas {
   width: 100%;
   float: left;
   margin-bottom: 30px; }
+aside #setStartUpView {
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  z-index: 2;
+  background: #9259a8;
+  left: 50%;
+  margin-left: -50px;
+  top: 100px;
+  text-align: center;
+  color: #FFF;
+  font-size: 2.0rem;
+  cursor: pointer; }
+aside #setStartUpView .fa {
+  height: 25px;
+  margin-top: -1px;
+  margin-left: 5px;
+  padding-top: 5px;
+  display: block;
+  width: 80px;
+  background: #9259a8; }
+aside #setStartUpView:after {
+  position: absolute;
+  display: block;
+  content: "";
+  border-color: #9259a8 transparent transparent transparent;
+  border-style: solid;
+  border-width: 20px;
+  height: 0;
+  width: 0;
+  bottom: -35px;
+  left: 50%;
+  margin-left: -20px; }
+aside #setStartUpView:hover .innerstarup .fa {
+  display: none; }
+aside #setStartUpView:hover .innerstarup:before {
+  content: "SET AS STARTUP VIEW";
+  font-size: 1.1rem;
+  position: absolute;
+  heigth: 2px;
+  background: #9259a8;
+  top: 4px;
+  left: 10px;
+  width: 75px;
+  padding: 2px 2px; }
+aside #setStartUpView .innerstarup {
+  border: 1px solid #FFF;
+  height: 27px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px; }
 
 footer.main-footer {
   position: fixed;
@@ -3800,56 +3866,6 @@ section.main-section .inner.withTour {
   position: relative;
   margin-right: 50px;
   width: 100%; }
-section.main-section .inner.withTour #setStartUpView {
-  width: 100px;
-  height: 35px;
-  position: fixed;
-  z-index: 2;
-  background: #9259a8;
-  left: 50%;
-  margin-left: -50px;
-  top: 50px;
-  text-align: center;
-  color: #FFF;
-  font-size: 2.0rem;
-  cursor: pointer; }
-section.main-section .inner.withTour #setStartUpView .fa {
-  height: 22px;
-  margin-top: -1px;
-  display: block;
-  width: 80px;
-  margin-left: 5px;
-  background: #9259a8; }
-section.main-section .inner.withTour #setStartUpView:after {
-  position: absolute;
-  display: block;
-  content: "";
-  border-color: #9259a8 transparent transparent transparent;
-  border-style: solid;
-  border-width: 20px;
-  height: 0;
-  width: 0;
-  bottom: -35px;
-  left: 50%;
-  margin-left: -20px; }
-section.main-section .inner.withTour #setStartUpView:hover .innerstarup .fa {
-  display: none; }
-section.main-section .inner.withTour #setStartUpView:hover .innerstarup:before {
-  content: "SET AS STARTUP VIEW";
-  font-size: 1.1rem;
-  position: absolute;
-  heigth: 2px;
-  background: #9259a8;
-  top: 4px;
-  left: 10px;
-  width: 75px;
-  padding: 2px 2px; }
-section.main-section .inner.withTour #setStartUpView .innerstarup {
-  border: 1px solid #FFF;
-  height: 20px;
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px; }
 
 .overlay-drag {
   position: fixed;
