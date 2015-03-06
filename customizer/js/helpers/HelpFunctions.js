@@ -75,8 +75,8 @@ define([
   }
 
   this.selectChoice = function(elem,firstClass,secClass){
-        $(elem+" li").click(function(){
-            $(elem+" li").each(function(){
+        $(elem).click(function(){
+            $(elem).each(function(){
                 $(this).find("span").attr("class","fa "+secClass+" fa-lg")
             })
             $(this).find("span").attr("class","fa "+firstClass+" fa-lg")

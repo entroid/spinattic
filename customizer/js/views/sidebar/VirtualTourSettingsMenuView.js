@@ -58,7 +58,7 @@ define([
 			
 			helpFunctions.dropDown(".dd-settingmenu");
 			helpFunctions.checkbox(".check-group","fa-check-square","fa-square");
-			helpFunctions.selectChoice(".checkboxes","fa-circle-o","fa-circle");
+			helpFunctions.selectChoice(".checkboxes li","fa-circle-o","fa-circle");
 			helpFunctions.toolTip(".submenu .help","aside help");
 		},
 

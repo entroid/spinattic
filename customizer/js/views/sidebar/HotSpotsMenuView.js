@@ -11,22 +11,29 @@ define([
 	'views/modal/ArrowHotspotEditorView',
 	'models/main/HotSpotWindowModel',
 	'helpers/ManageData',
+	'helpers/HelpFunctions'
 
 
-], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData){
+], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData,HelpFunctions){
 
 	var HotSpotsMenuView = SidebarSubMenu.extend({
 		hotspotCount: 0,
 		
 		events:{
-			"click #hotSpots-menu li": "addHotSpot"
+			"click #hotSpots-menu li.htpt": "addHotSpot",
+			"click #hotspot-styles .selector":"selectStyleClick",
+			"click #open-styles":"showhideStyles"
 				 },
 		
 		render: function(){
-			var compiledTemplate = _.template(hotspotsMenu);
+			var styles = tourData.krpano.style;
+			var compiledTemplate = _.template(hotspotsMenu,{styles:styles});
 			$(this.el).append( compiledTemplate ); 
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.selectChoice("#hotspot-styles .selector","fa-circle-o","fa-circle");
 			this.$elem = $("#"+this.model.get("elem"));
 			this.model.set("elemWidth",this.$elem.width());
+			this.selectStyle("set1");
 			this.show();
 
 		},
@@ -116,9 +123,42 @@ define([
 		},
 
 		openWindowEditor:function(mView){
-				var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
-				var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
-				linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
+				//var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
+				//var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
+				//linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
+		},
+
+		selectStyleClick:function(ev){
+			var obj = ev.currentTarget
+			console.log($(obj))
+			var set = $(obj).next().find(".rowinrow").data("family");
+			console.log(set)
+			this.selectStyle(set)
+		},
+
+		selectStyle:function(set){
+				
+				var styles = tourData.krpano.style;
+				var selected = [];
+				_.each(styles,function(elem,ind){
+					var name = elem._name;
+					name = name.split("_");
+					
+					if(name[1] == set){
+						
+						selected.push(elem)
+					}
+				});
+				$("#hotspots-menu-header ul").html("")
+				_.each(selected,function(elem,ind){ 
+					 var crop = elem._crop.split("|")
+					 $("#hotspots-menu-header ul").append('	<li id="'+elem._kind+'" class="htpt"><div class="selected" style="background-image:url('+elem._url+');background-position:-'+crop[1]+'px 0"></div></li>');
+				 })
+					$("#hotspots-menu-header ul").append('<li id="open-styles">hotspots styles</li>');
+			},
+
+		showhideStyles:function(){
+			$("#hotspot-styles").toggle()
 		}
 		
 	});

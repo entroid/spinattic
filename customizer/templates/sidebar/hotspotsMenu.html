@@ -1,10 +1,27 @@
 <div id="hotSpots-menu" class="submenu">
-	<h2>ADD HOTSPOTS BY CLICKING ON THE ICONS</h2>
-	<ul>
-		<li id="hotspot-chevron"> <span class="fa fa-chevron-up fa-lg"></span></li>
-		<li id="hotspot-info"> <span class="fa fa-info fa-lg"></span></li>		
-		<li id="hotspot-camera"> <span class="fa fa-camera fa-lg"></span></li>
-		<li id="hotspot-video"> <span class="fa fa-video-camera fa-lg"></span></li>
-		<li id="hotspot-link"> <span class="fa fa-link fa-lg"></span></li>	
-	</ul>
+	<div id="hotspots-menu-header">
+		<h2>ADD HOTSPOTS BY CLICKING ON THE ICONS</h2>
+		<ul>
+		</ul>
+	</div>
+	<div id="hotspot-styles">
+			<div class="rows">	
+					<% _.each(styles, function(element,ind){ 
+							if(ind%5 == 0){%>
+								<div class="selector"><span class="fa fa-circle fa-lg"></span></div>
+							<%
+							}
+							%>
+
+							<div class="row">
+								<% var crop = element._crop.split("|")%>
+								<% var set = element._name.split("_")%>
+								<div class="rowinrow" data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= crop[1]%>px 0"></div>
+							</div>
+
+					<% }); %>
+				
+			</div>		
+			<a class="add-link"><i class="fa fa-plus"></i> Add new hotspots style</a>			
+	</div>
 </div>
