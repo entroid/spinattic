@@ -34,6 +34,11 @@ textarea{
 	font-family: "Open Sans",sans-serif
 }
 
+.none {
+    display: none;
+}
+
+/* posicion */
 .right {
 	float: right;
 }
@@ -54,6 +59,7 @@ textarea{
     @include absolute(0, 50px, initial, initial);
 }
 
+/* dropdown */
 .dropdown{
 	position: relative;
 	cursor: pointer;
@@ -174,6 +180,22 @@ textarea{
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+
+/* inputs */
+.input-label-3column {
+    display: inline-block;
+    margin-right: 7px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.input-row {
+    position: relative;
+    height: 22px;
+    margin-bottom: 10px;
 }
 
 .grey-input {
