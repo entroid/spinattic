@@ -121,7 +121,7 @@ index.php
 index2.php
 info.php
 interfaces/
-js/
+../js/
 landing/
 leaderboard.php
 like.php
