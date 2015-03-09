@@ -5,17 +5,15 @@ define([
 	'views/sidebar/SidebarSubMenu',
 	'text!templates/sidebar/skinCustomizerMenu.html',
 	'helpers/HelpFunctions',
-	'views/modal/Modal',
+	'views/modal/SkillsModalList',
 	
 
-], function($, _, Backbone,SidebarSubMenu,skinCustomizerMenu,HelpFunctions,Modal){
+], function($, _, Backbone,SidebarSubMenu,skinCustomizerMenu,HelpFunctions,SkillsModalList){
 
 	var SkinCustomizerMenuView = SidebarSubMenu.extend({
 		initialize: function () {
 		  this.events = this.events || {};
-		  var slideStyles = 'click #' + this.model.get("elem") + ' h3';
-		  var addStyles = 'click #' + this.model.get("elem") + ' td .add';
-		  this.events[slideStyles] = 'openSubItems';
+		  var addStyles = 'click #' + this.model.get("elem") + ' .add-link';
 		  this.events[addStyles] = 'addStyle';
 		  this.delegateEvents(); 
 		},
@@ -39,8 +37,8 @@ define([
 			$mineSub.slideToggle();
 		},
 		addStyle:function(e){
-			var modal = new Modal();
-			modal.render("hola");
+			var skillsModalList = new SkillsModalList();
+			skillsModalList.render("skillsModalList",skillsModalList.renderExtend);
 		}
 
 		

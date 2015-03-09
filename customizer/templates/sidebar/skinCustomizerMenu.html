@@ -7,29 +7,6 @@
 				<span class="fa fa-folder-open absoluteRight"></span>
 			</h2>		
 		</header>
-
-		<ul>
-			<li class="hotspotstyles">
-				<h3></span>Hotspots styles: <span class="help fa fa-question-circle leftish"></span><span class="fa fa-caret-down fa-lg right"></span></h3>
-				<div class="sub-items">
-					<div class="rows">	
-						
-							
-							<% _.each(styles, function(element,ind){ %>
-									<div class="row">
-										<% var crop = element._crop.split("|")%>
-										<div class="rowinrow" style="background-image:url(<%=element._url%>);background-position:-<%= crop[1]%>px 0"></div>
-									</div>
-							<% }); %>
-						
-												
-					</div>		
-					<a class="add-link"><i class="fa fa-plus"></i> Add new hotspots style</a>			
-				</div>
-
-				
-			</li>
-		</ul>
 		<a class="add-link"><i class="fa fa-plus"></i> Add a skill</a>
 	</div>
 </div>
