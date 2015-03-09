@@ -148,13 +148,13 @@ aside{
   
     #hotSpots-menu{
 			top: $topSideBar;
-			width:320px;
+			width: 350px;
+
 		#hotspots-menu-header{
-			width:320px;
 			height: 60px;
 			background: $blue;
 			color: #FFF;
-			float:left;
+
 			h2{
 				font-size: 1.0rem;
 				text-align: center;
@@ -162,71 +162,146 @@ aside{
 			}
 
 			ul{
-				margin-top: 10px;
-				margin-left: 10px;
+				margin: 6px;
+                overflow: auto;
+                float: left;
 
 				li{
 					border: 1px solid;
-					width: 38px;
-					height: 23px;
+					width: 47px;
+					height: 47px;
 					position: relative;
 					text-align: center;
-					margin-right: 10px;
+					margin-right: 8px;
 					float: left;
 					cursor: pointer;
 
+                    &:last-child {
+                        margin: 0;
+                    }
+
 					&:hover{
-						background: #097bc1;
+						background: $blue3;
+
+                        div {
+                            background-color: $blue3;
+                        }
 
 						span{
-							background: #097bc1;
+							background: $blue3;
 						}
 					}
-					div.selected{
-						height: 32px;
-						background: #4faddf;
-						margin-top: -4px;
-						position: relative;
+
+					.icons{
+						height: 50px;
+						margin: -2px 0 0 7px;
+						/*position: relative;
 						top: 2px;
+                        left: 7px;*/
 						width: 32px;
+                        background-color: $blue;
+                        /*background: url("../images/icons/hotspots.png") 2px 12px no-repeat $blue;*/
+
+                        div {
+                            width: 32px;
+                            height: 32px;
+                            display: inline-block;
+                            margin-top: 10px;
+                        }
 					} 
+
+                    /*&#info {
+                        div {
+                            background-position: -30px 12px;
+                        }
+                    }
+                    &#photo {
+                        div {
+                            background-position: -62px 12px;
+                        }
+                    }
+                    &#video {
+                        div {
+                            background-position: -94px 12px;
+                        }
+                    }
+                    &#link {
+                        div {
+                            background-position: -126px 12px;
+                        }
+                    }*/
+
 					&.selected{
 						font-size:10rem;
 					}
 				}
 			}
+
+            #open-styles {
+                float: left;
+                width: 60px;
+                height: 100%;
+                padding-top: 15px;
+                background: $blue2;
+                @include border-box;
+                text-align: center;
+                text-transform: uppercase; 
+                font-size: 1rem;
+                border-left: 1px solid $blue3;
+                cursor: pointer;
+
+                .arrow{
+                    /*@include absolute(-15px, 15px, initial, initial);*/
+                    display: inline-block;
+                    margin: 7px;
+                    @include arrow(8px, 8px, 0, 8px, #fff);
+                }
+            }
 		}
 		#hotspot-styles{
-			display:none;
+			display: none;
+            clear: both;
+
+            h2{
+                margin-top: 15px;
+                text-align: center;
+            }
 
 			.selector{
-				clear:left;
-				float:left;
+				clear: left;
+				float: left;
+                margin: 17px;
 			}
 			
 			.rows{
-
+                overflow: auto;
 				.row{
-					float:left;
-					width:44px;
-					height:44px;
-					background:$light-gray;
+					float: left;
+					width: 46px;
+					height: 46px;
+					background: $middle-gray;
 					margin-right: 5px;
-					margin-bottom: 5px;
+					margin-bottom: 10px;
+                    border: 1px solid black;
+                    @include shadow-white(1px, 0, 0.2, inset);
 					
 					.rowinrow{
-						width:32px;
-						height:32px;
-						margin-left:5px;
-						margin-top:5px;
-						
+						width: 32px;
+						height: 32px;
+						margin-left: 7px;
+						margin-top: 7px;						
 					}
 				}
 			}
 
-						
+            .add-link {
+                display: block;
+                text-align: center;
+                margin: 10px 20px 20px;
+            }						
 		}
 	}
+
     #viewSettings-menu{
         top: $topSideBar + 46px;
         width: 285px;

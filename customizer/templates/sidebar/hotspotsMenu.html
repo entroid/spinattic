@@ -1,27 +1,28 @@
 <div id="hotSpots-menu" class="submenu">
 	<div id="hotspots-menu-header">
-		<h2>ADD HOTSPOTS BY CLICKING ON THE ICONS</h2>
+		<!-- <h2>ADD HOTSPOTS BY CLICKING ON THE ICONS</h2> -->
 		<ul>
 		</ul>
 	</div>
 	<div id="hotspot-styles">
-			<div class="rows">	
-					<% _.each(styles, function(element,ind){ 
-							if(ind%5 == 0){%>
-								<div class="selector"><span class="fa fa-circle fa-lg"></span></div>
-							<%
-							}
-							%>
+		<h2>Hotspot Styles</h2>
 
-							<div class="row">
-								<% var crop = element._crop.split("|")%>
-								<% var set = element._name.split("_")%>
-								<div class="rowinrow" data-family="<%= set[1]%>" style="background-image:url(data/<%=element._url%>);background-position:-<%= crop[1]%>px 0"></div>
-							</div>
+		<div class="rows">	
+			<% _.each(styles, function(element,ind){ 
+				if(ind%5 == 0){%>
+					<div class="selector"><span class="fa fa-circle fa-lg"></span></div>
+				<%
+				}
+				%>
 
-					<% }); %>
-				
-			</div>		
-			<a class="add-link"><i class="fa fa-plus"></i> Add new hotspots style</a>			
+				<div class="row">
+					<% var crop = element._crop.split("|")%>
+					<% var set = element._name.split("_")%>
+					<div class="rowinrow" data-family="<%= set[1]%>" style="background-image:url(data/<%=element._url%>);background-position:-<%= crop[1]%>px 0"></div>
+				</div>
+			<% }); %>			
+		</div>		
+
+		<a class="add-link"><i class="fa fa-plus"></i> Add new hotspots style</a>			
 	</div>
 </div>
