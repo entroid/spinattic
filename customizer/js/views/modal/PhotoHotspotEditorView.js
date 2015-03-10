@@ -4,8 +4,10 @@ define([
 	'backbone',
 	'views/modal/Modal',
     'text!templates/modal/hotspotphoto.html',
+    'views/modal/HotSpotsDropDown'
+	
 
-], function($, _, Backbone,Modal,hotspotphoto){
+], function($, _, Backbone,Modal,hotspotphoto,HotSpotsDropDown){
 
 	var PhotoHotspotEditorView = Modal.extend({
 		
@@ -26,6 +28,14 @@ define([
 			$("#"+this.myid+" header .fa-close").click(function(){
 				$(this).parents(".modal").fadeOut();
 			})
+
+			var myid = this.myid;
+			var selectedset = this.model.get("selectedSet");
+			var HotSpotDDModel = Backbone.Model.extend({});
+		    hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"photo",elemid:myid});
+		    var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
+			hotSpotsDropDown.render();
+
 
 		}
 

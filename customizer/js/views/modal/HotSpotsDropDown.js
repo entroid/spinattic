@@ -15,7 +15,9 @@ define([
 			
 
 		var urls = [];
+		var pos = []
 		var selectedurl;
+		var selectedPos;
 		var styles = tourData.krpano.style;
 		var kind = 	this.model.get("kind");
 		var elemid = this.model.get("elemid");
@@ -24,17 +26,26 @@ define([
 		_.each(styles,function(elem){
 				if(elem._kind == kind){
 					urls.push(elem._url);
+					pos.push(elem._crop);
 					var name = elem._name;
 	                name = name.split("_");
 	                if(name[1] == selectedset){
 	                        selectedurl = elem._url;
+	                    	selectedPos = elem._crop;
 	                    }
                     }
 			})
-			$("#"+elemid+" .dropdown h2 .default").css("background-image","url(data/"+selectedurl+")");
+
+			selPos = selectedPos.split("|");
+			$("#"+elemid+" .dropdown h2 .default").css({
+				"background-image":"url(data/"+selectedurl+")",
+				"background-position": "-"+selPos[1]+"px "+selPos[0]+"px"
+			});
 			
 			_.each(urls,function(elem,ind){
-				var $li = $('<li id="opt'+ind+'"><div class="default" style="background:url('+elem+')"></div></li>');
+				var mypos = pos[ind].split("|");
+				var backpos = "-"+mypos[1]+"px "+mypos[0]+"px";
+				var $li = $('<li id="opt'+ind+'"><div class="default" style="background-image:url('+elem+');background-position:'+backpos+'"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})
 
@@ -42,7 +53,11 @@ define([
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.dropDown("#"+elemid+" .dropdown");
 
-		  	
+		 	$("#"+elemid+" .dropdown li").click(function(){
+		 		var bk = $(this).find(".default").css("background-image");
+		 		$("#"+elemid+" .dropdown h2 .default").css("background-image",bk);
+		 	})
+
 		}
 
 		

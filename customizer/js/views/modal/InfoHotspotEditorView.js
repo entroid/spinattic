@@ -6,9 +6,10 @@ define([
 	'text!templates/modal/hotspotinfo.html',
 	'helpers/HelpFunctions',
 	'helpers/ManageData',
+	'views/modal/HotSpotsDropDown',
+	
 
-
-], function($, _, Backbone,Modal,hotspotinfo,HelpFunctions,ManageData){
+], function($, _, Backbone,Modal,hotspotinfo,HelpFunctions,ManageData,HotSpotsDropDown){
 
 	var InfoHotspotEditorView = Modal.extend({
 		
@@ -31,6 +32,13 @@ define([
 			
 			$("#"+this.myid+" header .fa-close").unbind("click")
 			var $me = $("#"+this.myid);
+			var myid = this.myid;
+			var selectedset = this.model.get("selectedSet");
+			var HotSpotDDModel = Backbone.Model.extend({});
+		    hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"info",elemid:myid});
+		    var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
+			hotSpotsDropDown.render();
+
 			
 			$me.find("header .fa-close").click(function(){
 

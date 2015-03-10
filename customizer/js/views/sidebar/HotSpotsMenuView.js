@@ -156,7 +156,7 @@ define([
             },
 
         showhideStyles:function(){
-            $("#hotspot-styles").toggle()
+            $("#hotspot-styles").slideToggle()
         }
         
     });
