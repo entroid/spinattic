@@ -42,7 +42,7 @@ define([
             this.hotspotCount++;
             var name = $(e.target).prop("tagName")
             if(name == "DIV"){
-            var myid = $(e.target).parent().attr("id");
+            var myid = $(e.target).parents("li").attr("id");
             }else{
             var myid = $(e.target).attr("id");
             }

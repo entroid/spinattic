@@ -10,7 +10,7 @@
 		<div class="rows">	
 			<% _.each(styles, function(element,ind){ 
 				if(ind%5 == 0){%>
-					<div class="selector"><span class="fa fa-circle fa-lg"></span></div>
+					<div class="selector"><span class="fa fa-circle<%if(ind == 0){%>-o<%}%> fa-lg"></span></div>
 				<%
 				}
 				%>
