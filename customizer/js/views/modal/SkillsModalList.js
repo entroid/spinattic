@@ -32,7 +32,7 @@ define([
 					_.each(data,function(elem,ind){
 						var title = "<h3>"+elem.title+"</h3>";
 						var descrip = "<p>"+elem.description+"</p>";
-						var $bt = $('<a href="" id="add-item-'+elem.id+'" class="add-skill">Add</a>').data("skill",elem);
+						var $bt = $('<a href="" id="add-item-'+elem.id+'" class="add-skill"><i class="fa fa-plus"></i>Add</a>').data("skill",elem);
 						var $li = $('<li id="item'+elem.id+'">'+title+descrip+'</li>');
 						$li.append($bt);
 						$("#"+myid+" .free-skills ul").append($li);

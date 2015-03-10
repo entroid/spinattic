@@ -2733,6 +2733,9 @@ aside #virtualTourSettings-menu li .sub-items > input, aside #virtualTourSetting
   width: 100%;
   box-sizing: border-box; }
 
+a {
+  text-decoration: none; }
+
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
@@ -2915,7 +2918,8 @@ textarea {
   border: 1px solid black;
   background-color: #2b2b2b;
   padding: 15px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  position: relative; }
 .skill-list li h3 {
   font-size: 1.4rem;
   font-weight: bold;
@@ -2926,6 +2930,19 @@ textarea {
   display: inline-block;
   overflow: hidden;
   line-height: 1.5em; }
+.skill-list li .add-skill {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  bottom: initial;
+  left: initial;
+  color: #4faddf;
+  border: 1px solid black;
+  padding: 7px;
+  text-transform: uppercase;
+  font-weight: bold; }
+.skill-list li .add-skill .fa-close {
+  margin-right: 2px; }
 
 header.main-header {
   height: 70px;
@@ -3601,7 +3618,8 @@ aside #skinCustomizer-menu .skill-list li div .customizelink .fa-pencil-square-o
   vertical-align: middle; }
 aside #skinCustomizer-menu .skill-list li div .fa-close {
   margin-left: 10px;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  cursor: pointer; }
 aside .gm-style .gm-style-iw {
   color: #222; }
 aside .map_canvas {
@@ -3929,6 +3947,11 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay .modal .removeHotspot span {
   font-size: 1.6rem;
   margin-right: 10px; }
+.overlay .modal .skills {
+  max-height: 350px;
+  overflow: auto; }
+.overlay .modal .skills .loading {
+  margin: 20px 0; }
 .overlay .modal .skills h2 {
   font-weight: bold;
   font-size: 1.6rem;
