@@ -83,7 +83,6 @@ define([
             krpano.set("hotspot[spot"+this.hotspotCount+"].ath", __ath);
             krpano.set("hotspot[spot"+this.hotspotCount+"].atv", __atv);
             var stylo = "hotspot_"+this.selectedset+"_"+myid;
-            console.log(stylo)
             krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
             //krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
@@ -121,7 +120,7 @@ define([
         },
 
         openWindowEditor:function(mView){
-                var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount})
+                var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount,selectedSet:this.selectedset})
                 var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
                 linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
         },
