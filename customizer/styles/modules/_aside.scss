@@ -2,9 +2,7 @@ aside{
     width: 50px;
     background: $dark-gray;
     height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
+    @include absolute(0, 0, initial, initial);
     display: none;
 
     ul.main-menu{
@@ -46,8 +44,7 @@ aside{
     }
 
     .submenu{
-        position: absolute;
-        right: 50px;
+        @include absolute(initial, 50px, initial, initial);
         display: none;
         color: #FFF;
         background-color: rgba(0,0,0,0.80);
@@ -70,7 +67,7 @@ aside{
         }
 
         input.friendlyURL{
-            width: 103px;
+            width: 93px;
         }
 
         textarea{
@@ -423,8 +420,7 @@ aside{
             }
             
             figcaption{
-                position: absolute;
-                top: 35px;
+                @include absolute(35px, initial, initial, initial);
                 width: 100%;
                 text-align: center;
             }
@@ -447,7 +443,7 @@ aside{
         }
     }
 
-    #virtualTourSettings-menu, #skinCustomizer-menu{
+    #virtualTourSettings-menu{
         li{
             background: rgba(0,0,0,0.5);
             border: 1px solid $light-gray;
@@ -637,9 +633,9 @@ aside{
             }
 
             .fa-save{
-                margin-right: 15px;
+                /*margin-right: 15px;*/
             }
-        }
+        }        
 
         .hotspotstyles{
             .left{
@@ -649,24 +645,21 @@ aside{
             .rows{
 
                 .row{
-                    float:left;
-                    width:44px;
-                    height:44px;
-                    background:$light-gray;
+                    float: left;
+                    width: 44px;
+                    height: 44px;
+                    background: $light-gray;
                     margin-right: 5px;
                     margin-bottom: 5px;
                     
                     .rowinrow{
-                        width:32px;
-                        height:32px;
-                        margin-left:5px;
-                        margin-top:5px;
-                        
+                        width: 32px;
+                        height: 32px;
+                        margin-left: 5px;
+                        margin-top: 5px;                        
                     }
                 }
-            }
-
-                        
+            }                        
         }
 
         .add-link{
@@ -674,7 +667,44 @@ aside{
             font-size: 1.4rem;
             padding-top: 10px;
             display: block;
-            clear:left;
+            clear: left;
+        }
+
+        .skill-list {
+            li {                
+                height: 20px;
+                position: relative;
+                
+                h3{
+                    display: inline-block;
+                    margin: 3px 0 0;
+                }
+
+                div {
+                    margin: 1px;                   
+
+                    .customizelink{
+                        /*@include absolute(5px, 35px, initial, initial);*/
+                        color: $green2;
+                        padding: 7px;
+                        background-color: $dark-gray-2;
+                        border: 1px solid black;
+                        font-weight: bold;
+                        text-transform: uppercase;
+
+                        .fa-pencil-square-o {
+                            font-size: 1.2em;
+                            margin-right: 2px;
+                            vertical-align: middle;
+                        }
+                    }
+
+                    .fa-close{
+                        margin-left: 10px;
+                        font-size: 1.3em;
+                    }
+                }
+            }
         }
     }
 
@@ -714,7 +744,7 @@ aside{
         }
 
         &:after{
-            position: absolute;
+            @include absolute(initial, initial, -35px, 50%);
             display: block;
             content: "";
             border-color: $purple transparent transparent transparent;
@@ -722,8 +752,6 @@ aside{
             border-width: 20px;
             height: 0;
             width: 0;
-            bottom: -35px;
-            left: 50%;
             margin-left: -20px; 
         }
 
@@ -736,11 +764,9 @@ aside{
                 &:before{
                     content: "SET AS STARTUP VIEW";
                     font-size: 1.1rem;
-                    position: absolute;
+                    @include absolute(4px, initial, initial, 10px);
                     heigth: 2px;
                     background: $purple;
-                    top: 4px;
-                    left: 10px;
                     width: 75px;
                     padding: 2px 2px;
                 }

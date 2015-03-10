@@ -218,3 +218,32 @@ textarea{
     width: 300px;
 }
 
+.gray-list{
+    border: 1px solid black;
+    background-color: $dark-gray;
+    padding: 15px;
+}
+
+.skill-list {
+    li {
+        border: 1px solid black;
+        background-color: $dark-gray4;
+        padding: 15px;        
+        margin-bottom: 10px;
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        p{
+            color: $light-gray2;
+            width: 80%;
+            display: inline-block;
+            overflow: hidden;
+            line-height: 1.5em;
+        }
+    }
+}
+
