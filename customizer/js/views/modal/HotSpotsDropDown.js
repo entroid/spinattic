@@ -45,7 +45,7 @@ define([
 			_.each(urls,function(elem,ind){
 				var mypos = pos[ind].split("|");
 				var backpos = "-"+mypos[1]+"px "+mypos[0]+"px";
-				var $li = $('<li id="opt'+ind+'"><div class="default" style="background-image:url('+elem+');background-position:'+backpos+'"></div></li>');
+				var $li = $('<li id="opt'+ind+'"><div class="default" style="background-image:url(data/'+elem+');background-position:'+backpos+'"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})
 
