@@ -295,6 +295,7 @@ aside{
                 display: block;
                 text-align: center;
                 margin: 10px 20px 20px;
+                cursor: pointer;
             }						
 		}
 	}
@@ -668,6 +669,7 @@ aside{
             padding-top: 10px;
             display: block;
             clear: left;
+            cursor: pointer;
         }
 
         .skill-list {
@@ -691,6 +693,7 @@ aside{
                         border: 1px solid black;
                         font-weight: bold;
                         text-transform: uppercase;
+                        cursor: pointer;
 
                         .fa-pencil-square-o {
                             font-size: 1.2em;

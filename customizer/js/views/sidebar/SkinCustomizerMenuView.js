@@ -1,49 +1,59 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone',
-	'views/sidebar/SidebarSubMenu',
-	'text!templates/sidebar/skinCustomizerMenu.html',
-	'helpers/HelpFunctions',
-	'views/modal/SkillsModalList',
-	
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/sidebar/SidebarSubMenu',
+    'text!templates/sidebar/skinCustomizerMenu.html',
+    'helpers/HelpFunctions',
+    'views/modal/SkillsModalList',
+    'mCustomScrollbar'
+    
 
-], function($, _, Backbone,SidebarSubMenu,skinCustomizerMenu,HelpFunctions,SkillsModalList){
+], function($, _, Backbone, SidebarSubMenu, skinCustomizerMenu, HelpFunctions, SkillsModalList, mCustomScrollbar){
 
-	var SkinCustomizerMenuView = SidebarSubMenu.extend({
-		initialize: function () {
-		  this.events = this.events || {};
-		  var addStyles = 'click #' + this.model.get("elem") + ' .add-link';
-		  this.events[addStyles] = 'addStyle';
-		  this.delegateEvents(); 
-		},
+    var SkinCustomizerMenuView = SidebarSubMenu.extend({
+        initialize: function () {
+          this.events = this.events || {};
+          var addStyles = 'click #' + this.model.get("elem") + ' .add-link';
+          this.events[addStyles] = 'addStyle';
+          this.delegateEvents(); 
+        },
 
-		render: function(){
+        render: function(){
 
-			var styles = tourData.krpano.style;
-			var compiledTemplate = _.template(skinCustomizerMenu,{styles:styles});
-			$(this.el).append( compiledTemplate );
-			elem =  this.model.get("elem");
-			this.$elem = $("#"+elem);
-			this.model.set("elemWidth",this.$elem.width());
-			var helpFunctions = new HelpFunctions();
-			helpFunctions.setInnerHeight(elem);
-			this.show();
-		},
+            var styles = tourData.krpano.style;
+            var compiledTemplate = _.template(skinCustomizerMenu,{styles:styles});
 
-		openSubItems:function(e){
-			$mineSub = $(e.target).parent("li").find(".sub-items")
-			$("#"+this.model.get("elem")+" .sub-items").not($mineSub).slideUp();
-			$mineSub.slideToggle();
-		},
-		addStyle:function(e){
-			var skillsModalList = new SkillsModalList();
-			skillsModalList.render("skillsModalList",skillsModalList.renderExtend);
-		}
+            $(this.el).append( compiledTemplate );
 
-		
-	});
+            elem =  this.model.get("elem");
 
-	return SkinCustomizerMenuView;
-	
+            this.$elem = $("#"+elem);
+            this.model.set("elemWidth",this.$elem.width());
+            var helpFunctions = new HelpFunctions();
+            helpFunctions.setInnerHeight(elem);
+
+            $("#skinCustomizer-menu .inner").mCustomScrollbar({
+                theme:"minimal-dark",
+                scrollInertia:300
+            });
+
+            this.show();
+        },
+
+        openSubItems:function(e){
+            $mineSub = $(e.target).parent("li").find(".sub-items")
+            $("#"+this.model.get("elem")+" .sub-items").not($mineSub).slideUp();
+            $mineSub.slideToggle();
+        },
+        addStyle:function(e){
+            var skillsModalList = new SkillsModalList();
+            skillsModalList.render("skillsModalList",skillsModalList.renderExtend);
+        }
+
+        
+    });
+
+    return SkinCustomizerMenuView;
+    
 });

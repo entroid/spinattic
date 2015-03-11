@@ -3391,7 +3391,8 @@ aside #hotSpots-menu #hotspot-styles .rows .row .rowinrow {
 aside #hotSpots-menu #hotspot-styles .add-link {
   display: block;
   text-align: center;
-  margin: 10px 20px 20px; }
+  margin: 10px 20px 20px;
+  cursor: pointer; }
 aside #viewSettings-menu {
   top: 170px;
   width: 285px; }
@@ -3595,7 +3596,8 @@ aside #skinCustomizer-menu .add-link {
   font-size: 1.4rem;
   padding-top: 10px;
   display: block;
-  clear: left; }
+  clear: left;
+  cursor: pointer; }
 aside #skinCustomizer-menu .skill-list li {
   height: 20px;
   position: relative; }
@@ -3611,7 +3613,8 @@ aside #skinCustomizer-menu .skill-list li div .customizelink {
   background-color: #1a1a1a;
   border: 1px solid black;
   font-weight: bold;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  cursor: pointer; }
 aside #skinCustomizer-menu .skill-list li div .customizelink .fa-pencil-square-o {
   font-size: 1.2em;
   margin-right: 2px;
@@ -3949,7 +3952,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 10px; }
 .overlay .modal .skills {
   max-height: 350px;
-  overflow: auto; }
+  /*overflow: auto;*/ }
 .overlay .modal .skills .loading {
   margin: 20px 0; }
 .overlay .modal .skills h2 {
