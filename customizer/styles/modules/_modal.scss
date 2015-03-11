@@ -1,247 +1,273 @@
 .overlay{
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 101;
-	display:none;
-	.modal{
-		width:500px;
-		background:$middle-gray;
-		margin-left:auto;
-		margin-right:auto;
-		border:2px solid #000;
-		margin-top:30px;
-		color:#FFF;
-		&#alert{
-			margin-top:20%;
-		}
-		header{
-			background:$dark-gray;
-			height: 24px;
-			padding: 13px;
-			margin-left: -2px;
-			margin-top: -2px;
-			h2{
-				float:left;
-				font-size:1.6rem;
-			}
-			.fa-close{
-				float:right;
-				font-size:1.8rem;
-				cursor:pointer;
-			}
-		}
-		.inner-modal{
-			.alert-wrapper{
-				padding:30px 50px 40px 20px;
-				.fa-close{
-					float:right;
-					position:relative;
-					top:-20px;
-					right:-40px;
-					cursor:pointer;
-				}
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 101;
+    display: none;
 
-				p{
-					font-size:1.4rem;
-					font-weight:bold;
-					margin-bottom:40px;
-					text-align:center;
-				}
+    .modal{
+        width: 500px;
+        background: $dark-gray3;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #000;
+        margin-top: 30px;
+        color: #FFF;
 
-				a.modal-bt{
-					float: right;
-					display: block;
-					border: 1px solid #000;
-					min-width: 40px;
-					text-align: center;
-					padding: 5px 10px;
-					text-decoration: none;
-					text-transform: uppercase;
-					font-size: 1.4rem;
-				
-					&.green{
-					color:#507d48;
-					}
-				}
+        &#alert{
+            margin-top: 20%;
+        }
 
-				
-			}
-		}
+        header{
+            background: $dark-gray5;
+            padding: 20px;
+            position: relative;
 
-		input, textarea{
-			@extend %form-text;
-			padding:5px;
-			margin-bottom:auto;
-			width:100%;
-			margin-bottom:10px;
-		}
+            h2{
+                font-size: 1.6rem;
+                margin-bottom: 0;
+            }
 
-		textarea{
-		font-size:1.2rem;
-		}
+            .fa-close{
+                @include absolute(20px, 20px, initial, initial);
+                font-size: 1.8rem;
+                cursor: pointer;
+            }
+        }
 
-		.removeHotspot{
-			background:rgba(0,0,0,0.8);
-			clear:both;
-			border-top:1px solid $middle-gray;
-			text-align:center;
-			text-transform:uppercase;
-			height:20px;
-			font-size:1rem;
+        .inner-modal{
+            padding: 20px;
+            position: relative;            
 
-			span{
-				font-size:1.6rem;
-				margin-right:10px;
-			}
-		}	
-	}
+            .alert-wrapper{
+                padding: 10px; 
+                overflow: hidden;
 
-	&.hotspotwindow{
+                .fa-close{
+                    @include absolute(10px, 10px, initial, initial);
+                    cursor: pointer;
+                    font-size: 1.4rem;
+                }
 
-		background-color:transparent;
-		width:0px;
-		height:0px;
-		top: 60px;
-		left:20px;
+                p{
+                    font-size: 1.4rem;
+                    font-weight: bold;
+                    margin-bottom: 35px;
+                    text-align: center;
+                }                               
+            }
+        }
 
-		header{
-			height:15px;
-			margin-left:0;
-			margin-top:0;
-			border-bottom:2px solid #333;
-			background: rgba(0,0,0,0.9);
-			cursor:all-scroll;
+        a.modal-bt{
+            float: right;
+            display: inline-block;
+            border: 1px solid #000;
+            min-width: 40px;
+            text-align: center;
+            padding: 8px 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            font-weight: bold;
+        
+            &.green{
+                color: $green2;
+            }
+        }
 
-			.fa-close{
-				width:100px;
+        input, textarea{
+            @extend %form-text;
+            padding: 8px;
+            margin-bottom: auto;
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            min-height: 20px;
+            background-color: $dark-gray5;
+            border: 1px solid black;
+        }
 
-				&:before{
-					content:"Save and Close";
-					font-family:$font;
-					font-size:1.2rem;
-					float:right;
-				}
-			}
-		}
+        textarea{
+            font-size: 1.2rem;
+        }
 
-		.modal{
-			width:320px;
-			background:none;
-			border-color:#333;
+        .removeHotspot{
+            background: rgba(0,0,0,0.8);
+            clear: both;
+            border-top: 1px solid $middle-gray;
+            text-align: center;
+            text-transform: uppercase;
+            height: 20px;
+            font-size: 1rem;
 
-			&.arrow-hotspot{
-				width:405px;
-			}
-			.inner-modal{
-				background:rgba(0,0,0,0.5);
-				
-				.dropdown{
-					width:192px;
-					margin:25px 0px 10px 0;
-					background:#000;
-					h2{
-						padding:7px;
-					}
-					ul{
-						top:22px;
-					}
+            span{
+                font-size: 1.6rem;
+                margin-right: 10px;
+            }
+        }  
+        
+        .skills{
+            max-height: 350px;
+            overflow: auto;
 
-				&.style{
-						width:70px;
-						float:left;
-						margin:0;
+            .loading{
+                margin: 20px 0;
+            }
 
-						h2, li{
-						height:32px;
-						}
+            h2 {
+                font-weight: bold;
+                font-size: 1.6rem;
+                margin-bottom: 7px;
+            }
+        }
+    }
 
-						h2{
-							min-width:55px;
-						}
+    &.hotspotwindow{
+        background-color: transparent;
+        width: 0px;
+        height: 0px;
+        top: 60px;
+        left: 20px;
 
-						ul{
-							top:45px;
-						}
-					}	
-				}
-	
-				figure{
-					position:relative;
-					margin-bottom:10px;
-					width:180px;
-					height:100px;
-					img{
-						opacity:0.5;
-					}
+        header{
+            height: 15px;
+            margin-left: 0;
+            margin-top: 0;
+            border-bottom: 2px solid #333;
+            background: rgba(0,0,0,0.9);
+            cursor: all-scroll;
 
-					figcaption{
-						position: absolute;
-						top: 50px;
-						left: 0px;
-						width: 100%;
-						text-align: center;
-					}
+            .fa-close{
+                width: 100px;
 
-				}
-				#urllinkhotspot{
-					width:147px;
-					position:absolute;
-				}
+                &:before{
+                    content: "Save and Close";
+                    font-family: $font;
+                    font-size: 1.2rem;
+                    float: right;
+                }
+            }
+        }
 
-				label[for="urlvideohotspot"]{
-					margin-bottom:10px;
-					display:block;
-				}
+        .modal{
+            width: 320px;
+            background: none;
+            border-color: #333;
 
-				label[for="urllinkhotspot"]{
-					line-height:20px;
-				}
+            &.arrow-hotspot{
+                width: 405px;
+            }
+            .inner-modal{
+                background: rgba(0,0,0,0.5);
+                
+                .dropdown{
+                    width: 192px;
+                    margin: 25px 0px 10px 0;
+                    background: #000;
+
+                    h2{
+                        padding: 7px;
+                    }
+                    ul{
+                        top: 22px;
+                    }
+
+                &.style{
+                        width: 70px;
+                        float: left;
+                        margin: 0;
+
+                        h2, li{
+                        height: 32px;
+                        }
+
+                        h2{
+                            min-width: 55px;
+                        }
+
+                        ul{
+                            top: 45px;
+                        }
+                    }   
+                }
+    
+                figure{
+                    position: relative;
+                    margin-bottom: 10px;
+                    width: 180px;
+                    height: 100px;
+
+                    img{
+                        opacity: 0.5;
+                    }
+
+                    figcaption{
+                        position: absolute;
+                        top: 50px;
+                        left: 0px;
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                }
+                #urllinkhotspot{
+                    width: 147px;
+                    position: absolute;
+                }
+
+                label[for="urlvideohotspot"]{
+                    margin-bottom: 10px;
+                    display: block;
+                }
+
+                label[for="urllinkhotspot"]{
+                    line-height: 20px;
+                }
 
 
-				label[for="style"]{
-					float:left;
-					line-height:30px;
-				}
+                label[for="style"]{
+                    float: left;
+                    line-height: 30px;
+                }
 
-				label[for="rotate"]{
-					float:left;
-					clear:left;
-				}
+                label[for="rotate"]{
+                    float: left;
+                    clear: left;
+                }
 
-				textarea{
-					height:140px;
-				}
+                textarea{
+                    height: 140px;
+                }
 
-				#rotate{
-					width:50px;
-					float:left;
-				}
+                #rotate{
+                    width: 50px;
+                    float: left;
+                }
 
-				p{
-					clear:left;
-				}
-			}
+                p{
+                    clear: left;
+                }
+            }
 
-			.inner-modal>div{
-				padding:10px 20px 10px 10px;
-			}
+            .inner-modal>div{
+                padding: 10px 20px 10px 10px;
+            }
 
-			.default{
-				width:32px;
-				height: 32px;
-				float: left;
-			}
-		}
+            .default{
+                width: 32px;
+                height: 32px;
+                float: left;
+            }
+        }
 
-		.hotspot-column{
-			width:185px;
-			float:left;
-			height:100%;
-			padding-bottom:20px;
-		}	
-	}
+        .hotspot-column{
+            width: 185px;
+            float: left;
+            height: 100%;
+            padding-bottom: 20px;
+        }   
+    }
 }
