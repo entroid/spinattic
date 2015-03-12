@@ -83,6 +83,15 @@ define([
 
 			},
 
+			this.pushSkill = function(skill){
+				var first= function(obj) {
+				    for (var a in obj) return a;
+				}
+				var myskill = first(skill);
+				tourData.krpano[myskill] = skill[myskill];
+				console.log("entre")
+			}
+
 			this.saveServer = function(){
 				console.log("me ejecuto y estoy mandando datos");
 				console.log(tourData)

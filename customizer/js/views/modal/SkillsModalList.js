@@ -6,9 +6,11 @@ define([
 	'views/modal/Modal',
 	'text!templates/modal/skilllist.html',
 	'views/sidebar/SkinCustomizerItem',
-	'mCustomScrollbar'
+	'mCustomScrollbar',
+	'x2js',
+   'helpers/ManageData',
 
-], function($, _, Backbone, jqueryui, Modal, skilllist, SkinCustomizerItem, mCustomScrollbar){
+], function($, _, Backbone, jqueryui, Modal, skilllist, SkinCustomizerItem, mCustomScrollbar,x2js,ManageData){
 
 	var SkillsModalList = Modal.extend({
 		
@@ -59,16 +61,19 @@ define([
 								var myTitle = ui.item.title;
 								$("#skill-list-search").val(myTitle);
 								console.log(ui.item.id)
-								$("#"+myid+" .free-skills li").hide()
-								$("#"+myid+" .free-skills li#item"+ui.item.id).show();
+								$("#"+myid+" .skill-list li").hide()
+								$("#"+myid+" .inner-modal h2").show();
+								$("#"+myid+" .skill-list li#item"+ui.item.id).show();
 								return false;
 							},
 							search:function(event,ui){
-								$("#"+myid+" .free-skills li").hide()
+								$("#"+myid+" .skill-list li").hide();
+								$("#"+myid+" .inner-modal h2").hide();
 							},
 							close:function(event,ui){
 								if($( "#skill-list-search" ).val() == ""){
-									$("#"+myid+" .free-skills li").show()
+									$("#"+myid+" .skill-list li").show()
+									$("#"+myid+" .inner-modal h2").show();
 								}
 
 							}
@@ -76,7 +81,7 @@ define([
 
 								return $( "<li></li>" )
 								.data( "item.autocomplete", item )
-								.append( "<dl><dt>" + item.title + "</dt><dd>" + item.description + "</dd><dl>" )
+								.append( "<dl><dt>" + item.title + "</dt><dd>" + item.description + "</dd></dl>" )
 								.appendTo( ul ); 
 
 						};		
@@ -108,7 +113,8 @@ define([
 
 					});
 				})
-
+			$("#"+this.myid+" header h2").text("Skills")
+			$("#"+this.myid).parents(".overlay").css("background-color","rgba(0,0,0,0)")
 
 		},
 
@@ -124,16 +130,25 @@ define([
 			var $elem = $(evt.target);
 			}
 
-			var SkillItemModel = Backbone.Model.extend({});
+			$.ajax({
+				url:"data/xml.php?t=skills&c=1&id="+skill.id,
+				 dataType: "html",
+				 success:function(data){
+					var SkillItemModel = Backbone.Model.extend({});
+					skillItemModel = new SkillItemModel({data:skill});
+					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
+					skinCustomizerItem.render();
+					$elem.replaceWith('<span class="added-skill">Added</span>')
+					var x2js = new X2JS({attributePrefix:"_"});
+                    var tourSkill =  x2js.xml_str2json( data );
+                    var manageData = new ManageData()
+                    manageData.pushSkill(tourSkill)
+          
+                    window.tourSkill = tourSkill;
+				 }
+			})
 
-			skillItemModel = new SkillItemModel({data:skill});
 
-			var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
-
-			skinCustomizerItem.render();
-			$elem.replaceWith('<span class="added-skill">Added</span>')
-			/*$(li)
-			$("#skinCustomizer-menu .skill-list").append($li);*/
 		}
 
 	})      
