@@ -3910,7 +3910,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-size: 1.6rem;
   margin-right: 10px; }
 .overlay .modal .skills {
-  max-height: 350px;
+  height: 350px;
   /*overflow: auto;*/ }
 .overlay .modal .skills .loading {
   margin: 20px 0; }
