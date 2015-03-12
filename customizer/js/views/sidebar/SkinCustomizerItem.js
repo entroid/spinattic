@@ -20,17 +20,32 @@ define([
 
 			$('#skill-' + data.id ).data("skill",data);
 			$('#skill-' + data.id + ' .customizelink').click(this.editSkill);
+			var view = this;
+			$('#skill-' + data.id + ' .fa-close').click(function(event){
+				
+				var v = view;
+				view.removeSkill(event,v)
+				
+				});
 		  	
 		},
 
 		editSkill:function(e){
-			var skill = $(e.target).parent("li").data("skill");
-			console.log(skill)
+			var skill = $(e.target).parents("li").data("skill");
 			var SkillModel = Backbone.Model.extend({});
 			skillModel = new SkillModel({data:skill});
 			var skillEditor = new SkillEditor({model:skillModel});
 			skillEditor.render("skillsEditor",skillEditor.renderExtend);
 		
+		},
+
+		removeSkill:function(e,v){
+
+			var data = this.model.get("data");
+			$('#skill-' + data.id ).remove();
+			v.undelegateEvents();
+			v.remove();
+
 		}
 		
 	});
