@@ -2800,91 +2800,6 @@ textarea {
   line-height: 20px;
   border: 1px solid #535353; }
 
-/*on-off*/
-.onoffswitch {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  width: 50px; }
-
-.onoffswitch-checkbox {
-  display: none; }
-
-.onoffswitch-label {
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 11px;
-  width: auto;
-  border: 1px solid #000; }
-
-.onoffswitch-inner {
-  display: block;
-  width: 200%;
-  margin-left: -100%;
-  -moz-transition: margin 0.3s ease-in 0s;
-  -webkit-transition: margin 0.3s ease-in 0s;
-  -o-transition: margin 0.3s ease-in 0s;
-  transition: margin 0.3s ease-in 0s; }
-
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-  display: block;
-  float: left;
-  width: 50%;
-  height: 20px;
-  padding: 0;
-  padding-top: 1px;
-  line-height: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
-
-.onoffswitch-inner:before {
-  content: "ON";
-  padding-left: 10px;
-  background-color: #333333;
-  color: #FFFFFF; }
-
-.onoffswitch-inner:after {
-  content: "OFF";
-  padding-right: 5px;
-  background-color: #232323;
-  color: #999999;
-  text-align: right; }
-
-.onoffswitch-switch {
-  display: block;
-  width: 12px;
-  margin: 2px;
-  background: #535353;
-  border-radius: 50%;
-  position: absolute;
-  top: 1px;
-  right: 29px;
-  height: 17px;
-  font-size: 0.7em;
-  padding-left: 4px;
-  color: #999;
-  line-height: 16px;
-  -moz-transition: all 0.3s ease-in 0s;
-  -webkit-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s;
-  transition: all 0.3s ease-in 0s;
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg); }
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0; }
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 0px; }
-
 /* inputs */
 .input-label-3column {
   display: inline-block;
@@ -2945,7 +2860,6 @@ textarea {
   margin-right: 2px; }
 
 header.main-header {
-  height: 70px;
   z-index: 2;
   position: relative; }
 header.main-header h1 {
@@ -3067,7 +2981,85 @@ header.main-header .header-bottom {
   clear: both;
   background-color: #000;
   height: 50px;
-  position: relative; }
+  position: relative;
+  /*on-off*/ }
+header.main-header .header-bottom .onoffswitch {
+  position: relative;
+  width: 74px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  float: left;
+  border: none;
+  margin-top: 6px; }
+header.main-header .header-bottom .onoffswitch-checkbox {
+  display: none; }
+header.main-header .header-bottom .onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 11px;
+  width: auto;
+  border: 1px solid #000; }
+header.main-header .header-bottom .onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  font-size: 1.3rem;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s; }
+header.main-header .header-bottom .onoffswitch-inner:before, header.main-header .header-bottom .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 20px;
+  padding: 0;
+  padding-top: 1px;
+  line-height: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-sizing: border-box; }
+header.main-header .header-bottom .onoffswitch-inner:before {
+  content: "LIVE";
+  color: #497f3c;
+  padding-left: 20px;
+  background-color: #333333; }
+header.main-header .header-bottom .onoffswitch-inner:after {
+  content: "OFFLINE";
+  color: #d32f31;
+  padding-right: 8px;
+  background-color: #232323;
+  text-align: right; }
+header.main-header .header-bottom .onoffswitch-switch {
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: #535353;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 52px;
+  font-size: 0.7em;
+  padding-left: 5px;
+  padding-top: 1px;
+  color: #999;
+  line-height: 16px;
+  box-sizing: border-box;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg); }
+header.main-header .header-bottom .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0; }
+header.main-header .header-bottom .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 1px; }
 header.main-header .header-bottom #tourTitleBar {
   display: inline-block;
   padding: 10px; }
@@ -3077,14 +3069,16 @@ header.main-header .header-bottom #publishController {
 header.main-header .header-bottom #publishController div {
   float: left;
   border: 1px solid #000;
-  margin-right: 5px; }
-header.main-header .header-bottom #publishController #live h4 {
-  color: #497f3c; }
+  margin-right: 5px;
+  height: 37px;
+  box-sizing: border-box; }
 header.main-header .header-bottom #publishController #publish {
   color: white;
-  font-size: 22px;
-  padding: 5px;
-  cursor: pointer; }
+  padding: 10px;
+  cursor: pointer;
+  background-color: #232323;
+  font-size: 1.7rem;
+  width: 35px; }
 header.main-header .header-bottom #publishController #publish:hover {
   background-color: #282828;
   /* Fallback Color */
@@ -3104,65 +3098,30 @@ header.main-header .header-bottom #publishController #publish:active {
   -webkit-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
   -moz-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
   box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset; }
-header.main-header .header-bottom #publishController #draft h4 {
-  color: #fad368; }
-header.main-header .header-bottom #publishController #live, header.main-header .header-bottom #publishController #draft {
+header.main-header .header-bottom #publishController .status {
   background: #1a1a1a;
-  width: 103px;
+  width: 111px;
   text-align: center;
-  padding: 3px 5px; }
-header.main-header .header-bottom #publishController #live h4, header.main-header .header-bottom #publishController #draft h4 {
+  padding: 3px 5px;
+  position: relative; }
+header.main-header .header-bottom #publishController .status h4 {
   font-weight: bold;
   margin-bottom: 5px; }
-header.main-header .header-bottom #publishController #live .date, header.main-header .header-bottom #publishController #draft .date {
-  color: #535353;
+header.main-header .header-bottom #publishController .status .date {
+  color: #999;
   font-style: italic; }
-header.main-header .header-bottom #publishController .onoffswitch {
-  position: relative;
-  width: 70px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  float: left;
-  border: none;
-  margin-top: 6px; }
-header.main-header .header-bottom #publishController .onoffswitch-checkbox {
-  display: none; }
-header.main-header .header-bottom #publishController .onoffswitch-label {
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 11px;
-  width: auto;
-  border: 1px solid #000; }
-header.main-header .header-bottom #publishController .onoffswitch-inner {
-  display: block;
-  width: 200%;
-  margin-left: -100%;
-  -moz-transition: margin 0.3s ease-in 0s;
-  -webkit-transition: margin 0.3s ease-in 0s;
-  -o-transition: margin 0.3s ease-in 0s;
-  transition: margin 0.3s ease-in 0s; }
-header.main-header .header-bottom #publishController .onoffswitch-inner:before, header.main-header .header-bottom #publishController .onoffswitch-inner:after {
-  font-size: 1.3rem;
-  font-weight: normal; }
-header.main-header .header-bottom #publishController .onoffswitch-inner:before {
-  content: "LIVE";
-  color: #497f3c;
-  padding-left: 12px;
-  background-color: #333333; }
-header.main-header .header-bottom #publishController .onoffswitch-inner:after {
-  content: "DRAFT";
-  color: #fad368;
-  padding-right: 8px;
-  background-color: #232323;
-  text-align: right; }
-header.main-header .header-bottom #publishController .onoffswitch-switch {
-  right: 50px; }
-header.main-header .header-bottom #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0; }
-header.main-header .header-bottom #publishController .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 0px; }
+header.main-header .header-bottom #publishController .status .help {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  bottom: initial;
+  left: initial;
+  color: #999;
+  font-size: 1.2rem; }
+header.main-header .header-bottom #publishController #live h4 {
+  color: #497f3c; }
+header.main-header .header-bottom #publishController #draft h4 {
+  color: #fad368; }
 
 aside {
   width: 50px;
