@@ -32,14 +32,15 @@ define([
 	   events:{
 	   },
 	   render: function(){
-		   este = this;
+	 	   este = this;
 		   este.gNew_tour = this.model.get("gNewTour");
 		   este.addingPane =  this.model.get("addingPane")
 		   console.log(este.addingPane)
 		   if(location.hash.split("/")[1]){
 			este.gTour_id= location.hash.split("/")[1];
 		}
-		console.log(PublishControllerView)
+
+
 		var compiledTemplate = _.template(upload);
 		$(this.el).append( compiledTemplate ); 
 		var helpFunctions = new HelpFunctions();
@@ -206,6 +207,10 @@ uploadFinished:function(i, file, response){
 
 
 					});
+
+	$("#click-to-select-file").click(function(e){
+			$("#upload_button").trigger("click")
+		})
 
 },
 
@@ -421,6 +426,10 @@ createImage:function(file,i)
 		$(".dragger-wrapper").fadeOut(function(){
 		   $(this).remove();
 	   })
+
+		if(!este.gTour_id){
+			este.gTour_id = window.gTour_id;
+		}
 
 		var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
 		console.log(xmlpath)

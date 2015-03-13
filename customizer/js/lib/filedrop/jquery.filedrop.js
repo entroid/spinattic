@@ -72,26 +72,61 @@
         files_count = 0,
         files;
 
-    $('#' + opts.fallback_id).css({
+    /*$('#' + opts.fallback_id).css({
       display: 'none',
       width: 0,
       height: 0
     });
-
+*/
     this.on('drop', drop).on('dragstart', opts.dragStart).on('dragenter', dragEnter).on('dragover', dragOver).on('dragleave', dragLeave);
     $(document).on('drop', docDrop).on('dragenter', docEnter).on('dragover', docOver).on('dragleave', docLeave);
 
-    this.on('click', function(e){
-      $('#' + opts.fallback_id).trigger(e);
-    });
 
-    $('#' + opts.fallback_id).change(function(e) {
+      $("#upload_button").change(function(e) 
+                {
+                    e.preventDefault();
+                    f = this.files;
+                    setTimeout(function(){
+                   
+                        files = f;
+
+                      if (files === null || files === undefined) {                            
+                              return false;
+                      }
+
+                      files_count = files.length;
+                      upload();
+
+                      $.ajax({
+                      url:'php/ultour.php',
+                      type:'POST',
+                      data:'autocreate=true',
+                      success:function(response){
+                         var parsedObj = jQuery.parseJSON(response);
+                         window.gTour_id    = parsedObj.params.tour_id;  
+                         console.log(parsedObj)
+                         console.log("se ha creado un tour desde autocreateTour")        
+                      
+                       }
+                     })
+                }, 1000);
+
+
+                });
+
+
+    /*this.on('click', function(e){
+      console.log(opts.fallback_id)
+      $('#' + opts.fallback_id).trigger("click");
+    });*/
+
+    /*$('#' + opts.fallback_id).change(function(e) {
       opts.drop(e);
       files = e.target.files;
       files_count = files.length;
       upload();
     });
-
+*/
     function drop(e) {
       if( opts.drop.call(this, e) === false ) return false;
       if(!e.dataTransfer)
