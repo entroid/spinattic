@@ -3959,6 +3959,9 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-weight: bold;
   font-size: 1.6rem;
   margin-bottom: 7px; }
+.overlay .modal #skill-search-results {
+  /*position: absolute;*/
+  float: left; }
 .overlay .modal #skill-search-results dl {
   padding: 10px;
   box-sizing: border-box;
@@ -3971,6 +3974,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay .modal #skill-search-results dl dd {
   color: #999;
   line-height: 1.2em; }
+.overlay .modal #skill-search-results .ui-state-focus dl {
+  background-color: #333333; }
 .overlay.hotspotwindow {
   background-color: transparent;
   width: 0px;

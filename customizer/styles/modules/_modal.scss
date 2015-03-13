@@ -125,6 +125,9 @@
         }
 
         #skill-search-results {
+            /*position: absolute;*/
+            float: left;
+
             dl {
                 padding: 10px;
                 box-sizing: border-box;
@@ -141,6 +144,10 @@
                     color: $light-gray3;
                     line-height: 1.2em;
                 }              
+            }
+
+            .ui-state-focus dl {
+                background-color: $middle-gray;
             }
         }
     }
