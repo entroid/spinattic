@@ -123,6 +123,26 @@
                 margin-bottom: 7px;
             }
         }
+
+        #skill-search-results {
+            dl {
+                padding: 10px;
+                box-sizing: border-box;
+                background-color: black;                
+                border-top: 1px solid $middle-gray;  
+
+                dt {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+
+                dd {
+                    color: $light-gray3;
+                    line-height: 1.2em;
+                }              
+            }
+        }
     }
 
     &.hotspotwindow{

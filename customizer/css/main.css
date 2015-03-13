@@ -2858,10 +2858,108 @@ textarea {
   font-weight: bold; }
 .skill-list li .add-skill .fa-close {
   margin-right: 2px; }
+.skill-list li .added-skill {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  bottom: initial;
+  left: initial;
+  color: #fad368;
+  border: 1px solid black;
+  padding: 7px;
+  text-transform: uppercase;
+  font-weight: bold; }
+
+/*on-off general */
+.onoffswitch {
+  width: 50px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  float: left;
+  border: none; }
+
+.onoffswitch-checkbox {
+  display: none; }
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 11px;
+  width: auto;
+  border: 1px solid #000; }
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  font-size: 1.3rem;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s; }
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 20px;
+  padding: 0;
+  padding-top: 1px;
+  line-height: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-sizing: border-box;
+  color: white; }
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #333333; }
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 7px;
+  background-color: #232323;
+  text-align: right; }
+
+.onoffswitch-switch {
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: #535353;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 30px;
+  font-size: 0.7em;
+  padding-left: 5px;
+  padding-top: 1px;
+  color: #999;
+  line-height: 16px;
+  box-sizing: border-box;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0; }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 1px; }
 
 header.main-header {
   z-index: 2;
-  position: relative; }
+  position: relative;
+  min-height: 70px;
+  /* ON/off switch en header */ }
 header.main-header h1 {
   background: url(../images/logo.png);
   text-indent: -10000px;
@@ -2982,84 +3080,7 @@ header.main-header .header-bottom {
   background-color: #000;
   height: 50px;
   position: relative;
-  /*on-off*/ }
-header.main-header .header-bottom .onoffswitch {
-  position: relative;
-  width: 74px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  float: left;
-  border: none;
-  margin-top: 6px; }
-header.main-header .header-bottom .onoffswitch-checkbox {
   display: none; }
-header.main-header .header-bottom .onoffswitch-label {
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 11px;
-  width: auto;
-  border: 1px solid #000; }
-header.main-header .header-bottom .onoffswitch-inner {
-  display: block;
-  width: 200%;
-  margin-left: -100%;
-  font-size: 1.3rem;
-  -moz-transition: all 0.3s ease-in 0s;
-  -webkit-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s;
-  transition: all 0.3s ease-in 0s; }
-header.main-header .header-bottom .onoffswitch-inner:before, header.main-header .header-bottom .onoffswitch-inner:after {
-  display: block;
-  float: left;
-  width: 50%;
-  height: 20px;
-  padding: 0;
-  padding-top: 1px;
-  line-height: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  box-sizing: border-box; }
-header.main-header .header-bottom .onoffswitch-inner:before {
-  content: "LIVE";
-  color: #497f3c;
-  padding-left: 20px;
-  background-color: #333333; }
-header.main-header .header-bottom .onoffswitch-inner:after {
-  content: "OFFLINE";
-  color: #d32f31;
-  padding-right: 8px;
-  background-color: #232323;
-  text-align: right; }
-header.main-header .header-bottom .onoffswitch-switch {
-  display: block;
-  width: 18px;
-  height: 18px;
-  background: #535353;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  right: 52px;
-  font-size: 0.7em;
-  padding-left: 5px;
-  padding-top: 1px;
-  color: #999;
-  line-height: 16px;
-  box-sizing: border-box;
-  -moz-transition: all 0.3s ease-in 0s;
-  -webkit-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s;
-  transition: all 0.3s ease-in 0s;
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg); }
-header.main-header .header-bottom .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0; }
-header.main-header .header-bottom .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 1px; }
 header.main-header .header-bottom #tourTitleBar {
   display: inline-block;
   padding: 10px; }
@@ -3122,6 +3143,23 @@ header.main-header .header-bottom #publishController #live h4 {
   color: #497f3c; }
 header.main-header .header-bottom #publishController #draft h4 {
   color: #fad368; }
+header.main-header .onoffswitch {
+  width: 74px;
+  position: relative;
+  margin-top: 6px; }
+header.main-header .onoffswitch-inner:before {
+  content: "LIVE";
+  color: #497f3c;
+  padding-left: 20px;
+  background-color: #333333; }
+header.main-header .onoffswitch-inner:after {
+  content: "OFFLINE";
+  color: #d32f31;
+  padding-right: 8px;
+  background-color: #232323;
+  text-align: right; }
+header.main-header .onoffswitch-switch {
+  right: 52px; }
 
 aside {
   width: 50px;
@@ -3447,6 +3485,10 @@ aside #virtualTourSettings-menu li {
   border: 1px solid #535353;
   margin-bottom: 20px;
   padding: 0 15px; }
+aside #virtualTourSettings-menu li h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  line-height: 18px; }
 aside #virtualTourSettings-menu li h3 {
   height: 30px;
   padding: 4px 10px 10px 0;
@@ -3462,10 +3504,6 @@ aside #virtualTourSettings-menu li .sub-items {
   display: none;
   margin-bottom: 20px;
   padding-top: 10px; }
-aside #virtualTourSettings-menu li h2 {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-  line-height: 18px; }
 aside #virtualTourSettings-menu li .sub-items label {
   font-weight: normal; }
 aside #virtualTourSettings-menu li .sub-items label.onoffswitch-label {
@@ -3522,6 +3560,8 @@ aside #virtualTourSettings-menu li.location-submenu span.help {
   display: block;
   float: left;
   height: 40px; }
+aside #virtualTourSettings-menu .input-row > label {
+  padding-top: 5px; }
 aside #virtualTourSettings-menu .mouse-control-settings .input-row {
   height: 30px;
   margin-bottom: 10px; }
@@ -3650,7 +3690,8 @@ footer.main-footer {
   bottom: 0;
   height: 120px;
   border-top: 2px solid #000;
-  z-index: 2; }
+  z-index: 2;
+  display: none; }
 footer.main-footer .scene-wrapper {
   border-top: 1px solid #333;
   float: left;
@@ -3918,6 +3959,18 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-weight: bold;
   font-size: 1.6rem;
   margin-bottom: 7px; }
+.overlay .modal #skill-search-results dl {
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: black;
+  border-top: 1px solid #333333; }
+.overlay .modal #skill-search-results dl dt {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 2px; }
+.overlay .modal #skill-search-results dl dd {
+  color: #999;
+  line-height: 1.2em; }
 .overlay.hotspotwindow {
   background-color: transparent;
   width: 0px;
