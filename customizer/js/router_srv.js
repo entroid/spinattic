@@ -41,13 +41,12 @@ define([
 		helpFunctions.setInnerHeight(".main-section","byClass");
 		var panoMenuFooterView = new PanoMenuFooterView();
 		panoMenuFooterView.render();
-
-		window.onpopstate = function(event)
-			{
-			    location.reload();
-			};
 	   
 
+		window.onpopstate = function(event)
+		{
+		    location.reload();
+		};
 		
 		$(window).resize(function(){
 			
@@ -88,8 +87,7 @@ define([
 		 }).done(function(obj){
 		 	console.log(obj)
 		 	//var xmlpath ="data/tour.xml?id="+id;
-		 	//var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
-		 	var xmlpath = "data/tour209.xml"
+		 	var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
 		 	$.ajax({
    			 url: xmlpath,
 			    type: "GET",
@@ -116,8 +114,8 @@ define([
                             $(".header-bottom").show();
 
                             tourData.krpano.datatour = datatour;
-                            //var xml2krpano = xmlpath.replace("&c=1","");
-                            var xml2krpano = "data/tour209em.xml"
+                            var xml2krpano = xmlpath.replace("&c=1","");
+                            //var xml2krpano = "data/tour209em.xml"
                             
                             var tourModel = new TourModel({xmlpath:xml2krpano});
                         
