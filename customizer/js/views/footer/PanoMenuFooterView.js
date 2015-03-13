@@ -12,6 +12,7 @@ define([
 		el: $("footer.main-footer"),
 		minHeight:0,
 		totalHeight:0,
+		uploaderview:null,
 		initialize: function () {
 
 			
@@ -53,10 +54,16 @@ define([
 
 		openPanoUpload:function(){
 
+			if($(".dragger-wrapper").length){
+			
+				this.uploaderview.removeView();
+				
+			}else{
 			var UploaderModel = Backbone.Model.extend({});
 			uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
-			uploaderview = new UploaderView({model:uploaderModer});
-			uploaderview.render();
+			this.uploaderview = new UploaderView({model:uploaderModer});
+			this.uploaderview.render();
+			}
 
 		}
 		
