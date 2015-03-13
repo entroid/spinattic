@@ -362,8 +362,13 @@ createImage:function(file,i)
 
     AllUploaded:function(){
        $(".uploader-footer p").html('All Done <span class="fa fa-smile-o"></span>');
-       $(".fa-clock-o").addClass("save").text("Create tour and customize");
+       if(este.addingPane){
+      $(".fa-clock-o").addClass("save").text("ADD PANOS");
 
+       }else{
+       $(".fa-clock-o").addClass("save").text("CREATE TOUR");
+     }
+       
        $(".save").click(function(){
 
         if(este.addingPane){
@@ -481,6 +486,16 @@ createImage:function(file,i)
 })
 
 },
+
+removeView:function(){
+    this.undelegateEvents();
+    $(".dragger-wrapper").animate({
+            'top' : '0'
+        },function(){
+          $('.dragger-wrapper' ).remove();
+      })
+
+}
 
 
 
