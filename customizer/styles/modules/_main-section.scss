@@ -65,6 +65,13 @@ section.main-section {
 		h3{
 			font-size: 1.5rem;
 			font-style: italic;
+
+			&#click-to-select-file{
+				cursor: pointer;
+				&:hover {
+					color: $light-gray3;
+				}
+			}
 		}
 
 		label{
@@ -78,11 +85,12 @@ section.main-section {
 			float: none;
 			margin-left: auto;
 			margin-right: auto;
-			width: 175px;
-			margin-top: 4px;
+			width: 185px;
+			margin-top: 6px;
 
 			h2{
 				font-size: 1.2rem;
+				margin-bottom: 5px;
 			}
 		}
 
@@ -98,7 +106,7 @@ section.main-section {
 		}
 
 		p{
-			color: $light-gray;
+			color: $light-gray3;
 			margin-top: 40px;
 		}
 
@@ -226,6 +234,10 @@ section.main-section {
 
 		&.scaling{
 			top: 40px !important;
+		}
+
+		#upload_button {
+			@include absolute(0, -15000px, initial, initial);
 		}
 	}
 }

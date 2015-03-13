@@ -4117,6 +4117,10 @@ section.main-section .inner.withTour {
 .dragger-wrapper .inner-dragger h3 {
   font-size: 1.5rem;
   font-style: italic; }
+.dragger-wrapper .inner-dragger h3#click-to-select-file {
+  cursor: pointer; }
+.dragger-wrapper .inner-dragger h3#click-to-select-file:hover {
+  color: #999; }
 .dragger-wrapper .inner-dragger label {
   font-weight: bold;
   padding-top: 40px;
@@ -4126,10 +4130,11 @@ section.main-section .inner.withTour {
   float: none;
   margin-left: auto;
   margin-right: auto;
-  width: 175px;
-  margin-top: 4px; }
+  width: 185px;
+  margin-top: 6px; }
 .dragger-wrapper .inner-dragger #panos-format h2 {
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  margin-bottom: 5px; }
 .dragger-wrapper .inner-dragger .tile-size {
   margin-top: 10px; }
 .dragger-wrapper .inner-dragger input {
@@ -4138,7 +4143,7 @@ section.main-section .inner.withTour {
   padding: 5px;
   font-size: 1.1rem; }
 .dragger-wrapper .inner-dragger p {
-  color: #535353;
+  color: #999;
   margin-top: 40px; }
 .dragger-wrapper .inner-dragger .pano-item-wrapper {
   padding: 10px;
@@ -4237,6 +4242,12 @@ section.main-section .inner.withTour {
   content: ""; }
 .dragger-wrapper .inner-dragger.scaling {
   top: 40px !important; }
+.dragger-wrapper .inner-dragger #upload_button {
+  position: absolute;
+  top: 0;
+  right: -15000px;
+  bottom: initial;
+  left: initial; }
 
 #tour {
   position: absolute;
