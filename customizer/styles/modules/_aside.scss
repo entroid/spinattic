@@ -450,12 +450,18 @@ aside{
             border: 1px solid $light-gray;
             margin-bottom: 20px;
             padding: 0 15px;
-            
+
+            h2{
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+                line-height: 18px;
+            }
+
             h3{
-            height: 30px;
-            padding: 4px 10px 10px 0;
-            line-height: 40px;
-            cursor: pointer;
+                height: 30px;
+                padding: 4px 10px 10px 0;
+                line-height: 40px;
+                cursor: pointer;
 
                 .leftish{
                     margin-right: 10px;
@@ -472,20 +478,7 @@ aside{
                 display: none;
                 margin-bottom: 20px;
                 padding-top: 10px;
-            }
-            
-        }
-    }
 
-    #virtualTourSettings-menu{
-        li{
-            h2{
-                font-size: 1.4rem;
-                margin-bottom: 20px;
-                line-height: 18px;
-            }
-
-            .sub-items{
                 label{
                     font-weight: normal;
 
@@ -602,6 +595,12 @@ aside{
                 }
             }
         }   
+
+        .input-row {
+            & > label {
+                padding-top: 5px;
+            }
+        }
 
         .mouse-control-settings{
             .input-row{

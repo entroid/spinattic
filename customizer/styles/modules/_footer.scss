@@ -5,6 +5,7 @@ footer.main-footer{
 	height: 120px;
 	border-top: 2px solid #000;
 	z-index: 2;
+	display: none;
 
 	.scene-wrapper{
 		@extend %full-width;
