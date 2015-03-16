@@ -4151,7 +4151,7 @@ section.main-section .inner.withTour {
   margin-top: 40px; }
 .dragger-wrapper .inner-dragger .pano-item-wrapper {
   padding: 10px;
-  max-height: 300px;
+  max-height: 230px;
   overflow: auto; }
 .dragger-wrapper .inner-dragger .pano-item {
   border: 1px solid #000;

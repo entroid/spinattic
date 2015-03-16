@@ -235,14 +235,8 @@ createImage:function(file,i)
 	var compiledTemplate = _.template(uploadProgress,data);
 	if($(".pano-item-wrapper").length == 0){
 		$('.dragger-wrapper .inner-dragger').append('<div class="pano-item-wrapper"></div><div class="uploader-footer"><p></p><span class="fa fa-clock-o"></span></div>')
-
-        $(".pano-item-wrapper").mCustomScrollbar({
-                    theme:"minimal-dark",
-                    scrollInertia:300,
-                });
 	}
 	$('.dragger-wrapper .pano-item-wrapper').append(compiledTemplate);
-
 
 	$(".cancel-process").click(function(){
 		if($(".cancel-process").data('id') != ''){
