@@ -134,7 +134,7 @@ define([
 			var skill = $(evt.target).data("skill");
 			var $elem = $(evt.target);
 			}
-
+			$elem.text("adding...")
 			$.ajax({
 				url:"data/xml.php?t=skills&c=1&id="+skill.id,
 				 dataType: "html",

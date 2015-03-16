@@ -52,30 +52,22 @@ define([
 			var myid = this.myid;
 			var data = this.model.get("data");
 			var skillid = data.id;
-			console.log(skillid)	
-			_.each($("#"+myid+" .fieldwrapper fieldset"),function(ind,elem){
-
-				var signature = $(elem).find("input.signature").val();
-				var caption = $(elem).find("input.caption").val();
-				var action = $(elem).find("textarea").val();
-
-
+			var items = []			
+			_.each($("#"+myid+" .fieldwrapper fieldset"),function(elem,ind){
+				var obj = {};
+				obj._caption = $(elem).find("input.caption").val();
+				obj._kind = "Context Menu"
+				obj._name = $(elem).find("input.signature").val();
+				obj._onclick = $(elem).find("textarea").val();
+				obj._prev_tag_ident = "1";
+				obj._segment = "SKILLS" ;
+				obj._tag_ident = "2"
+				items.push(obj)
 			})
 
-				$.ajax({
-				url:"data/xml.php?t=skills&c=1&id="+skillid,
-				 dataType: "html",
-				 success:function(data){
-					var x2js = new X2JS({attributePrefix:"_"});
-					var tourSkill =  x2js.xml_str2json( data );
-
-					var manageData = new ManageData()
-					manageData.pushSkill(tourSkill)
-		  
-				 }
-			})
-
-
+			tourData.krpano.contextmenu.item = items;
+			$("#skinCustomizer-menu .skill-list #skill-"+skillid)
+			$("#"+myid).parent(".overlay").hide();
 		}
 	});
 
