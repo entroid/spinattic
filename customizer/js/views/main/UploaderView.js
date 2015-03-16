@@ -38,7 +38,7 @@ define([
 		   console.log(este.addingPane)
 		   if(location.hash.split("/")[1]){
 			este.gTour_id= location.hash.split("/")[1];
-		}
+			}
 
 
 		var compiledTemplate = _.template(upload);
@@ -122,7 +122,7 @@ define([
 
 			},
 
-			docOver:function(e){    
+	docOver:function(e){    
 			   if (!rollingOver)
 			   {    
 				   $("header.main-header").addClass("bluring")
@@ -159,15 +159,15 @@ uploadFinished:function(i, file, response){
 
 
    if (response.result == 'SUCCESS')                     
-   {
+					   {
 
-	var pano_id         = response.params.pano_id;
-	var scene_id        = response.params.scene_id;
-	var tour_id         = response.params.tour_id;    
-	var filename        = response.params.file_name;  
-	var scene_name      = response.params.file_name.replace(/\.jpg|\.jpeg|\.tiff/g, '');
-	var html_ref_id     = 'pano-'+scene_id;
-	console.log(tour_id)
+						var pano_id         = response.params.pano_id;
+						var scene_id        = response.params.scene_id;
+						var tour_id         = response.params.tour_id;    
+						var filename        = response.params.file_name;  
+						var scene_name      = response.params.file_name.replace(/\.jpg|\.jpeg|\.tiff/g, '');
+						var html_ref_id     = 'pano-'+scene_id;
+						console.log(tour_id)
 
 									//$("#pano-"+i+" img").attr("src",$("#pano-"+i+" img").data("url"));
 									//$("#pano-"+i+" .progress").css("background","#497f3c")
@@ -206,7 +206,7 @@ uploadFinished:function(i, file, response){
 
 
 
-					});
+					}); // end of dropfile
 
 	$("#click-to-select-file").click(function(e){
 			$("#upload_button").trigger("click")
@@ -352,7 +352,7 @@ createImage:function(file,i)
 		},
 
 	AllUploaded:function(){
-	   $(".uploader-footer p").html('All Done <span class="fa fa-smile-o"></span>');
+	   $(".uploader-footer p").html('<span id="cancelUploaded">Cancel</span>All Done <span class="fa fa-smile-o"></span>');
 	   if(este.addingPane){
 	  $(".fa-clock-o").addClass("save").text("ADD PANOS");
 
