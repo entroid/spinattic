@@ -14,16 +14,25 @@ define([
     var VirtualTourSettingsMenuView = SidebarSubMenu.extend({
 
         initialize: function () {
+
           this.events = this.events || {};
+
           var eventKey = 'click #' + this.model.get("elem") + ' h3';
           this.events[eventKey] = 'openSubItems';
+
           var checkboxesEvent = 'click #'+ this.model.get("elem") +' .checkboxes li';
           this.events[checkboxesEvent] = 'selectCheckboxes';
+
           var inputs = "keyup #virtualTourSettings-menu .tour-data";
           var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
           this.events[inputs] = 'insertData';
           this.events[inputsChange] = 'insertData';
+
+          var onoff = 'change .autorotate-settings .switchInput input[type="checkbox"]'
+          this.events[onoff] = 'onOffSwitch'
+
           this.delegateEvents();
+          
         },
 
         render: function(){
@@ -78,27 +87,39 @@ define([
             this.mapView.refreshSizeMap()
         },
 
-        selectCheckboxes:function(e){
+        selectCheckboxes: function(e) {
+
             var target = $(e.target);
+
             if(target.is("span")){
                 elem = $(e.target).parent("li")
-            }else{
+            } else {
                 elem = $(e.target)
-
             }
+
             if($(elem).data("evt") == "singleLoc"){
                 $("#virtualTourSettings-menu .map-wrapper").show()
-            }else{
+            } else {
                 $("#virtualTourSettings-menu .map-wrapper").hide()
             }
+
         },
 
         insertData:function(e){
 
-            console.log(e)
             var manageData = new ManageData();
             manageData.saveSettings(e);
         
+        },
+
+        onOffSwitch: function(e) {
+            var selectedInput = e.target;
+
+            if (!$(selectedInput).prop( 'checked' )) {
+                $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', true).addClass('disabled')
+            } else {
+                $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', false).removeClass('disabled');
+            }
         }
         
     });
