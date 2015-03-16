@@ -4103,9 +4103,10 @@ section.main-section .inner.withTour {
   color: #FFF;
   text-align: center;
   position: relative;
-  left: -50%; }
+  left: -50%;
+  /* uploading */ }
 .dragger-wrapper .inner-dragger .dragable {
-  padding: 100px;
+  padding: 60px;
   z-index: 1000; }
 .dragger-wrapper .inner-dragger input, .dragger-wrapper .inner-dragger .dropdown {
   background: #535353;
@@ -4164,19 +4165,29 @@ section.main-section .inner.withTour {
   float: left; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader {
   float: left;
-  width: 220px; }
+  width: 60%;
+  position: relative; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader h3 {
   float: left;
-  padding-left: 10px; }
+  padding-left: 10px;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: bold;
+  text-align: left; }
+.dragger-wrapper .inner-dragger .pano-item .left-uploader h3 span {
+  font-weight: normal;
+  font-size: 1.2rem; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader .progress-wrapper {
   background: #232323;
   width: 200px;
   height: 10px;
   float: left;
   border-radius: 15px;
-  margin-left: 8px;
-  margin-top: 25px;
-  position: relative; }
+  position: absolute;
+  top: 35px;
+  right: initial;
+  bottom: initial;
+  left: 10px; }
 .dragger-wrapper .inner-dragger .pano-item .left-uploader .progress-wrapper .progress {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -4207,8 +4218,12 @@ section.main-section .inner.withTour {
   margin-top: 4px; }
 .dragger-wrapper .inner-dragger .pano-item .fa-close {
   position: absolute;
-  top: 5px;
-  right: 5px; }
+  top: 0;
+  right: 0;
+  bottom: initial;
+  left: initial;
+  cursor: pointer;
+  padding: 5px; }
 .dragger-wrapper .inner-dragger .uploader-footer {
   background: #111;
   width: 100%;
@@ -4251,6 +4266,10 @@ section.main-section .inner.withTour {
   right: -15000px;
   bottom: initial;
   left: initial; }
+.dragger-wrapper .inner-dragger .uploading-drop-zone {
+  padding: 20px 60px; }
+.dragger-wrapper .inner-dragger .uploading-drop-zone .format {
+  display: none; }
 
 #tour {
   position: absolute;

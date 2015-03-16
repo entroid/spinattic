@@ -15,10 +15,11 @@ define([
 	'views/footer/SceneMenuView',
 	'collections/footer/SceneCollection',
 	'views/header/TourTitle',
-	'views/header/PublishControllerView'
+	'views/header/PublishControllerView',
+	'mCustomScrollbar'
 
 
-	], function($, _, Backbone,x2js,HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView){
+	], function($, _, Backbone,x2js,HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
 
 	   var UploaderView = Backbone.View.extend({
 		el: $("body"),
@@ -34,8 +35,9 @@ define([
 	   render: function(){
 	 	   este = this;
 		   este.gNew_tour = this.model.get("gNewTour");
-		   este.addingPane =  this.model.get("addingPane")
-		   console.log(este.addingPane)
+
+		   este.addingPane =  this.model.get("addingPane");
+		   
 		   if(location.hash.split("/")[1]){
 			este.gTour_id= location.hash.split("/")[1];
 			}
@@ -235,6 +237,11 @@ createImage:function(file,i)
 	}  
 	if($(".pano-item-wrapper").length == 0){
 		$('.dragger-wrapper .inner-dragger').append('<div class="pano-item-wrapper"></div><div class="uploader-footer"><p></p><span class="fa fa-clock-o"></span></div>')
+
+        $(".pano-item-wrapper").mCustomScrollbar({
+                    theme:"minimal-dark",
+                    scrollInertia:300,
+                });
 	}
 	$('.dragger-wrapper .pano-item-wrapper').append(compiledTemplate);
 

@@ -1,251 +1,269 @@
 section.main-section { 
-	position: relative;
+    position: relative;
 
-	.inner{
-		overflow: auto;
-	
-		&.withTour{
-			overflow: hidden;
-			position: relative;
-			margin-right: 50px;
-			width:100%;
-		}
-	}
+    .inner{
+        overflow: auto;
+    
+        &.withTour{
+            overflow: hidden;
+            position: relative;
+            margin-right: 50px;
+            width:100%;
+        }
+    }
 }
 
 
 
 .overlay-drag{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
 }
 
 .dragger-wrapper{
-	position: absolute;
-	z-index: 200;
-	top: -550px;
-	left: 50%;
-	width: 600px;
-	margin: 0 auto;
+    position: absolute;
+    z-index: 200;
+    top: -550px;
+    left: 50%;
+    width: 600px;
+    margin: 0 auto;
 
-	.inner-dragger{
-		border: dashed-pano(4px,$light-gray); 
-		background: $dark-gray;		
-		color: #FFF;
-		text-align: center;
-		position: relative;
-		left: -50%;		
-		
-		.dragable{
-			padding: 100px;
-			z-index: 1000;
-		}
+    .inner-dragger{
+        border: dashed-pano(4px,$light-gray); 
+        background: $dark-gray;     
+        color: #FFF;
+        text-align: center;
+        position: relative;
+        left: -50%;     
+        
+        .dragable{
+            padding: 60px;
+            z-index: 1000;
+        }
 
-		input, .dropdown{
-			background: $light-gray;
-			border: 1px solid #000;
-		}
+        input, .dropdown{
+            background: $light-gray;
+            border: 1px solid #000;
+        }
 
-		.fa-cloud-upload{
-			font-size: 6rem;
-			text-align: center;
-			display: block;
-		}
+        .fa-cloud-upload{
+            font-size: 6rem;
+            text-align: center;
+            display: block;
+        }
 
-		h2{
-			font-size: 1.6rem;
-			font-weight: bold;
-		}
+        h2{
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
 
-		h3{
-			font-size: 1.5rem;
-			font-style: italic;
+        h3{
+            font-size: 1.5rem;
+            font-style: italic;
 
-			&#click-to-select-file{
-				cursor: pointer;
-				&:hover {
-					color: $light-gray3;
-				}
-			}
-		}
+            &#click-to-select-file{
+                cursor: pointer;
+                &:hover {
+                    color: $light-gray3;
+                }
+            }
+        }
 
-		label{
-			font-weight: bold;
-			padding-top: 40px;
-			display: block;
-			font-size: 1.4rem;
-		}
+        label{
+            font-weight: bold;
+            padding-top: 40px;
+            display: block;
+            font-size: 1.4rem;
+        }
 
-		#panos-format{
-			float: none;
-			margin-left: auto;
-			margin-right: auto;
-			width: 185px;
-			margin-top: 6px;
+        #panos-format{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            width: 185px;
+            margin-top: 6px;
 
-			h2{
-				font-size: 1.2rem;
-				margin-bottom: 5px;
-			}
-		}
+            h2{
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+        }
 
-		.tile-size{
-			margin-top: 10px;
-		}
+        .tile-size{
+            margin-top: 10px;
+        }
 
-		input{
-			width: 40px;
-			color: #FFF;
-			padding: 5px;
-			font-size: 1.1rem;
-		}
+        input{
+            width: 40px;
+            color: #FFF;
+            padding: 5px;
+            font-size: 1.1rem;
+        }
 
-		p{
-			color: $light-gray3;
-			margin-top: 40px;
-		}
+        p{
+            color: $light-gray3;
+            margin-top: 40px;
+        }
 
-		.pano-item-wrapper{
-			padding: 10px;
-			max-height: 300px;
-			overflow: auto;
-		}
+        .pano-item-wrapper{
+            padding: 10px;
+            max-height: 300px;
+            overflow: auto;
+        }
 
-		.pano-item{
-			border: 1px solid #000;
-			background: $middle-gray;
-			padding: 15px;
-			height: 50px;
-			margin-bottom: 10px;
-			position: relative;
-			
-			.thumb{
-				width: 100px;
-				float: left;
-			}
+        .pano-item{
+            border: 1px solid #000;
+            background: $middle-gray;
+            padding: 15px;
+            height: 50px;
+            margin-bottom: 10px;
+            position: relative;
+            
+            .thumb{
+                width: 100px;
+                float: left;
+            }
 
-			.left-uploader{
-				float: left;
-				width: 220px;
+            .left-uploader{
+                float: left;
+                width: 60%;
+                position: relative;
 
-				h3{
-					float: left;
-					padding-left: 10px;
-				}
+                h3{
+                    float: left;
+                    padding-left: 10px;
+                    font-size: 1.4rem;
+                    font-style: normal;
+                    font-weight: bold; 
+                    text-align: left;
 
-				.progress-wrapper{
-					background: $dark-gray;
-					width: 200px;
-					height: 10px;
-					float: left;
-					border-radius: 15px;
-					margin-left: 8px;
-					margin-top: 25px;
-					position: relative;
 
-					.progress{
-						@include border-radius(4px);
-						height: 12px;						
-						background: #397999;
-					}
+                    span {
+                        font-weight: normal;
+                        font-size: 1.2rem;
+                    }
+                }
 
-					.percentage{
-						@include absolute();
-						width: 100%;
-						font-size: .9em;
-					}
-				}
-			}
+                .progress-wrapper{
+                    background: $dark-gray;
+                    width: 200px;
+                    height: 10px;
+                    float: left;
+                    border-radius: 15px;
+                    @include absolute (35px, initial, initial, 10px);
 
-			.right-uploader{
-				float: right;
-			
-				.icon-msg{
-					background: #444;
-					width: 70px;
-					height: 20px;
-					border-radius: 5px;
-					padding: 3px;
-					position: absolute;
-					top: 27px;
-					right: 20px;
+                    .progress{
+                        @include border-radius(4px);
+                        height: 12px;                       
+                        background: #397999;
+                    }
 
-					span{
-						margin-top: 4px;
-					}
-				}	
-			}
+                    .percentage{
+                        @include absolute();
+                        width: 100%;
+                        font-size: .9em;
+                    }
+                }
+            }
 
-			.fa-close{
-				position: absolute;
-				top: 5px;
-				right: 5px;
-			}
-		}
+            .right-uploader{
+                float: right;
+            
+                .icon-msg{
+                    background: #444;
+                    width: 70px;
+                    height: 20px;
+                    border-radius: 5px;
+                    padding: 3px;
+                    position: absolute;
+                    top: 27px;
+                    right: 20px;
 
-		.uploader-footer{
-			background: #111;
-			width: 100%;
-			height: 40px;
-			padding-top: 10px;
+                    span{
+                        margin-top: 4px;
+                    }
+                }   
+            }
 
-			p{
-				margin-top: 10px;
-				margin-left: 5px;
-				text-transform: uppercase;
-				color: #FFF;
-				width: 435px;
-				text-align: right;
-				line-height: 1em;
-				float: left;
-			}
+            .fa-close{
+                @include absolute (0, 0, initial, initial);
+                cursor: pointer;
+                padding: 5px;
+            }
+        }
 
-			.fa-clock-o{
-				float: right;
-				top: 5px;
-				height: 20px;
-				color: #FFF;
-				position: relative;
-				font-size: 15px;
-				width: 110px;
-				background: #333;
-				border-radius: 7px;
-				margin-right: 10px;
-				line-height: 20px;
-				padding: 2px 4px;
-			}
+        .uploader-footer{
+            background: #111;
+            width: 100%;
+            height: 40px;
+            padding-top: 10px;
 
-			.save{
-				background: #497f3c;
-				font-size: 1.2rem;
-				font-family: "Open Sans",sans-serif;
-				cursor: pointer;
+            p{
+                margin-top: 10px;
+                margin-left: 5px;
+                text-transform: uppercase;
+                color: #FFF;
+                width: 435px;
+                text-align: right;
+                line-height: 1em;
+                float: left;
+            }
 
-				&:before{
-					content: "";
-				}
-			}
-		}
+            .fa-clock-o{
+                float: right;
+                top: 5px;
+                height: 20px;
+                color: #FFF;
+                position: relative;
+                font-size: 15px;
+                width: 110px;
+                background: #333;
+                border-radius: 7px;
+                margin-right: 10px;
+                line-height: 20px;
+                padding: 2px 4px;
+            }
 
-		&.scaling{
-			top: 40px !important;
-		}
+            .save{
+                background: #497f3c;
+                font-size: 1.2rem;
+                font-family: "Open Sans",sans-serif;
+                cursor: pointer;
 
-		#upload_button {
-			@include absolute(0, -15000px, initial, initial);
-		}
-	}
+                &:before{
+                    content: "";
+                }
+            }
+        }
+
+        &.scaling{
+            top: 40px !important;
+        }
+
+        #upload_button {
+            @include absolute(0, -15000px, initial, initial);
+        }
+
+        /* uploading */
+        .uploading-drop-zone {
+            padding: 20px 60px;
+
+            .format {
+                display: none;
+            }
+        }
+    }
 }
 
 #tour{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}						
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}                       
