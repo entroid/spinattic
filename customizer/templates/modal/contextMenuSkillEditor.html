@@ -1,0 +1,20 @@
+<div class="fieldwrapper" style="height:300px;overflow:auto;">
+	<%_.each(tourSkill.contextmenu.item,function(elem,ind){%>
+
+	<fieldset id="contextMenu-<%=ind%>">
+		<label for="signature">Name</label>
+		<input type="text" class="signature" value="<%=elem._name%>">
+		<label for="caption">Caption</label>
+		<input type="text" class="caption" value="<%=elem._caption%>">
+		<label for="action">Action</label>
+		<textarea name="action" class="action" cols="30" rows="10">
+			<%=elem._onclick%>
+		</textarea>
+	</fieldset>
+
+
+	<%})%>
+
+</div>
+<span id="Context-menu-add-item"><i class="fa fa-plus"></i> add Item</span>
+<span id="Context-menu-finish">Done</span>

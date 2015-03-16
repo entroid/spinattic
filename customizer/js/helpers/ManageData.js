@@ -89,7 +89,6 @@ define([
 				}
 				var myskill = first(skill);
 				tourData.krpano[myskill] = skill[myskill];
-				console.log("entre")
 			}
 
 			this.saveServer = function(){
