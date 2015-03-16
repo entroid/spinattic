@@ -4,13 +4,19 @@ define([
 	'backbone',
 	'text!templates/sidebar/skincustomizeritem.html',
 	'views/modal/SkillEditor',
+	'views/modal/ContextMenuSkillEditor',
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
 		events:{
 		},
+
+		initialize: function () {
+
+		   _.bindAll(this);
+	   },
 		
 		render:function(){
 			
@@ -32,11 +38,26 @@ define([
 
 		editSkill:function(e){
 			var skill = $(e.target).parents("li").data("skill");
-			var SkillModel = Backbone.Model.extend({});
-			skillModel = new SkillModel({data:skill});
-			var skillEditor = new SkillEditor({model:skillModel});
-			skillEditor.render("skillsEditor",skillEditor.renderExtend);
-		
+			var tourSkill = this.model.get("tourSkill");
+
+			switch(skill.id){
+				case "1":
+				var mview = ContextMenuSkillEditor;
+				break;
+				default:
+				var mview = SkillEditor
+			}
+			
+			if($("#skillsEditor-"+skill.id).length){
+
+					$("#skillsEditor-"+skill.id).parent(".overlay").show();
+
+			}else{
+				var SkillModel = Backbone.Model.extend({});
+				skillModel = new SkillModel({data:skill,tourSkill:tourSkill});
+				var skillEditor = new mview({model:skillModel});
+				skillEditor.render("skillsEditor-"+skill.id,skillEditor.renderExtend);
+			}
 		},
 
 		removeSkill:function(e,v){

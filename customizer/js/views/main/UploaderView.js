@@ -119,7 +119,8 @@ define([
 				}    
 
 				este.createImage(file,i);
-
+				$(".dragable").addClass("uploading-drop-zone");
+	
 			},
 
 	docOver:function(e){    
@@ -230,9 +231,6 @@ createImage:function(file,i)
 	}
 
 	var compiledTemplate = _.template(uploadProgress,data);
-	if($(".dragable").is(':visible')){
-		$(".dragable").hide();
-	}  
 	if($(".pano-item-wrapper").length == 0){
 		$('.dragger-wrapper .inner-dragger').append('<div class="pano-item-wrapper"></div><div class="uploader-footer"><p></p><span class="fa fa-clock-o"></span></div>')
 	}
