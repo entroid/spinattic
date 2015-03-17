@@ -21,7 +21,6 @@ define([
 		
 		renderExtend:function(){
 
-			
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
 			var template = _.template(logoSkillEditor,{tourSkill:tourSkill})
@@ -37,8 +36,17 @@ define([
 
 	
 		doneEdition:function(){
-			var tourSkill = this.model.get("tourSkill");
-			var mytourSkill = tourSkill
+			var myid = this.myid;
+			
+			if(tourData.krpano.plugin.length == undefined){
+				mytourSkill = tourData.krpano.plugin ;
+			}else{
+				_.each(tourData.krpano.plugin,function(elem,ind){
+					if(elem._kind == mytourSkill._kind){
+						 mytourSkill = tourData.krpano.plugin[ind];
+					}
+				})
+			}
 			
 			mytourSkill._url = $("#logo-skill-image-url").val();
 			mytourSkill._x = $("#logo-skill-x").val();
@@ -56,8 +64,7 @@ define([
 					}
 				})
 			}
-
-			$("#"+myid+"header .fa-close").trigger("click");
+			$("#"+myid+" header .fa-close").trigger("click");
 		
 		}
 	});
