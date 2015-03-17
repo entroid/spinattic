@@ -88,7 +88,18 @@ define([
 				    for (var a in obj) return a;
 				}
 				var myskill = first(skill);
+				if(tourData.krpano[myskill] && skill[myskill]._kind != tourData.krpano[myskill]._kind){
+					if(tourData.krpano[myskill].length == undefined){
+						var items = [];
+						items[0] = tourData.krpano[myskill];
+						tourData.krpano[myskill] = items;
+						tourData.krpano[myskill].push(skill[myskill])
+					}else{
+						tourData.krpano[myskill].push(skill[myskill])					
+					}
+				}else{
 				tourData.krpano[myskill] = skill[myskill];
+				}
 			}
 
 			this.saveServer = function(){

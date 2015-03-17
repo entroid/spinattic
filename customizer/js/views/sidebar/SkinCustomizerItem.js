@@ -5,8 +5,9 @@ define([
 	'text!templates/sidebar/skincustomizeritem.html',
 	'views/modal/SkillEditor',
 	'views/modal/ContextMenuSkillEditor',
+	'views/modal/LogoSkillEditor',
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -39,10 +40,13 @@ define([
 		editSkill:function(e){
 			var skill = $(e.target).parents("li").data("skill");
 			var tourSkill = this.model.get("tourSkill");
-
+			console.log(skill.id)
 			switch(skill.id){
 				case "1":
 				var mview = ContextMenuSkillEditor;
+				break;
+				case "3":
+				var mview = LogoSkillEditor;
 				break;
 				default:
 				var mview = SkillEditor

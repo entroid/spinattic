@@ -152,7 +152,6 @@ define([
 						}
 					}
 
-					console.log(tourSkill);
 					skillItemModel = new SkillItemModel({data:skill,tourSkill:tourSkill});
 					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
 					skinCustomizerItem.render();

@@ -3,9 +3,11 @@ define([
 	'underscore',
 	'backbone',
 	'views/modal/Modal',
-	'text!templates/modal/contextMenuSkillEditor.html',
+	'text!templates/modal/logoSkillEditor.html',
+	'helpers/HelpFunctions',
+	
 
-], function($, _, Backbone,Modal,contextMenuSkillEditor){
+], function($, _, Backbone,Modal,logoSkillEditor,HelpFunctions){
 
 	var LogoSkillEditor = Modal.extend({
 		
@@ -22,17 +24,13 @@ define([
 			
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
-			var template = _.template(contextMenuSkillEditor,{tourSkill:tourSkill})
+			var template = _.template(logoSkillEditor,{tourSkill:tourSkill})
 
-			console.log(tourSkill);
 			$("#"+myid+" .inner-modal").html(template);
-			$("#"+myid+" header h2").text("Context Menu Skill Editor")
+			$("#"+myid+" header h2").text("Logo Skill Editor")
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.dropDown("#"+myid+" .dropdown");
 			
-			/*$("#"+myid+" header .fa-close").unbind("click");
-			$("#"+myid+" header .fa-close").click(function(evt){
-				$("#"+myid).parent(".overlay").hide();
-			})*/
-
 
 			this.verticalCent();
 		},
