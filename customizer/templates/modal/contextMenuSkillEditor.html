@@ -2,14 +2,15 @@
 	<%_.each(tourSkill.contextmenu.item,function(elem,ind){%>
 
 	<fieldset id="contextMenu-<%=ind%>">
-		<label for="signature">Name</label>
-		<input type="text" class="signature" value="<%=elem._name%>">
+		<h2><%=elem._name%></h2>
 		<label for="caption">Caption</label>
 		<input type="text" class="caption" value="<%=elem._caption%>">
 		<label for="action">Action</label>
-		<textarea name="action" class="action" cols="30" rows="10">
-			<%=elem._onclick%>
-		</textarea>
+		<% var url = elem._onclick.replace("openurl(","") %>
+		<% url = url.replace(",_blank);","") %>
+		<input type="text" class="action" value="<%=url%>">
+		
+		<span class="fa fa-close"></span>
 	</fieldset>
 
 

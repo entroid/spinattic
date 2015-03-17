@@ -28,10 +28,11 @@ define([
 			console.log(tourSkill);
 			$("#"+myid+" .inner-modal").html(template);
 			$("#"+myid+" header h2").text("Context Menu Skill Editor")
-			$("#"+myid+" header .fa-close").unbind("click");
+			
+			/*$("#"+myid+" header .fa-close").unbind("click");
 			$("#"+myid+" header .fa-close").click(function(evt){
 				$("#"+myid).parent(".overlay").hide();
-			})
+			})*/
 
 
 			this.verticalCent();
@@ -43,8 +44,8 @@ define([
 			var length = $("#"+this.myid+" .fieldwrapper").children().length;
 			length++
 			$item.attr("id","contextMenu-"+length);
+			$item.find("h2").text("item-"+length)
 			$item.find("input").val("")
-			$item.find("textarea").val("")
 			$("#"+this.myid+" .fieldwrapper").append($item);
 		},
 
@@ -57,8 +58,8 @@ define([
 				var obj = {};
 				obj._caption = $(elem).find("input.caption").val();
 				obj._kind = "Context Menu"
-				obj._name = $(elem).find("input.signature").val();
-				obj._onclick = $(elem).find("textarea").val();
+				obj._name = $(elem).find("h2").text();
+				obj._onclick = "openurl("+$(elem).find("input.action").val()+",_blank);";
 				obj._prev_tag_ident = "1";
 				obj._segment = "SKILLS" ;
 				obj._tag_ident = "2"
@@ -66,7 +67,7 @@ define([
 			})
 
 			tourData.krpano.contextmenu.item = items;
-			$("#skinCustomizer-menu .skill-list #skill-"+skillid)
+			$("#skinCustomizer-menu .skill-list #skill-"+skillid).data
 			$("#"+myid).parent(".overlay").hide();
 		}
 	});

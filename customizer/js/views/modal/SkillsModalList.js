@@ -143,13 +143,14 @@ define([
 
 					var x2js = new X2JS({attributePrefix:"_"});
 					var tourSkill =  x2js.xml_str2json( data );
-					console.log(tourSkill)
-					if(tourSkill.contextmenu.item.length == undefined){
-						var items = []
-						items[0] = tourSkill.contextmenu.item;
-						tourSkill.contextmenu.item = items;
+					console.log(tourSkill);
+					if(tourSkill.contextmenu){
+						if(tourSkill.contextmenu.item.length == undefined){
+							var items = []
+							items[0] = tourSkill.contextmenu.item;
+							tourSkill.contextmenu.item = items;
+						}
 					}
-
 
 					console.log(tourSkill);
 					skillItemModel = new SkillItemModel({data:skill,tourSkill:tourSkill});
