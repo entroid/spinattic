@@ -68,7 +68,7 @@ define([
 
 			tourData.krpano.contextmenu.item = items;
 			$("#skinCustomizer-menu .skill-list #skill-"+skillid).data
-			$("#"+myid).parent(".overlay").hide();
+			$("#"+myid+" header .fa-close").trigger("click");
 		}
 	});
 

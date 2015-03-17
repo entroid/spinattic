@@ -31,9 +31,10 @@ define([
             $("#"+this.myid).parent().fadeIn();            
             
             $(".modal").draggable({ handle:'header'});
-
+            var este = this;
             $("#"+this.myid).find(".fa-close").click(function(){
                 $(this).parents(".overlay").remove();
+                este.undelegateEvents();
             })
 
             if(fun != undefined){

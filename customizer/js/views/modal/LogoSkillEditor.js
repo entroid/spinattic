@@ -16,7 +16,7 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-		"click #Context-menu-finish":"doneEdition"
+		"click #logo-skill-finish":"doneEdition"
 				 },
 		
 		renderExtend:function(){
@@ -37,6 +37,27 @@ define([
 
 	
 		doneEdition:function(){
+			var tourSkill = this.model.get("tourSkill");
+			var mytourSkill = tourSkill
+			
+			mytourSkill._url = $("#logo-skill-image-url").val();
+			mytourSkill._x = $("#logo-skill-x").val();
+			mytourSkill._y = $("#logo-skill-y").val();
+			mytourSkill._zorder = $("#logo-skill-zorder").val();
+			mytourSkill._onclick = "openurl("+$("#logo-skill-linkto").val()+",_blank);";
+
+
+			if(tourData.krpano.plugin.length == undefined){
+				tourData.krpano.plugin = mytourSkill;
+			}else{
+				_.each(tourData.krpano.plugin,function(elem,ind){
+					if(elem._kind == mytourSkill._kind){
+						tourData.krpano.plugin[ind] = mytourSkill;
+					}
+				})
+			}
+
+			$("#"+myid+"header .fa-close").trigger("click");
 		
 		}
 	});
