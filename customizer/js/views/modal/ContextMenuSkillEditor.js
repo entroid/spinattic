@@ -34,8 +34,6 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });
-
-            this.verticalCent();
         },
 
         addItem:function(){

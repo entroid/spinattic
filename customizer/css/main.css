@@ -3034,6 +3034,22 @@ textarea {
 .modal-bt.yellow {
   color: #fad368; }
 
+.image-uploader-wrapper {
+  box-sizing: border-box;
+  padding: 20px;
+  border: 4px dashed #535353;
+  background: #222;
+  position: relative; }
+.image-uploader-wrapper .inner-dragger .dragable .fa-cloud-upload {
+  font-size: 3.5rem;
+  float: left; }
+.image-uploader-wrapper .inner-dragger .dragable h2 {
+  margin-left: 60px;
+  margin-bottom: 10px; }
+.image-uploader-wrapper .inner-dragger .dragable h3 {
+  font-weight: normal;
+  margin-left: 60px; }
+
 header.main-header {
   z-index: 2;
   position: relative;
@@ -4143,39 +4159,52 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   height: 100%;
   padding-bottom: 20px; }
 .overlay .skillModal {
-  background-color: rgba(0, 0, 0, 0.75); }
+  background-color: rgba(0, 0, 0, 0.75);
+  /* editores */ }
 .overlay .skillModal header .fa-close {
   display: none; }
 .overlay .skillModal footer {
   overflow: auto;
   padding-top: 10px; }
-.overlay .skillModal #Context-menu-finish {
+.overlay .skillModal .save-and-close {
   position: absolute;
   top: -44px;
   right: 20px;
   bottom: initial;
   left: initial; }
+.overlay .skillModal .scrollwrapper {
+  height: 350px;
+  overflow: auto;
+  margin-right: -15px;
+  padding-right: 15px; }
+.overlay .skillModal h2 {
+  font-size: 1.3em; }
+.overlay .skillModal h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px; }
 .overlay .skillModal .skill-editor-wrapper {
-  overflow: hidden; }
-.overlay .skillModal .skill-editor-wrapper .scrollwrapper {
-  height: 300px;
-  overflow: auto; }
-.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset {
+  overflow: visible; }
+.overlay .skillModal .skill-editor-wrapper fieldset {
   margin-bottom: 10px;
   background-color: #2b2b2b;
   border: 1px solid #000;
   padding: 10px;
   position: relative; }
-.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset .close {
+.overlay .skillModal .skill-editor-wrapper fieldset h2 {
+  text-align: center;
+  line-height: 1.3em; }
+.overlay .skillModal .skill-editor-wrapper fieldset:first-child .close {
+  display: none; }
+.overlay .skillModal .skill-editor-wrapper fieldset .close {
   cursor: pointer;
   padding: 5px;
+  font-size: 1.4rem;
   position: absolute;
   top: 5px;
   right: 5px;
   bottom: initial;
   left: initial; }
-.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset h2 {
-  font-size: 1.4em; }
 
 section.main-section {
   position: relative; }

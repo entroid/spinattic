@@ -311,34 +311,61 @@
             padding-top: 10px;
         }
 
-        #Context-menu-finish{
+        .save-and-close{
             @include absolute(-44px, 20px,initial, initial);
         }
 
+        .scrollwrapper{
+            height: 350px;
+            overflow: auto;
+            margin-right: -15px;
+            padding-right: 15px;
+        }
+
+        h2 {
+            font-size: 1.3em;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+    /* editores */
         .skill-editor-wrapper{
-            overflow: hidden;
-            
-            .scrollwrapper{
-                height: 300px;
-                overflow: auto;
+            overflow: visible;
 
-                fieldset {
-                    margin-bottom: 10px;
-                    background-color: $dark-gray4;
-                    border: 1px solid #000;
-                    padding: 10px;
-                    position: relative;
+            fieldset {
+                margin-bottom: 10px;
+                background-color: $dark-gray4;
+                border: 1px solid #000;
+                padding: 10px;
+                position: relative;
 
+                h2{
+                    text-align: center;
+                    line-height: 1.3em;
+                }
+
+                &:first-child{
                     .close {
-                        cursor: pointer;
-                        padding: 5px;
-                        @include absolute(5px, 5px, initial, initial);
-                    }
-
-                    h2 {
-                        font-size: 1.4em;
+                        display: none;
                     }
                 }
+
+                .close {
+                    cursor: pointer;
+                    padding: 5px;
+                    font-size: 1.4rem;
+                    @include absolute(5px, 5px, initial, initial);
+                }                
+            }            
+        }
+
+        .logo-skill-editor {            
+            #logo-skill-editor-img{
+
             }
         }
     }

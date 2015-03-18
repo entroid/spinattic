@@ -1,24 +1,32 @@
-<fieldset>
-	<div id="logo-skill-editor-img"></div>
-	<label for="logo-skill-position">Position:</label>
-	<p>aca va el controlador de posiciones</p>
-	<label for="logo-skill-x">X margin:</label>
-	<input type="number" id="logo-skill-x" value="<%=tourSkill.plugin._x %>" >
+<div class="logo-skill-editor">
+	<div class="scrollwrapper">	
+		<fieldset>
+			<div id="logo-skill-editor-img"></div>
 
-	<label for="logo-skill-x">Y margin:</label>
-	<input type="number" id="logo-skill-y" value="<%=tourSkill.plugin._y%>" >
+			<label for="logo-skill-position">Position:</label>
+			<p>aca va el controlador de posiciones</p>
 
-	<label for="logo-skill-zorder">Z order:</label>
-	<input type="number" id="logo-skill-zorder" value="<%=tourSkill.plugin._zorder%>" >
+			<label for="logo-skill-x">X margin:</label>
+			<input type="number" id="logo-skill-x" value="<%=tourSkill.plugin._x %>" >
 
-	<label for="logo-skill-alpha">Alpha:</label>
-	<input type="number" id="logo-skill-alpha" step="0.1" min="0" max="1" value="1" >
+			<label for="logo-skill-x">Y margin:</label>
+			<input type="number" id="logo-skill-y" value="<%=tourSkill.plugin._y%>" >
 
-	<label for="logo-skill-linkto">Links to:</label>
-	<% var url = tourSkill.plugin._onclick.replace("openurl(","") %>
-	<% url = url.replace(",_blank);","") %>
-	<input type="text" id="logo-skill-linkto" value="<%=url%>" >
+			<label for="logo-skill-zorder">Z order:</label>
+			<input type="number" id="logo-skill-zorder" value="<%=tourSkill.plugin._zorder%>" >
 
-	
-</fieldset>
-<span id="logo-skill-finish">Done</span>
+			<label for="logo-skill-alpha">Alpha:</label>
+			<input type="number" id="logo-skill-alpha" step="0.1" min="0" max="1" value="1" >
+
+			<label for="logo-skill-linkto">Links to:</label>
+			<% var url = tourSkill.plugin._onclick.replace("openurl(","") %>
+			<% url = url.replace(",_blank);","") %>
+			<input type="text" id="logo-skill-linkto" value="<%=url%>" >			
+		</fieldset>
+	</div>
+
+	<footer>
+		<span id="logo-skill-finish" class="save-and-close modal-bt green">Save and Close</span>
+	</footer>
+</div>
+

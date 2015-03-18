@@ -364,3 +364,30 @@ textarea{
     }
 }
 
+.image-uploader-wrapper{
+    box-sizing: border-box;
+    padding: 20px;
+    border: dashed-pano(4px,$light-gray); 
+    background: $dark-gray3; 
+    position: relative;
+
+    .inner-dragger{
+        .dragable{
+            .fa-cloud-upload{
+                font-size: 3.5rem;
+                float: left;
+            }
+
+            h2{
+                margin-left: 60px;
+                margin-bottom: 10px;
+            }
+
+            h3{
+                font-weight: normal;
+                margin-left: 60px;
+            }
+        }
+    }
+}
+
