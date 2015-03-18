@@ -36,9 +36,9 @@ aside{
             }
 
             &.selected{
-                    -webkit-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
-                    -moz-box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
-                    box-shadow: inset 10px 10px 9px -5px rgba(0,0,0,0.75);
+                    -webkit-box-shadow: inset 10px 10px 9px -5px $black-transparent-75;
+                    -moz-box-shadow: inset 10px 10px 9px -5px $black-transparent-75;
+                    box-shadow: inset 10px 10px 9px -5px $black-transparent-75;
                 }
         }
     }
@@ -47,7 +47,7 @@ aside{
         @include absolute(initial, 50px, initial, initial);
         display: none;
         color: #FFF;
-        background-color: rgba(0,0,0,0.80);
+        background-color: $black-transparent-80;
 
         input, textarea{
             @extend %form-text;

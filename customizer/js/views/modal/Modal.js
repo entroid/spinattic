@@ -44,7 +44,6 @@ define([
         },
 
         verticalCent : function() {
-            console.log($('.modal').outerHeight());
             $('.modal').css({
                 'top' : '50%',
                 'margin-top' : -$('.modal').outerHeight()/2

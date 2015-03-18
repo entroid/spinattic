@@ -3030,7 +3030,7 @@ textarea {
 .modal-bt:hover {
   opacity: .8; }
 .modal-bt.green {
-  color: #5c9451; }
+  color: #68b858; }
 .modal-bt.yellow {
   color: #fad368; }
 
@@ -3686,7 +3686,7 @@ aside #skinCustomizer-menu .skill-list li div {
   margin: 1px; }
 aside #skinCustomizer-menu .skill-list li div .customizelink {
   /*@include absolute(5px, 35px, initial, initial);*/
-  color: #5c9451;
+  color: #68b858;
   padding: 7px;
   background-color: #1a1a1a;
   border: 1px solid black;
@@ -4142,8 +4142,13 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   float: left;
   height: 100%;
   padding-bottom: 20px; }
+.overlay .skillModal {
+  background-color: rgba(0, 0, 0, 0.75); }
 .overlay .skillModal header .fa-close {
   display: none; }
+.overlay .skillModal footer {
+  overflow: auto;
+  padding-top: 10px; }
 .overlay .skillModal #Context-menu-finish {
   position: absolute;
   top: -44px;

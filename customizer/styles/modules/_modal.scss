@@ -298,10 +298,17 @@
     }
 
     .skillModal {
+        background-color: $black-transparent-65;
+
         header {
             .fa-close{
                 display: none;
             }
+        }
+
+        footer {
+            overflow: auto;
+            padding-top: 10px;
         }
 
         #Context-menu-finish{
