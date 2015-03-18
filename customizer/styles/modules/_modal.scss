@@ -297,28 +297,40 @@
         }   
     }
 
-    .skill-editor-wrapper{
-        overflow: hidden;
-        
-        .scrollwrapper{
-            height: 300px;
-            overflow: auto;
+    .skillModal {
+        header {
+            .fa-close{
+                display: none;
+            }
+        }
 
-            fieldset {
-                margin-bottom: 10px;
-                background-color: $dark-gray4;
-                border: 1px solid #000;
-                padding: 10px;
-                position: relative;
+        #Context-menu-finish{
+            @include absolute(-44px, 20px,initial, initial);
+        }
 
-                .close {
-                    cursor: pointer;
-                    padding: 5px;
-                    @include absolute(5px, 5px, initial, initial);
-                }
+        .skill-editor-wrapper{
+            overflow: hidden;
+            
+            .scrollwrapper{
+                height: 300px;
+                overflow: auto;
 
-                h2 {
-                    font-size: 1.4em;
+                fieldset {
+                    margin-bottom: 10px;
+                    background-color: $dark-gray4;
+                    border: 1px solid #000;
+                    padding: 10px;
+                    position: relative;
+
+                    .close {
+                        cursor: pointer;
+                        padding: 5px;
+                        @include absolute(5px, 5px, initial, initial);
+                    }
+
+                    h2 {
+                        font-size: 1.4em;
+                    }
                 }
             }
         }

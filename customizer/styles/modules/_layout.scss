@@ -350,6 +350,11 @@ textarea{
     font-weight: bold;
     cursor: pointer;
     margin-left: 10px;
+    background-color: $dark-gray4;
+
+    &:hover{
+        opacity: .8;
+    }
 
     &.green{
         color: $green2;

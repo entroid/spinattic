@@ -29,13 +29,13 @@ define([
             
             $("#"+myid+" .inner-modal").html(template);
             $("#"+myid+" header h2").text("Context Menu Skill Editor")
-
+            this.verticalCent();
             $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
                 scrollInertia:300
             });
 
-            this.verticalCent();
+            
         },
 
         addItem:function(){

@@ -3025,7 +3025,10 @@ textarea {
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 10px; }
+  margin-left: 10px;
+  background-color: #2b2b2b; }
+.modal-bt:hover {
+  opacity: .8; }
 .modal-bt.green {
   color: #5c9451; }
 .modal-bt.yellow {
@@ -4139,18 +4142,26 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   float: left;
   height: 100%;
   padding-bottom: 20px; }
-.overlay .skill-editor-wrapper {
+.overlay .skillModal header .fa-close {
+  display: none; }
+.overlay .skillModal #Context-menu-finish {
+  position: absolute;
+  top: -44px;
+  right: 20px;
+  bottom: initial;
+  left: initial; }
+.overlay .skillModal .skill-editor-wrapper {
   overflow: hidden; }
-.overlay .skill-editor-wrapper .scrollwrapper {
+.overlay .skillModal .skill-editor-wrapper .scrollwrapper {
   height: 300px;
   overflow: auto; }
-.overlay .skill-editor-wrapper .scrollwrapper fieldset {
+.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset {
   margin-bottom: 10px;
   background-color: #2b2b2b;
   border: 1px solid #000;
   padding: 10px;
   position: relative; }
-.overlay .skill-editor-wrapper .scrollwrapper fieldset .close {
+.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset .close {
   cursor: pointer;
   padding: 5px;
   position: absolute;
@@ -4158,7 +4169,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
-.overlay .skill-editor-wrapper .scrollwrapper fieldset h2 {
+.overlay .skillModal .skill-editor-wrapper .scrollwrapper fieldset h2 {
   font-size: 1.4em; }
 
 section.main-section {
