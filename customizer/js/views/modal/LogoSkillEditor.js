@@ -5,9 +5,10 @@ define([
 	'views/modal/Modal',
 	'text!templates/modal/logoSkillEditor.html',
 	'helpers/HelpFunctions',
+	'views/modal/SingleUploader',
 	
 
-], function($, _, Backbone,Modal,logoSkillEditor,HelpFunctions){
+], function($, _, Backbone,Modal,logoSkillEditor,HelpFunctions,SingleUploader){
 
 	var LogoSkillEditor = Modal.extend({
 		
@@ -29,6 +30,13 @@ define([
 			$("#"+myid+" header h2").text("Logo Skill Editor")
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.dropDown("#"+myid+" .dropdown");
+			
+			var SingleUploaderModel = Backbone.Model.extend({});
+			var singleUploaderModel = new SingleUploaderModel({myid:"logo-skill-editor-img",imgsrc:tourSkill.plugin._url})
+            
+            var singleUploader = new SingleUploader({model:singleUploaderModel});
+            singleUploader.render();
+
 			
 
 			this.verticalCent();
