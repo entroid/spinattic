@@ -21,6 +21,7 @@ define([
 
 			if(this.model.get("imgsrc")){
 				var img = this.model.get("imgsrc");
+				$("#"+myid).data("imgsrc",img)
 				var template = _.template(singleUploaderShowing,{imgsrc:img});
 				$("#"+myid).html(template);
 				$("#"+myid +" .edit-img").click(this.startEditLoader)
@@ -40,6 +41,7 @@ define([
 		},
 
 		dragFile:function(){
+			var este = this;
 			var myid = this.model.get("myid");
 			var dropbox = $('#single-drop-zone');
 			dropbox.filedrop({
@@ -71,6 +73,7 @@ define([
 				},
 				 progressUpdated: function(i, file, progress) {
 				   
+				   $("#"+myid +" .ok-img").hide();
 					$("#"+myid+ ".progress").width(progress+'%');
 					$("#"+myid+" .percentage").text('Uploading '+progress+'%');
 				},
@@ -79,8 +82,18 @@ define([
 
 					if (response.result == 'SUCCESS') {
 						
-						$("#"+myid+" .percentage").text("done");
-						
+						$("#"+myid+" .percentage").text("upload complete");
+						console.log(response)
+						var myfile = "graphics/"+response.params.file_name;
+						$("#"+myid +" .ok-img").show();
+						$("#"+myid +" .ok-img").click(function(){
+
+							$("#"+myid).data("imgsrc",myfile)
+							este.model.set("imgsrc",myfile);
+							este.render();
+
+						})
+
 					}else{
 							
 						if (response.result == 'ERROR'){
@@ -95,7 +108,6 @@ define([
 
 				afterAll : function(){
 
-					console.log("todos")
 				}  
 
 			})

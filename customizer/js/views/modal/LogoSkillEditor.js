@@ -56,7 +56,7 @@ define([
 				})
 			}
 			
-			mytourSkill._url = $("#logo-skill-image-url").val();
+			mytourSkill._url = $("#logo-skill-editor-img").data("imgsrc");
 			mytourSkill._x = $("#logo-skill-x").val();
 			mytourSkill._y = $("#logo-skill-y").val();
 			mytourSkill._zorder = $("#logo-skill-zorder").val();
