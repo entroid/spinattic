@@ -4039,6 +4039,15 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   line-height: 1.2em; }
 .overlay .modal #skill-search-results .ui-state-focus dl {
   background-color: #333333; }
+.overlay .modal .single-input-group {
+  margin-bottom: 10px; }
+.overlay .modal .single-input-group:last-child {
+  margin-bottom: 0; }
+.overlay .modal .single-input-group label {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block; }
 .overlay.hotspotwindow {
   background-color: transparent;
   width: 0px;
@@ -4132,13 +4141,16 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding-bottom: 20px; }
 .overlay .skill-editor-wrapper {
   overflow: hidden; }
-.overlay .skill-editor-wrapper fieldset {
+.overlay .skill-editor-wrapper .scrollwrapper {
+  height: 300px;
+  overflow: auto; }
+.overlay .skill-editor-wrapper .scrollwrapper fieldset {
   margin-bottom: 10px;
   background-color: #2b2b2b;
   border: 1px solid #000;
   padding: 10px;
   position: relative; }
-.overlay .skill-editor-wrapper fieldset .close {
+.overlay .skill-editor-wrapper .scrollwrapper fieldset .close {
   cursor: pointer;
   padding: 5px;
   position: absolute;
@@ -4146,6 +4158,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
+.overlay .skill-editor-wrapper .scrollwrapper fieldset h2 {
+  font-size: 1.4em; }
 
 section.main-section {
   position: relative; }
