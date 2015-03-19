@@ -432,7 +432,7 @@
                     }
                 }
                 
-                .edit-img, .cancel-img {
+                .edit-img, .cancel-img, .ok-img {
                     @include absolute(0, 0, initial, initial);
                     cursor: pointer;
                     font-weight: bold;
@@ -446,6 +446,9 @@
                 }
                 .cancel-img {
                     color: $red;
+                }
+                .ok-img{
+                    color: $green2;
                 }
 
                 #upload_button{

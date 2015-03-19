@@ -3050,6 +3050,13 @@ textarea {
   font-weight: normal;
   margin-left: 60px; }
 
+.progress {
+  height: 7px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  background-color: #497f3c;
+  /*background-image: repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(255, 255, 255, 0.5) 4px, rgba(255, 255, 255, .8) 22px);*/ }
+
 header.main-header {
   z-index: 2;
   position: relative;
@@ -4254,7 +4261,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-bottom: 0; }
 .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper .inner-dragger {
   text-align: left; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img {
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img {
   position: absolute;
   top: 0;
   right: 0;
@@ -4262,12 +4269,14 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   left: initial;
   cursor: pointer;
   font-weight: bold; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img:hover {
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img:hover {
   text-decoration: underline; }
 .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img {
   color: #fad368; }
 .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img {
   color: #d32f31; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img {
+  color: #68b858; }
 .overlay .skillModal .logo-skill-editor #logo-skill-editor-img #upload_button {
   position: absolute;
   top: 0;

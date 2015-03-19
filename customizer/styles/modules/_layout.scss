@@ -391,3 +391,13 @@ textarea{
     }
 }
 
+.progress{
+    height: 7px;
+    
+    border-radius: 5px;
+    margin-bottom: 8px;
+
+    background-color: $green;
+    /*background-image: repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(255, 255, 255, 0.5) 4px, rgba(255, 255, 255, .8) 22px);*/
+}
+
