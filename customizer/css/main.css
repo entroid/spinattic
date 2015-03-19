@@ -3965,7 +3965,9 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 101;
-  display: none; }
+  display: none;
+  /** General modal styles **/
+  /** End general modal **/ }
 .overlay .modal {
   width: 500px;
   background: #222;
@@ -4067,6 +4069,40 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-weight: bold;
   margin-bottom: 5px;
   display: inline-block; }
+.overlay .modal .editor-group-2col {
+  position: relative;
+  margin-bottom: 20px; }
+.overlay .modal .editor-group-2col label {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 8px;
+  display: block; }
+.overlay .modal .editor-group-2col input {
+  width: 55px;
+  padding: 8px 4px;
+  font-size: 1.3rem; }
+.overlay .modal .editor-group-2col .line-group {
+  min-height: 32px;
+  position: relative;
+  margin-bottom: 5px; }
+.overlay .modal .editor-group-2col .line-group input {
+  position: absolute;
+  top: 0;
+  right: initial;
+  bottom: initial;
+  left: 60%; }
+.overlay .modal .editor-group-2col .logo-skill-position {
+  padding-top: 15px;
+  margin-bottom: 30px; }
+.overlay .modal .editor-group-2col .position {
+  height: 40px;
+  width: 40px;
+  background-color: #333333;
+  position: absolute;
+  top: 0;
+  right: initial;
+  bottom: initial;
+  left: 60%; }
 .overlay.hotspotwindow {
   background-color: transparent;
   width: 0px;
@@ -4160,7 +4196,10 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding-bottom: 20px; }
 .overlay .skillModal {
   background-color: rgba(0, 0, 0, 0.75);
+  width: 400px;
   /* editores */ }
+.overlay .skillModal .inner-modal {
+  padding: 30px; }
 .overlay .skillModal header .fa-close {
   display: none; }
 .overlay .skillModal footer {
@@ -4178,7 +4217,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: -15px;
   padding-right: 15px; }
 .overlay .skillModal h2 {
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  line-height: 1.3em; }
 .overlay .skillModal h3 {
   font-size: 1.2em;
   font-weight: bold;
@@ -4205,6 +4245,38 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img {
+  position: relative;
+  margin-bottom: 25px; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper {
+  text-align: center; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper h3 {
+  margin-bottom: 0; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper .inner-dragger {
+  text-align: left; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: initial;
+  left: initial;
+  cursor: pointer;
+  font-weight: bold; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img:hover {
+  text-decoration: underline; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img {
+  color: #fad368; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img {
+  color: #d32f31; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img #upload_button {
+  position: absolute;
+  top: 0;
+  right: 25000px;
+  bottom: initial;
+  left: initial; }
+.overlay .skillModal .logo-skill-editor #logo-skill-editor-img p {
+  margin-top: 10px;
+  text-align: center; }
 
 section.main-section {
   position: relative; }
