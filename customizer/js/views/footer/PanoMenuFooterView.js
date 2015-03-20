@@ -1,74 +1,87 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone',
-	'views/main/UploaderView',
-	'text!templates/footer/panoMenuFooter.html',
-	'helpers/HelpFunctions'
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/main/UploaderView',
+    'text!templates/footer/panoMenuFooter.html',
+    'helpers/HelpFunctions',
+    'views/modal/AddFromPanosManager'
 
-], function($, _, Backbone,UploaderView,panoMenuFooter,HelpFunctions){
+], function($, _, Backbone,UploaderView,panoMenuFooter,HelpFunctions,AddFromPanosManager){
 
-	var PanoMenuFooterView = Backbone.View.extend({
-		el: $("footer.main-footer"),
-		minHeight:0,
-		totalHeight:0,
-		uploaderview:null,
-		initialize: function () {
+    var PanoMenuFooterView = Backbone.View.extend({
+        el: $("footer.main-footer"),
+        minHeight:0,
+        totalHeight:0,
+        uploaderview:null,
+        addfrompanosmanager:null,
 
-			
-		},
-		events:{
-			 "click #footer-hide-show":"showHideFooter",
-			 "click #pano-uploader":"openPanoUpload"
-				 },
-		render: function(){
-		 var compiledTemplate = _.template(panoMenuFooter);
-			$(this.el).append( compiledTemplate ); 
-	 		this.minHeight =  $("footer menu").outerHeight();
-	 		this.totalHeight = $("footer").height()
-		},
+        initialize: function () {            
+        },
 
-		showHideFooter:function(e){
-			me = this;
-			$footer = $(e.target).parents("footer");
-			var helpFunctions = new HelpFunctions();
-			if($footer.height() == me.totalHeight){
-				$footer.animate({
-					height:me.minHeight
-				},function(){
-					helpFunctions.setInnerHeight(".submenu",true);
-					helpFunctions.setInnerHeight(".main-section",true);
-				})
-			$footer.find("#footer-hide-show i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up")
-			
-			}else{
-				$footer.animate({
-					height:me.totalHeight
-				},function(){
-					helpFunctions.setInnerHeight(".submenu",true);
-					helpFunctions.setInnerHeight(".main-section",true);
-				})
-			$footer.find("#footer-hide-show i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down")
-			}
-		},
+        events:{
+            "click #footer-hide-show":"showHideFooter",
+            "click #pano-uploader":"openPanoUpload",
+            "click #add-pano-manager":"openPanoManager"
+        },
 
-		openPanoUpload:function(){
+        render: function(){
+         var compiledTemplate = _.template(panoMenuFooter);
+            $(this.el).append( compiledTemplate ); 
+            this.minHeight =  $("footer menu").outerHeight();
+            this.totalHeight = $("footer").height()
+        },
 
-			if($(".dragger-wrapper").length){
-			
-				this.uploaderview.removeView();
-				
-			}else{
-			var UploaderModel = Backbone.Model.extend({});
-			uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
-			this.uploaderview = new UploaderView({model:uploaderModer});
-			this.uploaderview.render();
-			}
+        showHideFooter:function(e){
+            me = this;
+            $footer = $(e.target).parents("footer");
+            var helpFunctions = new HelpFunctions();
+            if($footer.height() == me.totalHeight){
+                $footer.animate({
+                    height:me.minHeight
+                },function(){
+                    helpFunctions.setInnerHeight(".submenu",true);
+                    helpFunctions.setInnerHeight(".main-section",true);
+                })
+            $footer.find("#footer-hide-show i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up")
+            
+            }else{
+                $footer.animate({
+                    height:me.totalHeight
+                },function(){
+                    helpFunctions.setInnerHeight(".submenu",true);
+                    helpFunctions.setInnerHeight(".main-section",true);
+                })
+            $footer.find("#footer-hide-show i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down")
+            }
+        },
 
-		}
-		
-	});
+        openPanoUpload: function() {
 
-	return PanoMenuFooterView;
-	
+            if($(".dragger-wrapper").length){            
+                this.uploaderview.removeView();                
+            }else{
+                var UploaderModel = Backbone.Model.extend({});
+
+                uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
+
+                this.uploaderview = new UploaderView({model:uploaderModer});
+                this.uploaderview.render();
+            }
+        },
+
+        openPanoManager: function() {
+
+            if($(".pano-manager").length) {            
+                this.addfrompanosmanager.removeView();                
+            }else{
+                this.addfrompanosmanager = new AddFromPanosManager();
+                this.addfrompanosmanager.render("panoManager",this.addfrompanosmanager.renderExtend);
+            }
+        }
+        
+    });
+
+    return PanoMenuFooterView;
+    
 });
