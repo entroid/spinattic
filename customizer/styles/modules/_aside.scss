@@ -768,10 +768,10 @@ aside{
                     content: "SET AS STARTUP VIEW";
                     font-size: 1.1rem;
                     @include absolute(4px, initial, initial, 10px);
-                    heigth: 2px;
                     background: $purple;
                     width: 75px;
                     padding: 2px 2px;
+                    height:27px;
                 }
             }
         }
@@ -783,5 +783,25 @@ aside{
             margin-left: 5px;
             margin-right: 5px;
         }   
+    }
+
+    #startupViewUpdated{
+         width: 200px;
+        position: fixed;
+        z-index: 2;
+        background: $yellow;
+        left: 50%;
+        margin-left: -100px;
+        top: 180px;
+        text-align: center;
+        color: #999;
+        font-size: 1.3rem;
+        display:none;
+        font-weight:bold;
+        color:#453900;
+        height:30px;
+        line-height:30px;
+        border:1px solid;
+        border-radius:5px;
     }
 }
