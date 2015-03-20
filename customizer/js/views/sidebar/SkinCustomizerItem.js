@@ -6,8 +6,9 @@ define([
 	'views/modal/SkillEditor',
 	'views/modal/ContextMenuSkillEditor',
 	'views/modal/LogoSkillEditor',
+	'views/modal/SignatureSkillEditor',
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -47,6 +48,9 @@ define([
 				break;
 				case "3":
 				var mview = LogoSkillEditor;
+				break;
+				case "4":
+				var mview = SignatureSkillEditor;
 				break;
 				default:
 				var mview = SkillEditor
