@@ -4364,7 +4364,8 @@ section.main-section .inner.withTour {
   font-size: 1.1rem; }
 .dragger-wrapper .inner-dragger p {
   color: #999;
-  margin-top: 40px; }
+  margin-top: 40px;
+  line-height: 1.5rem; }
 .dragger-wrapper .inner-dragger .scroll-wrapper {
   max-height: 300px;
   overflow: auto; }

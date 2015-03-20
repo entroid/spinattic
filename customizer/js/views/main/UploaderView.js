@@ -30,6 +30,7 @@ define([
             _.bindAll(this);
         },
         events:{
+            "input .tile-size input":"maxTile"
         },
 
         render: function(){
@@ -472,6 +473,13 @@ define([
                 'top' : '50%',
                 'margin-top' : -$('.dragger-wrapper').outerHeight()/2
             })
+        },
+
+        maxTile : function(e) {
+            var elem = $(e.target),
+                val = elem.val();
+
+            elem.siblings('input').val(val);
         }
     });
 
