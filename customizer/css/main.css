@@ -3050,12 +3050,63 @@ textarea {
   font-weight: normal;
   margin-left: 60px; }
 
+.editor-img {
+  position: relative;
+  margin-bottom: 25px; }
+.editor-img .image-uploader-wrapper {
+  text-align: center; }
+.editor-img .image-uploader-wrapper h3 {
+  margin-bottom: 0; }
+.editor-img .image-uploader-wrapper .inner-dragger {
+  text-align: left; }
+.editor-img .edit-img, .editor-img .cancel-img, .editor-img .ok-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: initial;
+  left: initial;
+  cursor: pointer;
+  font-weight: bold; }
+.editor-img .edit-img:hover, .editor-img .cancel-img:hover, .editor-img .ok-img:hover {
+  text-decoration: underline; }
+.editor-img .edit-img {
+  color: #fad368; }
+.editor-img .cancel-img {
+  color: #d32f31; }
+.editor-img .ok-img {
+  color: #68b858; }
+.editor-img #upload_button {
+  position: absolute;
+  top: 0;
+  right: 25000px;
+  bottom: initial;
+  left: initial; }
+.editor-img p {
+  margin-top: 10px;
+  text-align: center; }
+
 .progress {
   height: 7px;
   border-radius: 5px;
   margin-bottom: 8px;
   background-color: #497f3c;
   /*background-image: repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(255, 255, 255, 0.5) 4px, rgba(255, 255, 255, .8) 22px);*/ }
+
+.position {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: initial;
+  bottom: initial;
+  left: 60%; }
+.position .fa-circle {
+  color: #535353;
+  cursor: pointer;
+  margin: 2px;
+  font-size: 1.3rem; }
+.position .fa-circle.selected {
+  color: #3895c7; }
 
 header.main-header {
   z-index: 2;
@@ -4101,15 +4152,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay .modal .editor-group-2col .logo-skill-position {
   padding-top: 15px;
   margin-bottom: 30px; }
-.overlay .modal .editor-group-2col .position {
-  height: 40px;
-  width: 40px;
-  background-color: #333333;
-  position: absolute;
-  top: 0;
-  right: initial;
-  bottom: initial;
-  left: 60%; }
 .overlay.hotspotwindow {
   background-color: transparent;
   width: 0px;
@@ -4252,40 +4294,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img {
-  position: relative;
-  margin-bottom: 25px; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper {
-  text-align: center; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper h3 {
-  margin-bottom: 0; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .image-uploader-wrapper .inner-dragger {
-  text-align: left; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: initial;
-  left: initial;
-  cursor: pointer;
-  font-weight: bold; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img:hover, .overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img:hover {
-  text-decoration: underline; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .edit-img {
-  color: #fad368; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .cancel-img {
-  color: #d32f31; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img .ok-img {
-  color: #68b858; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img #upload_button {
-  position: absolute;
-  top: 0;
-  right: 25000px;
-  bottom: initial;
-  left: initial; }
-.overlay .skillModal .logo-skill-editor #logo-skill-editor-img p {
-  margin-top: 10px;
-  text-align: center; }
 
 section.main-section {
   position: relative; }

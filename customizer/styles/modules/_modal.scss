@@ -185,13 +185,7 @@
             .logo-skill-position{
                 padding-top: 15px;
                 margin-bottom: 30px;
-            }
-            .position{
-                height: 40px;
-                width: 40px;
-                background-color: $middle-gray;
-                @include absolute(0,initial,initial,60%);
-            }
+            }            
         }
     }
 /** End general modal **/
@@ -416,51 +410,7 @@
         }
 
         .logo-skill-editor {            
-            #logo-skill-editor-img{
-                position: relative;
-                margin-bottom: 25px;
-
-                .image-uploader-wrapper{
-                    text-align: center; 
-
-                    h3{
-                        margin-bottom: 0;
-                    }
-
-                    .inner-dragger {
-                        text-align: left;
-                    }
-                }
-                
-                .edit-img, .cancel-img, .ok-img {
-                    @include absolute(0, 0, initial, initial);
-                    cursor: pointer;
-                    font-weight: bold;
-
-                    &:hover{
-                        text-decoration: underline;
-                    }
-                }
-                .edit-img{
-                    color: $yellow;
-                }
-                .cancel-img {
-                    color: $red;
-                }
-                .ok-img{
-                    color: $green2;
-                }
-
-                #upload_button{
-                    @include absolute(0, 25000px, initial, initial);
-                }   
-
-                p{
-                    margin-top: 10px;
-                    text-align: center;
-                }
-
-            }
+            
         }
     }
 }
