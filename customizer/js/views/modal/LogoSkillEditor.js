@@ -50,12 +50,14 @@ define([
         doneEdition:function(){
             var myid = this.myid;
             
+            var tourSkill = this.model.get("tourSkill");
+            var mytourSkill;
             if(tourData.krpano.plugin.length == undefined){
                 mytourSkill = tourData.krpano.plugin ;
             }else{
                 _.each(tourData.krpano.plugin,function(elem,ind){
-                    if(elem._kind == mytourSkill._kind){
-                         mytourSkill = tourData.krpano.plugin[ind];
+                    if(elem._kind == tourSkill.plugin._kind){
+                            mytourSkill = tourData.krpano.plugin[ind];
                     }
                 })
             }
