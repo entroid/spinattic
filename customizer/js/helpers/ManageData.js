@@ -80,7 +80,6 @@ define([
 
 			this.saveSettings = function(e){
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
-
 			},
 
 			this.pushSkill = function(skill){
