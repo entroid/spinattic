@@ -8,7 +8,7 @@ define([
 	'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=fals',
 	
 
-], function($, _, Backbone,map,ModalModel,AlertView){
+], function($, _, Backbone,map,ModalModel,AlertView,MapModalView){
 
 	var MapView = Backbone.View.extend({
 		
@@ -185,8 +185,7 @@ define([
 				var alertView = new AlertView({model:modalModel});
 				alertView.render("alert_"+this.myid,alertView.renderExtend);
 
-				},
-
+				}
 		
 	});
 
