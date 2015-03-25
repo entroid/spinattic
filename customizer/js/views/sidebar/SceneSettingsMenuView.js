@@ -8,9 +8,10 @@ define([
     'helpers/HelpFunctions',
     'helpers/ManageData',
     'views/sidebar/MapView',
+    'views/modal/SingleUploader',
 
 
-], function($, _, Backbone,SidebarSubMenu,sceneSettingsMenu,mCustomScrollbar,HelpFunctions,ManageData,MapView){
+], function($, _, Backbone,SidebarSubMenu,sceneSettingsMenu,mCustomScrollbar,HelpFunctions,ManageData,MapView,SingleUploader){
 
     var SceneSettingsMenuView = SidebarSubMenu.extend({
         initialize: function () {
@@ -25,8 +26,8 @@ define([
         
         render: function(){
             var scenedata = $("#tour").data("scene");
-            data = scenedata;
-            var compiledTemplate = _.template(sceneSettingsMenu,data);
+            var data = scenedata;
+            var compiledTemplate = _.template(sceneSettingsMenu,{data:data});
             $(this.el).append(compiledTemplate ); 
 
             var elem = this.model.get("elem")
@@ -48,6 +49,15 @@ define([
             this.show();
 
             helpFunctions.refreshData();
+
+
+            var SingleUploaderModel = Backbone.Model.extend({});
+            console.log(data)
+            var singleUploaderModel = new SingleUploaderModel({myid:"scene-thumbnail-src",imgsrc:data._thumburl})
+            var singleUploader = new SingleUploader({model:singleUploaderModel});
+            singleUploader.render();
+
+
             var mapView = new MapView();
             mapView.render(elem);
             },
