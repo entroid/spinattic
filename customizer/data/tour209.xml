@@ -11,7 +11,7 @@
 				
 				<control tag_ident="4" prev_tag_ident="0" segment="GENERAL" kind="" fovfriction="0.9" fovspeed="3.0" mouseaccelerate="1.0" mousefovchange="1.0" mousefriction="0.8" mousespeed="10.0" mousetype="moveto" touchfriction="0.87" zoomoutcursor="true" zoomtocursor="false"></control>
 				
-				<settings tag_ident="5" prev_tag_ident="0" segment="GENERAL" kind="" description="" lat="" long="" name="toursettings" title=""></settings>
+				<settings tag_ident="5" prev_tag_ident="0" segment="GENERAL" kind="" description="" lat="" long="" name="toursettings" title="Titulo"></settings>
 		
 			<!-- SCENES -->
 			
