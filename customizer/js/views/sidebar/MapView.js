@@ -41,6 +41,7 @@ define([
 		{
 			this.geocoder = new google.maps.Geocoder();
 			this.infowindow = new google.maps.InfoWindow();
+			
 			var latlng = new google.maps.LatLng(50, 0);
 			var myOptions = {
 				zoom: 1,
@@ -52,6 +53,14 @@ define([
 			this.map = map
 			// add a click event handler to the map object
 			var me = this;
+			if(me.model.get("lat") != "" && me.model.get("lng") != ""){
+				var latitudLongitud = new google.maps.LatLng(me.model.get("lat"), me.model.get("lng"));
+				me.placeMarker(latitudLongitud);
+				console.log(me.model.get("lat"))
+				$("#"+me.myid+" .latFld").val(me.model.get("lat"));
+				$("#"+me.myid+" .lngFld").val( me.model.get("lng"));
+				me.codeLatLng();
+			}
 			google.maps.event.addListener(map, "click", function(event)
 			{
 				me.placeMarker(event.latLng);
@@ -71,7 +80,6 @@ define([
 		},
 
 		 placeMarker: function (location) {
-
 			// first remove all markers if there are any
 			this.deleteOverlays();
 			this.marker = new google.maps.Marker({
