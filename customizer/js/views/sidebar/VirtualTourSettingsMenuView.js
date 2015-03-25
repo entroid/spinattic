@@ -62,7 +62,10 @@ define([
                 });
 
             this.show();
-            this.mapView = new MapView();
+            var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:data.settings._lat,lng:data.settings._long})
+            
+            this.mapView = new MapView({model:mapModel});
             this.mapView.render(elem);
             
             helpFunctions.dropDown(".dd-settingmenu");

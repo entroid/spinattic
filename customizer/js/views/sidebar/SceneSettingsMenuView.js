@@ -57,8 +57,10 @@ define([
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             singleUploader.render();
 
-
-            var mapView = new MapView();
+            var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:data._lat,lng:data._lng})
+            
+            var mapView = new MapView({model:mapModel});
             mapView.render(elem);
             },
 

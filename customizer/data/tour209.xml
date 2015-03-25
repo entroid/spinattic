@@ -11,11 +11,11 @@
 				
 				<control tag_ident="4" prev_tag_ident="0" segment="GENERAL" kind="" fovfriction="0.9" fovspeed="3.0" mouseaccelerate="1.0" mousefovchange="1.0" mousefriction="0.8" mousespeed="10.0" mousetype="moveto" touchfriction="0.87" zoomoutcursor="true" zoomtocursor="false"></control>
 				
-				<settings tag_ident="5" prev_tag_ident="0" segment="GENERAL" kind="" description="" lat="" long="" name="toursettings" title="Titulo"></settings>
+				<settings tag_ident="5" prev_tag_ident="0" segment="GENERAL" kind="" description="" lat="-38" long="-65" name="toursettings" title="Titulo"></settings>
 		
 			<!-- SCENES -->
 			
-		<scene segment="SCENES" scene_id="361" name="scene_361" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/225/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+		<scene segment="SCENES" scene_id="361" name="scene_361" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/225/pano.tiles/thumb200x100.jpg" lat="37" lng="-95" description="" heading="">
 			<view segment="SCENES" hlookat="1" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="2.1" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/225/pano.tiles/preview.jpg" />
