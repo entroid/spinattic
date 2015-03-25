@@ -362,6 +362,9 @@ textarea{
     &.yellow{
         color: $yellow;
     }
+    &.blue{
+        color: $blue;
+    }
 }
 
 .image-uploader-wrapper{
@@ -468,6 +471,33 @@ textarea{
         &.selected {
             color: $blue2;
         }
+    }
+}
+
+.sort-btn {    
+    background-color: $middle-gray;
+    border: 1px solid #000;
+    padding: 7px;
+    font-size: 0.9em;
+    height: 26px;
+    box-sizing: border-box;
+    float: left;
+
+    &.az, &.za, &.fl, &.lf{
+        width: 26px;
+        cursor: pointer;
+
+        &:hover, &.selected {
+            background-color: $light-gray;
+        }
+
+        &.selected {
+            cursor: default;
+        }
+    }
+
+    &.upload-date{
+        margin-left: 15px;
     }
 }
 

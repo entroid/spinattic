@@ -26,7 +26,7 @@ define([
             $("#"+myid+" .inner-modal").html(template);
             console.log('antra')
 
-            //$("#"+myid+" header h2").text("Logo Skill Editor");
+            $("#"+myid+" header h2").text("Add panos to this tour from Pano files manager:");
 
             this.verticalCent();
 

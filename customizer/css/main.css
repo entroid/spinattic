@@ -3033,6 +3033,8 @@ textarea {
   color: #68b858; }
 .modal-bt.yellow {
   color: #fad368; }
+.modal-bt.blue {
+  color: #4faddf; }
 
 .image-uploader-wrapper {
   box-sizing: border-box;
@@ -3112,6 +3114,24 @@ textarea {
   font-size: 1.3rem; }
 .position .fa-circle.selected {
   color: #3895c7; }
+
+.sort-btn {
+  background-color: #333333;
+  border: 1px solid #000;
+  padding: 7px;
+  font-size: 0.9em;
+  height: 26px;
+  box-sizing: border-box;
+  float: left; }
+.sort-btn.az, .sort-btn.za, .sort-btn.fl, .sort-btn.lf {
+  width: 26px;
+  cursor: pointer; }
+.sort-btn.az:hover, .sort-btn.az.selected, .sort-btn.za:hover, .sort-btn.za.selected, .sort-btn.fl:hover, .sort-btn.fl.selected, .sort-btn.lf:hover, .sort-btn.lf.selected {
+  background-color: #535353; }
+.sort-btn.az.selected, .sort-btn.za.selected, .sort-btn.fl.selected, .sort-btn.lf.selected {
+  cursor: default; }
+.sort-btn.upload-date {
+  margin-left: 15px; }
 
 header.main-header {
   z-index: 2;
@@ -4321,6 +4341,39 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
+.overlay #panoManager {
+  width: 650px; }
+.overlay #panoManager header h2 {
+  text-transform: uppercase; }
+.overlay #panoManager .pano-manager .header {
+  height: 30px; }
+.overlay #panoManager .pano-manager .header h2, .overlay #panoManager .pano-manager .header label {
+  display: inline-block;
+  margin-right: 7px;
+  font-size: 1.3em;
+  margin-bottom: 0;
+  margin-top: 4px;
+  font-weight: bold;
+  float: left; }
+.overlay #panoManager .pano-manager .header .sort-by {
+  margin-right: 27px; }
+.overlay #panoManager .pano-manager .header .search-pano input {
+  width: 220px;
+  float: left;
+  background-color: #333333;
+  border: 1px solid #000;
+  height: 26px; }
+.overlay #panoManager .pano-manager .header .search-pano .clear-btn {
+  text-transform: uppercase;
+  color: #fad368; }
+.overlay #panoManager .pano-manager .pano-list {
+  clear: both; }
+.overlay #panoManager .pano-manager .pano-list ul li {
+  border: 1px solid black;
+  background-color: #2b2b2b;
+  padding: 15px;
+  margin-bottom: 10px;
+  position: relative; }
 
 section.main-section {
   position: relative; }

@@ -413,4 +413,62 @@
             
         }
     }
+
+    #panoManager{
+        width: 650px;
+
+        header {
+            h2 {
+                text-transform: uppercase;                
+            }
+        }
+        .pano-manager {
+            .header {
+                height: 30px;
+
+                h2, label {
+                    display: inline-block;
+                    margin-right: 7px;
+                    font-size: 1.3em;
+                    margin-bottom: 0;
+                    margin-top: 4px;
+                    font-weight: bold;
+                    float: left;
+                }
+
+                .sort-by{
+                    margin-right: 27px;
+                }
+
+                .search-pano{
+                    input{
+                        width: 220px;
+                        float: left;
+                        background-color: $middle-gray;
+                        border: 1px solid #000;
+                        height: 26px;
+                    }
+
+                    .clear-btn{
+                        text-transform: uppercase;
+                        color: $yellow;
+                    }
+                }
+            }
+
+            .pano-list{
+                clear: both;
+
+                ul {
+                    li {
+                        border: 1px solid black;
+                        background-color: #2b2b2b;
+                        padding: 15px;
+                        margin-bottom: 10px;
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
 }
