@@ -289,7 +289,20 @@ textarea{
     float: right;
     text-align: center; 
     margin: 3px 10px 0 0;
+    text-transform: uppercase;
+    cursor: pointer;
     /*@include absolute(12px, 10px, initial, initial);*/
+
+    &:hover{
+        opacity: .8;
+    }
+
+    &.red{
+        background-color: $red;
+    }
+    &.green{
+        background-color: $green;
+    }
 } 
 
 .save{
@@ -364,6 +377,13 @@ textarea{
     }
     &.blue{
         color: $blue;
+    }
+
+    &.selected{
+        cursor: default;
+        &:hover {
+            opacity: 1;
+        }
     }
 }
 
@@ -498,6 +518,32 @@ textarea{
 
     &.upload-date{
         margin-left: 15px;
+    }
+}
+
+.scrollwrapper {
+    max-height: 350px;
+}
+
+.pano-entry {
+    font-size: 1.2em;
+    font-weight: bold;
+    max-width: 375px;
+    overflow: hidden;
+    margin-bottom: 4px;
+
+    span {
+        font-weight: normal;
+    }
+}
+
+.pano-date {
+    font-size: 1.1em;
+    font-weight: bold;
+    font-style: italic;
+
+    span {
+        font-weight: normal;
     }
 }
 

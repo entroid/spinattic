@@ -416,6 +416,7 @@
 
     #panoManager{
         width: 650px;
+        border: 4px dashed #535353;
 
         header {
             h2 {
@@ -423,8 +424,10 @@
             }
         }
         .pano-manager {
+
             .header {
-                height: 30px;
+                height: 27px;
+                padding-bottom: 15px;
 
                 h2, label {
                     display: inline-block;
@@ -452,12 +455,17 @@
                     .clear-btn{
                         text-transform: uppercase;
                         color: $yellow;
+                        cursor: pointer;
                     }
                 }
             }
 
             .pano-list{
-                clear: both;
+                clear: both;  
+
+                .scrollwrapper{
+                    max-height: 250px;
+                }             
 
                 ul {
                     li {
@@ -466,7 +474,61 @@
                         padding: 15px;
                         margin-bottom: 10px;
                         position: relative;
+                        overflow: hidden;
+
+                        img {
+                            width: 100px;
+                            height: 50px;
+                            float: left;
+                        }
+
+                        .pano-data{
+                            float: left;
+                            margin-left: 15px;
+                        }
+
+                        .modal-bt{
+                            @include absolute(25px,15px,initial,initial);
+                        }
                     }
+                }
+            }
+
+            footer{
+                margin: 0 -20px -20px;
+                background-color: $dark-gray4;
+                border-top: 1px solid black;
+
+                ul {
+                    overflow: hidden;
+                    padding: 10px;
+
+                    li {
+                        float: left;
+                        position: relative;
+                        margin-right: 5px;
+
+                        &:last-child{
+                            margin-right: 0; 
+                        }
+
+                        img {
+                            width: 100px;
+                            height: 50px;
+                        }
+                        span{
+                            @include absolute(3px,3px,initial,initial);
+                            cursor: pointer;
+                            padding: 2px;
+                        }
+                    }
+                }
+                .btns{
+                    height: 30px;
+                    background-color: $dark-gray5;
+                    overflow: hidden;
+                    padding: 5px;
+                    font-size: .75em;
                 }
             }
         }

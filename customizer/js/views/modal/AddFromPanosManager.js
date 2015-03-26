@@ -30,10 +30,10 @@ define([
 
             this.verticalCent();
 
-            /*$(".scrollwrapper").mCustomScrollbar({
+            $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
                 scrollInertia:300
-            });*/
+            });
         }
 
     });
