@@ -3858,7 +3858,7 @@ aside #setStartUpView {
 aside #setStartUpView .fa {
   height: 25px;
   margin-top: -1px;
-  margin-left: 5px;
+  margin-left: 4px;
   padding-top: 5px;
   display: block;
   width: 80px;
@@ -3888,9 +3888,9 @@ aside #setStartUpView:hover .innerstarup:before {
   bottom: initial;
   left: 10px;
   background: #9259a8;
-  width: 75px;
+  width: 76px;
   padding: 2px 2px;
-  height: 27px; }
+  height: 28px; }
 aside #setStartUpView .innerstarup {
   border: 1px solid #FFF;
   height: 27px;

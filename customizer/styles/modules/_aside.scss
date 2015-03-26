@@ -751,7 +751,7 @@ aside{
         .fa{
             height: 25px;
             margin-top: -1px;
-            margin-left: 5px;
+            margin-left: 4px;
             padding-top: 5px;
             display: block;
             width: 80px;
@@ -781,9 +781,9 @@ aside{
                     font-size: 1.1rem;
                     @include absolute(4px, initial, initial, 10px);
                     background: $purple;
-                    width: 75px;
+                    width: 76px;
                     padding: 2px 2px;
-                    height:27px;
+                    height:28px;
                 }
             }
         }
