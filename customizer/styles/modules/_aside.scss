@@ -98,15 +98,6 @@ aside{
             label{
                 width: 50px;
             }
-            
-            .double-inputs {
-                display: inline-block;
-
-                input{
-                    width: 110px;
-                    padding: 7px;
-                }
-            }
         }
 
         .location{
@@ -441,6 +432,10 @@ aside{
 
         #mapscene{
             font-size: 1.4rem;
+        }
+
+        .fa-search {
+            padding: 2px;
         }
 
         .editor-img{

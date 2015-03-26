@@ -533,4 +533,29 @@
             }
         }
     }
+
+    #mapModal{
+        width: 650px; 
+        
+        .map-wrapper{
+            label{
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .map_canvas{
+                width: 100%;
+                height: 350px;
+
+                input {
+                    width: 75%;
+                    margin-top: 5px;
+                }
+            }
+
+            .geoMap{
+                margin-top: 15px;
+            }
+        }
+    }
 }
