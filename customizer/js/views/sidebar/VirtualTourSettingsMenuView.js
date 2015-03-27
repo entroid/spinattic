@@ -71,12 +71,15 @@ define([
             var mapModel = new MapModel({lat:data.settings._lat,lng:data.settings._long})
             
             this.mapView = new MapView({model:mapModel});
-            this.mapView.render(elem);
+            this.mapView.render(elem,"settings");
             
             helpFunctions.dropDown(".dd-settingmenu");
             helpFunctions.checkbox(".check-group","fa-check-square","fa-square");
             helpFunctions.selectChoice(".checkboxes li","fa-circle-o","fa-circle");
             helpFunctions.toolTip(".submenu .help","aside help");
+
+
+           
         },
 
         openSubItems:function(e){

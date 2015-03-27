@@ -29,11 +29,13 @@ define([
 			_.bindAll(this);
 		},
 		
-		render: function(id){
+		render: function(id,param){
+			this.param = param;
 			this.myid = id;
 			var compiledTemplate = _.template(map);
 			$("#"+id+" .gmap-wrapper").append( compiledTemplate ); 
 			this.initMap();
+
 		},
 
 		initMap:function ()
@@ -54,16 +56,16 @@ define([
 			var me = this;
 			if(me.model.get("lat") != "" && me.model.get("lng") != ""){
 				var latitudLongitud = new google.maps.LatLng(me.model.get("lat"), me.model.get("lng"));
-				me.placeMarker(latitudLongitud);
 				$("#"+me.myid+" .latFld").val(me.model.get("lat"));
 				$("#"+me.myid+" .lngFld").val( me.model.get("lng"));
+				me.placeMarker(latitudLongitud);
 				me.codeLatLng();
 			}
 			google.maps.event.addListener(map, "click", function(event)
 			{
-				me.placeMarker(event.latLng);
 				$("#"+me.myid+" .latFld").val(event.latLng.lat())
 				$("#"+me.myid+" .lngFld").val(event.latLng.lng())
+				me.placeMarker(event.latLng);
 				me.codeLatLng();
 			});
 
@@ -87,7 +89,16 @@ define([
 
 			// add marker in markers array
 			this.markersArray.push(this.marker);
-
+			console.log(this)
+			if(this.param){
+				if(this.param.param == "scene"){
+				tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();
+				tourData.krpano.scene[this.param.indice]._lng = $("#"+this.myid+" .lngFld").val();
+				}else{
+					tourData.krpano.settings._lat = $("#"+this.myid+" .latFld").val()
+					tourData.krpano.settings._long = $("#"+this.myid+" .lngFld").val()
+				}
+			}
 			//map.setCenter(location);
 		},
 

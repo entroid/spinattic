@@ -63,7 +63,10 @@ define([
 			var mapModel = new MapModel({lat:data._lat,lng:data._lng})
 			
 			this.mapView = new MapView({model:mapModel});
-			this.mapView.render(elem);
+			var indice = $("#sceneMenu .selected").index();
+			var param = "scene";
+
+			this.mapView.render(elem,{param:param,indice:indice});
 
 	
 			},

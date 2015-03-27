@@ -45,7 +45,15 @@ define([
 			var MapModel = Backbone.Model.extend({});
 			var mapModel = new MapModel({lat:lat,lng:lng})
 			var mapView = new MapView({model:mapModel});
-			mapView.render(elemToAttach);
+			var scnParam = null;
+			if(elemToAttach == "sceneSettings-menu"){
+				var indice = $("#sceneMenu .selected").index();
+				var param = "scene";
+				scnParam = {param:param,indice:indice}; 
+			}else{
+				scnParam = "settings";
+			}
+			mapView.render(elemToAttach,scnParam);
 			this.removeModal(e);
 			this.undelegateEvents();
 			
