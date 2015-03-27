@@ -4454,7 +4454,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-top: 1px solid black; }
 .overlay #panoManager .pano-manager footer ul {
   overflow: hidden;
-  padding: 10px; }
+  padding: 10px;
+  min-height: 51px; }
 .overlay #panoManager .pano-manager footer ul li {
   float: left;
   position: relative;

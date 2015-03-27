@@ -19,8 +19,7 @@ define([
             var xmlpath = this.model.get("xmlpath");
             $pano_wrapper = $('<div id="tour"></div>');         
             $(this.el).append( $pano_wrapper ); 
-            console.log("xmlpath")
-            console.log(xmlpath)
+
             embedpano({
                 swf:"player/tour.swf", 
                 xml:xmlpath, 

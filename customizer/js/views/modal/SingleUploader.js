@@ -33,7 +33,6 @@ define([
         },
 
         startEditLoader:function(){
-            console.log(this)
             var myid = this.model.get("myid");
             var template = _.template(singleUploaderDragArea);
             $("#"+myid).html(template);
@@ -51,7 +50,7 @@ define([
                 maxfilesize: 200,
                 url: 'php/upload-single-file.php',
                 error: function(err, file) {
-                        console.log(err)
+
                 },
                 beforeEach: function(file){    
 
@@ -83,7 +82,7 @@ define([
                     if (response.result == 'SUCCESS') {
                         
                         $("#"+myid+" .percentage").text("upload complete");
-                        console.log(response)
+
                         var myfile = "graphics/"+response.params.file_name;
                         $("#"+myid +" .ok-img").show();
                         $("#"+myid +" .ok-img").click(function(){
@@ -97,9 +96,7 @@ define([
                     }else{
                             
                         if (response.result == 'ERROR'){
-                            console.log(response);
                         }else{
-                            console.log(response)
                            //alert("An error occurred while uploading file " + file.name + "<br>Please try again or contact us");
                         }
 
