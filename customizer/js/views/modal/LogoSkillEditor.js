@@ -27,9 +27,8 @@ define([
 			var template = _.template(logoSkillEditor,{tourSkill:tourSkill})
 
 			$("#"+myid+" .inner-modal").html(template);
-
-			$("#"+myid+" header h2").text("Logo Skill Editor")
-
+			$("#"+myid+" header h2").text("Logo Skill Editor");
+			$("#"+myid).find(".save-and-close").unbind("click");
 			$(".scrollwrapper").mCustomScrollbar({
 				theme:"minimal-dark",
 				scrollInertia:300
@@ -46,7 +45,7 @@ define([
 		},
 
 	
-		doneEdition:function(){
+		doneEdition:function(e){
 			var myid = this.myid;
 			
 			var tourSkill = this.model.get("tourSkill");
@@ -77,7 +76,8 @@ define([
 					}
 				})
 			}
-			$("#"+myid+" header .fa-close").trigger("click");
+			this.removeModal(e);
+			this.undelegateEvents();
 		
 		}
 	});
