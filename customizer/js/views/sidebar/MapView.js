@@ -27,7 +27,6 @@ define([
 
 		initialize:function(){
 			_.bindAll(this);
-			console.log(self);
 		},
 		
 		render: function(id){
@@ -56,7 +55,6 @@ define([
 			if(me.model.get("lat") != "" && me.model.get("lng") != ""){
 				var latitudLongitud = new google.maps.LatLng(me.model.get("lat"), me.model.get("lng"));
 				me.placeMarker(latitudLongitud);
-				console.log(me.model.get("lat"))
 				$("#"+me.myid+" .latFld").val(me.model.get("lat"));
 				$("#"+me.myid+" .lngFld").val( me.model.get("lng"));
 				me.codeLatLng();
