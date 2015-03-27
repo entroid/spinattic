@@ -3163,14 +3163,15 @@ textarea {
   font-weight: bold;
   max-width: 375px;
   overflow: hidden;
-  margin-bottom: 4px; }
+  margin-bottom: 4px;
+  line-height: 1.2em; }
 .pano-entry span {
   font-weight: normal; }
 
 .pano-date {
   font-size: 1.1em;
-  font-weight: bold;
-  font-style: italic; }
+  font-style: italic;
+  line-height: 1.2em; }
 .pano-date span {
   font-weight: normal; }
 
@@ -4453,7 +4454,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-top: 1px solid black; }
 .overlay #panoManager .pano-manager footer ul {
   overflow: hidden;
-  padding: 10px; }
+  padding: 10px;
+  min-height: 51px; }
 .overlay #panoManager .pano-manager footer ul li {
   float: left;
   position: relative;

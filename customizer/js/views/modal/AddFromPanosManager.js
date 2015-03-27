@@ -16,6 +16,8 @@ define([
         },
 
         events:{
+            "click .select-pano": "selectPano",
+            "click .remove": "removePano"
         },
 
         renderExtend: function() {
@@ -24,8 +26,6 @@ define([
             var template = _.template(addFromPanosManager);
 
             $("#"+myid+" .inner-modal").html(template);
-            console.log('antra')
-
             $("#"+myid+" header h2").text("Add panos to this tour from Pano files manager:");
 
             $.ajax({
@@ -33,7 +33,7 @@ define([
                 dataType:"json",
                 success: function( data ){
                     _.each( data.pano, function ( el, i ){
-                        var img = '<img class="pano-img" src="' + el.img + '" alt="Pano Name">',
+                        var img = '<img data-id="' + i + '" class="pano-img" src="' + el.img + '" alt="Pano Name">',
                             fileName = '<div class="pano-entry">File Name: <span>' + el.fileName + '</span></div>',
                             res = el.resolution,
                             resolution,
@@ -46,7 +46,7 @@ define([
                             resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
                         };
 
-                        pano = '<li>' + img + '<div class="pano-data">' + fileName + resolution + date + '</div></li>'
+                        pano = '<li>' + img + '<div class="pano-data">' + fileName + resolution + date + '</div><a data-id="' + i + '" class="modal-bt blue select-pano">Select</a></li>'
 
                         $("#"+myid+" .pano-list ul").append(pano);
                     });
@@ -59,6 +59,28 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });
+
+        },
+
+        selectPano: function(e) {
+            var el = e.target,
+                panoImg;
+
+            if (!$(el).hasClass('selected')) {
+                $(el).addClass('selected yellow').removeClass('blue').text('selected');
+
+                panoImg = '<li><span class="remove fa fa-close"></span></li>';
+
+                $(panoImg).prepend($(el).siblings('img').clone()).prependTo(".pano-manager .selected-panos");
+            }
+        },
+
+        removePano: function(e) {
+            var el = e.target,
+                id = $(el).siblings('img').attr('data-id');
+
+            $(el).parent().remove();
+            $('.pano-list li').find('a[data-id="' + id + '"]').removeClass('yellow selected').addClass('blue').text('select');
 
         }
 

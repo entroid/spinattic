@@ -545,6 +545,7 @@ textarea{
     max-width: 375px;
     overflow: hidden;
     margin-bottom: 4px;
+    line-height: 1.2em;
 
     span {
         font-weight: normal;
@@ -553,8 +554,8 @@ textarea{
 
 .pano-date {
     font-size: 1.1em;
-    font-weight: bold;
     font-style: italic;
+    line-height: 1.2em;
 
     span {
         font-weight: normal;

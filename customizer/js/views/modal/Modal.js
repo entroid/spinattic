@@ -40,7 +40,6 @@ define([
             })
 
             $("#"+this.myid).find(".save-and-close").click( function(e){
-                console.log('clickeado');
                 este.removeModal(e);
                 este.undelegateEvents();
             })

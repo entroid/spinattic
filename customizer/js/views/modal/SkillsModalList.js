@@ -63,7 +63,6 @@ define([
                             select:function(event,ui){
                                 var myTitle = ui.item.title;
                                 $("#skill-list-search").val(myTitle);
-                                console.log(ui.item.id)
                                 $("#"+myid+" .skill-list li").hide()
                                 $("#"+myid+" .inner-modal h2").show();
                                 $("#"+myid+" .skill-list li#item"+ui.item.id).show();
@@ -103,7 +102,6 @@ define([
                 },
 
                 error:function(jqXHR){
-                    console.log(jqXHR)
                 }
             })
 
@@ -143,7 +141,6 @@ define([
 
                     var x2js = new X2JS({attributePrefix:"_"});
                     var tourSkill =  x2js.xml_str2json( data );
-                    console.log(tourSkill);
                     if(tourSkill.contextmenu){
                         if(tourSkill.contextmenu.item.length == undefined){
                             var items = []
