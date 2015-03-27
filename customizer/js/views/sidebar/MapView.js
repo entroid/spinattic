@@ -89,7 +89,6 @@ define([
 
 			// add marker in markers array
 			this.markersArray.push(this.marker);
-			console.log(this)
 			if(this.param){
 				if(this.param.param == "scene"){
 				tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();

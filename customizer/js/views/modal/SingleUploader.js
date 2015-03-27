@@ -36,6 +36,7 @@ define([
             var myid = this.model.get("myid");
             var template = _.template(singleUploaderDragArea);
             $("#"+myid).html(template);
+             $("#"+myid +" .cancel-img").click(this.render)
             this.dragFile();
         },
 
