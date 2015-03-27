@@ -23,6 +23,10 @@
             margin-top: 20%;
         }
 
+        .save-and-close{
+            @include absolute(-44px, 20px,initial, initial);
+        }
+
         header{
             background: $dark-gray5;
             padding: 20px;
@@ -354,11 +358,7 @@
         footer {
             overflow: auto;
             padding-top: 10px;
-        }
-
-        .save-and-close{
-            @include absolute(-44px, 20px,initial, initial);
-        }
+        }        
 
         .scrollwrapper{
             height: 350px;
@@ -536,6 +536,10 @@
 
     #mapModal{
         width: 650px; 
+
+        .fa-close{
+            display: none;
+        }
         
         .map-wrapper{
             label{
@@ -550,6 +554,10 @@
                 input {
                     width: 75%;
                     margin-top: 5px;
+                }
+
+                .gm-style-iw{
+                    color: black;
                 }
             }
 

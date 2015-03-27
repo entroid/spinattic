@@ -3705,6 +3705,8 @@ aside #sceneSettings-menu .editor-img .inner-dragger h2 {
   font-size: 1.2em; }
 aside #sceneSettings-menu .editor-img .inner-dragger h3 {
   font-size: 1em; }
+aside #sceneSettings-menu .map-wrapper .save-and-close {
+  display: none; }
 aside #virtualTourSettings-menu li {
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #535353;
@@ -4126,6 +4128,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   color: #FFF; }
 .overlay .modal#alert {
   margin-top: 20%; }
+.overlay .modal .save-and-close {
+  position: absolute;
+  top: -44px;
+  right: 20px;
+  bottom: initial;
+  left: initial; }
 .overlay .modal header {
   background: #111;
   padding: 20px;
@@ -4344,12 +4352,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay .skillModal footer {
   overflow: auto;
   padding-top: 10px; }
-.overlay .skillModal .save-and-close {
-  position: absolute;
-  top: -44px;
-  right: 20px;
-  bottom: initial;
-  left: initial; }
 .overlay .skillModal .scrollwrapper {
   height: 350px;
   overflow: auto;
@@ -4468,6 +4470,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-size: .75em; }
 .overlay #mapModal {
   width: 650px; }
+.overlay #mapModal .fa-close {
+  display: none; }
 .overlay #mapModal .map-wrapper label {
   margin-bottom: 10px;
   display: block; }
@@ -4477,6 +4481,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #mapModal .map-wrapper .map_canvas input {
   width: 75%;
   margin-top: 5px; }
+.overlay #mapModal .map-wrapper .map_canvas .gm-style-iw {
+  color: black; }
 .overlay #mapModal .map-wrapper .geoMap {
   margin-top: 15px; }
 

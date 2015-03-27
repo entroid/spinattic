@@ -31,9 +31,16 @@ define([
             $("#"+this.myid).parent().fadeIn();            
             
             $(".modal").draggable({ handle:'header'});
+
             var este = this;
-            $("#"+this.myid).find(".fa-close").click(function(){
-                $(this).parents(".overlay").remove();
+
+            $("#"+this.myid).find(".fa-close").click( function(e){
+                este.removeModal(e);
+                este.undelegateEvents();
+            })
+
+            $("#"+this.myid).find(".save-and-close").click( function(e){
+                este.removeModal(e);
                 este.undelegateEvents();
             })
 
@@ -48,6 +55,11 @@ define([
                 'top' : '50%',
                 'margin-top' : -$('.modal').outerHeight()/2
             });
+        },
+
+        removeModal: function(evnt) {
+            $(evnt.target).parents(".overlay").remove();     
+            console.log(evnt.target)       
         }
         
     });
