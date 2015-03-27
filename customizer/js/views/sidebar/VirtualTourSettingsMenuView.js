@@ -8,8 +8,10 @@ define([
     'helpers/HelpFunctions',
     'views/sidebar/MapView',
     'helpers/ManageData',
+    'views/modal/MapModalView',
+
     
-], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView,ManageData){
+], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView,ManageData,MapModalView){
 
     var VirtualTourSettingsMenuView = SidebarSubMenu.extend({
 
@@ -30,6 +32,9 @@ define([
 
           var onoff = 'change .autorotate-settings .switchInput input[type="checkbox"]'
           this.events[onoff] = 'onOffSwitch'
+
+          var zoomMap = 'click #virtualTourSettings-menu .fa-search';
+          this.events[zoomMap] = 'zoomMap';
 
           this.delegateEvents();
           
@@ -123,7 +128,19 @@ define([
             } else {
                 $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', false).removeClass('disabled');
             }
+        },
+
+        zoomMap:function(){
+
+            var me = this;
+            var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:$("#virtualTourSettings-menu .latFld").val(),lng:$("#virtualTourSettings-menu .lngFld").val(),elemToAttach:"virtualTourSettings-menu"})
+            var mapModalView = new MapModalView({model:mapModel});
+            mapModalView.render("mapModal",mapModalView.renderExtend);
+            this.mapView.removeMap();
         }
+
+
         
     });
 

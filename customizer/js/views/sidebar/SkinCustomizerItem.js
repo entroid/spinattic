@@ -56,23 +56,26 @@ define([
 				var mview = SkillEditor
 			}
 			
-			if($("#skillsEditor-"+skill.id).length){
+			if($(".skillModal").length){
 
-					$("#skillsEditor-"+skill.id).parent(".overlay").show();
+					$(".skillModal").find(".save-and-close").trigger("click");
 
-			}else{
+			}
 				var SkillModel = Backbone.Model.extend({});
 				skillModel = new SkillModel({data:skill,tourSkill:tourSkill});
 				var skillEditor = new mview({model:skillModel});
 				skillEditor.render("skillsEditor-"+skill.id,skillEditor.renderExtend);
 				$("#skillsEditor-"+skill.id).addClass("skillModal").parent(".overlay").addClass("skillWindow");
 				skillEditor.verticalCent();
-			}
+			
 		},
 
 		removeSkill:function(e,v){
 
 			var data = this.model.get("data");
+			if($('#skillsEditor-' + data.id ).length){
+				$('#skillsEditor-' + data.id ).find(".save-and-close").trigger("click");
+			}
 			$('#skill-' + data.id ).remove();
 			v.undelegateEvents();
 			v.remove();
