@@ -4341,9 +4341,16 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   float: left;
   height: 100%;
   padding-bottom: 20px; }
+.overlay.skillWindow {
+  background-color: transparent;
+  width: 0px;
+  height: 0px; }
 .overlay .skillModal {
   background-color: rgba(0, 0, 0, 0.75);
   width: 400px;
+  position: fixed !important;
+  left: 50%;
+  margin-left: -200px;
   /* editores */ }
 .overlay .skillModal .inner-modal {
   padding: 30px; }

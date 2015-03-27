@@ -51,9 +51,9 @@ define([
         },
 
         verticalCent : function() {
-            $('.modal').css({
+            $("#"+this.myid).css({
                 'top' : '50%',
-                'margin-top' : -$('.modal').outerHeight()/2
+                'margin-top' : - $("#"+this.myid).outerHeight()/2
             });
         },
 
