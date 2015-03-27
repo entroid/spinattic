@@ -62,8 +62,8 @@ define([
 			var MapModel = Backbone.Model.extend({});
 			var mapModel = new MapModel({lat:data._lat,lng:data._lng})
 			
-			var mapView = new MapView({model:mapModel});
-			mapView.render(elem);
+			this.mapView = new MapView({model:mapModel});
+			this.mapView.render(elem);
 
 	
 			},
@@ -77,10 +77,10 @@ define([
 
 			var me = this;
 			var MapModel = Backbone.Model.extend({});
-			var mapModel = new MapModel({lat:$("#sceneSettings-menu .latFld").val(),lng:$("#sceneSettings-menu .lngFld").val()})
+			var mapModel = new MapModel({lat:$("#sceneSettings-menu .latFld").val(),lng:$("#sceneSettings-menu .lngFld").val(),elemToAttach:"sceneSettings-menu"})
 			var mapModalView = new MapModalView({model:mapModel});
 			mapModalView.render("mapModal",mapModalView.renderExtend);
-
+			this.mapView.removeMap();
 		}
 
 		

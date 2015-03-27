@@ -185,7 +185,12 @@ define([
 				var alertView = new AlertView({model:modalModel});
 				alertView.render("alert_"+this.myid,alertView.renderExtend);
 
-				}
+				},
+
+		removeMap:function(){
+			$("#"+this.myid+" .map-wrapper").remove();
+			this.undelegateEvents();
+		}
 		
 	});
 
