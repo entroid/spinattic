@@ -24,8 +24,6 @@ define([
             var template = _.template(addFromPanosManager);
 
             $("#"+myid+" .inner-modal").html(template);
-            console.log('antra')
-
             $("#"+myid+" header h2").text("Add panos to this tour from Pano files manager:");
 
             $.ajax({
@@ -46,7 +44,7 @@ define([
                             resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
                         };
 
-                        pano = '<li>' + img + '<div class="pano-data">' + fileName + resolution + date + '</div></li>'
+                        pano = '<li>' + img + '<div class="pano-data">' + fileName + resolution + date + '</div><a class="modal-bt blue">Select</a></li>'
 
                         $("#"+myid+" .pano-list ul").append(pano);
                     });
