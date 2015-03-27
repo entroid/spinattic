@@ -65,7 +65,7 @@ define([
 				skillModel = new SkillModel({data:skill,tourSkill:tourSkill});
 				var skillEditor = new mview({model:skillModel});
 				skillEditor.render("skillsEditor-"+skill.id,skillEditor.renderExtend);
-				$("#skillsEditor-"+skill.id).addClass("skillModal");
+				$("#skillsEditor-"+skill.id).addClass("skillModal").parent(".overlay").addClass("skillWindow");
 				skillEditor.verticalCent();
 			}
 		},

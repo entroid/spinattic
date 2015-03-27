@@ -337,9 +337,18 @@
         }   
     }
 
+    &.skillWindow{
+        background-color: transparent;
+        width: 0px;
+        height: 0px;
+    }
+
     .skillModal {
         background-color: $black-transparent-65;
         width: 400px;
+        position:fixed !important;
+        left:50%;
+        margin-left:-200px;
 
         .inner-modal {
             padding: 30px;
