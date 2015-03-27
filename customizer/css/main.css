@@ -4398,7 +4398,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border: 4px dashed #535353; }
 .overlay #panoManager header h2 {
   text-transform: uppercase; }
-.overlay #panoManager header .fa-close {
+.overlay #panoManager header .save-and-close {
   display: none; }
 .overlay #panoManager .pano-manager .header {
   height: 27px;
