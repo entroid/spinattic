@@ -124,9 +124,9 @@ define([
 			if (status == google.maps.GeocoderStatus.OK) {
 			  if (results[1]) {
 			   // map.setZoom(11);
-				this.marker = new google.maps.Marker({
+				me.marker = new google.maps.Marker({
 					position: latlng,
-					map: this.map
+					map: me.map
 				});
 			   me.infowindow.setContent(results[1].formatted_address);
 			   me.infowindow.open(me.map, me.marker);
