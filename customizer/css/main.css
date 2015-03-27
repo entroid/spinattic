@@ -4130,7 +4130,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 20%; }
 .overlay .modal .save-and-close {
   position: absolute;
-  top: -44px;
+  top: 13px;
   right: 20px;
   bottom: initial;
   left: initial; }
@@ -4398,6 +4398,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border: 4px dashed #535353; }
 .overlay #panoManager header h2 {
   text-transform: uppercase; }
+.overlay #panoManager header .fa-close {
+  display: none; }
 .overlay #panoManager .pano-manager .header {
   height: 27px;
   padding-bottom: 15px; }
@@ -4492,6 +4494,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   color: black; }
 .overlay #mapModal .map-wrapper .geoMap {
   margin-top: 15px; }
+.overlay #skillsModalList header .save-and-close {
+  display: none; }
 
 section.main-section {
   position: relative; }

@@ -40,6 +40,7 @@ define([
             })
 
             $("#"+this.myid).find(".save-and-close").click( function(e){
+                console.log('clickeado');
                 este.removeModal(e);
                 este.undelegateEvents();
             })
@@ -58,8 +59,7 @@ define([
         },
 
         removeModal: function(evnt) {
-            $(evnt.target).parents(".overlay").remove();     
-            console.log(evnt.target)       
+            $(evnt.target).parents(".overlay").remove();
         }
         
     });

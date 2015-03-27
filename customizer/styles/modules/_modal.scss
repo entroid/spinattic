@@ -24,7 +24,7 @@
         }
 
         .save-and-close{
-            @include absolute(-44px, 20px,initial, initial);
+            @include absolute(13px, 20px,initial, initial);
         }
 
         header{
@@ -431,6 +431,9 @@
             h2 {
                 text-transform: uppercase;                
             }
+            .fa-close{
+                display: none;
+            }
         }
         .pano-manager {
 
@@ -572,6 +575,14 @@
 
             .geoMap{
                 margin-top: 15px;
+            }
+        }
+    }
+
+    #skillsModalList{
+        header{
+            .save-and-close{
+                display: none;
             }
         }
     }
