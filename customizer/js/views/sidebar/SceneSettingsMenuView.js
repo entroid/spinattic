@@ -20,7 +20,7 @@ define([
 		},
 		events:{
 
-			"keyup #scenetitle":"updateData",
+			"keyup #scenetitle":"changeTitle",
 			"keyup #friendlyURL":"updateData",
 			"keyup #scene-description":"updateData",
 			"click #sceneSettings-menu .fa-search":"zoomMap"
@@ -74,6 +74,15 @@ define([
 		updateData:function(e){
 			var manageData = new ManageData();
 			manageData.saveSceneOnTour( $("#sceneSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val())
+		},
+
+		changeTitle:function(e){
+			var scene = $("#tour").data("scene");
+			var title = scene._title;
+			var name = scene._name;
+			$("#"+name+" img").attr("title",title)
+			this.updateData(e);
+
 		},
 
 		zoomMap:function(){
