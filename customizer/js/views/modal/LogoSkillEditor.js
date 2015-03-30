@@ -17,7 +17,7 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click #logo-skill-finish":"doneEdition"
+			"click #Context-menu-finish":"doneEdition"
 		},
 		
 		renderExtend:function(){

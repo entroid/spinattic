@@ -95,7 +95,7 @@ define([
 					krpano.set("hotspot["+elem._name+"].url", elem._url);
 					krpano.set("hotspot["+elem._name+"].ath", elem._ath);
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
-					krpano.set("hotspot["+elem._name+"].crop",elem._crop);
+					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._selectedSet+");");
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
 		    		krpano.call('set(hotspot['+elem._name+'].onclick, js(showWindow('+elem._name+')) );');
 		    		krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
