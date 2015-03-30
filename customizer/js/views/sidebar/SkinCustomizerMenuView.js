@@ -49,6 +49,8 @@ define([
         addStyle:function(e){
             var skillsModalList = new SkillsModalList();
             skillsModalList.render("skillsModalList",skillsModalList.renderExtend);
+            $("#skillsModalList").addClass("skillModal").parent(".overlay").addClass("skillWindow");
+            skillsModalList.verticalCent();
         }
 
         
