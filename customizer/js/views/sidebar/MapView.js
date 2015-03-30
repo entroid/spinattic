@@ -35,7 +35,27 @@ define([
 			var compiledTemplate = _.template(map);
 			$("#"+id+" .gmap-wrapper").append( compiledTemplate ); 
 			this.initMap();
+			var me = this;
+			$("#"+this.myid+" .latFld, #"+this.myid+" .lngFld").focus(function(){
+				var $input = $(this);	
+				$(window).keydown(function(event){
+					if(event.keyCode == 13) {
+					$input.blur();
+					event.preventDefault();
+					$(window).unbind("keydown");
+					return false;
+					}
+		  		});
 
+			})
+
+			$("#"+this.myid+" .latFld, #"+this.myid+" .lngFld").blur(function(){
+				var latitudLongitud = new google.maps.LatLng($("#"+me.myid+" .latFld").val(), $("#"+me.myid+" .lngFld").val());
+				me.placeMarker(latitudLongitud);
+				me.codeLatLng();
+			})
+			
+				
 		},
 
 		initMap:function ()
