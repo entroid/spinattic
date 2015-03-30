@@ -351,7 +351,7 @@
 
     .skillModal {
         background-color: $black-transparent-65;
-        width: 400px;
+        width: 520px;
         position:fixed !important;
         left:50%;
         margin-left:-200px;
@@ -581,6 +581,10 @@
             .save-and-close{
                 display: none;
             }
+
+            .fa-close {
+                display: block;
+            }
         }
 
         #skill-list-search{
@@ -596,6 +600,10 @@
     .clear-btn{
         text-transform: uppercase;
         color: $yellow;
+        cursor: pointer;
+    }
+
+    .ui-menu-item{
         cursor: pointer;
     }
 }

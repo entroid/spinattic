@@ -4350,7 +4350,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   height: 0px; }
 .overlay .skillModal {
   background-color: rgba(0, 0, 0, 0.75);
-  width: 400px;
+  width: 520px;
   position: fixed !important;
   left: 50%;
   margin-left: -200px;
@@ -4496,6 +4496,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 15px; }
 .overlay #skillsModalList header .save-and-close {
   display: none; }
+.overlay #skillsModalList header .fa-close {
+  display: block; }
 .overlay #skillsModalList #skill-list-search {
   width: 90%;
   float: left; }
@@ -4505,6 +4507,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay .clear-btn {
   text-transform: uppercase;
   color: #fad368;
+  cursor: pointer; }
+.overlay .ui-menu-item {
   cursor: pointer; }
 
 section.main-section {
