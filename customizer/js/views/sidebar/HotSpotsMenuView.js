@@ -96,6 +96,7 @@ define([
                 _atv:__atv,
                 _type:"image",
                 _visible:true,
+                _selectedSet:"hotspot_"+this.selectedset+"_"+myid
             }
             var manageData = new ManageData();
             manageData.pushHotspot( $("#tour").data("scene")._name,hotspot)
