@@ -4051,7 +4051,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   z-index: 4; }
 #tooltip.footer {
   margin-top: -50px;
-  margin-left: -4px; }
+  /*margin-left:-4px;*/ }
 #tooltip.footer:after {
   position: absolute;
   display: block;
@@ -4065,15 +4065,15 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   left: 50%;
   margin-left: -20px; }
 #tooltip.hotSpots {
-  margin-left: -120px; }
+  margin-left: -94px; }
 #tooltip.viewSettings {
-  margin-left: -145px; }
+  margin-left: -106px; }
 #tooltip.sceneSettings {
-  margin-left: -150px; }
+  margin-left: -110px; }
 #tooltip.virtualTourSettings {
-  margin-left: -190px; }
+  margin-left: -130px; }
 #tooltip.skinCustomizer {
-  margin-left: -160px; }
+  margin-left: -116px; }
 #tooltip.aside {
   margin-top: 4px; }
 #tooltip.aside:after {
@@ -4193,6 +4193,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 10px; }
 .overlay .modal .skills {
   height: 350px;
+  clear: both;
   /*overflow: auto;*/ }
 .overlay .modal .skills .loading {
   margin: 20px 0; }
@@ -4202,7 +4203,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-bottom: 7px; }
 .overlay .modal #skill-search-results {
   /*position: absolute;*/
-  float: left; }
+  float: left;
+  clear: both; }
 .overlay .modal #skill-search-results dl {
   padding: 10px;
   box-sizing: border-box;
@@ -4420,10 +4422,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   background-color: #333333;
   border: 1px solid #000;
   height: 26px; }
-.overlay #panoManager .pano-manager .header .search-pano .clear-btn {
-  text-transform: uppercase;
-  color: #fad368;
-  cursor: pointer; }
 .overlay #panoManager .pano-manager .pano-list {
   clear: both; }
 .overlay #panoManager .pano-manager .pano-list .scrollwrapper {
@@ -4498,6 +4496,16 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 15px; }
 .overlay #skillsModalList header .save-and-close {
   display: none; }
+.overlay #skillsModalList #skill-list-search {
+  width: 90%;
+  float: left; }
+.overlay #skillsModalList .clear-btn {
+  height: 33px;
+  padding-top: 11px; }
+.overlay .clear-btn {
+  text-transform: uppercase;
+  color: #fad368;
+  cursor: pointer; }
 
 section.main-section {
   position: relative; }

@@ -17,7 +17,8 @@ define([
 
         events:{
             "click .select-pano": "selectPano",
-            "click .remove": "removePano"
+            "click .remove": "removePano",
+            "click .cancel": "removeModal"
         },
 
         renderExtend: function() {
@@ -82,6 +83,11 @@ define([
             $(el).parent().remove();
             $('.pano-list li').find('a[data-id="' + id + '"]').removeClass('yellow selected').addClass('blue').text('select');
 
+        },
+
+        removeModal: function(e) {
+            this.removeModal(e);
+            this.undelegateEvents();
         }
 
     });

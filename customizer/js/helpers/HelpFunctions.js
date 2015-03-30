@@ -8,35 +8,46 @@ define([
 
    
     this.toolTip = function(obj,myclass){
+      var el, text, $tooltip;
     	
-    	$(obj).mouseover(function(event){
+    	$(obj).mouseenter(function(event){
 
     		if(!$("#tooltip").length){
-    		$("body").append('<div id="tooltip">text</div>')
+    		  $("body").append('<div id="tooltip">text</div>')
 	    	}
-    		$tooltip = $("#tooltip");
 
-   	    	eleOffset = $(event.target).offset();
-          text = $(event.target).attr("title");
+    		$tooltip = $("#tooltip");
+        el = $(event.target);
+        text = $(el).attr("title");
+
+   	    	var eleOffset = $(el).offset(),            
+            elWidth = $(el).outerWidth(),
+            ttWidth,
+            leftP;
+
+          $(el).removeAttr("title");
+
           if($(event.target).attr("id")){
             singleClass = $(event.target).attr("id");
           }else{
             singleClass = "";
           }
+
         $tooltip.addClass(myclass +" "+ singleClass )
         $tooltip.text(text);
-       
-				$tooltip.show().css({
 
-						left: eleOffset.left,
-            top: eleOffset.top
-					});
-        $(event.target).removeAttr("title");
+        ttWidth = $tooltip.outerWidth();
+        leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;
        
-			}).mouseout(function(event){
-				$tooltip.hide()
-        $tooltip.removeClass()
-        $(event.target).attr("title",text);
+				$tooltip.css({
+						left: leftP,
+            top: eleOffset.top
+					}).delay( 500 ).show();        
+       
+			}).mouseleave( function( event ){
+				$tooltip.hide();
+        $tooltip.removeClass();
+        $(el).attr("title",text);
 			});
     }
 

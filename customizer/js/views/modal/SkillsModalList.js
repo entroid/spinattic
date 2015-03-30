@@ -53,9 +53,11 @@ define([
                         $li.append($bt);
                         $("#"+myid+" .free-skills ul").append($li);                        
                     })
+
                     $("#skill-list-search").autocomplete({
                             source: data,
                             appendTo:"#skill-search-results",
+
                             focus: function( event, ui ) {
                                 $( "#skill-list-search" ).val( ui.item.title );
                                 return false;
@@ -72,12 +74,13 @@ define([
                                 $("#"+myid+" .skill-list li").hide();
                                 $("#"+myid+" .inner-modal h2").hide();
                             },
-                            close:function(event,ui){
-                                if($( "#skill-list-search" ).val() == ""){
+                            change: function(event,ui){
+                                console.log(ui)
+                                if(!ui.item){
+                                    $( "#skill-list-search" ).val('');
                                     $("#"+myid+" .skill-list li").show()
                                     $("#"+myid+" .inner-modal h2").show();
-                                }
-
+                                }                               
                             }
                         }).data("ui-autocomplete")._renderItem = function(ul,item){
 
@@ -90,7 +93,10 @@ define([
 
                     este.events = este.events || {};
                      var addSkill = 'click #' + myid + ' .add-skill';
+                     var clearSearch = 'click #' + myid + ' .clear-btn'
+
                     este.events[addSkill] = 'addSkilltoCustomizer';
+                    este.events[clearSearch] = 'clearSearch';
                     este.delegateEvents(); 
 
                     $(".modal .skills").mCustomScrollbar({
@@ -160,6 +166,12 @@ define([
             })
 
 
+        },
+
+        clearSearch: function (ev) {
+            $(ev.target).siblings('input').val('');
+            $("#"+this.myid+" .skill-list li").show()
+            $("#"+this.myid+" .inner-modal h2").show();
         }
 
     })      

@@ -42,7 +42,7 @@ define([
             $("#"+this.myid).find(".save-and-close").click( function(e){
                 este.removeModal(e);
                 este.undelegateEvents();
-            })
+            })            
 
             if(fun != undefined){
                 fun();
