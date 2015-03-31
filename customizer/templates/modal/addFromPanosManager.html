@@ -2,17 +2,18 @@
     <div class="header">
         <div class="sort-by left">
             <h2>Sort by:</h2> 
-            <span class="sort-btn az fa fa-sort-alpha-asc selected "></span>
-            <span class="sort-btn za fa fa-sort-alpha-desc"></span>
+            <span class="sort-btn sort-name az fa fa-sort-alpha-asc selected "></span>
+            <span class="sort-btn sort-name za fa fa-sort-alpha-desc"></span>
             <span class="sort-btn upload-date">Upload date</span>
-            <span class="sort-btn fl fa fa-sort-amount-asc selected "></span>
-            <span class="sort-btn lf fa fa-sort-amount-desc"></span>
+            <span class="sort-btn fl fa sort-amount fa-sort-amount-asc"></span>
+            <span class="sort-btn lf fa sort-amount fa-sort-amount-desc"></span>
         </div>
 
         <div class="search-pano left">
             <form>
                 <label>Search:</label> 
                 <input type="text" placeholder="File Name" id="pano-search">
+                <div id="pano-search-results"></div>
                 <span class="clear-btn sort-btn">Clear</span>
             </form>
         </div>
