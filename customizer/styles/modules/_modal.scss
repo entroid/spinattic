@@ -606,4 +606,40 @@
     .ui-menu-item{
         cursor: pointer;
     }
+
+    #pano-search-results {
+        position: absolute;
+        z-index: 1000;
+
+        ul{            
+            background-color: $black-transparent-65;
+            width: 200px;
+            box-sizing: border-box;
+
+            li{
+                padding:10px;
+
+                &.ui-state-focus{
+                    background-color: $light-gray;
+                }
+
+                img{
+                    width: 100%;
+                }
+
+                dl{
+                    text-align: center;
+
+                    dt{
+                        font-size: 1.1em;
+                        font-weight: bold;
+                        margin: 2px 0;
+                    }
+                    dd{
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }
 }

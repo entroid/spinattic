@@ -3470,7 +3470,10 @@ aside .submenu .geoMap label {
 aside .submenu .location {
   margin-bottom: 1px;
   left: 0 !important;
-  width: 300px; }
+  width: 100%;
+  height: 30px;
+  padding: 0 4px;
+  box-sizing: border-box; }
 aside .submenu .gmnoprint {
   margin-top: 40px !important; }
 aside .land-submenu {
@@ -4349,7 +4352,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   width: 0px;
   height: 0px; }
 .overlay .skillModal {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.65);
   width: 520px;
   position: fixed !important;
   left: 50%;
@@ -4510,6 +4513,27 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   cursor: pointer; }
 .overlay .ui-menu-item {
   cursor: pointer; }
+.overlay #pano-search-results {
+  position: absolute;
+  z-index: 1000; }
+.overlay #pano-search-results ul {
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 200px;
+  box-sizing: border-box; }
+.overlay #pano-search-results ul li {
+  padding: 10px; }
+.overlay #pano-search-results ul li.ui-state-focus {
+  background-color: #535353; }
+.overlay #pano-search-results ul li img {
+  width: 100%; }
+.overlay #pano-search-results ul li dl {
+  text-align: center; }
+.overlay #pano-search-results ul li dl dt {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 2px 0; }
+.overlay #pano-search-results ul li dl dd {
+  font-style: italic; }
 
 section.main-section {
   position: relative; }

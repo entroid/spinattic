@@ -93,7 +93,7 @@ aside{
         }
 
         .geoMap{
-        margin-top: 15px;
+            margin-top: 15px;
 
             label{
                 width: 50px;
@@ -101,14 +101,17 @@ aside{
         }
 
         .location{
-                margin-bottom: 1px;
-                left: 0 !important;
-                width: 300px;
-            }
+            margin-bottom: 1px;
+            left: 0 !important;
+            width: 100%; 
+            height: 30px;
+            padding: 0 4px;
+            box-sizing: border-box;
+        }
 
         .gmnoprint{
-                margin-top: 40px !important;
-            }
+            margin-top: 40px !important;
+        }
 
     }
 
