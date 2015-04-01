@@ -4053,7 +4053,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   font-weight: bold;
   z-index: 4; }
 #tooltip.footer {
-  margin-top: -50px;
+  margin-top: -55px;
   /*margin-left:-4px;*/ }
 #tooltip.footer:after {
   position: absolute;
@@ -4061,12 +4061,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   content: "";
   border-color: #FFF transparent transparent transparent;
   border-style: solid;
-  border-width: 20px;
+  border-width: 8px;
   height: 0;
   width: 0;
-  bottom: -35px;
+  bottom: -16px;
   left: 50%;
-  margin-left: -20px; }
+  margin-left: -8px; }
 #tooltip.hotSpots {
   margin-left: -94px; }
 #tooltip.viewSettings {

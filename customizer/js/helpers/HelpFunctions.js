@@ -16,33 +16,32 @@ define([
     		  $("body").append('<div id="tooltip">text</div>')
 	    	}
 
-    		$tooltip = $("#tooltip");
+    		$tooltip = $("#tooltip");        
         el = $(event.target);
         text = $(el).attr("title");
 
-   	    	var eleOffset = $(el).offset(),            
-            elWidth = $(el).outerWidth(),
-            ttWidth,
-            leftP;
+ 	    	var eleOffset = $(el).offset(),            
+          elWidth = $(el).outerWidth(),
+          ttWidth,
+          leftP;
 
-          $(el).removeAttr("title");
+        $(el).removeAttr("title");
 
-          if($(event.target).attr("id")){
-            singleClass = $(event.target).attr("id");
-          }else{
-            singleClass = "";
-          }
+        if($(el).attr("id")){
+          singleClass = $(el).attr("id");
+        }else{
+          singleClass = "";
+        }
 
-        $tooltip.addClass(myclass +" "+ singleClass )
-        $tooltip.text(text);
+        $tooltip.addClass(myclass +" "+ singleClass ).text(text); 
 
         ttWidth = $tooltip.outerWidth();
-        leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;
+        leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;              
        
 				$tooltip.css({
 						left: leftP,
             top: eleOffset.top
-					}).delay( 500 ).show();        
+					}).show();        
        
 			}).mouseleave( function( event ){
 				$tooltip.hide();

@@ -63,8 +63,8 @@ define([
                                 return false;
                                 }, 
                             select:function(event,ui){
-                                console.log(event)
                                 var myTitle = ui.item.title;
+
                                 $("#skill-list-search").val(myTitle);
                                 $("#"+myid+" .skill-list li").hide()
                                 $("#"+myid+" .inner-modal h2").show();
