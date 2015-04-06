@@ -8,10 +8,13 @@
 		</div>
 		<label for="rotate">Rotate:</label>
 		<input type="number" id="rotate" name="rotate" value="180">
+		<%if(tourData.krpano.scene.length == 1){%>
 		<p>There are no other panoramas in this tour to link to</p>
+		<%}%>
 	</div>
 	<div class="hotspot-column">
-		<input type="text" placeholder="Search Scene">		
+		<input type="text" placeholder="Search Scene" class="search-scenes">
+		<div id="scenes-search-results-<%=num%>"></div>		
 	</div>
 </div>
 <div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
