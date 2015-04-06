@@ -76,7 +76,6 @@ define([
                                 $("#"+myid+" .inner-modal h2").hide();
                             },
                             change: function(event,ui){
-                                console.log(ui)
                                 if(!ui.item){
                                     $( "#skill-list-search" ).val('');
                                     $("#"+myid+" .skill-list li").show()

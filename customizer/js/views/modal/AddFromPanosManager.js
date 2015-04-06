@@ -41,8 +41,10 @@ define([
                     este.verticalCent();
                     este.autocomplete( myid );
 
-                    $("#"+myid+" .sort-btn").click(function(){
+                    $("#"+myid+" .sort").click(function(){
+
                         if(!$(this).hasClass("selected")){
+
                             if($(this).hasClass("fa-sort-alpha-asc")){
                                 este.sortByKey("filename","asc")
                             }else if($(this).hasClass("fa-sort-alpha-desc")){
@@ -52,15 +54,14 @@ define([
                             }else if($(this).hasClass("fa-sort-amount-desc")){
                                 este.sortByDate("desc")
                             }
-                        $("#"+myid+" .sort-btn").removeClass("selected");
-                        $(this).addClass("selected")
 
+                            $("#"+myid+" .sort-btn").removeClass("selected");
+                            $(this).addClass("selected")
                         }
-
                     })
-
                 }
             })
+            $("#" + myid + " .clear-btn").click(this.clearSearch)
             $("#"+myid+" .cancel").click(this.removeModal);
         
             
@@ -104,12 +105,12 @@ define([
                     return false;
                     }, 
                 select:function(event,ui){
-                    var myTitle = ui.item.fileName;
+                    var myTitle = ui.item.fileName,
+                        panoId = myTitle.split('.')[0];
                     $("#pano-search").val(myTitle);
                     $("#"+myid+" .pano-list-ul li").hide()
-                    /*$("#"+myid+" .inner-modal h2").show();*/
-                    console.log("#"+myid+" .pano-list-ul #" +ui.item.fileName)
-                    $("#"+myid+" .pano-list-ul #" +ui.item.fileName).show();
+                    
+                    $("#"+myid+" .pano-list-ul #" + panoId).show();
                     return false;
                 },
                 search:function(event,ui){
@@ -134,63 +135,69 @@ define([
         },
 
         sortByKey:function(key,ascdes) {
-                var data = this.data;
-                
+            var data = this.data;
 
-                var compare = function(el1, el2, index) {
-                    return el1[index] == el2[index] ? 0 : (el1[index] < el2[index] ? -1 : 1);
-                }
-
-                var panosOrder = data.sort(function(el1,el2){
-                  return compare(el1, el2, "fileName")
-                });
-
-                if(ascdes == "desc"){
-                    panosOrder = panosOrder.reverse();
-                }
-                this.data = panosOrder;
-
-                this.fullfillList()
-            },
-
-            sortByDate:function(ascdes){
-                var data = this.data;
-                function comp(a, b) {
-                    return new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime();
-                }
-                var panosOrder = data.sort(comp);
-                if(ascdes == "desc"){
-                    panosOrder = panosOrder.reverse();
-                }
-                this.data = panosOrder;
-                this.fullfillList()
-            },
-
-            fullfillList:function(){
-                var data =  this.data;
-                var myid = this.myid;
-                $("#"+myid+" .pano-list ul").html("");
-                _.each( data, function ( el, i ){
-                        var img = '<img data-id="' + i + '" class="pano-img" src="' + el.img + '" alt="Pano Name">',
-                            fileName = '<div class="pano-entry">File Name: <span>' + el.fileName + '</span></div>',
-                            res = el.resolution,
-                            resolution,
-                            date = '<div class="pano-date">Upload date: ' + el.uploadDate + '</div>',
-                            pano;
-
-                        if(res === 'Multiresolution'){
-                            resolution = '<div class="pano-entry">' + res + '</div>'
-                        } else {
-                            resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
-                        };
-
-                        pano = '<li id="' + el.fileName + '">' + img + '<div class="pano-data">' + fileName + resolution + date + '</div><a data-id="' + i + '" class="modal-bt blue select-pano">Select</a></li>'
-
-                        $("#"+myid+" .pano-list ul").append(pano);
-                        el.label = el.fileName;
-                    });
-
+            var compare = function(el1, el2, index) {
+                return el1[index] == el2[index] ? 0 : (el1[index] < el2[index] ? -1 : 1);
             }
+
+            var panosOrder = data.sort(function(el1,el2){
+              return compare(el1, el2, "fileName")
+            });
+
+            if(ascdes == "desc"){
+                panosOrder = panosOrder.reverse();
+            }
+            this.data = panosOrder;
+
+            this.fullfillList()
+        },
+
+        sortByDate:function(ascdes){
+            var data = this.data;
+            function comp(a, b) {
+                return new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime();
+            }
+            var panosOrder = data.sort(comp);
+            if(ascdes == "desc"){
+                panosOrder = panosOrder.reverse();
+            }
+            this.data = panosOrder;
+            this.fullfillList()
+        },
+
+        fullfillList:function(){
+            var data =  this.data;
+            var myid = this.myid;
+            $("#"+myid+" .pano-list ul").html("");
+
+            _.each( data, function ( el, i ){
+                var panoId = el.fileName.split('.')[0];
+
+                var img = '<img data-id="' + i + '" class="pano-img" src="' + el.img + '" alt="Pano Name">',
+                    fileName = '<div class="pano-entry">File Name: <span>' + el.fileName + '</span></div>',
+                    res = el.resolution,
+                    resolution,
+                    date = '<div class="pano-date">Upload date: ' + el.uploadDate + '</div>',
+                    pano;
+
+                if(res === 'Multiresolution'){
+                    resolution = '<div class="pano-entry">' + res + '</div>'
+                } else {
+                    resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
+                };
+
+                pano = '<li id="' + panoId + '">' + img + '<div class="pano-data">' + fileName + resolution + date + '</div><a data-id="' + i + '" class="modal-bt blue select-pano">Select</a></li>'
+
+                $("#"+myid+" .pano-list ul").append(pano);
+                el.label = el.fileName;
+            });
+
+        },
+        clearSearch: function (ev) {                
+            $(ev.target).siblings('input').val('');
+            $("#"+this.myid+" .pano-list-ul li").show()
+        }
 
     });
 
