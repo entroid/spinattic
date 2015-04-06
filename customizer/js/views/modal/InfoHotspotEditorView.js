@@ -39,9 +39,10 @@ define([
 		    var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
 			hotSpotsDropDown.render();
 
+			$("#"+this.myid).find(".fa-close").remove();
+			$("#"+this.myid+" header .save-and-close").unbind("click")
+			$("#"+this.myid+" header .save-and-close").click(function(){
 			
-			$me.find("header .fa-close").click(function(){
-
 				var infoTitle = $me.find(".infotitle").val();
 				var infoText = $me.find(".infotext").val();
 				var hotspot = $me.data("spotdata");

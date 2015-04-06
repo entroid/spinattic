@@ -39,12 +39,12 @@ define([
 			selPos = selectedPos.split("|");
 			$("#"+elemid+" .dropdown h2 .default").css({
 				"background-image":"url(data/"+selectedurl+")",
-				"background-position": "-"+selPos[1]+"px "+selPos[0]+"px"
+				"background-position": "-"+selPos[0]+"px "+selPos[0]+"px"
 			});
 			
 			_.each(urls,function(elem,ind){
 				var mypos = pos[ind].split("|");
-				var backpos = "-"+mypos[1]+"px "+mypos[0]+"px";
+				var backpos = "-"+mypos[0]+"px "+mypos[0]+"px";
 				var $li = $('<li id="opt'+ind+'"><div class="default" style="background-image:url(data/'+elem+');background-position:'+backpos+'"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})

@@ -70,7 +70,6 @@ define([
                     modalView = ArrowHotspotEditorView;
                 break;
             }
-
             var __name = "spot"+this.hotspotCount;
             this.openWindowEditor(modalView);
             showWindow = this.showWindow;
@@ -85,8 +84,8 @@ define([
             var stylo = "hotspot_"+this.selectedset+"_"+myid;
             krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
             //krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
-            krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
-            //krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
+            //krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
+            krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
             $(".overlay").addClass("hotspotwindow");
 
@@ -104,10 +103,12 @@ define([
 
         },
         showWindow:function(elem) {
+            console.log(elem)
             $("#"+elem).fadeIn()
         },
 
         regPos:function(elem){
+            console.log("a")
             var krpano = document.getElementById("krpanoSWFObject");
             var ath = krpano.get("hotspot["+elem+"].ath");
             var atv = krpano.get("hotspot["+elem+"].atv");
@@ -150,7 +151,7 @@ define([
 
                 _.each(selected,function(elem,ind){ 
                     var crop = elem._crop.split("|")
-                    $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url(data/'+elem._url+');background-position:-'+crop[1]+'px 0"></div></div></li>');                    
+                    $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url(data/'+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
                 })
                 
                 $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');
