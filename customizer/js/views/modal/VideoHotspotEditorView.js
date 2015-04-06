@@ -22,8 +22,9 @@ define([
 			$("#"+this.myid+" header h2").text("Video Hotspot. ID "+num+":")
 			var compiledTemplate = _.template(hotspotvideo)
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
-			$("#"+this.myid+" header .fa-close").unbind("click")
-			$("#"+this.myid+" header .fa-close").click(function(){
+			$("#"+this.myid).find(".fa-close").remove();
+			$("#"+this.myid+" header .save-and-close").unbind("click")
+			$("#"+this.myid+" header .save-and-close").click(function(){
 				$(this).parents(".modal").fadeOut();
 			})
 
