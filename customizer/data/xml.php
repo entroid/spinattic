@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 require_once("../php/functions.php");
 
@@ -12,8 +12,6 @@ require_once("../php/functions.php");
 
 
 session_start();
-$_SESSION['usr'] = 96;
-
 $user_id = $_SESSION['usr'];
 
 $custom_attrs = 0;
@@ -49,7 +47,15 @@ if($user_id != ''){
 			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);
 		
 			break;			
+
+		case 'htspts_styles':
+			$id = $_GET['id'];
+			$prev_tag_ident = 0;
+			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);
 		
+			break;
+					
+			
 		default: //xml de un tour
 			
 			$id = $_GET['id'];
@@ -197,14 +203,18 @@ function get_template($template, $kind, $prev_tag_ident){
 			break;
 		case 'htspts':
 			$ssqlp = "SELECT * FROM customizer_templates_htspts where htspt_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			break;	
+		case 'htspts_styles':
+			$ssqlp = "SELECT * FROM customizer_free_htspts_styles where style_id = ".$id." and prev_tag_ident = ".$prev_tag_ident;
 			break;			
 	}
 	
 	
 	$result = mysql_query($ssqlp);
 
-
+	
 	while($row = mysql_fetch_array($result)){
+		
 
 		$devolver_final = 1;
 
@@ -237,13 +247,16 @@ function get_template($template, $kind, $prev_tag_ident){
 
 		}
 
+		
 		//Imprimo attibutes y valor dentro del tag (si es text, no)
 		if($row["attr"] == 'text'){ //si es text, es codigo dentro del tag, lo almaceno pero no lo muestro, se inserta en el cierre del tag
 			$in_tag_code = '
 			'.$row["value"].'
 			';
 		}else{
-			$final_xml .= ' '.$row["attr"].'="'.$row["value"].'"';
+			if($row["attr"] != ''){ //Si el atributo no es vacío, imprimo el par attr - value, sino, solo se imprime el tag, por lo que salteo la impresion de values
+				$final_xml .= ' '.$row["attr"].'="'.$row["value"].'"';
+			}
 		}
 
 
@@ -331,7 +344,9 @@ function get_xml($segment, $kind, $prev_tag_ident){
 			'.$row["value"].'
 			';
 		}else{
-			$final_xml .= ' '.$row["attr"].'="'.$row["value"].'"';
+			if($row["attr"] != ''){ //Si el atributo no es vacío, imprimo el par attr - value, sino, solo se imprime el tag, por lo que salteo la impresion de values
+				$final_xml .= ' '.$row["attr"].'="'.$row["value"].'"';
+			}
 		}
 		
 		

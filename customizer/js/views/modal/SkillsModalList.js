@@ -140,13 +140,21 @@ define([
             }
             $elem.text("adding...")
             $.ajax({
-                url:"data/xml.php?t=skills&c=1&id="+skill.id,
+                url:"data/xml.php?t=skills&id="+skill.id,
                  dataType: "html",
                  success:function(data){
+                    console.log(data)
                     var SkillItemModel = Backbone.Model.extend({});
-
                     var x2js = new X2JS({attributePrefix:"_"});
-                    var tourSkill =  x2js.xml_str2json( data );
+                    var tourSkillMain =  x2js.xml_str2json( data );
+                    var tourSkill;
+                        for(var key in tourSkillMain) {
+                            if(tourSkillMain.hasOwnProperty(key)) {
+                                tourSkill = tourSkillMain[key];
+                                
+                            }
+                        }
+                    window.tourSkill = tourSkill;
                     if(tourSkill.contextmenu){
                         if(tourSkill.contextmenu.item.length == undefined){
                             var items = []
