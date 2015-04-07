@@ -89,8 +89,11 @@
             border-top: 1px solid $middle-gray;
             text-align: center;
             text-transform: uppercase;
-            height: 20px;
+            height: 25px;
             font-size: 1rem;
+              margin: 0 -20px -20px;
+              cursor: pointer;
+            padding-top: 5px;
 
             span{
                 font-size: 1.6rem;
@@ -232,6 +235,20 @@
             &.arrow-hotspot{
                 width: 405px;
             }
+
+            .hotspotarrow {
+
+                label {
+                    font-weight: bold;
+                    margin-right: 10px;
+                    font-size: 1.1em;
+                }
+
+                input {
+                    border: 1px solid $middle-gray;
+                }
+            }
+
             .inner-modal{
                 background: rgba(0,0,0,0.5);
                 
@@ -241,27 +258,46 @@
                     background: #000;
 
                     h2{
-                        padding: 7px;
+                        padding: 4px;
+                        margin-bottom: 0;
+                        overflow: hidden;
+
+                        .default{
+                              float: left;
+                        }
+
+                        span {
+                            font-size: 1em;
+                            margin: 10px 2px;
+                        }
                     }
                     ul{
                         top: 22px;
                     }
 
-                &.style{
+                    &.style{
                         width: 70px;
                         float: left;
                         margin: 0;
-
-                        h2, li{
-                        height: 32px;
-                        }
 
                         h2{
                             min-width: 55px;
                         }
 
                         ul{
-                            top: 45px;
+                            top: 41px;
+
+                            li{
+                                height: auto;
+
+                                &:hover{
+                                    background-color: $dark-gray4;
+                                }
+
+                                .default{
+                                    margin: 0 auto;
+                                }
+                            }
                         }
                     }   
                 }
@@ -285,6 +321,7 @@
                     }
 
                 }
+
                 #urllinkhotspot{
                     width: 147px;
                     position: absolute;
@@ -302,12 +339,13 @@
 
                 label[for="style"]{
                     float: left;
-                    line-height: 30px;
+                    margin-top: 15px;
                 }
 
                 label[for="rotate"]{
                     float: left;
                     clear: left;
+                    margin-top: 9px;
                 }
 
                 textarea{
@@ -315,7 +353,7 @@
                 }
 
                 #rotate{
-                    width: 50px;
+                    width: 60px;
                     float: left;
                 }
 
@@ -324,23 +362,55 @@
                 }
             }
 
-            .inner-modal>div{
-                padding: 10px 20px 10px 10px;
-            }
-
             .default{
                 width: 32px;
                 height: 32px;
-                float: left;
             }
         }
 
         .hotspot-column{
-            width: 185px;
+            width: 50%;
             float: left;
             height: 100%;
             padding-bottom: 20px;
+            box-sizing: border-box;
+
+            .row {
+                height: 42px;
+                margin-bottom: 10px;
+
+                label {
+                    width: 52px;
+                }
+            }
         }   
+        
+        .ui-autocomplete {
+            background-color: $dark-gray5;
+            width: 100% !important;
+            box-sizing: border-box;
+            border: 1px solid $middle-gray;
+            padding: 5px 0;
+
+            li{
+                padding: 5px 10px;
+
+                &:hover {
+                    background-color: $dark-gray;
+                }
+            }
+
+            img{
+                width: 50px;
+                height: 50px;
+            }
+            dl {
+                  display: inline-block;
+                  vertical-align: top;
+                  margin-left: 10px;
+                  font-size: 1.1em;
+            }
+        }
     }
 
     &.skillWindow{
@@ -427,7 +497,7 @@
 
     #panoManager{
         width: 650px;
-        border: 4px dashed #535353;
+        border: 4px dashed $light-gray;
 
         header {
             h2 {

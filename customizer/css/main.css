@@ -2784,7 +2784,7 @@ textarea {
   color: #FFF; }
 .dropdown h2 {
   min-width: 75px;
-  border: 1px solid #535353;
+  border: 1px solid #333333;
   padding: 5px; }
 .dropdown h2 .arrow {
   margin-top: 4px; }
@@ -2801,7 +2801,7 @@ textarea {
   margin-bottom: 0;
   height: 20px;
   line-height: 20px;
-  border: 1px solid #535353; }
+  border: 1px solid #333333; }
 
 /* inputs */
 .input-label-3column {
@@ -4189,8 +4189,11 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-top: 1px solid #333333;
   text-align: center;
   text-transform: uppercase;
-  height: 20px;
-  font-size: 1rem; }
+  height: 25px;
+  font-size: 1rem;
+  margin: 0 -20px -20px;
+  cursor: pointer;
+  padding-top: 5px; }
 .overlay .modal .removeHotspot span {
   font-size: 1.6rem;
   margin-right: 10px; }
@@ -4282,6 +4285,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-color: #333; }
 .overlay.hotspotwindow .modal.arrow-hotspot {
   width: 405px; }
+.overlay.hotspotwindow .modal .hotspotarrow label {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.1em; }
+.overlay.hotspotwindow .modal .hotspotarrow input {
+  border: 1px solid #333333; }
 .overlay.hotspotwindow .modal .inner-modal {
   background: rgba(0, 0, 0, 0.5); }
 .overlay.hotspotwindow .modal .inner-modal .dropdown {
@@ -4289,19 +4298,30 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin: 25px 0px 10px 0;
   background: #000; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown h2 {
-  padding: 7px; }
+  padding: 4px;
+  margin-bottom: 0;
+  overflow: hidden; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown h2 .default {
+  float: left; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown h2 span {
+  font-size: 1em;
+  margin: 10px 2px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown ul {
   top: 22px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style {
   width: 70px;
   float: left;
   margin: 0; }
-.overlay.hotspotwindow .modal .inner-modal .dropdown.style h2, .overlay.hotspotwindow .modal .inner-modal .dropdown.style li {
-  height: 32px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style h2 {
   min-width: 55px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul {
-  top: 45px; }
+  top: 41px; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li {
+  height: auto; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li:hover {
+  background-color: #2b2b2b; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li .default {
+  margin: 0 auto; }
 .overlay.hotspotwindow .modal .inner-modal figure {
   position: relative;
   margin-bottom: 10px;
@@ -4325,28 +4345,50 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   line-height: 20px; }
 .overlay.hotspotwindow .modal .inner-modal label[for="style"] {
   float: left;
-  line-height: 30px; }
+  margin-top: 15px; }
 .overlay.hotspotwindow .modal .inner-modal label[for="rotate"] {
   float: left;
-  clear: left; }
+  clear: left;
+  margin-top: 9px; }
 .overlay.hotspotwindow .modal .inner-modal textarea {
   height: 140px; }
 .overlay.hotspotwindow .modal .inner-modal #rotate {
-  width: 50px;
+  width: 60px;
   float: left; }
 .overlay.hotspotwindow .modal .inner-modal p {
   clear: left; }
-.overlay.hotspotwindow .modal .inner-modal > div {
-  padding: 10px 20px 10px 10px; }
 .overlay.hotspotwindow .modal .default {
   width: 32px;
-  height: 32px;
-  float: left; }
+  height: 32px; }
 .overlay.hotspotwindow .hotspot-column {
-  width: 185px;
+  width: 50%;
   float: left;
   height: 100%;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  box-sizing: border-box; }
+.overlay.hotspotwindow .hotspot-column .row {
+  height: 42px;
+  margin-bottom: 10px; }
+.overlay.hotspotwindow .hotspot-column .row label {
+  width: 52px; }
+.overlay.hotspotwindow .ui-autocomplete {
+  background-color: #111;
+  width: 100% !important;
+  box-sizing: border-box;
+  border: 1px solid #333333;
+  padding: 5px 0; }
+.overlay.hotspotwindow .ui-autocomplete li {
+  padding: 5px 10px; }
+.overlay.hotspotwindow .ui-autocomplete li:hover {
+  background-color: #232323; }
+.overlay.hotspotwindow .ui-autocomplete img {
+  width: 50px;
+  height: 50px; }
+.overlay.hotspotwindow .ui-autocomplete dl {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+  font-size: 1.1em; }
 .overlay.skillWindow {
   background-color: transparent;
   width: 0px;
