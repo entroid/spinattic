@@ -83,6 +83,7 @@ textarea{
 		min-width: 75px;
 		border: 1px solid $middle-gray;
 		padding: 5px;
+        margin-bottom: 0;
 
 		.arrow {
 			margin-top: 4px;
@@ -99,11 +100,15 @@ textarea{
 		width: 100%;
 
 		li{
-			padding: 0;
+			padding: 4px;
 			margin-bottom: 0;
 			height: 20px;
 			line-height: 20px;
 			border: 1px solid $middle-gray;
+
+            &:hover{
+                background-color: $dark-gray4;
+            }
 		}
 	}
 }
@@ -562,9 +567,21 @@ textarea{
     }
 }
 
+.title-banner{
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    background-color: $middle-gray;
+    padding: 8px 0;
+    border: 1px solid black;
+    width: 100%;
+}
+
 /* general fonts */
 .fontBold13em{
     font-size: 1.3em;
     font-weight: bold;
 }
+
+
 

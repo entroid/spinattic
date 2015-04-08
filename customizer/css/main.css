@@ -2785,7 +2785,8 @@ textarea {
 .dropdown h2 {
   min-width: 75px;
   border: 1px solid #333333;
-  padding: 5px; }
+  padding: 5px;
+  margin-bottom: 0; }
 .dropdown h2 .arrow {
   margin-top: 4px; }
 .dropdown ul {
@@ -2797,11 +2798,13 @@ textarea {
   background: #000;
   width: 100%; }
 .dropdown ul li {
-  padding: 0;
+  padding: 4px;
   margin-bottom: 0;
   height: 20px;
   line-height: 20px;
   border: 1px solid #333333; }
+.dropdown ul li:hover {
+  background-color: #2b2b2b; }
 
 /* inputs */
 .input-label-3column {
@@ -3174,6 +3177,15 @@ textarea {
   line-height: 1.2em; }
 .pano-date span {
   font-weight: normal; }
+
+.title-banner {
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #333333;
+  padding: 8px 0;
+  border: 1px solid black;
+  width: 100%; }
 
 /* general fonts */
 .fontBold13em {
@@ -4250,7 +4262,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   min-height: 32px;
   position: relative;
   margin-bottom: 5px; }
-.overlay .modal .editor-group-2col .line-group input {
+.overlay .modal .editor-group-2col .line-group input, .overlay .modal .editor-group-2col .line-group .right-el {
   position: absolute;
   top: 0;
   right: initial;
@@ -4318,8 +4330,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   top: 41px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li {
   height: auto; }
-.overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li:hover {
-  background-color: #2b2b2b; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li .default {
   margin: 0 auto; }
 .overlay.hotspotwindow .modal .inner-modal figure {
@@ -4576,6 +4586,24 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin: 2px 0; }
 .overlay #pano-search-results ul li dl dd {
   font-style: italic; }
+.overlay .loading-bar-skill-editor .dropdown {
+  background-color: #111;
+  width: 100px; }
+.overlay .loading-bar-skill-editor .dropdown h2 {
+  font-size: 1.2em; }
+.overlay .loading-bar-skill-editor .dropdown li {
+  font-size: 1.1em;
+  text-align: center; }
+.overlay .loading-bar-skill-editor .scrollwrapper {
+  margin: 0;
+  padding-right: 0; }
+.overlay .loading-bar-skill-editor .scrollwrapper .inner-modal-wrapper {
+  padding: 30px; }
+.overlay .title-banner {
+  padding: 8px 30px;
+  margin-left: -32px; }
+.overlay #skillsEditor-2 .inner-modal {
+  padding: 0; }
 
 section.main-section {
   position: relative; }

@@ -186,7 +186,7 @@
                 position: relative;
                 margin-bottom: 5px;
 
-                input{
+                input, .right-el{
                     @include absolute(0,initial,initial, 60%);
                 }
             }
@@ -289,10 +289,6 @@
 
                             li{
                                 height: auto;
-
-                                &:hover{
-                                    background-color: $dark-gray4;
-                                }
 
                                 .default{
                                     margin: 0 auto;
@@ -710,6 +706,42 @@
                     }
                 }
             }
+        }
+    }
+
+    .loading-bar-skill-editor{
+        .dropdown{
+            background-color: $dark-gray5;
+            width: 100px;
+
+            h2{
+                font-size: 1.2em;
+            }
+
+            li{
+                font-size: 1.1em;
+                text-align: center;
+            }
+        }
+
+        .scrollwrapper{
+            margin: 0;
+            padding-right:0;
+            
+            .inner-modal-wrapper{
+                padding: 30px;
+            }
+        }
+    }
+
+    .title-banner{
+        padding: 8px 30px;
+        margin-left: -32px;
+    }
+
+    #skillsEditor-2{
+        .inner-modal{
+            padding:0;
         }
     }
 }
