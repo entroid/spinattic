@@ -2,9 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'helpers/HelpFunctions'
-
-], function($, _, Backbone,HelpFunctions){
+	'helpers/HelpFunctions',
+	'helpers/ManageData'
+], function($, _, Backbone,HelpFunctions,ManageData){
 
 	var HotSpotsDropDown = Backbone.View.extend({
 
@@ -61,6 +61,13 @@ define([
 		 		$("#"+elemid+" .dropdown h2 .default").css("background-image",bk);
 		 		var krpano = document.getElementById("krpanoSWFObject");
 		 		krpano.call("hotspot["+elemid+"].loadStyle("+stylesel+");");
+		 		
+		 		var hotspot = $("#"+elemid).data("spotdata");
+            	hotspot._selectedSet = stylesel;
+            	$("#"+elemid).data("spotdata",hotspot);
+            	var manageData = new ManageData();
+            	manageData.changeDataInHotSpot( $("#tour").data("scene")._name,hotspot)
+
 		 		console.log(elemid)
 		 		console.log(selectedset)
 
