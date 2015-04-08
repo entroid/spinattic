@@ -15,7 +15,8 @@ define([
 			
 
 		var urls = [];
-		var pos = []
+		var pos = [];
+		var names = [];
 		var selectedurl;
 		var selectedPos;
 		var styles = tourData.krpano.style;
@@ -27,6 +28,7 @@ define([
 				if(elem._kind == kind){
 					urls.push(elem._url);
 					pos.push(elem._crop);
+					names.push(elem._name);
 					var name = elem._name;
 	                name = name.split("_");
 	                if(name[1] == selectedset){
@@ -45,7 +47,7 @@ define([
 			_.each(urls,function(elem,ind){
 				var mypos = pos[ind].split("|");
 				var backpos = "-"+mypos[0]+"px "+mypos[0]+"px";
-				var $li = $('<li id="opt'+ind+'"><div class="default" style="background-image:url(data/'+elem+');background-position:'+backpos+'"></div></li>');
+				var $li = $('<li id="opt'+ind+'" data-name="'+names[ind]+'"><div class="default" style="background-image:url(data/'+elem+');background-position:'+backpos+'"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})
 
@@ -55,7 +57,13 @@ define([
 
 		 	$("#"+elemid+" .dropdown li").click(function(){
 		 		var bk = $(this).find(".default").css("background-image");
+		 		var stylesel = $(this).data("name");
 		 		$("#"+elemid+" .dropdown h2 .default").css("background-image",bk);
+		 		var krpano = document.getElementById("krpanoSWFObject");
+		 		krpano.call("hotspot["+elemid+"].loadStyle("+stylesel+");");
+		 		console.log(elemid)
+		 		console.log(selectedset)
+
 		 	})
 
 		}
