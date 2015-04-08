@@ -47,7 +47,23 @@ define([
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.toolTip("#sceneMenu li img","footer");
 		
-			$("#sceneMenu").sortable();
+			$("#sceneMenu").sortable({
+				beforeStop:function(evt,ui){
+
+					var scenes = []
+					_.each($("#sceneMenu li"),function(el,i){
+						if($(el).data("scene")){
+							var scene = $(el).data("scene");
+							if($(el).data("hotspots")){
+								var hotspots = $(el).data("hotspots");
+								scene.hotspots = hotspots;
+							}
+							scenes.push(scene);
+						}
+					})
+					tourData.krpano.scene = scenes;
+				}
+			});
 
 			liwidth = $("#sceneMenu li").outerWidth();
 			liright = $("#sceneMenu li").css("margin-right");

@@ -84,7 +84,7 @@ define([
             var stylo = "hotspot_"+this.selectedset+"_"+myid;
             krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
             //krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
-            //krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
+            krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
             $(".overlay").addClass("hotspotwindow");
@@ -108,7 +108,6 @@ define([
         },
 
         regPos:function(elem){
-            console.log("a")
             var krpano = document.getElementById("krpanoSWFObject");
             var ath = krpano.get("hotspot["+elem+"].ath");
             var atv = krpano.get("hotspot["+elem+"].atv");
