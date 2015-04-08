@@ -10,10 +10,10 @@ define([
 	'views/main/TourView',
 	'models/main/TourModel',
 	'views/sidebar/SceneSettingsMenuView',
-	'views/sidebar/ViewSettingsMenuView'
-	
-	
-], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView){
+	'views/sidebar/ViewSettingsMenuView',
+	'helpers/ManageData'
+
+], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView,ManageData){
 
 	var SceneMenuView = Backbone.View.extend({
 		el: $("footer.main-footer"),
@@ -50,18 +50,9 @@ define([
 			$("#sceneMenu").sortable({
 				beforeStop:function(evt,ui){
 
-					var scenes = []
-					_.each($("#sceneMenu li"),function(el,i){
-						if($(el).data("scene")){
-							var scene = $(el).data("scene");
-							if($(el).data("hotspots")){
-								var hotspots = $(el).data("hotspots");
-								scene.hotspots = hotspots;
-							}
-							scenes.push(scene);
-						}
-					})
-					tourData.krpano.scene = scenes;
+					var manageData = new ManageData();
+					manageData.SaveNewSceneOrder()
+
 				}
 			});
 
@@ -81,7 +72,15 @@ define([
 
 		removeItem:function(e){
 			$(e.target).parent().fadeOut(function(){
+				var thisname = $(this).data("scene")._scene_id;
 				this.remove();
+
+				if($("#tour").data("scene")._scene_id == thisname){
+					$("#sceneMenu li:eq(0) img").trigger("click");
+				}
+
+				var manageData = new ManageData();
+				manageData.SaveNewSceneOrder()
 			})
 		},
 
@@ -113,8 +112,8 @@ define([
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
 					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._selectedSet+");");
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
-		    		krpano.call('set(hotspot['+elem._name+'].onclick, js(showWindow('+elem._name+')) );');
-		    		krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
+					krpano.call('set(hotspot['+elem._name+'].onclick, js(showWindow('+elem._name+')) );');
+					krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
 
 				})
 			}
