@@ -10,18 +10,16 @@ require.config({
     x2js:'lib/x2js/xml2json.min',
     jqueryui:'lib/jqueryui/jquery-ui',
     filedrop:'lib/filedrop/jquery.filedrop',
+    colorpicker:'lib/jquery.colorpicker/jquery.colorpicker',
   },
   shim:{
     mCustomScrollbar:['jquery'],
     jqueryui:['jquery'],
-    filedrop:['jquery']
-  },
-  map:{
-     '*': {
-            'alias': 'views/footer/PanoMenuFooterView2'
-        }
+    filedrop:['jquery'],
+    colorpicker:['jquery','jqueryui'],
 
   }
+
 });
 
 require([

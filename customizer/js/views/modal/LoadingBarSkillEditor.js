@@ -6,9 +6,11 @@ define([
 	'text!templates/modal/loadingBarSkillEditor.html',
 	'helpers/HelpFunctions',
 	'views/modal/SingleUploader',
-	'mCustomScrollbar'  
+	'mCustomScrollbar',
+	'jqueryui',
+	'colorpicker'  
 
-], function($, _, Backbone,Modal,loadingBarSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar){
+], function($, _, Backbone,Modal,loadingBarSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar,jqueryui,colorpicker){
 
 	var LoadingBarSkillEditor = Modal.extend({
 		
@@ -37,7 +39,8 @@ define([
 
 			var helpFunctions = new HelpFunctions();
             helpFunctions.dropDown(".dropdown");
-
+            $('#loading-bar-back-bgcolor').colorpicker();
+            $('#loading-bar-bar-bgcolor').colorpicker();
 			console.log(tourSkill)
 			
 		},
