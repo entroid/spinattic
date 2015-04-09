@@ -51,7 +51,6 @@ define([
                     elem.label = elem._title;
             }) 
 
-            console.log(scenes)
             $("#"+myid+" .search-scenes").autocomplete({
                 source:scenes,
                  appendTo:"#scenes-search-results-"+num,

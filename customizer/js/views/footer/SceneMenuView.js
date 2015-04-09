@@ -117,10 +117,10 @@ define([
 
 				})
 			}
-			
-
 			$("#sceneMenu li").removeClass("selected");
 			$thisli.addClass("selected")
+
+		$(".hotspotwindow .modal").fadeOut();
 
 		}
 		
