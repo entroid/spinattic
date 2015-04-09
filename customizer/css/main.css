@@ -4194,8 +4194,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   background-color: #111;
   border: 1px solid black; }
 .overlay .modal textarea {
-  font-size: 1.2rem; }
-.overlay .modal .removeHotspot {
+  /*font-size: 1.2rem;*/ }
+.overlay .modal .hotspotsFooter {
   background: rgba(0, 0, 0, 0.8);
   clear: both;
   border-top: 1px solid #333333;
@@ -4203,12 +4203,18 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   text-transform: uppercase;
   height: 25px;
   font-size: 1rem;
-  margin: 0 -20px -20px;
-  cursor: pointer;
-  padding-top: 5px; }
-.overlay .modal .removeHotspot span {
-  font-size: 1.6rem;
+  margin: 0 -20px -20px; }
+.overlay .modal .hotspotsFooter span {
+  font-size: 1.5rem;
   margin-right: 10px; }
+.overlay .modal .hotspotsFooter .removeHotspot, .overlay .modal .hotspotsFooter .testHotspot {
+  cursor: pointer;
+  padding: 5px;
+  width: 50%;
+  float: left;
+  box-sizing: border-box; }
+.overlay .modal .hotspotsFooter .removeHotspot:hover, .overlay .modal .hotspotsFooter .testHotspot:hover {
+  background-color: #2b2b2b; }
 .overlay .modal .skills {
   height: 350px;
   clear: both;
@@ -4297,37 +4303,42 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-color: #333; }
 .overlay.hotspotwindow .modal.arrow-hotspot {
   width: 405px; }
-.overlay.hotspotwindow .modal .hotspotarrow label {
+.overlay.hotspotwindow .modal label {
   font-weight: bold;
   margin-right: 10px;
   font-size: 1.1em; }
-.overlay.hotspotwindow .modal .hotspotarrow input {
+.overlay.hotspotwindow .modal input {
   border: 1px solid #333333; }
 .overlay.hotspotwindow .modal .inner-modal {
   background: rgba(0, 0, 0, 0.5); }
 .overlay.hotspotwindow .modal .inner-modal .dropdown {
-  width: 192px;
-  margin: 25px 0px 10px 0;
-  background: #000; }
+  background: #000;
+  margin: 0 auto 10px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown h2 {
   padding: 4px;
   margin-bottom: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 1.2em; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown h2 .default {
   float: left; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown h2 span {
   font-size: 1em;
-  margin: 10px 2px; }
+  margin: 5px 2px;
+  display: inline-block; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown h2 .fa-caret-down {
+  font-size: 1.3em; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown ul {
-  top: 22px; }
+  top: 34px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style {
   width: 70px;
   float: left;
   margin: 0; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style h2 {
   min-width: 55px; }
+.overlay.hotspotwindow .modal .inner-modal .dropdown.style h2 span {
+  margin: 10px 2px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul {
-  top: 41px; }
+  top: 44px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li {
   height: auto; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown.style ul li .default {
@@ -4345,14 +4356,17 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   left: 0px;
   width: 100%;
   text-align: center; }
-.overlay.hotspotwindow .modal .inner-modal #urllinkhotspot {
-  width: 147px;
-  position: absolute; }
+.overlay.hotspotwindow .modal .inner-modal .urlLink {
+  height: 40px; }
+.overlay.hotspotwindow .modal .inner-modal .urlLink #urllinkhotspot {
+  width: 85%; }
+.overlay.hotspotwindow .modal .inner-modal .urlLink label[for="urllinkhotspot"] {
+  width: 15%;
+  float: left;
+  margin: 11px 0; }
 .overlay.hotspotwindow .modal .inner-modal label[for="urlvideohotspot"] {
   margin-bottom: 10px;
   display: block; }
-.overlay.hotspotwindow .modal .inner-modal label[for="urllinkhotspot"] {
-  line-height: 20px; }
 .overlay.hotspotwindow .modal .inner-modal label[for="style"] {
   float: left;
   margin-top: 15px; }
@@ -4374,7 +4388,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   width: 50%;
   float: left;
   height: 100%;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
   box-sizing: border-box; }
 .overlay.hotspotwindow .hotspot-column .row {
   height: 42px;
