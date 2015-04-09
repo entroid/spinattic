@@ -584,12 +584,18 @@ textarea{
 }
 
 .ui-colorpicker{
-    background-color: white;
+    background-color: $dark-gray-2;
     padding: 10px;
+    border: 1px solid $light-gray;
+    color: white;
 
     .ui-button{
         background-color: white;
         border: 1px solid $lighter-gray;
+    }
+
+    .ui-colorpicker-border, .ui-colorpicker-bar-layer-pointer{
+        border: 1px solid $light-gray;
     }
 }
 

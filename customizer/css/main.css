@@ -3367,11 +3367,15 @@ textarea {
   font-weight: bold; }
 
 .ui-colorpicker {
-  background-color: white;
-  padding: 10px; }
+  background-color: #1a1a1a;
+  padding: 10px;
+  border: 1px solid #535353;
+  color: white; }
 .ui-colorpicker .ui-button {
   background-color: white;
   border: 1px solid #e0e0e0; }
+.ui-colorpicker .ui-colorpicker-border, .ui-colorpicker .ui-colorpicker-bar-layer-pointer {
+  border: 1px solid #535353; }
 
 header.main-header {
   z-index: 2;
