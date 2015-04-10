@@ -5,10 +5,11 @@ define([
 	'text!templates/sidebar/map.html',
 	'models/main/ModalModel',
 	'views/modal/AlertView',
-	'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=fals',
+	'helpers/ManageData',
+    'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=fals',
 	
 
-], function($, _, Backbone,map,ModalModel,AlertView,MapModalView){
+], function($, _, Backbone,map,ModalModel,AlertView,ManageData){
 
 	var MapView = Backbone.View.extend({
 		
@@ -100,6 +101,8 @@ define([
 		},
 
 		 placeMarker: function (location) {
+
+		 	var myid = this.myid;
 			// first remove all markers if there are any
 			this.deleteOverlays();
 			this.marker = new google.maps.Marker({
@@ -109,13 +112,17 @@ define([
 
 			// add marker in markers array
 			this.markersArray.push(this.marker);
+			var manageData = new ManageData();
 			if(this.param){
 				if(this.param.param == "scene"){
-				tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();
-				tourData.krpano.scene[this.param.indice]._lng = $("#"+this.myid+" .lngFld").val();
+					var indice = this.param.indice;
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+this.myid+" .lngFld").val(),indice)
+				//tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();
+				//tourData.krpano.scene[this.param.indice]._lng = $("#"+this.myid+" .lngFld").val();
 				}else{
-					tourData.krpano.settings._lat = $("#"+this.myid+" .latFld").val()
-					tourData.krpano.settings._long = $("#"+this.myid+" .lngFld").val()
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+this.myid+" .lngFld").val())
+					//tourData.krpano.settings._lat = $("#"+this.myid+" .latFld").val()
+					//tourData.krpano.settings._long = $("#"+this.myid+" .lngFld").val()
 				}
 			}
 			//map.setCenter(location);
