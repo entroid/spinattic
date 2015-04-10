@@ -98,6 +98,10 @@ define([
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
 			},
 
+			this.saveTourData = function(elem,val){
+				tourData.krpano.datatour[elem] = val;
+			}
+
 			this.pushSkill = function(skill){
 				var first= function(obj) {
 					for (var a in obj) return a;

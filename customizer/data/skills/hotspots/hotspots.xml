@@ -122,6 +122,29 @@
 </action>
 
 <action name="closeinfo">set(plugin[info_text].visible,false);</action>
+
+<action name="draghotspot">
+	<![CDATA[
+		if(%1 != dragging,
+			spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery);
+			sub(drag_adjustx, mouse.stagex, hotspotcenterx); 
+			sub(drag_adjusty, mouse.stagey, hotspotcentery); 
+			draghotspot(dragging);
+		  ,
+			if(pressed,                                                                
+				sub(dx, mouse.stagex, drag_adjustx);
+				sub(dy, mouse.stagey, drag_adjusty);
+				screentosphere(dx, dy, ath, atv);
+				copy(print_ath, ath);
+				copy(print_atv, atv);
+				roundval(print_ath, 3);
+				roundval(print_atv, 3);				
+				delayedcall(0, draghotspot(dragging) );
+			  );
+		  );
+	]]>
+	</action>
+	
 <style name="infoText" url="%SWFPATH%/plugins/textfield.swf" width="450" keep="true" align="center" autosize="true" css="data:cssInfo" padding="20" background="true" backgroundcolor="0x000000" backgroundalpha="0.8" handcursor="false" selectable="true" shadow="1.0" shadowrange="2.0" shadowangle="45" shadowcolor="0xFFFFFF" shadowalpha="0.7" onloaded="if(device.mobile,set(css,data:cssInfo_mobile));" />
 <data name="cssInfo">
 h1{font-size:18px;font-family:arial;color:#FFFFFF;font-weight:bold;}

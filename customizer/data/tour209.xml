@@ -29,6 +29,9 @@
 				</mobile>
 
 			</image>
+			<hotspot style="hotspot_set1_arrow" name="name" ath="0" atv="0" linkedscene="linkedscene" onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );"></hotspot>
+			<hotspot style="hotspot_set1_arrow" name="name" ath="220" atv="50" linkedscene="linkedscene" onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );"></hotspot>
+		
 		</scene>
 		<scene segment="SCENES" scene_id="362" name="scene_362" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/226/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
 			<view segment="SCENES" hlookat="2" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.6" fovmin="60" fovmax="120" limitview="auto"  />
