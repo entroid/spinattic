@@ -3149,7 +3149,7 @@ textarea {
 .uploader-btn {
   height: 20px;
   color: #FFF;
-  font-size: 1.3em;
+  font-size: 1.2rem;
   min-width: 75px;
   border-radius: 7px;
   line-height: 20px;
@@ -4870,8 +4870,9 @@ section.main-section .inner.withTour {
   width: 185px;
   margin-top: 6px; }
 .dragger-wrapper .inner-dragger #panos-format h2 {
-  font-size: 1.2rem;
-  margin-bottom: 5px; }
+  font-size: 1.2rem; }
+.dragger-wrapper .inner-dragger #panos-format ul {
+  top: 23px; }
 .dragger-wrapper .inner-dragger .tile-size {
   margin-top: 10px; }
 .dragger-wrapper .inner-dragger input {
@@ -4991,6 +4992,13 @@ section.main-section .inner.withTour {
   margin-top: 10px; }
 .dragger-wrapper .inner-dragger .uploading-drop-zone .format {
   display: none; }
+.dragger-wrapper .cancel {
+  margin-left: -58px;
+  position: absolute;
+  top: initial;
+  right: initial;
+  bottom: 40px;
+  left: 50%; }
 
 #tour {
   position: absolute;

@@ -30,10 +30,11 @@ define([
             _.bindAll(this);
         },
         events:{
-            "input .tile-size input":"maxTile"
+            "input .tile-size input":"maxTile",
+            "click .dragger-wrapper .cancel":"removeView"
         },
 
-        render: function(){
+        render: function(cancel){
             este = this;
             este.gNew_tour = this.model.get("gNewTour");
 
@@ -45,6 +46,10 @@ define([
 
             var compiledTemplate = _.template(upload);
             $(this.el).append( compiledTemplate ); 
+
+            if (cancel) {
+                $('.dragger-wrapper .cancel').removeClass('none');
+            }
             var helpFunctions = new HelpFunctions();
             helpFunctions.dropDown(".dropdown");
             var last_zindex  = null;
@@ -462,7 +467,7 @@ define([
         },
 
         removeView:function(){
-            this.undelegateEvents();
+            this.undelegateEvents();            
 
             $(".dragger-wrapper").animate({
                 'top' : '0'

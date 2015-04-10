@@ -62,11 +62,12 @@ define([
                 this.uploaderview.removeView();                
             }else{
                 var UploaderModel = Backbone.Model.extend({});
+                var cancel = true;
 
                 uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
 
                 this.uploaderview = new UploaderView({model:uploaderModer});
-                this.uploaderview.render();
+                this.uploaderview.render(cancel);
             }
         },
 
