@@ -39,6 +39,9 @@ define([
 		  var checkEvent = "click .check-group li";
 		  this.events[checkEvent] = "CheckUncheck";
 
+		  var liddEvent = "click  #virtualTourSettings-menu .general-settings .dropdown li";
+		  this.events[liddEvent] = "saveDD";
+
 		  this.delegateEvents();
 		  
 		},
@@ -159,6 +162,11 @@ define([
 			}else{
 				manageData.saveTourData($chkbox.attr("id"),"off")
 			}
+		},
+
+		saveDD:function(e){
+			var manageData = new ManageData();
+			manageData.saveTourData($(e.target).parent().attr("class"),$(e.target).text())
 		}
 
 
