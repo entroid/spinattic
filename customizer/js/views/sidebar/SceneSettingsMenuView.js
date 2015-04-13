@@ -67,8 +67,17 @@ define([
 			var param = "scene";
 
 			this.mapView.render(elem,{param:param,indice:indice});
-
-	
+			var me = this;
+				$("#sceneMenu li").click(function(){
+					me.mapView.removeMap();
+					var MapModel = Backbone.Model.extend({});
+					console.log($(this).data("scene")._lat)
+					console.log($(this).data("scene")._lng)
+					var mapModel = new MapModel({lat:$(this).data("scene")._lat,lng:$(this).data("scene")._lng})
+					me.mapView = new MapView({model:mapModel});
+					me.mapView.render(elem,{param:param,indice:$(this).index()});
+			
+				})
 			},
 
 		updateData:function(e){
@@ -86,7 +95,7 @@ define([
 		},
 
 		zoomMap:function(){
-
+			console.log(this)
 			var me = this;
 			var MapModel = Backbone.Model.extend({});
 			var mapModel = new MapModel({lat:$("#sceneSettings-menu .latFld").val(),lng:$("#sceneSettings-menu .lngFld").val(),elemToAttach:"sceneSettings-menu"})

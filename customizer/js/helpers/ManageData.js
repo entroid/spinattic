@@ -122,10 +122,12 @@ define([
 			}
 
 			this.mapData = function(lat, lng, sceneIndex){
-
+				console.log(sceneIndex)
 				if(sceneIndex != undefined){
 					tourData.krpano.scene[sceneIndex]._lat = lat;
 					tourData.krpano.scene[sceneIndex]._lng = lng;
+					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lat = lat;
+					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lng = lng;
 				}else{
 					tourData.krpano.settings._lat = lat;
 					tourData.krpano.settings._long = lng;

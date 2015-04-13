@@ -158,13 +158,9 @@ this.refreshData = function(){
         $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
         $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
         $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
-        $("#sceneSettings-menu .latFld").val(scenedata._lat);
-        $("#sceneSettings-menu .latFld").data("obj","_lat");
-        $("#sceneSettings-menu .lngFld").val(scenedata._lng);
-        $("#sceneSettings-menu .lngFld").data("obj","_lng");
         $("#sceneSettings-menu #scene-description").val(scenedata._description);
         $("#sceneSettings-menu #scene-description").data("obj","_description");
-
+        console.log("b")
       }
 }
 

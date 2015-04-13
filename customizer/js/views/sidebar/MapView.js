@@ -32,6 +32,7 @@ define([
 		
 		render: function(id,param){
 			this.param = param;
+			console.log(param)
 			this.myid = id;
 			var compiledTemplate = _.template(map);
 			$("#"+id+" .gmap-wrapper").append( compiledTemplate ); 
@@ -115,12 +116,14 @@ define([
 			var manageData = new ManageData();
 			if(this.param){
 				if(this.param.param == "scene"){
-					var indice = this.param.indice;
-					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+this.myid+" .lngFld").val(),indice)
+					setTimeout(function(){
+					var indice = $("#sceneMenu li.selected").index();
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val(),indice)
+					},500)
 				//tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();
 				//tourData.krpano.scene[this.param.indice]._lng = $("#"+this.myid+" .lngFld").val();
 				}else{
-					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+this.myid+" .lngFld").val())
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val())
 					//tourData.krpano.settings._lat = $("#"+this.myid+" .latFld").val()
 					//tourData.krpano.settings._long = $("#"+this.myid+" .lngFld").val()
 				}
