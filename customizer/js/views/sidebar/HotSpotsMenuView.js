@@ -38,10 +38,14 @@ define([
             this.model.set("elemWidth",this.$elem.width());
             this.selectStyle("set1");
             this.show();
-
         },
 
         addHotSpot:function(e){
+            if($("#tour").data("scene").hotspot){
+                this.hotspotCount = $("#tour").data("scene").hotspot.length;
+            }else{
+                this.hotspotCount = 0;
+            }
             this.hotspotCount++;
             var name = $(e.target).prop("tagName")
             if(name == "DIV"){
@@ -88,7 +92,7 @@ define([
             krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
             //krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
-            krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
+            krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(showWindow('+__name+')) );');
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
             $(".overlay").addClass("hotspotwindow");
 
@@ -98,7 +102,7 @@ define([
                 _atv:__atv,
                 _type:"image",
                 _visible:true,
-                _selectedSet:"hotspot_"+this.selectedset+"_"+myid
+                _style:"hotspot_"+this.selectedset+"_"+myid
             }
             var manageData = new ManageData();
             manageData.pushHotspot( $("#tour").data("scene")._name,hotspot)

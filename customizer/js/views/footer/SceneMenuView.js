@@ -39,9 +39,12 @@ define([
 			}
 			var compiledTemplate = _.template(bottomMenu,{jsonObj:jsonObj});
 			$(this.el).append( compiledTemplate ); 
- 
+ 			
 			_.each(jsonObj,function(val,ind){
 				$("#sceneMenu li:eq("+ind+")").data("scene",val);
+				if(val.hotspot){
+					$("#sceneMenu li:eq("+ind+")").data("hotspots",val.hotspot)
+				}
 			})
 
 			var helpFunctions = new HelpFunctions();
@@ -105,12 +108,13 @@ define([
 
 				var hotspot = $thisli.data("hotspots");
 				_.each(hotspot,function(elem){
-
+					console.log(elem)
+					
 					krpano.call("addhotspot("+elem._name+")");
 					krpano.set("hotspot["+elem._name+"].url", elem._url);
 					krpano.set("hotspot["+elem._name+"].ath", elem._ath);
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
-					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._selectedSet+");");
+					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._style+");");
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
 					krpano.call('set(hotspot['+elem._name+'].onclick, js(showWindow('+elem._name+')) );');
 					krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
