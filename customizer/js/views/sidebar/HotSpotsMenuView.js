@@ -4,17 +4,13 @@ define([
     'backbone',
     'views/sidebar/SidebarSubMenu',
     'text!templates/sidebar/hotspotsMenu.html',
-    'views/modal/LinkHotspotEditorView',
-    'views/modal/InfoHotspotEditorView',
-    'views/modal/PhotoHotspotEditorView',
-    'views/modal/VideoHotspotEditorView',
-    'views/modal/ArrowHotspotEditorView',
     'models/main/HotSpotWindowModel',
     'helpers/ManageData',
-    'helpers/HelpFunctions'
+    'helpers/HelpFunctions',
+    'helpers/ManageHotSpots',
 
 
-], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData,HelpFunctions){
+], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,HotSpotWindowModel,ManageData,HelpFunctions,ManageHotSpots){
 
     var HotSpotsMenuView = SidebarSubMenu.extend({
         hotspotCount: 0,
@@ -44,36 +40,64 @@ define([
                 this.hotspotCount = 0;
             }
             this.hotspotCount++;
+
             var name = $(e.target).prop("tagName")
             if(name == "DIV"){
             var myid = $(e.target).parents("li").attr("id");
             }else{
             var myid = $(e.target).attr("id");
             }
-            var posx = "";
-            var modalView;
+            var urlid;
             switch(myid){
                 case "link":
-                    posx = "128";
-                    modalView = LinkHotspotEditorView;
+                    urlid = "5"
                 break;
                 case "video":
-                    posx = "96";
-                    modalView = VideoHotspotEditorView;
+                    urlid = "4"
                 break;
                 case "photo":
-                    posx = "64";
-                    modalView = PhotoHotspotEditorView;
+                    urlid = "3"
                 break;
                 case "info":
-                    posx = "32";
-                    modalView = InfoHotspotEditorView;
+                    urlid = "2"
                 break;
                 case "arrow":
-                    posx = "00";
-                    modalView = ArrowHotspotEditorView;
+                    urlid = "1"
                 break;
             }
+            var me = this;
+            $.ajax({
+                url:"data/xml.php?t=htspts&c=1&id="+urlid,
+                 dataType: "html",
+                 success:function(data){
+
+                    var x2js = new X2JS({attributePrefix:"_"});
+                    var newHotspot =  x2js.xml_str2json( data ).hotspot;
+                    var krpano = document.getElementById("krpanoSWFObject");
+                    var __ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45); 
+                    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25); 
+                    newHotspot._ath = __ath;
+                    newHotspot._atv = __atv;
+                    newHotspot._name = "spot"+me.hotspotCount;
+
+                    var manageHotSpots = new ManageHotSpots();
+                    console.log(newHotspot)
+
+                    krpano.call("addhotspot("+newHotspot._name +")");
+                    krpano.set("hotspot["+newHotspot._name+"].ath", newHotspot._ath );
+                    krpano.set("hotspot["+newHotspot._name+"].atv", newHotspot._atv );
+                    krpano.call("hotspot["+newHotspot._name+"].loadStyle(hotspot_"+me.selectedset+"_"+myid+");");
+                    krpano.call('set(hotspot['+newHotspot._name+'].ondown, draghotspot() );');
+                    krpano.call('set(hotspot['+newHotspot._name+'].onclick, js(openHotspotWindowEditor('+newHotspot._name+')) );');
+                    krpano.call('set(hotspot['+newHotspot._name+'].onup, js(regPos('+newHotspot._name+')) );');
+                    var manageData = new ManageData();
+                    manageData.pushHotspot( $("#tour").data("scene")._name,newHotspot)
+                    openHotspotWindowEditor(newHotspot._name);
+
+                    
+                 }
+             })
+            /*
             var __name = "spot"+this.hotspotCount;
             this.openWindowEditor(modalView);
             showWindow = this.showWindow;
@@ -104,32 +128,10 @@ define([
             var manageData = new ManageData();
             manageData.pushHotspot( $("#tour").data("scene")._name,hotspot)
             $("#spot"+this.hotspotCount).data("spotdata",hotspot)
+            */
 
         },
-        showWindow:function(elem) {
-            console.log(elem)
-            $("#"+elem).fadeIn()
-        },
-
-        regPos:function(elem){
-            var krpano = document.getElementById("krpanoSWFObject");
-            var ath = krpano.get("hotspot["+elem+"].ath");
-            var atv = krpano.get("hotspot["+elem+"].atv");
-            var hotspot = $("#"+elem).data("spotdata");
-            hotspot._ath =  ath;
-            hotspot._atv = atv
-            var manageData = new ManageData();
-            manageData.changeDataInHotSpot( $("#tour").data("scene")._name,hotspot)
-            
-            $("#"+elem).data("spotdata",hotspot);
-        },
-
-        openWindowEditor:function(mView){
-                var hotSpotWindowModel = new HotSpotWindowModel({id:this.hotspotCount,selectedSet:this.selectedset})
-                var linkhotspotEditorview = new mView({model:hotSpotWindowModel});
-                linkhotspotEditorview.render("spot"+this.hotspotCount,linkhotspotEditorview.renderExtend);
-        },
-
+      
         selectStyleClick:function(ev){
             var obj = ev.currentTarget
             var set = $(obj).next().find(".rowinrow").data("family");
