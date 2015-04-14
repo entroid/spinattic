@@ -11,10 +11,11 @@ define([
     'views/modal/ArrowHotspotEditorView',
     'models/main/HotSpotWindowModel',
     'helpers/ManageData',
-    'helpers/HelpFunctions'
+    'helpers/HelpFunctions',
+    'views/modal/HotSpotStyleEditor'
 
 
-], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData,HelpFunctions){
+], function($, _, Backbone,SidebarSubMenu,hotspotsMenu,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView,HotSpotWindowModel,ManageData,HelpFunctions,HotSpotStyleEditor){
 
     var HotSpotsMenuView = SidebarSubMenu.extend({
         hotspotCount: 0,
@@ -22,8 +23,10 @@ define([
         events:{
             "click #hotSpots-menu li.htpt": "addHotSpot",
             "click #hotspot-styles .selector":"selectStyleClick",
-            "click #open-styles":"showhideStyles"
+            "click #open-styles":"showhideStyles",
+            "click #hotspot-styles .add-link": "showHotspotsStyleEditor"
                  },
+        hotspotstyleeditor:null,
         
         render: function(){
             var styles = tourData.krpano.style;
@@ -132,32 +135,41 @@ define([
             this.selectStyle(set)
         },
 
-        selectStyle:function(set){
+        selectStyle:function(set){                
+            var styles = tourData.krpano.style;
+            var selected = [];
+            _.each(styles,function(elem,ind){
+                var name = elem._name;
+                name = name.split("_");
                 
-                var styles = tourData.krpano.style;
-                var selected = [];
-                _.each(styles,function(elem,ind){
-                    var name = elem._name;
-                    name = name.split("_");
+                if(name[1] == set){
                     
-                    if(name[1] == set){
-                        
-                        selected.push(elem)
-                    }
-                });
-                this.selectedset = set;
-                $("#hotspots-menu-header").html("").append('<ul></ul>');
+                    selected.push(elem)
+                }
+            });
 
-                _.each(selected,function(elem,ind){ 
-                    var crop = elem._crop.split("|")
-                    $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url(data/'+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
-                })
+            this.selectedset = set;
+            $("#hotspots-menu-header").html("").append('<ul></ul>');
+
+            _.each(selected,function(elem,ind){ 
+                var crop = elem._crop.split("|")
+                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url(data/'+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
+            })
                 
-                $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');
-            },
+            $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');
+        },
 
         showhideStyles:function(){
             $("#hotspot-styles").slideToggle()
+        },
+
+        showHotspotsStyleEditor: function () {
+            if($(".pano-manager").length) {            
+                this.hotspotstyleeditor.removeView();                
+            }else{
+                this.hotspotstyleeditor = new HotSpotStyleEditor();
+                this.hotspotstyleeditor.render("hotspotStyleEditor",this.hotspotstyleeditor.renderExtend);
+            }
         }
         
     });

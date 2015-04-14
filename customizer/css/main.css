@@ -4318,7 +4318,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   z-index: 101;
   display: none;
   /** General modal styles **/
-  /** End general modal **/ }
+  /** End general modal **/
+  /* hotspot styles editor */ }
 .overlay .modal {
   width: 500px;
   background: #222;
