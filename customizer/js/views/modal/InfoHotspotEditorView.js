@@ -41,15 +41,18 @@ define([
 
 			$("#"+this.myid).find(".fa-close").remove();
 			$("#"+this.myid+" header .save-and-close").unbind("click")
+			var me = this;
 			$("#"+this.myid+" header .save-and-close").click(function(){
-			
 				var infoTitle = $me.find(".infotitle").val();
 				var infoText = $me.find(".infotext").val();
 				var hotspot = $me.data("spotdata");
 				hotspot._infotitle = infoTitle;
 				hotspot._infotext = infoText;
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
-				$(this).parents(".modal").fadeOut();
+				
+				$(this).parents(".modal").fadeOut(function(){
+					me.removeThis();
+				});
 			})
 
 			$me.find(".removeHotspot").click(function(){
@@ -61,6 +64,11 @@ define([
 				manageData.removeHotSpot($("#tour").data("scene")._name, spotName)
 			})
 
+		},
+
+		removeThis:function(){
+			this.undelegateEvents();
+			$("#"+this.myid).parent(".overlay").remove();
 		}
 
 		

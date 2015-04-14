@@ -109,7 +109,7 @@ define([
             $("#spot"+this.hotspotCount).data("spotdata",hotspot)
 
         },
-        showWindow:function(elem)Â {
+        showWindow:function(elem) {
             console.log(elem)
             $("#"+elem).fadeIn()
         },

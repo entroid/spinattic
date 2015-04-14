@@ -108,7 +108,6 @@ define([
 
 				var hotspot = $thisli.data("hotspots");
 				_.each(hotspot,function(elem){
-					console.log(elem)
 					
 					krpano.call("addhotspot("+elem._name+")");
 					krpano.set("hotspot["+elem._name+"].url", elem._url);
