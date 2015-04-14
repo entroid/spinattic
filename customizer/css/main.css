@@ -3230,6 +3230,8 @@ textarea {
   color: #fad368; }
 .modal-bt.blue {
   color: #4faddf; }
+.modal-bt.red {
+  color: #d32f31; }
 .modal-bt.selected {
   cursor: default; }
 .modal-bt.selected:hover {
@@ -3376,6 +3378,43 @@ textarea {
   border: 1px solid #e0e0e0; }
 .ui-colorpicker .ui-colorpicker-border, .ui-colorpicker .ui-colorpicker-bar-layer-pointer {
   border: 1px solid #535353; }
+
+.bold {
+  font-weight: bold; }
+
+.menuTabs ul {
+  overflow: hidden;
+  margin-right: 10px; }
+.menuTabs ul li {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 8px 0px;
+  margin: 0;
+  text-align: center; }
+.menuTabs ul li.selected, .menuTabs ul li:hover {
+  background-color: #535353; }
+.menuTabs ul li.selected {
+  cursor: default; }
+
+.addStyle {
+  background: #333333;
+  border: 1px solid black;
+  box-sizing: border-box;
+  -webkit-box-shadow: 1px 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+  -moz-box-shadow: 1px 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 1px 1px 0 0px rgba(255, 255, 255, 0.2) inset; }
+.addStyle:hover {
+  background: #444; }
+
+.icons-wrapper {
+  width: 60px;
+  text-align: center; }
+.icons-wrapper h4 {
+  margin-top: 10px; }
 
 header.main-header {
   z-index: 2;
@@ -4804,6 +4843,30 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-left: -32px; }
 .overlay #skillsEditor-2 .inner-modal {
   padding: 0; }
+.overlay #hotspotStyleEditor {
+  width: 560px; }
+.overlay #hotspotStyleEditor .hotspotStyleContent {
+  overflow: hidden; }
+.overlay #hotspotStyleEditor .hotspotStyleContent .hotsPotStyleTabs, .overlay #hotspotStyleEditor .hotspotStyleContent .hotsPotStyleSelected {
+  box-sizing: border-box;
+  float: left; }
+.overlay #hotspotStyleEditor .hotsPotStyleTabs {
+  width: 70%; }
+.overlay #hotspotStyleEditor .hotsPotStyleTabs .addStyle {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer; }
+.overlay #hotspotStyleEditor .hotsPotStyleTabs .addStyle .fa {
+  font-size: 2rem;
+  margin-top: 15px; }
+.overlay #hotspotStyleEditor .hotsPotStyleTabs .add {
+  margin: 0 auto; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected {
+  width: 30%; }
+.overlay #hotspotStyleEditor .tabContent {
+  padding-top: 40px; }
 
 section.main-section {
   position: relative; }

@@ -397,6 +397,9 @@ textarea{
     &.blue{
         color: $blue;
     }
+    &.red{
+        color: $red;
+    }
 
     &.selected{
         cursor: default;
@@ -599,5 +602,55 @@ textarea{
     }
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.menuTabs{
+    ul{
+        overflow: hidden;
+        margin-right: 10px;
+        
+        li{
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            float: left;
+            width: 20%;
+            box-sizing: border-box;
+            padding: 8px 0px;
+            margin: 0;
+            text-align: center;
+
+            &.selected, &:hover{
+                background-color: $light-gray;
+            }
+
+            &.selected{
+                cursor: default;
+            }
+        }
+    }
+}
+
+.addStyle{
+    background: $middle-gray;
+    border: 1px solid black;
+    box-sizing: border-box;
+    @include shadow-white(1px, 0, 0.2, inset);
+
+    &:hover{
+        background: $middle-gray1;
+    }
+}
+
+.icons-wrapper{
+    width: 60px;
+    text-align: center;
+
+    h4{
+        margin-top: 10px;
+    }
+}
 
 

@@ -18,8 +18,8 @@ define([
         },
 
         events:{
-            /*"click .select-pano": "selectPano",
-            "click .remove": "removePano",*/
+            /*"click .select-pano": "selectPano",*/
+            "click .menuTabs .modal-bt": "tabs",
             "click .cancel": "removeModal"
         },
 
@@ -78,6 +78,18 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });
+
+        },
+
+        tabs: function (e) {
+            var el = $(e.target),
+                id = $(el).attr('data-content');
+
+            if(!$(el).hasClass('selected')) {
+                $(el).addClass('selected').siblings('li').removeClass('selected');
+                $('.hotsPotStyleTabs #' + id).removeClass('none').siblings().addClass('none');
+            }
+
 
         }
 
