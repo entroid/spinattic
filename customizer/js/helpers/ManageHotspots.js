@@ -22,12 +22,10 @@ define([
 					krpano.call("addhotspot("+elem._name+")");
 					
 					krpano.set("hotspot["+elem._name+"].ath", elem._ath);
-					console.log(krpano.get("hotspot["+elem._name+"].ath"));
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
 					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._style+");");
 					
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
-					
 					krpano.call('set(hotspot['+elem._name+'].onclick, js(openHotspotWindowEditor('+elem._name+')) );');
 					krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
 
@@ -37,7 +35,7 @@ define([
 	this.openHotspotWindowEditor = function(elem){
 
 		 var hotspot;
-			_.each($("#tour").data("scene").hotspot,function(hs,ind){
+		 	_.each($("#tour").data("scene").hotspot,function(hs,ind){
 				if(hs._name == elem){
 						hotspot = hs;
 					}
@@ -72,6 +70,7 @@ define([
 			var linkhotspotEditorview = new modalView({model:hotSpotWindowModel});
 			linkhotspotEditorview.render("spot"+integer,linkhotspotEditorview.renderExtend);
 			$("#spot"+integer).parent(".overlay").addClass("hotspotwindow");
+			$("#spot"+integer).data("spotdata",hotspot)
 		}
 
 	this.regPos = function(elem){
