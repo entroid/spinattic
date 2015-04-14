@@ -89,7 +89,7 @@ define([
             krpano.call("hotspot[spot"+this.hotspotCount+"].loadStyle(hotspot_"+this.selectedset+"_"+myid+");");
             //krpano.set("hotspot[spot"+this.hotspotCount+"].crop",__posx);
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].ondown, draghotspot() );');
-            krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(showWindow('+__name+')) );');
+            krpano.call('set(hotspot[spot'+this.hotspotCount+'].onclick, js(showWindow('+__name+')) );');
             krpano.call('set(hotspot[spot'+this.hotspotCount+'].onup, js(regPos('+__name+')) );');
             $(".overlay").addClass("hotspotwindow");
 
@@ -149,6 +149,7 @@ define([
                         selected.push(elem)
                     }
                 });
+                console.log(set)
                 this.selectedset = set;
                 $("#hotspots-menu-header").html("").append('<ul></ul>');
 
