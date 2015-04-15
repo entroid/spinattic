@@ -25,10 +25,14 @@ define([
 			var manageData = new ManageData();
 			var num = this.myid.replace("spot","");
 			var spotName =  this.myid;
+			var allData = this.model.get("allData");
+
 			$("#"+spotName+" header h2").text("Info Hotspot. ID "+num+":")
-			var compiledTemplate = _.template(hotspotinfo)
+
+			var compiledTemplate = _.template(hotspotinfo,{allData:allData})
 			$("#"+spotName+" .inner-modal").html(compiledTemplate);
 			
+			console.log($("#"+this.myid).data("spotdata"));
 			
 			$("#"+this.myid+" header .fa-close").unbind("click")
 			var $me = $("#"+this.myid);
@@ -45,7 +49,7 @@ define([
 			$("#"+this.myid+" header .save-and-close").click(function(){
 				var infoTitle = $me.find(".infotitle").val();
 				var infoText = $me.find(".infotext").val();
-				var hotspot = $me.data("spotdata");
+				var hotspot = allData;
 				hotspot._infotitle = infoTitle;
 				hotspot._infotext = infoText;
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)

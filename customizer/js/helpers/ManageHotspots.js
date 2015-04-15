@@ -66,7 +66,7 @@ define([
 			selectedSet = selectedSet[1]
 			var HotSpotWindowModel = Backbone.Model.extend({});
 
-		    var hotSpotWindowModel = new HotSpotWindowModel({id:integer,selectedSet:selectedSet})
+		    var hotSpotWindowModel = new HotSpotWindowModel({id:integer,selectedSet:selectedSet,allData:hotspot})
 			var linkhotspotEditorview = new modalView({model:hotSpotWindowModel});
 			linkhotspotEditorview.render("spot"+integer,linkhotspotEditorview.renderExtend);
 			$("#spot"+integer).parent(".overlay").addClass("hotspotwindow");
