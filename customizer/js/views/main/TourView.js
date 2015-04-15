@@ -42,7 +42,7 @@ define([
 
 			$("#tour").data("scene",tourData.krpano.scene[0])
 			var manageHotSpots = new ManageHotSpots();
-			krpano.set("events.onloadcomplete","js(initHotSpots())");
+			krpano.set("events.onpreviewcomplete","js(initHotSpots())");
 			krpano.set("events.keep",true);
 
 			
