@@ -20,6 +20,8 @@ define([
         events:{
             /*"click .select-pano": "selectPano",*/
             "click .menuTabs .modal-bt": "tabs",
+            "click .tabContent .add .addStyle": "addStyles",
+            "click .tabContent .icons .addStyle": "selectAddStyles",
             "click .cancel": "removeModal"
         },
 
@@ -27,9 +29,12 @@ define([
             var este = this;
             var myid = this.myid;
             var template = _.template(hotSpotStyleEditor);
+            var deleteSet = '<span class="delete-set modal-bt red"><i class="fa fa-trash"></i> Delete Set</span>'
 
             $("#"+myid+" .inner-modal").html(template);
             $("#"+myid+" header h2").text("Styles of hotspots set:");
+
+            $("#"+myid+" header").append($(deleteSet));
 
             var SingleUploaderModel = Backbone.Model.extend({});
             var singleUploaderModel = new SingleUploaderModel({myid:"graphic-hotspot",imgsrc:""})
@@ -72,7 +77,7 @@ define([
             })*/
 
 
-        
+            
             
             $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
@@ -91,6 +96,18 @@ define([
             }
 
 
+        },
+
+        addStyles: function(e) {            
+            var el = $(e.target);
+            $(el).parents('.add').addClass('none').siblings('.icons').removeClass('none');
+        },
+
+        selectAddStyles: function(e){
+             var el = $(e.target);
+             if(!$(el).hasClass('selected')) {
+                $(el).addClass('selected').parents('.icons-wrapper').siblings().find('.addStyle').removeClass('selected');
+             }
         }
 
     });

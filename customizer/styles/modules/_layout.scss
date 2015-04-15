@@ -407,6 +407,10 @@ textarea{
             opacity: 1;
         }
     }
+
+    i{
+        font-size: 1.4rem;
+    }
 }
 
 .image-uploader-wrapper{
@@ -651,6 +655,11 @@ textarea{
     h4{
         margin-top: 10px;
     }
+}
+
+.row{
+    position: relative;
+    height: 30px;
 }
 
 

@@ -3236,6 +3236,8 @@ textarea {
   cursor: default; }
 .modal-bt.selected:hover {
   opacity: 1; }
+.modal-bt i {
+  font-size: 1.4rem; }
 
 .image-uploader-wrapper {
   box-sizing: border-box;
@@ -3415,6 +3417,10 @@ textarea {
   text-align: center; }
 .icons-wrapper h4 {
   margin-top: 10px; }
+
+.row {
+  position: relative;
+  height: 30px; }
 
 header.main-header {
   z-index: 2;
@@ -4845,28 +4851,68 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 0; }
 .overlay #hotspotStyleEditor {
   width: 560px; }
+.overlay #hotspotStyleEditor .delete-set {
+  position: absolute;
+  top: 13px;
+  right: 160px;
+  bottom: initial;
+  left: initial; }
+.overlay #hotspotStyleEditor header .fa-close {
+  display: none; }
 .overlay #hotspotStyleEditor .hotspotStyleContent {
   overflow: hidden; }
 .overlay #hotspotStyleEditor .hotspotStyleContent .hotsPotStyleTabs, .overlay #hotspotStyleEditor .hotspotStyleContent .hotsPotStyleSelected {
   box-sizing: border-box;
   float: left; }
 .overlay #hotspotStyleEditor .hotsPotStyleTabs {
-  width: 70%; }
+  width: 75%;
+  padding-right: 15px; }
 .overlay #hotspotStyleEditor .hotsPotStyleTabs .addStyle {
   width: 50px;
   height: 50px;
   text-align: center;
   margin: 0 auto;
   cursor: pointer; }
+.overlay #hotspotStyleEditor .hotsPotStyleTabs .addStyle.selected {
+  border: 1px solid #497f3c;
+  background-color: #444; }
 .overlay #hotspotStyleEditor .hotsPotStyleTabs .addStyle .fa {
   font-size: 2rem;
   margin-top: 15px; }
 .overlay #hotspotStyleEditor .hotsPotStyleTabs .add {
   margin: 0 auto; }
 .overlay #hotspotStyleEditor .hotsPotStyleSelected {
-  width: 30%; }
+  width: 25%; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected .data-group {
+  margin-bottom: 15px; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected .selectedSet {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  margin-top: 8px; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected .selectedSet span {
+  color: #68b858; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected label, .overlay #hotspotStyleEditor .hotsPotStyleSelected input {
+  box-sizing: border-box; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected label {
+  display: inline-block;
+  margin-top: 7px; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected input[type="number"] {
+  width: 50%;
+  padding: 5px; }
+.overlay #hotspotStyleEditor .hotsPotStyleSelected #removeStyle {
+  margin-left: 0;
+  padding: 8px; }
 .overlay #hotspotStyleEditor .tabContent {
   padding-top: 40px; }
+.overlay #hotspotStyleEditor .tabContent .icons {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 210px; }
+.overlay #hotspotStyleEditor .tabContent .icons .icons-wrapper {
+  margin-right: 12px; }
+.overlay #hotspotStyleEditor .tabContent .icons .icons-wrapper:last-child {
+  margin-right: 0; }
 
 section.main-section {
   position: relative; }

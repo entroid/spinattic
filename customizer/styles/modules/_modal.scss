@@ -769,6 +769,16 @@
     #hotspotStyleEditor{
         width: 560px;
 
+        .delete-set{
+            @include absolute(13px, 160px,initial, initial);
+        }
+
+        header{
+            .fa-close {
+                display: none;
+            }
+        }
+
         .hotspotStyleContent{
             overflow: hidden;
 
@@ -779,7 +789,8 @@
         }
 
         .hotsPotStyleTabs{
-            width: 70%;
+            width: 75%;
+            padding-right: 15px;
 
             .addStyle{
                 width: 50px;
@@ -787,6 +798,11 @@
                 text-align: center;
                 margin: 0 auto;
                 cursor: pointer;
+
+                &.selected{
+                    border: 1px solid $green;
+                    background-color: $middle-gray1;
+                }
 
                 .fa{
                     font-size: 2rem;
@@ -800,11 +816,58 @@
         }
 
         .hotsPotStyleSelected{
-            width: 30%;
+            width: 25%;
+
+            .data-group{
+                margin-bottom: 15px;
+            }
+
+            .selectedSet{
+                font-weight: bold;
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                margin-top: 8px;
+
+                span{
+                    color: $green2;
+                }
+            }
+
+            label, input {
+                box-sizing: border-box;
+            }
+            
+            label{
+                display: inline-block;
+                margin-top: 7px;
+            }
+            input[type="number"] {
+                width: 50%;
+                padding: 5px;
+            }
+
+            #removeStyle{
+                margin-left: 0;
+                padding: 8px;
+            }
         }
 
         .tabContent{
             padding-top: 40px;
+
+            .icons{
+                overflow: hidden;
+                margin: 0 auto;
+                width: 210px;
+
+                .icons-wrapper{
+                    margin-right: 12px;
+
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+            }
         }
     }
 }
