@@ -32,8 +32,7 @@
 			<hotspot tag_ident="1" prev_tag_ident="0" segment="SCENES" kind="info" style="hotspot_set1_info" name="spot1" ath="0" atv="0" infotitle="title" infotext="text" onclick="showinfo(get(infotitle),get(infotext));"></hotspot>
 		
 
-			<hotspot tag_ident="1" prev_tag_ident="0" segment="SCENES" kind="arrow" style="hotspot_set1_arrow" name="spot2" ath="14" atv="5" linkedscene="linkedscene" onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );"></hotspot>
-		
+			
 		
 		</scene>
 		<scene segment="SCENES" scene_id="362" name="scene_362" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/226/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
@@ -112,6 +111,12 @@
 			</image>
 		</scene>
 			<!-- SKILLS -->
+			
+			<!-- DEFAULT SKILLS -->
+			
+				<skill tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Signature">
+				<plugin tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Signature" align="bottomright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="graphics/buttons_black.png" x="3" y="5" zorder="102"></plugin>
+		</skill>
 			
 			<!-- FREE HOTSPOTS STYLES -->
 			

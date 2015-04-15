@@ -108,7 +108,11 @@
 			</image>
 		</scene>
 			<!-- SKILLS -->
+			<!-- DEFAULT SKILLS -->
 			
+				
+				<plugin align="bottomright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="graphics/buttons_black.png" x="3" y="5" zorder="102"></plugin>
+		
 			<!-- FREE HOTSPOTS STYLES -->
 			
 				<style name="hotspot_set1_arrow" url="skills/hotspots/hotspots_1.png" crop="00|00|32|32" onovercrop="00|32|32|32" ondowncrop="00|64|32|32" onhover="if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) );" onloaded="mul(scale,get(device.pixelratio));"/>

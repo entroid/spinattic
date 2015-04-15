@@ -15,10 +15,10 @@ define([
 
 
 	this.initHotSpots = function(){
-	
 	var hotspot = $("#tour").data("scene").hotspot;
 	var krpano = document.getElementById("krpanoSWFObject");
 		_.each(hotspot,function(elem){
+
 					krpano.call("addhotspot("+elem._name+")");
 					
 					krpano.set("hotspot["+elem._name+"].ath", elem._ath);

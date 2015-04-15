@@ -55,7 +55,7 @@ define([
 					$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
 				}
 			})
-
+				this.saveServer();
 			},
 
 			this.changeDataInHotSpot = function(sceneName,hotspot){
@@ -70,6 +70,7 @@ define([
 						$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
 						}
 					})
+				this.saveServer();
 			},
 
 			this.removeHotSpot = function(sceneName,hotspotname){
@@ -91,7 +92,7 @@ define([
 							}
 						}
 					})
-
+				this.saveServer();
 			},
 
 			this.saveSettings = function(e){
