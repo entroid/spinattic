@@ -10,13 +10,17 @@ define([
 ], function($, _, Backbone,singleUploaderDragArea,singleUploaderShowing,singleUploaderUploadingAnimation,filedrop){
 
     var SingleUploader = Backbone.View.extend({
-
+        CallBack:null,
         events:{
         },
         initialize: function () {
         _.bindAll(this);        
         },
-        render:function(){
+        render:function(cbackFun){
+            if(cbackFun){
+                this.CallBack = cbackFun;
+            }
+            
             var myid = this.model.get("myid");
 
             if(this.model.get("imgsrc")){
@@ -90,8 +94,12 @@ define([
 
                             $("#"+myid).data("imgsrc",myfile)
                             este.model.set("imgsrc",myfile);
-                            este.render();
+                            este.render(este.CallBack);
+                            console.log(este.CallBack)
 
+                            if(este.CallBack){
+                                este.CallBack()
+                            }
                         })
 
                     }else{
