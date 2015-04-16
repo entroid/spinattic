@@ -49,6 +49,10 @@ aside{
         color: #FFF;
         background-color: $black-transparent-80;
 
+        .panel-wrapper{
+            padding-bottom: 40px;
+        }
+
         input, textarea{
             @extend %form-text;
         }

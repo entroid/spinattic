@@ -3418,7 +3418,7 @@ textarea {
 .icons-wrapper h4 {
   margin-top: 10px; }
 
-.row {
+.rows {
   position: relative;
   height: 30px; }
 
@@ -3681,6 +3681,8 @@ aside .submenu {
   display: none;
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.8); }
+aside .submenu .panel-wrapper {
+  padding-bottom: 40px; }
 aside .submenu label, aside .submenu h3 {
   margin-bottom: 5px;
   font-weight: bold;
@@ -4512,8 +4514,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   background-color: transparent;
   width: 0px;
   height: 0px;
-  top: 60px;
-  left: 20px; }
+  top: 105px;
+  left: 30px; }
 .overlay.hotspotwindow header {
   height: 15px;
   margin-left: 0;

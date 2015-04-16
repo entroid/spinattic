@@ -23,8 +23,10 @@ define([
 			$("#"+this.myid+" header h2").text("Link Hotspot. ID "+num+":")
 			var compiledTemplate = _.template(hotspotlink)
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
+
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.dropDown("#"+this.myid+" .dropdown");
+            
 			$("#"+this.myid).find(".fa-close").remove();
 			$("#"+this.myid+" header .save-and-close").unbind("click")
 			$("#"+this.myid+" header .save-and-close").click(function(){

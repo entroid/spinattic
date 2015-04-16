@@ -63,6 +63,7 @@ define([
 
                 case "vert":
                 param = "vlookat"
+                this.limitVert()
                 break;
             }
 
@@ -102,6 +103,17 @@ define([
                 $(fov).val(min);
             } else if (curFov > max) {
                 $(fov).val(max);
+            }
+        },
+
+        limitVert: function(e) {
+            var el = $('#vert'),
+                val = Number($(el).val());
+
+            if(val < -90){
+                $(el).val(-90);
+            } else if ( val > 90){
+                $(el).val(90);
             }
         }
         

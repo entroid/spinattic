@@ -83,7 +83,6 @@ define([
                     newHotspot._name = "spot"+me.hotspotCount;
 
                     var manageHotSpots = new ManageHotSpots();
-                    console.log(newHotspot)
 
                     krpano.call("addhotspot("+newHotspot._name +")");
                     krpano.set("hotspot["+newHotspot._name+"].ath", newHotspot._ath );
@@ -95,8 +94,6 @@ define([
                     var manageData = new ManageData();
                     manageData.pushHotspot( $("#tour").data("scene")._name,newHotspot)
                     openHotspotWindowEditor(newHotspot._name);
-
-
                  }
              })
 		},
