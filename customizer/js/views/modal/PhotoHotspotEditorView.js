@@ -63,7 +63,7 @@ define([
 		    hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"photo",elemid:myid});
 		    var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
 			hotSpotsDropDown.render();
-
+			var spotName =  this.myid;
 			$me.find(".removeHotspot").click(function(){
 				var krpano = document.getElementById("krpanoSWFObject");
 				krpano.call("removehotspot("+spotName+")");

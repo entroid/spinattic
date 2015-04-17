@@ -1,10 +1,20 @@
-<div class="hotspotvideo">
+<div class="hotspot-column">
+	<div class="row">
+		<label for="style">Style:</label>
+		<div title="Style" class="dropdown style">
+			<h2><div class="default"></div> <span class="fa fa-caret-down fa-lg right"></span></h2>
+			<ul class="styles-list">
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="hotspotvideo" style="clear:both">
 	<label for="urlvideohotspot">Youtube:</label>
-	<input type="text" placeholder="Paste your youtube link here" id="urlvideohotspot" name="urlvideohotspot">
-	<input type="text" placeholder="Video tooltip" id="videoTooltip" name="videoTooltip">
+	<input type="text" placeholder="Paste your youtube link here" id="urlvideohotspot" name="urlvideohotspot" value="<%=allData._video%>">
+	<input type="text" placeholder="Video tooltip" id="videoTooltip" name="videoTooltip"  value="<%=allData._tooltip%>">
 
 </div>
 <div class="hotspotsFooter">
-    <div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
-    <div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
+	<div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
+	<div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
 </div>

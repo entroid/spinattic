@@ -1,22 +1,32 @@
 <div class="hotspotlink">
-    <div class="urlLink">
-        <label for="urllinkhotspot">http://</label>
-        <input type="text" placeholder="www.." id="urllinkhotspot" name="urllinkhotspot">
-    </div>
+	<div class="hotspot-column">
+		<div class="row">
+			<label for="style">Style:</label>
+			<div title="Style" class="dropdown style">
+				<h2><div class="default"></div> <span class="fa fa-caret-down fa-lg right"></span></h2>
+				<ul class="styles-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="urlLink">
+		<label for="urllinkhotspot">http://</label>
+		<input type="text" placeholder="www.." class="urllinkhotspot" name="urllinkhotspot" value="<%=allData._linkurl%>">
+	</div>
 
-    <div title="target" class="dropdown">
-        <h2><span class="title">Target</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
-        <ul>
-            <li data-value="op1"><span>_blank</span></li>
-            <li data-value="op3"><span>_self</span></li>
-            <li data-value="op4"><span>_parent</span></li>
-            <li data-value="op5"><span>_top</span></li>
-        </ul>
-    </div>
-        <input type="text" placeholder="link tooltip" id="linkTooltip" name="linkTooltip">
+	<div title="target" class="dropdowntarget">
+		<h2><span class="title">Target</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+		<ul>
+			<li data-value="op1"><span>_blank</span></li>
+			<li data-value="op3"><span>_self</span></li>
+			<li data-value="op4"><span>_parent</span></li>
+			<li data-value="op5"><span>_top</span></li>
+		</ul>
+	</div>
+		<input type="text" placeholder="link tooltip" class="linkTooltip" name="linkTooltip" value="<%=allData._tooltip%>">
 
 </div>
 <div class="hotspotsFooter">
-    <div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
-    <div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
+	<div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
+	<div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
 </div>
