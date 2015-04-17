@@ -43,10 +43,12 @@ define([
 				
 				var linkurl = $("#"+myid+" .urllinkhotspot").val();
 				var tooltip = $("#"+myid+" .linkTooltip").val();
-				var target = $("#"+myid+" .dropdown h2").text();
+				var target = $("#"+myid+" .dropdowntarget h2 .title").text();
 				var hotspot = allData;
 				hotspot._linkurl = linkurl;
 				hotspot._tooltip = tooltip;
+				hotspot._tartget = target;
+
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				
 				$(this).parents(".modal").fadeOut(function(){

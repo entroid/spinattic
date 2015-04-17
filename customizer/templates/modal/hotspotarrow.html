@@ -1,31 +1,42 @@
 <div class="hotspotarrow">
-    <div class="hotspot-column">
-        <div class="row">
-            <label for="style">Style:</label>
-            <div title="Style" class="dropdown style">
-                <h2><div class="default"></div> <span class="fa fa-caret-down fa-lg right"></span></h2>
-                <ul class="styles-list">
-                </ul>
-            </div>
-        </div>
+	<div class="hotspot-column">
+		<div class="row">
+			<label for="style">Style:</label>
+			<div title="Style" class="dropdown style">
+				<h2><div class="default"></div> <span class="fa fa-caret-down fa-lg right"></span></h2>
+				<ul class="styles-list">
+				</ul>
+			</div>
+		</div>
 
-        <div class="row">
-            <label for="rotate">Rotate:</label>
-            <input type="number" id="rotate" name="rotate" value="180">
-        </div>
+		<div class="row">
+			<label for="rotate">Rotate:</label>
+			<input type="number" id="rotate" name="rotate" value="180">
+		</div>
+	</div>
 
-        <%if(tourData.krpano.scene.length == 1){%>
-        <p>There are no other panoramas in this tour to link to</p>
-        <%}%>
-    </div>
+	<div class="hotspot-column">
+	<%if(tourData.krpano.scene.length == 1){%>
+		<p>There are no other panoramas in this tour to link to</p>
+		<%}else{%>
 
-    <div class="hotspot-column">
-        <input type="text" placeholder="Search Scene" class="search-scenes">
-        <div id="scenes-search-results-<%=num%>"></div>     
-    </div>
+			<%if(allData._linkedscene == ""){
+				_linkedscene = "none";
+			}else{
+				_linkedscene = allData._linkedscene;			
+			}%>
+			<h2>selectedScene: <span class="selectedScene"> <%=_linkedscene%></span></h2>
+			
+			<div class="scenelist">
+				<input type="text" placeholder="Search Scene" class="search-scenes">
+				<div id="scenes-search-results-<%=num%>"></div>     
+			</div>
+		<%}%>
+
+	</div>
 </div>
 
 <div class="hotspotsFooter">
-    <div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
-    <div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
+	<div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
+	<div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
 </div>
