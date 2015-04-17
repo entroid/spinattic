@@ -29,7 +29,7 @@ define([
 			var template = _.template(loadingBarSkillEditor,{tourSkill:tourSkill})
 
 			$("#"+myid+" .inner-modal").html(template);
-			$("#"+myid+" header h2").text("Signature Skill Editor")
+			$("#"+myid+" header h2").text("Loading Bar Editor")
 			$("#"+myid).find(".save-and-close").unbind("click");
 			
 			$(".scrollwrapper").mCustomScrollbar({
