@@ -259,7 +259,7 @@
             .inner-modal{
                 background: rgba(0,0,0,0.5);
                 
-                
+
                 .dropdown, .dropdowntarget{
                     background: #000;
                     margin: 0 auto 10px;
@@ -337,6 +337,8 @@
 
                 .urlLink{
                     height: 40px;
+                    clear:both;
+                    margin-bottom:40px;
 
                     #urllinkhotspot{
                         width: 85%;
