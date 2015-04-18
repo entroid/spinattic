@@ -47,7 +47,7 @@ define([
 				var hotspot = allData;
 				hotspot._linkurl = linkurl;
 				hotspot._tooltip = tooltip;
-				hotspot._tartget = target;
+				hotspot._target = target;
 
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				

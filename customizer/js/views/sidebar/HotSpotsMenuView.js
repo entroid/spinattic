@@ -38,7 +38,15 @@ define([
 
 		addHotSpot:function(e){
 			if($("#tour").data("scene").hotspot){
-				this.hotspotCount = $("#tour").data("scene").hotspot.length;
+				var numbs = []
+				_.each($("#tour").data("scene").hotspot,function(hp,val){
+					var num = parseInt(hp._name.replace("spot",""));
+					numbs.push(num);
+				})
+
+
+				this.hotspotCount = Math.max.apply(Math, numbs); 
+				console.log(this.hotspotCount)
 			}else{
 				this.hotspotCount = 0;
 			}
