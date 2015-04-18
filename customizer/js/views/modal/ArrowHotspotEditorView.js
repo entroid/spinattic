@@ -6,9 +6,10 @@ define([
 	'text!templates/modal/hotspotarrow.html',
 	'helpers/HelpFunctions',
 	'views/modal/HotSpotsDropDown',
-	
+	'helpers/ManageData',
 
-], function($, _, Backbone,Modal,hotspotarrow,HelpFunctions,HotSpotsDropDown){
+
+], function($, _, Backbone,Modal,hotspotarrow,HelpFunctions,HotSpotsDropDown,ManageData){
 
 	var ArrowHotspotEditorView = Modal.extend({
 		
@@ -21,6 +22,7 @@ define([
 				 },
 		
 		renderExtend:function(){
+			var manageData = new ManageData();
 			var num = this.myid.replace("spot","");
 			$("#"+this.myid).addClass("arrow-hotspot");
 			$("#"+this.myid+" header h2").text("Arrow Hotspot. ID "+num+":")
@@ -30,12 +32,15 @@ define([
 			var compiledTemplate = _.template(hotspotarrow,{num:num,allData:allData,scenes:scenes})
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 			var me = this;
-			$("#"+this.myid).find(".fa-close").remove();
-			$("#"+this.myid+" header .save-and-close").unbind("click")
-			$("#"+myid+" header .save-and-close").click(function(){
+			$("#"+me.myid).find(".fa-close").remove();
+			$("#"+me.myid+" header .save-and-close").unbind("click")
+			$("#"+me.myid+" header .save-and-close").click(function(){
 				
 				var selectedscene = $("#"+me.myid+" h2 .selectedScene").text();
 				var hotspot = allData;
+				if(selectedscene == "none"){
+					selectedscene = "";
+				}
 				hotspot._selectedscene = selectedscene;
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				
@@ -51,6 +56,12 @@ define([
 			var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
 			hotSpotsDropDown.render();
 			this.autocomplete();
+
+
+			$("#"+me.myid+" .scrollwrapper-scenes").mCustomScrollbar({
+				theme:"minimal-dark",
+				scrollInertia:300
+			});
 
 		},
 

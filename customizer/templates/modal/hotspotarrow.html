@@ -25,11 +25,18 @@
 			}else{
 				_linkedscene = allData._linkedscene;			
 			}%>
-			<h2>selectedScene: <span class="selectedScene"> <%=_linkedscene%></span></h2>
+			<h2>Selected Scene: <span class="selectedScene"> <%=_linkedscene%></span></h2>
 			
 			<div class="scenelist">
 				<input type="text" placeholder="Search Scene" class="search-scenes">
-				<div id="scenes-search-results-<%=num%>"></div>     
+				<div id="scenes-search-results-<%=num%>" class="scene-search-result"></div>
+				<div class="scrollwrapper-scenes">
+					<ul class="scenes-list">
+					<%_.each(scenes,function(item,ind){%>
+							<li><img src="<%=item._thumburl%>" /><dl><dt> <%= item._title %> </dt><dd> <%= item._name %></dd></dl><span class="select">Select</span> </li>
+					<%})%>
+					</ul>    
+				</div> 
 			</div>
 		<%}%>
 

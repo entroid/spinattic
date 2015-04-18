@@ -404,6 +404,46 @@
             }
         }   
         
+        .scene-search-result{
+            position:absolute;
+
+        }
+        .scrollwrapper-scenes{
+            height:150px;
+            overflow:auto;
+        }
+        ul.scenes-list{
+          
+            li{
+                border-bottom:1px solid $light-gray;
+                padding:5px;
+                overflow:auto;
+
+                img{
+                    float:left;
+                    width:70px;
+                }
+
+                dl{
+                    float:left;
+                    padding-left:10px;
+
+                    dt{
+                        font-weight:bold;
+                    }
+                }
+                span.select{
+                    background:$green;
+                    color:#FFF;
+                    font-size:0.9rem;
+                    float:right;
+                    padding:4px;
+                    margin-top:5px;
+                }
+            }
+
+        }
+
         .ui-autocomplete {
             background-color: $dark-gray5;
             width: 100% !important;
