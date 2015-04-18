@@ -402,15 +402,30 @@
                     width: 52px;
                 }
             }
-        }   
+        } 
+
+        .scenelist .search-scenes{
+            width:135px;
+            float:left;
+        }
         
         .scene-search-result{
             position:absolute;
-
+            z-index:1;
+            width:150px;
         }
         .scrollwrapper-scenes{
             height:150px;
             overflow:auto;
+            clear:both;
+        }
+
+        .hotspotarrow h3{
+            padding-bottom:5px;
+            font-size:1.5rem;
+            .selectedScene{
+                font-weight:bold;
+            }
         }
         ul.scenes-list{
           
@@ -439,6 +454,7 @@
                     float:right;
                     padding:4px;
                     margin-top:5px;
+                    cursor:pointer;
                 }
             }
 

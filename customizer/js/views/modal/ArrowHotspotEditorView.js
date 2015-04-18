@@ -36,12 +36,12 @@ define([
 			$("#"+me.myid+" header .save-and-close").unbind("click")
 			$("#"+me.myid+" header .save-and-close").click(function(){
 				
-				var selectedscene = $("#"+me.myid+" h2 .selectedScene").text();
+				var selectedscene = $("#"+me.myid+" h3 .selectedScene").text();
 				var hotspot = allData;
 				if(selectedscene == "none"){
 					selectedscene = "";
 				}
-				hotspot._selectedscene = selectedscene;
+				hotspot._linkedscene = selectedscene;
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				
 				$(this).parents(".modal").fadeOut(function(){
@@ -89,18 +89,16 @@ define([
 					var myTitle = ui.item._title;
 					$("#"+myid+" .search-scenes").val(myTitle);
 					/*$("#"+myid+" .inner-modal h2").show();*/
-					//$("#"+myid+" .pano-list-ul #" +ui.item.fileName).show();
+					$("#"+myid+" .scenes-list #"+ui.item._name).show();
 					return false;
 				},
 				search:function(event,ui){
-				  //$("#"+myid+" .skill-list li").hide();
+				  $("#"+myid+" .scenes-list li").hide();
 					//$("#"+myid+" .inner-modal h2").hide();
 				},
 				change: function(event,ui){
 					if(!ui.item){
-					   $("#"+myid+" .search-scenes").val('');
-						//$("#"+myid+" .skill-list li").show()
-						//$("#"+myid+" .inner-modal h2").show();
+						$("#"+myid+" .search-scenes").val('');
 					}                               
 				}
 			}).data("ui-autocomplete")._renderItem = function(ul,item){
@@ -111,6 +109,19 @@ define([
 				.appendTo( ul ); 
 
 			};
+
+			$("#"+myid+" .scenes-list .select").click(function(e){
+				console.log($(e.target).parent())
+				var name = $(e.target).parent().attr("id");
+				console.log(name)
+				$("#"+myid+" h3 .selectedScene").text(name);
+			})
+
+			$("#"+myid+" .scenelist .clear-btn").click(function(ev) {                
+				$(ev.target).siblings('input').val('');
+				$("#"+myid+" .scenes-list li").show()
+			})
+
 		}
 
 		
