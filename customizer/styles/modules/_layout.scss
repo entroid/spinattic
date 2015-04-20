@@ -453,6 +453,7 @@ textarea{
 
     .image-uploader-wrapper{
         text-align: center; 
+        overflow: hidden;
 
         h3{
             margin-bottom: 0;
@@ -489,6 +490,25 @@ textarea{
     p{
         margin-top: 10px;
         text-align: center;
+    }
+
+    .over-edit{
+        background-color: $black-transparent-65;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 25px;
+        z-index: 10;
+        font-size: 1.6rem;
+        min-height: 73px;
+        display: none;
+        cursor: pointer;
+        color: $yellow;
+
+        @include absolute(0, initial, initial, 0);
+    }
+
+    &:hover .over-edit{
+        display: block;
     }
 
 }

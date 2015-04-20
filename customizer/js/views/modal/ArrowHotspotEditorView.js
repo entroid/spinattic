@@ -51,6 +51,9 @@ define([
 
 			var selectedset = this.model.get("selectedSet");
 			var myid = this.myid;
+
+			console.log(selectedset);
+
 			var HotSpotDDModel = Backbone.Model.extend({});
 			hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"arrow",elemid:myid});
 			var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
@@ -62,6 +65,10 @@ define([
 				theme:"minimal-dark",
 				scrollInertia:300
 			});
+
+			$('.dropdown1').click(function (){
+				$('.list-scene').toggleClass('none');
+			})
 
 		},
 

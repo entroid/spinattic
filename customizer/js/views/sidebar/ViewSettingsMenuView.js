@@ -69,13 +69,15 @@ define([
 
             var krpano = document.getElementById("krpanoSWFObject");
 
-            krpano.set("view."+param,$("#"+myid).val());
+            console.log("view." + param, $("#" + myid).val());
+
+            krpano.set("view." + param, $("#" + myid).val());
 
             this.updateData(e);
         },
 
         updateData:function(e){
-
+            console.log($("#viewSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val(),"view")
             var manageData = new ManageData();
             manageData.saveSceneOnTour($("#viewSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val(),"view")
         },

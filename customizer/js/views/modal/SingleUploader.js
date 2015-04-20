@@ -28,7 +28,8 @@ define([
                 $("#"+myid).data("imgsrc",img)
                 var template = _.template(singleUploaderShowing,{imgsrc:img});
                 $("#"+myid).html(template);
-                $("#"+myid +" .edit-img").click(this.startEditLoader)
+                //$("#"+myid +" .edit-img").click(this.startEditLoader);
+                $("#"+myid +" .over-edit").click(this.startEditLoader);
             }else{
                 var template = _.template(singleUploaderDragArea);
                 $("#"+myid).html(template);
