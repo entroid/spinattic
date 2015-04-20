@@ -24,7 +24,7 @@ define([
 			var num = this.myid.replace("spot","");
 			$("#"+this.myid+" header h2").text("Video Hotspot. ID "+num+":")
 			var allData = this.model.get("allData")
-			var compiledTemplate = _.template(hotspotvideo,{allData:allData})
+			var compiledTemplate = _.template(hotspotvideo,{allData:allData,num:num})
 			var myid = this.myid;
 			$("#"+myid+" .inner-modal").html(compiledTemplate);
 			$("#"+myid).find(".fa-close").remove();
