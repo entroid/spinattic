@@ -1,932 +1,957 @@
 .overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 101;
-    display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 101;
+	display: none;
 
 
 /** General modal styles **/
-    .modal{
-        width: 500px;
-        background: $dark-gray3;
-        margin-left: auto;
-        margin-right: auto;
-        border: 1px solid #000;
-        margin-top: 30px;
-        color: #FFF;
+	.modal{
+		width: 500px;
+		background: $dark-gray3;
+		margin-left: auto;
+		margin-right: auto;
+		border: 1px solid #000;
+		margin-top: 30px;
+		color: #FFF;
 
-        &#alert{
-            margin-top: 20%;
-        }
+		&#alert{
+			margin-top: 20%;
+		}
 
-        .save-and-close{
-            @include absolute(13px, 20px,initial, initial);
-        }
+		.save-and-close{
+			@include absolute(13px, 20px,initial, initial);
+		}
 
-        header{
-            background: $dark-gray5;
-            padding: 20px;
-            position: relative;
+		header{
+			background: $dark-gray5;
+			padding: 20px;
+			position: relative;
 
-            h2{
-                font-size: 1.6rem;
-                margin-bottom: 0;
-            }
+			h2{
+				font-size: 1.6rem;
+				margin-bottom: 0;
+			}
 
-            .fa-close{
-                @include absolute(20px, 20px, initial, initial);
-                font-size: 1.8rem;
-                cursor: pointer;
-            }
-        }
+			.fa-close{
+				@include absolute(20px, 20px, initial, initial);
+				font-size: 1.8rem;
+				cursor: pointer;
+			}
+		}
 
-        .inner-modal{
-            padding: 20px;
-            position: relative;            
+		.inner-modal{
+			padding: 20px;
+			position: relative;            
 
-            .alert-wrapper{
-                padding: 10px; 
-                overflow: hidden;
+			.alert-wrapper{
+				padding: 10px; 
+				overflow: hidden;
 
-                .fa-close{
-                    @include absolute(10px, 10px, initial, initial);
-                    cursor: pointer;
-                    font-size: 1.4rem;
-                }
+				.fa-close{
+					@include absolute(10px, 10px, initial, initial);
+					cursor: pointer;
+					font-size: 1.4rem;
+				}
 
-                p{
-                    font-size: 1.4rem;
-                    font-weight: bold;
-                    margin-bottom: 35px;
-                    text-align: center;
-                }                               
-            }
-        }
+				p{
+					font-size: 1.4rem;
+					font-weight: bold;
+					margin-bottom: 35px;
+					text-align: center;
+				}                               
+			}
+		}
 
-        input, textarea{
-            @extend %form-text;
-            padding: 8px;
-            margin-bottom: auto;
-            width: 100%;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            min-height: 20px;
-            background-color: $dark-gray5;
-            border: 1px solid black;
-        }
+		input, textarea{
+			@extend %form-text;
+			padding: 8px;
+			margin-bottom: auto;
+			width: 100%;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+			min-height: 20px;
+			background-color: $dark-gray5;
+			border: 1px solid black;
+		}
 
-        textarea{ 
-            /*font-size: 1.2rem;*/
-        }
+		textarea{ 
+			/*font-size: 1.2rem;*/
+		}
 
-        .hotspotsFooter{
-            background: rgba(0,0,0,0.8);
-            clear: both;
-            border-top: 1px solid $middle-gray;
-            text-align: center;
-            text-transform: uppercase;
-            height: 25px;
-            font-size: 1rem;
-            margin: 0 -20px -20px;            
+		.hotspotsFooter{
+			background: rgba(0,0,0,0.8);
+			clear: both;
+			border-top: 1px solid $middle-gray;
+			text-align: center;
+			text-transform: uppercase;
+			height: 25px;
+			font-size: 1rem;
+			margin: 0 -20px -20px;            
 
-            span{
-                font-size: 1.5rem;
-                margin-right: 10px;
-            }
+			span{
+				font-size: 1.5rem;
+				margin-right: 10px;
+			}
 
-            .removeHotspot, .testHotspot{
-                  cursor: pointer;
-                  padding: 5px;
-                  width: 50%;
-                  float: left;
-                  box-sizing: border-box;
+			.removeHotspot, .testHotspot{
+				  cursor: pointer;
+				  padding: 5px;
+				  width: 50%;
+				  float: left;
+				  box-sizing: border-box;
 
-                  &:hover {
-                    background-color:$dark-gray4;
-                  }
-            }
-        }  
-        
-        .skills{
-            height: 350px;
-            clear: both;
-            /*overflow: auto;*/
+				  &:hover {
+					background-color:$dark-gray4;
+				  }
+			}
+		}  
+		
+		.skills{
+			height: 350px;
+			clear: both;
+			/*overflow: auto;*/
 
-            .loading{
-                margin: 20px 0;
-            }
+			.loading{
+				margin: 20px 0;
+			}
 
-            h2 {
-                font-weight: bold;
-                font-size: 1.6rem;
-                margin-bottom: 7px;
-            }
-        }
+			h2 {
+				font-weight: bold;
+				font-size: 1.6rem;
+				margin-bottom: 7px;
+			}
+		}
 
-        #skill-search-results {
-            /*position: absolute;*/
-            float: left;
-            clear: both;
+		#skill-search-results {
+			/*position: absolute;*/
+			float: left;
+			clear: both;
 
-            dl {
-                padding: 10px;
-                box-sizing: border-box;
-                background-color: black;                
-                border-top: 1px solid $middle-gray;  
+			dl {
+				padding: 10px;
+				box-sizing: border-box;
+				background-color: black;                
+				border-top: 1px solid $middle-gray;  
 
-                dt {
-                    font-size: 1.2em;
-                    font-weight: bold;
-                    margin-bottom: 2px;
-                }
+				dt {
+					font-size: 1.2em;
+					font-weight: bold;
+					margin-bottom: 2px;
+				}
 
-                dd {
-                    color: $light-gray3;
-                    line-height: 1.2em;
-                }              
-            }
+				dd {
+					color: $light-gray3;
+					line-height: 1.2em;
+				}              
+			}
 
-            .ui-state-focus dl {
-                background-color: $middle-gray;
-            }
-        }
+			.ui-state-focus dl {
+				background-color: $middle-gray;
+			}
+		}
 
-        .single-input-group {
-            margin-bottom: 10px;
+		.single-input-group {
+			margin-bottom: 10px;
 
-            &:last-child {
-                margin-bottom: 0;
-            }
+			&:last-child {
+				margin-bottom: 0;
+			}
 
-            label {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin-bottom: 5px;
-                display: inline-block;
-            }
-        }
-        
-        .editor-group-2col {
-            position: relative;
-            margin-bottom: 20px;
+			label {
+				font-size: 1.2em;
+				font-weight: bold;
+				margin-bottom: 5px;
+				display: inline-block;
+			}
+		}
+		
+		.editor-group-2col {
+			position: relative;
+			margin-bottom: 20px;
 
-            label, input { 
-                
-            }
+			label, input { 
+				
+			}
 
-            label {
-                font-size: 1.2em;
-                font-weight: bold;
-                padding-top: 8px;
-                display: block;
-            }
+			label {
+				font-size: 1.2em;
+				font-weight: bold;
+				padding-top: 8px;
+				display: block;
+			}
 
-            input {
-                width: 55px;
-                padding: 8px 4px;
-                font-size: 1.3rem;
-            }
+			input {
+				width: 55px;
+				padding: 8px 4px;
+				font-size: 1.3rem;
+			}
 
-            .line-group{
-                min-height: 32px;
-                position: relative;
-                margin-bottom: 5px;
+			.line-group{
+				min-height: 32px;
+				position: relative;
+				margin-bottom: 5px;
 
-                input, .right-el{
-                    @include absolute(0,initial,initial, 60%);
-                }
-            }
+				input, .right-el{
+					@include absolute(0,initial,initial, 60%);
+				}
+			}
 
-            .logo-skill-position{
-                padding-top: 15px;
-                margin-bottom: 30px;
-            }            
-        }
-    }
+			.logo-skill-position{
+				padding-top: 15px;
+				margin-bottom: 30px;
+			}            
+		}
+	}
 /** End general modal **/
 
 
-    &.hotspotwindow{
-        background-color: transparent;
-        width: 0px;
-        height: 0px;
-        top: 105px;
-        left: 30px;
-
-        header{
-            height: 15px;
-            margin-left: 0;
-            margin-top: 0;
-            border-bottom: 2px solid #333;
-            background: rgba(0,0,0,0.9);
-            cursor: all-scroll;
-
-            .fa-close{
-                width: 100px;
-
-                &:before{
-                    content: "Save and Close";
-                    font-family: $font;
-                    font-size: 1.2rem;
-                    float: right;
-                }
-            }
-        }
-
-        .modal{
-            width: 320px;
-            background: none;
-            border-color: #333;
-
-            &.arrow-hotspot{
-                width: 405px;
-            }
-
-            label {
-                font-weight: bold;
-                margin-right: 10px;
-                font-size: 1.1em;
-            }
-
-            input {
-                border: 1px solid $middle-gray;
-            }
-
-            .inner-modal{
-                background: rgba(0,0,0,0.5);
-                
-
-                .dropdown, .dropdowntarget{
-                    background: #000;
-                    margin: 0 auto 10px;
-
-                    h2{
-                        padding: 4px;
-                        margin-bottom: 0;
-                        overflow: hidden;
-                        font-size: 1.2em;
-
-                        .default{
-                              float: left;
-                        }
-
-                        span {
-                            font-size: 1em;
-                            margin: 5px 2px;
-                              display: inline-block;
-                        }
-
-                        .fa-caret-down{
-                            font-size: 1.3em;
-                        }
-                    }
-                    ul{
-                        top: 34px;
-                    }
-
-                    &.style{
-                        width: 70px;
-                        float: left;
-                        margin: 0;
-
-                        h2{
-                            min-width: 55px;
-
-                            span{
-                                margin: 10px 2px;
-                            }
-                        }
-
-                        ul{
-                            top: 44px;
-
-                            li{
-                                height: auto;
-
-                                .default{
-                                    margin: 0 auto;
-                                }
-                            }
-                        }
-                    }
-                }
-    
-                figure{
-                    position: relative;
-                    margin-bottom: 10px;
-                    width: 180px;
-                    height: 100px;
-
-                    img{
-                        opacity: 0.5;
-                    }
-
-                    figcaption{
-                        position: absolute;
-                        top: 50px;
-                        left: 0px;
-                        width: 100%;
-                        text-align: center;
-                    }
-
-                }
-
-                .urlLink{
-                    height: 40px;
-                    clear:both;
-                    margin-bottom:40px;
-
-                    #urllinkhotspot{
-                        width: 85%;
-                    }
-
-                    label[for="urllinkhotspot"]{
-                        width: 15%;
-                        float: left;
-                        margin: 11px 0;
-                    }
-                }
-
-                label[for="urlvideohotspot"]{
-                    margin-bottom: 10px;
-                    display: block;
-                }
-
-                label[for="style"]{
-                    float: left;
-                    margin-top: 15px;
-                }
-
-                label[for="rotate"]{
-                    float: left;
-                    clear: left;
-                    margin-top: 9px;
-                }
-
-                textarea{
-                    height: 140px;
-                }
-
-                #rotate{
-                    width: 60px;
-                    float: left;
-                }
-
-                p{
-                    clear: left;
-                }
-            }
-
-            .default{
-                width: 32px;
-                height: 32px;
-            }
-        }
-
-        .hotspot-column{
-            width: 50%;
-            float: left;
-            height: 100%;
-            /*padding-bottom: 20px;*/
-            box-sizing: border-box;
-
-            .row {
-                height: 42px;
-                margin-bottom: 10px;
-
-                label {
-                    width: 52px;
-                }
-            }
-        } 
-
-        .scenelist .search-scenes{
-            width:135px;
-            float:left;
-        }
-        
-        .scene-search-result{
-            position:absolute;
-            z-index:1;
-            width:150px;
-        }
-        .scrollwrapper-scenes{
-            height:150px;
-            overflow:auto;
-            clear:both;
-        }
-
-        .hotspotarrow h3{
-            padding-bottom:5px;
-            font-size:1.5rem;
-            .selectedScene{
-                font-weight:bold;
-            }
-        }
-        ul.scenes-list{
-          
-            li{
-                border-bottom:1px solid $light-gray;
-                padding:5px;
-                overflow:auto;
-
-                img{
-                    float:left;
-                    width:70px;
-                }
-
-                dl{
-                    float:left;
-                    padding-left:10px;
-
-                    dt{
-                        font-weight:bold;
-                    }
-                }
-                span.select{
-                    background:$green;
-                    color:#FFF;
-                    font-size:0.9rem;
-                    float:right;
-                    padding:4px;
-                    margin-top:5px;
-                    cursor:pointer;
-                }
-            }
-
-        }
-
-        .ui-autocomplete {
-            background-color: $dark-gray5;
-            width: 100% !important;
-            box-sizing: border-box;
-            border: 1px solid $middle-gray;
-            padding: 5px 0;
-
-            li{
-                padding: 5px 10px;
-
-                &:hover {
-                    background-color: $dark-gray;
-                }
-            }
-
-            img{
-                width: 50px;
-                height: 50px;
-            }
-            dl {
-                  display: inline-block;
-                  vertical-align: top;
-                  margin-left: 10px;
-                  font-size: 1.1em;
-            }
-        }
-    }
-
-    &.skillWindow{
-        background-color: transparent;
-        width: 0px;
-        height: 0px;
-    }
-
-    .skillModal {
-        background-color: $black-transparent-65;
-        width: 520px;
-        position:fixed !important;
-        left:50%;
-        margin-left:-290px;
-
-        .inner-modal {
-            padding: 30px;
-        }
-
-        header {
-            .fa-close{
-                display: none;
-            }
-        }
-
-        footer {
-            overflow: auto;
-            padding-top: 10px;
-        }        
-
-        .scrollwrapper{
-            height: 350px;
-            overflow: auto;
-            margin-right: -15px;
-            padding-right: 15px;
-        }
-
-        h2 {
-            font-size: 1.3em;
-            line-height: 1.3em;
-        }
-
-        h3 {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-    /* editores */
-        .skill-editor-wrapper{
-            overflow: visible;
-
-            fieldset {
-                margin-bottom: 10px;
-                background-color: $dark-gray4;
-                border: 1px solid #000;
-                padding: 10px;
-                position: relative;
-
-                h2{
-                    text-align: center;
-                    line-height: 1.3em;
-                }
-
-                &:first-child{
-                    .close {
-                        display: none;
-                    }
-                }
-
-                .close {
-                    cursor: pointer;
-                    padding: 5px;
-                    font-size: 1.4rem;
-                    @include absolute(5px, 5px, initial, initial);
-                }                
-            }            
-        }
-
-        .logo-skill-editor {            
-            
-        }
-    }
-
-    #panoManager{
-        width: 650px;
-        border: 4px dashed $light-gray;
-
-        header {
-            h2 {
-                text-transform: uppercase;                
-            }
-            .save-and-close{
-                display: none;
-            }
-        }
-        .pano-manager {
-
-            .header {
-                height: 27px;
-                padding-bottom: 15px;
-
-                h2, label {
-                    display: inline-block;
-                    margin-right: 7px;
-                    font-size: 1.3em;
-                    margin-bottom: 0;
-                    margin-top: 4px;
-                    font-weight: bold;
-                    float: left;
-                }
-
-                .sort-by{
-                    margin-right: 27px;
-                }
-
-                .search-pano{
-                    input{
-                        width: 220px;
-                        float: left;
-                        background-color: $middle-gray;
-                        border: 1px solid #000;
-                        height: 26px;
-                    }                    
-                }
-            }
-
-            .pano-list{
-                clear: both;  
-
-                .scrollwrapper{
-                    max-height: 250px;
-                }             
-
-                ul {
-                    li {
-                        border: 1px solid black;
-                        background-color: #2b2b2b;
-                        padding: 15px;
-                        margin-bottom: 10px;
-                        position: relative;
-                        overflow: hidden;
-
-                        img {
-                            width: 100px;
-                            height: 50px;
-                            float: left;
-                        }
-
-                        .pano-data{
-                            float: left;
-                            margin-left: 15px;
-                        }
-
-                        .modal-bt{
-                            @include absolute(25px,15px,initial,initial);
-                        }
-                    }
-                }
-            }
-
-            footer{
-                margin: 0 -20px -20px;
-                background-color: $dark-gray4;
-                border-top: 1px solid black;
-
-                ul {
-                    overflow: hidden;
-                    padding: 10px;
-                    min-height: 51px;
-
-                    li {
-                        float: left;
-                        position: relative;
-                        margin-right: 5px;
-
-                        &:last-child{
-                            margin-right: 0; 
-                        }
-
-                        img {
-                            width: 100px;
-                            height: 50px;
-                        }
-                        span{
-                            @include absolute(3px,3px,initial,initial);
-                            cursor: pointer;
-                            padding: 2px;
-                        }
-                    }
-                }
-                .btns{
-                    height: 30px;
-                    background-color: $dark-gray5;
-                    overflow: hidden;
-                    padding: 5px;
-                    font-size: .75em;
-                }
-            }
-        }
-    }
-
-    #mapModal{
-        width: 650px; 
-
-        .fa-close{
-            display: none;
-        }
-        
-        .map-wrapper{
-            label{
-                margin-bottom: 10px;
-                display: block;
-            }
-
-            .map_canvas{
-                width: 100%;
-                height: 350px;
-
-                input {
-                    width: 75%;
-                    margin-top: 5px;
-                }
-
-                .gm-style-iw{
-                    color: black;
-                }
-            }
-
-            .geoMap{
-                margin-top: 15px;
-            }
-        }
-    }
-
-    #skillsModalList{
-        header{
-            .save-and-close{
-                display: none;
-            }
-
-            .fa-close {
-                display: block;
-            }
-        }
-
-        #skill-list-search{
-            width: 90%;
-            float: left;
-        }
-        .clear-btn{
-            height: 33px;
-            padding-top: 11px;
-        }
-    }
-
-    .clear-btn{
-        text-transform: uppercase;
-        color: $yellow;
-        cursor: pointer;
-    }
-
-    .ui-menu-item{
-        cursor: pointer;
-    }
-
-    #pano-search-results {
-        position: absolute;
-        z-index: 1000;
-
-        ul{            
-            background-color: $black-transparent-65;
-            width: 200px;
-            box-sizing: border-box;
-
-            li{
-                padding:10px;
-
-                &.ui-state-focus{
-                    background-color: $light-gray;
-                }
-
-                img{
-                    width: 100%;
-                }
-
-                dl{
-                    text-align: center;
-
-                    dt{
-                        font-size: 1.1em;
-                        font-weight: bold;
-                        margin: 2px 0;
-                    }
-                    dd{
-                        font-style: italic;
-                    }
-                }
-            }
-        }
-    }
-
-    .loading-bar-skill-editor{
-        .dropdown{
-            background-color: $dark-gray5;
-            width: 100px;
-
-            h2{
-                font-size: 1.2em;
-            }
-
-            li{
-                font-size: 1.1em;
-                text-align: center;
-            }
-        }
-
-        .scrollwrapper{
-            margin: 0;
-            padding-right:0;
-            
-            .inner-modal-wrapper{
-                padding: 30px;
-            }
-        }
-    }
-
-    .title-banner{
-        padding: 8px 30px;
-        margin-left: -32px;
-    }
-
-    #skillsEditor-2{
-        .inner-modal{
-            padding:0;
-        }
-    }
-
-    /* hotspot styles editor */
-    #hotspotStyleEditor{
-        width: 560px;
-
-        .delete-set{
-            @include absolute(13px, 160px,initial, initial);
-        }
-
-        header{
-            .fa-close {
-                display: none;
-            }
-        }
-
-        .hotspotStyleContent{
-            overflow: hidden;
-
-            .hotsPotStyleTabs, .hotsPotStyleSelected{
-                box-sizing: border-box;
-                float: left;
-            }
-        }
-
-        .hotsPotStyleTabs{
-            width: 75%;
-            padding-right: 15px;
-
-            .addStyle{
-                width: 50px;
-                height: 50px;
-                text-align: center;
-                margin: 0 auto;
-                cursor: pointer;
-
-                &.selected{
-                    border: 1px solid $green;
-                    background-color: $middle-gray1;
-                }
-
-                .fa{
-                    font-size: 2rem;
-                      margin-top: 15px;
-                }
-            }
-
-            .add{
-                margin: 0 auto;
-            }
-        }
-
-        .hotsPotStyleSelected{
-            width: 25%;
-
-            .data-group{
-                margin-bottom: 15px;
-            }
-
-            .selectedSet{
-                font-weight: bold;
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-                margin-top: 8px;
-
-                span{
-                    color: $green2;
-                }
-            }
-
-            label, input {
-                box-sizing: border-box;
-            }
-            
-            label{
-                display: inline-block;
-                margin-top: 7px;
-            }
-            input[type="number"] {
-                width: 50%;
-                padding: 5px;
-            }
-
-            #removeStyle{
-                margin-left: 0;
-                padding: 8px;
-            }
-        }
-
-        .tabContent{
-            padding-top: 40px;
-
-            .icons{
-                overflow: hidden;
-                margin: 0 auto;
-                width: 210px;
-
-                .icons-wrapper{
-                    margin-right: 12px;
-
-                    &:last-child{
-                        margin-right: 0;
-                    }
-                }
-            }
-        }
-    }
+	&.hotspotwindow{
+		background-color: transparent;
+		width: 0px;
+		height: 0px;
+		top: 105px;
+		left: 30px;
+
+		header{
+			height: 15px;
+			margin-left: 0;
+			margin-top: 0;
+			border-bottom: 2px solid #333;
+			background: rgba(0,0,0,0.9);
+			cursor: all-scroll;
+
+			.fa-close{
+				width: 100px;
+
+				&:before{
+					content: "Save and Close";
+					font-family: $font;
+					font-size: 1.2rem;
+					float: right;
+				}
+			}
+		}
+
+		.modal{
+			width: 320px;
+			background: none;
+			border-color: #333;
+
+			&.arrow-hotspot{
+				width: 405px;
+			}
+
+			label {
+				font-weight: bold;
+				margin-right: 10px;
+				font-size: 1.1em;
+			}
+
+			input {
+				border: 1px solid $middle-gray;
+			}
+
+			.inner-modal{
+				background: rgba(0,0,0,0.5);
+				
+
+				.dropdown, .dropdowntarget{
+					background: #000;
+					margin: 0 auto 10px;
+
+					h2{
+						padding: 4px;
+						margin-bottom: 0;
+						overflow: hidden;
+						font-size: 1.2em;
+
+						.default{
+							  float: left;
+						}
+
+						span {
+							font-size: 1em;
+							margin: 5px 2px;
+							  display: inline-block;
+						}
+
+						.fa-caret-down{
+							font-size: 1.3em;
+						}
+					}
+					ul{
+						top: 34px;
+					}
+
+					&.style{
+						width: 70px;
+						float: left;
+						margin: 0;
+
+						h2{
+							min-width: 55px;
+
+							span{
+								margin: 10px 2px;
+							}
+						}
+
+						ul{
+							top: 44px;
+
+							li{
+								height: auto;
+
+								.default{
+									margin: 0 auto;
+								}
+							}
+						}
+					}
+				}
+	
+				figure{
+					position: relative;
+					margin-bottom: 10px;
+					width: 180px;
+					height: 100px;
+
+					img{
+						opacity: 0.5;
+					}
+
+					figcaption{
+						position: absolute;
+						top: 50px;
+						left: 0px;
+						width: 100%;
+						text-align: center;
+					}
+
+				}
+
+				.urlLink{
+					height: 40px;
+					clear:both;
+					margin-bottom:40px;
+
+					#urllinkhotspot{
+						width: 85%;
+					}
+
+					label[for="urllinkhotspot"]{
+						width: 15%;
+						float: left;
+						margin: 11px 0;
+					}
+				}
+
+				label[for="urlvideohotspot"]{
+					margin-bottom: 10px;
+					display: block;
+				}
+
+				label[for="style"]{
+					float: left;
+					margin-top: 15px;
+				}
+
+				label[for="rotate"]{
+					float: left;
+					clear: left;
+					margin-top: 9px;
+				}
+
+				textarea{
+					height: 140px;
+				}
+
+				#rotate{
+					width: 60px;
+					float: left;
+				}
+
+				p{
+					clear: left;
+				}
+			}
+
+			.default{
+				width: 32px;
+				height: 32px;
+			}
+		}
+
+		.hotspot-column{
+			width: 50%;
+			float: left;
+			height: 100%;
+			/*padding-bottom: 20px;*/
+			box-sizing: border-box;
+
+			.row {
+				height: 42px;
+				margin-bottom: 10px;
+
+				label {
+					width: 52px;
+				}
+			}
+		} 
+
+		.scenelist .search-scenes{
+			width:135px;
+			float:left;
+		}
+		
+		.scene-search-result{
+			position:absolute;
+			z-index:1;
+			width:150px;
+		}
+		.scrollwrapper-scenes{
+			height:150px;
+			overflow:auto;
+			clear:both;
+		}
+
+		.hotspotarrow h3{
+			padding-bottom:5px;
+			font-size:1.5rem;
+			.selectedScene{
+				font-weight:bold;
+			}
+		}
+		ul.scenes-list{
+		  
+			li{
+				border-bottom:1px solid $light-gray;
+				padding:5px;
+				overflow:auto;
+
+				img{
+					float:left;
+					width:70px;
+				}
+
+				dl{
+					float:left;
+					padding-left:10px;
+
+					dt{
+						font-weight:bold;
+					}
+				}
+				span.select{
+					background:$green;
+					color:#FFF;
+					font-size:0.9rem;
+					float:right;
+					padding:4px;
+					margin-top:5px;
+					cursor:pointer;
+				}
+			}
+
+		}
+
+		.ui-autocomplete {
+			background-color: $dark-gray5;
+			width: 100% !important;
+			box-sizing: border-box;
+			border: 1px solid $middle-gray;
+			padding: 5px 0;
+
+			li{
+				padding: 5px 10px;
+
+				&:hover {
+					background-color: $dark-gray;
+				}
+			}
+
+			img{
+				width: 50px;
+				height: 50px;
+			}
+			dl {
+				  display: inline-block;
+				  vertical-align: top;
+				  margin-left: 10px;
+				  font-size: 1.1em;
+			}
+		}
+	
+	.onoffswitch{
+		position:relative;
+		width:70px;
+	}
+	
+	.onoffswitch-switch{
+		right:50px;
+	}
+
+	.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch{
+		right:12px;
+	}
+
+	.onoffswitch-inner{
+
+		&:after{
+			content:"EDIT"
+		}
+
+		&:before{
+			content:"LIVE"
+		}
+	}
+
+	}
+
+	&.skillWindow{
+		background-color: transparent;
+		width: 0px;
+		height: 0px;
+	}
+
+	.skillModal {
+		background-color: $black-transparent-65;
+		width: 520px;
+		position:fixed !important;
+		left:50%;
+		margin-left:-290px;
+
+		.inner-modal {
+			padding: 30px;
+		}
+
+		header {
+			.fa-close{
+				display: none;
+			}
+		}
+
+		footer {
+			overflow: auto;
+			padding-top: 10px;
+		}        
+
+		.scrollwrapper{
+			height: 350px;
+			overflow: auto;
+			margin-right: -15px;
+			padding-right: 15px;
+		}
+
+		h2 {
+			font-size: 1.3em;
+			line-height: 1.3em;
+		}
+
+		h3 {
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		
+	/* editores */
+		.skill-editor-wrapper{
+			overflow: visible;
+
+			fieldset {
+				margin-bottom: 10px;
+				background-color: $dark-gray4;
+				border: 1px solid #000;
+				padding: 10px;
+				position: relative;
+
+				h2{
+					text-align: center;
+					line-height: 1.3em;
+				}
+
+				&:first-child{
+					.close {
+						display: none;
+					}
+				}
+
+				.close {
+					cursor: pointer;
+					padding: 5px;
+					font-size: 1.4rem;
+					@include absolute(5px, 5px, initial, initial);
+				}                
+			}            
+		}
+
+		.logo-skill-editor {            
+			
+		}
+	}
+
+	#panoManager{
+		width: 650px;
+		border: 4px dashed $light-gray;
+
+		header {
+			h2 {
+				text-transform: uppercase;                
+			}
+			.save-and-close{
+				display: none;
+			}
+		}
+		.pano-manager {
+
+			.header {
+				height: 27px;
+				padding-bottom: 15px;
+
+				h2, label {
+					display: inline-block;
+					margin-right: 7px;
+					font-size: 1.3em;
+					margin-bottom: 0;
+					margin-top: 4px;
+					font-weight: bold;
+					float: left;
+				}
+
+				.sort-by{
+					margin-right: 27px;
+				}
+
+				.search-pano{
+					input{
+						width: 220px;
+						float: left;
+						background-color: $middle-gray;
+						border: 1px solid #000;
+						height: 26px;
+					}                    
+				}
+			}
+
+			.pano-list{
+				clear: both;  
+
+				.scrollwrapper{
+					max-height: 250px;
+				}             
+
+				ul {
+					li {
+						border: 1px solid black;
+						background-color: #2b2b2b;
+						padding: 15px;
+						margin-bottom: 10px;
+						position: relative;
+						overflow: hidden;
+
+						img {
+							width: 100px;
+							height: 50px;
+							float: left;
+						}
+
+						.pano-data{
+							float: left;
+							margin-left: 15px;
+						}
+
+						.modal-bt{
+							@include absolute(25px,15px,initial,initial);
+						}
+					}
+				}
+			}
+
+			footer{
+				margin: 0 -20px -20px;
+				background-color: $dark-gray4;
+				border-top: 1px solid black;
+
+				ul {
+					overflow: hidden;
+					padding: 10px;
+					min-height: 51px;
+
+					li {
+						float: left;
+						position: relative;
+						margin-right: 5px;
+
+						&:last-child{
+							margin-right: 0; 
+						}
+
+						img {
+							width: 100px;
+							height: 50px;
+						}
+						span{
+							@include absolute(3px,3px,initial,initial);
+							cursor: pointer;
+							padding: 2px;
+						}
+					}
+				}
+				.btns{
+					height: 30px;
+					background-color: $dark-gray5;
+					overflow: hidden;
+					padding: 5px;
+					font-size: .75em;
+				}
+			}
+		}
+	}
+
+	#mapModal{
+		width: 650px; 
+
+		.fa-close{
+			display: none;
+		}
+		
+		.map-wrapper{
+			label{
+				margin-bottom: 10px;
+				display: block;
+			}
+
+			.map_canvas{
+				width: 100%;
+				height: 350px;
+
+				input {
+					width: 75%;
+					margin-top: 5px;
+				}
+
+				.gm-style-iw{
+					color: black;
+				}
+			}
+
+			.geoMap{
+				margin-top: 15px;
+			}
+		}
+	}
+
+	#skillsModalList{
+		header{
+			.save-and-close{
+				display: none;
+			}
+
+			.fa-close {
+				display: block;
+			}
+		}
+
+		#skill-list-search{
+			width: 90%;
+			float: left;
+		}
+		.clear-btn{
+			height: 33px;
+			padding-top: 11px;
+		}
+	}
+
+	.clear-btn{
+		text-transform: uppercase;
+		color: $yellow;
+		cursor: pointer;
+	}
+
+	.ui-menu-item{
+		cursor: pointer;
+	}
+
+	#pano-search-results {
+		position: absolute;
+		z-index: 1000;
+
+		ul{            
+			background-color: $black-transparent-65;
+			width: 200px;
+			box-sizing: border-box;
+
+			li{
+				padding:10px;
+
+				&.ui-state-focus{
+					background-color: $light-gray;
+				}
+
+				img{
+					width: 100%;
+				}
+
+				dl{
+					text-align: center;
+
+					dt{
+						font-size: 1.1em;
+						font-weight: bold;
+						margin: 2px 0;
+					}
+					dd{
+						font-style: italic;
+					}
+				}
+			}
+		}
+	}
+
+	.loading-bar-skill-editor{
+		.dropdown{
+			background-color: $dark-gray5;
+			width: 100px;
+
+			h2{
+				font-size: 1.2em;
+			}
+
+			li{
+				font-size: 1.1em;
+				text-align: center;
+			}
+		}
+
+		.scrollwrapper{
+			margin: 0;
+			padding-right:0;
+			
+			.inner-modal-wrapper{
+				padding: 30px;
+			}
+		}
+	}
+
+	.title-banner{
+		padding: 8px 30px;
+		margin-left: -32px;
+	}
+
+	#skillsEditor-2{
+		.inner-modal{
+			padding:0;
+		}
+	}
+
+	/* hotspot styles editor */
+	#hotspotStyleEditor{
+		width: 560px;
+
+		.delete-set{
+			@include absolute(13px, 160px,initial, initial);
+		}
+
+		header{
+			.fa-close {
+				display: none;
+			}
+		}
+
+		.hotspotStyleContent{
+			overflow: hidden;
+
+			.hotsPotStyleTabs, .hotsPotStyleSelected{
+				box-sizing: border-box;
+				float: left;
+			}
+		}
+
+		.hotsPotStyleTabs{
+			width: 75%;
+			padding-right: 15px;
+
+			.addStyle{
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				margin: 0 auto;
+				cursor: pointer;
+
+				&.selected{
+					border: 1px solid $green;
+					background-color: $middle-gray1;
+				}
+
+				.fa{
+					font-size: 2rem;
+					  margin-top: 15px;
+				}
+			}
+
+			.add{
+				margin: 0 auto;
+			}
+		}
+
+		.hotsPotStyleSelected{
+			width: 25%;
+
+			.data-group{
+				margin-bottom: 15px;
+			}
+
+			.selectedSet{
+				font-weight: bold;
+				font-size: 1.4rem;
+				margin-bottom: 15px;
+				margin-top: 8px;
+
+				span{
+					color: $green2;
+				}
+			}
+
+			label, input {
+				box-sizing: border-box;
+			}
+			
+			label{
+				display: inline-block;
+				margin-top: 7px;
+			}
+			input[type="number"] {
+				width: 50%;
+				padding: 5px;
+			}
+
+			#removeStyle{
+				margin-left: 0;
+				padding: 8px;
+			}
+		}
+
+		.tabContent{
+			padding-top: 40px;
+
+			.icons{
+				overflow: hidden;
+				margin: 0 auto;
+				width: 210px;
+
+				.icons-wrapper{
+					margin-right: 12px;
+
+					&:last-child{
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
 }
