@@ -29,7 +29,7 @@ define([
 
 			$("#"+spotName+" header h2").text("Info Hotspot. ID "+num+":")
 
-			var compiledTemplate = _.template(hotspotinfo,{allData:allData})
+			var compiledTemplate = _.template(hotspotinfo,{allData:allData,num:num})
 			$("#"+spotName+" .inner-modal").html(compiledTemplate);
 			
 			console.log($("#"+this.myid).data("spotdata"));
@@ -67,6 +67,10 @@ define([
 				});
 				manageData.removeHotSpot($("#tour").data("scene")._name, spotName)
 			})
+
+			/*$me.find("#onoffswitchhplink-"+num).click(function(){
+
+			})*/
 
 		},
 
