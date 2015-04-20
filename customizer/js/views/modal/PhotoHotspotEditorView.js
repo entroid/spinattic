@@ -70,6 +70,30 @@ define([
 				manageData.removeHotSpot($("#tour").data("scene")._name, spotName);
 				$("#"+myid+" header .save-and-close").trigger("click");
 			})
+
+			$me.find("#onoffswitchhpphoto-"+num).click(function(){
+				if($(this).is(":checked")){
+					var hpdata = $me.data("spotdata");
+					var pic = $("#"+myid+" #pic-hotspot"+num).data("imgsrc");
+					var tooltip = $me.find("#photoTooltip").val(); 
+					var krpano = document.getElementById("krpanoSWFObject");
+					krpano.call("addhotspot("+hpdata._name +")");
+					krpano.set("hotspot["+hpdata._name+"].pic", pic );
+					krpano.set("hotspot["+hpdata._name+"].tooltip", tooltip );
+					
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick, showpic() );');
+					$me.find(".save-and-close").hide();
+
+				}else{
+					var hpdata = $me.data("spotdata");
+					var krpano = document.getElementById("krpanoSWFObject");
+					krpano.call("addhotspot("+hpdata._name +")");
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
+					$me.find(".save-and-close").show();
+				}
+			})
 	
 	},
 

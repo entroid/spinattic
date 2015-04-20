@@ -39,8 +39,8 @@ define([
 			var myid = this.myid;
 			var selectedset = this.model.get("selectedSet");
 			var HotSpotDDModel = Backbone.Model.extend({});
-		    hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"info",elemid:myid});
-		    var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
+			hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"info",elemid:myid});
+			var hotSpotsDropDown = new HotSpotsDropDown({model:hotSpotDDModel})
 			hotSpotsDropDown.render();
 
 			$("#"+this.myid).find(".fa-close").remove();
@@ -71,27 +71,23 @@ define([
 			$me.find("#onoffswitchhpinfo-"+num).click(function(){
 				if($(this).is(":checked")){
 					
-					console.log("live")
 					var hpdata = $me.data("spotdata");
 					var infoTitle = $me.find(".infotitle").val();
 					var infoText = $me.find(".infotext").val(); 
 					var krpano = document.getElementById("krpanoSWFObject");
-                    krpano.call("addhotspot("+hpdata._name +")");
-                    krpano.set("hotspot["+hpdata._name+"].ath", hpdata._ath );
-                    krpano.set("hotspot["+hpdata._name+"].atv", hpdata._atv );
-                    krpano.call("hotspot["+hpdata._name+"].loadStyle("+hpdata._style+");");
-                    krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
-                    krpano.call('set(hotspot['+hpdata._name+'].onclick, showinfo('+infoTitle+','+infoText+') );');
+					krpano.call("addhotspot("+hpdata._name +")");
+					
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick, showinfo('+infoTitle+','+infoText+') );');
+					$me.find(".save-and-close").hide();
 
 				}else{
 					var hpdata = $me.data("spotdata");
 					var krpano = document.getElementById("krpanoSWFObject");
-                    krpano.call("addhotspot("+hpdata._name +")");
-                    krpano.set("hotspot["+hpdata._name+"].ath", hpdata._ath );
-                    krpano.set("hotspot["+hpdata._name+"].atv", hpdata._atv );
-                    krpano.call("hotspot["+hpdata._name+"].loadStyle("+hpdata._style+");");
-                    krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
-                    krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
+					krpano.call("addhotspot("+hpdata._name +")");
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
+					$me.find(".save-and-close").show();
 				}
 			})
 
