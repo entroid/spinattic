@@ -78,7 +78,7 @@
 		flyout(get(data[photo].content));
 		txtadd(picname,get(xml.scene),get(name));
 		if( hotspot[get(picname)] === null,
-			txtadd(picfilename,%CURRENTXML%/photos/,get(pic));
+			txtadd(picfilename,%CURRENTXML%/../,get(pic));
 			addhotspot(get(picname));
 			getcenter(hsath,hsatv);
 			copy(hotspot[get(picname)].ath, hsath);
