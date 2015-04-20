@@ -27,7 +27,7 @@ define([
 			
 			$("#"+this.myid+" header h2").text("Photo Hotspot. ID "+num+":")
 			var allData = this.model.get("allData");
-            var compiledTemplate = _.template(hotspotphoto,{allData:allData,integer:num})
+            var compiledTemplate = _.template(hotspotphoto,{allData:allData,num:num})
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 
     		var SingleUploaderModel = Backbone.Model.extend({});

@@ -29,7 +29,7 @@ define([
 
 			var allData = this.model.get("allData");
 			var scenes = tourData.krpano.scene;			
-			var compiledTemplate = _.template(hotspotarrow,{num:num,allData:allData,scenes:scenes})
+			var compiledTemplate = _.template(hotspotarrow,{num:num,allData:allData,scenes:scenes,num:num})
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 			var me = this;
 			$("#"+me.myid).find(".fa-close").remove();

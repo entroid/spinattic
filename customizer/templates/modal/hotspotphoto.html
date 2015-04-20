@@ -10,12 +10,19 @@
         </div>
     </div>
 
-    <div id="pic-hotspot<%=integer%>" style="clear:both"></div>
+    <div id="pic-hotspot<%=num%>" style="clear:both"></div>
     <input type="text" placeholder="photo tooltip" id="photoTooltip" name="photoTooltip" value="<%=allData._tooltip%>">
 
 </div>
 
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchhpphoto-<%=num%>" >
+    <label class="onoffswitch-label" for="onoffswitchhpphoto-<%=num%>">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+    </label>
+</div>
+
 <div class="hotspotsFooter">
-    <div class="testHotspot"><span class="fa fa-check-circle "></span>Test Hotspot</div>
     <div class="removeHotspot"><span class="fa fa-trash"></span>Remove Hotspot</div>
 </div>

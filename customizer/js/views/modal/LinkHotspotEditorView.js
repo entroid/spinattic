@@ -27,7 +27,7 @@ define([
 			
 			$("#"+this.myid+" header h2").text("Link Hotspot. ID "+num+":")
 			var allData = this.model.get("allData")
-			var compiledTemplate = _.template(hotspotlink,{allData:allData})
+			var compiledTemplate = _.template(hotspotlink,{allData:allData,num:num})
 			var myid = this.myid;
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 
