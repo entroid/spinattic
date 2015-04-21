@@ -5,6 +5,7 @@ require_once("../php/functions.php");
 /* Parametros por querystring
  * d (1/0) consulta draft o published
  * c (1/0) muestra custom attrs
+ * h = 0 oculta los hotspots
  * t (nombre) muestra un template particular
  * id el id del tour o del template
  */
@@ -17,6 +18,7 @@ $user_id = $_SESSION['usr'];
 $custom_attrs = 0;
 
 $draft_subscript = '';
+$template_id = '';
 
 //Si recibo un 1 en c, devuelvo custom tags
 if(isset($_GET['c']) && $_GET['c'] == 1){
@@ -35,21 +37,21 @@ if($user_id != ''){
 	//Si recibo un objeto específico, devuelvo el template, sino, el xml de un tour (agregar case para nuevos templates dentro de la funcion)
 	switch ($_GET['t']){
 		case 'skills':
-			$id = $_GET['id'];
+			$template_id = $_GET['id'];
 			$prev_tag_ident = 0;
 			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);			
 			
 			break;
 			
 		case 'htspts':
-			$id = $_GET['id'];
+			$template_id = $_GET['id'];
 			$prev_tag_ident = 0;
 			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);
 		
 			break;			
 
 		case 'htspts_styles':
-			$id = $_GET['id'];
+			$template_id = $_GET['id'];
 			$prev_tag_ident = 0;
 			$print_xml .= get_template($_GET['t'], '', $prev_tag_ident);
 		
@@ -91,6 +93,14 @@ if($user_id != ''){
 			';
 			$print_xml .= get_xml($segment, '', $prev_tag_ident);
 			
+			//Toma de default skills
+			$prev_tag_ident = 0;
+			$segment = 'DEFAULT SKILLS';
+			$print_xml .= '
+			<!-- '.$segment.' -->
+			';
+			$print_xml .= get_default_elements('skills', '', $prev_tag_ident);
+			
 			//Toma de free hotspots styles
 			$prev_tag_ident = 0;
 			$segment = 'FREE HOTSPOTS STYLES';
@@ -123,6 +133,7 @@ if($user_id != ''){
 	
 	
 }
+
 
 function get_free_htpts_styles(){
 	global $segment;
@@ -178,12 +189,49 @@ function get_free_htpts_styles(){
 	
 }
 
-
-function get_template($template, $kind, $prev_tag_ident){
-	global $user_id;
+function get_default_elements ($template, $kind, $prev_tag_ident){
 	global $id;
+	global $template_id;
+	global $draft_subscript;
+	global $custom_attrs;
+	
+	switch ($template){
+		case 'skills': //levanto los id de los elementos a devolver (son los que no tenga agregados ya al tour)
+			$ssqlp = "SELECT skill_id as template_id FROM customizer_templates_skills where kind not in (select kind from customizer".$draft_subscript." where idtour = '".$id."' and segment = 'SKILLS') and add_by_default = 1 group by skill_id order by skill_id";
+			break;
+			/*
+			 case 'htspts':
+			$ssqlp = "SELECT * FROM customizer_templates_htspts where htspt_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			break;
+			case 'htspts_styles':
+			$ssqlp = "SELECT * FROM customizer_free_htspts_styles where style_id = ".$id." and prev_tag_ident = ".$prev_tag_ident;
+			break;
+			*/
+	}
+	
+	$result = mysql_query($ssqlp);
+	
+	
+	while($row = mysql_fetch_array($result)){
+		$template_id = $row["template_id"];
+		$final_xml .= get_template($template, $kind, $prev_tag_ident);
+	}
+	
+	//Modificaciones particulares de lo que tengo que devolver si no se pide custom
+	if($custom_attrs != 1){
+		$final_xml = str_replace('<skill>', '', $final_xml);
+		$final_xml = str_replace('</skill>', '', $final_xml);
+	}
+	
+	return $final_xml;
+}
+
+function get_template($template, $kind, $prev_tag_ident){ 
+	global $user_id;
+	global $template_id;
 	global $cdn;
 	global $custom_attrs;
+	global $id; //el id del tour para los elementos por default (no se usa para devolver solo templates)
 
 	$final_xml = '';
 	$tag_ident = '';
@@ -199,14 +247,14 @@ function get_template($template, $kind, $prev_tag_ident){
 	
 	switch ($template){
 		case 'skills':
-			$ssqlp = "SELECT * FROM customizer_templates_skills where skill_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			$ssqlp = "SELECT *, skill_id as template_id FROM customizer_templates_skills where skill_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
 			break;
 		case 'htspts':
-			$ssqlp = "SELECT * FROM customizer_templates_htspts where htspt_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
-			break;	
+			$ssqlp = "SELECT *, htspt_id as template_id FROM customizer_templates_htspts where htspt_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
+			break;
 		case 'htspts_styles':
-			$ssqlp = "SELECT * FROM customizer_free_htspts_styles where style_id = ".$id." and prev_tag_ident = ".$prev_tag_ident;
-			break;			
+			$ssqlp = "SELECT *, style_id as template_id FROM customizer_free_htspts_styles where style_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident;
+			break;
 	}
 	
 	
@@ -229,7 +277,8 @@ function get_template($template, $kind, $prev_tag_ident){
 				';
 				$in_tag_code = '';
 			}
-
+			
+			$template_id = $row["template_id"];
 			$tag_ident = $row["tag_ident"];
 			$tag_name = $row["tag_name"];
 			$segment = $row["segment"];
@@ -239,7 +288,7 @@ function get_template($template, $kind, $prev_tag_ident){
 
 			if($custom_attrs == 1){
 				$final_xml .= '
-				<'.$tag_name.' tag_ident="'.$tag_ident.'" prev_tag_ident="'.$prev_tag_ident.'" segment="'.$segment.'" kind="'.$kind.'"';
+				<'.$tag_name.' template_id="'.$template_id.'" tag_ident="'.$tag_ident.'" prev_tag_ident="'.$prev_tag_ident.'" segment="'.$segment.'" kind="'.$kind.'"';
 			}else{
 				$final_xml .= '
 				<'.$tag_name;
@@ -409,37 +458,39 @@ function get_scenes(){
 
 			</image>';
 
-		//HOTSPOTS
 
-		$ssqlp_htsp = "SELECT * FROM hotspots".$draft_subscript." where scene_id = ".$row["id"];
-		$result_htsp = mysql_query($ssqlp_htsp);
-		while($row_htsp = mysql_fetch_array($result_htsp)){
-
-
-
-			$final_data.= '
-			<hotspot'.$segment_html.' style="'.$row_htsp["style"].'" kind="'.htmlspecialchars($row_htsp["type"]).'" name="'.htmlspecialchars($row_htsp["name"]).'" ath="'.$row_htsp["ath"].'" atv="'.$row_htsp["atv"].'"';
-
-			switch ($row_htsp["type"]) {
-				case "arrow":
-					$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" />';
-					break;
-				case "info":
-					$final_data.= ' infotitle="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotitle"])).'" infotext="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotext"])).'" />';
-					break;
-				case "photo":
-					$final_data.= ' pic="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
-					break;
-				case "media":
-					$final_data.= ' video="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
-					break;					
-				case "link":
-					$final_data.= ' linkurl="'.$row_htsp["extra_linkurl"].'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
-					break;
+		//HOTSPOTS (si $_GET['h'] != 0 tomo hotspots, sino, no)
+		if(!isset($_GET['h']) || $_GET['h'] != 0){
+			
+			$ssqlp_htsp = "SELECT * FROM hotspots".$draft_subscript." where scene_id = ".$row["id"];
+			$result_htsp = mysql_query($ssqlp_htsp);
+			while($row_htsp = mysql_fetch_array($result_htsp)){
+	
+	
+	
+				$final_data.= '
+				<hotspot'.$segment_html.' template_id="'.$row_htsp["template_id"].'" style="'.$row_htsp["style"].'" kind="'.htmlspecialchars($row_htsp["type"]).'" name="'.htmlspecialchars($row_htsp["name"]).'" ath="'.$row_htsp["ath"].'" atv="'.$row_htsp["atv"].'"';
+	
+				switch ($row_htsp["type"]) {
+					case "arrow":
+						$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" />';
+						break;
+					case "info":
+						$final_data.= ' infotitle="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotitle"])).'" infotext="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotext"])).'" />';
+						break;
+					case "photo":
+						$final_data.= ' pic="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
+						break;
+					case "media":
+						$final_data.= ' video="'.htmlspecialchars($row_htsp["extra_photourl"], ENT_QUOTES).'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
+						break;					
+					case "link":
+						$final_data.= ' linkurl="'.$row_htsp["extra_linkurl"].'" target="'.$row_htsp["extra_target"].'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'" />';
+						break;
+				}
+	
 			}
-
 		}
-
 
 		$final_data .= 	'
 		</scene>';

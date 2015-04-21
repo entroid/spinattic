@@ -6,10 +6,10 @@ define([
     'text!templates/sidebar/skinCustomizerMenu.html',
     'helpers/HelpFunctions',
     'views/modal/SkillsModalList',
-    'mCustomScrollbar'
-    
+    'mCustomScrollbar',
+    'views/sidebar/SkinCustomizerItem',
 
-], function($, _, Backbone, SidebarSubMenu, skinCustomizerMenu, HelpFunctions, SkillsModalList, mCustomScrollbar){
+], function($, _, Backbone, SidebarSubMenu, skinCustomizerMenu, HelpFunctions, SkillsModalList, mCustomScrollbar,SkinCustomizerItem){
 
     var SkinCustomizerMenuView = SidebarSubMenu.extend({
         initialize: function () {
@@ -21,10 +21,22 @@ define([
 
         render: function(){
 
-            var styles = tourData.krpano.style;
-            var compiledTemplate = _.template(skinCustomizerMenu,{styles:styles});
+            var skill = tourData.krpano.skill;
+            var compiledTemplate = _.template(skinCustomizerMenu);
+
 
             $(this.el).append( compiledTemplate );
+
+            _.each(skill,function(skl,ind){
+
+                console.log(skl)
+                var SkillItemModel = Backbone.Model.extend({});
+                skillItemModel = new SkillItemModel({tourSkill:skl});
+                var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
+                skinCustomizerItem.render();
+
+            })
+
 
             elem =  this.model.get("elem");
 

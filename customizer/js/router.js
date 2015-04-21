@@ -114,6 +114,12 @@ define([
 							}
 					})
 
+					if(tourData.krpano.skill.length == undefined){
+						var capacidad = [];
+						capacidad[0] = tourData.krpano.skill;
+						tourData.krpano.skill = capacidad
+					}
+
 					$.ajax({
 						url:  "data/json.php?id="+id+"&d=1&t=t",
 						dataType:"json",

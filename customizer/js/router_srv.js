@@ -111,6 +111,12 @@ define([
 									}
 							}
 					})
+
+					if(tourData.krpano.skill.length == undefined){
+						var capacidad = [];
+						capacidad[0] = tourData.krpano.skill;
+						tourData.krpano.skill = capacidad
+					}
 					
 
 					$.ajax({

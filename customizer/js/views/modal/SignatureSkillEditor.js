@@ -24,6 +24,7 @@ define([
 
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
+
 			var template = _.template(signatureSkillEditor,{tourSkill:tourSkill})
 
 			$("#"+myid+" .inner-modal").html(template);
@@ -37,7 +38,7 @@ define([
 
 			
 			var SingleUploaderModel = Backbone.Model.extend({});
-			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url})
+			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:"data/"+tourSkill.plugin._url})
 			
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			singleUploader.render();
@@ -49,7 +50,8 @@ define([
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
 			var mytourSkill;
-			if(tourData.krpano.plugin.length == undefined){
+			
+			/*if(tourData.krpano.plugin.length == undefined){
 				mytourSkill = tourData.krpano.plugin ;
 			}else{
 				_.each(tourData.krpano.plugin,function(elem,ind){
@@ -74,7 +76,8 @@ define([
 						tourData.krpano.plugin[ind] = mytourSkill;
 					}
 				})
-			}
+			}*/
+
 			this.removeModal(e);
 			this.undelegateEvents();
 		

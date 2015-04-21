@@ -23,6 +23,12 @@ define([
             
             var myid = this.myid;
             var tourSkill = this.model.get("tourSkill");
+            if(tourSkill.contextmenu.item.length == undefined){
+                            var items = []
+                            items[0] = tourSkill.contextmenu.item;
+                            tourSkill.contextmenu.item = items;
+                        }
+
             var template = _.template(contextMenuSkillEditor,{tourSkill:tourSkill})
 
             
@@ -48,8 +54,9 @@ define([
 
         doneEdition:function(e){
             var myid = this.myid;
-            var data = this.model.get("data");
-            var skillid = data.id;
+            var tourSkill = this.model.get("tourSkill");
+            /*
+            var skillid = tourSkill._template_id;
             var items = []          
             _.each($("#"+myid+" .fieldwrapper fieldset"),function(elem,ind){
                 var obj = {};
@@ -65,6 +72,7 @@ define([
 
             tourData.krpano.contextmenu.item = items;
             $("#skinCustomizer-menu .skill-list #skill-"+skillid).data
+            */
             this.removeModal(e);
             this.undelegateEvents();
         }

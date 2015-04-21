@@ -23,14 +23,14 @@ define([
 		
 		render:function(){
 			
-			var data = this.model.get("data");
-			var compiledTemplate = _.template(skincustomizeritem,{data:data});
+			var tourSkill = this.model.get("tourSkill");
+			console.log(tourSkill)
+			var compiledTemplate = _.template(skincustomizeritem,{tourSkill:tourSkill});
 			$("#skinCustomizer-menu .skill-list").append(compiledTemplate);
-
-			$('#skill-' + data.id ).data("skill",data);
-			$('#skill-' + data.id + ' .customizelink').click(this.editSkill);
+			$('#skill-' + tourSkill._template_id ).data("skill",tourSkill);
+			$('#skill-' + tourSkill._template_id + ' .customizelink').click(this.editSkill);
 			var view = this;
-			$('#skill-' + data.id + ' .fa-close').click(function(event){
+			$('#skill-' + tourSkill._template_id + ' .fa-close').click(function(event){
 				
 				var v = view;
 				view.removeSkill(event,v)
@@ -42,8 +42,7 @@ define([
 		editSkill:function(e){
 			var skill = $(e.target).parents("li").data("skill");
 			var tourSkill = this.model.get("tourSkill");
-			console.log(skill.id)
-			switch(skill.id){
+			switch(tourSkill._template_id){
 				case "1":
 				var mview = ContextMenuSkillEditor;
 				break;
@@ -66,21 +65,22 @@ define([
 
 			}
 				var SkillModel = Backbone.Model.extend({});
-				skillModel = new SkillModel({data:skill,tourSkill:tourSkill});
+				console.log(tourSkill)
+				skillModel = new SkillModel({tourSkill:tourSkill});
 				var skillEditor = new mview({model:skillModel});
-				skillEditor.render("skillsEditor-"+skill.id,skillEditor.renderExtend);
-				$("#skillsEditor-"+skill.id).addClass("skillModal").parent(".overlay").addClass("skillWindow");
+				skillEditor.render("skillsEditor-"+tourSkill._template_id,skillEditor.renderExtend);
+				$("#skillsEditor-"+tourSkill._template_id).addClass("skillModal").parent(".overlay").addClass("skillWindow");
 				skillEditor.verticalCent();
 			
 		},
 
 		removeSkill:function(e,v){
 
-			var data = this.model.get("data");
-			if($('#skillsEditor-' + data.id ).length){
-				$('#skillsEditor-' + data.id ).find(".save-and-close").trigger("click");
+			var tourSkill = this.model.get("tourSkill");
+			if($('#skillsEditor-' + tourSkill._template_id ).length){
+				$('#skillsEditor-' + tourSkill._template_id ).find(".save-and-close").trigger("click");
 			}
-			$('#skill-' + data.id ).remove();
+			$('#skill-' + tourSkill._template_id).remove();
 			v.undelegateEvents();
 			v.remove();
 

@@ -49,7 +49,7 @@ define([
 			var myid = this.myid;
 			
 			var tourSkill = this.model.get("tourSkill");
-			var mytourSkill;
+			/*var mytourSkill;
 			if(tourData.krpano.plugin.length == undefined){
 				mytourSkill = tourData.krpano.plugin ;
 			}else{
@@ -75,7 +75,8 @@ define([
 						tourData.krpano.plugin[ind] = mytourSkill;
 					}
 				})
-			}
+			}*/
+
 			this.removeModal(e);
 			this.undelegateEvents();
 		
