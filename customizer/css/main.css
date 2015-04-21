@@ -3976,6 +3976,9 @@ aside #sceneSettings-menu .editor-img .inner-dragger h3 {
   font-size: 1em; }
 aside #sceneSettings-menu .map-wrapper .save-and-close {
   display: none; }
+aside #sceneSettings-menu .over-edit {
+  height: 92px;
+  padding-top: 35px; }
 aside #virtualTourSettings-menu li {
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #535353;
@@ -4901,7 +4904,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #skillsModalList header .fa-close {
   display: block; }
 .overlay #skillsModalList #skill-list-search {
-  width: 90%;
+  width: 89%;
   float: left; }
 .overlay #skillsModalList .clear-btn {
   height: 33px;
