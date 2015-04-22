@@ -58,13 +58,13 @@ define([
             var myid = $(e.target).attr("id");
             }
              switch(myid){
-                 case "video":
+                 case "link":
                     urlid = "5"
                  break;
-                 case "photo":
+                 case "video":
                     urlid = "4"
                  break;
-                 case "link":
+                 case "photo":
                     urlid = "3"
                  break;
                  case "info":
