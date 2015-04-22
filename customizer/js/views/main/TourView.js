@@ -3,9 +3,10 @@ define([
 	'underscore',
 	'backbone',
 	'helpers/ManageHotSpots',
+	'helpers/HelpFunctions',
 	'lib/krpano/embedpano'  
 
-], function($, _, Backbone, ManageHotSpots, embpano){
+], function($, _, Backbone, ManageHotSpots,HelpFunctions, embpano){
 
 	var TourView = Backbone.View.extend({
 		el: $(".main-section .inner"),
@@ -38,7 +39,9 @@ define([
 			krpano.call("registerattribute(int,0)");
 			krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
 			$("#tour").data("scene",tourData.krpano.scene[0])
-			
+			var helpFunctions = new HelpFunctions()
+			helpFunctions.setInnerHeight(".main-section",true);
+
 			if($("#tour").data("scene").hotspot){
 				var manageHotSpots = new ManageHotSpots();
 				krpano.set("events.onloadcomplete","js(initHotSpots())");
