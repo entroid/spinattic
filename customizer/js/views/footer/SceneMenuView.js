@@ -116,13 +116,15 @@ define([
 
             $(".hotspotwindow .save-and-close").trigger("click");
 
+            console.log('entra')
+
             this.openAsideMenu();
 
         },
 
         openAsideMenu: function() {
             var btn = $('aside #sceneSettings');
-
+            console.log(!$(btn).hasClass('selected'))
             if( !$(btn).hasClass('selected') ) {
                 $(btn).click();
             }

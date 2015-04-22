@@ -51,6 +51,7 @@ define([
         },
 
         verticalCent : function() {
+            console.log($("#"+this.myid) + ": " + $("#"+this.myid).outerHeight())
             $("#"+this.myid).css({
                 'top' : '50%',
                 'margin-top' : - $("#"+this.myid).outerHeight()/2
