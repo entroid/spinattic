@@ -114,9 +114,6 @@ define([
             $("#sceneMenu li").removeClass("selected");
             $thisli.addClass("selected")
 
-            $(".hotspotwindow .save-and-close").trigger("click");
-
-            console.log('entra')
 
             this.openAsideMenu();
 

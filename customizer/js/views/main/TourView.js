@@ -19,6 +19,7 @@ define([
 		},
 		render: function(){
 			var xmlpath = this.model.get("xmlpath");
+			window.closeAllModals = this.closeAllModals;
 			$pano_wrapper = $('<div id="tour"></div>');         
 			$(this.el).append( $pano_wrapper ); 
 
@@ -47,7 +48,11 @@ define([
 				krpano.set("events.onloadcomplete","js(initHotSpots())");
 				krpano.set("events.keep",true);
 			}
-			
+
+		},
+
+		closeAllModals:function(){
+			$('.hotspotwindow .save-and-close').trigger('click')
 		}
 		
 	});
