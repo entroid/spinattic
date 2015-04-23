@@ -3442,6 +3442,14 @@ textarea {
   position: relative;
   height: 30px; }
 
+.search-btn {
+  font-size: 2rem;
+  text-align: center;
+  width: 50px;
+  box-sizing: border-box;
+  padding: 7px;
+  background-color: #333333; }
+
 header.main-header {
   z-index: 2;
   position: relative;
@@ -4054,7 +4062,10 @@ aside #virtualTourSettings-menu li .check-group li, aside #virtualTourSettings-m
   line-height: 1.8rem; }
 aside #virtualTourSettings-menu li .check-group li span, aside #virtualTourSettings-menu li .checkboxes li span {
   margin-right: 7px;
-  color: #535353; }
+  color: #535353;
+  float: left;
+  margin-bottom: 10px;
+  margin-top: 2px; }
 aside #virtualTourSettings-menu li.location-submenu span.help {
   display: block;
   float: left;
@@ -4578,7 +4589,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay.hotspotwindow .modal .inner-modal {
   background: rgba(0, 0, 0, 0.5); }
 .overlay.hotspotwindow .modal .inner-modal .dropdown, .overlay.hotspotwindow .modal .inner-modal .dropdowntarget {
-  background: #000;
+  background: #111;
   margin: 0 auto 10px; }
 .overlay.hotspotwindow .modal .inner-modal .dropdown h2, .overlay.hotspotwindow .modal .inner-modal .dropdowntarget h2 {
   padding: 4px;
@@ -4666,22 +4677,21 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   width: 40%; }
 .overlay.hotspotwindow .hotspot-column2 {
   width: 60%; }
-.overlay.hotspotwindow .scenelist .search-scenes {
-  width: 135px;
-  float: left; }
 .overlay.hotspotwindow .scene-search-result {
   position: absolute;
   z-index: 1;
   width: 150px; }
 .overlay.hotspotwindow .scrollwrapper-scenes {
-  height: 150px;
+  height: 240px;
   overflow: auto;
   clear: both; }
 .overlay.hotspotwindow .hotspotarrow .scenedd {
-  background-color: black;
+  background-color: #111;
   padding: 5px;
   cursor: pointer;
-  overflow: hidden; }
+  overflow: hidden;
+  border: 1px solid #333333;
+  margin-bottom: 10px; }
 .overlay.hotspotwindow .hotspotarrow .scenedd img {
   width: 50px;
   height: 50px; }
@@ -4689,6 +4699,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-left: 10px;
   width: 62%;
   font-size: 1.4rem;
+  line-height: 1.8rem;
   overflow: hidden; }
 .overlay.hotspotwindow .hotspotarrow .scenedd i {
   font-size: 2rem;
@@ -4696,19 +4707,43 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay.hotspotwindow .hotspotarrow .scenedd .selectedScene {
   font-weight: bold;
   margin-bottom: 5px; }
-.overlay.hotspotwindow ul.scenes-list li {
-  border-bottom: 1px solid #535353;
+.overlay.hotspotwindow .hotspotarrow .list-scene {
+  margin-top: -11px;
+  background-color: #111;
+  width: 240px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #333333;
+  z-index: 10;
+  position: absolute;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial; }
+.overlay.hotspotwindow .hotspotarrow .list-scene .search-scenes {
+  width: 178px;
+  float: left;
+  background-color: #333333;
+  margin-left: 5px; }
+.overlay.hotspotwindow .hotspotarrow .rotate {
+  width: 58px; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li {
+  border-bottom: 1px solid #333333;
   padding: 5px;
-  overflow: auto; }
-.overlay.hotspotwindow ul.scenes-list li img {
+  overflow: auto;
+  cursor: pointer; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li img {
   float: left;
-  width: 70px; }
-.overlay.hotspotwindow ul.scenes-list li dl {
+  width: 50px;
+  height: 50px; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li dl {
   float: left;
-  padding-left: 10px; }
-.overlay.hotspotwindow ul.scenes-list li dl dt {
-  font-weight: bold; }
-.overlay.hotspotwindow ul.scenes-list li span.select {
+  padding-left: 10px;
+  font-size: 1.4rem; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li dl dt {
+  font-weight: bold;
+  margin-bottom: 5px; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li span.select {
   background: #497f3c;
   color: #FFF;
   font-size: 0.9rem;
@@ -4937,7 +4972,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #pano-search-results ul li dl dd {
   font-style: italic; }
 .overlay .loading-bar-skill-editor .dropdown {
-  background-color: #111;
   width: 100px; }
 .overlay .loading-bar-skill-editor .dropdown h2 {
   font-size: 1.2em; }

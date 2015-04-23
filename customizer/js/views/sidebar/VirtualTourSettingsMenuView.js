@@ -115,9 +115,11 @@ define([
 			}
 
 			if($(elem).data("evt") == "singleLoc"){
-				$("#virtualTourSettings-menu .map-wrapper").show()
+				$("#virtualTourSettings-menu .map-wrapper").show();
+				$('#virtualTourSettings-menu .bigger-map').show();
 			} else {
-				$("#virtualTourSettings-menu .map-wrapper").hide()
+				$("#virtualTourSettings-menu .map-wrapper").hide();
+				$('#virtualTourSettings-menu .bigger-map').hide();
 			}
 
 		},

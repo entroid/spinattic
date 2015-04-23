@@ -271,7 +271,7 @@
                 
 
                 .dropdown, .dropdowntarget{
-                    background: #000;
+                    background: $dark-gray5;
                     margin: 0 auto 10px;
 
                     h2{
@@ -418,11 +418,6 @@
         .hotspot-column2{
             width: 60%;
         }
-
-        .scenelist .search-scenes{
-            width:135px;
-            float:left;
-        }
         
         .scene-search-result{
             position:absolute;
@@ -430,69 +425,102 @@
             width:150px;
         }
         .scrollwrapper-scenes{
-            height:150px;
+            height:240px;
             overflow:auto;
             clear:both;
         }
 
-        .hotspotarrow .scenedd{
-            background-color: black;
-            padding: 5px;
-            cursor: pointer;
-            overflow:hidden;
-
-            img{
-                width: 50px;
-                height: 50px;
-            }
-
-            span{
-                margin-left:10px;
-                  width: 62%;
-                font-size: 1.4rem;
+        .hotspotarrow {
+            .scenedd{
+                background-color: $dark-gray5;
+                padding: 5px;
+                cursor: pointer;
                 overflow:hidden;
-            }
-
-            i{
-                font-size: 2rem;
-                margin-top: 15px;
-            }
-
-            .selectedScene{
-                font-weight:bold;
-                margin-bottom: 5px;
-            }
-        }
-
-        ul.scenes-list{
-          
-            li{
-                border-bottom:1px solid $light-gray;
-                padding:5px;
-                overflow:auto;
+                border: 1px solid $middle-gray;
+                margin-bottom: 10px;
 
                 img{
-                    float:left;
-                    width:70px;
+                    width: 50px;
+                    height: 50px;
                 }
 
-                dl{
-                    float:left;
-                    padding-left:10px;
+                span{
+                    margin-left:10px;
+                      width: 62%;
+                    font-size: 1.4rem;
+                      line-height: 1.8rem;
+                    overflow:hidden;
+                }
 
-                    dt{
-                        font-weight:bold;
+                i{
+                    font-size: 2rem;
+                    margin-top: 15px;
+                }
+
+                .selectedScene{
+                    font-weight:bold;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .list-scene {
+                margin-top: -11px;
+                background-color: $dark-gray5;
+                width: 240px;
+                padding: 5px 0;
+                box-sizing: border-box;
+                border: 1px solid $middle-gray;
+                z-index: 10;
+
+                @include absolute($top:initial, $left:initial);
+
+                .search-scenes{
+                    width: 178px;
+                    float:left;
+                    background-color: $middle-gray;
+                    margin-left: 5px;
+                }
+            }
+
+            .rotate {
+                width: 58px;
+            }
+
+            .scenes-list{
+          
+                li{
+                    border-bottom:1px solid $middle-gray;
+                    padding:5px;
+                    overflow:auto;
+                    cursor:pointer;
+
+                    img{
+                        float:left;
+                        width:50px;
+                        height: 50px;
+                    }
+
+                    dl{
+                        float:left;
+                        padding-left:10px;
+                        font-size: 1.4rem;
+
+                        dt{
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                        }
+                    }
+                    span.select{
+                        background:$green;
+                        color:#FFF;
+                        font-size:0.9rem;
+                        float:right;
+                        padding:4px;
+                        margin-top:5px;
+                        cursor:pointer;
                     }
                 }
-                span.select{
-                    background:$green;
-                    color:#FFF;
-                    font-size:0.9rem;
-                    float:right;
-                    padding:4px;
-                    margin-top:5px;
-                    cursor:pointer;
-                }
+
             }
 
         }
@@ -856,7 +884,6 @@
 
     .loading-bar-skill-editor{
         .dropdown{
-            background-color: $dark-gray5;
             width: 100px;
 
             h2{

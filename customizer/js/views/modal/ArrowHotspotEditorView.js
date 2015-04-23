@@ -173,7 +173,7 @@ define([
 
 			};
 
-			$("#"+myid+" .scenes-list .select").click(function(e){
+			$("#"+myid+" .scenes-list li").click(function(e){
 				console.log($(e.target).parent())
 				var name = $(e.target).parent().attr("id");
 				var imgsrc =  $(e.target).parent().find("img").attr("src");

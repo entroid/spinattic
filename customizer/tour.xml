@@ -39,7 +39,7 @@
  lat="" lng="" heading=""
  description=""
 >
-		<view hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.5" fovmin="60" fovmax="120" limitview="auto"  />
+		<view hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" fovmin="60" fovmax="120" limitview="auto"  />
 
 		<preview url="panos/1/pano.tiles/preview.jpg" />
 
