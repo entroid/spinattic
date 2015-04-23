@@ -123,11 +123,7 @@
 
 <action name="closeinfo">set(plugin[info_text].visible,false);</action>
 
-<events onnewscene="jsevents()" />
 
-<action name="jsevents">
-	js(closeAllModals());
-</action>
 
 <action name="draghotspot">
 	<![CDATA[

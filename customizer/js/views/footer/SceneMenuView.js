@@ -106,7 +106,6 @@ define([
             param = param.replace(/:_/g,".");
             krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
             if($thisli.data("hotspots")){
-
                 var manageHotSpots = new ManageHotSpots();
                 krpano.set("events.onpreviewcomplete","js(initHotSpots())");
                 krpano.set("events.keep",true);
@@ -114,7 +113,7 @@ define([
             $("#sceneMenu li").removeClass("selected");
             $thisli.addClass("selected")
 
-
+            $(".hotspotwindow .save-and-close").trigger("click");
             this.openAsideMenu();
 
         },

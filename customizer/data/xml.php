@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 require_once("../php/functions.php");
 
@@ -473,7 +473,7 @@ function get_scenes(){
 	
 				switch ($row_htsp["type"]) {
 					case "arrow":
-						$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" />';
+						$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" rotate="'.$row_htsp["extra_rotate"].'" />';
 						break;
 					case "info":
 						$final_data.= ' infotitle="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotitle"])).'" infotext="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotext"])).'" />';

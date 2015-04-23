@@ -28,12 +28,14 @@ define([
 			$("#"+this.myid+" header h2").text("Arrow Hotspot. ID "+num+":")
 
 			var allData = this.model.get("allData");
+			console.log(allData)
 			var scenes = tourData.krpano.scene;			
 			var compiledTemplate = _.template(hotspotarrow,{num:num,allData:allData,scenes:scenes,num:num})
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 			var me = this;
 			$("#"+me.myid).find(".fa-close").remove();
 			$("#"+me.myid+" header .save-and-close").unbind("click")
+
 			$("#"+me.myid+" header .save-and-close").click(function(){
 				
 				var selectedscene = $("#"+me.myid+" h3 .selectedScene").text();
@@ -41,6 +43,7 @@ define([
 				if(selectedscene == "none"){
 					selectedscene = "";
 				}
+				hotspot._rotate = $("#"+me.myid+" .rotate").val()
 				hotspot._linkedscene = selectedscene;
 				manageData.changeDataInHotSpot($("#tour").data("scene")._name, hotspot)
 				
@@ -49,10 +52,63 @@ define([
 				})
 			})
 
+			$("#"+me.myid+" .rotate").change(function(){
+				var val = $("#"+me.myid+" .rotate").val();
+				var hpdata = $("#"+me.myid).data("spotdata");
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.set("hotspot["+hpdata._name+"].rotate",val);
+			})
+			
+			var $me = $("#"+this.myid);
+			var oldWidth = $me.width();
+
+			var spotName =  this.myid;
+			$me.find(".removeHotspot").click(function(){
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.call("removehotspot("+spotName+")");
+				manageData.removeHotSpot($("#tour").data("scene")._name, spotName);
+				$("#"+myid+" header .save-and-close").trigger("click");
+			})
+
+			$me.find("#onoffswitchhparrow-"+num).click(function(){
+				if($(this).is(":checked")){
+					var hpdata = $me.data("spotdata");
+					var selectedscene = $("#"+me.myid+" h3 .selectedScene").text();
+					var krpano = document.getElementById("krpanoSWFObject");
+					krpano.call("addhotspot("+hpdata._name +")");
+					window.selectScene = function(selectedscene){
+						setTimeout(function(){
+							$("#"+selectedscene+" img").trigger("click")
+						},500)
+					}
+
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick,  tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5);js(selectScene('+selectedscene+')) );');
+					$me.find(".hotspotarrow").delay(200).slideUp();
+					$me.find(".removeHotspot").fadeOut();
+					$me.delay(200).animate({
+						width:'330px'
+					})
+
+				}else{
+					var hpdata = $me.data("spotdata");
+					var krpano = document.getElementById("krpanoSWFObject");
+					krpano.call("addhotspot("+hpdata._name +")");
+					krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
+					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
+					$me.find(".save-and-close").show();
+					$me.find(".hotspotarrow").delay(200).slideDown();
+					$me.find(".removeHotspot").fadeIn();
+					$me.delay(200).animate({
+						width:oldWidth+'px'
+					})
+				}
+			})
+
+
 			var selectedset = this.model.get("selectedSet");
 			var myid = this.myid;
 
-			console.log(selectedset);
 
 			var HotSpotDDModel = Backbone.Model.extend({});
 			hotSpotDDModel = new HotSpotDDModel({selectedset:selectedset,kind:"arrow",elemid:myid});
@@ -66,8 +122,8 @@ define([
 				scrollInertia:300
 			});
 
-			$('.dropdown1').click(function (){
-				$('.list-scene').toggleClass('none');
+			$("#"+me.myid+" .dropdown1").click(function (){
+				$("#"+me.myid+" .list-scene").toggleClass('none');
 			})
 
 		},
@@ -120,8 +176,11 @@ define([
 			$("#"+myid+" .scenes-list .select").click(function(e){
 				console.log($(e.target).parent())
 				var name = $(e.target).parent().attr("id");
+				var imgsrc =  $(e.target).parent().find("img").attr("src");
 				console.log(name)
 				$("#"+myid+" h3 .selectedScene").text(name);
+				$("#"+myid+" .list-scene").toggleClass('none');
+				$("#"+myid+" h3.scenedd img").attr("src",imgsrc)
 			})
 
 			$("#"+myid+" .scenelist .clear-btn").click(function(ev) {                

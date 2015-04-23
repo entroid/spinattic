@@ -32,7 +32,6 @@ define([
 			var compiledTemplate = _.template(hotspotinfo,{allData:allData,num:num})
 			$("#"+spotName+" .inner-modal").html(compiledTemplate);
 			
-			console.log($("#"+this.myid).data("spotdata"));
 			
 			$("#"+this.myid+" header .fa-close").unbind("click")
 			var $me = $("#"+this.myid);
@@ -47,6 +46,10 @@ define([
 			$("#"+this.myid+" header .save-and-close").unbind("click")
 			var me = this;
 			$("#"+this.myid+" header .save-and-close").click(function(){
+				
+				if($("#"+me.myid+" .onoffswitch-checkbox").is(":checked")){
+					$("#"+me.myid+" .onoffswitch-checkbox").trigger("click");
+				}
 				var infoTitle = $me.find(".infotitle").val();
 				var infoText = $me.find(".infotext").val();
 				var hotspot = allData;
@@ -79,7 +82,8 @@ define([
 					
 					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, showinfo('+infoTitle+','+infoText+') );');
-					$me.find(".save-and-close").hide();
+					$me.find(".hotspotinfo").delay(200).slideUp();
+					$me.find(".removeHotspot").fadeOut();
 
 				}else{
 					var hpdata = $me.data("spotdata");
@@ -87,7 +91,8 @@ define([
 					krpano.call("addhotspot("+hpdata._name +")");
 					krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
-					$me.find(".save-and-close").show();
+					$me.find(".hotspotinfo").delay(200).slideDown();
+					$me.find(".removeHotspot").fadeIn();
 				}
 			})
 

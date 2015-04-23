@@ -33,6 +33,9 @@ define([
 			$("#"+myid+" header .save-and-close").unbind("click");
 			$("#"+myid+" header .save-and-close").click(function(){
 				
+				if($("#"+me.myid+" .onoffswitch-checkbox").is(":checked")){
+					$("#"+me.myid+" .onoffswitch-checkbox").trigger("click");
+				}
 				var video = $("#"+myid+" #urlvideohotspot").val();
 				var tooltip = $("#"+myid+" #videoTooltip").val();
 				var hotspot = allData;
@@ -70,7 +73,8 @@ define([
 					
 					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, showpic() );');
-					$me.find(".save-and-close").hide();
+					$me.find(".hotspotvideo").delay(200).slideUp();
+					$me.find(".removeHotspot").fadeOut();
 
 				}else{
 					var hpdata = $me.data("spotdata");
@@ -78,7 +82,8 @@ define([
 					krpano.call("addhotspot("+hpdata._name +")");
 					krpano.call('set(hotspot['+hpdata._name+'].ondown, draghotspot() );');
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
-					$me.find(".save-and-close").show();
+					$me.find(".hotspotvideo").delay(200).slideDown();
+					$me.find(".removeHotspot").fadeIn();
 				}
 			})
 		},

@@ -23,6 +23,9 @@ define([
 					
 					krpano.set("hotspot["+elem._name+"].ath", elem._ath);
 					krpano.set("hotspot["+elem._name+"].atv", elem._atv);
+					if(elem._rotate){
+						krpano.set("hotspot["+elem._name+"].rotate", elem._rotate);
+					}
 					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._style+");");
 					
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
