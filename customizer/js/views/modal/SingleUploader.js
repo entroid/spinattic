@@ -65,7 +65,7 @@ define([
                         return false;
                     }
 
-                    if(!file.type.match(/jpeg|tiff/)){
+                    if(!file.type.match(/jpeg|png/)){
                         alert('Format not supported!');
                         return false;
                     }
@@ -91,8 +91,7 @@ define([
 
                         var myfile = "graphics/"+response.params.file_name;
                         $("#"+myid +" .ok-img").show();
-                        $("#"+myid +" .ok-img").click(function(){
-
+                        
                             $("#"+myid).data("imgsrc",myfile)
                             este.model.set("imgsrc",myfile);
                             este.render(este.CallBack);
@@ -101,8 +100,7 @@ define([
                             if(este.CallBack){
                                 este.CallBack()
                             }
-                        })
-
+                        
                     }else{
                             
                         if (response.result == 'ERROR'){

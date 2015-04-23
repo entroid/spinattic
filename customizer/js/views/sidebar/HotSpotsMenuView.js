@@ -144,7 +144,9 @@ define([
             if($(".pano-manager").length) {            
                 this.hotspotstyleeditor.removeView();                
             }else{
-                this.hotspotstyleeditor = new HotSpotStyleEditor();
+                var StyleNew = Backbone.Model.extend({});
+                styleNew = new StyleNew({imgsrc:""})
+                this.hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
                 this.hotspotstyleeditor.render("hotspotStyleEditor",this.hotspotstyleeditor.renderExtend);
             }
         }
