@@ -37,7 +37,7 @@
                 
                 <div class="list-scene none">
                     <input type="text" placeholder="Search Scene" class="search-scenes">
-                    <span class="clear-btn sort-btn">Clear</span>
+                    <span class="search-btn fa fa-search"></span>
 
                     <div id="scenes-search-results-<%=num%>" class="scene-search-result"></div>
 
@@ -46,8 +46,10 @@
                             <%_.each(scenes,function(item,ind){%>
                                 <li id="<%= item._name %>">
                                     <img src="<%=item._thumburl%>" />
-                                    <dl><dt> <%= item._title %> </dt><dd> <%= item._name %></dd></dl>
-                                    <span class="select">Select</span> 
+                                    <dl>
+                                        <dt><%= item._name %></dt>
+                                        <dd><%= item._title %></dd>
+                                    </dl>
                                 </li>
                             <%})%>
                         </ul>    
