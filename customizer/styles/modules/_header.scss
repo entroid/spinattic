@@ -86,15 +86,18 @@ header.main-header{
                 .header-user-menu{
                     border-bottom: 1px solid $lighter-gray;
                     float: left;
+                      width: 100%;
 
                     li{
                         float: left;
-                        width: 115px;
-                        padding: 5px;
-                        height: 30px;
+                        width: 50%;
+                        padding: 5px 10px;
+                        height: 40px;
                         color: #54afdf;
                         line-height: 30px;
                         font-size: 1.2rem;
+                        cursor: pointer;
+                        box-sizing: border-box;
 
                         span{
                             margin-right: 5px;
@@ -140,6 +143,7 @@ header.main-header{
                     width: 230px;
                     font-weight: bold;  
                     font-size: 1em;
+                    margin-bottom: 0;
 
                     span{
                         margin-right: 10px;

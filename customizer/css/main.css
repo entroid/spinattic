@@ -3450,6 +3450,12 @@ textarea {
   padding: 7px;
   background-color: #333333; }
 
+.textCenter {
+  text-align: center; }
+
+.textRight {
+  text-align: right; }
+
 header.main-header {
   z-index: 2;
   position: relative;
@@ -3521,15 +3527,18 @@ header.main-header .header-side .user .menu-list .arrow {
   border-style: solid; }
 header.main-header .header-side .user .menu-list .header-user-menu {
   border-bottom: 1px solid #e0e0e0;
-  float: left; }
+  float: left;
+  width: 100%; }
 header.main-header .header-side .user .menu-list .header-user-menu li {
   float: left;
-  width: 115px;
-  padding: 5px;
-  height: 30px;
+  width: 50%;
+  padding: 5px 10px;
+  height: 40px;
   color: #54afdf;
   line-height: 30px;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-sizing: border-box; }
 header.main-header .header-side .user .menu-list .header-user-menu li span {
   margin-right: 5px; }
 header.main-header .header-side .user .menu-list .main-user-menu, header.main-header .header-side .user .menu-list .production-user-menu {
@@ -3557,7 +3566,8 @@ header.main-header .header-side .user .menu-list h2 {
   float: left;
   width: 230px;
   font-weight: bold;
-  font-size: 1em; }
+  font-size: 1em;
+  margin-bottom: 0; }
 header.main-header .header-side .user .menu-list h2 span {
   margin-right: 10px; }
 header.main-header .header-side .user .menu-list .user-count {
@@ -5056,6 +5066,10 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 12px; }
 .overlay #hotspotStyleEditor .tabContent .icons .icons-wrapper:last-child {
   margin-right: 0; }
+
+#signature-skill-linkto {
+  width: 86%;
+  margin-left: 10px; }
 
 section.main-section {
   position: relative;
