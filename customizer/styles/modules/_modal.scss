@@ -425,7 +425,7 @@
             width:150px;
         }
         .scrollwrapper-scenes{
-            height:240px;
+            max-height:240px;
             overflow:auto;
             clear:both;
         }
@@ -494,6 +494,10 @@
                     overflow:auto;
                     cursor:pointer;
 
+                    &:last-child{
+                        border-bottom:none;
+                    }
+
                     img{
                         float:left;
                         width:50px;
@@ -521,6 +525,10 @@
                     }
                 }
 
+            }
+
+            .scene-search-result{
+                width: 228px;
             }
 
         }

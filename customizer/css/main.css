@@ -4682,7 +4682,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   z-index: 1;
   width: 150px; }
 .overlay.hotspotwindow .scrollwrapper-scenes {
-  height: 240px;
+  max-height: 240px;
   overflow: auto;
   clear: both; }
 .overlay.hotspotwindow .hotspotarrow .scenedd {
@@ -4732,6 +4732,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 5px;
   overflow: auto;
   cursor: pointer; }
+.overlay.hotspotwindow .hotspotarrow .scenes-list li:last-child {
+  border-bottom: none; }
 .overlay.hotspotwindow .hotspotarrow .scenes-list li img {
   float: left;
   width: 50px;
@@ -4751,6 +4753,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 4px;
   margin-top: 5px;
   cursor: pointer; }
+.overlay.hotspotwindow .hotspotarrow .scene-search-result {
+  width: 228px; }
 .overlay.hotspotwindow .ui-autocomplete {
   background-color: #111;
   width: 100% !important;
