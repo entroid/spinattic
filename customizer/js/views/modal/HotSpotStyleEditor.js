@@ -68,24 +68,38 @@ define([
         tabs: function (e) {
             var el = $(e.target),
                 id = $(el).attr('data-content');
-
+            var valueText = $(el).text();    
             if(!$(el).hasClass('selected')) {
                 $(el).addClass('selected').siblings('li').removeClass('selected');
                 $('.hotsPotStyleTabs #' + id).removeClass('none').siblings().addClass('none');
             }
-            $('.hotsPotStyleTabs .tab').removeClass("selected")
-            $('.hotsPotStyleTabs #' + id).addClass("selected")
+            $('.tabContent .tab').removeClass("selected")
+            $('.tabContent #' + id).addClass("selected")
             var properties = $(".tab.selected").data("properties");
             var mytype =  $(".tab.selected .selected").data("type");
 
             if(properties){
             
-            $(".hotsPotStyleSelected .width").val(properties[mytype].width)
-            $(".hotsPotStyleSelected .height").val(properties[mytype].height)
-            $(".hotsPotStyleSelected .X").val(properties[mytype].X)
-            $(".hotsPotStyleSelected .Y").val(properties[mytype].Y)
+            $(".hotsPotStyleSelected .width").val(properties[mytype].width);
+            $(".hotsPotStyleSelected .height").val(properties[mytype].height);
+            $(".hotsPotStyleSelected .X").val(properties[mytype].X);
+            $(".hotsPotStyleSelected .Y").val(properties[mytype].Y);
+             $("#bt-selected").text(mytype)
+
+            
+            }else{
+
+            $(".hotsPotStyleSelected .width").val("")
+            $(".hotsPotStyleSelected .height").val("")
+            $(".hotsPotStyleSelected .X").val("")
+            $(".hotsPotStyleSelected .Y").val("")
+            $("#bt-selected").text("")
+
             }
-        
+
+
+            $("#hp-type-selected").text(valueText)
+
         },
 
         addStyles: function(e) {            
@@ -102,20 +116,35 @@ define([
             $thistab.find(".addStyle").css({
                 "width":dfval.width+"px",
                 "height":dfval.height+"px",
+            });
+
+            $thistab.find(".addStyle:eq(0)").css({
                 "background-image":"url("+$("#graphic-hotspot").data("imgsrc")+")",
+                "background-repeat":"no-repeat",
                 "background-position": dfval.X +"px "+ dfval.Y+"px"
-            })
+            }).addClass("not-empty");
+
             var prop = {
                 up:dfval,
                 over:dfval,
                 down:dfval
             }
             $thistab.data("properties",prop);
-
+            $thistab.find(".icons .addStyle:eq(0)").trigger("click")
+            
         },
 
         selectAddStyles: function(e){
              var el = $(e.target);
+             var dfval = this.defaultHPValues;
+             if(!$(el).hasClass("not-empty")){
+                $(el).css({
+                     "background-image":"url("+$("#graphic-hotspot").data("imgsrc")+")",
+                     "background-repeat":"no-repeat",
+                     "background-position": dfval.X +"px "+ dfval.Y+"px"
+               }).addClass("not-empty");
+             }
+
              if(!$(el).hasClass('selected')) {
                 $(el).addClass('selected').parents('.icons-wrapper').siblings().find('.addStyle').removeClass('selected');
              }
@@ -131,6 +160,12 @@ define([
             $(".hotsPotStyleSelected .X").val(properties[mytype].X)
             $(".hotsPotStyleSelected .Y").val(properties[mytype].Y)
             }
+
+            var valText = $(el).data("type");
+            $("#bt-selected").text(valText);
+            $(".tab.selected .controls").addClass("none");
+            $(el).parents('.icons-wrapper').find(".controls").removeClass("none");
+
         },
 
         uploadComplete:function(){
