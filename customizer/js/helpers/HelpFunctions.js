@@ -17,7 +17,7 @@ define([
 	    	}
 
     		$tooltip = $("#tooltip");        
-        el = $(event.target);
+        el = $(this);
         text = $(el).attr("title");
 
  	    	var eleOffset = $(el).offset(),            

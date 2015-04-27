@@ -3693,6 +3693,13 @@ header.main-header .onoffswitch-inner:after {
 header.main-header .onoffswitch-switch {
   right: 52px; }
 
+.open-live-tour {
+  color: #4faddf;
+  font-size: 1.7rem;
+  cursor: pointer;
+  background: none;
+  border: none; }
+
 aside {
   width: 50px;
   background: #232323;
@@ -4375,6 +4382,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-style: solid;
   height: 0;
   width: 0; }
+#tooltip.up:after {
+  border-color: transparent transparent white transparent;
+  border-width: 8px;
+  top: -16px;
+  left: 50%;
+  margin-left: -8px; }
 #tooltip.footer {
   margin-top: -55px;
   /*margin-left:-4px;*/ }
@@ -4409,12 +4422,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   text-align: left; }
 #tooltip.new-tour-tt {
   margin-top: 50px; }
-#tooltip.new-tour-tt:after {
-  border-color: transparent transparent white transparent;
-  border-width: 8px;
-  top: -16px;
-  left: 50%;
-  margin-left: -8px; }
+#tooltip.open-live-tour-tt {
+  margin-top: 40px; }
 
 .bluring {
   -webkit-filter: blur(2px);

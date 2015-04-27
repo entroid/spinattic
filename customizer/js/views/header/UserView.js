@@ -22,7 +22,7 @@ define([
       $(this.el).append( compiledTemplate ); 
 
       var helpFunctions = new HelpFunctions();
-      helpFunctions.toolTip("header .new-tour","new-tour-tt");
+      helpFunctions.toolTip("header .new-tour","new-tour-tt up");
     },
     displayMenu:function(){
       $(".menu-list").fadeToggle();

@@ -16,6 +16,14 @@
         height: 0;
         width: 0;
     }
+
+    &.up:after{            
+        border-color:  transparent transparent white transparent;
+        border-width: 8px;
+        top: -16px;
+        left: 50%;
+        margin-left: -8px;
+    }
     
     &.footer{
         margin-top:-55px;
@@ -67,14 +75,10 @@
 
     &.new-tour-tt{
         margin-top:50px;
+    }
 
-        &:after{            
-            border-color:  transparent transparent white transparent;
-            border-width: 8px;
-            top: -16px;
-            left: 50%;
-            margin-left: -8px;
-        }
+    &.open-live-tour-tt{
+        margin-top:40px;        
     }
 }
 
