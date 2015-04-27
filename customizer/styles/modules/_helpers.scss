@@ -7,20 +7,23 @@
     padding:15px 30px;
     font-weight:bold;
     z-index:4;
+
+    &:after{
+        position: absolute;
+        display: block;
+        content: "";
+        border-style: solid;
+        height: 0;
+        width: 0;
+    }
     
     &.footer{
         margin-top:-55px;
         /*margin-left:-4px;*/ 
 
-        &:after{
-            position: absolute;
-            display: block;
-            content: "";
-            border-color: #FFF transparent transparent transparent;
-            border-style: solid;
+        &:after{            
+            border-color: #FFF transparent transparent transparent;            
             border-width: 8px;
-            height: 0;
-            width: 0;
             bottom: -16px;
             left: 50%;
             margin-left: -8px; 
@@ -28,6 +31,16 @@
 
     }
 
+    &.aside{
+        margin-top:4px;
+
+        &:after{            
+            border-color:  transparent transparent transparent #FFF ;
+            border-width: 7px;
+            top: 7px;
+            right: -14px;
+        }
+    }
     &.hotSpots{
         margin-left:-94px;
     }
@@ -44,29 +57,24 @@
         margin-left:-116px;
     }
 
-    &.aside{
-        margin-top:4px;
-        &:after{
-            position: absolute;
-            display: block;
-            content: "";
-            border-color:  transparent transparent transparent #FFF ;
-            border-style: solid;
-            border-width: 7px;
-            height: 0;
-            width: 0;
-            top: 7px;
-            right: -14px;
-            }
-
-    }
-
     &.help{
         width:350px;
         margin-left:-425px;
         margin-top:-5px;
         line-height:14px;
         text-align:left;
+    }
+
+    &.new-tour-tt{
+        margin-top:50px;
+
+        &:after{            
+            border-color:  transparent transparent white transparent;
+            border-width: 8px;
+            top: -16px;
+            left: 50%;
+            margin-left: -8px;
+        }
     }
 }
 

@@ -3456,6 +3456,12 @@ textarea {
 .textRight {
   text-align: right; }
 
+.round-btn {
+  border-radius: 50%;
+  cursor: pointer; }
+.round-btn:hover {
+  opacity: .8; }
+
 header.main-header {
   z-index: 2;
   position: relative;
@@ -3473,7 +3479,8 @@ header.main-header h1 {
 header.main-header .header-side {
   width: 435px;
   float: right;
-  min-height: 70px; }
+  min-height: 70px;
+  position: relative; }
 header.main-header .header-side .user {
   width: 65px;
   float: right;
@@ -3580,6 +3587,26 @@ header.main-header .header-side .user .menu-list .user-count {
   text-align: center;
   margin-top: -4px;
   margin-right: 0 !important; }
+header.main-header .header-side .new-tour {
+  background-color: #d32f31;
+  width: 40px;
+  height: 40px;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 15px;
+  right: 100px;
+  bottom: initial;
+  left: initial; }
+header.main-header .header-side .new-tour span {
+  position: absolute;
+  top: 7px;
+  right: initial;
+  bottom: initial;
+  left: 5px; }
+header.main-header .header-side .new-tour i {
+  font-size: 1.6rem;
+  margin-top: 13px; }
 header.main-header .header-bottom {
   clear: both;
   background-color: #000;
@@ -4341,21 +4368,29 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 15px 30px;
   font-weight: bold;
   z-index: 4; }
+#tooltip:after {
+  position: absolute;
+  display: block;
+  content: "";
+  border-style: solid;
+  height: 0;
+  width: 0; }
 #tooltip.footer {
   margin-top: -55px;
   /*margin-left:-4px;*/ }
 #tooltip.footer:after {
-  position: absolute;
-  display: block;
-  content: "";
   border-color: #FFF transparent transparent transparent;
-  border-style: solid;
   border-width: 8px;
-  height: 0;
-  width: 0;
   bottom: -16px;
   left: 50%;
   margin-left: -8px; }
+#tooltip.aside {
+  margin-top: 4px; }
+#tooltip.aside:after {
+  border-color: transparent transparent transparent #FFF;
+  border-width: 7px;
+  top: 7px;
+  right: -14px; }
 #tooltip.hotSpots {
   margin-left: -94px; }
 #tooltip.viewSettings {
@@ -4366,25 +4401,20 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-left: -130px; }
 #tooltip.skinCustomizer {
   margin-left: -116px; }
-#tooltip.aside {
-  margin-top: 4px; }
-#tooltip.aside:after {
-  position: absolute;
-  display: block;
-  content: "";
-  border-color: transparent transparent transparent #FFF;
-  border-style: solid;
-  border-width: 7px;
-  height: 0;
-  width: 0;
-  top: 7px;
-  right: -14px; }
 #tooltip.help {
   width: 350px;
   margin-left: -425px;
   margin-top: -5px;
   line-height: 14px;
   text-align: left; }
+#tooltip.new-tour-tt {
+  margin-top: 50px; }
+#tooltip.new-tour-tt:after {
+  border-color: transparent transparent white transparent;
+  border-width: 8px;
+  top: -16px;
+  left: 50%;
+  margin-left: -8px; }
 
 .bluring {
   -webkit-filter: blur(2px);

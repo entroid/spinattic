@@ -699,4 +699,11 @@ textarea{
     text-align: right;
 }
 
+.round-btn{
+    border-radius:50%;
+    cursor: pointer;
 
+    &:hover{
+        opacity: .8;
+    }
+}
