@@ -104,22 +104,25 @@ define([
 			}
 
 			this.pushSkill = function(skill){
-				var first= function(obj) {
+				/*var first= function(obj) {
 					for (var a in obj) return a;
 				}
 				var myskill = first(skill);
-				if(tourData.krpano[myskill] && skill[myskill]._kind != tourData.krpano[myskill]._kind){
-					if(tourData.krpano[myskill].length == undefined){
-						var items = [];
-						items[0] = tourData.krpano[myskill];
-						tourData.krpano[myskill] = items;
-						tourData.krpano[myskill].push(skill[myskill])
-					}else{
+				*/
+				/*if(tourData.krpano[myskill] && skill[myskill]._kind != tourData.krpano[myskill]._kind){
+					console.log(skill)
+					
+					
 						tourData.krpano[myskill].push(skill[myskill])                   
-					}
+					
 				}else{
 				tourData.krpano[myskill] = skill[myskill];
-				}
+				}*/
+				myskill = skill.skill;
+				console.log(myskill)
+				tourData.krpano.skill.push(myskill)
+				console.log(tourData.krpano.skill)
+				this.saveServer();
 			}
 
 			this.mapData = function(lat, lng, sceneIndex){
@@ -144,6 +147,7 @@ define([
 					type:'POST',
 					data:"json="+jsonstr+"&id="+id,
 					success:function(res){
+						console.log(res)
 					}
 				})
 			}

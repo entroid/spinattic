@@ -424,6 +424,22 @@ define([
                                 tourData.krpano.scene = escenas
                             }
 
+                            _.each(tourData.krpano.scene,function(scene,ind){
+                                if(scene.hotspot){
+                                            if(scene.hotspot.length == undefined){
+                                                var myhp = []
+                                                myhp[0] = scene.hotspot;
+                                                tourData.krpano.scene[ind].hotspot = myhp;
+                                            }
+                                    }
+                            })
+
+                            if(tourData.krpano.skill.length == undefined){
+                                var capacidad = [];
+                                capacidad[0] = tourData.krpano.skill;
+                                tourData.krpano.skill = capacidad
+                            }
+
                             $.ajax({
                                 url:  "data/json.php?id="+este.gTour_id+"&d=1&t=t",
                                 dataType:"json",
@@ -432,7 +448,7 @@ define([
 
                                     tourData.krpano.datatour = datatour;
 
-                                    var xml2krpano = xmlpath.replace("&c=1","")
+                                    var xml2krpano = xmlpath.replace("&c=1","&h=0")
                                     var tourModel = new TourModel({xmlpath:xml2krpano});
 
                                     var tourView = new TourView({ model: tourModel});

@@ -9,8 +9,9 @@ define([
 	'mCustomScrollbar',
 	'x2js',
    'helpers/ManageData',
+   'helpers/ManageTour',
 
-], function($, _, Backbone, jqueryui, Modal, skilllist, SkinCustomizerItem, mCustomScrollbar,x2js,ManageData){
+], function($, _, Backbone, jqueryui, Modal, skilllist, SkinCustomizerItem, mCustomScrollbar,x2js,ManageData,ManageTour){
 
 	var SkillsModalList = Modal.extend({
 		
@@ -153,7 +154,9 @@ define([
 					$elem.replaceWith('<span class="added-skill">Added</span>')
 					var manageData = new ManageData()
 					manageData.pushSkill(tourSkill)
-		  
+		  			var tourid = location.hash.split("/")[1];
+		  			var manageTour = new ManageTour();
+            		manageTour.reloadTour(tourid);
 				 }
 			})
 
