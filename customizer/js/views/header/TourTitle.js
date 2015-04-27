@@ -1,56 +1,60 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone',
-	'text!templates/header/tourtitle.html',
-	'helpers/ManageData',
+    'jquery',
+    'underscore',
+    'backbone',
+    'text!templates/header/tourtitle.html',
+    'helpers/ManageData',
+    'helpers/HelpFunctions'
   
 
-], function($, _, Backbone, tourtitle,ManageData){
+], function($, _, Backbone, tourtitle,ManageData, HelpFunctions){
 
-	var TourTitle = Backbone.View.extend({
+    var TourTitle = Backbone.View.extend({
 
-		el: $(".header-bottom"),
+        el: $(".header-bottom"),
 
-		initialize: function () {
-		  
-		},
+        initialize: function () {
+          
+        },
 
-		events:{
-			"focus #tour-title":"changeTitleByEnter",
-			"blur #tour-title":"changeTitleByBlur"
-		},
+        events:{
+            "focus #tour-title":"changeTitleByEnter",
+            "blur #tour-title":"changeTitleByBlur"
+        },
 
-		render: function(){
+        render: function(){
 
-			var title = tourData.krpano.settings._title
-			var compiledTemplate = _.template(tourtitle,{title:title});
-			$(this.el).append( compiledTemplate );           
-			$("#tour-title").data("obj","settings")
-			$("#tour-title").data("bind","_title")
-		},
+            var title = tourData.krpano.settings._title
+            var compiledTemplate = _.template(tourtitle,{title:title});
+            $(this.el).append( compiledTemplate );           
+            $("#tour-title").data("obj","settings")
+            $("#tour-title").data("bind","_title");
 
-		changeTitleByEnter:function(e){
+            var helpFunctions = new HelpFunctions();
+            helpFunctions.toolTip("header .open-live-tour","open-live-tour-tt up");
+        },
 
-		$(window).keydown(function(event){
-			if(event.keyCode == 13) {
-				$("#tour-title").blur();
-			  event.preventDefault();
-			  $(window).unbind("keydown");
-			  return false;
-			}
-		  });
-		},
-		changeTitleByBlur:function(e){
+        changeTitleByEnter:function(e){
 
-			 var manageData = new ManageData();
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                $("#tour-title").blur();
+              event.preventDefault();
+              $(window).unbind("keydown");
+              return false;
+            }
+          });
+        },
+        changeTitleByBlur:function(e){
+
+             var manageData = new ManageData();
             manageData.saveSettings(e);
 
-		}
+        }
 
 
-	});
+    });
 
-	return TourTitle;
+    return TourTitle;
   
 });

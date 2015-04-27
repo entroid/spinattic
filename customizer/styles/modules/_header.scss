@@ -18,7 +18,8 @@ header.main-header{
     .header-side{
         width: 435px;
         float: right;
-        min-height: 70px;       
+        min-height: 70px;  
+        position: relative;     
 
         .user{
             width: 65px;
@@ -162,7 +163,25 @@ header.main-header{
                     margin-right: 0!important;
                 }               
             }
-        }       
+        }  
+
+        .new-tour{
+            background-color: $red;
+            width: 40px;
+            height: 40px;
+            color: white;
+            text-align: center;
+
+            @include absolute($top:15px, $right:100px, $left:initial);
+
+            span{
+                @include absolute($top:7px,$left:5px);
+            }
+            i{
+                font-size: 1.6rem;
+                margin-top: 13px;
+            }
+        }     
     }
 
     .header-bottom {        
@@ -268,4 +287,12 @@ header.main-header{
     .onoffswitch-switch {
         right: 52px;
     }
+}
+
+.open-live-tour{
+    color: $blue;
+    font-size: 1.7rem;
+    cursor: pointer;
+    background: none;
+  border: none;
 }
