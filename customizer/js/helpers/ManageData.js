@@ -118,7 +118,7 @@ define([
 				}else{
 				tourData.krpano[myskill] = skill[myskill];
 				}*/
-				myskill = skill.skill;
+				myskill = skill;
 				console.log(myskill)
 				tourData.krpano.skill.push(myskill)
 				console.log(tourData.krpano.skill)

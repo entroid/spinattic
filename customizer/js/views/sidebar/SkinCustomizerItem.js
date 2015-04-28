@@ -40,6 +40,7 @@ define([
 		},
 
 		editSkill:function(e){
+			console.log("!a")
 			var skill = $(e.target).parents("li").data("skill");
 			var tourSkill = this.model.get("tourSkill");
 			switch(tourSkill._template_id){

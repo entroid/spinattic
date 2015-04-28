@@ -114,10 +114,14 @@ define([
 							}
 					})
 
-					if(tourData.krpano.skill.length == undefined){
-						var capacidad = [];
-						capacidad[0] = tourData.krpano.skill;
-						tourData.krpano.skill = capacidad
+					if(tourData.krpano.skill){
+						if(tourData.krpano.skill.length == undefined){
+							var capacidad = [];
+							var skill = {}
+							skill.skill = tourData.krpano.skill
+							capacidad[0] = skill;
+							tourData.krpano.skill = capacidad
+						}
 					}
 
 					$.ajax({

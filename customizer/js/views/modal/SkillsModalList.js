@@ -155,6 +155,7 @@ define([
 					var manageData = new ManageData()
 					manageData.pushSkill(tourSkill)
 		  			var tourid = location.hash.split("/")[1];
+		  			console.log(tourData.krpano)
 		  			var manageTour = new ManageTour();
             		manageTour.reloadTour(tourid);
 				 }
