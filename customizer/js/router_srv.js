@@ -16,7 +16,9 @@ define([
 	'views/main/TourView',
 	// 'views/users/list'
 	'views/header/TourTitle',
-	'views/header/PublishControllerView'
+	'views/header/PublishControllerView',
+	'lib/krpano/embedpano'  
+
 
 ], function($, _, Backbone, x2js, SceneMenuView, PanoMenuFooterView, SceneCollection, UserCollection, MainMenuView, 
 	UserView, UploaderView, HelpFunctions, TourModel, TourView, TourTitle, PublishControllerView){
@@ -115,7 +117,7 @@ define([
 						if(tourData.krpano.skill.length == undefined){
 							var capacidad = [];
 							var skill = {}
-							skill.skill = tourData.krpano.skill
+							skill = tourData.krpano.skill
 							capacidad[0] = skill;
 							tourData.krpano.skill = capacidad
 						}

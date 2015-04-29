@@ -2,7 +2,8 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-], function($, _, Backbone){
+   'helpers/ManageTour',
+], function($, _, Backbone,ManageTour){
 
 	var ManageData =  function(){
 
@@ -103,7 +104,7 @@ define([
 				tourData.krpano.datatour[elem] = val;
 			}
 
-			this.pushSkill = function(skill){
+			this.pushSkill = function(skill,callback){
 				/*var first= function(obj) {
 					for (var a in obj) return a;
 				}
@@ -122,7 +123,26 @@ define([
 				console.log(myskill)
 				tourData.krpano.skill.push(myskill)
 				console.log(tourData.krpano.skill)
-				this.saveServer();
+				this.saveServer(callback);
+			}
+
+			this.removeSkill = function(kind){
+
+				_.each(tourData.krpano.skill,function(skill,ind){
+						if(skill._kind == kind){
+							tourData.krpano.skill[ind] = null;
+							delete tourData.krpano.skill[ind];
+							tourData.krpano.skill.splice(ind,1)
+						}
+				})
+				this.saveServer();	
+			}
+
+			this.pushStyle = function(json){
+
+				tourData.krpano.style.push(json);
+				console.log(json)
+				console.log(tourData.krpano.style)
 			}
 
 			this.mapData = function(lat, lng, sceneIndex){
@@ -138,7 +158,7 @@ define([
 				}
 			}
 
-			this.saveServer = function(){
+			this.saveServer = function(fun){
 
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1]
@@ -147,6 +167,9 @@ define([
 					type:'POST',
 					data:"json="+jsonstr+"&id="+id,
 					success:function(res){
+						if(fun){
+							fun()
+						}
 						console.log(res)
 					}
 				})

@@ -4,9 +4,8 @@ define([
 	'backbone',
 	'helpers/ManageHotSpots',
 	'helpers/HelpFunctions',
-	'lib/krpano/embedpano'  
 
-], function($, _, Backbone, ManageHotSpots,HelpFunctions, embpano){
+], function($, _, Backbone, ManageHotSpots,HelpFunctions){
 
 	var TourView = Backbone.View.extend({
 		el: $(".main-section .inner"),

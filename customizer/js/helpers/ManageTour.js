@@ -3,19 +3,19 @@ define([
 	'underscore',
 	'backbone',
 	'x2js',
-  	'models/main/TourModel',
-  	'views/main/TourView',
-  	'views/footer/SceneMenuView',
-  	'collections/footer/SceneCollection',
+    'helpers/HelpFunctions',
+    'helpers/ManageHotSpots',
+
  
-], function($, _, Backbone,x2js,TourModel,TourView,SceneMenuView,SceneCollection){
+], function($, _, Backbone,x2js,HelpFunctions,ManageHotSpots){
 
   var ManageTour =  function(){
 
 
-		this.reloadTour = function(tourId){
-
+		this.reloadTour = function(){
+		var tourId = location.hash.split("/")[1];
 		var xmlpath ="data/xml.php?id="+tourId+"&d=1&c=1";
+
 
 		$(".dragger-wrapper").fadeOut(function(){
 			 $(this).remove();
@@ -61,14 +61,35 @@ define([
 
 										tourData.krpano.datatour = datatour;
 										var xml2krpano = xmlpath.replace("&c=1","&h=0")
-										var tourModel = new TourModel({xmlpath:xml2krpano});
+										
+										$pano_wrapper = $('<div id="tour"></div>');         
+										$(".main-section .inner").append( $pano_wrapper ); 
+										embedpano({
+											swf:"player/tour.swf", 
+											xml:xml2krpano, 
+											target:"tour", html5:"auto", 
+											wmode:"transparent", 
+											passQueryParameters:true,
+											onready:function(){
+												var krpano = document.getElementById("krpanoSWFObject");
+												krpano.call("registerattribute(int,0)");
+												krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
+												$("#tour").data("scene",tourData.krpano.scene[0])
+												var helpFunctions = new HelpFunctions()
+												helpFunctions.setInnerHeight(".main-section",true);
 
-										var tourView = new TourView({ model: tourModel});
-										tourView.render();
-										var scenes = tourData.krpano.scene;
-										var sceneCollection = new SceneCollection(scenes);
-										var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-										sceneMenuView.render();
+												if($("#tour").data("scene").hotspot){
+													setTimeout(function(){
+														initHotSpots();
+												},2000)
+													
+												}
+											}
+
+										});
+										$(".main-section .inner").addClass("withTour")
+
+										
 								}
 						})
 				}

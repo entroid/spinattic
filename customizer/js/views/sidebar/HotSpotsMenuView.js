@@ -130,7 +130,7 @@ define([
             _.each(selected,function(elem,ind){ 
                 var crop = elem._crop.split("|")
                 console.log(crop)
-                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url(data/'+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
+                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url('+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
             })
                 
             $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');

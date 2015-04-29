@@ -152,12 +152,12 @@ define([
 					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
 					skinCustomizerItem.render();
 					$elem.replaceWith('<span class="added-skill">Added</span>')
+					var manageTour = new ManageTour();
+
 					var manageData = new ManageData()
-					manageData.pushSkill(tourSkill)
-		  			var tourid = location.hash.split("/")[1];
+					manageData.pushSkill(tourSkill,manageTour.reloadTour)
 		  			console.log(tourData.krpano)
-		  			var manageTour = new ManageTour();
-            		manageTour.reloadTour(tourid);
+		  			
 				 }
 			})
 
