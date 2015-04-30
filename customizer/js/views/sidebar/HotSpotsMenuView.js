@@ -158,8 +158,8 @@ define([
                 var name = $(e.target).data("name");
                 var StyleNew = Backbone.Model.extend({});
                 styleNew = new StyleNew({imgsrc:imgsrc,family:family,name:name})
-                this.hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
-                this.hotspotstyleeditor.render("hotspotStyleEditor",this.hotspotstyleeditor.renderExtend);
+                var hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
+                hotspotstyleeditor.render("hotspotStyleEditor",hotspotstyleeditor.renderExtend);
                 }
         }
         

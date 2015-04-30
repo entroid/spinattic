@@ -276,55 +276,61 @@ define([
 					  }
 
 				  })
-				 if(ableToAppend){
-					 $("#hotspot-styles .rows").append(elemToappend);
+				 if(!ableToAppend){
+					 
+
+					 	$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
+
+												este.undelegateEvents();
+												$(this).remove();
+
+											});
+
 					}else{
-						$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
 
-												este.undelegateEvents();
-												$(this).remove();
+						console.log(total)
+						$("#hotspot-styles .rows").append(elemToappend);
+						totalsaved = 0
+						_.each($("#hotspotStyleEditor .tab"),function(elem, ind){	
 
-											});
+							  if($(elem).data("properties")){
+
+									var template_id = $(elem).data("id");
+									$(e.target).text("saving...")
+									$.ajax({
+										url:"data/xml.php?t=htspts_styles&c=1&id="+template_id,
+										 dataType: "html",    
+										  success:function(data){
+												var x2js = new X2JS({attributePrefix:"_"});
+												var style =  x2js.xml_str2json( data );
+												style = style.style;
+												var properties = $(elem).data("properties");
+												jstring = JSON.stringify(properties)
+												jstring = jstring.replace("-","")
+												properties = JSON.parse(jstring);
+											   
+												style._crop = properties.up.X+"|"+properties.up.Y+"|"+properties.up.width+"|"+properties.up.height;
+												style._name = "hotspot_set"+integer+"_"+$(elem).data("name");
+												style._ondowncrop = properties.down.X+"|"+properties.down.Y+"|"+properties.down.width+"|"+properties.down.height;
+												style._onovercrop = properties.over.X+"|"+properties.over.Y+"|"+properties.over.width+"|"+properties.over.height;
+												style._url = $("#graphic-hotspot").data("imgsrc");
+												manageData.pushStyle(style)
+												totalsaved++
+												if(totalsaved == total){
+													$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
+
+														este.undelegateEvents();
+														$(this).remove();
+
+													});
+												}
+
+											}
+										})
+							   }
+					
+						})//end ajax
 					}
-				_.each($("#hotspotStyleEditor .tab"),function(elem, ind){
-
-					  if($(elem).data("properties")){
-
-							var template_id = $(elem).data("id");
-							$(e.target).text("saving...")
-							$.ajax({
-								url:"data/xml.php?t=htspts_styles&c=1&id="+template_id,
-								 dataType: "html",    
-								  success:function(data){
-										var x2js = new X2JS({attributePrefix:"_"});
-										var style =  x2js.xml_str2json( data );
-										style = style.style;
-										var properties = $(elem).data("properties");
-										jstring = JSON.stringify(properties)
-										jstring = jstring.replace("-","")
-										properties = JSON.parse(jstring);
-									   
-										style._crop = properties.up.X+"|"+properties.up.Y+"|"+properties.up.width+"|"+properties.up.height;
-										style._name = "hotspot_set"+integer+"_"+$(elem).data("name");
-										style._ondowncrop = properties.down.X+"|"+properties.down.Y+"|"+properties.down.width+"|"+properties.down.height;
-										style._onovercrop = properties.over.X+"|"+properties.over.Y+"|"+properties.over.width+"|"+properties.over.height;
-										style._url = $("#graphic-hotspot").data("imgsrc");
-										manageData.pushStyle(style)
-										
-										if(ind == (total-1)){
-											$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
-
-												este.undelegateEvents();
-												$(this).remove();
-
-											});
-										}
-
-									}
-								})
-					   }
-			
-				})
 			
 		}
 
