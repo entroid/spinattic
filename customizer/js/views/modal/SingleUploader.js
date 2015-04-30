@@ -49,12 +49,18 @@ define([
             var este = this;
             var myid = this.model.get("myid");
             var dropbox = $('#single-drop-zone');
+            var tour_id = este.model.get("tour_id");
+            var caso = este.model.get("caso")
             dropbox.filedrop({
                 paramname:'pic',
                 refresh: 100,
                 maxfiles: 1,
                 maxfilesize: 200,
                 url: 'php/upload-single-file.php',
+                data:{
+                    tour_id:tour_id,
+                    caso: caso
+                    },
                 error: function(err, file) {
 
                 },
@@ -85,11 +91,12 @@ define([
 
                 uploadFinished:function(i, file, response){  
 
+                    console.log(response)
                     if (response.result == 'SUCCESS') {
                         
                         $("#"+myid+" .percentage").text("upload complete");
 
-                        var myfile = "graphics/"+response.params.file_name;
+                        var myfile = response.params.path;
                         $("#"+myid +" .ok-img").show();
                         
                             $("#"+myid).data("imgsrc",myfile)

@@ -223,6 +223,13 @@ define([
 				  })
 				 if(ableToAppend){
 					 $("#hotspot-styles .rows").append(elemToappend);
+					}else{
+						$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
+
+												este.undelegateEvents();
+												$(this).remove();
+
+											});
 					}
 				_.each($("#hotspotStyleEditor .tab"),function(elem, ind){
 
