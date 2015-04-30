@@ -62,7 +62,7 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 )
                 'msg' => 'File was uploaded successfuly!', 
                 'params' => array(
                              
-                                'file_name' => $pic['name']
+                                'path' => "graphics/".$pic['name']
                     
         )));
     }

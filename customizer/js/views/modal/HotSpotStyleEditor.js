@@ -48,11 +48,65 @@ define([
 			$("#"+myid+" header").append($(deleteSet));
 
 			var imgsrc = this.model.get("imgsrc")
+			var family = this.model.get("family")
+			var name = this.model.get("name");
+			var styles = [];
+			if(family){
+
+				_.each(tourData.krpano.style,function(el,index){
+					var elemname = el._name;
+					var elemray = elemname.split("_");
+					if(family == elemray[1]){
+						styles.push(el);
+					}
+				})
+			
+				_.each(styles,function(elem,ind){
+					var upcrop = elem._crop.split("|")
+					var downcrop = elem._ondowncrop.split("|")
+					var hovercrop = elem._onovercrop.split("|")
+					
+					var properties = {
+						up:{
+							X:upcrop[0],
+							Y:upcrop[1],
+							width:upcrop[2],
+							height:upcrop[3],
+						},
+						over:{
+							X:hovercrop[0],
+							Y:hovercrop[1],
+							width:hovercrop[2],
+							height:hovercrop[3],
+						},
+						down:{
+							X:downcrop[0],
+							Y:downcrop[1],
+							width:downcrop[2],
+							height:downcrop[3],
+						}
+					}
+					$("#"+elem._kind+"Tab").data("properties",properties);
+					$("#"+elem._kind+"Tab").find(".icons").removeClass("none");
+					$("#"+elem._kind+"Tab .icons .up .addStyle").addClass("selected");
+					$("#"+elem._kind+"Tab").find(".add").addClass("none");
+
+					console.log($("#"+elem._kind+"Tab"))
+				})
+
+			$("#hotspotStyleEditor .menuTabs li."+name+"Tab").trigger("click")
+
+			}
+			
 			if(imgsrc == ""){
 				$("#hotspotStyleEditor .hotspotStyleContent").hide()
 			}
+
+
+
+
 			var SingleUploaderModel = Backbone.Model.extend({});
-			var singleUploaderModel = new SingleUploaderModel({myid:"graphic-hotspot",imgsrc:""})
+			var singleUploaderModel = new SingleUploaderModel({myid:"graphic-hotspot",imgsrc:imgsrc})
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			var uploadComplete = this.uploadComplete;
 			singleUploader.render(uploadComplete);
@@ -176,7 +230,6 @@ define([
 		},
 
 		uploadComplete:function(){
-			$("#hotspotStyleEditor .image-uploader-wrapper img").attr("style","width:auto");
 			$("#hotspotStyleEditor .hotspotStyleContent").show();
 			this.verticalCent();
 		},
@@ -202,6 +255,7 @@ define([
 		saveAndClose:function(e){
 			var este = this;
 			var family = $("#hotspot-styles .row:last-child .rowinrow").data("family");
+			var familydata = this.model.get("family")
 			var integer = family.replace("set","");
 			integer = parseInt(integer)+1;
 			var total = 0;
@@ -215,9 +269,10 @@ define([
 
 					  		total++
 					  		var properties = $(elem).data("properties");
-							elemToappend += '<div class="row"><div class="rowinrow" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+properties.up.X+'px '+properties.up.Y+'px"></div></div>';
+							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+properties.up.X+'px '+properties.up.Y+'px"></div></div>';
+							if(!familydata){
 							ableToAppend = true;
-
+							}
 					  }
 
 				  })
@@ -270,26 +325,7 @@ define([
 					   }
 			
 				})
-			/*$.ajax({
-				url:"data/xml.php?t=skills&c=1&id="+skill.id,
-				 dataType: "html",
-				 success:function(data){
-					var SkillItemModel = Backbone.Model.extend({});
-					var x2js = new X2JS({attributePrefix:"_"});
-					var tourSkill =  x2js.xml_str2json( data );
-				   
-					skillItemModel = new SkillItemModel({tourSkill:tourSkill.skill});
-					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
-					skinCustomizerItem.render();
-					$elem.replaceWith('<span class="added-skill">Added</span>')
-					var manageData = new ManageData()
-					manageData.pushSkill(tourSkill)
-					var tourid = location.hash.split("/")[1];
-					console.log(tourData.krpano)
-					var manageTour = new ManageTour();
-					manageTour.reloadTour(tourid);
-				 }
-			})*/
+			
 		}
 
 	});

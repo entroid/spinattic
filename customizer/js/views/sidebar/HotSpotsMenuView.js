@@ -20,13 +20,13 @@ define([
             "click #hotSpots-menu li.htpt": "addHotSpot",
             "click #hotspot-styles .selector":"selectStyleClick",
             "click #open-styles":"showhideStyles",
-            "click #hotspot-styles .add-link": "showHotspotsStyleEditor"
+            "click #hotspot-styles .add-link": "showHotspotsStyleEditor",
+            "click #hotspot-styles .rowinrow": "editHotSpotAppeareance",
                  },
         hotspotstyleeditor:null,
         
         render: function(){
             var styles = tourData.krpano.style;
-            console.log(tourData)
             var compiledTemplate = _.template(hotspotsMenu,{styles:styles});
             $(this.el).append( compiledTemplate ); 
             var helpFunctions = new HelpFunctions();
@@ -129,7 +129,6 @@ define([
 
             _.each(selected,function(elem,ind){ 
                 var crop = elem._crop.split("|")
-                console.log(crop)
                 $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url('+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
             })
                 
@@ -149,6 +148,19 @@ define([
                 this.hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
                 this.hotspotstyleeditor.render("hotspotStyleEditor",this.hotspotstyleeditor.renderExtend);
             }
+        },
+
+
+        editHotSpotAppeareance:function(e){
+            if($(e.target).hasClass("custom")){
+                var imgsrc = $(e.target).data("url");
+                var family = $(e.target).data("family");
+                var name = $(e.target).data("name");
+                var StyleNew = Backbone.Model.extend({});
+                styleNew = new StyleNew({imgsrc:imgsrc,family:family,name:name})
+                this.hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
+                this.hotspotstyleeditor.render("hotspotStyleEditor",this.hotspotstyleeditor.renderExtend);
+                }
         }
         
     });
