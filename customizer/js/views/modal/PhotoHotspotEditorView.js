@@ -30,8 +30,10 @@ define([
             var compiledTemplate = _.template(hotspotphoto,{allData:allData,num:num})
 			$("#"+this.myid+" .inner-modal").html(compiledTemplate);
 
+			tour_id = location.hash.split("/")[1];
+			var caso = 'hotspots';
     		var SingleUploaderModel = Backbone.Model.extend({});
-            var singleUploaderModel = new SingleUploaderModel({myid:"pic-hotspot"+num,imgsrc:allData._pic})
+            var singleUploaderModel = new SingleUploaderModel({myid:"pic-hotspot"+num,imgsrc:allData._pic,tour_id:tour_id,caso:caso})
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             
            /* var callBackFunction = function(){
