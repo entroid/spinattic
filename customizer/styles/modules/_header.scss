@@ -84,6 +84,62 @@ header.main-header{
                     @include arrow(0, 10px, 15px, 10px, #fff);
                 }
 
+                &.notifications {
+                    width: 500px;
+                    left: initial;
+                    right: 24px;
+                    box-sizing: border-box;
+
+                    .arrow{
+                        @include absolute($top:4px, $right:28px, $left: initial);
+                          border-width: 0 10px 12px 10px;
+                    }
+
+                    li{
+                        padding: 10px;
+                        position: relative;
+                        border-bottom: 1px solid $lighter-gray;
+                          min-height: 50px;
+
+                        img{
+                            width: 50px;
+                            height: 50px;
+                            float: left;
+                        }
+
+                        .notif-info{
+                            margin-left: 60px;
+                              width: 84%;
+
+                            p{
+                                line-height: 1.8rem;
+                            }
+
+                            span {
+                                color:$blue2;
+                            }
+
+                            b{
+                                font-weight: bold;
+                            }
+
+                            time {
+                                font-style: italic;
+                                font-size: 1.2rem;
+                            }
+                        }
+
+                        &.new {
+                            background-color:$light-blue1;
+                        }
+
+                        .fa-close {
+                            color: $light-gray2;
+                            @include absolute($top:10px,$right:10px,$left:initial);
+                        }
+                    }
+                }
+
                 .header-user-menu{
                     border-bottom: 1px solid $lighter-gray;
                     float: left;

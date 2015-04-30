@@ -3532,6 +3532,48 @@ header.main-header .header-side .user .menu-list .arrow {
   border-width: 0 10px 15px 10px;
   border-color: #fff transparent;
   border-style: solid; }
+header.main-header .header-side .user .menu-list.notifications {
+  width: 500px;
+  left: initial;
+  right: 24px;
+  box-sizing: border-box; }
+header.main-header .header-side .user .menu-list.notifications .arrow {
+  position: absolute;
+  top: 4px;
+  right: 28px;
+  bottom: initial;
+  left: initial;
+  border-width: 0 10px 12px 10px; }
+header.main-header .header-side .user .menu-list.notifications li {
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 50px; }
+header.main-header .header-side .user .menu-list.notifications li img {
+  width: 50px;
+  height: 50px;
+  float: left; }
+header.main-header .header-side .user .menu-list.notifications li .notif-info {
+  margin-left: 60px;
+  width: 84%; }
+header.main-header .header-side .user .menu-list.notifications li .notif-info p {
+  line-height: 1.8rem; }
+header.main-header .header-side .user .menu-list.notifications li .notif-info span {
+  color: #3895c7; }
+header.main-header .header-side .user .menu-list.notifications li .notif-info b {
+  font-weight: bold; }
+header.main-header .header-side .user .menu-list.notifications li .notif-info time {
+  font-style: italic;
+  font-size: 1.2rem; }
+header.main-header .header-side .user .menu-list.notifications li.new {
+  background-color: #d6e3f3; }
+header.main-header .header-side .user .menu-list.notifications li .fa-close {
+  color: #ccc;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: initial;
+  left: initial; }
 header.main-header .header-side .user .menu-list .header-user-menu {
   border-bottom: 1px solid #e0e0e0;
   float: left;
