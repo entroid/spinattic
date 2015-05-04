@@ -8,8 +8,10 @@ define([
 	'text!templates/modal/hotSpotStyleEditor.html',
 	'views/modal/SingleUploader',
    'helpers/ManageData',
+   'helpers/ManageTour',
 
-], function($, _, Backbone,jqueryui,x2js,Modal,hotSpotStyleEditor,SingleUploader,ManageData){
+
+], function($, _, Backbone,jqueryui,x2js,Modal,hotSpotStyleEditor,SingleUploader,ManageData,ManageTour){
 
 	var HotSpotStyleEditor = Modal.extend({
 		
@@ -66,6 +68,7 @@ define([
 					var downcrop = elem._ondowncrop.split("|")
 					var hovercrop = elem._onovercrop.split("|")
 					
+
 					var properties = {
 						up:{
 							X:upcrop[0],
@@ -88,13 +91,36 @@ define([
 					}
 					$("#"+elem._kind+"Tab").data("properties",properties);
 					$("#"+elem._kind+"Tab").find(".icons").removeClass("none");
-					$("#"+elem._kind+"Tab .icons .up .addStyle").addClass("selected");
-					$("#"+elem._kind+"Tab").find(".add").addClass("none");
 
-					console.log($("#"+elem._kind+"Tab"))
+					for(prop in properties){
+
+						if(properties[prop].X != "0"){
+							properties[prop].X = "-"+ properties[prop].X
+						}
+
+						if(properties[prop].Y != "0"){
+							properties[prop].Y = "-"+ properties[prop].Y
+						}
+
+						$("#"+elem._kind+"Tab .icons ."+prop+" .addStyle").css({
+						"background-image":"url("+imgsrc+")",
+						"background-repeat":"no-repeat",
+						"background-position": properties[prop].X +"px "+ properties[prop].Y+"px",
+						"width":properties.up.width,
+						"height":properties.up.height
+					}).addClass("not-empty");
+						
+					}
+					$("#"+elem._kind+"Tab .icons .up .addStyle").addClass("selected")
+
+
+
+					$("#"+elem._kind+"Tab").find(".add").addClass("none");
+					window.properties = properties
+					console.log(properties)
 				})
 
-			$("#hotspotStyleEditor .menuTabs li."+name+"Tab").trigger("click")
+				$("#hotspotStyleEditor .menuTabs li."+name+"Tab").trigger("click")
 
 			}
 			
@@ -103,10 +129,10 @@ define([
 			}
 
 
-
-
+			tour_id = location.hash.split("/")[1];
+			var caso = 'hotspot_styles';
 			var SingleUploaderModel = Backbone.Model.extend({});
-			var singleUploaderModel = new SingleUploaderModel({myid:"graphic-hotspot",imgsrc:imgsrc})
+			var singleUploaderModel = new SingleUploaderModel({myid:"graphic-hotspot",imgsrc:imgsrc,tour_id:tour_id,caso:caso})
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			var uploadComplete = this.uploadComplete;
 			singleUploader.render(uploadComplete);
@@ -257,9 +283,13 @@ define([
 			var family = $("#hotspot-styles .row:last-child .rowinrow").data("family");
 			var familydata = this.model.get("family")
 			var integer = family.replace("set","");
+			if(!familydata){
 			integer = parseInt(integer)+1;
+			}
 			var total = 0;
-			var elemToappend = '<div class="selector"><span class="fa fa-circle fa-lg"></span></div>';
+
+			var elemToappend = '<div class="selector" data-family=set'+integer+'><span class="fa fa-circle fa-lg"></span></div>';
+			
 			var manageData = new ManageData()
 			var ableToAppend = false;
 
@@ -269,26 +299,43 @@ define([
 
 					  		total++
 					  		var properties = $(elem).data("properties");
-							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+properties.up.X+'px '+properties.up.Y+'px"></div></div>';
+					  		var jstring = JSON.stringify(properties)
+							jstring = jstring.replace("-","")
+							properties = JSON.parse(jstring);
+							var valx;
+							var valy;
+							if(properties.up.X != 0){
+								valx = "-"+properties.up.X
+							} else{
+								valx = properties.up.X
+							}
+							if(properties.up.Y != 0){
+								valy = "-"+properties.up.Y
+							}else{
+								valy = properties.up.Y
+							}
+							
+							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+valx+'px '+valy+'px"></div></div>';
 							if(!familydata){
 							ableToAppend = true;
 							}
 					  }
 
 				  })
+
 				 if(!ableToAppend){
-					 
+				 			_.each($("#hotspot-styles .selector"),function(el,ind){
+				 				if($(el).data("family") == "set"+integer){
+					 				$(el).remove()
+					 			}
+					 		})
+					 		_.each($("#hotspot-styles .rowinrow"),function(el,ind){
+					 			if($(el).data("family") == "set"+integer){
+					 				$(el).parents(".row").remove()
+					 			}
+					 		})
+					}
 
-					 	$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
-
-												este.undelegateEvents();
-												$(this).remove();
-
-											});
-
-					}else{
-
-						console.log(total)
 						$("#hotspot-styles .rows").append(elemToappend);
 						totalsaved = 0
 						_.each($("#hotspotStyleEditor .tab"),function(elem, ind){	
@@ -317,6 +364,8 @@ define([
 												manageData.pushStyle(style)
 												totalsaved++
 												if(totalsaved == total){
+													var manageTour = new ManageTour();
+													manageData.saveServer(manageTour.reloadTour);
 													$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
 
 														este.undelegateEvents();
@@ -325,12 +374,12 @@ define([
 													});
 												}
 
-											}
+											}//end ajax
 										})
-							   }
+							   }//end if
 					
-						})//end ajax
-					}
+						})//end each
+					
 			
 		}
 
