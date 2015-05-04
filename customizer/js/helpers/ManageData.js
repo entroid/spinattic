@@ -140,9 +140,17 @@ define([
 
 			this.pushStyle = function(json){
 
+				var equal = false;
+				_.each(tourData.krpano.style,function(elem,ind){
+					if(elem._name == json._name){
+						console.log("se da la condicion")
+						tourData.krpano.style[ind] = json;
+						equal = true;
+					}
+				})
+				if(!equal){
 				tourData.krpano.style.push(json);
-				console.log(json)
-				console.log(tourData.krpano.style)
+				}
 			}
 
 			this.mapData = function(lat, lng, sceneIndex){

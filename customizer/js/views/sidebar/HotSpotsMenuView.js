@@ -88,6 +88,7 @@ define([
                     var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25);
                     newHotspot._ath = __ath;
                     newHotspot._atv = __atv;
+                    newHotspot._style = "hotspot_"+me.selectedset+"_"+myid;
                     newHotspot._name = "spot"+me.hotspotCount;
 
                     var manageHotSpots = new ManageHotSpots();
@@ -96,6 +97,7 @@ define([
                     krpano.set("hotspot["+newHotspot._name+"].ath", newHotspot._ath );
                     krpano.set("hotspot["+newHotspot._name+"].atv", newHotspot._atv );
                     krpano.call("hotspot["+newHotspot._name+"].loadStyle(hotspot_"+me.selectedset+"_"+myid+");");
+                    console.log(me.selectedset)
                     krpano.call('set(hotspot['+newHotspot._name+'].ondown, draghotspot() );');
                     krpano.call('set(hotspot['+newHotspot._name+'].onclick, js(openHotspotWindowEditor('+newHotspot._name+')) );');
                     krpano.call('set(hotspot['+newHotspot._name+'].onup, js(regPos('+newHotspot._name+')) );');
