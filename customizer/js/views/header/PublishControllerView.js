@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/header/publishcontrollerview.html'
+    'text!templates/header/publishcontrollerview.html',
+    'views/modal/LiveTourView'
 
-], function($, _, Backbone, publishcontrollerview){
+], function($, _, Backbone, publishcontrollerview, LiveTourView){
 
     var PublishControllerView = Backbone.View.extend({
 
@@ -15,14 +16,24 @@ define([
         },
 
         events:{  
-
+            "click header .onoffswitch-label": "openLiveModal"
         },
 
         render: function(){
-
+            var este = this;
           var compiledTemplate = _.template(publishcontrollerview);
            $(this.el).append( compiledTemplate );
 
+           $('header .onoffswitch-label').click(function() {
+                este.openLiveModal();
+           })
+
+        },
+
+        openLiveModal: function () {
+            console.log('entra')
+            this.liveTourView = new LiveTourView();
+                this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
         }    
     });
 

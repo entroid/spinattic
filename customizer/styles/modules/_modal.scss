@@ -1030,6 +1030,14 @@
             }
         }
     }
+
+    #liveTourModal{
+        width: 700px;
+
+        .inner-modal{
+            background-color: $light-gray4;
+        }
+    }
 }
 
 #signature-skill-linkto{
