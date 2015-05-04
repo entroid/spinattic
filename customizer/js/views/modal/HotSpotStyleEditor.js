@@ -68,6 +68,7 @@ define([
 					var downcrop = elem._ondowncrop.split("|")
 					var hovercrop = elem._onovercrop.split("|")
 					
+
 					var properties = {
 						up:{
 							X:upcrop[0],
@@ -93,10 +94,18 @@ define([
 
 					for(prop in properties){
 
+						if(properties[prop].X != "0"){
+							properties[prop].X = "-"+ properties[prop].X
+						}
+
+						if(properties[prop].Y != "0"){
+							properties[prop].Y = "-"+ properties[prop].Y
+						}
+
 						$("#"+elem._kind+"Tab .icons ."+prop+" .addStyle").css({
 						"background-image":"url("+imgsrc+")",
 						"background-repeat":"no-repeat",
-						"background-position": properties.up.X +"px "+ properties.up.Y+"px",
+						"background-position": properties[prop].X +"px "+ properties[prop].Y+"px",
 						"width":properties.up.width,
 						"height":properties.up.height
 					}).addClass("not-empty");
@@ -290,7 +299,23 @@ define([
 
 					  		total++
 					  		var properties = $(elem).data("properties");
-							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+properties.up.X+'px '+properties.up.Y+'px"></div></div>';
+					  		var jstring = JSON.stringify(properties)
+							jstring = jstring.replace("-","")
+							properties = JSON.parse(jstring);
+							var valx;
+							var valy;
+							if(properties.up.X != 0){
+								valx = "-"+properties.up.X
+							} else{
+								valx = properties.up.X
+							}
+							if(properties.up.Y != 0){
+								valy = "-"+properties.up.Y
+							}else{
+								valy = properties.up.Y
+							}
+							
+							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+valx+'px '+valy+'px"></div></div>';
 							if(!familydata){
 							ableToAppend = true;
 							}
