@@ -3534,7 +3534,6 @@ header.main-header .header-side .user .menu-list .arrow {
   border-style: solid; }
 header.main-header .header-side .user .menu-list.notifications {
   width: 500px;
-  max-height: 355px;
   left: initial;
   right: 24px;
   box-sizing: border-box; }
@@ -3545,6 +3544,8 @@ header.main-header .header-side .user .menu-list.notifications .arrow {
   bottom: initial;
   left: initial;
   border-width: 0 10px 12px 10px; }
+header.main-header .header-side .user .menu-list.notifications ul {
+  max-height: 355px; }
 header.main-header .header-side .user .menu-list.notifications li {
   padding: 10px;
   position: relative;

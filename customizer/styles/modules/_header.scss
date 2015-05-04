@@ -86,7 +86,6 @@ header.main-header{
 
                 &.notifications {
                     width: 500px;
-                    max-height: 355px;
                     left: initial;
                     right: 24px;
                     box-sizing: border-box;
@@ -94,6 +93,11 @@ header.main-header{
                     .arrow{
                         @include absolute($top:4px, $right:28px, $left: initial);
                           border-width: 0 10px 12px 10px;
+                    }
+
+                    ul{
+
+                        max-height: 355px;
                     }
 
                     li{

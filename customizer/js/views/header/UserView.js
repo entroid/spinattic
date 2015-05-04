@@ -26,7 +26,7 @@ define([
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
 
-      $(".notifications").mCustomScrollbar({
+      $(".notifications ul").mCustomScrollbar({
         theme:"minimal-dark",
         scrollInertia:300,
       });
