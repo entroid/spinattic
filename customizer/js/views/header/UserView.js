@@ -3,9 +3,10 @@ define([
   'underscore',
   'backbone',
   'text!templates/header/userview.html',
-  'helpers/HelpFunctions'
+  'helpers/HelpFunctions',
+  'mCustomScrollbar'
 
-], function($, _, Backbone, userview, HelpFunctions){
+], function($, _, Backbone, userview, HelpFunctions, mCustomScrollbar){
 
   var SceneMenuView = Backbone.View.extend({
     el: $(".header-side"),
@@ -24,6 +25,11 @@ define([
 
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
+
+      $(".notifications ul").mCustomScrollbar({
+        theme:"minimal-dark",
+        scrollInertia:300,
+      });
     },
 
     displayMenu: function() {
