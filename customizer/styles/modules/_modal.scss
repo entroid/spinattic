@@ -1033,9 +1033,14 @@
 
     #liveTourModal{
         width: 700px;
+        color: $middle-gray;
 
         .inner-modal{
             background-color: $light-gray4;
+        }
+
+        form {
+            overflow: hidden;
         }
     }
 }
@@ -1043,4 +1048,10 @@
 #signature-skill-linkto{
     width: 86%;
     margin-left: 10px;
+}
+
+.col-2{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;  
 }

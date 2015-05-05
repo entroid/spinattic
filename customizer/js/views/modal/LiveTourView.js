@@ -28,12 +28,14 @@ define([
             var helpFunctions = new HelpFunctions();
             var template = _.template(LiveTour);
 
+            console.log(template)
+
             $("#"+myid+" .inner-modal").html(template);
             
             /*var liveTourView = new LiveTourView({model:mapModel});
             liveTourView.render(myid);*/
 
-            this.verticalCent();
+            
             
             helpFunctions.dropDown(".dd-liveTour");
             helpFunctions.checkbox(".check-group","fa-check-square","fa-square");
@@ -41,6 +43,7 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });*/
+this.verticalCent();
         }
 
     });
