@@ -5,6 +5,18 @@ require("../inc/auth.inc");
 require("../inc/conex.inc");
 */
 
+session_start();
+
+require("functions.php");
+
+//Si es un nuevo tour, el id lo tengo guardado en la SESSION, antes chequeo que no me venga por REQUEST, y luego veo si la tengo en SESSION
+if(isset($_REQUEST['tour_id']) && $_REQUEST['tour_id'] != '' && $_REQUEST['tour_id'] != 'undefined'){
+	$tour_id = $_REQUEST['tour_id'];	
+}else{
+	$tour_id = $_SESSION['tour_id'];
+}
+
+
 // Helper functions
 
 function exit_status($return)
@@ -87,11 +99,8 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 )
     // Move the uploaded file from the temporary 
     // directory to the uploads folder:
 
-	
-	
     
-    /* Inserto la pano con state = 0 para reservar el ID 
-    
+    // Inserto la pano con state = 0 para reservar el ID 
     
     $ssqlp1 = "insert into panos (state, user, date, name) values (0, '".$_SESSION['usr']."', now(), '".mysql_real_escape_string($pic['name'])."')";
     mysql_query($ssqlp1);
@@ -99,39 +108,26 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 )
     $result = mysql_query($ssqlp);
 	$row = mysql_fetch_array($result);
    	$elid = $row["elid"];
-   	*/
-    
-    $fil = fopen('count_pano.txt', "r");
-    $dat = fread($fil, filesize('count_pano.txt'));
-    $elid = $dat+1;
-    fclose($fil);
-    $fil = fopen('count_pano.txt', "w");
-    fwrite($fil, $dat+1);    
+
     
    	/* Inserto la scene con state = 0 para reservar el ID */
    	
-
-   	$tour_id = $_REQUEST['tour_id'];
-   	
    	$scene_name = str_replace('.'.$ext, '', $pic['name']);
    	
-   	/*
-   	$ssqlp1 = "insert into panosxtour_draft (idpano, state, idtour, name) values (".$elid.", 0, ".$tour_id.", '".  mysql_real_escape_string($scene_name)."')";
+   	//Tomo el nro de orden 
+   	$ssqlp = "SELECT max(ord) as ord FROM panosxtour_draft where idtour = ".$tour_id;
+   	$result = mysql_query($ssqlp) or die(mysql_error());
+   	$row = mysql_fetch_array($result);
+   	$el_ord = $row["ord"] + 1;   	
+   	
+   	
+   	$ssqlp1 = "insert into panosxtour_draft (idpano, ord, state, idtour, name) values (".$elid.", ".$el_ord.", 0, ".$tour_id.", '".  mysql_real_escape_string($scene_name)."')";
+   	//echo $ssqlp1;
    	mysql_query($ssqlp1);   	
    	$ssqlp = "SELECT max(id) as elid FROM panosxtour_draft";
    	$result = mysql_query($ssqlp) or die(mysql_error());
 	$row = mysql_fetch_array($result);
 	$scene_id = $row["elid"];
-	*/
-	
-   	$fil = fopen('count_scene.txt', "r");
-   	$dat = fread($fil, filesize('count_scene.txt'));
-   	$scene_id = $dat+1;
-   	fclose($fil);
-   	$fil = fopen('count_scene.txt', "w");
-   	fwrite($fil, $dat+1);   	
-   	
-	
    	
     
     @mkdir ($upload_dir.'/'.$elid, 0777);

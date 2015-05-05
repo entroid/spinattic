@@ -55,6 +55,7 @@ define([
 					}
 					$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
 				}
+				$("#tour").data("scene",elem);
 			})
 				this.saveServer();
 			},
@@ -139,7 +140,7 @@ define([
 			}
 
 			this.pushStyle = function(json){
-
+				
 				var equal = false;
 				_.each(tourData.krpano.style,function(elem,ind){
 					if(elem._name == json._name){
@@ -151,6 +152,28 @@ define([
 				if(!equal){
 				tourData.krpano.style.push(json);
 				}
+			}
+
+			this.removeStyle = function(name){
+
+				console.log(name)
+				indexToremove = [];
+				_.each(tourData.krpano.style,function(elem,ind){
+
+					var elemname = elem._name;
+					var elemray = elemname.split("_");
+					
+					if(elemray[1] == name){
+						indexToremove.push(ind);
+					}
+				})
+
+				var arr = $.grep(tourData.krpano.style, function(n, i) {
+				    return $.inArray(i, indexToremove) ==-1;
+				});
+				tourData.krpano.style = arr;
+
+				this.saveServer();	
 			}
 
 			this.mapData = function(lat, lng, sceneIndex){

@@ -11,7 +11,7 @@
 <!-- photos hotposts -->
 	<data name="photo" content="" />
 
-	<plugin name="wait"  keep="true" align="center" visible="false" handcursor="false" zorder="-201" url="wait.png" crop="0|0|75|75" frames="7" framewidth="75" frameheight="75" frame="0" onloaded="animate();" />
+	<plugin name="wait"  keep="true" align="center" visible="false" handcursor="false" zorder="-201" url="http://dev.spinattic.com/styles/hotspots/wait.png" crop="0|0|75|75" frames="7" framewidth="75" frameheight="75" frame="0" onloaded="animate();" />
 
 	<action name="animate">
 	inc(frame,1,get(frames),0);mul(ypos,frame,frameheight);txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight));delayedcall(0.03, animate() );

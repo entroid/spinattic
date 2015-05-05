@@ -27,7 +27,8 @@ define([
 			"click .tabContent .add .addStyle": "addStyles",
 			"click .tabContent .icons .addStyle": "selectAddStyles",
 			"click .cancel": "removeModal",
-			"change .absoluteRight":"setProperties"
+			"change .absoluteRight":"setProperties",
+			"click .delete-set":"removeSet"
 		},
 
 		defaultHPValues:{
@@ -278,6 +279,32 @@ define([
 			prop[mytype] = myprop;
 		},
 
+		removeSet:function(){
+			var este = this;
+			var manageData = new ManageData();
+			var family = this.model.get("family")
+			if(family){
+				manageData.removeStyle(family);
+				_.each($("#hotspot-styles .selector"),function(el,ind){
+	 				if($(el).data("family") == family){
+		 				$(el).remove()
+		 			}
+		 		})
+		 		_.each($("#hotspot-styles .rowinrow"),function(el,ind){
+		 			if($(el).data("family") == family){
+		 				$(el).parents(".row").remove()
+		 			}
+		 		})
+
+			}
+				$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
+
+					este.undelegateEvents();
+					$(this).remove();
+
+				});
+		},
+
 		saveAndClose:function(e){
 			var este = this;
 			var family = $("#hotspot-styles .row:last-child .rowinrow").data("family");
@@ -300,7 +327,7 @@ define([
 					  		total++
 					  		var properties = $(elem).data("properties");
 					  		var jstring = JSON.stringify(properties)
-							jstring = jstring.replace("-","")
+							var jstring = jstring.replace(/-/g , "")
 							properties = JSON.parse(jstring);
 							var valx;
 							var valy;
@@ -352,8 +379,8 @@ define([
 												var style =  x2js.xml_str2json( data );
 												style = style.style;
 												var properties = $(elem).data("properties");
-												jstring = JSON.stringify(properties)
-												jstring = jstring.replace("-","")
+												var jstring = JSON.stringify(properties)
+												jstring = jstring.replace(/-/g , "")
 												properties = JSON.parse(jstring);
 											   
 												style._crop = properties.up.X+"|"+properties.up.Y+"|"+properties.up.width+"|"+properties.up.height;

@@ -8,18 +8,23 @@
 		<h2>Hotspot Styles</h2>
 
 		<div class="rows">	
-			<% _.each(styles, function(element,ind){ 
-				if(ind%5 == 0){%>
-					<div class="selector"><span class="fa fa-circle<%if(ind == 0){%>-o<%}%> fa-lg"></span></div>
-				<%
-				}
-				%>
+			<% _.each(styles, function(element,ind){
 
+				if(element._segment != 'FREE HOTSPOTS STYLES'){
+						var custom = true;
+				}
+				
+				var crop = element._crop.split("|");
+				var set = element._name.split("_");
+					
+				if(ind%5 == 0){%>
+					<div class="selector" <%if(custom){%>data-family="<%= set[1]%>"<%}%> ><span class="fa fa-circle<%if(ind == 0){%>-o<%}%> fa-lg"></span></div>
+				<%}%>
 				<div class="row">
-					<% var crop = element._crop.split("|")%>
-					<% var set = element._name.split("_")%>
-					<div class="rowinrow" data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= crop[0]%>px 0"></div>
+					<div class="rowinrow <%if(custom){%>custom<%}%>" <%if(custom){%>data-url="<%=element._url%>" data-name="<%=element._kind%>" <%}%> data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= crop[0]%>px 0"></div>
 				</div>
+
+
 			<% }); %>			
 		</div>		
 
