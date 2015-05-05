@@ -1,5 +1,64 @@
 <div class="liveTourModal">
 <div class="scrollwrapper">
-    alo
+    <form>
+        <div class="2-columns">
+            <label for="title">Tour title: <i class="help fa fa-question-circle"></i></label>
+            <input id="title" type="text" placeholder="Tour title">
+
+            <label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
+            <div class="url">
+                http://www.spinattic.com/user/
+                <input id="firendlyUrl" type="text" placeholder="tourname">
+            </div>
+
+            <label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
+            <textarea id="description" type="text" placeholder="Tour description"></textarea> 
+
+            <label for="tags">Tags: <i class="help fa fa-question-circle"></i></label>
+            <textarea id="tags" type="text" placeholder="Separate tags by comma"></textarea> 
+
+            <label for="category">Category: <i class="help fa fa-question-circle"></i></label>
+            <div id="category" class="dropdown dd-liveTour">
+                <h3>Choose a category <i class="fa fa-caret-down right arrow"></i></h3>
+                <ul class="category">
+                    <li>Cat 1</li>
+                    <li>Cat 2</li>
+                </ul>
+            </div>
+
+            <label for="privacy">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
+            <div id="privacy" class="dropdown dd-liveTour">
+                <h3>Choose a category <i class="fa fa-caret-down right arrow"></i></h3>
+                <ul class="category">
+                    <li>Cat 1</li>
+                    <li>Cat 2</li>
+                </ul>
+            </div>
+
+            <ul class="check-group">
+                <li>
+                    <span class="fa fa-square fa-lg" id="allow-comments"></span> Allow Comments
+                </li>
+                <li>
+                    <span class="fa fa-check-square fa-lg" id="allow-social"></span> Allow Social Sharing
+                </li>
+                <li>
+                    <span class="fa fa-check-square fa-lg" id="allow-embed"></span> Allow Embed Code
+                </li>
+                <li>
+                    <span class="fa fa-check-square fa-lg" id="allow-votes"></span> Allow User Votes
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="2-columns">
+            
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    
 </div>
 </div>
