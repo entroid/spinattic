@@ -18,7 +18,7 @@ define([
          _.extend(this.events, Modal.prototype.events);
         },
         events:{
-
+            
                  },
         
         renderExtend:function(){
@@ -28,11 +28,11 @@ define([
             $("#"+this.myid+" header h2").text("Arrow Hotspot. ID "+num+":")
 
             var allData = this.model.get("allData");
-            console.log(allData)
+            var me = this;
             var scenes = tourData.krpano.scene;         
             var compiledTemplate = _.template(hotspotarrow,{num:num,allData:allData,scenes:scenes,num:num})
             $("#"+this.myid+" .inner-modal").html(compiledTemplate);
-            var me = this;
+            
             $("#"+me.myid).find(".fa-close").remove();
             $("#"+me.myid+" header .save-and-close").unbind("click")
 
@@ -51,13 +51,6 @@ define([
                     me.removeThis();
                 })
             })
-
-            $("#"+me.myid+" .rotate").change(function(){
-                var val = $("#"+me.myid+" .rotate").val();
-                var hpdata = $("#"+me.myid).data("spotdata");
-                var krpano = document.getElementById("krpanoSWFObject");
-                krpano.set("hotspot["+hpdata._name+"].rotate",val);
-            })
             
             var $me = $("#"+this.myid);
             var oldWidth = $me.width();
@@ -68,6 +61,15 @@ define([
                 krpano.call("removehotspot("+spotName+")");
                 manageData.removeHotSpot($("#tour").data("scene")._name, spotName);
                 $("#"+myid+" header .save-and-close").trigger("click");
+            })
+
+            $me.find('.rotate').change( function() {
+                var val = $(this).val();
+                var hpdata = $("#"+me.myid).data("spotdata")._name;
+                //var krpano = document.getElementById("krpanoSWFObject");
+                //krpano.set("hotspot["+hpdata._name+"].rotate",val);
+
+                me.limitRotate(val, hpdata, $("#"+me.myid));
             })
 
             $me.find("#onoffswitchhparrow-"+num).click(function(){
@@ -137,9 +139,10 @@ define([
                 var myid = this.myid;
                 var num = this.myid.replace("spot","");
                 var scenes = tourData.krpano.scene;
+
                 _.each(scenes,function(elem,ind){
                     elem.label = elem._title;
-            }) 
+                }) 
 
             $("#"+myid+" .search-scenes").autocomplete({
                 source:scenes,
@@ -191,6 +194,26 @@ define([
                 $(ev.target).find('input').val('');
                 $("#"+myid+" .scenes-list li").show()
             })
+
+        },
+
+        limitRotate: function (val, spotName, modalName) {
+            var inputRotate = $(modalName).find('.rotate');
+            if ( !isNaN( val ) ) {
+                if ( val < -180 ) {
+                    $(inputRotate).val(-180);
+                    val = -180;
+
+                } else if ( val > 180) {
+                    $(inputRotate).val(180);
+                    val = 180;
+                }
+            } else {
+                return
+            }
+            
+            var krpano = document.getElementById("krpanoSWFObject");
+            krpano.set("hotspot["+ spotName +"].rotate",val);
 
         }
 

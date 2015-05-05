@@ -5149,6 +5149,10 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 12px; }
 .overlay #hotspotStyleEditor .tabContent .icons .icons-wrapper:last-child {
   margin-right: 0; }
+.overlay #liveTourModal {
+  width: 700px; }
+.overlay #liveTourModal .inner-modal {
+  background-color: #efefef; }
 
 #signature-skill-linkto {
   width: 86%;
