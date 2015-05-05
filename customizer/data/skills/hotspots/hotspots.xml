@@ -156,7 +156,7 @@ p{font-size:14px;font-family:arial;color:#FFFFFF;}
 h1{font-size:26px;font-family:arial;color:#FFFFFF;font-weight:bold;}
 p{font-size:18px;font-family:arial;color:#FFFFFF;}
 </data>
-<style name="closeInfo" url="x.png" parent="info_text" align="topright" x="10" y="10" keep="true" onclick="closeinfo()" scale="0.5" onloaded="if(device.mobile,set(scale,1));" />
+<style name="closeInfo" url="http://dev.spinattic.com/styles/hotspots/x.png" parent="info_text" align="topright" x="10" y="10" keep="true" onclick="closeinfo()" scale="0.5" onloaded="if(device.mobile,set(scale,1));" />
 
 
 </krpano>
