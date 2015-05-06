@@ -6,9 +6,13 @@ define([
 	'text!templates/modal/signatureSkillEditor.html',
 	'helpers/HelpFunctions',
 	'views/modal/SingleUploader',
-	'mCustomScrollbar'  
+	'mCustomScrollbar',
+	'helpers/HelpFunctions',
+	'helpers/ManageData',
+	'helpers/ManageTour',
 
-], function($, _, Backbone,Modal,signatureSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar){
+
+], function($, _, Backbone,Modal,signatureSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar,HelpFunctions,ManageData,ManageTour){
 
 	var SignatureSkillEditor = Modal.extend({
 		
@@ -26,8 +30,12 @@ define([
 			var tourSkill = this.model.get("tourSkill");
 
 			var template = _.template(signatureSkillEditor,{tourSkill:tourSkill})
-
 			$("#"+myid+" .inner-modal").html(template);
+			_.each($("#signature-skill-align .fa-circle"),function(elem,ind){
+				if($(elem).data("pos") == tourSkill.plugin._align){
+					$(elem).addClass("selected");
+				}
+			})
 			$("#"+myid+" header h2").text("Signature Skill Editor")
 			$("#"+myid).find(".save-and-close").unbind("click");
 			
@@ -36,9 +44,14 @@ define([
 				scrollInertia:300
 			});
 
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.nineGrillSelector("#"+myid+" .position");
+
+			var tour_id = location.hash.split("/")[1];
+			var caso = 'skills';
 			
 			var SingleUploaderModel = Backbone.Model.extend({});
-			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:"data/"+tourSkill.plugin._url})
+			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
 			
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			singleUploader.render();
@@ -49,35 +62,19 @@ define([
 		doneEdition:function(e){
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
-			var mytourSkill;
 			
-			/*if(tourData.krpano.plugin.length == undefined){
-				mytourSkill = tourData.krpano.plugin ;
-			}else{
-				_.each(tourData.krpano.plugin,function(elem,ind){
-					if(elem._kind == tourSkill.plugin._kind){
-							mytourSkill = tourData.krpano.plugin[ind];
-					}
-				})
-			}
-			mytourSkill._url = $("#signature-skill-editor-img").data("imgsrc");
-			mytourSkill._x = $("#signature-skill-x").val();
-			mytourSkill._y = $("#signature-skill-y").val();
-			mytourSkill._zorder = $("#signature-skill-zorder").val();
-			mytourSkill._alpha = $("#signature-skill-alpha").val();
-			mytourSkill._onclick = "openurl("+$("#signature-skill-linkto").val()+",_blank);";
+			console.log(tourSkill)
+			
+			tourSkill.plugin._url = $("#signature-skill-editor-img").data("imgsrc");
+			tourSkill.plugin._x = $("#signature-skill-x").val();
+			tourSkill.plugin._y = $("#signature-skill-y").val();
+			tourSkill.plugin._zorder = $("#signature-skill-zorder").val();
+			tourSkill.plugin._onclick = "openurl("+$("#signature-skill-linkto").val()+",_blank);";
+			tourSkill.plugin._align = $("#signature-skill-align .selected").data("pos")
 
-
-			if(tourData.krpano.plugin.length == undefined){
-				tourData.krpano.plugin = mytourSkill;
-			}else{
-				_.each(tourData.krpano.plugin,function(elem,ind){
-					if(elem._kind == mytourSkill._kind){
-						tourData.krpano.plugin[ind] = mytourSkill;
-					}
-				})
-			}*/
-
+			var manageData = new ManageData();
+			var manageTour = new ManageTour();
+			manageData.editSkill(tourSkill,manageTour.reloadTour)
 			this.removeModal(e);
 			this.undelegateEvents();
 		

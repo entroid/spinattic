@@ -82,57 +82,55 @@ define([
 				$(elem+" li").click(function(){
 						$(this).find("span").toggleClass("fa "+firstClass+" fa-lg").toggleClass("fa "+secClass+" fa-lg");
 				})
+		}
 
-	}
-
-	this.selectChoice = function(elem,firstClass,secClass){
+		this.selectChoice = function(elem,firstClass,secClass){
 				$(elem).click(function(){
 						$(elem).each(function(){
 								$(this).find("span").attr("class","fa "+secClass+" fa-lg")
 						})
 						$(this).find("span").attr("class","fa "+firstClass+" fa-lg")
 				})
+		}
 
-	}
+		this.mapJSONToUriParams=function(data, prefix, call){
+			
+			prefix = typeof prefix !== 'undefined' ? prefix : "";
+			call = typeof call !== 'undefined' ? call : 0;
 
-	this.mapJSONToUriParams=function(data, prefix, call){
-		
-		prefix = typeof prefix !== 'undefined' ? prefix : "";
-		call = typeof call !== 'undefined' ? call : 0;
+			var map = [];
+			var me = this;
+			if( Object.prototype.toString.call( data ) === '[object Array]' ) {
 
-		var map = [];
-		var me = this;
-		if( Object.prototype.toString.call( data ) === '[object Array]' ) {
-
-				for (var ik = 0; ik < data.length; ik++){
-						map.push(mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
-				};
-				
-		}else if ( Object.prototype.toString.call( data ) === '[object Object]' ) {
-				Object.keys(data).map(function(k){
-						var sep = "";
-						
-						//not empty
-						if (prefix !== ""){
-								
-								if (prefix.slice(-1) !== "]"){
-										sep = ":";
-								}
-						}
-						
-						map.push(me.mapJSONToUriParams(data[k], prefix + sep + k, call + 1));
-				});      
-				
-		}else{
-				map.push(prefix + "=" + encodeURIComponent(data));
-		}   
-				
-		return map.join("&");
-}
+					for (var ik = 0; ik < data.length; ik++){
+							map.push(mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
+					};
+					
+			}else if ( Object.prototype.toString.call( data ) === '[object Object]' ) {
+					Object.keys(data).map(function(k){
+							var sep = "";
+							
+							//not empty
+							if (prefix !== ""){
+									
+									if (prefix.slice(-1) !== "]"){
+											sep = ":";
+									}
+							}
+							
+							map.push(me.mapJSONToUriParams(data[k], prefix + sep + k, call + 1));
+					});      
+					
+			}else{
+					map.push(prefix + "=" + encodeURIComponent(data));
+			}   
+					
+			return map.join("&");
+		}
 
 
-this.refreshData = function(){
-	if($("#viewSettings-menu").length){
+	this.refreshData = function(){
+		if($("#viewSettings-menu").length){
 			var scenedata = $("#tour").data("scene");
 			$("#viewSettings-menu").data("scenename",scenedata._name)
 			$("#viewSettings-menu #hor").val(scenedata.view._hlookat)
@@ -148,21 +146,30 @@ this.refreshData = function(){
 			$("#viewSettings-menu #max-zoom").val(scenedata.view._maxpixelzoom)
 			$("#viewSettings-menu #max-zoom").data("obj","_maxpixelzoom")
 			
-			}
+		}
 
-			if($("#sceneSettings-menu").length){
-				var scenedata = $("#tour").data("scene");
-				$("#sceneSettings-menu").data("scenename",scenedata._name)
-				$("#sceneSettings-menu #scenetitle").val(scenedata._title)
-				$("#sceneSettings-menu #scenetitle").data("obj","_title")
-				$("#sceneSettings-menu #filename").val(scenedata.filename)
-				$("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
-				$("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
-				$("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
-				$("#sceneSettings-menu #scene-description").val(scenedata._description);
-				$("#sceneSettings-menu #scene-description").data("obj","_description");
-			}
-}
+		if($("#sceneSettings-menu").length){
+			var scenedata = $("#tour").data("scene");
+			$("#sceneSettings-menu").data("scenename",scenedata._name)
+			$("#sceneSettings-menu #scenetitle").val(scenedata._title)
+			$("#sceneSettings-menu #scenetitle").data("obj","_title")
+			$("#sceneSettings-menu #filename").val(scenedata.filename)
+			$("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
+			$("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
+			$("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
+			$("#sceneSettings-menu #scene-description").val(scenedata._description);
+			$("#sceneSettings-menu #scene-description").data("obj","_description");
+		}
+
+	}
+
+
+	this.nineGrillSelector = function(selector){
+		$(selector).find(".fa-circle").click(function(){
+			$(selector).find(".fa-circle").removeClass("selected")
+			$(this).addClass("selected");
+		})
+	}
 
 
 

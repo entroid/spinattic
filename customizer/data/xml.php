@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 require_once("../php/functions.php");
 
@@ -125,6 +125,21 @@ if($user_id != ''){
 	
 
 	
+	//Modificaciones particulares 
+	//Lo que tengo que devolver si no se pide custom
+	if($custom_attrs != 1){
+		$print_xml = str_replace('<skill>', '', $print_xml);
+		$print_xml = str_replace('</skill>', '', $print_xml);
+	}
+
+	$print_xml = str_replace('#env#', $environment, $print_xml);
+	
+	
+	//Fin modificaciones particulares
+	
+	
+	
+	
 	if(isset($_GET['format']) && $_GET['format'] == 'txt'){
 		echo '<pre>'.htmlentities($print_xml).'</pre>'; //as txt
 	}else{
@@ -139,7 +154,7 @@ function get_free_htpts_styles(){
 	global $segment;
 	global $custom_attrs;
 	
-	$ssqlp = "SELECT * FROM customizer_free_htspts_styles order by style_id";
+	$ssqlp = "SELECT * FROM customizer_free_htspts_styles order by ord";
 	$result = mysql_query($ssqlp);
 	
 	while($row = mysql_fetch_array($result)){
@@ -217,12 +232,7 @@ function get_default_elements ($template, $kind, $prev_tag_ident){
 		$final_xml .= get_template($template, $kind, $prev_tag_ident);
 	}
 	
-	//Modificaciones particulares de lo que tengo que devolver si no se pide custom
-	if($custom_attrs != 1){
-		$final_xml = str_replace('<skill>', '', $final_xml);
-		$final_xml = str_replace('</skill>', '', $final_xml);
-	}
-	
+
 	return $final_xml;
 }
 
@@ -253,9 +263,10 @@ function get_template($template, $kind, $prev_tag_ident){
 			$ssqlp = "SELECT *, htspt_id as template_id FROM customizer_templates_htspts where htspt_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
 			break;
 		case 'htspts_styles':
-			$ssqlp = "SELECT *, style_id as template_id FROM customizer_free_htspts_styles where style_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident;
+			$ssqlp = "SELECT *, style_id as template_id FROM customizer_free_htspts_styles where style_id = ".$template_id." and prev_tag_ident = ".$prev_tag_ident." order by ord";
 			break;
 	}
+	
 	
 	
 	$result = mysql_query($ssqlp);
@@ -373,13 +384,14 @@ function get_xml($segment, $kind, $prev_tag_ident){
 			$tag_ident = $row["tag_ident"];
 			$tag_name = $row["tag_name"];
 			$segment = $row["segment"];
+			$template_id = $row["template_id"];
 			
 			$kind = $row["kind"];
 			
 			
 			if($custom_attrs == 1){
 				$final_xml .= '
-				<'.$tag_name.' tag_ident="'.$tag_ident.'" prev_tag_ident="'.$prev_tag_ident.'" segment="'.$segment.'" kind="'.$kind.'"';
+				<'.$tag_name.' template_id="'.$template_id.'" tag_ident="'.$tag_ident.'" prev_tag_ident="'.$prev_tag_ident.'" segment="'.$segment.'" kind="'.$kind.'"';
 			}else{
 				$final_xml .= '
 				<'.$tag_name;

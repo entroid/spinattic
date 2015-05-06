@@ -4,9 +4,12 @@ define([
     'backbone',
     'views/modal/Modal',
     'text!templates/modal/contextMenuSkillEditor.html',
-    'mCustomScrollbar'
+    'mCustomScrollbar',
+    'helpers/ManageData',
+    'helpers/ManageTour',
 
-], function($, _, Backbone,Modal,contextMenuSkillEditor,mCustomScrollbar){
+
+], function($, _, Backbone,Modal,contextMenuSkillEditor,mCustomScrollbar,ManageData,ManageTour){
 
     var ContextMenuSkillEditor = Modal.extend({
         
@@ -17,6 +20,7 @@ define([
         events:{
             "click #Context-menu-add-item": "addItem",
             "click #Context-menu-finish": "doneEdition",
+            "click #Context-menu-Skill-editor fieldset .fa-close": "removeItem",
         },
         
         renderExtend:function(){
@@ -55,26 +59,30 @@ define([
         doneEdition:function(e){
             var myid = this.myid;
             var tourSkill = this.model.get("tourSkill");
-            /*
-            var skillid = tourSkill._template_id;
-            var items = []          
+            var items = []        
+            var itemModelstr = JSON.stringify(tourSkill.contextmenu.item[0]);
+                
+            
             _.each($("#"+myid+" .fieldwrapper fieldset"),function(elem,ind){
-                var obj = {};
-                obj._caption = $(elem).find("input.caption").val();
-                obj._kind = "Context Menu"
-                obj._name = $(elem).find("h2").text();
-                obj._onclick = "openurl("+$(elem).find("input.action").val()+",_blank);";
-                obj._prev_tag_ident = "1";
-                obj._segment = "SKILLS" ;
-                obj._tag_ident = "2"
-                items.push(obj)
-            })
 
-            tourData.krpano.contextmenu.item = items;
-            $("#skinCustomizer-menu .skill-list #skill-"+skillid).data
-            */
+                var itemModel = JSON.parse(itemModelstr)
+                itemModel._caption = $(elem).find("input.caption").val();
+                itemModel._name = $(elem).find("h2").text();
+                itemModel._onclick = "openurl("+$(elem).find("input.action").val()+",_blank);";
+                items.push(itemModel)
+            })
+            tourSkill.contextmenu.item = items;
+            var manageData = new ManageData();
+            var manageTour = new ManageTour();
+            manageData.editSkill(tourSkill,manageTour.reloadTour)
+            
             this.removeModal(e);
             this.undelegateEvents();
+        
+        },
+
+        removeItem:function(e){
+            $(e.target).parents("fieldset").remove();
         }
     });
 

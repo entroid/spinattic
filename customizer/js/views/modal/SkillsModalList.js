@@ -147,13 +147,13 @@ define([
 					var SkillItemModel = Backbone.Model.extend({});
 					var x2js = new X2JS({attributePrefix:"_"});
 					var tourSkill =  x2js.xml_str2json( data );
-				   
+				   console.log(data)
 					skillItemModel = new SkillItemModel({tourSkill:tourSkill.skill});
 					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
 					skinCustomizerItem.render();
 					$elem.replaceWith('<span class="added-skill">Added</span>')
 					var manageTour = new ManageTour();
-
+					console.log(tourSkill)
 					var manageData = new ManageData()
 					manageData.pushSkill(tourSkill,manageTour.reloadTour)
 		  			console.log(tourData.krpano)

@@ -22,6 +22,7 @@ define([
             "click #open-styles":"showhideStyles",
             "click #hotspot-styles .add-link": "showHotspotsStyleEditor",
             "click #hotspot-styles .rowinrow": "editHotSpotAppeareance",
+            "click #hotspot-styles .del-row span": "deleteRow",
                  },
         hotspotstyleeditor:null,
         
@@ -163,6 +164,29 @@ define([
                 var hotspotstyleeditor = new HotSpotStyleEditor({model:styleNew});
                 hotspotstyleeditor.render("hotspotStyleEditor",hotspotstyleeditor.renderExtend);
                 }
+        },
+
+        deleteRow:function(e){
+            var manageData = new ManageData();
+            var family = $(e.target).parent().data("family")
+            manageData.removeStyle(family);
+            _.each($("#hotspot-styles .selector"),function(el,ind){
+                if($(el).data("family") == family){
+                    $(el).remove()
+                }
+            })
+            _.each($("#hotspot-styles .rowinrow"),function(el,ind){
+                if($(el).data("family") == family){
+                    $(el).parents(".row").remove()
+                }
+            })
+
+            _.each($("#hotspot-styles .del-row"),function(el,ind){
+                if($(el).data("family") == family){
+                    $(el).remove()
+                }
+            })
+
         }
         
     });

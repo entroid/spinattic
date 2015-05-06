@@ -296,6 +296,12 @@ define([
 		 			}
 		 		})
 
+		 		 _.each($("#hotspot-styles .del-row"),function(el,ind){
+	                if($(el).data("family") == family){
+	                    $(el).remove()
+	                }
+	            })
+
 			}
 				$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
 
@@ -315,7 +321,8 @@ define([
 			}
 			var total = 0;
 
-			var elemToappend = '<div class="selector" data-family=set'+integer+'><span class="fa fa-circle fa-lg"></span></div>';
+			var elemToappend = '<div class="selector" data-family="set'+integer+'"><span class="fa fa-circle fa-lg"></span></div>';
+			elemToappend += '<div class="del-row" data-family="set'+integer+'"><span class="fa fa-trash-o"></span></div>';
 			
 			var manageData = new ManageData()
 			var ableToAppend = false;
@@ -361,6 +368,12 @@ define([
 					 				$(el).parents(".row").remove()
 					 			}
 					 		})
+
+					 		 _.each($("#hotspot-styles .del-row"),function(el,ind){
+				                if($(el).data("family") == family){
+				                    $(el).remove()
+				                }
+				            })
 					}
 
 						$("#hotspot-styles .rows").append(elemToappend);

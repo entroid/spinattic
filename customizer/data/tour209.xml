@@ -112,13 +112,17 @@
 		</scene>
 			<!-- SKILLS -->
 			
-				<skill template_id="3" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Logo">
-				<plugin template_id="3" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Logo" align="topright" keep="true" name="skill_logo" onclick="openurl(http://www.spinattic.com,_blank);" parent="" url="graphics/logo.png" x="10" y="10" zorder="100"></plugin>
+				<skill template_id="1" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Context Menu">
+				<contextmenu template_id="1" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Context Menu" fullscreen="true">
+				<item template_id="1" tag_ident="3" prev_tag_ident="2" segment="SKILLS" kind="Context Menu" caption="Spinattic.com" name="signature" onclick="openurl(http://www.spinattic.com,_blank);"></item>
+				
+		</contextmenu>
 		</skill>
 				
 				<skill template_id="4" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Signature">
-				<plugin template_id="4" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Signature" align="bottomright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="graphics/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
+				<plugin template_id="4" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Signature" align="topright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="http://dev.spinattic.com/styles/skills/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
 		</skill>
+		
 		
 		
 			<!-- DEFAULT SKILLS -->

@@ -110,17 +110,14 @@
 			<!-- SKILLS -->
 			
 				
-				<!-- SKILLS -->
-			
-				
-				<plugin align="topright" keep="true" name="skill_logo" onclick="openurl(http://www.spinattic.com,_blank);" parent="" url="graphics/logo.png" x="10" y="10" zorder="100"></plugin>
+				<contextmenu fullscreen="true">
+				<item caption="Spinattic.com" name="signature" onclick="openurl(http://www.spinattic.com,_blank);"></item>
+				<item caption="Spinattic.com" name="signature2" onclick="openurl(http://www.spinattic.com,_blank);"></item>
+		</contextmenu>
 		
 				
 				
-				<plugin align="bottomright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="graphics/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
-		
-		
-			<!-- DEFAULT SKILLS -->
+				<plugin align="topright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="http://dev.spinattic.com/styles/skills/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
 		
 		
 			<!-- DEFAULT SKILLS -->

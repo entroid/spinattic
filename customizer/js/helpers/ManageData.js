@@ -106,24 +106,18 @@ define([
 			}
 
 			this.pushSkill = function(skill,callback){
-				/*var first= function(obj) {
-					for (var a in obj) return a;
-				}
-				var myskill = first(skill);
-				*/
-				/*if(tourData.krpano[myskill] && skill[myskill]._kind != tourData.krpano[myskill]._kind){
-					console.log(skill)
-					
-					
-						tourData.krpano[myskill].push(skill[myskill])                   
-					
-				}else{
-				tourData.krpano[myskill] = skill[myskill];
-				}*/
 				myskill = skill;
-				console.log(myskill)
 				tourData.krpano.skill.push(myskill)
 				console.log(tourData.krpano.skill)
+				this.saveServer(callback);
+			}
+
+			this.editSkill = function(json,callback){
+				_.each(tourData.krpano.skill,function(skill,ind){
+					if(skill._kind == json._kind){
+							tourData.krpano.skill[ind] = json;
+						}
+				})
 				this.saveServer(callback);
 			}
 
