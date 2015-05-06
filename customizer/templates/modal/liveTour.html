@@ -1,58 +1,72 @@
 <div class="liveTourModal">
 <div class="scrollwrapper">
     <form>
-        <div class="col-2">
-            <label for="title">Tour title: <i class="help fa fa-question-circle"></i></label>
-            <input id="title" type="text" placeholder="Tour title">
-
-            <label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
-            <div class="url">
-                http://www.spinattic.com/user/
-                <input id="firendlyUrl" type="text" placeholder="tourname">
+        <div class="col-2 left-col">
+            <div class="row">
+                <label for="title">Tour title: <i class="help fa fa-question-circle"></i></label>
+                <input id="title" type="text" placeholder="Tour title">
             </div>
 
-            <label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
-            <textarea id="description" type="text" placeholder="Tour description"></textarea> 
+            <div class="row">
+                <label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
+                <div class="url">
+                    <span>http://www.spinattic.com/user/</span>
+                    <input id="firendlyUrl" type="text" placeholder="tourname">
+                </div>
+            </div>
 
-            <label for="tags">Tags: <i class="help fa fa-question-circle"></i></label>
-            <textarea id="tags" type="text" placeholder="Separate tags by comma"></textarea> 
+            <div class="row">
+                <label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
+                <textarea id="description" type="text" placeholder="Tour description"></textarea> 
+            </div>
 
-            <label for="category">Category: <i class="help fa fa-question-circle"></i></label>
-            <div id="category" class="dropdown dd-liveTour">
-                <h3>Choose a category <i class="fa fa-caret-down right arrow"></i></h3>
-                <ul class="category">
-                    <li>Cat 1</li>
-                    <li>Cat 2</li>
+            <div class="row">
+                <label for="tags">Tags: <i class="help fa fa-question-circle"></i></label>
+                <textarea id="tags" type="text" placeholder="Separate tags by comma"></textarea> 
+            </div>
+
+            <div class="row">
+                <label for="category">Category: <i class="help fa fa-question-circle"></i></label>
+                <div id="category" class="dropdown dd-liveTour">
+                    <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
+                    <ul class="category">
+                        <li>Cat 1</li>
+                        <li>Cat 2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <label for="privacy">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
+                <div id="privacy" class="dropdown dd-liveTour">
+                    <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
+                    <ul class="category">
+                        <li>Cat 1</li>
+                        <li>Cat 2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <ul class="check-group">
+                    <li>
+                        <span class="fa fa-square-o fa-lg" id="allow-comments"></span> Allow Comments
+                    </li>
+                    <li>
+                        <span class="fa fa-square-o fa-lg" id="allow-social"></span> Allow Social Sharing
+                    </li>
+                    <li>
+                        <span class="fa fa-square-o fa-lg" id="allow-embed"></span> Allow Embed Code
+                    </li>
+                    <li>
+                        <span class="fa fa-square-o fa-lg" id="allow-votes"></span> Allow User Votes
+                    </li>
                 </ul>
             </div>
-
-            <label for="privacy">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
-            <div id="privacy" class="dropdown dd-liveTour">
-                <h3>Choose a category <i class="fa fa-caret-down right arrow"></i></h3>
-                <ul class="category">
-                    <li>Cat 1</li>
-                    <li>Cat 2</li>
-                </ul>
-            </div>
-
-            <ul class="check-group">
-                <li>
-                    <span class="fa fa-square fa-lg" id="allow-comments"></span> Allow Comments
-                </li>
-                <li>
-                    <span class="fa fa-check-square fa-lg" id="allow-social"></span> Allow Social Sharing
-                </li>
-                <li>
-                    <span class="fa fa-check-square fa-lg" id="allow-embed"></span> Allow Embed Code
-                </li>
-                <li>
-                    <span class="fa fa-check-square fa-lg" id="allow-votes"></span> Allow User Votes
-                </li>
-            </ul>
 
         </div>
 
-        <div class="col-2">
+        <div class="col-2 right-col">
             
         </div>
     </form>

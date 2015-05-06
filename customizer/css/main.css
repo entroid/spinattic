@@ -5161,8 +5161,46 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   color: #333333; }
 .overlay #liveTourModal .inner-modal {
   background-color: #efefef; }
+.overlay #liveTourModal .scrollwrapper {
+  max-height: 710px; }
 .overlay #liveTourModal form {
   overflow: hidden; }
+.overlay #liveTourModal .row {
+  margin-bottom: 20px; }
+.overlay #liveTourModal label {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block; }
+.overlay #liveTourModal label i {
+  color: #999; }
+.overlay #liveTourModal input, .overlay #liveTourModal textarea {
+  background-color: white;
+  border-color: #bfbfbf;
+  color: #333333;
+  margin-bottom: 0; }
+.overlay #liveTourModal .url {
+  font-size: 1.4rem;
+  overflow: hidden; }
+.overlay #liveTourModal .url span, .overlay #liveTourModal .url input {
+  box-sizing: border-box; }
+.overlay #liveTourModal .url span {
+  float: left;
+  margin-top: 10px; }
+.overlay #liveTourModal .url input {
+  width: 130px;
+  float: right; }
+.overlay #liveTourModal .check-group {
+  margin-top: 25px; }
+.overlay #liveTourModal .check-group li {
+  width: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  margin-bottom: 15px; }
+.overlay #liveTourModal .check-group span {
+  font-size: 1.8rem;
+  width: 15px; }
 
 #signature-skill-linkto {
   width: 86%;
@@ -5172,6 +5210,30 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   float: left;
   width: 50%;
   box-sizing: border-box; }
+.col-2.left-col {
+  padding-right: 20px;
+  border-right: 1px solid #bfbfbf; }
+.col-2.righ-col {
+  padding-right: 20px; }
+
+.dd-liveTour {
+  background-color: white;
+  border: 1px solid #bfbfbf;
+  color: #333333;
+  padding: 10px;
+  font-size: 1.4rem; }
+.dd-liveTour ul {
+  background-color: white;
+  margin-top: 4px;
+  /* box-sizing: border-box; */
+  width: 309px;
+  right: -1px; }
+.dd-liveTour ul li {
+  border-color: #bfbfbf;
+  border-top: none;
+  padding: 10px;
+  line-height: 1em;
+  height: auto; }
 
 section.main-section {
   position: relative;

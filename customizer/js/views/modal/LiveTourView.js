@@ -28,22 +28,17 @@ define([
             var helpFunctions = new HelpFunctions();
             var template = _.template(LiveTour);
 
-            console.log(template)
+            $("#"+myid+" .inner-modal").html(template);         
+            
+            helpFunctions.checkbox(".check-group","fa-check-square-o","fa-square-o");
+            helpFunctions.dropDown(".dd-liveTour", "h3");
 
-            $("#"+myid+" .inner-modal").html(template);
-            
-            /*var liveTourView = new LiveTourView({model:mapModel});
-            liveTourView.render(myid);*/
+            this.verticalCent();
 
-            
-            
-            helpFunctions.dropDown(".dd-liveTour");
-            helpFunctions.checkbox(".check-group","fa-check-square","fa-square");
-            /*$(".scrollwrapper").mCustomScrollbar({
+            $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
                 scrollInertia:300
-            });*/
-this.verticalCent();
+            });
         }
 
     });

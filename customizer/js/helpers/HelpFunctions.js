@@ -1,83 +1,86 @@
 define([
-	'jquery',
-	'underscore',
-	'backbone',
+    'jquery',
+    'underscore',
+    'backbone',
   
 ], function($, _, Backbone){
 
-	var HelpFunctions =  function(){
+    var HelpFunctions =  function(){
 
-	 
-		this.toolTip = function(obj,myclass){
-			var el, text, $tooltip;
-			
-			$(obj).mouseenter(function(event){
+     
+        this.toolTip = function(obj,myclass){
+            var el, text, $tooltip;
+            
+            $(obj).mouseenter(function(event){
 
-				if(!$("#tooltip").length){
-					$("body").append('<div id="tooltip">text</div>')
-				}
+                if(!$("#tooltip").length){
+                    $("body").append('<div id="tooltip">text</div>')
+                }
 
-				$tooltip = $("#tooltip");        
-				el = $(event.target);
-				text = $(el).attr("title");
+                $tooltip = $("#tooltip");        
+                el = $(event.target);
+                text = $(el).attr("title");
 
-				var eleOffset = $(el).offset(),            
-					elWidth = $(el).outerWidth(),
-					ttWidth,
-					leftP;
+                var eleOffset = $(el).offset(),            
+                    elWidth = $(el).outerWidth(),
+                    ttWidth,
+                    leftP;
 
-				$(el).removeAttr("title");
+                $(el).removeAttr("title");
 
-				if($(el).attr("id")){
-					singleClass = $(el).attr("id");
-				}else{
-					singleClass = "";
-				}
+                if($(el).attr("id")){
+                    singleClass = $(el).attr("id");
+                }else{
+                    singleClass = "";
+                }
 
-				$tooltip.addClass(myclass +" "+ singleClass ).text(text); 
+                $tooltip.addClass(myclass +" "+ singleClass ).text(text); 
 
-				ttWidth = $tooltip.outerWidth();
-				leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;              
-			 
-				$tooltip.css({
-						left: leftP,
-						top: eleOffset.top
-					}).show();        
-			 
-			}).mouseleave( function( event ){
-				$tooltip.hide();
-				$tooltip.removeClass();
-				$(el).attr("title",text);
-			});
-		}
+                ttWidth = $tooltip.outerWidth();
+                leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;              
+             
+                $tooltip.css({
+                        left: leftP,
+                        top: eleOffset.top
+                    }).show();        
+             
+            }).mouseleave( function( event ){
+                $tooltip.hide();
+                $tooltip.removeClass();
+                $(el).attr("title",text);
+            });
+        }
 
-		this.capitaliseFirstLetter = function(string){
-			return string.charAt(0).toUpperCase() + string.slice(1);
-		}
+        this.capitaliseFirstLetter = function(string){
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
 
 
-		this.setInnerHeight = function(obj,byClass){
+        this.setInnerHeight = function(obj,byClass){
 
-			 var  innerHeight = $(window).height()-($("header.main-header").outerHeight()+$("footer.main-footer").outerHeight());
-				if(!byClass){
-				$("#"+obj +" .inner").height(innerHeight);
-				}else{
-				$(obj +" .inner").height(innerHeight);
-				}
-		}
+             var  innerHeight = $(window).height()-($("header.main-header").outerHeight()+$("footer.main-footer").outerHeight());
+                if(!byClass){
+                $("#"+obj +" .inner").height(innerHeight);
+                }else{
+                $(obj +" .inner").height(innerHeight);
+                }
+        }
 
-		this.dropDown = function(elem){
-			$(elem).find("h2").click(function(e){
-				$(this).next("ul").slideToggle();
-			})
+        this.dropDown = function(elem, titleElement){
+            console.log(titleElement)
+            var titleEl = (titleElement) ? titleElement : "h2"
 
-			 $(elem).find("li").click(function(e){
-				$(this).closest(elem).find("h2 span.title").text($(e.target).text())
-				$(this).closest(elem).find("ul").slideToggle();
-			 })
-		}
+            $(elem).find(titleEl).click(function(e){
+                $(this).next("ul").slideToggle();
+            })
 
-		this.checkbox = function(elem,firstClass,secClass){
+             $(elem).find("li").click(function(e){
+                $(this).closest(elem).find(titleEl + " .title").text($(e.target).text())
+                $(this).closest(elem).find("ul").slideToggle();
+             })
+        }
+
+        this.checkbox = function(elem,firstClass,secClass){
 
 				$(elem+" li").click(function(){
 						$(this).find("span").toggleClass("fa "+firstClass+" fa-lg").toggleClass("fa "+secClass+" fa-lg");

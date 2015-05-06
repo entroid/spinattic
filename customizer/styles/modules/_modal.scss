@@ -1039,8 +1039,70 @@
             background-color: $light-gray4;
         }
 
+        .scrollwrapper{
+            max-height: 710px;
+        }
+
         form {
             overflow: hidden;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        label{
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+
+            i{
+                color: $light-gray3;
+            }
+        }
+
+        input, textarea{
+            background-color:white;
+            border-color:$light-gray5;
+            color: $middle-gray;
+            margin-bottom: 0;
+        }
+
+        .url {
+            font-size: 1.4rem;
+            overflow: hidden;
+
+            span, input{
+                box-sizing: border-box;
+            }
+
+            span{
+                float: left;
+                margin-top: 10px;
+            }
+
+            input{
+                width: 130px;
+                float: right;
+            }
+        }
+
+        .check-group{
+            margin-top: 25px;
+
+            li{
+                width: 50%;
+                box-sizing: border-box;
+                display: inline-block;
+                float: left;
+                margin-bottom: 15px;
+            }
+
+            span {
+                font-size: 1.8rem;
+                  width: 15px;
+            }
         }
     }
 }
@@ -1054,4 +1116,38 @@
     float: left;
     width: 50%;
     box-sizing: border-box;  
+
+    &.left-col{
+        padding-right: 20px;
+        border-right: 1px solid $light-gray5;
+    }
+    &.righ-col{
+        padding-right: 20px;
+    }
 }
+
+.dd-liveTour{
+    background-color: white;
+    border: 1px solid $light-gray5;
+    color: $middle-gray;    
+    padding: 10px;
+    font-size: 1.4rem;
+
+    ul{
+        background-color:white;
+        margin-top: 4px;
+          /* box-sizing: border-box; */
+          width: 309px;
+          right: -1px;
+
+        li{
+            border-color:$light-gray5;
+            border-top: none;
+              padding: 10px;
+              line-height: 1em;
+              height: auto;
+        }
+    }
+}
+
+
