@@ -61,10 +61,14 @@ define([
                         var resetPos = function(){
                             if(!$("#sceneMenu li:eq(0)").hasClass("selected")){
                                 $("#sceneMenu li").removeClass("selected");
-                                $("#sceneMenu li:eq(0)").addClass("selected")
+                                $("#sceneMenu li:eq(0)").addClass("selected");
+                               
                             }
                         }
-                    manageTour.reloadTour(resetPos)
+                        var resetElem = function(){
+                             helpFunctions.refreshData();
+                        }
+                    manageTour.reloadTour(resetPos,resetElem)
                     }
                     var manageData = new ManageData();
                     manageData.SaveNewSceneOrder(reloadEverything)
@@ -107,7 +111,7 @@ define([
 
             $thisli = $(e.target).parent();
             $("#tour").data("scene",$thisli.data("scene"))
-            //helpFunctions.refreshData();
+            helpFunctions.refreshData();
             var customparam = jQuery.extend({},$thisli.data("scene"));
             delete customparam.view._segment;
             delete customparam.preview._segment;

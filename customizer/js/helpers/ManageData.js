@@ -185,6 +185,7 @@ define([
 					tourData.krpano.settings._lat = lat;
 					tourData.krpano.settings._long = lng;
 				}
+				this.saveServer();
 			}
 
 			this.saveServer = function(fun){

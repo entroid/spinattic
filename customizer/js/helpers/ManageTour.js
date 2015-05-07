@@ -14,7 +14,7 @@ define([
   var ManageTour =  function(){
 
 
-		this.reloadTour = function(escenas){
+		this.reloadTour = function(escenas,secCall){
 
 		console.log(escenas)	
 		var tourId = location.hash.split("/")[1];
@@ -59,6 +59,7 @@ define([
 											wmode:"transparent", 
 											passQueryParameters:true,
 											onready:function(){
+
 												var krpano = document.getElementById("krpanoSWFObject");
 												krpano.call("registerattribute(int,0)");
 												krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
@@ -72,8 +73,10 @@ define([
 															var manageHotSpots = new ManageHotSpots();
 														}
 														initHotSpots();
-												},2000)
-													
+													},2000)
+												}
+												if(secCall){
+													secCall();
 												}
 											}
 
