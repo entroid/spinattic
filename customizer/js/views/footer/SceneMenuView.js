@@ -12,9 +12,11 @@ define([
     'views/sidebar/SceneSettingsMenuView',
     'views/sidebar/ViewSettingsMenuView',
     'helpers/ManageData',
-    'helpers/ManageHotSpots'
+    'helpers/ManageHotSpots',
+    'helpers/ManageTour',
 
-], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView,ManageData,ManageHotSpots){
+
+], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView,ManageData,ManageHotSpots,ManageTour){
 
     var SceneMenuView = Backbone.View.extend({
         el: $("footer.main-footer"),
@@ -55,7 +57,8 @@ define([
                 beforeStop:function(evt,ui){
 
                     var manageData = new ManageData();
-                    manageData.SaveNewSceneOrder()
+                    var manageTour = new ManageTour();
+                    manageData.SaveNewSceneOrder(manageTour.reloadTour)
 
                 }
             });
@@ -84,7 +87,8 @@ define([
                 }
 
                 var manageData = new ManageData();
-                manageData.SaveNewSceneOrder()
+                var manageTour = new ManageTour();
+                manageData.SaveNewSceneOrder(manageTour.reloadTour)
             })
         },
 

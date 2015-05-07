@@ -27,20 +27,21 @@ define([
 				this.saveServer();      
 			}
 
-			this.SaveNewSceneOrder = function(){
+			this.SaveNewSceneOrder = function(callback){
 
 				var scenes = []
-					_.each($("#sceneMenu li"),function(el,i){
-						if($(el).data("scene")){
-							var scene = $(el).data("scene");
-							if($(el).data("hotspots")){
-								var hotspots = $(el).data("hotspots");
-								scene.hotspots = hotspots;
-							}
-							scenes.push(scene);
+				_.each($("#sceneMenu li"),function(el,i){
+					if($(el).data("scene")){
+						var scene = $(el).data("scene");
+						if($(el).data("hotspots")){
+							var hotspots = $(el).data("hotspots");
+							scene.hotspots = hotspots;
 						}
-					})
-					tourData.krpano.scene = scenes;
+						scenes.push(scene);
+					}
+				})
+				tourData.krpano.scene = scenes;
+				this.saveServer(callback);
 			}
 
 			this.pushHotspot = function(sceneName,hotspot){
@@ -50,12 +51,15 @@ define([
 					if(!elem.hotspot){
 						elem.hotspot = [];
 						elem.hotspot.push(hotspot);
+						$("#tour").data("scene",elem);
 					}else{
 						elem.hotspot.push(hotspot);
+						$("#tour").data("scene",elem);
 					}
 					$("#sceneMenu #"+elem._name).data("hotspots",elem.hotspot)
+					$("#sceneMenu #"+elem._name).data("scene",elem)
 				}
-				$("#tour").data("scene",elem);
+				
 			})
 				this.saveServer();
 			},

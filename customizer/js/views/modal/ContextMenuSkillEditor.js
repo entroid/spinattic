@@ -68,7 +68,11 @@ define([
                 var itemModel = JSON.parse(itemModelstr)
                 itemModel._caption = $(elem).find("input.caption").val();
                 itemModel._name = $(elem).find("h2").text();
+                var numberInt = parseInt(itemModel._tag_ident);
+                numberInt = numberInt+ind;
+                itemModel._tag_ident = numberInt;
                 itemModel._onclick = "openurl("+$(elem).find("input.action").val()+",_blank);";
+
                 items.push(itemModel)
             })
             tourSkill.contextmenu.item = items;
