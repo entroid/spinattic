@@ -123,6 +123,12 @@ define([
                 }  
 
             })
+        },
+
+        removeThis:function(){
+            var myid = this.model.get("myid");
+            $("#"+myid+" .image-uploader-wrapper").remove();
+            this.undelegateEvents();
         }
 
         

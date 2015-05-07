@@ -76,7 +76,14 @@ define([
 					var mapModel = new MapModel({lat:$(this).data("scene")._lat,lng:$(this).data("scene")._lng})
 					me.mapView = new MapView({model:mapModel});
 					me.mapView.render(elem,{param:param,indice:$(this).index()});
-			
+					
+					var thumburl = $(this).data("scene")._thumburl
+					singleUploader.removeThis();
+					var singleUploaderModel = new SingleUploaderModel({myid:"scene-thumbnail-src",imgsrc:thumburl})
+					singleUploader = new SingleUploader({model:singleUploaderModel});
+					singleUploader.render();
+
+
 				})
 			},
 
