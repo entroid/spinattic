@@ -3,16 +3,20 @@ define([
 	'underscore',
 	'backbone',
 	'x2js',
-    'helpers/HelpFunctions',
-    'helpers/ManageHotSpots',
+	'helpers/HelpFunctions',
+	'helpers/ManageHotSpots',
+    'views/footer/SceneMenuView',
+    'collections/footer/SceneCollection',
 
  
-], function($, _, Backbone,x2js,HelpFunctions,ManageHotSpots){
+], function($, _, Backbone,x2js,HelpFunctions,ManageHotSpots,SceneMenuView,SceneCollection){
 
   var ManageTour =  function(){
 
 
-		this.reloadTour = function(){
+		this.reloadTour = function(escenas){
+
+		console.log(escenas)	
 		var tourId = location.hash.split("/")[1];
 		var xmlpath ="data/xml.php?id="+tourId+"&d=1&c=1";
 
@@ -31,28 +35,8 @@ define([
 				success: function(data) {
 						var x2js = new X2JS({attributePrefix:"_"});
 						tourData =  x2js.xml_str2json( data );
-
-						if(tourData.krpano.scene.length == undefined){
-								var escenas = [];
-								escenas[0] = tourData.krpano.scene;
-								tourData.krpano.scene = escenas
-						}
-
-						_.each(tourData.krpano.scene,function(scene,ind){
-						if(scene.hotspot){
-									if(scene.hotspot.length == undefined){
-										var myhp = []
-										myhp[0] = scene.hotspot;
-										tourData.krpano.scene[ind].hotspot = myhp;
-									}
-								}
-						})
-
-						if(tourData.krpano.skill.length == undefined){
-							var capacidad = [];
-							capacidad[0] = tourData.krpano.skill;
-							tourData.krpano.skill = capacidad
-						}
+						var helpFunctions = new HelpFunctions()
+						helpFunctions.prepareConditionsForTour();
 
 						$.ajax({
 								url:  "data/json.php?id="+tourId+"&d=1&t=t",
@@ -61,6 +45,10 @@ define([
 
 										tourData.krpano.datatour = datatour;
 										var xml2krpano = xmlpath.replace("&c=1","&h=0")
+
+										if(escenas != undefined){
+											escenas();
+										}
 										
 										$pano_wrapper = $('<div id="tour"></div>');         
 										$(".main-section .inner").append( $pano_wrapper ); 
@@ -75,7 +63,7 @@ define([
 												krpano.call("registerattribute(int,0)");
 												krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
 												$("#tour").data("scene",tourData.krpano.scene[0])
-												var helpFunctions = new HelpFunctions()
+												
 												helpFunctions.setInnerHeight(".main-section",true);
 
 												if($("#tour").data("scene").hotspot){
