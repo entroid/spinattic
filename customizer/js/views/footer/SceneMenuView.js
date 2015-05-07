@@ -52,22 +52,31 @@ define([
 
             var helpFunctions = new HelpFunctions();
             helpFunctions.toolTip("#sceneMenu li img","footer");
-        
+            var este = this;
             $("#sceneMenu").sortable({
                 beforeStop:function(evt,ui){
 
+                    var reloadEverything = function(){
+                        var manageTour = new ManageTour();
+                        var resetPos = function(){
+                            if(!$("#sceneMenu li:eq(0)").hasClass("selected")){
+                                $("#sceneMenu li").removeClass("selected");
+                                $("#sceneMenu li:eq(0)").addClass("selected")
+                            }
+                        }
+                    manageTour.reloadTour(resetPos)
+                    }
                     var manageData = new ManageData();
-                    var manageTour = new ManageTour();
-                    manageData.SaveNewSceneOrder(manageTour.reloadTour)
+                    manageData.SaveNewSceneOrder(reloadEverything)
 
                 }
             });
 
-            liwidth = $("#sceneMenu li").outerWidth();
-            liright = $("#sceneMenu li").css("margin-right");
+            var liwidth = $("#sceneMenu li").outerWidth();
+            var liright = $("#sceneMenu li").css("margin-right");
             liright = parseInt(liright.replace("px",""));
-            liall = liwidth+liright;
-            allwidth = liall * $("#sceneMenu li").length;
+            var liall = liwidth+liright;
+            var allwidth = liall * $("#sceneMenu li").length;
             $("#sceneMenu").width(allwidth+20);
 
             $(".scene-wrapper").mCustomScrollbar({
@@ -98,7 +107,7 @@ define([
 
             $thisli = $(e.target).parent();
             $("#tour").data("scene",$thisli.data("scene"))
-            helpFunctions.refreshData();
+            //helpFunctions.refreshData();
             var customparam = jQuery.extend({},$thisli.data("scene"));
             delete customparam.view._segment;
             delete customparam.preview._segment;

@@ -68,6 +68,9 @@ define([
 
 												if($("#tour").data("scene").hotspot){
 													setTimeout(function(){
+														if(!window.initHotSpots){
+															var manageHotSpots = new ManageHotSpots();
+														}
 														initHotSpots();
 												},2000)
 													

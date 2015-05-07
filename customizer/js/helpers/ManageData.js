@@ -188,7 +188,7 @@ define([
 			}
 
 			this.saveServer = function(fun){
-
+				$("#serverInfo").text("saving...").fadeIn();
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1]
 				$.ajax({
@@ -199,6 +199,7 @@ define([
 						if(fun){
 							fun()
 						}
+						$("#serverInfo").text("saved!").delay(1000).fadeOut("slow")
 						console.log(res)
 					}
 				})

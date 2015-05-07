@@ -106,7 +106,7 @@ define([
 			if( Object.prototype.toString.call( data ) === '[object Array]' ) {
 
 					for (var ik = 0; ik < data.length; ik++){
-							map.push(mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
+							map.push(me.mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
 					};
 					
 			}else if ( Object.prototype.toString.call( data ) === '[object Object]' ) {
