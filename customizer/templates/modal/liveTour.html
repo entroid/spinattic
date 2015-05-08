@@ -26,8 +26,8 @@
             </div>
 
             <div class="row">
-                <label for="category">Category: <i class="help fa fa-question-circle"></i></label>
-                <div id="category" class="dropdown dd-liveTour">
+                <label for="category-lt">Category: <i class="help fa fa-question-circle"></i></label>
+                <div id="category-lt" class="dropdown dd-liveTour">
                     <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
                     <ul class="category">
                         <li>Cat 1</li>
@@ -37,8 +37,8 @@
             </div>
 
             <div class="row">
-                <label for="privacy">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
-                <div id="privacy" class="dropdown dd-liveTour">
+                <label for="privacy-lt">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
+                <div id="privacy-lt" class="dropdown dd-liveTour">
                     <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
                     <ul class="category">
                         <li>Cat 1</li>
@@ -67,12 +67,43 @@
         </div>
 
         <div class="col-2 right-col">
+            <div class="row">
+                <label for="live-tour-img-uploader">Tour cover image: <i class="help fa fa-question-circle"></i></label>
+                <div id="live-tour-img-uploader" class="editor-img"></div>
+            </div>
+
+            <div class="row">
+                <label for="location-lt">Tour location: <i class="help fa fa-question-circle"></i></label>
+
+                <div id="location-lt" class="dropdown dd-liveTour">
+                    <h3><span class="title">Single location</span> <i class="fa fa-caret-down right arrow"></i></h3>
+                    <ul class="category">
+                        <li>Single location</li>
+                        <li>Cat 1</li>
+                        <li>Cat 2</li>
+                    </ul>
+                </div>
+
+                <p class="location-txt"><span>Single location:</span> This tour will be displayed with a
+single  marker on world map.</p>
+                
+                <div class="gmap-wrapper"></div>
+            </div>
+
+            <div class="row">
+                <label for="headings-lt">Location headings: <i class="help fa fa-question-circle"></i></label>
+                <input id="headings-lt" type="text" placeholder="Providencia, Archipielago, Colombia">
+            </div>
             
         </div>
     </form>
 </div>
 
-<div class="modal-footer">
-    
-</div>
+<footer>
+    <span class="cancel uploader-btn red left">Cancel</span>
+    <div class="right">
+        <span>OK I'M DONE</span>
+        <span class="save uploader-btn green inlineBlock">Make My tour Live!</span>
+    </div>
+</footer>
 </div>

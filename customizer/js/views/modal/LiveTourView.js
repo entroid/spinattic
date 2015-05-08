@@ -4,9 +4,11 @@ define([
     'backbone',
     'views/modal/Modal',
     'text!templates/modal/liveTour.html',
-    'helpers/HelpFunctions'
+    'helpers/HelpFunctions',
+    'views/modal/SingleUploader',
+    'views/sidebar/MapView'
 
-], function($, _, Backbone,Modal,LiveTour, HelpFunctions){
+], function($, _, Backbone,Modal,LiveTour, HelpFunctions,SingleUploader,MapView){
 
     var MapModalView = Modal.extend({
         
@@ -34,6 +36,21 @@ define([
             helpFunctions.dropDown(".dd-liveTour", "h3");
 
             this.verticalCent();
+
+            var SingleUploaderModel = Backbone.Model.extend({});
+            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:"imgUrl",tour_id:"tourId"})
+            
+            var singleUploader = new SingleUploader({model:singleUploaderModel});
+            singleUploader.render();
+
+            var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:"data._lat",lng:"data._lng"})
+            
+            this.mapView = new MapView({model:mapModel});
+            var indice = $("#sceneMenu .selected").index();
+            var param = "scene";
+
+            this.mapView.render("elem",{param:param,indice:indice});
 
             $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",

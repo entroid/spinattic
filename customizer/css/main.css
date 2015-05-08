@@ -3155,7 +3155,6 @@ textarea {
   line-height: 20px;
   padding: 2px 20px;
   background: #333;
-  float: right;
   text-align: center;
   margin: 3px 10px 0 0;
   text-transform: uppercase;
@@ -3461,6 +3460,9 @@ textarea {
   cursor: pointer; }
 .round-btn:hover {
   opacity: .8; }
+
+.inlineBlock {
+  display: inline-block; }
 
 header.main-header {
   z-index: 2;
@@ -5158,9 +5160,21 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 0; }
 .overlay #liveTourModal {
   width: 700px;
-  color: #333333; }
+  color: #333333;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
+.overlay #liveTourModal header {
+  color: white; }
+.overlay #liveTourModal header .save-and-close {
+  display: none; }
 .overlay #liveTourModal .inner-modal {
-  background-color: #efefef; }
+  background-color: #efefef;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
 .overlay #liveTourModal .scrollwrapper {
   max-height: 710px; }
 .overlay #liveTourModal form {
@@ -5201,6 +5215,37 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #liveTourModal .check-group span {
   font-size: 1.8rem;
   width: 15px; }
+.overlay #liveTourModal footer {
+  margin: 0 -20px -20px;
+  padding: 10px 20px;
+  background-color: #dadada;
+  overflow: hidden;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
+.overlay #liveTourModal .editor-img {
+  padding-top: 0; }
+.overlay #liveTourModal .editor-img .image-uploader-wrapper {
+  padding: 0;
+  min-height: 150px;
+  color: white; }
+.overlay #liveTourModal .editor-img .image-uploader-wrapper .over-edit {
+  height: 100%;
+  padding-top: 65px; }
+.overlay #liveTourModal .editor-img .image-uploader-wrapper .inner-dragger {
+  margin-top: 30px;
+  padding: 0 20px; }
+.overlay #liveTourModal .editor-img img {
+  height: 150px;
+  width: 300px; }
+.overlay #liveTourModal .location-txt {
+  font-size: 1.4rem;
+  margin-top: 5px;
+  line-height: 1.7rem; }
+.overlay #liveTourModal .location-txt span {
+  font-weight: bold;
+  border-bottom: 1px solid #bfbfbf; }
 
 #signature-skill-linkto {
   width: 86%;
@@ -5213,8 +5258,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .col-2.left-col {
   padding-right: 20px;
   border-right: 1px solid #bfbfbf; }
-.col-2.righ-col {
-  padding-right: 20px; }
+.col-2.right-col {
+  padding-left: 20px; }
 
 .dd-liveTour {
   background-color: white;

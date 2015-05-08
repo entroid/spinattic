@@ -1034,9 +1034,19 @@
     #liveTourModal{
         width: 700px;
         color: $middle-gray;
+        @include border-radius(0 0 5px 5px);
+
+        header {
+            color: white;
+
+            .save-and-close{
+                display: none;
+            }
+        }
 
         .inner-modal{
             background-color: $light-gray4;
+            @include border-radius(0 0 5px 5px);
         }
 
         .scrollwrapper{
@@ -1104,6 +1114,50 @@
                   width: 15px;
             }
         }
+
+        footer{
+            margin: 0 -20px -20px;
+            padding: 10px 20px;
+            background-color:$light-gray6;
+            overflow: hidden;
+            @include border-radius(0 0 5px 5px);   
+        }
+
+        .editor-img{
+            padding-top: 0;
+
+            .image-uploader-wrapper{
+                padding: 0;
+                min-height: 150px;
+                color: white;
+
+                .over-edit{
+                    height: 100%;
+                    padding-top: 65px;
+                }
+
+                .inner-dragger{
+                    margin-top: 30px;
+                    padding: 0 20px;
+                }
+            }
+
+            img{
+                height: 150px;
+                width: 300px;
+            }
+        }
+
+        .location-txt{
+            font-size: 1.4rem;            
+            margin-top: 5px;
+            line-height: 1.7rem;
+
+            span{
+                font-weight: bold;
+                border-bottom: 1px solid $light-gray5;
+            }
+        }
     }
 }
 
@@ -1121,8 +1175,8 @@
         padding-right: 20px;
         border-right: 1px solid $light-gray5;
     }
-    &.righ-col{
-        padding-right: 20px;
+    &.right-col{
+        padding-left: 20px;
     }
 }
 
