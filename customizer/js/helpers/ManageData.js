@@ -44,6 +44,28 @@ define([
 				this.saveServer(callback);
 			}
 
+			this.deleteScene = function(callback,scene_id){
+
+				var scenes = []
+				_.each($("#sceneMenu li"),function(el,i){
+					if($(el).data("scene")){
+						var scene = $(el).data("scene");
+						if($(el).data("hotspots")){
+							var hotspots = $(el).data("hotspots");
+							scene.hotspots = hotspots;
+						}
+						scenes.push(scene);
+					}
+				})
+				tourData.krpano.scene = scenes;
+				var action = {
+						accion:"del_scene",
+						scene_id:scene_id
+				}
+				console.log(action)
+				this.saveServer(callback,action);
+			}
+
 			this.pushHotspot = function(sceneName,hotspot){
 
 				_.each(tourData.krpano.scene,function(elem){
@@ -125,7 +147,7 @@ define([
 				this.saveServer(callback);
 			}
 
-			this.removeSkill = function(kind){
+			this.removeSkill = function(kind,callback){
 
 				_.each(tourData.krpano.skill,function(skill,ind){
 						if(skill._kind == kind){
@@ -134,7 +156,7 @@ define([
 							tourData.krpano.skill.splice(ind,1)
 						}
 				})
-				this.saveServer();	
+				this.saveServer(callback);	
 			}
 
 			this.pushStyle = function(json){
@@ -188,20 +210,30 @@ define([
 				this.saveServer();
 			}
 
-			this.saveServer = function(fun){
+			this.saveServer = function(fun,action){
 				$("#serverInfo").text("saving...").fadeIn();
 				var jsonstr = JSON.stringify(tourData)
-				var id = location.hash.split("/")[1]
+				var id = location.hash.split("/")[1];
+				var mydata;
+				if(action){
+					mydata = "json="+jsonstr+"&id="+action.scene_id+"&action="+action.accion+"&d=1"
+				}else{
+					mydata = "json="+jsonstr+"&id="+id
+				}
+
 				$.ajax({
 					url:'php/updater.php',
 					type:'POST',
-					data:"json="+jsonstr+"&id="+id,
+					data:mydata,
 					success:function(res){
 						if(fun){
 							fun()
 						}
 						$("#serverInfo").text("saved!").delay(1000).fadeOut("slow")
 						console.log(res)
+					},
+					error:function(xhr, ajaxOptions, thrownError){
+						console.log(xhr)
 					}
 				})
 			}

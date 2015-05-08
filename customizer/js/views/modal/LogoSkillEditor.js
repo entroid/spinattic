@@ -70,10 +70,20 @@ define([
 			tourSkill.plugin._zorder = $("#logo-skill-zorder").val();
 			tourSkill.plugin._onclick = "openurl("+$("#logo-skill-linkto").val()+",_blank);";
 			tourSkill.plugin._align = $("#logo-skill-align .selected").data("pos")
+			tourSkill.plugin._align = $("#logo-skill-align .selected").data("pos")
+
+			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.set("plugin["+tourSkill.plugin._name+"].align",tourSkill.plugin._align);
+			krpano.set("plugin["+tourSkill.plugin._name+"].onclick",tourSkill.plugin._onclick);
+			krpano.set("plugin["+tourSkill.plugin._name+"].zorder",tourSkill.plugin._zorder);
+			krpano.set("plugin["+tourSkill.plugin._name+"].x",tourSkill.plugin._x);
+			krpano.set("plugin["+tourSkill.plugin._name+"].y",tourSkill.plugin._y);
+			krpano.set("plugin["+tourSkill.plugin._name+"].url",tourSkill.plugin._url);
+
 
 			var manageData = new ManageData();
 			var manageTour = new ManageTour();
-			manageData.editSkill(tourSkill,manageTour.reloadTour)
+			manageData.editSkill(tourSkill)
 			this.removeModal(e);
 			this.undelegateEvents();
 		

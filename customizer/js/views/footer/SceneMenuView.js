@@ -101,7 +101,7 @@ define([
 
                 var manageData = new ManageData();
                 var manageTour = new ManageTour();
-                manageData.SaveNewSceneOrder(manageTour.reloadTour)
+                manageData.deleteScene(manageTour.reloadTour,thisname)
             })
         },
 
