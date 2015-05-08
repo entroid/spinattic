@@ -1151,7 +1151,7 @@
         .location-txt{
             font-size: 1.4rem;            
             margin-top: 5px;
-            line-height: 1.7rem;
+            line-height: 1.7rem; 
 
             span{
                 font-weight: bold;
@@ -1200,6 +1200,10 @@
               padding: 10px;
               line-height: 1em;
               height: auto;
+
+              &:hover{
+                background-color:$light-gray5;
+              }
         }
     }
 }
