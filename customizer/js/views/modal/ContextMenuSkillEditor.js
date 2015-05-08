@@ -19,7 +19,7 @@ define([
         },
         events:{
             "click #Context-menu-add-item": "addItem",
-            "click #Context-menu-finish": "doneEdition",
+            "click .skillModal #Context-menu-finish":"doneEdition",
             "click #Context-menu-Skill-editor fieldset .fa-close": "removeItem",
         },
         

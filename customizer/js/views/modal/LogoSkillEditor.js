@@ -20,7 +20,7 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click #Context-menu-finish":"doneEdition"
+			"click .skillModal #Context-menu-finish":"doneEdition"
 		},
 		
 		renderExtend:function(){
@@ -82,7 +82,6 @@ define([
 
 
 			var manageData = new ManageData();
-			var manageTour = new ManageTour();
 			manageData.editSkill(tourSkill)
 			this.removeModal(e);
 			this.undelegateEvents();

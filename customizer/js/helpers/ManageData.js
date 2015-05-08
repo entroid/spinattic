@@ -125,6 +125,7 @@ define([
 
 			this.saveSettings = function(e){
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
+				this.saveServer();
 			},
 
 			this.saveTourData = function(elem,val){

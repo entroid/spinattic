@@ -21,7 +21,7 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click #Context-menu-finish":"doneEdition"
+			"click .skillModal #Context-menu-finish":"doneEdition"
 		},
 		
 		renderExtend:function(){
@@ -80,7 +80,7 @@ define([
 			krpano.set("plugin["+tourSkill.plugin._name+"].x",tourSkill.plugin._x);
 			krpano.set("plugin["+tourSkill.plugin._name+"].y",tourSkill.plugin._y);
 			krpano.set("plugin["+tourSkill.plugin._name+"].url",tourSkill.plugin._url);
-			
+
 			var manageData = new ManageData();
 			manageData.editSkill(tourSkill)
 			this.removeModal(e);

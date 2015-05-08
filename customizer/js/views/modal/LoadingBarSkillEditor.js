@@ -19,7 +19,7 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click #Context-menu-finish":"doneEdition"
+			"click .skillModal #Context-menu-finish":"doneEdition"
 		},
 		
 		renderExtend:function(){
