@@ -106,7 +106,7 @@ define([
 			if( Object.prototype.toString.call( data ) === '[object Array]' ) {
 
 					for (var ik = 0; ik < data.length; ik++){
-							map.push(mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
+							map.push(me.mapJSONToUriParams(data[ik], prefix + "[" + ik + "]", call + 1));
 					};
 					
 			}else if ( Object.prototype.toString.call( data ) === '[object Object]' ) {
@@ -172,6 +172,30 @@ define([
 			$(selector).find(".fa-circle").removeClass("selected")
 			$(this).addClass("selected");
 		})
+	},
+
+	this.prepareConditionsForTour=function(){
+		if(tourData.krpano.scene.length == undefined){
+				var escenas = [];
+				escenas[0] = tourData.krpano.scene;
+				tourData.krpano.scene = escenas
+		}
+
+		_.each(tourData.krpano.scene,function(scene,ind){
+			if(scene.hotspot){
+				if(scene.hotspot.length == undefined){
+					var myhp = []
+					myhp[0] = scene.hotspot;
+					tourData.krpano.scene[ind].hotspot = myhp;
+				}
+			}
+		})
+
+		if(tourData.krpano.skill.length == undefined){
+			var capacidad = [];
+			capacidad[0] = tourData.krpano.skill;
+			tourData.krpano.skill = capacidad
+		}
 	}
 
 

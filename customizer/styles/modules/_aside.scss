@@ -824,7 +824,7 @@ aside{
         }   
     }
 
-    #startupViewUpdated{
+    #startupViewUpdated, #serverInfo{
          width: 200px;
         position: fixed;
         z-index: 2;
@@ -841,6 +841,7 @@ aside{
         height:30px;
         line-height:30px;
         border:1px solid;
+        
         border-radius:5px;
     }
 }

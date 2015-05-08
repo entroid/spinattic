@@ -40,9 +40,9 @@ define([
 			$("#tour").data("scene",tourData.krpano.scene[0])
 			var helpFunctions = new HelpFunctions()
 			helpFunctions.setInnerHeight(".main-section",true);
-
+			var manageHotSpots = new ManageHotSpots();
+				
 			if($("#tour").data("scene").hotspot){
-				var manageHotSpots = new ManageHotSpots();
 				krpano.set("events.onloadcomplete","js(initHotSpots())");
 				krpano.set("events.keep",true);
 			}

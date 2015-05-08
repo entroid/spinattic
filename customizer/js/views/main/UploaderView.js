@@ -4,6 +4,7 @@ define([
     'backbone',
     'x2js',
     'helpers/HelpFunctions',
+    'helpers/ManageTour',
     'models/main/ModalModel',
     'views/modal/AlertView',
     'text!templates/main/upload.html',
@@ -19,7 +20,7 @@ define([
     'mCustomScrollbar'
 
 
-    ], function($, _, Backbone,x2js,HelpFunctions, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
+    ], function($, _, Backbone,x2js,HelpFunctions, ManageTour, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
 
     var UploaderView = Backbone.View.extend({
         el: $("body"),
@@ -335,51 +336,20 @@ define([
             $(".save").click( function(){
 
                 if(este.addingPane){
-                    var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
-
+                   
                     $(".dragger-wrapper").fadeOut(function(){
                        $(this).remove();
                     })
+                    var manageTour = new ManageTour();
+                    var cargarEscenas = function(){
+                        console.log("hay scenas")
+                        var scenes = tourData.krpano.scene;
+                        var sceneCollection = new SceneCollection(scenes);
+                        var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+                        sceneMenuView.render();
+                    }
 
-                    $("#tour").remove();
-
-                    $.ajax({
-                        url: xmlpath,
-                        type: "GET",
-                        dataType: "html",
-
-                        success: function(data) {
-                            var x2js = new X2JS({attributePrefix:"_"});
-                            tourData =  x2js.xml_str2json( data );
-
-                            if(tourData.krpano.scene.length == undefined){
-                                var escenas = [];
-                                escenas[0] = tourData.krpano.scene;
-                                tourData.krpano.scene = escenas
-                            }
-
-                            $.ajax({
-                                url:  "data/json.php?id="+este.gTour_id+"&d=1&t=t",
-                                dataType:"json",
-                                success:function(datatour){
-
-                                    tourData.krpano.datatour = datatour;
-                                    var xml2krpano = xmlpath.replace("&c=1","")
-                                    var tourModel = new TourModel({xmlpath:xml2krpano});
-
-                                    var tourView = new TourView({ model: tourModel});
-                                    tourView.render();
-
-
-                                    var scenes = tourData.krpano.scene;
-
-                                    var sceneCollection = new SceneCollection(scenes);
-                                    var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-                                    sceneMenuView.render();
-                                }
-                            })
-                        }
-                    });
+                    manageTour.reloadTour(cargarEscenas);
 
                 }else{
 

@@ -12,9 +12,11 @@ define([
     'views/sidebar/SceneSettingsMenuView',
     'views/sidebar/ViewSettingsMenuView',
     'helpers/ManageData',
-    'helpers/ManageHotSpots'
+    'helpers/ManageHotSpots',
+    'helpers/ManageTour',
 
-], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView,ManageData,ManageHotSpots){
+
+], function($, _, Backbone,x2js,jqueryui, bottomMenu,HelpFunctions,mCustomScrollbar,TourView,TourModel,SceneSettingsMenuView,ViewSettingsMenuView,ManageData,ManageHotSpots,ManageTour){
 
     var SceneMenuView = Backbone.View.extend({
         el: $("footer.main-footer"),
@@ -50,21 +52,35 @@ define([
 
             var helpFunctions = new HelpFunctions();
             helpFunctions.toolTip("#sceneMenu li img","footer");
-        
+            var este = this;
             $("#sceneMenu").sortable({
                 beforeStop:function(evt,ui){
 
+                    var reloadEverything = function(){
+                        var manageTour = new ManageTour();
+                        var resetPos = function(){
+                            if(!$("#sceneMenu li:eq(0)").hasClass("selected")){
+                                $("#sceneMenu li").removeClass("selected");
+                                $("#sceneMenu li:eq(0)").addClass("selected");
+                               
+                            }
+                        }
+                        var resetElem = function(){
+                             helpFunctions.refreshData();
+                        }
+                    manageTour.reloadTour(resetPos,resetElem)
+                    }
                     var manageData = new ManageData();
-                    manageData.SaveNewSceneOrder()
+                    manageData.SaveNewSceneOrder(reloadEverything)
 
                 }
             });
 
-            liwidth = $("#sceneMenu li").outerWidth();
-            liright = $("#sceneMenu li").css("margin-right");
+            var liwidth = $("#sceneMenu li").outerWidth();
+            var liright = $("#sceneMenu li").css("margin-right");
             liright = parseInt(liright.replace("px",""));
-            liall = liwidth+liright;
-            allwidth = liall * $("#sceneMenu li").length;
+            var liall = liwidth+liright;
+            var allwidth = liall * $("#sceneMenu li").length;
             $("#sceneMenu").width(allwidth+20);
 
             $(".scene-wrapper").mCustomScrollbar({
@@ -84,7 +100,8 @@ define([
                 }
 
                 var manageData = new ManageData();
-                manageData.SaveNewSceneOrder()
+                var manageTour = new ManageTour();
+                manageData.SaveNewSceneOrder(manageTour.reloadTour)
             })
         },
 
