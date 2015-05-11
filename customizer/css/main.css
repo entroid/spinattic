@@ -4428,14 +4428,14 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 15px 30px;
   font-weight: bold;
   z-index: 4; }
-#tooltip:after {
+#tooltip .arrow {
   position: absolute;
   display: block;
   content: "";
   border-style: solid;
   height: 0;
   width: 0; }
-#tooltip.up:after {
+#tooltip.up .arrow {
   border-color: transparent transparent white transparent;
   border-width: 8px;
   top: -16px;
@@ -4443,16 +4443,25 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-left: -8px; }
 #tooltip.footer {
   margin-top: -55px;
-  /*margin-left:-4px;*/ }
-#tooltip.footer:after {
+  /*margin-left:-4px;*/
+  /*&.rightist{
+      &:after{
+          left: initial;
+          right: 40px;
+      }
+  }*/ }
+#tooltip.footer .arrow {
   border-color: #FFF transparent transparent transparent;
   border-width: 8px;
-  bottom: -16px;
+  margin-left: -8px;
   left: 50%;
-  margin-left: -8px; }
+  bottom: -16px; }
+#tooltip.footer.leftist .arrow {
+  right: initial;
+  left: 50px; }
 #tooltip.aside {
   margin-top: 4px; }
-#tooltip.aside:after {
+#tooltip.aside .arrow {
   border-color: transparent transparent transparent #FFF;
   border-width: 7px;
   top: 7px;

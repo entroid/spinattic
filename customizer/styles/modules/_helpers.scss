@@ -8,7 +8,7 @@
     font-weight:bold;
     z-index:4;
 
-    &:after{
+    .arrow{
         position: absolute;
         display: block;
         content: "";
@@ -17,7 +17,7 @@
         width: 0;
     }
 
-    &.up:after{            
+    &.up .arrow{            
         border-color:  transparent transparent white transparent;
         border-width: 8px;
         top: -16px;
@@ -29,12 +29,25 @@
         margin-top:-55px;
         /*margin-left:-4px;*/ 
 
-        &:after{            
+        .arrow{            
             border-color: #FFF transparent transparent transparent;            
             border-width: 8px;
-            bottom: -16px;
-            left: 50%;
             margin-left: -8px; 
+            left: 50%;
+            bottom: -16px;
+        }
+
+        /*&.rightist{
+            &:after{
+                left: initial;
+                right: 40px;
+            }
+        }*/
+        &.leftist{
+            .arrow{
+                right: initial;
+                left: 50px;
+            }
         }
 
     }
@@ -42,14 +55,14 @@
     &.aside{
         margin-top:4px;
 
-        &:after{            
+        .arrow{            
             border-color:  transparent transparent transparent #FFF ;
             border-width: 7px;
             top: 7px;
             right: -14px;
         }
     }
-    &.hotSpots{
+   &.hotSpots{
         margin-left:-94px;
     }
     &.viewSettings{
