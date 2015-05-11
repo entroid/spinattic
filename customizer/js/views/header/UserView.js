@@ -26,10 +26,7 @@ define([
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
 
-      $(".notifications ul").mCustomScrollbar({
-        theme:"minimal-dark",
-        scrollInertia:300,
-      });
+      
     },
 
     displayMenu: function() {
@@ -38,6 +35,23 @@ define([
     },
 
     displayNotifications: function() {
+      $(".main-header .notifications ul").addClass("wait");
+      $.ajax({
+          url:'../ajax_get_notif.php',
+          type:'POST',
+          success:function(res){
+            $(".main-header .notifications ul").removeClass("wait");
+            $(".main-header .notifications ul").html(res);
+            $(".main-header .notifications ul").mCustomScrollbar({
+              theme:"minimal-dark",
+              scrollInertia:300,
+            });
+          },
+          error:function(xhr, ajaxOptions, thrownError){
+            console.log(xhr)
+          }
+        })
+
       $("header .menu-list:not(.notifications)").hide()
       $("header .menu-list.notifications").fadeToggle();
     }

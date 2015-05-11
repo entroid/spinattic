@@ -63,7 +63,7 @@ define([
 		 		krpano.call("hotspot["+elemid+"].loadStyle("+stylesel+");");
 		 		
 		 		var hotspot = $("#"+elemid).data("spotdata");
-            	hotspot._selectedSet = stylesel;
+            	hotspot._style = stylesel;
             	$("#"+elemid).data("spotdata",hotspot);
             	var manageData = new ManageData();
             	manageData.changeDataInHotSpot( $("#tour").data("scene")._name,hotspot)
