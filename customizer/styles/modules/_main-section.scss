@@ -1,6 +1,15 @@
 section.main-section { 
     position: relative;
     padding-right: 50px;
+    
+
+    .loading-msg{
+          margin: 50px auto 0;
+        padding-top: 120px;
+        font-size: 1.8rem;
+        text-align: center;
+        background: url("../images/loading-gear.gif") center no-repeat;
+    }
 
     .inner{
         overflow: auto;
