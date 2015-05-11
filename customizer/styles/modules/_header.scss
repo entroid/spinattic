@@ -95,14 +95,14 @@ header.main-header{
                           border-width: 0 10px 12px 10px;
                     }
 
-                    ul{
-
-                        max-height: 355px;
-                    
-                        &.wait{
-                            height:300px;
-                            background: url(../images/wait.gif) no-repeat center center $dark-gray;
-                        }
+                    .inner-notifications{
+                       max-height: 355px;
+                    }
+                    .loader{
+                       background: url(../../images/in-progress.gif) no-repeat center;
+                      width: 100%;
+                      height: 33px;
+                      float: left;
                     }
 
                     li{
@@ -147,6 +147,11 @@ header.main-header{
                             width:10px;
                             height:10px;
                             background:url(../../images/icons/close.png) no-repeat;
+                            opacity:0.5;
+                            margin-right:5px;
+                            &:hover{
+                                opacity:1;
+                            }
                         }
 
                         &.read{
