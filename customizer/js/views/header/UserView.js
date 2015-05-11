@@ -26,10 +26,7 @@ define([
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
 
-      $(".notifications ul").mCustomScrollbar({
-        theme:"minimal-dark",
-        scrollInertia:300,
-      });
+      
     },
 
     displayMenu: function() {
@@ -38,9 +35,58 @@ define([
     },
 
     displayNotifications: function() {
+      
+
       $("header .menu-list:not(.notifications)").hide()
       $("header .menu-list.notifications").fadeToggle();
+      this.callNotif();
+
+    },
+
+    callNotif:function(next){
+      $(".main-header .notifications .loader").show();
+      var este = this;
+      query_string = '';
+      if(next == 'next'){
+        query_string = "?action=getLastPosts&lastID="+$(".notif_item:last").attr("id");
+      }else{
+        query_string = "";
+      }
+        $.ajax({
+              url:'../ajax_get_notif.php'+query_string,
+              type:'POST',
+              success:function(res){
+                $(".main-header .notifications .loader").hide();
+                if(query_string == ""){
+                    console.log("uno")
+                    $(".main-header .notifications ul").html(res);
+                }else{
+                    console.log($(".notif_item:last").attr("id"))
+                    $(".main-header .notifications ul").html($(".main-header .notifications ul").html()+res);
+                }
+                console.log(res)
+
+                $(".main-header .notifications .inner-notifications").mCustomScrollbar({
+                  theme:"minimal-dark",
+                  scrollInertia:300,
+                  callbacks:{
+                    onTotalScroll:function(){
+                    //console.log("in")
+                      if($('.nomore_notif').length == 0){
+                            $(".main-header .notifications .inner-notifications").mCustomScrollbar("scrollTo","bottom",{scrollInertia:1,  timeout:1});
+                            este.callNotif('next');
+                      }
+                    }
+                  }
+                });
+              },
+              error:function(xhr, ajaxOptions, thrownError){
+                console.log(xhr)
+              }
+          })
+
     }
+
     
   });
 
