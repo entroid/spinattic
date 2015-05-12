@@ -710,3 +710,16 @@ textarea{
 .inlineBlock{
     display: inline-block;
 }
+
+.loading-msg{
+    font-size: 1.8rem;
+    text-align: center;
+    background: url("../images/loading-gear.gif") center no-repeat;
+    @include absolute($top:35%, $left:45%);
+
+    span { 
+      padding-top: 135px;
+      font-weight: bold;   
+      display: block;   
+    }
+}
