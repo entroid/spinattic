@@ -4190,6 +4190,45 @@ aside #virtualTourSettings-menu .mouse-control-settings .input-row {
 aside #virtualTourSettings-menu .autorotate-settings .input-row {
   height: 26px;
   margin-bottom: 10px; }
+aside #virtualTourSettings-menu #tagsTour_tagsinput {
+  border: 1px solid #535353;
+  padding: 15px 5px;
+  margin-bottom: 20px; }
+aside #virtualTourSettings-menu #tagsTour_tagsinput .tag {
+  padding: 5px;
+  background: #535353;
+  color: #000;
+  border-radius: 5px;
+  margin-right: 5px;
+  float: left;
+  margin-top: 5px; }
+aside #virtualTourSettings-menu #tagsTour_tagsinput .tag a {
+  color: #FFF; }
+aside #virtualTourSettings-menu #tagsTour_addTag {
+  clear: both; }
+aside #virtualTourSettings-menu #tagsTour_tag {
+  border: none;
+  color: #FFF !important;
+  background: none;
+  margin-top: 10px;
+  min-width: 60px !important; }
+aside #virtualTourSettings-menu #toAppendTags {
+  height: 5px;
+  position: relative;
+  z-index: 5; }
+aside #virtualTourSettings-menu #toAppendTags .ui-widget-content {
+  color: #FFF;
+  background: #000;
+  padding: 10px;
+  border: 1px solid #535353;
+  font-size: 1.2rem;
+  width: 250px !important;
+  height: 250px;
+  overflow: auto; }
+aside #virtualTourSettings-menu #toAppendTags .ui-widget-content .ui-menu-divider {
+  display: none; }
+aside #virtualTourSettings-menu #toAppendTags .ui-widget-content li {
+  margin-bottom: 5px; }
 aside #skinCustomizer-menu header {
   margin-bottom: 20px; }
 aside #skinCustomizer-menu header h2 {

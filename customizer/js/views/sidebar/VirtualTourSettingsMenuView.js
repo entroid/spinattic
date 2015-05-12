@@ -9,9 +9,10 @@ define([
 	'views/sidebar/MapView',
 	'helpers/ManageData',
 	'views/modal/MapModalView',
+	'lib/tagsinput/tagsinput',
 
 	
-], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView,ManageData,MapModalView){
+], function($, _, Backbone,SidebarSubMenu,virtualTourSettingsMenu,mCustomScrollbar,HelpFunctions,MapView,ManageData,MapModalView,tagsinput){
 
 	var VirtualTourSettingsMenuView = SidebarSubMenu.extend({
 
@@ -84,7 +85,40 @@ define([
 			helpFunctions.selectChoice(".checkboxes li","fa-circle-o","fa-circle");
 			helpFunctions.toolTip(".submenu .help","aside help");
 
+			var open = false;
+			$('#tagsTour').tagsInput({
+			'width': '265px',
+			'height':'70px',
+			'defaultText':'add a tag',
+			onChange: function(elem, elem_tags)
+			{
+				console.log("a")
+			    /*   var languages = ['php','ruby','javascript'];
+			    $('.tag', elem_tags).each(function()
+			    {
+			            if($(this).text().search(new RegExp('\\b(' + languages.join('|') + ')\\b')) >= 0)
+			                    $(this).css('background-color', 'yellow');
+			    });*/
 
+			//console.log($(this).val());
+			},
+			onRemoveTag: function(elem, elem_tags)
+			{
+
+			},                            
+			autocomplete_url:'../php-stubs/tags.json', // jquery ui autocomplete requires a json endpoint
+			autocomplete:{appendTo:"#toAppendTags",open:function(){
+
+					$("#toAppendTags .ui-widget-content").mCustomScrollbar({
+							theme:"minimal-dark",
+							scrollInertia:300,
+							});
+				},
+				close:function(){
+					$("#toAppendTags .ui-widget-content").mCustomScrollbar("destroy")
+					}
+				}
+			});
 		   
 		},
 

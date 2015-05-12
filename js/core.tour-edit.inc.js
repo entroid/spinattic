@@ -68,7 +68,93 @@ jQuery(document).ready(function()
 	$("#allow_votes").click(function(){
 		actualizar = 0;	
 	    verificar(true);
-	});	  
+	});
+	$("#enable_avatar").click(function(){
+		actualizar = 0;	
+	    verificar(true);
+	});	  	
+	$("#enable_title").click(function(){
+		actualizar = 0;	
+	    verificar(true);
+	});	
+	$("input:radio[name=skin]").click(function() {
+		actualizar = 0;	
+	    verificar(true);
+	});	
+	
+	$("#image-width").change(function(){
+		$imageWidth = $("#image-width");
+		max = $imageWidth.attr("max");
+		min =  $imageWidth.attr("min");
+		widthval = $imageWidth.val();
+		if((widthval <= Number(max)) && (widthval >= Number(min))){
+					maxresize();
+			}else{
+
+				if($imageWidth.val() > Number(max)){
+					$imageWidth.val(max);
+					widthval = $("#image-width").val();
+					maxresize();
+				}else if($imageWidth.val() < Number(min)){
+					$imageWidth.val(min);
+					widthval = $("#image-width").val();
+					maxresize();
+				}
+
+			} 
+		actualizar = 0;	
+	    verificar(true);		
+	});
+
+
+	$("#image-height").change(function(){
+		$imageHeight = $("#image-height");
+		max = $imageHeight.attr("max");
+		min =  $imageHeight.attr("min");
+		heightVal = $imageHeight.val();
+		if((heightVal <= Number(max)) && (heightVal >= Number(min))){
+					minresize();
+			}else{
+
+				if($imageHeight.val() > Number(max)){
+					$imageHeight.val(max);
+					heightVal = $("#image-height").val();
+					minresize();
+				}else if($imageHeight.val() < Number(min)){
+					$imageHeight.val(min);
+					heightVal = $("#image-height").val();
+					minresize();
+				}
+
+			} 
+		actualizar = 0;	
+	    verificar(true);		
+	});
+
+
+	$("#margins").change(function(){
+		$margins = $("#margins");
+		max = $margins.attr("max");
+		min =  $margins.attr("min");
+		paddings = $("#margins").val();
+		if(paddings <= Number(max) && paddings >= Number(min)){
+			$("#image-wrapper").css("padding",paddings+"px");
+		}else{
+			if(paddings > Number(max)){
+				paddings = max;
+				$("#margins").val(paddings);
+				$("#image-wrapper").css("padding",paddings+"px");
+			}else{
+				paddings = min;
+				$("#margins").val(paddings);
+				$("#image-wrapper").css("padding",paddings+"px");
+			}
+		}
+		actualizar = 0;	
+	    verificar(true);		
+	});    	
+	
+	
 	//El cambio en el mapa está en maploc.js
 	  
 	/*Fin elementos*/
@@ -141,6 +227,10 @@ jQuery(document).ready(function()
 			event.preventDefault();
 		}
     });    
+    
+
+    
+    
     
     enable_title_edit();
 });
@@ -250,6 +340,7 @@ function submit_form(data, autosave)
             
             if(!autosave){
                 xml_version = $.parseJSON(response).params.xml_version;
+                brand_new = $.parseJSON(response).params.brand_new;
                 
                 $('#loading').css('display', 'none');
                 
@@ -270,7 +361,14 @@ function submit_form(data, autosave)
 	            
 	            overlay.remove();
 	            showMessage('Saving data', 'Your changes have been saved');
+	            if(brand_new == '1'){
+	            	mixpanel.track("Published tour");
+	            	notificate($('#tour_id').val(), 6);
+	            }else{
+	            	mixpanel.track("Updates tour");
+	            }
             }else{
+            	$('#draft_subscript').val('_draft');
             	$('#cartel').html('Changes saved in draft!');
             	$('#cartel').delay( 5000 ).fadeOut( 400 );
             }
@@ -286,8 +384,10 @@ function verificar(autosave)
 	}
 	
 	
-    var title        = jQuery('#title').val();
-    var description  = jQuery('#description').val();
+	
+	
+    var title        = encodeURIComponent(jQuery('#title').val());
+    var description  = encodeURIComponent(jQuery('#description').val());
     var location     = jQuery('#location').val();
     var tags_loaded  = jQuery('#tags_loaded').val();
     var category     = jQuery('#category').val();
@@ -295,11 +395,18 @@ function verificar(autosave)
     var lat          = jQuery('#latFld').val();
     var lng          = jQuery('#lngFld').val();
     var saving_type  = jQuery('#saving-type').val();
+    var skin_id		 = jQuery("input:radio[name=skin]:checked").val();
+    var thumb_width  = jQuery('#image-width').val();
+    var thumb_height  = jQuery('#image-height').val();
+    var thumb_margin  = jQuery('#margins').val();    
     
     var allow_comments   = jQuery('#allow_comments').is(':checked')? 'on' : '';
-    var allow_social      = jQuery('#allow_social').is(':checked')? 'on' : '';
+    var allow_social     = jQuery('#allow_social').is(':checked')? 'on' : '';
     var allow_embed      = jQuery('#allow_embed').is(':checked')? 'on' : '';
     var allow_votes      = jQuery('#allow_votes').is(':checked')? 'on' : '';
+    var enable_avatar    = jQuery('#enable_avatar').is(':checked')? 'on' : '';
+    var enable_title     = jQuery('#enable_title').is(':checked')? 'on' : '';
+
     
     var data = $('#main-form').serialize();
         
@@ -316,6 +423,12 @@ function verificar(autosave)
     data += '&allow_social='+allow_social;
     data += '&allow_embed='+allow_embed;
     data += '&allow_votes='+allow_votes;
+    data += '&enable_avatar='+enable_avatar;
+    data += '&enable_title='+enable_title;
+    data += '&skin_id='+skin_id;
+    data += '&thumb_width='+thumb_width;  
+    data += '&thumb_height='+thumb_height;  
+    data += '&thumb_margin='+thumb_margin;  
 
 //console.log( document.form1.title + description + location + tags_loaded + category);
 
@@ -377,3 +490,31 @@ function make_tour_files(idtour){
 	}
 	return false;	
 }
+
+$(".choose-skin p:not('.disabled')").on({
+	mouseenter:function(e){
+		$(e.target).parent("p").next(".content-info-map").fadeIn(); 
+	},
+	mouseleave:function(e){
+		$(e.target).parent("p").next(".content-info-map").fadeOut();
+	}
+
+})
+
+function maxresize(){
+			$("#image-to-change").width(widthval);
+			$("#image-wrapper").width(widthval);
+			$("#image-height").val(widthval/2);	
+			$("#image-to-change").height($("#image-height").val());
+			$("#image-wrapper").height($("#image-height").val());
+}
+
+function minresize(){
+			$("#image-to-change").height(heightVal);
+			$("#image-wrapper").height(heightVal);
+			$("#image-width").val(heightVal*2);	
+			$("#image-to-change").width($("#image-width").val());
+			$("#image-wrapper").width($("#image-width").val());
+}
+
+

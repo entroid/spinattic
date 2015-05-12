@@ -28,7 +28,19 @@
 		function(data){
 			if (data != "") {
 				$('#notif_list').html($('#notif_list').html()+data);
-				//$(".notif_item:last").after(data);
+				
+				//Bindeo click sobre el item para pasar a checked = 1 en BD
+				$('.notif_item').click(function(e){
+					elid = $(this).data('notif_id');
+					$.ajax({
+						url : 'ajax_check_notif.php',
+						type: 'POST',
+						async: false,
+						data: 'id='+elid,
+						cache : false,
+						success : function(response){}
+					});	
+				})				
 			}
 			$(".inner-notifications").mCustomScrollbar({
 				theme:"minimal-dark",
@@ -48,11 +60,11 @@
 			
 	$("#notifications-wrapper li").on({
 		mouseenter:function(){
-			console.log("on")
+			//console.log("on")
 			$("body").css({ "overflow-y": 'hidden' })
 		},
 		mouseleave:function(){
-			console.log("out")
+			//console.log("out")
 			$("body").css({ "overflow-y": 'auto' })
 		}
 	})

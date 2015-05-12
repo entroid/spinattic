@@ -43,7 +43,7 @@ jQuery(document).ready(function(){
 			        			        url : 'php-stubs/scenes.php?action=remove',
 			        			        type: 'POST',
 			        			        async: false,
-			        			        data: 'scene-id='+elcheckbox.attr('data-scene'),
+			        			        data: 'source=manage_panoramas&scene-id='+elcheckbox.attr('data-scene'),
 			        			        cache : false,
 			        			        success : function(response){
 			        			        	nueva_cantidad = nueva_cantidad - 1;
@@ -96,7 +96,7 @@ jQuery(document).ready(function(){
 			        url : 'php-stubs/scenes.php?action=remove',
 			        type: 'POST',
 			        async: false,
-			        data: 'pano-id='+elid,
+			        data: 'source=manage_panoramas&pano-id='+elid,
 			        cache : false,
 			        success : function(response){
 			        	contenedor.hide();
@@ -145,7 +145,7 @@ jQuery(document).ready(function(){
 						        url : 'php-stubs/scenes.php?action=remove',
 						        type: 'POST',
 						        async: false,
-						        data: 'pano-id='+elid,
+						        data: 'source=manage_panoramas&pano-id='+elid,
 						        cache : false,
 						        success : function(response){
 						        	contenedor.hide();
@@ -192,6 +192,8 @@ jQuery(document).ready(function(){
 		            gTour_id    = parsedObj.params.tour_id;  
 		            //xml_version = parsedObj.params.xml_version;
 		            
+		            mixpanel.track("Create New Tour");
+		            
 		            /*Creo las scenes*/
 					$('input[name="ids[]"]').each(function() {
 						elid = $(this).val();
@@ -202,7 +204,8 @@ jQuery(document).ready(function(){
 						        async: false,
 						        cache : false,
 						        success : function(response){
-						        	window.location.href = "edit_virtual_tour.php?id="+gTour_id;
+						        	
+						        	window.location.href = "edit_virtual_tour.php?d=1&id="+gTour_id;
 						        }
 						    });		
 						}

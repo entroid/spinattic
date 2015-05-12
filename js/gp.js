@@ -32,6 +32,10 @@
 		  console.log(obj['email']);
 		  console.log(obj['picture']);
 		  console.log(obj);
+		  subscribe = 0;
+			if($("#receive-emails").is(':checked')){
+				subscribe = 1;	
+			}		  
 
 			GPname = obj['name'];
 			GPid = obj['id']; //uso el id de googleplus como hashregistro
@@ -54,21 +58,48 @@
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			    {
 				  console.log (xmlhttp.responseText);
-					if(xmlhttp.responseText == 'ok'){
-						window.location.href="home.php";
+				  	respuesta = JSON.parse(xmlhttp.responseText);
+					if (respuesta.success == 'ok'){
+
+						if($('#s_h').val() != respuesta.id){
+							window.location.href="home.php";
+						}else{
+							hide_popup();
+						}						
+						
+						if($('#regban').val() == '1'){
+							$('#regban').val('');
+							mixpanel.track("New user from Google+");
+						}else{
+							mixpanel.identify(respuesta.id);
+							
+							mixpanel.people.set({
+							    "$email": respuesta.email,
+							    
+							    "$name": respuesta.username
+							});								
+							mixpanel.track("User log in");
+						}
+						
+						
+
+						
+
+						
 					}else{
 						$(".data_pop").html('<div class="message_box error_m" ><p>Sorry, we need an e-mail to sign you up</p><a href="'+location.href.replace('#', '')+'">Try again</a></div>');
 					}
 			    }
 			  };
-			xmlhttp.open("GET","ajax_GP_login_reg.php?pic="+GPpic+"&e="+GPemail+"&h="+GPid+"&n="+GPname,true);
+			xmlhttp.open("GET","ajax_GP_login_reg.php?pic="+GPpic+"&e="+GPemail+"&h="+GPid+"&n="+GPname+"&s="+subscribe,true);
 			xmlhttp.send();				  
 		  
 	  }
 	  
 	  
 	  var options = {'callback': loginFinished,
-      'clientid': '984905783520-hjpnm4e7q4dl5kfvctuo30na4jssncu9.apps.googleusercontent.com',
+      //'clientid': '984905783520-hjpnm4e7q4dl5kfvctuo30na4jssncu9.apps.googleusercontent.com',
+	  'clientid': '984905783520-utpan90kap5caqntsjn4brs845btbjtt.apps.googleusercontent.com',
       'cookiepolicy': 'single_host_origin',
       'requestvisibleactions': 'http://schemas.google.com/AddActivity',
       'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'			  

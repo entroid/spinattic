@@ -16,8 +16,7 @@ jQuery(document).ready(function(){
 		maxfiles: 3,
 		//queuefiles: 2,
         maxfilesize: 200,
-		//url: 'php-stubs/upload-files.php',
-        url: 'php-stubs/general_process.php',
+		url: 'php-stubs/upload-files.php',
 		
 	/*	uploadFinished:function(i,file,response){
 			$.data(file).addClass('done');
