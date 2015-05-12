@@ -765,12 +765,13 @@ aside{
 
         .skill-list {
             li {                
-                height: 20px;
+                min-height: 20px;
                 position: relative;
                 
                 h3{
                     display: inline-block;
                     margin: 3px 0 0;
+                      max-width: 150px;
                 }
 
                 div {

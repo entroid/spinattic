@@ -28,8 +28,8 @@ define([
 		render:function(){
 			
 			var tourSkill = this.model.get("tourSkill");
-			console.log(tourSkill)
 			var compiledTemplate = _.template(skincustomizeritem,{tourSkill:tourSkill});
+
 			$("#skinCustomizer-menu .skill-list").append(compiledTemplate);
 			$('#skill-' + tourSkill._template_id ).data("skill",tourSkill);
 			$('#skill-' + tourSkill._template_id + ' .customizelink').click(this.editSkill);
@@ -44,7 +44,6 @@ define([
 		},
 
 		editSkill:function(e){
-			console.log("!a")
 			var skill = $(e.target).parents("li").data("skill");
 			var tourSkill = this.model.get("tourSkill");
 			switch(tourSkill._template_id){
@@ -73,9 +72,9 @@ define([
 
 			}
 				var SkillModel = Backbone.Model.extend({});
-				console.log(tourSkill)
 				skillModel = new SkillModel({tourSkill:tourSkill});
 				var skillEditor = new mview({model:skillModel});
+				console.log(skillEditor)
 				skillEditor.render("skillsEditor-"+tourSkill._template_id,skillEditor.renderExtend);
 				$("#skillsEditor-"+tourSkill._template_id).addClass("skillModal").parent(".overlay").addClass("skillWindow");
 				skillEditor.verticalCent();

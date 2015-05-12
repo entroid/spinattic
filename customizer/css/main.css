@@ -4273,11 +4273,12 @@ aside #skinCustomizer-menu .add-link {
   clear: left;
   cursor: pointer; }
 aside #skinCustomizer-menu .skill-list li {
-  height: 20px;
+  min-height: 20px;
   position: relative; }
 aside #skinCustomizer-menu .skill-list li h3 {
   display: inline-block;
-  margin: 3px 0 0; }
+  margin: 3px 0 0;
+  max-width: 150px; }
 aside #skinCustomizer-menu .skill-list li div {
   margin: 1px; }
 aside #skinCustomizer-menu .skill-list li div .customizelink {
@@ -5019,6 +5020,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   right: 5px;
   bottom: initial;
   left: initial; }
+.overlay .skillModal .dropdown h2 {
+  background-color: #111; }
 .overlay #panoManager {
   width: 650px;
   border: 4px dashed #535353; }

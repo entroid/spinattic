@@ -1,35 +1,34 @@
-<div class="loading-bar-skill-editor">
+<div class="loading-bar-skill-editor standard-loading">
     <div class="scrollwrapper">  
         <div class="inner-modal-wrapper">
             <div class="editor-group-2col">
                 <div class="line-group">
-                    <label for="panos-format">Position:</label>
-                    <div title="panos-format" id="panos-format" class="dropdown dd-upload right-el">
-                        <h2><span class="title">Top</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                    <label for="chooseBarDD">Choose:</label>
+                    <div title="chooseBarDD" id="chooseBarDD" class="dropdown dd-upload right-el">
+                        <h2><span class="title">Bar</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
                         <ul>
-                            <li data-value="op1"><span>Top</span></li>
-                            <li data-value="op2"><span>Center</span></li>
-                            <li data-value="op3"><span>Bottom</span></li>
+                            <li data-value="bar">Bar</li>
+                            <li data-value="looping">Looping</li> 
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="layer-top">
+            <div class="layer-top bar">
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="logo-skill-x">Offset:</label>
-                        <input type="number" id="logo-skill-x" value="<%=tourSkill.layer._y %>" >
+                        <input type="number" id="logo-skill-x" value="" >
                     </div>
                         
                     <div class="line-group">
                         <label for="logo-skill-x">Width:</label>
-                        <input type="number" id="logo-skill-y" value="<%=tourSkill.layer._width%>" >
+                        <input type="number" id="logo-skill-y" value="" >
                     </div>
                         
                     <div class="line-group">
                         <label for="logo-skill-zorder">Height:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._height%>" >
+                        <input type="number" id="logo-skill-zorder" value="" >
                     </div>
                 </div>
 
@@ -38,11 +37,11 @@
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="loading-bar-back-bgcolor">Background color:</label>
-                        <input type="text" id="loading-bar-back-bgcolor" value="<%=tourSkill.layer._bgcolor.replace('0x','')%>" >
+                        <input type="text" id="loading-bar-back-bgcolor" value="" >
                     </div>
                     <div class="line-group">
                         <label for="logo-skill-zorder">Background alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._bgalpha%>" >
+                        <input type="number" id="logo-skill-zorder" value="" >
                     </div>
                 </div>
 
@@ -50,14 +49,18 @@
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="loading-bar-bar-bgcolor">Bar color: (aca va color picker)</label>
-                        <input type="text" id="loading-bar-bar-bgcolor" value="<%=tourSkill.layer.layer.layer._bgcolor.replace('0x','')%>" >
+                        <input type="text" id="loading-bar-bar-bgcolor" value="" >
                     </div>
                     <div class="line-group">
                         <label for="logo-skill-zorder">Bar alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer.layer.layer._bgalpha%>" >
+                        <input type="number" id="logo-skill-zorder" value="" >
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="layer-top looping none">
+            looping
         </div>
     </div>
 </div>
