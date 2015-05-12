@@ -10,9 +10,10 @@ define([
 	'views/modal/LoadingBarSkillEditor',
 	'helpers/ManageData',
 	'helpers/ManageTour',
+	'views/modal/StandardLoadingSkillEditor'
    
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,ManageData,ManageTour){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,ManageData,ManageTour, StandardLoadingSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -58,6 +59,9 @@ define([
 				break;
 				case "4":
 				var mview = SignatureSkillEditor;
+				break;
+				case "5":
+				var mview = StandardLoadingSkillEditor;
 				break;
 				default:
 				var mview = SkillEditor
