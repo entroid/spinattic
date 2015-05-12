@@ -85,7 +85,7 @@ define([
 			helpFunctions.selectChoice(".checkboxes li","fa-circle-o","fa-circle");
 			helpFunctions.toolTip(".submenu .help","aside help");
 
-
+			var open = false;
 			$('#tagsTour').tagsInput({
 			'width': '265px',
 			'height':'70px',
@@ -107,7 +107,17 @@ define([
 
 			},                            
 			autocomplete_url:'../php-stubs/tags.json', // jquery ui autocomplete requires a json endpoint
-			autocomplete:{appendTo:"#toAppendTags"}
+			autocomplete:{appendTo:"#toAppendTags",open:function(){
+
+					$("#toAppendTags .ui-widget-content").mCustomScrollbar({
+							theme:"minimal-dark",
+							scrollInertia:300,
+							});
+				},
+				close:function(){
+					$("#toAppendTags .ui-widget-content").mCustomScrollbar("destroy")
+					}
+				}
 			});
 		   
 		},
