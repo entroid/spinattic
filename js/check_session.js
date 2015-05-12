@@ -43,4 +43,4 @@ function CheckForSession() {
 		});
 		}
 }
-check_session = setInterval(CheckForSession, 2000);
+//check_session = setInterval(CheckForSession, 2000);

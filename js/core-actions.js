@@ -93,14 +93,19 @@ var CoreActions = CoreActions || (function()
 }());
 
 // Request execution
-doAjaxRq = function(t, u, d, bc, sc)
+doAjaxRq = function(t, u, d, bc, sc, as)
 {
+	if(as == false){
+		as = false;
+	}else{
+		as = true;
+	}
     jQuery.ajax({
             type: t,
             url: u,
             data: d,
             beforeSend:  bc,
-            async:false,
+            async:as,
             success: function(response)
             {                
                 if (response == "UNAUTHORIZED") 

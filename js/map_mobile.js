@@ -1,6 +1,7 @@
 var styles 	= [];
 var zoom 	= 2;
-var image 	= '../images/icons/marker.png';
+var image_path 	= '../images/icons/gmap/';
+
 
 var div; 	
 var map;
@@ -15,7 +16,7 @@ function initialize(thezoom,y,x)
 	div = document.getElementById('map_canvas');
 
 	options = {
-		mapTypeId: google.maps.MapTypeId.SATELLITE 
+		mapTypeId: google.maps.MapTypeId.HYBRID 
 		//mapTypeIds: [ 'Styled']
 		,center: new google.maps.LatLng(y,x)
 		,zoom:thezoom 
@@ -57,12 +58,13 @@ function hideAllMarkers()
 
 
 
-function addMarker(id, lat, lng, username, user_pic, img, desc, views, likes, comments, opened, allow_votes)
+function addMarker(id, lat, lng, username, user_pic, img, desc, views, likes, comments, opened, allow_votes, newimage)
 {
+	image 	= 'marker.png';
 	contentString = 
 	     '<link rel="stylesheet" type="text/css" media="screen" href="../css/infomap.css" />'
         +'<div class="content-info-map">'
-	    +'  <a href="../tours/'+id+'" class="thumb_map"><img width="232" src="../'+img+'"></a>'
+	    +'  <a href="../tours/'+id+'" class="thumb_map"><img width="232" src="'+img+'"></a>'
 	    +'  <a href="#" class="user">'
 	    +'  	<img src="../'+user_pic+'" width="43" height="43">'
 	    +'  </a>'
@@ -74,19 +76,23 @@ function addMarker(id, lat, lng, username, user_pic, img, desc, views, likes, co
 	    +'  </div>'
 	    +'  <div class="count">'
 	    +'  	<div class="views">'+views+'</div>'
-	    +'  	<!--<a href="#"  class="comments">'+comments+'</a>-->'            
-	    +          ((allow_votes == 'on')? '<a href="#" onclick="event.preventDefault();like('+id+');" id="like" class="likes">'+likes+'</a>' : '')
+	    +'  	<!--<a href="javascript:void(0)"  class="comments">'+comments+'</a>-->'            
+	    +          ((allow_votes == 'on')? '<a href="javascript:void(0)" id="like" class="like'+id+' likes">'+likes+'</a>' : '')
 	    +'  	<br clear="all">'
 	    +'  </div>'
 	    +'  <div class="arrow_map"></div>'
 	    +'</div>'
 		;
+	
+	cant_lines =  desc.length / 30; 
+	x_offset = -200 - (15 * cant_lines);	
 		
 	myOptions = {
 		 content: contentString
 		,disableAutoPan: false
 		,maxWidth: 0
-		,pixelOffset: new google.maps.Size(-125, -215)
+		//,pixelOffset: new google.maps.Size(-125, -215)
+		,pixelOffset: new google.maps.Size(-125, x_offset)
 		,zIndex: null
 		,boxStyle: { 
 		  background: "url('../images/tipbox.gif') no-repeat"
@@ -103,12 +109,16 @@ function addMarker(id, lat, lng, username, user_pic, img, desc, views, likes, co
 	};
         
 	var ib = new InfoBox(myOptions);   
+	
+	if(newimage != ''){
+		image = newimage; 
+	}
 
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(lat, lng) , 
 		map: map,
 		animation: google.maps.Animation.DROP,
-		icon: image
+		icon: image_path + image
 		//title: 'Uluru (Ayers Rock)'
 	});     
         

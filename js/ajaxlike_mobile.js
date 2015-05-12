@@ -18,12 +18,17 @@ function like(id){
 				showMessage('Spinattic', 'You must be logged in to like a tour')
 			}else{
 			  notificate(id, 2);
-			  document.getElementById("like"+id).innerHTML=xmlhttp.responseText;
+			  $('.like'+id).html(xmlhttp.responseText);
+			  //document.getElementById("like"+id).innerHTML=xmlhttp.responseText;
 			  if (jQuery('div.count a#like').length)  jQuery('div.count a#like').html(xmlhttp.responseText);
+			  mixpanel.track("Like tour");
+			  if(!$(".like"+id).hasClass("liked")){
+					$(".like"+id).addClass("liked");
+				}			  
 			}
 		  }
 		}
-		xmlhttp.open("GET","../like.php?id="+id,true);
+		xmlhttp.open("GET","../ajax_like.php?id="+id,true);
 		xmlhttp.send();
 		return false;
 		}

@@ -36,7 +36,7 @@ function getFBdata(){
 	FB.api('/me', function(response) {
 	    //console.log(response.name);
 	    //console.log(response.id);
-		console.log(response);
+		//console.log(response);
 	      
 		FBname = '';
 		FBemail = '';
@@ -47,6 +47,10 @@ function getFBdata(){
 		FBname = response.name;
 		FBid = response.id; //uso el id de facebook como hashregistro
 		FBemail = response.email;
+		subscribe = 0;
+		if($("#receive-emails").is(':checked')){
+			subscribe = 1;	
+		}		
 
 		//SEND LOGIN/REGISTER DATA BY AJAX
 		
@@ -63,16 +67,41 @@ function getFBdata(){
 		  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		    {
-			  console.log (xmlhttp.responseText);
-				if(xmlhttp.responseText == 'ok'){
-					window.location.href="home.php";
+			  //console.log (xmlhttp.responseText);
+			  	respuesta = JSON.parse(xmlhttp.responseText);
+				if (respuesta.success == 'ok'){
+					
+					if($('#s_h').val() != respuesta.id){
+						window.location.href="home.php";
+					}else{
+						hide_popup();
+					}					
+					
+					if($('#regban').val() == '1'){
+						$('#regban').val('');
+						mixpanel.track("New user from Facebook");
+					}else{
+						mixpanel.identify(respuesta.id);
+						
+						mixpanel.people.set({
+						    "$email": respuesta.email,
+						    
+						    "$name": respuesta.username
+						});								
+						mixpanel.track("User log in");
+					}						
+					
+
+
+				
+					
 				}else{
 					$(".data_pop").html('<div class="message_box error_m" ><p>Sorry, we need an e-mail to sign you up</p><a href="'+location.href.replace('#', '')+'">Try again</a></div>');
 					revokeFB();
 				}
 		    }
 		  };
-		xmlhttp.open("GET","ajax_FB_login_reg.php?mail="+FBemail+"&link="+FBlink+"&h="+FBid+"&n="+FBname,true);
+		xmlhttp.open("GET","ajax_FB_login_reg.php?mail="+FBemail+"&link="+FBlink+"&h="+FBid+"&n="+FBname+"&s="+subscribe,true);
 		xmlhttp.send();		
 		
 		

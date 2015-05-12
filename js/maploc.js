@@ -37,7 +37,7 @@
                 // display the lat/lng in your form's lat/lng fields
                 document.getElementById("latFld").value = event.latLng.lat();
                 document.getElementById("lngFld").value = event.latLng.lng();
-		codeLatLng();
+                codeLatLng();
             });
 
         }
@@ -48,11 +48,22 @@
 
             var marker = new google.maps.Marker({
                 position: location, 
+                optimized: false,
                 map: map
             });
+            
+    		google.maps.event.addListener(marker, 'click', function() {
+    			  //para eliminar con click en el marker;
+    		  		deleteOverlays();
+    		        document.getElementById("latFld").value = "";
+    		        document.getElementById("lngFld").value = "";
+    		        verificar(true);
+    		  	      
+    		  		});             
 
             // add marker in markers array
             markersArray.push(marker);
+             
 
             //map.setCenter(location);
         }
@@ -150,6 +161,15 @@ function addMarker(lat, lng)
 
 	});     
         
+		google.maps.event.addListener(marker, 'click', function() {
+	  //para eliminar con click en el marker;
+  		deleteOverlays();
+        document.getElementById("latFld").value = "";
+        document.getElementById("lngFld").value = "";
+        verificar(true);
+  	      
+  		});             
+
 
         markersArray.push(marker);
 

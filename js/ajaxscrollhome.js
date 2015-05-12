@@ -15,6 +15,25 @@
 			
 			//alert(current_page+ "?" + current_vars + "action=getLastPosts&lastID="+$(".post:last").attr("id"));
 			
+			$.ajax({
+				  type: 'POST',
+				  url: current_page+ "?" + current_vars + "action=getLastPosts&lastID="+$(".item:last").attr("id"),
+				  success: function(data){
+						if (data != "") {
+							$(".item:last").after(data);			
+							
+							setupBlocks();
+							jQuery('.btn_follow').unbind('click');
+							jQuery('.btn_follow').click(function()	{
+								follow($(this));
+							});				
+							}
+							document.getElementById("loading").style.display="none";
+						},
+				  async:false
+				});			
+			
+			/*
 			$.post(current_page+ "?" + current_vars + "action=getLastPosts&lastID="+$(".item:last").attr("id"),
 	
 			function(data){
@@ -27,7 +46,9 @@
 				});				
 				}
 				document.getElementById("loading").style.display="none";
-			});
+			}
+			);
+			*/
  		};  
 		
 		$(window).scroll(function(){

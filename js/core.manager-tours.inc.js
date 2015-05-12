@@ -92,6 +92,10 @@ $(document).ready(function()
         changePage(e);
     });
 
+    jquery_bind_event('#sby','change',function(e){
+        changePage(e);
+    });
+    
     jquery_bind_event('.paginator a','click',function(e){
         changePage(e);
     });

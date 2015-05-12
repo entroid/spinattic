@@ -15,10 +15,20 @@ jQuery(document).ready(function(){
 		//message.html(msg);
 				showMessage('', msg);
 	}		
-	
 
-	
-	
+	$('#orderBy').click(function(e){
+		//alert($('#val_orderBy').val());
+		e.preventDefault();
+		sentido = "asc";
+		$(this).toggleClass("asc desc");
+		if($(this).hasClass("desc")){
+			sentido = "desc";
+		}
+		
+		$("#val_orderBy").val(sentido);
+		//alert($('#val_orderBy').val());
+		document.form1.submit();
+	});
 	
 	/*----------Comments functions----------------------------------------------------------------------------------------------------------------------------------*/
 	/*---------- hidden in markup select environment (#env) BLOG or TOURS ------------------------------------------------------------------------------------------*/
@@ -81,7 +91,7 @@ jQuery(document).ready(function(){
 						}
 					  }
 					}
-					xmlhttp.open("GET","ajax_comment.php?guest_name="+$('#guest_name').val()+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&id="+$('#id').val()+"&a=ul&comment="+$('#thecomment').val().replace(new RegExp('\n','g'), '<br />'),true);
+					xmlhttp.open("GET","ajax_comment.php?guest_name="+encodeURIComponent($('#guest_name').val())+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&id="+$('#id').val()+"&a=ul&comment="+encodeURIComponent($('#thecomment').val().replace(new RegExp('\n','g'), '<br />')),true);
 					xmlhttp.send();
 					$('#thecomment').val('');
 					if($('#env').val() == 'tour'){
@@ -120,7 +130,7 @@ jQuery(document).ready(function(){
 				$('#comment_'+idc).hide();
 			  }
 			}
-			xmlhttp.open("GET","ajax_comment.php?guest_name="+$('#guest_name').val()+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&id="+$('#id').val()+"&a=d&idc="+idc,true);
+			xmlhttp.open("GET","ajax_comment.php?guest_name="+encodeURIComponent($('#guest_name').val())+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&id="+$('#id').val()+"&a=d&idc="+idc,true);
 			xmlhttp.send();
 		});
 		return false;
@@ -134,7 +144,7 @@ jQuery(document).ready(function(){
 		$.ajax({
 			url : 'ajax_comment.php',
 			type: 'GET',
-			data: "env="+$('#env').val()+"&replying_id="+replying_id+"&orig_post="+orig_post+"&a=ul&comment="+$('#thereply_'+replying_id).val().replace(new RegExp('\n','g'), '<br />')+"&id="+$('#id').val(),
+			data: "env="+$('#env').val()+"&replying_id="+replying_id+"&orig_post="+orig_post+"&a=ul&comment="+encodeURIComponent($('#thereply_'+replying_id).val().replace(new RegExp('\n','g'), '<br />'))+"&id="+$('#id').val(),
 			cache : false,
 			success : function(response){
 				respuesta = JSON.parse(response);
@@ -219,12 +229,12 @@ jQuery(document).ready(function(){
 			{
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			  {
-				$('#texto_comentario_'+idc).html($('#thecomment'+idc).val().replace(new RegExp('\n','g'), '<br />'));
+				$('#texto_comentario_'+idc).html(escapeHtml($('#thecomment'+idc).val()).replace(new RegExp('\n','g'), '<br />'));
 				$('#comment_text_'+idc).show();
 				$('#comment_edit_'+idc).hide();
 			  }
 			}
-			xmlhttp.open("GET","ajax_comment.php?guest_name="+$('#guest_name').val()+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&idc="+idc+"&id="+$('#id').val()+"&a=ud&comment="+$('#thecomment'+idc).val().replace(new RegExp('\n','g'), '<br />'),true);
+			xmlhttp.open("GET","ajax_comment.php?guest_name="+$('#guest_name').val()+"&guest_email="+$('#guest_email').val()+"&env="+$('#env').val()+"&idc="+idc+"&id="+$('#id').val()+"&a=ud&comment="+encodeURIComponent($('#thecomment'+ idc).val().replace(new RegExp('\n','g'), '<br />')),true);
 			xmlhttp.send();
 			//$('#thecomment'+$('.btn_update_comment').attr('href')).val('');
 		}else{
@@ -236,19 +246,115 @@ jQuery(document).ready(function(){
 	
 /*------------------ end comments functions -------------------------------------------------------------------------------------------------------------------*/
 	
-			
-		jQuery( "#scenelist" ).sortable({
-			scroll:true,
-			scrollSpeed:5,
-			stop: function(){
-				verificar(true);
-				},
-			placeholder: "pano-item-placeholder",
-			items: "> div.pano-item" ,
-			cursor: "move"
+
+
+	function escapeHtml(unsafe) {
+	    return unsafe
+	         .replace(/&/g, "&amp;")
+	         .replace(/</g, "&lt;")
+	         .replace(/>/g, "&gt;")
+	         .replace(/"/g, "&quot;")
+	         .replace(/'/g, "&#039;");
+	 }
+
 	
-		});       
+	
+			
+	//profile functions
+	
+	$('#select_tours').click(function(e){
+		e.preventDefault();
+		$('#tours').show();
+		$('#follows').hide();
+		$('#mod').val('tours');
 		
+		urlstring = location.href;
+		secparam = urlstring.split("&")
+	
+		window.history.pushState('','',secparam[0]);		
+		
+		
+		$('#select_tours').addClass("selected");
+		$('.followsInProfile').removeClass("selected");
+		setupBlocks();
+
+	})
+
+
+	$('.followsInProfile').click(function(e){
+		$('#loading').show();
+		
+		
+
+		
+		e.preventDefault();
+		order = $(this).data("order");
+		
+		if($(this).data("mod") == undefined){
+			mod = $('#mod').val();
+		}else{
+			mod = $(this).data("mod");
+		}
+
+		urlstring = location.href;
+		secparam = urlstring.split("&")
+	
+		window.history.pushState('','',secparam[0]+'&'+mod);		
+		
+		uid = $('#uid').val();
+		cant_reg = $('#cant_reg').val();
+				
+		$('#select_tours').removeClass("selected");
+		
+		
+		if(!($(this).hasClass("orderers"))){
+			$('.followsInProfile').removeClass("selected");
+			$('#order_by_cant_tours').addClass("selected");
+		}else{
+			$('.orderers').removeClass("selected");
+		}
+
+		$(this).addClass("selected");
+		
+		$.ajax({
+			url : 'ajax_get_follows.php',
+			type: 'GET',
+			data: 'uid='+uid+'&mod='+mod+'&o='+order+'&cant_reg='+cant_reg,
+			cache : false,
+			success : function(response){
+				$('#follows_data').html(response);
+				$('#tours').hide();
+				$('#follows').show();
+				$('#loading').hide();
+				$('#mod').val(mod);
+				if($('.nomorefollows').length > 0){$('.nomorefollows').remove();}
+				jQuery('.btn_follow').unbind('click');
+				$('.btn_follow').click(function(){
+					follow($(this));
+				});
+
+			}
+
+		});	
+		
+	})
+	
+	//end profile functions
+	
+	
+	
+	jQuery( "#scenelist" ).sortable({
+		scroll:true,
+		scrollSpeed:5,
+		stop: function(){
+			verificar(true);
+			},
+		placeholder: "pano-item-placeholder",
+		items: "> div.pano-item" ,
+		cursor: "move"
+
+	});       
+	
 				
 	jQuery(window).resize(function(){
 		heightScreen = jQuery(window).height();
@@ -520,56 +626,44 @@ function sendRegister(){
 		if($("#receive-emails").is(':checked')){
 			subscribe = 1;	
 		}
-		
-		if(!validateEmail(email)){
-			document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please write a valid E-Mail address</p></div>';
+		if(email == '' || email1 == '' || name ==='' || pass == '' || pass1 == '' || nickname == ''){
+			document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please complete all fields</p></div>';
 		}else{
-			if(!$("#terminos").is(':checked')){
-				document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please accept our Terms of Service</p></div>';
+		
+			if($('.not').length > 0){
+				document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please fill in all the fields correctly</p></div>';
 			}else{
-				if(email == '' || email1 == '' || name ==='' || pass == '' || pass1 == '' || nickname == ''){
-					document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please complete all fields</p></div>';
+				if(!$("#terminos").is(':checked')){
+					document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Please accept our Terms of Service</p></div>';
 				}else{
-					if(pass.length < 6){
-						document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Wrong password format.<br>The password must be at least 6 characters.</p></div>';
-					}else{
-						if(email != email1){
-							document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>E-Mails don´t match</p></div>';
-						}else{
-							if(pass != pass1){
-								document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Passwords don´t match</p></div>';
-							}else{						
-								//SEND REGISTER DATA BY AJAX
-								var xmlhttp;
-								if (window.XMLHttpRequest)
-								  {// code for IE7+, Firefox, Chrome, Opera, Safari
-								  xmlhttp=new XMLHttpRequest();
-								  }
-								else
-								  {// code for IE6, IE5
-								  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-								  }
-								xmlhttp.onreadystatechange=function()
-								  {
-								  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-									{
-										if(xmlhttp.responseText == 'exists'){
-											document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Sorry, the E-Mail already exists</p></div>';
-										}else{
-											if(xmlhttp.responseText == 'nickexists'){
-												document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Sorry, the User Name you choosed already exists. Please select another</p></div>';
-											}else{
-												$(".data_pop").html(xmlhttp.responseText);
-													mixpanel.track("New user Validation");
-											}
-										}
-									}
-								  }
-								xmlhttp.open("GET","ajax_reg.php?nn="+nickname+"&n="+name+"&e="+email+"&p="+pass,true);
-								xmlhttp.send();	
+					//SEND REGISTER DATA BY AJAX
+					var xmlhttp;
+					if (window.XMLHttpRequest)
+					  {// code for IE7+, Firefox, Chrome, Opera, Safari
+					  xmlhttp=new XMLHttpRequest();
+					  }
+					else
+					  {// code for IE6, IE5
+					  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					  }
+					xmlhttp.onreadystatechange=function()
+					  {
+					  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+						{
+							if(xmlhttp.responseText == 'exists'){
+								document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Sorry, the E-Mail already exists</p></div>';
+							}else{
+								if(xmlhttp.responseText == 'nickexists'){
+									document.getElementById("register_pop").innerHTML='<div class="message_box error_m in_pop"><p>Sorry, the User Name you choosed already exists. Please select another</p></div>';
+								}else{
+									$(".data_pop").html(xmlhttp.responseText);
+										mixpanel.track("New user Validation");
+								}
 							}
 						}
-					}
+					  }
+					xmlhttp.open("GET","ajax_reg.php?nn="+nickname+"&n="+name+"&e="+email+"&p="+pass,true);
+					xmlhttp.send();	
 				}
 			}
 		}
@@ -580,12 +674,14 @@ function sendRegister(){
 		sendRegister();
 	});
 
-	
+/* Comentado por las validaciones.
+
 	jQuery('.overlay_register').find( "input" ).keypress(function (e) {
 		if (e.keyCode == 13) {
 			sendRegister();
 		}
-	});	
+	});
+*/	
 	
 	jQuery('.overlay_login').find( "input" ).keypress(function (e) {
 		if (e.keyCode == 13) {
@@ -662,7 +758,7 @@ function sendRegister(){
 						}
 					}
 			  	};
-				xmlhttp.open("GET","php-stubs/get_user.php?username="+$w_value,false);
+				xmlhttp.open("GET","ajax_reg.php?reg_action=check_user&username="+$w_value,false);
 				xmlhttp.send();
 
 			}
@@ -695,7 +791,7 @@ function sendRegister(){
 							}
 						}
 				  	};
-					xmlhttp.open("GET","php-stubs/get_mail.php?email="+$w_value,false);
+					xmlhttp.open("GET","ajax_reg.php?reg_action=check_email&email="+$w_value,false);
 					xmlhttp.send();
 					
 					//type_val = "ok";
@@ -750,7 +846,7 @@ function sendRegister(){
 			$elemp.fadeIn();
 			elempos = $elemp.offset();
 			$ballon.fadeIn();
-			$(".ballon").css({"left" : elempos.left+"px" , "top": + elempos.top});
+			$(".ballon").css({"left" : elempos.left+"px" , "top": + elempos.top - $(".overlay_register").offset().top});
 			$ballon.text(message);
 		
 		}else{
@@ -786,7 +882,7 @@ function sendRegister(){
 			}
 		}
 	});
-	
+
 	jQuery('.remove-blog-post').click(function(e){
 		if($('#post_id').length > 0){
 			id = $('#post_id').val();	
@@ -814,7 +910,67 @@ function sendRegister(){
 	
 	/*End Blog ----------------------------------------------------------------------------------------------------------------------------------------------*/
 	
+	/*Pages--------------------------------------------------------------------------------------------------------------------------------------------------*/
+	jQuery('.udpagedata').click(function(e){
+		e.preventDefault();
+		title = $('#title').val();
+		privacy = $('#privacy').val();
+		if(title == ''){
+			showMessage('Error', 'Please complete the title of the page');
+		}else{
+			if (privacy == ''){
+				showMessage('Error', 'Please select a privacy');
+			}else{
+			document.getElementById("form1").submit();
+			}
+		}
+	});
+	
 
+	
+	jQuery('.remove-static-page').click(function(e){
+		if($('#page_id').length > 0){
+			id = $('#page_id').val();	
+		}else{
+			obj = e.target;
+			id = $(obj).data('id');
+		}
+		
+		confirmMessage('Manage Static Pages','Are you sure?', function(){
+			$.ajax({
+				url : 'ajax_del_page.php',
+				type: 'POST',
+				data: 'id='+id,
+				cache : false,
+				success : function(response){
+					if(response == 'success'){
+						window.location.href="manager_pages.php";
+					}else{
+						showMessage('ERROR', "An error has occurred or you have not enough privileges");		        		
+					}
+				}
+			});		
+		});		
+	});
+	/*End pages ----------------------------------------------------------------------------------------------------------------------------------------------*/
+	
+	//Delete profile
+	jQuery('.deluserdata').click(function(e){
+		confirmMessage('Delete Account','Are you sure you want to delete your account?', function(){
+			$.ajax({
+				url : 'ajax_del_profile.php',
+				type: 'GET',
+				cache : false,
+				success : function(response){
+					if (response == 'SUCCESS'){
+						showMessage('SEND MAIL', "We sent you an email to confirm the deletion of your account. To confirm this action click on the link in that email, otherwise ignore and nothing will happend.");
+					}
+				}
+			});
+		});
+	});
+	
+	
 	jQuery('.uduserdata').click(function(){
 		document.getElementById("mensajes").innerHTML = '';
 		ud_username = document.getElementById('ud_username').value;
@@ -904,7 +1060,7 @@ function sendRegister(){
 							}	
 						}
 					  }
-					xmlhttp.open("GET","udpwd.php?ud_password="+ud_password,true);
+					xmlhttp.open("GET","udpwd.php?h="+$('#h').val() + "&ud_password="+ud_password,true);
 					xmlhttp.send();			
 				}
 			}
