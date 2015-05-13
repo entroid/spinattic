@@ -4535,6 +4535,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   border-width: 7px;
   top: 7px;
   right: -14px; }
+#tooltip.aside.help {
+  margin-left: -240px; }
 #tooltip.hotSpots {
   margin-left: -94px; }
 #tooltip.viewSettings {

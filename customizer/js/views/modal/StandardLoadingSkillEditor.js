@@ -27,7 +27,6 @@ define([
 
             var myid = this.myid;
             var tourSkill = this.model.get("tourSkill");
-            console.log(tourSkill)
             var template = _.template(standardLoadingProgress,{tourSkill:tourSkill})
 
             $("#"+myid+" .inner-modal").html(template);
@@ -40,9 +39,16 @@ define([
             });
 
             var helpFunctions = new HelpFunctions();
-            helpFunctions.dropDown(".dropdown");
-            $('#loading-bar-back-bgcolor').colorpicker();
-            $('#loading-bar-bar-bgcolor').colorpicker();
+            helpFunctions.dropDown("#"+myid+" .dropdown");
+            helpFunctions.nineGrillSelector("#"+myid+" .position"); 
+
+            $('#backcolor').colorpicker();
+            $('#loadcolor').colorpicker();
+            $('#decodecolor').colorpicker();
+            $('#bordercolor').colorpicker();
+            $('#glowcolor').colorpicker();
+            $('#looping-color').colorpicker();
+            $('#looping-glowcolor').colorpicker();
             
         },
 

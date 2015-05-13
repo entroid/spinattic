@@ -3,7 +3,7 @@
         <div class="inner-modal-wrapper">
             <div class="editor-group-2col">
                 <div class="line-group">
-                    <label for="chooseBarDD">Choose:</label>
+                    <label for="chooseBarDD">Choose loader type:</label>
                     <div title="chooseBarDD" id="chooseBarDD" class="dropdown dd-upload right-el">
                         <h2><span class="title">Bar</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
                         <ul>
@@ -17,18 +17,55 @@
             <div class="layer-top bar">
                 <div class="editor-group-2col">
                     <div class="line-group">
-                        <label for="logo-skill-x">Offset:</label>
-                        <input type="number" id="logo-skill-x" value="" >
+                        <label class="standardLoading-skill-position" for="standardLoading-skill-align">Origin:</label>
+                        <div class="position" id="standardLoading-skill-align">
+                            <span class="fa fa-circle" data-pos="topleft"></span>
+                            <span class="fa fa-circle" data-pos="top"></span>
+                            <span class="fa fa-circle" data-pos="topright"></span>
+                            <span class="fa fa-circle" data-pos="left"></span>
+                            <span class="fa fa-circle" data-pos="center"></span>
+                            <span class="fa fa-circle" data-pos="right"></span>
+                            <span class="fa fa-circle" data-pos="bottomleft"></span>
+                            <span class="fa fa-circle" data-pos="bottom"></span>
+                            <span class="fa fa-circle" data-pos="bottomright"></span>
+                        </div>
                     </div>
-                        
+                </div>
+
+                <div class="editor-group-2col">
                     <div class="line-group">
-                        <label for="logo-skill-x">Width:</label>
-                        <input type="number" id="logo-skill-y" value="" >
+                        <label for="widthSLP">Width:</label>
+                        <input type="number" min="10" id="widthSLP" value="" >
+                        <div title="unitsW" id="unitsW" class="dropdown right-el unitsDD">
+                            <h2><span class="title">px</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                            <ul>
+                                <li data-value="px">px</li>
+                                <li data-value="percent">%</li> 
+                            </ul>
+                        </div>
                     </div>
-                        
+
                     <div class="line-group">
-                        <label for="logo-skill-zorder">Height:</label>
-                        <input type="number" id="logo-skill-zorder" value="" >
+                        <label for="heightSLP">Height:</label>
+                        <input type="number" min="10" id="heightSLP" value="" >
+                        <div title="unitsH" id="unitsH" class="dropdown right-el unitsDD">
+                            <h2><span class="title">px</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                            <ul>
+                                <li data-value="px">px</li>
+                                <li data-value="percent">%</li> 
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="line-group">
+                        <label for="styleSLP">Style:</label>
+                        <div title="styleSLP" id="styleSLP" class="dropdown right-el">
+                            <h2><span class="title">solid</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                            <ul>
+                                <li data-value="solid">solid</li>
+                                <li data-value="shaded">shaded</li> 
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -36,31 +73,90 @@
                 
                 <div class="editor-group-2col">
                     <div class="line-group">
-                        <label for="loading-bar-back-bgcolor">Background color:</label>
-                        <input type="text" id="loading-bar-back-bgcolor" value="" >
+                        <label for="backcolor">Backcolor:</label>
+                        <input type="text" id="backcolor" value="" >
                     </div>
                     <div class="line-group">
-                        <label for="logo-skill-zorder">Background alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="" >
-                    </div>
-                </div>
-
-                <!--<h2 class="title-banner">Bar:</h2>-->
-                <div class="editor-group-2col">
-                    <div class="line-group">
-                        <label for="loading-bar-bar-bgcolor">Bar color: (aca va color picker)</label>
-                        <input type="text" id="loading-bar-bar-bgcolor" value="" >
+                        <label for="loadcolor">Loadcolor:</label>
+                        <input type="text" id="loadcolor" value="" >
                     </div>
                     <div class="line-group">
-                        <label for="logo-skill-zorder">Bar alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="" >
+                        <label for="decodecolor">Decodecolor:</label>
+                        <input type="text" id="decodecolor" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="bordercolor">Bordercolor:</label>
+                        <input type="text" id="bordercolor" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="borderwidth">Borderwidth:</label>
+                        <input type="number" id="borderwidth" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="glowcolor">Glowcolor:</label>
+                        <input type="text" id="glowcolor" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="glowwidth">Glowwidth:</label>
+                        <input type="number" id="glowwidth" value="" >
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="layer-top looping none">
-            looping
-        </div>
+            <div class="layer-top looping none">
+                <div class="editor-group-2col">
+                    <div class="line-group">
+                        <label for="looping-color">Color:</label>
+                        <input type="text"  id="looping-color" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-points">Points:</label>
+                        <input type="number" min="2" max="30" id="looping-points" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-size">Size:</label>
+                        <input type="number" min="2" max="30" id="looping-size" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-bigpoint">Bigpoint:</label>
+                        <input type="number" min="0" id="looping-bigpoint" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-smallpoint">Smallpoint:</label>
+                        <input type="number" min="0" id="looping-smallpoint" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-glowcolor">Glowcolor:</label>
+                        <input type="text" id="looping-glowcolor" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-glowwidth">Glowwidth:</label>
+                        <input type="number" min="0" max="20" id="looping-glowwidth" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-xpos">Xpos:</label>
+                        <input type="number" id="looping-xpos" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label for="looping-ypos">Ypos:</label>
+                        <input type="number" id="looping-ypos" value="" >
+                    </div>
+                    <div class="line-group">
+                        <label class="standardLoading-skill-position" for="standardLoading-skill-align">Align:</label>
+                        <div class="position" id="standardLoading-skill-align">
+                            <span class="fa fa-circle" data-pos="topleft"></span>
+                            <span class="fa fa-circle" data-pos="top"></span>
+                            <span class="fa fa-circle" data-pos="topright"></span>
+                            <span class="fa fa-circle" data-pos="left"></span>
+                            <span class="fa fa-circle" data-pos="center"></span>
+                            <span class="fa fa-circle" data-pos="right"></span>
+                            <span class="fa fa-circle" data-pos="bottomleft"></span>
+                            <span class="fa fa-circle" data-pos="bottom"></span>
+                            <span class="fa fa-circle" data-pos="bottomright"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
 </div>
