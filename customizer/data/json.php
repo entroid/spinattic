@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 //require_once("inc/auth.inc");
 //require_once("../../inc/conex.inc");
@@ -111,7 +111,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$allow_embed = $row["allow_embed"];
 					$allow_votes = $row["allow_votes"];
 					$privacy = $row["privacy"];
-					$friendlyURL = $row["friendlyURL"];
+					$friendlyURL = $row["friendly_url"];
 					$likes = $row["likes"];
 					$views = $row["views"];
 					$comments = $row["comments"];

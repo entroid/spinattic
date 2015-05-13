@@ -16,13 +16,13 @@
 
                         <label for="friendlyURLTour">Frienly URL: <sub>(A-Z a-z 0-9)</sub></label>
                         <span class="friendlyURL">http://spinattic.com/username/tourname?</span>
-                        <input type="text" name="friendlyURLTour" id="friendlyURLTour" value="<%= data.settings._name %>" class="friendlyURL tour-data" data-obj="settings" data-bind="_name">
+                        <input type="text" name="friendlyURLTour" id="friendlyURLTour" value="<%= data.datatour.friendlyURL %>" class="friendlyURL" >
 
                         <label for="tour-description">Tour Description</label>
                         <textarea name="tour-description" id="tour-description" class="tour-data" cols="30" rows="10" data-obj="settings" data-bind="_description"><%= data.settings._description %></textarea>
 
                         <label for="tagsTour"><span class="fa fa-tags fa-lg"></span>Tags</label>
-                        <input type="text" value="" id="tagsTour" name="tagsTour">
+                        <input type="text" value="<%= data.datatour.tags %>" id="tagsTour" name="tagsTour">
                         <div id="toAppendTags"></div>
                         <label for="Category"><span class="fa fa-list-ul fa-lg"></span> Category</label>
                         <div name="Category" id="Category" class="dropdown dd-settingmenu">
@@ -45,10 +45,10 @@
                         </div>
 
                         <ul class="check-group">
-                            <li><span class="fa fa-check-square fa-lg" id="allow_comments"></span> Allow Comments</li>
-                            <li><span class="fa fa-check-square fa-lg" id="allow_social"></span> Allow Social Sharing</li>
-                            <li><span class="fa fa-check-square fa-lg" id="allow_embed"></span> Allow Embed Code</li>
-                            <li><span class="fa fa-check-square fa-lg" id="allow_votes"></span> Allow User Votes</li>
+                            <li><span class="fa fa-<%if( data.datatour.allow_comments == "on"){%>check-<%}%>square fa-lg" id="allow_comments"></span> Allow Comments</li>
+                            <li><span class="fa fa-<%if( data.datatour.allow_social == "on"){%>check-<%}%>square fa-lg" id="allow_social"></span> Allow Social Sharing</li>
+                            <li><span class="fa fa-<%if( data.datatour.allow_embed == "on"){%>check-<%}%>square fa-lg" id="allow_embed"></span> Allow Embed Code</li>
+                            <li><span class="fa fa-<%if( data.datatour.allow_votes == "on"){%>check-<%}%>square fa-lg" id="allow_votes"></span> Allow User Votes</li>
                         </ul>
                     </div>
                 </li>
@@ -82,10 +82,18 @@
                             <label for="mouseType"><span class="help fa fa-question-circle"></span> Mouse Type</label>
                             <div class="absoluteRight ">
                                 <div title="Mouse" id="Mouse" class="dropdown dd-settingmenu">
-                                    <h2><span class="title"><%= data.control._mousetype %></span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
+                                        <%
+                                            var textToShow;
+                                            _.each(data.mousetypes,function(elem,ind){ 
+                                                if(elem.value == data.control._mousetype){
+                                                    textToShow = elem.label;
+                                                }
+                                         })%>
+                                    <h2><span class="title"><%= textToShow %></span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
                                     <ul>
-                                        <li data-value="op1"><span>MoveTo</span></li>
-                                        <li data-value="op2"><span>op2</span></li>
+                                        <%_.each(data.mousetypes,function(elem,ind){ %>
+                                                <li data-value="<%=elem.value%>" data-obj="control" data-bind="_mousetype"><%=elem.label%></li>
+                                        <% })%>
                                     </ul>
                                 </div>
                             </div>
@@ -95,8 +103,8 @@
                             <label for="zoomToCursor"><span class="help fa fa-question-circle"></span> Zoom to Cursor</label>
                             <input type="hidden" name="zoomToCursor" id="zoomToCursor">
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox tour-data" data-obj="control" data-bind="_zoomtocursor" id="myonoffswitch1" <% if(data.control._zoomtocursor == "true"){ %>checked <%}%>>
-                                <label class="onoffswitch-label" for="myonoffswitch1">
+                                <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox mouse-autorotate" data-obj="control" data-bind="_zoomtocursor" id="zoomtocursor" <% if(data.control._zoomtocursor == "true"){ %>checked <%}%>>
+                                <label class="onoffswitch-label" for="zoomtocursor">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
                                 </label>
@@ -107,9 +115,9 @@
                             <label for="zoomoutCursor"><span class="help fa fa-question-circle"></span> Zoom out cursor</label>
                             <input type="hidden" name="zoomoutCursor" id="zoomoutCursor">
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox tour-data" data-obj="control" data-bind="_zoomoutcursor"  id="myonoffswitch2" <% if(data.control._zoomoutcursor == "true"){ %>checked <%}%>>
+                                <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox mouse-autorotate" data-obj="control" data-bind="_zoomoutcursor"  id="zoomoutcursor" <% if(data.control._zoomoutcursor == "true"){ %>checked <%}%>>
                                 
-                                <label class="onoffswitch-label" for="myonoffswitch2">
+                                <label class="onoffswitch-label" for="zoomoutcursor">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
                                 </label>
@@ -156,7 +164,7 @@
                         <div class="input-row positionRelative">
                             <label for="enabledautorotate"><span class="help fa fa-question-circle"></span> Enabled</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox tour-data" id="myonoffswitch3" <% if(data.autorotate._enabled == "true"){ %>checked <%}%> data-obj="control" data-bind="_enabled">
+                                <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox mouse-autorotate" id="myonoffswitch3" <% if(data.autorotate._enabled == "true"){ %>checked <%}%> data-obj="autorotate" data-bind="_enabled">
 
                                 <label class="onoffswitch-label" for="myonoffswitch3">
                                     <span class="onoffswitch-inner"></span>
