@@ -28,8 +28,10 @@ define([
 
 		  var inputs = "keyup #virtualTourSettings-menu .tour-data";
 		  var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
+		  var friendURl = "keyup #virtualTourSettings-menu #friendlyURLTour";
 		  this.events[inputs] = 'insertData';
 		  this.events[inputsChange] = 'insertData';
+		  this.events[friendURl] = 'saveFriendURL';
 
 		  var onoff = 'change .autorotate-settings .switchInput input[type="checkbox"]'
 		  this.events[onoff] = 'onOffSwitch'
@@ -43,17 +45,47 @@ define([
 		  var liddEvent = "click  #virtualTourSettings-menu .general-settings .dropdown li";
 		  this.events[liddEvent] = "saveDD";
 
+
+		  var liddEventM = "click  #virtualTourSettings-menu .mouse-control-settings .dropdown li";
+		  this.events[liddEventM] = "saveDDMouse";
+
+		  var mouseSettings = 'change input[type="checkbox"].mouse-autorotate'
+		  this.events[mouseSettings] = 'mouseSettingsChecks'
+
 		  this.delegateEvents();
 		  
 		},
 
 		render: function(){
+			var mousetypes = [
+					{
+						label:"Move to",
+						value:"moveto"
+					},
+					{
+						label:"Drag 2D",
+						value:"drag2d"
+					},
+					{
+						label:"Smooth Drag 2D",
+						value:"drag2dsmooth"
+					},
+					{
+						label:"Drag 3D",
+						value:"drag3d"
+					},
+				]
+
 			var data = {
 
 				settings:tourData.krpano.settings,
 				autorotate:tourData.krpano.autorotate,
 				control:tourData.krpano.control,
+				datatour:tourData.krpano.datatour,
+				mousetypes:mousetypes
 			}
+
+			
 			var compiledTemplate = _.template(virtualTourSettingsMenu,{data:data});
 			$(this.el).append( compiledTemplate ); 
 			var elem = this.model.get("elem");
@@ -92,34 +124,27 @@ define([
 			'defaultText':'add a tag',
 			onChange: function(elem, elem_tags)
 			{
-				console.log("a")
-			    /*   var languages = ['php','ruby','javascript'];
-			    $('.tag', elem_tags).each(function()
-			    {
-			            if($(this).text().search(new RegExp('\\b(' + languages.join('|') + ')\\b')) >= 0)
-			                    $(this).css('background-color', 'yellow');
-			    });*/
-
-			//console.log($(this).val());
+				var manageData = new ManageData();
+				manageData.saveTourData("tags",$("#tagsTour").val())
 			},
-			onRemoveTag: function(elem, elem_tags)
-			{
+			autocomplete_url:'../php-stubs/tags.php', // jquery ui autocomplete requires a json endpoint
+			autocomplete:{appendTo:"#toAppendTags",
 
-			},                            
-			autocomplete_url:'../php-stubs/tags.json', // jquery ui autocomplete requires a json endpoint
-			autocomplete:{appendTo:"#toAppendTags",open:function(){
-
-					$("#toAppendTags .ui-widget-content").mCustomScrollbar({
+					open:function(){
+						$("#toAppendTags .ui-widget-content").mCustomScrollbar({
 							theme:"minimal-dark",
 							scrollInertia:300,
 							});
-				},
-				close:function(){
-					$("#toAppendTags .ui-widget-content").mCustomScrollbar("destroy")
+					},
+					response:function(){
+						$("#toAppendTags .ui-widget-content").mCustomScrollbar("destroy")
+					},
+					close:function(){
+						$("#toAppendTags .ui-widget-content").mCustomScrollbar("destroy")
+						}
 					}
-				}
 			});
-		   
+	
 		},
 
 		openSubItems:function(e){
@@ -160,9 +185,16 @@ define([
 
 		insertData:function(e){
 
+			var selectedInput = e.target;
+			var krpano = document.getElementById("krpanoSWFObject");
+			var myprop = $(selectedInput).data("bind");
+			myprop = myprop.replace("_","")
+			var dataobj = $(selectedInput).data("obj"); 
+			krpano.set(dataobj+"."+myprop,$(selectedInput).val());
+			
 			var manageData = new ManageData();
 			manageData.saveSettings(e);
-		
+			
 		},
 
 		onOffSwitch: function(e) {
@@ -203,6 +235,33 @@ define([
 		saveDD:function(e){
 			var manageData = new ManageData();
 			manageData.saveTourData($(e.target).parent().attr("class"),$(e.target).text())
+		},
+
+		saveDDMouse:function(e){
+			var manageData = new ManageData();
+			manageData.saveSettings(e);
+		},
+
+		saveFriendURL:function(e){
+			var manageData = new ManageData();
+			manageData.saveTourData("friendlyURL",$("#friendlyURLTour").val())
+		},
+
+		mouseSettingsChecks:function(e){
+			var selectedInput = e.target;
+			var krpano = document.getElementById("krpanoSWFObject");
+			var myprop = $(selectedInput).data("bind");
+			myprop = myprop.replace("_","")
+			var dataobj = $(selectedInput).data("obj"); 
+			if ($(selectedInput).prop( 'checked' )) {
+				krpano.set(dataobj+"."+myprop, "true");
+			}else{
+				krpano.set(dataobj+"."+myprop, "false");
+			}
+
+			var manageData = new ManageData();
+			manageData.saveSettings(e);
+
 		}
 
 

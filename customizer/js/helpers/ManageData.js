@@ -124,12 +124,25 @@ define([
 			},
 
 			this.saveSettings = function(e){
-				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=$(e.target).val();
+				if($(e.target).attr("type") == "checkbox"){
+					if($(e.target).is(":checked")){
+						valueToInsert = "true";
+					}else{
+						valueToInsert ="false";
+					}
+				}else if($(e.target).prop("tagName") == "LI"){
+					valueToInsert = $(e.target).data("value")
+				}else{
+					valueToInsert = $(e.target).val()
+				}
+				
+				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=valueToInsert;
 				this.saveServer();
 			},
 
 			this.saveTourData = function(elem,val){
 				tourData.krpano.datatour[elem] = val;
+				this.saveServer();
 			}
 
 			this.pushSkill = function(skill,callback){
