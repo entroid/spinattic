@@ -23,14 +23,14 @@ define([
                     }).show();
                 }                
             }
+
+            if(!$("#tooltip").length){
+                $("body").append('<div id="tooltip"><span class="txt">text</span><span class="arrow"></span></div>')
+            }
+
+            $tooltip = $("#tooltip"); 
             
-            $(obj).mouseenter(function(event){
-
-                if(!$("#tooltip").length){
-                    $("body").append('<div id="tooltip"><span class="txt">text</span><span class="arrow"></span></div>')
-                }
-
-                $tooltip = $("#tooltip");       
+            $(obj).mouseenter(function(event){                      
                 el = $(event.target);
                 text = $(el).attr("title");
 
@@ -83,6 +83,43 @@ define([
                 $tooltip.removeClass().find('.arrow').attr('style', '');
                 $(el).attr("title",text);
             });
+        }
+
+        this.toolTipHtml = function(obj,myclass){
+            var el, text, $tooltip;
+
+            if(!$("#tooltip").length){
+                $("body").append('<div id="tooltip"><span class="txt">text</span><span class="arrow"></span></div>')
+            }
+
+            $tooltip = $("#tooltip"); 
+
+            $(obj).mouseenter(function(event){ 
+                el = $(event.target);
+
+                var eleOffset = $(el).offset(),            
+                    elWidth = $(el).outerWidth(),
+                    ttWidth,
+                    leftP,
+                    rightP,
+                    arrowRightP;
+
+                var text = $(el).siblings('.tooltipHtml').html();                
+                $tooltip.addClass(myclass).find('.txt').html(text);
+
+                ttWidth = $tooltip.outerWidth();
+                leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;
+                rightP =  ($(window).width() - (eleOffset.left + elWidth)) + (elWidth - ttWidth) / 2;
+                arrowRightP = ($(window).width() - (eleOffset.left + elWidth/2));
+
+                $tooltip.css({
+                        left: leftP,
+                        top: eleOffset.top
+                    }).show();
+
+            }).mouseleave( function( event ){
+                $tooltip.attr("style","").hide().removeClass();
+            })
         }
 
         this.capitaliseFirstLetter = function(string){

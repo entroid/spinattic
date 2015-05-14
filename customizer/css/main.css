@@ -3370,8 +3370,7 @@ textarea {
 .pano-date {
   font-size: 1.1em;
   font-style: italic;
-  line-height: 1.2em; }
-.pano-date span {
+  line-height: 1.2em;
   font-weight: normal; }
 
 .title-banner {
@@ -4496,7 +4495,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   text-align: center;
   padding: 15px 30px;
   font-weight: bold;
-  z-index: 4; }
+  z-index: 10000;
+  display: none; }
 #tooltip .arrow {
   position: absolute;
   display: block;
@@ -4557,6 +4557,16 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 50px; }
 #tooltip.open-live-tour-tt {
   margin-top: 40px; }
+#tooltip.panoManager {
+  margin-top: -100px;
+  text-align: left;
+  /*margin-left:-4px;*/ }
+#tooltip.panoManager .arrow {
+  border-color: #FFF transparent transparent transparent;
+  border-width: 8px;
+  margin-left: -8px;
+  left: 50%;
+  bottom: -16px; }
 
 .bluring {
   -webkit-filter: blur(2px);
@@ -5105,6 +5115,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   overflow: hidden;
   padding: 5px;
   font-size: .75em; }
+.overlay #panoManager .selected-panos .pano-data {
+  display: none; }
 .overlay #mapModal {
   width: 650px; }
 .overlay #mapModal .fa-close {

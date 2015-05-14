@@ -6,7 +6,8 @@
     text-align:center;
     padding:15px 30px;
     font-weight:bold;
-    z-index:4;
+    z-index:10000;
+    display: none;
 
     .arrow{
         position: absolute;
@@ -96,6 +97,20 @@
 
     &.open-live-tour-tt{
         margin-top:40px;        
+    }
+
+    &.panoManager{
+        margin-top:-100px;
+        text-align: left; 
+        /*margin-left:-4px;*/ 
+
+        .arrow{            
+            border-color: #FFF transparent transparent transparent;            
+            border-width: 8px;
+            margin-left: -8px; 
+            left: 50%;
+            bottom: -16px;
+        }
     }
 }
 

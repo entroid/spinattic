@@ -794,6 +794,12 @@
                 }
             }
         }
+
+        .selected-panos{
+            .pano-data{
+                display: none;
+            }
+        }
     }
 
     #mapModal{
