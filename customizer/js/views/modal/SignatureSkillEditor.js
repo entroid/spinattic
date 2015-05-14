@@ -21,7 +21,9 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click .skillModal #Context-menu-finish":"doneEdition"
+			"click .skillModal #Context-menu-finish":"doneEdition",
+			"click #signature-skill-align .selected":"alignSignature",
+			"change .signature-skill-editor input":"changeVal"
 		},
 		
 		renderExtend:function(){
@@ -54,11 +56,33 @@ define([
 			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
 			
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
-			singleUploader.render();
+			singleUploader.render(function(){
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.set("plugin["+tourSkill.plugin._name+"].url",$("#signature-skill-editor-img").data("imgsrc"));
+			});
 
 		},
 
-	
+		alignSignature:function(e){
+
+			var tourSkill = this.model.get("tourSkill");
+			var pos = $(e.target).data("pos");
+			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.set("plugin["+tourSkill.plugin._name+"].align",pos);
+
+		},
+
+		changeVal:function(e){
+			var tourSkill = this.model.get("tourSkill");
+			var nuval =  $(e.target).val();
+			var krpano = document.getElementById("krpanoSWFObject");
+			if($(e.target).data("prop") == "onclick"){
+				krpano.set("plugin["+tourSkill.plugin._name+"]."+$(e.target).data("prop"), "openurl("+nuval+",_blank);");
+			}else{
+				krpano.set("plugin["+tourSkill.plugin._name+"]."+$(e.target).data("prop"), nuval);
+			}
+		},
+
 		doneEdition:function(e){
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
@@ -72,14 +96,6 @@ define([
 			tourSkill.plugin._onclick = "openurl("+$("#signature-skill-linkto").val()+",_blank);";
 			tourSkill.plugin._align = $("#signature-skill-align .selected").data("pos")
 			tourSkill.plugin._alpha = $("#signature-skill-alpha").val();
-
-			var krpano = document.getElementById("krpanoSWFObject");
-			krpano.set("plugin["+tourSkill.plugin._name+"].align",tourSkill.plugin._align);
-			krpano.set("plugin["+tourSkill.plugin._name+"].onclick",tourSkill.plugin._onclick);
-			krpano.set("plugin["+tourSkill.plugin._name+"].zorder",tourSkill.plugin._zorder);
-			krpano.set("plugin["+tourSkill.plugin._name+"].x",tourSkill.plugin._x);
-			krpano.set("plugin["+tourSkill.plugin._name+"].y",tourSkill.plugin._y);
-			krpano.set("plugin["+tourSkill.plugin._name+"].url",tourSkill.plugin._url);
 
 			var manageData = new ManageData();
 			manageData.editSkill(tourSkill)

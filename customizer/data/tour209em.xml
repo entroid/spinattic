@@ -110,10 +110,8 @@
 			<!-- SKILLS -->
 			
 				
-				<contextmenu fullscreen="true">
-				<item caption="Spinattic.com" name="signature" onclick="openurl(http://www.spinattic.com,_blank);"></item>
-				<item caption="Spinattic.com" name="signature2" onclick="openurl(http://www.spinattic.com,_blank);"></item>
-		</contextmenu>
+				<plugin align="topleft" keep="true" name="skill_logo" onclick="openurl(http://www.spinattic.com,_blank);" parent="" url="../graphics/logo.png" x="10" y="10" zorder="100"></plugin>
+		
 		
 				
 				

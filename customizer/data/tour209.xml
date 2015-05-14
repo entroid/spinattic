@@ -112,11 +112,8 @@
 		</scene>
 			<!-- SKILLS -->
 			
-				<skill template_id="1" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Context Menu">
-				<contextmenu template_id="1" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Context Menu" fullscreen="true">
-				<item template_id="1" tag_ident="3" prev_tag_ident="2" segment="SKILLS" kind="Context Menu" caption="Spinattic.com" name="signature" onclick="openurl(http://www.spinattic.com,_blank);"></item>
-				
-		</contextmenu>
+				<skill template_id="3" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Logo">
+				<plugin template_id="3" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Logo" align="topleft" keep="true" name="skill_logo" onclick="openurl(http://www.spinattic.com,_blank);" parent="" url="http://dev.spinattic.com/styles/skills/logo.png" x="10" y="10" zorder="100"></plugin>
 		</skill>
 				
 				<skill template_id="4" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Signature">
