@@ -19,17 +19,35 @@
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="logo-skill-x">Offset:</label>
-                        <input type="number" id="logo-skill-x" value="<%=tourSkill.layer._y %>" >
+                        <input type="number" id="logo-skill-x" value="<%=tourSkill.layer._y %>" data-name="<%=tourSkill.layer._name%>" data-prop="y" >
                     </div>
                         
                     <div class="line-group">
                         <label for="logo-skill-x">Width:</label>
-                        <input type="number" id="logo-skill-y" value="<%=tourSkill.layer._width%>" >
+                        <%
+                        var unit;
+                        var cleanNumber;
+                        if(tourSkill.layer._width.slice(-1) == "%"){
+                            unit = "%";
+                            cleanNumber = tourSkill.layer._width.replace("%","");
+                        }else{
+                            unit = "px";
+                            cleanNumber = tourSkill.layer._width;
+                        }
+                        %>
+                        <input type="number" id="logo-skill-y" value="<%=cleanNumber%>" data-name="<%=tourSkill.layer._name%>" data-prop="height">
+                        <div title="unitsWloading" id="unitsWloading" class="dropdown right-el unitsDD" style="margin-left:65px;">
+                            <h2><span class="title"><%=unit%></span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                            <ul>
+                                <li data-value="px">px</li>
+                                <li data-value="percent">%</li> 
+                            </ul>
+                        </div>
                     </div>
                         
                     <div class="line-group">
                         <label for="logo-skill-zorder">Height:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._height%>" >
+                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._height%>" data-name="<%=tourSkill.layer._name%>" data-prop="height">
                     </div>
                 </div>
 
@@ -38,23 +56,23 @@
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="loading-bar-back-bgcolor">Background color:</label>
-                        <input type="text" id="loading-bar-back-bgcolor" value="<%=tourSkill.layer._bgcolor.replace('0x','')%>" >
+                        <input type="text" class="colorpicker" id="loading-bar-back-bgcolor" value="<%=tourSkill.layer._bgcolor.replace('0x','')%>" data-name="<%=tourSkill.layer._name%>" data-prop="bgcolor">
                     </div>
                     <div class="line-group">
                         <label for="logo-skill-zorder">Background alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._bgalpha%>" >
+                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer._bgalpha%>" data-name="<%=tourSkill.layer._name%>" data-prop="bgalpha" >
                     </div>
                 </div>
 
                 <!--<h2 class="title-banner">Bar:</h2>-->
                 <div class="editor-group-2col">
                     <div class="line-group">
-                        <label for="loading-bar-bar-bgcolor">Bar color: (aca va color picker)</label>
-                        <input type="text" id="loading-bar-bar-bgcolor" value="<%=tourSkill.layer.layer.layer._bgcolor.replace('0x','')%>" >
+                        <label for="loading-bar-bar-bgcolor">Bar color: </label>
+                        <input type="text" id="loading-bar-bar-bgcolor" class="colorpicker" value="<%=tourSkill.layer.layer.layer._bgcolor.replace('0x','')%>" data-name="<%=tourSkill.layer.layer.layer._name%>" data-prop="bgcolor">
                     </div>
                     <div class="line-group">
                         <label for="logo-skill-zorder">Bar alpha:</label>
-                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer.layer.layer._bgalpha%>" >
+                        <input type="number" id="logo-skill-zorder" value="<%=tourSkill.layer.layer.layer._bgalpha%>" data-name="<%=tourSkill.layer.layer.layer._name%>" data-prop="bgalpha">
                     </div>
                 </div>
             </div>

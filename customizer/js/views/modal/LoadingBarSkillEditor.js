@@ -19,7 +19,9 @@ define([
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			"click .skillModal #Context-menu-finish":"doneEdition"
+			"click .skillModal #Context-menu-finish":"doneEdition",
+			"change .loading-bar-skill-editor input":"changeVal"
+		
 		},
 		
 		renderExtend:function(){
@@ -39,12 +41,24 @@ define([
 
 			var helpFunctions = new HelpFunctions();
             helpFunctions.dropDown(".dropdown");
-            $('#loading-bar-back-bgcolor').colorpicker();
-            $('#loading-bar-bar-bgcolor').colorpicker();
-			console.log(tourSkill)
-			
+            este = this;
+            $('#loading-bar-back-bgcolor, #loading-bar-bar-bgcolor').colorpicker({select:function(ev, colorPicker){
+            	este.setColor(colorPicker,ev)
+            }});
 		},
 
+		setColor:function(colorPicker,ev){
+			var nuval = "0x"+colorPicker.formatted;
+			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.set("layer["+$(ev.target).data("name")+"]."+$(ev.target).data("prop"),nuval);
+
+		},
+		changeVal:function(e){
+			var tourSkill = this.model.get("tourSkill");
+			var nuval =  $(e.target).val();
+			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.set("layer["+$(e.target).data("name")+"]."+$(e.target).data("prop"),nuval);
+		},
 	
 		doneEdition:function(e){
 			var myid = this.myid;

@@ -120,7 +120,25 @@
 				<plugin template_id="4" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Signature" align="topright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="http://dev.spinattic.com/styles/skills/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
 		</skill>
 		
-		
+				<skill template_id="2" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Loading Bar">
+				<progress template_id="2" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Loading Bar" showload="none" showreloads="false" showwait="none"></progress>
+				
+				<events template_id="2" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Loading Bar" keep="true" name="loadingbar" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );" onxmlcomplete="loadingbar_startloading();"></events>
+				
+				<layer template_id="2" tag_ident="4" prev_tag_ident="1" segment="SKILLS" kind="Simple Loading Bar" align="top" bgalpha="0.5" bgcolor="0x000000" enabled="false" height="4" keep="true" name="loadingbar_bg" type="container" visible="false" width="100%" y="0">
+				<layer template_id="2" tag_ident="5" prev_tag_ident="4" segment="SKILLS" kind="Simple Loading Bar" align="left" height="100%" name="loadingbar_space" type="container" width="-1" x="0">
+				<layer template_id="2" tag_ident="6" prev_tag_ident="5" segment="SKILLS" kind="Simple Loading Bar" align="lefttop" bgalpha="1.0" bgcolor="0xd3322a" height="100%" name="loadingbar_fill" type="container" width="0"></layer>
+		</layer>
+		</layer>
+				
+				<action template_id="2" tag_ident="7" prev_tag_ident="1" segment="SKILLS" kind="Simple Loading Bar" name="loadingbar_startloading">
+			set(loadingbar_isloading, true);set(layer[loadingbar_bg].visible, true);asyncloop(loadingbar_isloading,mul(pv, progress.progress, 100);txtadd(pv, '%');copy(layer[loadingbar_fill].width, pv););
+			</action>
+				
+				<action template_id="2" tag_ident="8" prev_tag_ident="1" segment="SKILLS" kind="Simple Loading Bar" name="loadingbar_stoploading">
+			set(loadingbar_isloading,false);set(layer[loadingbar_bg].visible, false);
+			</action>
+		</skill>		
 		
 			<!-- DEFAULT SKILLS -->
 			
