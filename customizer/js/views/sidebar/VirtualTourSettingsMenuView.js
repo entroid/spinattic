@@ -27,9 +27,11 @@ define([
 		  this.events[checkboxesEvent] = 'selectCheckboxes';
 
 		  var inputs = "keyup #virtualTourSettings-menu .tour-data";
+		  var txtarea = "keyup #virtualTourSettings-menu #tour-description";
 		  var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
 		  var friendURl = "keyup #virtualTourSettings-menu #friendlyURLTour";
 		  this.events[inputs] = 'insertData';
+		  this.events[txtarea] = 'saveDDMouse';
 		  this.events[inputsChange] = 'insertData';
 		  this.events[friendURl] = 'saveFriendURL';
 

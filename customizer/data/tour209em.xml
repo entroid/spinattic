@@ -110,15 +110,31 @@
 			<!-- SKILLS -->
 			
 				
-				<contextmenu fullscreen="true">
-				<item caption="Spinattic.com" name="signature" onclick="openurl(http://www.spinattic.com,_blank);"></item>
-				<item caption="Spinattic.com" name="signature2" onclick="openurl(http://www.spinattic.com,_blank);"></item>
-		</contextmenu>
+				<plugin align="topleft" keep="true" name="skill_logo" onclick="openurl(http://www.spinattic.com,_blank);" parent="" url="../graphics/logo.png" x="10" y="10" zorder="100"></plugin>
+		
 		
 				
 				
 				<plugin align="topright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" alpha="0.5" url="graphics/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
 		
+
+				<progress showload="none" showreloads="false" showwait="none"></progress>
+				
+				<events keep="true" name="loadingbar" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );" onxmlcomplete="loadingbar_startloading();"></events>
+				
+				<layer align="top" bgalpha="0.5" bgcolor="0x000000" enabled="false" height="4" keep="true" name="loadingbar_bg" type="container" visible="false" width="100%" y="0">
+				<layer align="left" height="100%" name="loadingbar_space" type="container" width="-1" x="0">
+				<layer align="lefttop" bgalpha="1.0" bgcolor="0xd3322a" height="100%" name="loadingbar_fill" type="container" width="0"></layer>
+		</layer>
+		</layer>
+				
+				<action name="loadingbar_startloading">
+			set(loadingbar_isloading, true);set(layer[loadingbar_bg].visible, true);asyncloop(loadingbar_isloading,mul(pv, progress.progress, 100);txtadd(pv, '%');copy(layer[loadingbar_fill].width, pv););
+			</action>
+				
+				<action name="loadingbar_stoploading">
+			set(loadingbar_isloading,false);set(layer[loadingbar_bg].visible, false);
+			</action>
 		
 			<!-- DEFAULT SKILLS -->
 		
