@@ -8,9 +8,10 @@ define([
 	'views/modal/SingleUploader',
 	'mCustomScrollbar',
 	'jqueryui',
-	'colorpicker'  
+	'colorpicker',
+	'helpers/ManageData'
 
-], function($, _, Backbone,Modal,loadingBarSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar,jqueryui,colorpicker){
+], function($, _, Backbone,Modal,loadingBarSkillEditor,HelpFunctions,SingleUploader, mCustomScrollbar,jqueryui,colorpicker,ManageData){
 
 	var LoadingBarSkillEditor = Modal.extend({
 		
@@ -20,7 +21,9 @@ define([
 		},
 		events:{
 			"click .skillModal #Context-menu-finish":"doneEdition",
-			"change .loading-bar-skill-editor input":"changeVal"
+			"change .loading-bar-skill-editor input":"changeVal",
+			"click #loading-bar-align li":"changeVal",
+			"click #unitsWloading li":"changeUnit"
 		
 		},
 		
@@ -55,33 +58,44 @@ define([
 		},
 		changeVal:function(e){
 			var tourSkill = this.model.get("tourSkill");
-			var nuval =  $(e.target).val();
+			if($(e.target).attr("id") == "loading-bar-width" && $("#unitsWloading h2 .title").text() == "%"){
+				var nuval =  $(e.target).val()+"%";
+			}else if($(e.target).prop("tagName") == "LI"){
+				var nuval = $(e.target).data("value")
+			}else{
+				var nuval =  $(e.target).val();
+			}
 			var krpano = document.getElementById("krpanoSWFObject");
 			krpano.set("layer["+$(e.target).data("name")+"]."+$(e.target).data("prop"),nuval);
+		},
+
+		changeUnit:function(e){
+			console.log("a")
+			var krpano = document.getElementById("krpanoSWFObject");
+			var type = $(e.target).data("value")
+			krpano.set("layer[loadingbar_bg].width",$("#loading-bar-width").val()+type);
 		},
 	
 		doneEdition:function(e){
 			var myid = this.myid;
-			var tourSkill = this.model.get("tourSkill");
+			var mytourSkill = this.model.get("tourSkill");
 			var mytourSkill;
-			/*
-			mytourSkill._url = $("#signature-skill-editor-img").data("imgsrc");
-			mytourSkill._x = $("#signature-skill-x").val();
-			mytourSkill._y = $("#signature-skill-y").val();
-			mytourSkill._zorder = $("#signature-skill-zorder").val();
-			mytourSkill._alpha = $("#signature-skill-alpha").val();
-			mytourSkill._onclick = "openurl("+$("#signature-skill-linkto").val()+",_blank);";
-
-
-			if(tourData.krpano.plugin.length == undefined){
-				tourData.krpano.plugin = mytourSkill;
+			mytourSkill.layer._align = $("#loading-bar-align h2 .title").text().toLowerCase();
+			mytourSkill.layer._y = $("#loading-bar-skill-offset").val();
+			if($("#unitsWloading h2").text() == "%"){
+				var type="%"
 			}else{
-				_.each(tourData.krpano.plugin,function(elem,ind){
-					if(elem._kind == mytourSkill._kind){
-						tourData.krpano.plugin[ind] = mytourSkill;
-					}
-				})
-			}*/
+				var type="";
+			}
+			mytourSkill.layer._width = $("#loading-bar-width").val()+type;
+			mytourSkill.layer._height = $("#loading-bar-skill-height").val();
+			mytourSkill.layer._bgcolor = "0x"+$("#loading-bar-back-bgcolor").val();
+			mytourSkill.layer._bgalpha = $("#loading-bar-skill-alpha").val();
+			mytourSkill.layer.layer.layer._bgcolor = "0x"+$("#loading-bar-bar-bgcolor").val();
+			mytourSkill.layer.layer.layer._bgalpha = $("#loading-bar-bar-alpha").val();
+			
+			var manageData = new ManageData();
+			manageData.editSkill(mytourSkill)
 			this.removeModal(e);
 			this.undelegateEvents();
 		
