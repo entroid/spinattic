@@ -73,7 +73,9 @@ define([
 					
 					krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, showpic() );');
-					$me.find(".hotspotvideo").delay(200).slideUp();
+					$me.find(".hotspotvideo").delay(200).slideUp(function(){
+                       $me.find(".test-mode").fadeIn(); 
+                    });
 					$me.find(".removeHotspot").fadeOut();
 
 				}else{
@@ -84,6 +86,7 @@ define([
 					krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
 					$me.find(".hotspotvideo").delay(200).slideDown();
 					$me.find(".removeHotspot").fadeIn();
+					$me.find(".test-mode").fadeOut();
 				}
 			})
 		},

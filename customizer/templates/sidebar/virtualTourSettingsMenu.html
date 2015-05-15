@@ -92,7 +92,7 @@
                                     <h2><span class="title"><%= textToShow %></span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
                                     <ul>
                                         <%_.each(data.mousetypes,function(elem,ind){ %>
-                                                <li data-value="<%=elem.value%>" data-obj="control" data-bind="_mousetype"><%=elem.label%></li>
+                                                <li data-value="<%=elem.value%>" data-obj="control" data-bind="_mousetype"><span><%=elem.label%></span></li>
                                         <% })%>
                                     </ul>
                                 </div>
@@ -136,7 +136,7 @@
 
                         <div class="input-row positionRelative">
                             <label for="mousefriction"><span class="help fa fa-question-circle"></span> Mouse friction</label>
-                            <input class="absoluteRight tour-data" type="number" name="mousefriction" id="mousefriction" step="0.1" value="<%= data.control._mousefriction %>" data-obj="control" data-bind="_mousefriction">
+                            <input class="absoluteRight tour-data" type="number" name="mousefriction" id="mousefriction" step="0.1" value="<%= data.control._mousefriction %>" min="0.1" max="1" data-obj="control" data-bind="_mousefriction">
                         </div>
 
                         <div class="input-row positionRelative">
@@ -151,7 +151,7 @@
 
                         <div class="input-row positionRelative">
                             <label for="FOVfriction"><span class="help fa fa-question-circle"></span> FOV friction</label>
-                            <input class="absoluteRight tour-data" type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="<%= data.control._fovfriction %>"  data-obj="control" data-bind="_fovfriction">
+                            <input class="absoluteRight tour-data" type="number" name="FOVfriction" id="FOVfriction" step="0.1" value="<%= data.control._fovfriction %>"  min="0.1" max="1" data-obj="control" data-bind="_fovfriction">
                         </div>
                     </div>
                 </li>

@@ -578,12 +578,12 @@
         .onoffswitch-inner{
 
             &:after{
-                content:"EDIT";
+                content:"EDIT MODE";
                 color: $yellow;
             }
 
             &:before{
-                content:"LIVE";
+                content:"TEST MODE";
                 color: $green2;
             }
         }
@@ -1218,6 +1218,24 @@
               }
         }
     }
+}
+
+.test-mode{
+    display: none;
+    width: 75%;
+  float: left;
+  font-size: 1.4rem;
+
+  p{
+    margin-bottom: 10px;
+
+    span{
+        color: $green2;
+    }
+    b{
+        font-weight: bold;
+    }
+  }
 }
 
 
