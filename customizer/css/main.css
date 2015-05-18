@@ -2962,7 +2962,8 @@ textarea {
   padding: 5px;
   margin-bottom: 0; }
 .dropdown h2 .arrow, .dropdowntarget h2 .arrow {
-  margin-top: 4px; }
+  margin-top: 4px;
+  margin-left: 4px; }
 .dropdown ul, .dropdowntarget ul {
   display: none;
   position: absolute;
@@ -4166,7 +4167,8 @@ aside #virtualTourSettings-menu li .sub-items #move-to-horizon, aside #virtualTo
 aside #virtualTourSettings-menu li .sub-items #friendlyURLTour {
   width: 80px; }
 aside #virtualTourSettings-menu li .sub-items .dropdown h2 {
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  min-width: 92px; }
 aside #virtualTourSettings-menu li .sub-items .dropdown li {
   margin-bottom: 0;
   padding: 0;
@@ -4975,10 +4977,10 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay.hotspotwindow .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 12px; }
 .overlay.hotspotwindow .onoffswitch-inner:after {
-  content: "EDIT";
+  content: "EDIT MODE";
   color: #fad368; }
 .overlay.hotspotwindow .onoffswitch-inner:before {
-  content: "LIVE";
+  content: "TEST MODE";
   color: #68b858; }
 .overlay.skillWindow {
   background-color: transparent;
@@ -5375,6 +5377,18 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   height: auto; }
 .dd-liveTour ul li:hover {
   background-color: #bfbfbf; }
+
+.test-mode {
+  display: none;
+  width: 75%;
+  float: left;
+  font-size: 1.4rem; }
+.test-mode p {
+  margin-bottom: 10px; }
+.test-mode p span {
+  color: #68b858; }
+.test-mode p b {
+  font-weight: bold; }
 
 section.main-section {
   position: relative;

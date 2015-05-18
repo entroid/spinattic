@@ -86,7 +86,9 @@ define([
 
                     krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
                     krpano.call('set(hotspot['+hpdata._name+'].onclick,  tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5);js(selectScene('+selectedscene+')) );');
-                    $me.find(".hotspotarrow").delay(200).slideUp();
+                    $me.find(".hotspotarrow").delay(200).slideUp(function(){
+                       $me.find(".test-mode").fadeIn(); 
+                    });
                     $me.find(".removeHotspot").fadeOut();
                     $me.delay(200).animate({
                         width:'330px'
@@ -100,7 +102,9 @@ define([
                     krpano.call('set(hotspot['+hpdata._name+'].onclick, js(openHotspotWindowEditor('+hpdata._name+')) );');
                     $me.find(".save-and-close").show();
                     $me.find(".hotspotarrow").delay(200).slideDown();
-                    $me.find(".removeHotspot").fadeIn();
+                    $me.find(".removeHotspot").fadeIn();                    
+                    $me.find(".test-mode").fadeOut(); 
+
                     $me.delay(200).animate({
                         width:oldWidth+'px'
                     })

@@ -203,73 +203,81 @@ define([
         }
 
 
-    this.refreshData = function(){
-        if($("#viewSettings-menu").length){
-            var scenedata = $("#tour").data("scene");
-            $("#viewSettings-menu").data("scenename",scenedata._name)
-            $("#viewSettings-menu #hor").val(scenedata.view._hlookat)
-            $("#viewSettings-menu #hor").data("obj","_hlookat")
-            $("#viewSettings-menu #vert").val(scenedata.view._vlookat)
-            $("#viewSettings-menu #vert").data("obj","_vlookat")
-            $("#viewSettings-menu #fov").val(scenedata.view._fov)
-            $("#viewSettings-menu #fov").data("obj","_fov")
-            $("#viewSettings-menu #fov-min").val(scenedata.view._fovmin)
-            $("#viewSettings-menu #fov-min").data("obj","_fovmin")
-            $("#viewSettings-menu #fov-max").val(scenedata.view._fovmax)
-            $("#viewSettings-menu #fov-max").data("obj","_fovmax")
-            $("#viewSettings-menu #max-zoom").val(scenedata.view._maxpixelzoom)
-            $("#viewSettings-menu #max-zoom").data("obj","_maxpixelzoom")
-            
-        }
-
-        if($("#sceneSettings-menu").length){
-            var scenedata = $("#tour").data("scene");
-            $("#sceneSettings-menu").data("scenename",scenedata._name)
-            $("#sceneSettings-menu #scenetitle").val(scenedata._title)
-            $("#sceneSettings-menu #scenetitle").data("obj","_title")
-            $("#sceneSettings-menu #filename").val(scenedata.filename)
-            $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
-            $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
-            $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
-            $("#sceneSettings-menu #scene-description").val(scenedata._description);
-            $("#sceneSettings-menu #scene-description").data("obj","_description");
-        }
-
-    }
-
-
-    this.nineGrillSelector = function(selector){
-        $(selector).find(".fa-circle").click(function(){
-            $(selector).find(".fa-circle").removeClass("selected")
-            $(this).addClass("selected");
-        })
-    },
-
-    this.prepareConditionsForTour=function(){
-        if(tourData.krpano.scene.length == undefined){
-                var escenas = [];
-                escenas[0] = tourData.krpano.scene;
-                tourData.krpano.scene = escenas
-        }
-
-        _.each(tourData.krpano.scene,function(scene,ind){
-            if(scene.hotspot){
-                if(scene.hotspot.length == undefined){
-                    var myhp = []
-                    myhp[0] = scene.hotspot;
-                    tourData.krpano.scene[ind].hotspot = myhp;
-                }
+        this.refreshData = function(){
+            if($("#viewSettings-menu").length){
+                var scenedata = $("#tour").data("scene");
+                $("#viewSettings-menu").data("scenename",scenedata._name)
+                $("#viewSettings-menu #hor").val(scenedata.view._hlookat)
+                $("#viewSettings-menu #hor").data("obj","_hlookat")
+                $("#viewSettings-menu #vert").val(scenedata.view._vlookat)
+                $("#viewSettings-menu #vert").data("obj","_vlookat")
+                $("#viewSettings-menu #fov").val(scenedata.view._fov)
+                $("#viewSettings-menu #fov").data("obj","_fov")
+                $("#viewSettings-menu #fov-min").val(scenedata.view._fovmin)
+                $("#viewSettings-menu #fov-min").data("obj","_fovmin")
+                $("#viewSettings-menu #fov-max").val(scenedata.view._fovmax)
+                $("#viewSettings-menu #fov-max").data("obj","_fovmax")
+                $("#viewSettings-menu #max-zoom").val(scenedata.view._maxpixelzoom)
+                $("#viewSettings-menu #max-zoom").data("obj","_maxpixelzoom")
+                
             }
-        })
 
-        if(tourData.krpano.skill.length == undefined){
-            var capacidad = [];
-            capacidad[0] = tourData.krpano.skill;
-            tourData.krpano.skill = capacidad
+            if($("#sceneSettings-menu").length){
+                var scenedata = $("#tour").data("scene");
+                $("#sceneSettings-menu").data("scenename",scenedata._name)
+                $("#sceneSettings-menu #scenetitle").val(scenedata._title)
+                $("#sceneSettings-menu #scenetitle").data("obj","_title")
+                $("#sceneSettings-menu #filename").val(scenedata.filename)
+                $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
+                $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
+                $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
+                $("#sceneSettings-menu #scene-description").val(scenedata._description);
+                $("#sceneSettings-menu #scene-description").data("obj","_description");
+            }
+
         }
-    }
 
 
+        this.nineGrillSelector = function(selector){
+            $(selector).find(".fa-circle").click(function(){
+                $(selector).find(".fa-circle").removeClass("selected")
+                $(this).addClass("selected");
+            })
+        },
+
+        this.prepareConditionsForTour=function(){
+            if(tourData.krpano.scene.length == undefined){
+                    var escenas = [];
+                    escenas[0] = tourData.krpano.scene;
+                    tourData.krpano.scene = escenas
+            }
+
+            _.each(tourData.krpano.scene,function(scene,ind){
+                if(scene.hotspot){
+                    if(scene.hotspot.length == undefined){
+                        var myhp = []
+                        myhp[0] = scene.hotspot;
+                        tourData.krpano.scene[ind].hotspot = myhp;
+                    }
+                }
+            })
+
+            if(tourData.krpano.skill.length == undefined){
+                var capacidad = [];
+                capacidad[0] = tourData.krpano.skill;
+                tourData.krpano.skill = capacidad
+            }
+        }
+
+        this.limitInputs = function(el, min, max){
+            var val = Number($(el).val());
+
+            if(val < min){
+                $(el).val(min);
+            } else if ( val > max){
+                $(el).val(max);
+            }
+        }
 
 }
 
