@@ -154,7 +154,7 @@ define([
         this.checkbox = function(elem,firstClass,secClass){
 
                 $(elem+" li").click(function(){
-                        $(this).find("span").toggleClass("fa "+firstClass+" fa-lg").toggleClass("fa "+secClass+" fa-lg");
+                        $(this).find("span").toggleClass(firstClass).toggleClass(secClass);
                 })
         }
 

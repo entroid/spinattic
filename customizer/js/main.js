@@ -10,13 +10,15 @@ require.config({
     x2js:'lib/x2js/xml2json.min',
     jqueryui:'lib/jqueryui/jquery-ui',
     filedrop:'lib/filedrop/jquery.filedrop',
-    colorpicker:'lib/jquery.colorpicker/jquery.colorpicker'
+    colorpicker:'lib/jquery.colorpicker/jquery.colorpicker',
+    socialshare: 'lib/socialShare/jquery.socialshare'
   },
   shim:{
     mCustomScrollbar:['jquery'],
     jqueryui:['jquery'],
     filedrop:['jquery'],
-    colorpicker:['jquery','jqueryui']
+    colorpicker:['jquery','jqueryui'],
+    socialshare: ['jquery']
   }
 
 });

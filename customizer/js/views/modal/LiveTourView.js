@@ -6,9 +6,10 @@ define([
     'text!templates/modal/liveTour.html',
     'helpers/HelpFunctions',
     'views/modal/SingleUploader',
-    'views/sidebar/MapView'
+    'views/sidebar/MapView',
+    'views/modal/SocialModal'
 
-], function($, _, Backbone,Modal,LiveTour, HelpFunctions,SingleUploader,MapView){
+], function($, _, Backbone,Modal,LiveTour, HelpFunctions,SingleUploader,MapView,SocialModal){
 
     var MapModalView = Modal.extend({
         
@@ -26,13 +27,14 @@ define([
             $("#"+myid+" header h2").text("GO LIVE!");
 
             //$("#"+myid).find(".save-and-close").unbind("click");
-            //$("#"+myid).find(".save-and-close").click(this.doneEdition);
+            //$("#"+myid).find(".save-and-close").click(this.doneEdition);            
+
             var helpFunctions = new HelpFunctions();
             var template = _.template(LiveTour);
 
             $("#"+myid+" .inner-modal").html(template);         
             
-            helpFunctions.checkbox(".check-group","fa-check-square-o","fa-square-o");
+            helpFunctions.checkbox("#"+myid+" .check-group","fa-check-square-o","fa-square-o");
             helpFunctions.dropDown(".dd-liveTour", "h3");
 
             this.verticalCent();
@@ -43,19 +45,28 @@ define([
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             singleUploader.render();
 
-            var MapModel = Backbone.Model.extend({});
-            var mapModel = new MapModel({lat:"data._lat",lng:"data._lng"})
-            
+            /*var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:"data._lat",lng:"data._lng"})            
             this.mapView = new MapView({model:mapModel});
+
             var indice = $("#sceneMenu .selected").index();
             var param = "scene";
 
-            this.mapView.render("elem",{param:param,indice:indice});
+            this.mapView.render("elem",{param:param,indice:indice});*/
+            $("#"+myid).find(".save").click(this.goLive);
 
             $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
                 scrollInertia:300
             });
+        },
+
+        goLive: function() {
+            
+            //social share modal
+            this.socialModal = new SocialModal();
+            this.socialModal.render("socialModal",this.socialModal.renderExtend);
+        
         }
 
     });
