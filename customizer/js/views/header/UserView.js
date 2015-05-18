@@ -58,20 +58,16 @@ define([
               success:function(res){
                 $(".main-header .notifications .loader").hide();
                 if(query_string == ""){
-                    console.log("uno")
                     $(".main-header .notifications ul").html(res);
                 }else{
-                    console.log($(".notif_item:last").attr("id"))
                     $(".main-header .notifications ul").html($(".main-header .notifications ul").html()+res);
                 }
-                console.log(res)
 
                 $(".main-header .notifications .inner-notifications").mCustomScrollbar({
                   theme:"minimal-dark",
                   scrollInertia:300,
                   callbacks:{
                     onTotalScroll:function(){
-                    //console.log("in")
                       if($('.nomore_notif').length == 0){
                             $(".main-header .notifications .inner-notifications").mCustomScrollbar("scrollTo","bottom",{scrollInertia:1,  timeout:1});
                             este.callNotif('next');
@@ -81,7 +77,6 @@ define([
                 });
               },
               error:function(xhr, ajaxOptions, thrownError){
-                console.log(xhr)
               }
           })
 

@@ -25,7 +25,6 @@ define([
         render: function(){
 
             var title = tourData.krpano.settings._title
-            console.log(title)
             var compiledTemplate = _.template(tourtitle,{title:title});
             $(this.el).append( compiledTemplate );           
             $("#tour-title").data("obj","settings")

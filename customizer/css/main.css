@@ -5254,23 +5254,33 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-right: 12px; }
 .overlay #hotspotStyleEditor .tabContent .icons .icons-wrapper:last-child {
   margin-right: 0; }
-.overlay #liveTourModal {
-  width: 700px;
+.overlay #liveTourModal, .overlay #socialModal {
   color: #333333;
   -webkit-border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
   -ms-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px; }
-.overlay #liveTourModal header {
+.overlay #liveTourModal header, .overlay #socialModal header {
   color: white; }
-.overlay #liveTourModal header .save-and-close {
-  display: none; }
-.overlay #liveTourModal .inner-modal {
+.overlay #liveTourModal .inner-modal, .overlay #socialModal .inner-modal {
   background-color: #efefef;
   -webkit-border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
   -ms-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px; }
+.overlay #liveTourModal footer, .overlay #socialModal footer {
+  margin: 0 -20px -20px;
+  padding: 10px 20px;
+  background-color: #dadada;
+  overflow: hidden;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
+.overlay #liveTourModal {
+  width: 700px; }
+.overlay #liveTourModal header .save-and-close {
+  display: none; }
 .overlay #liveTourModal .scrollwrapper {
   max-height: 710px; }
 .overlay #liveTourModal form {
@@ -5311,15 +5321,6 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #liveTourModal .check-group span {
   font-size: 1.8rem;
   width: 15px; }
-.overlay #liveTourModal footer {
-  margin: 0 -20px -20px;
-  padding: 10px 20px;
-  background-color: #dadada;
-  overflow: hidden;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  -ms-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px; }
 .overlay #liveTourModal .editor-img {
   padding-top: 0; }
 .overlay #liveTourModal .editor-img .image-uploader-wrapper {
@@ -5342,6 +5343,21 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #liveTourModal .location-txt span {
   font-weight: bold;
   border-bottom: 1px solid #bfbfbf; }
+.overlay #socialModal header .save-and-close, .overlay #socialModal header .fa-close {
+  display: none; }
+.overlay #socialModal footer {
+  clear: both; }
+.overlay #socialModal .social-btn {
+  height: 30px;
+  border: 1px solid #999;
+  cursor: pointer; }
+.overlay #socialModal .social-btn span {
+  width: 30px;
+  height: 30px; }
+.overlay #socialModal .col-2 {
+  margin-bottom: 20px; }
+.overlay #socialModal .col-2 li:first-child {
+  margin-bottom: 10px; }
 
 #signature-skill-linkto {
   width: 86%;

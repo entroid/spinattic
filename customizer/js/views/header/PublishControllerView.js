@@ -31,7 +31,6 @@ define([
         },
 
         openLiveModal: function () {
-            console.log('entra')
             this.liveTourView = new LiveTourView();
                 this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
         }    

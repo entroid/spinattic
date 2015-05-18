@@ -1042,23 +1042,36 @@
             }
         }
     }
- 
-    #liveTourModal{
-        width: 700px;
+
+    #liveTourModal, #socialModal{
         color: $middle-gray;
         @include border-radius(0 0 5px 5px);
 
         header {
             color: white;
-
-            .save-and-close{
-                display: none;
-            }
         }
 
         .inner-modal{
             background-color: $light-gray4;
             @include border-radius(0 0 5px 5px);
+        }
+
+        footer{
+            margin: 0 -20px -20px;
+            padding: 10px 20px;
+            background-color:$light-gray6;
+            overflow: hidden;
+            @include border-radius(0 0 5px 5px);   
+        }
+    }
+ 
+    #liveTourModal{
+        width: 700px;
+
+        header {
+            .save-and-close{
+                display: none;
+            }
         }
 
         .scrollwrapper{
@@ -1127,13 +1140,7 @@
             }
         }
 
-        footer{
-            margin: 0 -20px -20px;
-            padding: 10px 20px;
-            background-color:$light-gray6;
-            overflow: hidden;
-            @include border-radius(0 0 5px 5px);   
-        }
+        
 
         .editor-img{
             padding-top: 0;
@@ -1168,6 +1175,37 @@
             span{
                 font-weight: bold;
                 border-bottom: 1px solid $light-gray5;
+            }
+        }
+    }
+
+    #socialModal{
+        header {
+            .save-and-close, .fa-close{
+                display: none;
+            }
+        }
+
+        footer{
+            clear: both;
+        }
+
+        .social-btn{
+            height: 30px;
+            border: 1px solid $light-gray3;
+            cursor: pointer;
+
+            span{
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .col-2{
+            margin-bottom: 20px;
+
+            li:first-child{
+                margin-bottom: 10px;
             }
         }
     }
@@ -1238,4 +1276,7 @@
   }
 }
 
-
+.check-group{
+    .checkedBig{
+    }
+}
