@@ -26,6 +26,15 @@ define([
         el: $("body"),
         gNew_tour:null,
         gTour_id:"",
+        setIntervalID:[],
+        state:[],
+        pano_id : [],
+        scene_id : [],
+        tour_id:[],
+        filename:[],
+        scene_name:[],
+        html_ref_id:[],
+        thumb_path:[],
         addingPane:null,
         initialize: function () {
             _.bindAll(this);
@@ -37,6 +46,8 @@ define([
 
         render: function(cancel){
             este = this;
+              window.proc_id = new Array();
+      
             este.gNew_tour = this.model.get("gNewTour");
 
             este.addingPane =  this.model.get("addingPane");
@@ -68,12 +79,12 @@ define([
                 maxfiles: 1000,
                 //queuefiles: 2,
                 maxfilesize: 200,
-                url: 'php/upload-files.php',
+                url: 'php/general_process.php',
 
-                data:{
+               /* data:{
                    tour_id:este.gTour_id
                 },
-
+                */
                 error: function(err, file) {
                     switch(err) {
                         case 'BrowserNotSupported':
@@ -104,7 +115,7 @@ define([
                 },
 
                 drop:function(){
-                    este.autocreateTour();
+                    //este.autocreateTour();
                 },
 
                 uploadStarted: function(i, file, len){
@@ -121,7 +132,91 @@ define([
                     $(".dragable").addClass("uploading-drop-zone"); 
                     este.verticalCent();   
                     $(".scroll-wrapper").mCustomScrollbar("scrollTo",$(".pano-item:last-child").offset().top);
+                    
+                    console.log(i)
+                    console.log(file)
+                    este.setIntervalID[i] = setInterval(function(){
+                        $.ajax({
+                            type: "POST",
+                            url: "php/general_process_state.php",
+                            data: "proc_id=" + window.proc_id[i],
+                            cache: false,
+                            success: function(response){
+                                var respuesta = JSON.parse(response);
+                                    //console.log("STATE "+i+":"+respuesta.state);
+                                    
+                                    if(este.state[i] != respuesta.state && respuesta.state != 'w'){
+                                        
+                                        este.state[i] = respuesta.state;
+                                        
+                                        switch(este.state[i]) {
+                                        case "-1": //Error
+                                            console.log("ENTRO: " + state[i]);
+                                                                        
+                                            
+                                            break;
+                                            
+                                        case "1":
+                                            console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+                                            
+                                           este.pano_id[i]         = respuesta.pano_id;
+                                            este.scene_id[i]        = respuesta.scene_id;
+                                            este.tour_id[i]         = respuesta.tour_id;    
+                                            este.filename[i]        = respuesta.filename;  
+                                            este.thumb_path[i]        = respuesta.thumb_path;  
+                                            este.scene_name[i]         = este.filename[i].replace(/\.jpg|\.jpeg|\.tiff/g, '');
+                                            este.html_ref_id[i]     = 'pano-'+respuesta.scene_id;
+                                                        
+                                            $("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
 
+                                            $("#pano-"+i+" .icon-msg img").load(function(){
+                                                $(this).parent().css("background","#d5ae06");
+                                            })
+
+                                            $("#pano-"+i+" .percentage").text("Processing image (1/2)");
+                                            $("#pano-"+i).attr("id", este.html_ref_id[i]);  
+                                     
+                                            break;
+                                        
+                                        case "2":
+                                            console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+                                           
+                                            $("#"+este.html_ref_id[i]+" .percentage").text("Processing image (2/2)");
+
+                                           
+                                           break;
+                                            
+                                        case "3":
+                                            console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+                                            
+                                            $("#"+este.html_ref_id[i]+" .thumb").attr("src",este.thumb_path[i]);
+
+                                            $("#"+este.html_ref_id[i]+" .progress").css("background","#497f3c");
+                                            $("#"+este.html_ref_id[i]+" .percentage").text("Upload Complete!");
+                                            $("#"+este.html_ref_id[i]+" .icon-msg").html('<span class="fa fa-check"></span>');
+                                            $("#"+este.html_ref_id[i]+" .icon-msg").css("background","#497f3c");
+                                            $("#"+este.html_ref_id[i]).data("pano_id",este.pano_id[i]);    
+
+                                            var completed = 0; 
+
+                                            $(".pano-item").each(function(index){
+                                                if($(this).find(".percentage").text() == "Upload Complete!"){
+                                                   completed++
+                                                }
+                                            })
+
+                                            if(completed == $(".pano-item").size()){
+                                                este.AllUploaded();
+                                            }
+                                            
+                                            clearInterval(este.setIntervalID[i]);
+                                            break;
+                                        } 
+                                        
+                                    }
+                                    
+                                }
+                        })}, 500);
                 },
 
                 docOver:function(e){    
@@ -154,38 +249,10 @@ define([
                 },
 
                 uploadFinished:function(i, file, response){  
-
-                    if (response.result == 'SUCCESS') {
-                        var pano_id         = response.params.pano_id;
-                        var scene_id        = response.params.scene_id;
-                        var tour_id         = response.params.tour_id;    
-                        var filename        = response.params.file_name;  
-                        var scene_name      = response.params.file_name.replace(/\.jpg|\.jpeg|\.tiff/g, '');
-                        var html_ref_id     = 'pano-'+scene_id;
-                                    
-                        $("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
-
-                        $("#pano-"+i+" .icon-msg img").load(function(){
-                            $(this).parent().css("background","#d5ae06");
-                        })
-
-                        $("#pano-"+i+" .percentage").text("Processing image (1/2)");
-                        $("#pano-"+i).attr("id", html_ref_id);  
-                        este.launchImageProcessing (filename, pano_id, scene_id, html_ref_id);
-
-                    }else{
-                            
-                        if (response.result == 'ERROR'){
-                            este.showMsg(response.msg);
-                        }else{
-                            este.showMsg("An error occurred while uploading file " + file.name + "<br>Please try again or contact us");
-                            este.sendReport("1", "<u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
-                        }
-
-                        $(".pano-item-wrapper").remove();
-                        $(".uploader-footer").remove();
-                        $(".dragable").show();
-                    }
+                    
+                    console.log('STOP:' + window.proc_id[i] + ' - ' + i + ' - ' + file["name"]);
+    
+                   
                 },
 
                 afterAll : function(){}  
@@ -253,76 +320,6 @@ define([
             });        
         },
 
-        autocreateTour:function(){
-
-            if (este.gNew_tour){
-                $.ajax({
-                    url:'php/ultour.php',
-                    type:'POST',
-                    data:'autocreate=true',
-
-                    success:function(response){
-                        var parsedObj = jQuery.parseJSON(response);
-
-                        este.gTour_id    = parsedObj.params.tour_id;  
-                        var xml_version = parsedObj.params.xml_version;       
-                        este.gNew_tour = false;
-                    }
-                })
-            }    
-        },
-
-        launchImageProcessing:function(file_name,pano_id, scene_id, html_ref_id){
-            $.ajax({
-                url : 'php/image-processing.php?step=1',
-                type: 'POST',
-                async: true,
-                data: 'file_name='+file_name+'&pano_id='+pano_id+'&scene_id='+scene_id,
-
-                success : function(response){
-                    response = jQuery.parseJSON(response);
-
-                    if (response.result == 'SUCCESS' && response.num_of_files == "4")  {
-
-                        $("#"+html_ref_id+" .percentage").text("Processing image (2/2)");
-
-                        $.ajax({
-                            url : 'php/image-processing.php?step=2',
-                            type: 'POST',
-                            async: true,
-                            data: 'file_name='+file_name+'&pano_id='+pano_id+'&scene_id='+scene_id,
-
-                            success:function(responsest2){
-
-                                responsest2 = jQuery.parseJSON(responsest2);
-                                $("#"+html_ref_id+" .thumb").attr("src",response.params.thumb_path);
-
-                                if (responsest2.result == 'SUCCESS' && responsest2.num_of_files == "17"){
-
-                                    $("#"+html_ref_id+" .progress").css("background","#497f3c");
-                                    $("#"+html_ref_id+" .percentage").text("Upload Complete!");
-                                    $("#"+html_ref_id+" .icon-msg").html('<span class="fa fa-check"></span>');
-                                    $("#"+html_ref_id+" .icon-msg").css("background","#497f3c");
-                                    $("#"+html_ref_id).data("pano_id",pano_id);    
-
-                                    var completed = 0; 
-
-                                    $(".pano-item").each(function(index){
-                                        if($(this).find(".percentage").text() == "Upload Complete!"){
-                                           completed++
-                                        }
-                                    })
-
-                                    if(completed == $(".pano-item").size()){
-                                        este.AllUploaded();
-                                    }
-                                }
-                            }
-                        })
-                    }
-                }
-            });
-        },
 
         AllUploaded:function(){
             $(".uploader-footer").find('#cancelUploaded').removeClass('none').siblings('p').html('All Done <span class="fa fa-smile-o"></span>');            

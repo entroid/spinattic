@@ -1,5 +1,3 @@
-/*global jQuery:false, alert:false */
-
 /*
  * Default text - jQuery plugin for html5 dragging files from desktop to browser
  *
@@ -25,7 +23,7 @@
  *  See README at project homepage
  *
  */
-;(function($) {
+(function($) {
 
   jQuery.event.props.push("dataTransfer");
 
@@ -101,6 +99,7 @@
                       url:'php/ultour.php',
                       type:'POST',
                       data:'autocreate=true',
+                      async:false,
                       success:function(response){
                          var parsedObj = jQuery.parseJSON(response);
                          window.gTour_id    = parsedObj.params.tour_id;  
@@ -128,6 +127,25 @@
     });
 */
     function drop(e) {
+        
+                     if(!location.hash.split("/")[1]){ 
+                        $.ajax({
+                        url:'php/ultour.php',
+                        type:'POST',
+                        data:'autocreate=true',
+                        async:false,
+                        success:function(response){
+                           var parsedObj = jQuery.parseJSON(response);
+                           window.gTour_id    = parsedObj.params.tour_id;  
+                           console.log(parsedObj)
+                           console.log("se ha creado un tour desde autocreateTour")        
+                        
+                         }
+                       })
+                    }else{
+                      window.gTour_id    = location.hash.split("/")[1];  
+                    }
+   
       if( opts.drop.call(this, e) === false ) return false;
       if(!e.dataTransfer)
         return;
@@ -412,6 +430,10 @@
           builder = getBuilder(file.name, data, mime, boundary);
         }
 
+        window.proc_id[index] =  start_time+'-'+index+'-'+window.gTour_id;
+      
+        console.log('START:' + file.name + ' - ' + window.proc_id[index]);
+        
         upload.index = index;
         upload.file = file;
         upload.downloadStartTime = start_time;
@@ -421,15 +443,18 @@
         upload.startData = 0;
         upload.addEventListener("progress", progress, false);
 
-        // Allow url to be a method
+        xhr.open("POST", opts.url + '?proc_id='+window.proc_id[index]+'&tour_id='+window.gTour_id, true);
+
+       /* Allow url to be a method
         if (jQuery.isFunction(opts.url)) {
             xhr.open(opts.requestType, opts.url(), true);
         } else {
             xhr.open(opts.requestType, opts.url, true);
-        }
+        }*/
 
         xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' + boundary);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
 
         // Add headers
         $.each(opts.headers, function(k, v) {
