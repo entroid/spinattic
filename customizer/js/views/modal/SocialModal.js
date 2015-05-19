@@ -16,7 +16,8 @@ define([
          _.extend(this.events, Modal.prototype.events);
         },
         events:{
-            "click .cancel": "removeModal"
+            "click #socialModal .cancel": "removeModal",
+            "click #socialModal .save": "shareAction" 
         },
         
         renderExtend:function(){
@@ -29,7 +30,7 @@ define([
 
             $("#"+myid+" header h2").text("YOUR TOUR IS PUBLISHED!");            
 
-            helpFunctions.checkbox("#"+myid+" .check-group","fa-check","unchecked");
+            helpFunctions.checkbox2("#"+myid+" .check-group","fa-check","unchecked");
 
             this.verticalCent();
 
@@ -39,6 +40,15 @@ define([
                 twitterHashTags : 'spinattic,krpano'
             }); */
             $('.csbuttons').cSButtons();
+        },
+
+        shareAction: function() {
+            var selected = $('#socialModal .check-group span.fa-check');
+
+            $(selected).each(function(i, el){                
+                $(el).siblings('div').click();
+                console.log(i)
+            });
         }
 
     });

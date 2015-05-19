@@ -3370,6 +3370,8 @@ textarea {
   border: 4px dashed #535353;
   background: #222;
   position: relative; }
+.image-uploader-wrapper img {
+  max-width: 100%; }
 .image-uploader-wrapper .inner-dragger .dragable .fa-cloud-upload {
   font-size: 3.5rem;
   float: left; }
@@ -3655,6 +3657,14 @@ header.main-header .header-side .user .user-wrapper .notification:active {
   -webkit-box-shadow: 1px 1px 1px 0px rgba(10, 10, 10, 0.4) inset;
   -moz-box-shadow: 1px 1px 1px 0px rgba(10, 10, 10, 0.4) inset;
   box-shadow: 1px 1px 1px 0px rgba(10, 10, 10, 0.4) inset; }
+header.main-header .header-side .user .user-wrapper .notification .counter {
+  text-align: center;
+  width: 100%;
+  display: block;
+  position: absolute;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 0.9rem; }
 header.main-header .header-side .user .user-wrapper .notification .fa-bell {
   color: #d32f31; }
 header.main-header .header-side .user .menu-list {
@@ -5452,6 +5462,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   padding: 0;
   min-height: 150px;
   color: white; }
+.overlay #liveTourModal .editor-img .image-uploader-wrapper img {
+  max-width: 100%; }
 .overlay #liveTourModal .editor-img .image-uploader-wrapper .over-edit {
   height: 100%;
   padding-top: 65px; }
@@ -5474,7 +5486,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   clear: both; }
 .overlay #socialModal h2 {
   text-align: center;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-size: 1.4rem; }
 .overlay #socialModal .social-btn {
   border: 1px solid #ccc;
   cursor: pointer; }

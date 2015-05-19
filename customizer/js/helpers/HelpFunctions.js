@@ -157,6 +157,13 @@ define([
                         $(this).find("span").toggleClass(firstClass).toggleClass(secClass);
                 })
         }
+        this.checkbox2 = function(elem,firstClass,secClass){
+
+                $(elem+" span").click(function(e){
+                    e.stopPropagation();
+                        $(this).toggleClass(firstClass).toggleClass(secClass);
+                })
+        }
 
         this.selectChoice = function(elem,firstClass,secClass){
                 $(elem).click(function(){

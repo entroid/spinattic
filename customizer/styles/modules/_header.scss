@@ -50,7 +50,7 @@ header.main-header{
                     text-align: center;
                     padding-top: 5px;
                     cursor: pointer;
-
+                        
                     @include shadow-btn(2px, 2px, 0.5, "");
 
                     &:hover, &:active {
@@ -59,6 +59,16 @@ header.main-header{
 
                     &:active {
                         @include shadow-btn(1px, 1px, 0.4, "inset");
+                    }
+                    
+                    .counter{
+                        text-align:center;
+                        width:100%;
+                        display:block;
+                        position:absolute;
+                        color:#FFF;
+                        font-weight:bold;
+                        font-size:0.9rem;
                     }
 
                     .fa-bell{
