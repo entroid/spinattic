@@ -1,10 +1,22 @@
-﻿
+﻿var proc_id  = new Array();
+var setIntervalID = new Array();
+var state = new Array();
+var pano_id = new Array();
+var scene_id = new Array();
+var tour_id = new Array();
+var filename = new Array();
+var scene_name = new Array();
+var html_ref_id = new Array();
+
+
 jQuery(document).ready(function(){
 
 	
         var drag_overlay = null;
         var last_zindex  = null;
         var rollingOver = false;
+        
+        
         
 	var dropbox = $('#drop-zone'),
 		message = $('.drop-message', dropbox);
@@ -16,6 +28,7 @@ jQuery(document).ready(function(){
 		maxfiles: 3,
 		//queuefiles: 2,
         maxfilesize: 200,
+        data: {'proc_id':proc_id},
 		//url: 'php-stubs/upload-files.php',
         url: 'php-stubs/general_process.php',
 		
@@ -46,7 +59,6 @@ jQuery(document).ready(function(){
 			toogle_botonera('off');
 			
 			if(!file.type.match(/^image\//)){
-                            //alert('Only images are allowed!');
                             showMsg('Only images are allowed!');
                             
                             // Returning false will cause the
@@ -74,6 +86,163 @@ jQuery(document).ready(function(){
 					 $(".wrapper").removeClass("new"); 
 					 jQuery("#drop-zone").addClass("not-new");
 	
+					 
+	                   
+	                   setIntervalID[i] = setInterval(function(){
+	                	$.ajax({
+	        				type: "POST",
+	        				url: "php-stubs/general_process_state.php",
+	        				data: "proc_id=" + proc_id[i],
+	        				cache: false,
+	        				success: function(response){
+	        					respuesta = JSON.parse(response);
+	        						//console.log("STATE "+i+":"+respuesta.state);
+	        						
+	        						if(state[i] != respuesta.state && respuesta.state != 'w'){
+	        							
+	        							state[i] = respuesta.state;
+	        							
+	        							switch(state[i]) {
+	        						    case "-1": //Error
+	        						    	console.log("ENTRO: " + state[i]);
+	             		                	/*
+		        		                	clearInterval(setIntervalID[i]);
+		        		                	
+		        							if (response.result == 'ERROR'){
+		        								showMsg(response.msg);
+		        							}else{
+		        								showMsg(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us");
+		        								sendReport("1", "<u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
+		        							}
+		        	                        $.data(file).remove();
+		        	                        */	        						        
+	        						    	
+	        						        break;
+	        						        
+	        						    case "1":
+	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	
+	        						    	//console.log("ACA: " + state[i]);
+	        						    	
+	        		                        var $success_result = $.data(file).find('.ok');
+	        		                        var $loader_item    = $.data(file).find('.loader-item');
+	        		                        
+	        		                        pano_id[i]         = respuesta.pano_id;
+	        		                        scene_id[i]        = respuesta.scene_id;
+	        		                        tour_id[i]         = respuesta.tour_id;
+	        		                        filename[i]        = respuesta.filename;  
+	        		                        scene_name[i]      = filename[i].replace(/\.jpg|\.jpeg|\.tiff/g, '');
+	        		                        html_ref_id[i]     = 'item-'+ scene_id[i];
+	        		                        
+	        		                        $success_result.after( "<p>Processing image (Step 1/2) ...</br><img src=\"images/loading.gif\"></p>" );
+	        		                        
+	        		                        $.data(file).attr('id', html_ref_id[i]);
+	        		
+	        		
+	        		                        $.data(file).find('.loader-item-bg').remove();
+	        		                        $.data(file).find('.uploadind_message').remove();
+	        		                        
+	        		                        $loader_item.children('h3.otf-editable').html(scene_name[i]); 
+	        		                        $loader_item.children('input.scene-field').val(scene_id[i]);                                         
+	        		                                 
+	        		                        $loader_item.children('h4.pano-title').html(filename[i]);         
+	        		                        $loader_item.children('input.pano-field').val(pano_id[i]);
+	        		                        
+	        		                        $loader_item.children('.cancel-process').data('id', pano_id[i]);
+	        		                        $loader_item.children('.cancel-process').data('scene', scene_id[i]);
+	        		                        
+	        		                        $loader_item.children('.on-edit').children('form').children('input.scene-id').val(scene_id[i]);
+	        		                                      
+	        		                 
+	        		                        // Executes image processing script
+	        		                        //launchImageProcessing (filename, pano_id, scene_id, html_ref_id);
+	        		                        verificar(true);
+	        						        break;
+	        						    
+	        						    case "2":
+	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	
+        			            		   var $scene_item    = $('#'+html_ref_id[i]);
+        				                   var $success_result = $scene_item.find('.ok');
+        				                   
+        				                   $success_result.next().remove(); // remove processing text
+        				                   $success_result.after( "<p>Generating scene (Step 2/2) ...</br><img src=\"images/loading.gif\"></p>" );  
+	        						       
+        				                   break;
+	        						    	
+	        						    case "3":
+	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	
+		            	                    var $scene_item     = $('#'+html_ref_id[i]);
+		            	                    var $success_result = $scene_item.find('.ok');
+		            	                    var $loader_item    = $scene_item.find('.loader-item');
+		            	                    var $thumb_pano     = $scene_item.find('.thumb-pano').children('img');
+		            	                    
+		            	                    $thumb_pano.width = 100;
+		            	                    $thumb_pano.height = 100;
+		            	                    $thumb_pano.attr('src', respuesta.thumb_path);
+		            	                    
+		            	                    $scene_item.children('a.delete-item').css('display', 'block');
+		            	                    $scene_item.children('a.drag-item').css('display', 'block');
+		            	                    $scene_item.children('a.add-element').css('display', 'block');
+		            	                    $scene_item.children('a.cancel-process').css('display', 'none');
+		            	                    
+		            	                    $scene_item.children('a.delete-item').attr('data-id', scene_id);
+		            	                    
+		            	                    $scene_item.children('a.edit-hotspots').attr('data-id', scene_id);
+		            	                    $scene_item.children('a.edit-hotspots').attr('data-thumb', $('#cdn').val()+'/panos/'+pano_id+'/pano.tiles/thumb100x50.jpg');
+		            	                    
+		            	                    $scene_item.children('.scene-remove').click(function()
+		            	                    {
+		            	                        var data         = 'scene-id='+scene_id[i];
+		
+		            	                        var container   = jQuery(this).parent();
+		
+		            	                        var params = {
+		            	                                    container  : container
+		            	                                };
+		
+		            	                        launch_popup('.confirm-action', data, 'sceneRemove', removeCallback, params);                        
+		
+		            	                        return false;
+		
+		            	                    });
+		            	                    
+		            	                    $success_result.next().remove(); // remove processing text
+		            	                    $success_result.next().remove(); // remove loading gif
+		            	                    
+		            	                    $success_result.css('display', 'inline-block');
+		            	                    $success_result.after( "<p>Upload complete!</br>Now you can add hotspots to this scene</p>" ); 
+											
+											jQuery( "#scenelist" ).prepend($scene_item);
+											
+		            	                    //Bind Hotspots
+											hs_unbind_all();
+		            	                    hs_bind_all();
+		            	                    
+		            	                    jQuery( "#scenelist" ).sortable('destroy');
+											jQuery( "#scenelist" ).sortable({
+		            	                    	scroll:true,
+		            	                    	stop: function(){
+		            	                    		verificar(true);
+		            	                    		},
+		            	                        placeholder: "pano-item-placeholder",
+		            	                        items: "> div.pano-item" ,
+		            	                        cursor: "move"
+		            	            	
+		            	                    });       
+		            	                    
+		            	                    mixpanel.track("Pano upload");
+		            	                    clearInterval(setIntervalID[i]);
+	        						    	break;
+	        							} 
+	        							
+	        						}
+	        						
+	        					}
+	                	})}, 500);					 
+					 
+					 
                     createImage(file);
 		},
                 
@@ -111,54 +280,7 @@ jQuery(document).ready(function(){
                 
                 uploadFinished:function(i, file, response)
                 {        
-                   
-                    if (response.result == 'SUCCESS')
-                    {
-                        var $success_result = $.data(file).find('.ok');
-                        var $loader_item    = $.data(file).find('.loader-item');
-                        
-                        var pano_id         = response.params.pano_id;
-                        var scene_id        = response.params.scene_id;
-                        var tour_id         = response.params.tour_id;    
-                        var filename        = response.params.file_name;  
-                        var scene_name      = response.params.file_name.replace(/\.jpg|\.jpeg|\.tiff/g, '');
-                        var html_ref_id     = 'item-'+scene_id;
-                        
-                        $success_result.after( "<p>Processing image (Step 1/2) ...</br><img src=\"images/loading.gif\"></p>" );
-                        
-                        $.data(file).attr('id', html_ref_id);
-
-
-                        $.data(file).find('.loader-item-bg').remove();
-                        $.data(file).find('.uploadind_message').remove();
-                        
-                        $loader_item.children('h3.otf-editable').html(scene_name); 
-                        $loader_item.children('input.scene-field').val(scene_id);                                         
-                                 
-                        $loader_item.children('h4.pano-title').html(filename);         
-                        $loader_item.children('input.pano-field').val(pano_id);
-                        
-                        $loader_item.children('.cancel-process').data('id', pano_id);
-                        $loader_item.children('.cancel-process').data('scene', scene_id);
-                        
-                        $loader_item.children('.on-edit').children('form').children('input.scene-id').val(scene_id);
-                                      
-                 
-                        // Executes image processing script
-                        launchImageProcessing (filename, pano_id, scene_id, html_ref_id);
-                        verificar(true);
-                        
-                    }
-                    else
-                    {
-						if (response.result == 'ERROR'){
-							showMsg(response.msg);
-						}else{
-							showMsg("An error occurred while uploading file " + file.name + "<br>Please try again or contact us");
-							sendReport("1", "<u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
-						}
-                        $.data(file).remove();
-                    }    
+                   console.log('STOP:' + proc_id[i] + ' - ' + i + ' - ' + file["name"]);
 		},
                 
                 afterAll : function()

@@ -250,6 +250,11 @@
 				builder = getBuilder(file.name, e.target.result, boundary);
 			}
 			
+			
+			proc_id[index] =  start_time+'-'+index+'-'+gTour_id;
+			
+			console.log('START:' + file.name + ' - ' + proc_id[index]);
+			
 			upload.index = index;
 			upload.file = file;
 			upload.downloadStartTime = start_time;
@@ -258,7 +263,7 @@
 			upload.startData = 0;
 			upload.addEventListener("progress", progress, false);
 			
-			xhr.open("POST", opts.url + '?tour_id='+gTour_id, true);
+			xhr.open("POST", opts.url + '?proc_id='+proc_id[index]+'&tour_id='+gTour_id, true);
 
 //			xhr.open("POST", opts.url + '?tour_id='+document.getElementById("tour_id").value, true);
 

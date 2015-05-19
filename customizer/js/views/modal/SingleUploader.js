@@ -5,9 +5,9 @@ define([
     'text!templates/modal/singleUploaderDragArea.html',
     'text!templates/modal/singleUploaderShowing.html',
     'text!templates/modal/singleUploaderUploadingAnimation.html',
-    'filedrop',
+    'filedropsingle',
 
-], function($, _, Backbone,singleUploaderDragArea,singleUploaderShowing,singleUploaderUploadingAnimation,filedrop){
+], function($, _, Backbone,singleUploaderDragArea,singleUploaderShowing,singleUploaderUploadingAnimation,filedropsingle){
 
     var SingleUploader = Backbone.View.extend({
         CallBack:null,

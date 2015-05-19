@@ -10,6 +10,7 @@ require.config({
     x2js:'lib/x2js/xml2json.min',
     jqueryui:'lib/jqueryui/jquery-ui',
     filedrop:'lib/filedrop/jquery.filedrop',
+    filedropsingle:'lib/filedrop/jquery.filedrop-single',
     colorpicker:'lib/jquery.colorpicker/jquery.colorpicker',
     socialshare: 'lib/socialShare/jquery.socialshare'
   },
