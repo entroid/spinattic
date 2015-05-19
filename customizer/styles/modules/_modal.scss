@@ -1149,7 +1149,11 @@
                 padding: 0;
                 min-height: 150px;
                 color: white;
-
+                
+                img{
+                    max-width:100%;
+                }
+                
                 .over-edit{
                     height: 100%;
                     padding-top: 65px;

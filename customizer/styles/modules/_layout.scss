@@ -419,7 +419,11 @@ textarea{
     border: dashed-pano(4px,$light-gray); 
     background: $dark-gray3; 
     position: relative;
-
+    
+    img{
+        max-width:100%;
+    }
+    
     .inner-dragger{
         .dragable{
             .fa-cloud-upload{
