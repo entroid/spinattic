@@ -7,9 +7,9 @@ define([
     'helpers/HelpFunctions',
     'socialshare'
 
-], function($, _, Backbone,Modal,SocialModal,HelpFunctions,socialshare){
+], function($, _, Backbone,Modal,socialModal,HelpFunctions,socialshare){
 
-    var MapModalView = Modal.extend({
+    var SocialModal = Modal.extend({
         
         initialize: function () {
         _.bindAll(this);        
@@ -22,26 +22,27 @@ define([
         renderExtend:function(){
 
             var myid = this.myid;
-            var template = _.template(SocialModal);
+            var template = _.template(socialModal);
             var helpFunctions = new HelpFunctions();
 
             $("#"+myid+" .inner-modal").html(template);
 
             $("#"+myid+" header h2").text("YOUR TOUR IS PUBLISHED!");            
 
-            helpFunctions.checkbox("#"+myid+" .check-group","icon-ok","unchecked"); 
+            helpFunctions.checkbox("#"+myid+" .check-group","fa-check","unchecked");
 
-            $('.liveTourModal').socialShare({
+            this.verticalCent();
+
+            /*$('.check-group').socialShare({
                 image           : 'image-url',
                 twitterVia      : 'ritz078',
                 twitterHashTags : 'spinattic,krpano'
-            });        
-
-            this.verticalCent();
+            }); */
+            $('.csbuttons').cSButtons();
         }
 
     });
 
-    return MapModalView;
+    return SocialModal;
     
 });

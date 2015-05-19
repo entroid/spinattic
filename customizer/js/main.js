@@ -11,7 +11,7 @@ require.config({
     jqueryui:'lib/jqueryui/jquery-ui',
     filedrop:'lib/filedrop/jquery.filedrop',
     colorpicker:'lib/jquery.colorpicker/jquery.colorpicker',
-    socialshare: 'lib/socialShare/jquery.socialshare'
+    socialshare: 'lib/socialShare/jquery.csbuttons.min'
   },
   shim:{
     mCustomScrollbar:['jquery'],

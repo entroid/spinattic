@@ -1190,14 +1190,59 @@
             clear: both;
         }
 
+        h2{
+            text-align: center;
+            text-transform: uppercase;
+        }
+
         .social-btn{
-            height: 30px;
-            border: 1px solid $light-gray3;
+            border: 1px solid $light-gray2;
             cursor: pointer;
 
             span{
-                width: 30px;
-                height: 30px;
+                width: 45px;
+                height: 45px;
+                border-right: 1px solid $light-gray2;
+                font-size: 2rem;
+                color: $green;
+                  text-align: center;
+                  padding-top: 13px;
+                  box-sizing: border-box;
+                float: left;
+                background-color:white;
+
+                &.unchecked{
+                    background-color:$light-gray6;
+                }
+            }
+
+            div{
+                height: 45px;
+                background: url("../images/icons/social-icons.gif") center top no-repeat;
+            }
+            &.spinattic{
+                div{
+                    background-position: 28px -0px;
+                    background-color:$spinattic;
+                }
+            }
+            &.facebook{
+                div{
+                    background-position: 28px -50px;
+                    background-color:$facebook-blue;
+                }
+            }
+            &.twitter{
+                div{
+                    background-position: 28px -98px;
+                    background-color:$twitter-blue;
+                }
+            }
+            &.gplus{
+                div{
+                    background-position: 28px -147px;
+                    background-color:$gplus-red;
+                }
             }
         }
 
@@ -1274,9 +1319,4 @@
         font-weight: bold;
     }
   }
-}
-
-.check-group{
-    .checkedBig{
-    }
 }
