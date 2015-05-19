@@ -110,7 +110,13 @@ define([
         },
         selectStyleClick:function(ev){
             var obj = ev.currentTarget
-            var set = $(obj).next().find(".rowinrow").data("family");
+            console.log($(obj))
+            if($(obj).data("family")){
+                var set = $(obj).data("family");
+            }else{
+                var set = $(obj).next().find(".rowinrow").data("family");
+            }
+            console.log(set)
             this.selectStyle(set)
         },
 
@@ -126,7 +132,7 @@ define([
                     selected.push(elem)
                 }
             });
-
+            console.log(set)
             this.selectedset = set;
             $("#hotspots-menu-header").html("").append('<ul></ul>');
 
