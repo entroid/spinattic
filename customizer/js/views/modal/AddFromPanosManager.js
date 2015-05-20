@@ -1,222 +1,250 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'jqueryui',
-    'views/modal/Modal',
-    'text!templates/modal/addFromPanosManager.html',
-    'helpers/HelpFunctions'
+	'jquery',
+	'underscore',
+	'backbone',
+	'jqueryui',
+	'views/modal/Modal',
+	'text!templates/modal/addFromPanosManager.html',
+	'helpers/HelpFunctions',
+	'views/footer/SceneMenuView',
+    'collections/footer/SceneCollection',
+    'helpers/ManageTour'
+   
+], function($, _, Backbone,jqueryui,Modal,addFromPanosManager, HelpFunctions,SceneMenuView,SceneCollection,ManageTour){
 
-], function($, _, Backbone,jqueryui,Modal,addFromPanosManager, HelpFunctions){
+	var AddFromPanosManager = Modal.extend({
+		
+		initialize: function () {
+			_.bindAll(this);        
+			_.extend(this.events, Modal.prototype.events);
+			
+		},
 
-    var AddFromPanosManager = Modal.extend({
-        
-        initialize: function () {
-            _.bindAll(this);        
-            _.extend(this.events, Modal.prototype.events);
-            
-        },
+		events:{            
+			"click #panoManager .remove": "removePano",
+			"click #panoManager .cancel": "removeModal",
+			"click #panoManager .save": "AddPanosToTour"
+		},
 
-        events:{            
-            "click .remove": "removePano",
-            "click .cancel": "removeModal"
-        },
+		renderExtend: function() {
+			var este = this;
+			var myid = this.myid;
+			var template = _.template(addFromPanosManager);
 
-        renderExtend: function() {
-            var este = this;
-            var myid = this.myid;
-            var template = _.template(addFromPanosManager);
+			$("#"+myid+" .inner-modal").html(template);
+			$("#"+myid+" header h2").text("Add panos to this tour from Pano files manager:");
+			 este.verticalCent();
+			$.ajax({
+				url:"data/json.php?t=panos",
+				dataType:"json",
+				success: function( data ){
+					este.data = data;
+					este.sortByKey("filename","verse")
+					//este.data = data;
+					este.verticalCent();
+					este.autocomplete( myid );
 
-            $("#"+myid+" .inner-modal").html(template);
-            $("#"+myid+" header h2").text("Add panos to this tour from Pano files manager:");
-            
-            $.ajax({
-                url:"data/panoManager.json",
-                dataType:"json",
-                success: function( data ){
-                    
-                    este.data = data.pano;
-                    este.sortByKey("filename","verse")
-                    //este.data = data;
-                    este.verticalCent();
-                    este.autocomplete( myid );
+					$("#"+myid+" .sort").click(function(){
 
-                    $("#"+myid+" .sort").click(function(){
+						if(!$(this).hasClass("selected")){
 
-                        if(!$(this).hasClass("selected")){
+							if($(this).hasClass("fa-sort-alpha-asc")){
+								este.sortByKey("filename","asc")
+							}else if($(this).hasClass("fa-sort-alpha-desc")){
+								este.sortByKey("filename","desc")
+							}else if($(this).hasClass("fa-sort-amount-asc")){
+								este.sortByDate("asc")
+							}else if($(this).hasClass("fa-sort-amount-desc")){
+								este.sortByDate("desc")
+							}
 
-                            if($(this).hasClass("fa-sort-alpha-asc")){
-                                este.sortByKey("filename","asc")
-                            }else if($(this).hasClass("fa-sort-alpha-desc")){
-                                este.sortByKey("filename","desc")
-                            }else if($(this).hasClass("fa-sort-amount-asc")){
-                                este.sortByDate("asc")
-                            }else if($(this).hasClass("fa-sort-amount-desc")){
-                                este.sortByDate("desc")
-                            }
+							$("#"+myid+" .sort-btn").removeClass("selected");
+							$(this).addClass("selected")
+						}
+					});
+				}
+			})
+			$("#" + myid + " .clear-btn").click(this.clearSearch)
+			$("#"+myid+" .cancel").click(this.removeModal);            
+			
+			$(".scrollwrapper").mCustomScrollbar({
+				theme:"minimal-dark",
+				scrollInertia:300
+			});
+		},
 
-                            $("#"+myid+" .sort-btn").removeClass("selected");
-                            $(this).addClass("selected")
-                        }
-                    });
+		selectPano: function(e) {
+			var el = e.target,
+				panoImg;
+			if (!$(el).hasClass('selected')) {
 
-                    var helpFunctions = new HelpFunctions();
+				$(el).addClass('selected yellow').removeClass('blue').text('selected');
 
-                    $('.select-pano', "#" + myid).click(function(e){
-                        este.selectPano(e);
-                        helpFunctions.toolTipHtml(".selected-panos li", "panoManager", "html");
-                    });
-                }
-            })
-            $("#" + myid + " .clear-btn").click(this.clearSearch)
-            $("#"+myid+" .cancel").click(this.removeModal);            
-            
-            $(".scrollwrapper").mCustomScrollbar({
-                theme:"minimal-dark",
-                scrollInertia:300
-            });
-        },
+				panoImg = '<li data-id="'+$(el).parents("li").attr("id")+'"><span class="tooltipHtml"></span><span class="remove fa fa-close"></span></li>';
+				$(panoImg).prepend($(el).siblings('img').clone().addClass('htmlTt')).find('.tooltipHtml').append($(el).siblings('.pano-data').clone()).end().prependTo(".pano-manager .selected-panos");
+			}            
+		},
 
-        selectPano: function(e) {
-            var el = e.target,
-                panoImg;
-            if (!$(el).hasClass('selected')) {
+		removePano: function(e) {
+			var el = e.target,
+				id = $(el).siblings('img').attr('data-id');
 
-                $(el).addClass('selected yellow').removeClass('blue').text('selected');
+			$(el).parent().remove();
+			$('.pano-list li').find('a[data-id="' + id + '"]').removeClass('yellow selected').addClass('blue').text('select');
 
-                panoImg = '<li data-id="'+$(el).parents("li").attr("id")+'"><span class="tooltipHtml"></span><span class="remove fa fa-close"></span></li>';
-                $(panoImg).prepend($(el).siblings('img').clone().addClass('htmlTt')).find('.tooltipHtml').append($(el).siblings('.pano-data').clone()).end().prependTo(".pano-manager .selected-panos");
-            }            
-        },
+		},
 
-        removePano: function(e) {
-            var el = e.target,
-                id = $(el).siblings('img').attr('data-id');
+		autocomplete:function(myid){
+			var data = this.data;
+			$("#pano-search").autocomplete({
+				source: data,
+				appendTo:"#pano-search-results",
 
-            $(el).parent().remove();
-            $('.pano-list li').find('a[data-id="' + id + '"]').removeClass('yellow selected').addClass('blue').text('select');
+				focus: function( event, ui ) {
+					$( "#pano-search" ).val( ui.item.fileName );
+					return false;
+					}, 
+				select:function(event,ui){
+					var myTitle = ui.item.fileName,
+						panoId = myTitle.split('.')[0];
+					$("#pano-search").val(myTitle);
+					$("#"+myid+" .pano-list-ul li").hide()
+					
+					$("#"+myid+" .pano-list-ul #" + panoId).show();
+					return false;
+				},
+				search:function(event,ui){
+				/*  $("#"+myid+" .skill-list li").hide();
+					$("#"+myid+" .inner-modal h2").hide();*/
+				},
+				change: function(event,ui){
+					if(!ui.item){
+						$( "#pano-search" ).val('');
+						//$("#"+myid+" .skill-list li").show()
+						//$("#"+myid+" .inner-modal h2").show();
+					}                               
+				}
+			}).data("ui-autocomplete")._renderItem = function(ul,item){
 
-        },
+				return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<img src="+item.img+" /><dl><dt>" + item.fileName + "</dt><dd>" + item.uploadDate + "</dd></dl>" )
+				.appendTo( ul ); 
 
-        autocomplete:function(myid){
-            var data = this.data;
-            $("#pano-search").autocomplete({
-                source: data,
-                appendTo:"#pano-search-results",
+			};   
+		},
 
-                focus: function( event, ui ) {
-                    $( "#pano-search" ).val( ui.item.fileName );
-                    return false;
-                    }, 
-                select:function(event,ui){
-                    var myTitle = ui.item.fileName,
-                        panoId = myTitle.split('.')[0];
-                    $("#pano-search").val(myTitle);
-                    $("#"+myid+" .pano-list-ul li").hide()
-                    
-                    $("#"+myid+" .pano-list-ul #" + panoId).show();
-                    return false;
-                },
-                search:function(event,ui){
-                /*  $("#"+myid+" .skill-list li").hide();
-                    $("#"+myid+" .inner-modal h2").hide();*/
-                },
-                change: function(event,ui){
-                    if(!ui.item){
-                        $( "#pano-search" ).val('');
-                        //$("#"+myid+" .skill-list li").show()
-                        //$("#"+myid+" .inner-modal h2").show();
-                    }                               
-                }
-            }).data("ui-autocomplete")._renderItem = function(ul,item){
+		sortByKey:function(key,ascdes) {
+			var data = this.data;
 
-                return $( "<li></li>" )
-                .data( "item.autocomplete", item )
-                .append( "<img src="+item.img+" /><dl><dt>" + item.fileName + "</dt><dd>" + item.uploadDate + "</dd></dl>" )
-                .appendTo( ul ); 
+			var compare = function(el1, el2, index) {
+				return el1[index] == el2[index] ? 0 : (el1[index] < el2[index] ? -1 : 1);
+			}
 
-            };   
-        },
+			var panosOrder = data.sort(function(el1,el2){
+			  return compare(el1, el2, "fileName")
+			});
 
-        sortByKey:function(key,ascdes) {
-            var data = this.data;
+			if(ascdes == "desc"){
+				panosOrder = panosOrder.reverse();
+			}
+			this.data = panosOrder;
 
-            var compare = function(el1, el2, index) {
-                return el1[index] == el2[index] ? 0 : (el1[index] < el2[index] ? -1 : 1);
-            }
+			this.fullfillList()
+		},
 
-            var panosOrder = data.sort(function(el1,el2){
-              return compare(el1, el2, "fileName")
-            });
+		sortByDate:function(ascdes){
+			var data = this.data;
+			function comp(a, b) {
+				return new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime();
+			}
+			var panosOrder = data.sort(comp);
+			if(ascdes == "desc"){
+				panosOrder = panosOrder.reverse();
+			}
+			this.data = panosOrder;
+			this.fullfillList()
+		},
 
-            if(ascdes == "desc"){
-                panosOrder = panosOrder.reverse();
-            }
-            this.data = panosOrder;
+		fullfillList:function(){
+			var data =  this.data;
+			var myid = this.myid;
+			$("#"+myid+" .pano-list ul").html("");
+			var este = this;
+			_.each( data, function ( el, i ){
+				var panoId = el.pano_id;
+				var added = $("#"+myid+" .selected-panos li");
+				var isThere = "blue";
+				var selectText = "select";
+				_.each(added,function(elem,ind){
+			
+					if(panoId == $(elem).data("id")){
+						isThere = " selected yellow ";
+						selectText = "selected"
+					}
+				}) 
+				
+				var fileName = '<div class="pano-entry">File Name: <span>' + el.fileName + '</span></div>',
+					res = el.resolution,
+					resolution,
+					date = '<div class="pano-date">Upload date: ' + el.uploadDate + '</div>',
+					pano;
 
-            this.fullfillList()
-        },
+				if(res === 'Multiresolution'){
+					resolution = '<div class="pano-entry">' + res + '</div>'
+				} else {
+					resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
+				};
 
-        sortByDate:function(ascdes){
-            var data = this.data;
-            function comp(a, b) {
-                return new Date(a.uploadDate).getTime() - new Date(b.uploadDate).getTime();
-            }
-            var panosOrder = data.sort(comp);
-            if(ascdes == "desc"){
-                panosOrder = panosOrder.reverse();
-            }
-            this.data = panosOrder;
-            this.fullfillList()
-        },
+				var panoData = '<div class="pano-data">' + fileName + resolution + date + '</div>',
+					img = '<img data-id="' + i + '" class="pano-img" src="' + el.img + '" alt="Pano Name">'
 
-        fullfillList:function(){
-            var data =  this.data;
-            var myid = this.myid;
-            $("#"+myid+" .pano-list ul").html("");
+				pano = '<li id="' + panoId + '">' + img + panoData + '<a data-id="' + i + '" class="modal-bt select-pano '+ isThere +'">'+selectText+'</a></li>';
 
-            _.each( data, function ( el, i ){
-                var panoId = el.fileName.split('.')[0];
-                var added = $("#"+myid+" .selected-panos li");
-                var isThere = "blue";
-                var selectText = "select";
-                _.each(added,function(elem,ind){
-            
-                    if(panoId == $(elem).data("id")){
-                        isThere = " selected yellow ";
-                        selectText = "selected"
-                    }
-                }) 
-                
-                var fileName = '<div class="pano-entry">File Name: <span>' + el.fileName + '</span></div>',
-                    res = el.resolution,
-                    resolution,
-                    date = '<div class="pano-date">Upload date: ' + el.uploadDate + '</div>',
-                    pano;
+				$("#"+myid+" .pano-list ul").append(pano);
+				el.label = el.fileName;
+			});
+			
+			$('.select-pano', "#" + myid).click(function(e){
+						console.log("a")
+						este.selectPano(e);
+						var helpFunctions = new HelpFunctions();
+						helpFunctions.toolTipHtml(".selected-panos li", "panoManager", "html");
+					});
+		},
+		clearSearch: function (ev) {                
+			$(ev.target).siblings('input').val('');
+			$("#"+this.myid+" .pano-list-ul li").show()
+		},
 
-                if(res === 'Multiresolution'){
-                    resolution = '<div class="pano-entry">' + res + '</div>'
-                } else {
-                    resolution = '<div class="pano-entry">Tile size: <span>' + res + '</span></div>'
-                };
+		AddPanosToTour:function(){
+			var tourId = location.hash.split("/")[1];
+			var panoId = $("#panoManager .selected-panos li").data("id");
+			$.ajax({
+				url:"php/add_pano_from_collection.php?idtour="+tourId+"&panoid="+panoId,
+				dataType:"json",
+				success: function( data ){
 
-                var panoData = '<div class="pano-data">' + fileName + resolution + date + '</div>',
-                    img = '<img data-id="' + i + '" class="pano-img" src="' + el.img + '" alt="Pano Name">'
+					var manageTour = new ManageTour();
 
-                pano = '<li id="' + panoId + '">' + img + panoData + '<a data-id="' + i + '" class="modal-bt select-pano '+ isThere +'">'+selectText+'</a></li>';
+					var cargarEscenas = function(){
+						console.log("hay scenas")
+						var scenes = tourData.krpano.scene;
+						var sceneCollection = new SceneCollection(scenes);
+						var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+						sceneMenuView.render();
+					}
 
-                $("#"+myid+" .pano-list ul").append(pano);
-                el.label = el.fileName;
-            });
+					manageTour.reloadTour(cargarEscenas);
 
-        },
-        clearSearch: function (ev) {                
-            $(ev.target).siblings('input').val('');
-            $("#"+this.myid+" .pano-list-ul li").show()
-        }
+				}
+			})
 
-    });
 
-    return AddFromPanosManager;
+		}
+
+	});
+
+	return AddFromPanosManager;
 
 });

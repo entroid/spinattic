@@ -55,7 +55,10 @@ define([
 			var SingleUploaderModel = Backbone.Model.extend({});
 			var singleUploaderModel = new SingleUploaderModel({myid:"logo-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
-			singleUploader.render();
+			singleUploader.render(function(){
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.set("plugin["+tourSkill.plugin._name+"].url",$("#logo-skill-editor-img").data("imgsrc"));
+			});
 
 		},
 

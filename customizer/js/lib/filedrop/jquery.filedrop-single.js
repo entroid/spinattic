@@ -65,7 +65,7 @@
       },
       errors = ["BrowserNotSupported", "TooManyFiles", "FileTooLarge", "FileTypeNotAllowed", "NotFound", "NotReadable", "AbortError", "ReadError", "FileExtensionNotAllowed"];
 
-  $.fn.filedrop = function(options) {
+  $.fn.filedropSingle = function(options) {
     var opts = $.extend({}, default_opts, options),
         global_progress = [],
         doc_leave_timer, stop_loop = false,
@@ -93,6 +93,7 @@
     });
 
     function drop(e) {
+      console.log("d")
       if( opts.drop.call(this, e) === false ) return false;
       if(!e.dataTransfer)
         return;

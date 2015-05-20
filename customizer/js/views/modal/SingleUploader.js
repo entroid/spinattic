@@ -51,7 +51,7 @@ define([
             var dropbox = $('#single-drop-zone');
             var tour_id = este.model.get("tour_id");
             var caso = este.model.get("caso")
-            dropbox.filedrop({
+            dropbox.filedropSingle({
                 paramname:'pic',
                 refresh: 100,
                 maxfiles: 1,

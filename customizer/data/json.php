@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 //require_once("inc/auth.inc");
 //require_once("../../inc/conex.inc");
@@ -6,8 +6,14 @@ require_once("../php/functions.php");
 
 
 /*
- * Parametros por querystring
- * t ("t" / "u" / "s") para mostrar datos de un tour, usuario, o listado de skills
+ * Parametros por querystring:
+ * t: tipo de data a mostrar
+ * "t" para mostrar datos de un tour
+ * "u" para mostrar datos de un usuario
+ * "s" para mostrar listado de skills
+ * "c" para mostrar listado de categorías de tours 
+ * "p" para mostrar listado de privacidades para tours
+ * "panos" para mostrar listado de panos from collection
  * 
  * Para tour:
  * d (1/0) consulta draft o published
@@ -185,6 +191,94 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 	
 			
 			break;
+			
+		case 'c': //Listado de categorias de tours
+		
+			$i=0;
+			$ssqlp = "SELECT id, category FROM categories order by id";
+			$result = mysql_query($ssqlp);
+			while($row = mysql_fetch_array($result)){
+		
+		
+				$skill_values = array(
+		
+						'id' => $row["id"],
+						'category' => $row["category"]
+		
+				);
+		
+				$array_skills[$i] = $skill_values;
+		
+				$i++;
+		
+		
+			};
+		
+		
+			echo json_encode($array_skills);
+		
+		
+			break;	
+
+			
+		case 'p': //Listado de categorias de tours
+		
+			$i=0;
+			$ssqlp = "SELECT id, value, privacy FROM tour_privacy order by id";
+			$result = mysql_query($ssqlp);
+			while($row = mysql_fetch_array($result)){
+		
+		
+				$skill_values = array(
+		
+						'value' => $row["value"],
+						'privacy' => $row["privacy"]
+		
+				);
+		
+				$array_skills[$i] = $skill_values;
+		
+				$i++;
+		
+		
+			};
+		
+		
+			echo json_encode($array_skills);
+		
+		
+			break;			
+			
+		case 'panos': //Panos from collection
+		
+			$i=0;
+			$ssqlp = "SELECT *, DATE_FORMAT(date,'%b %d %Y %h:%i %p') as fecha FROM panos where user = '".$_SESSION["usr"]."' ORDER BY id desc";
+			$result = mysql_query($ssqlp);
+			while($row = mysql_fetch_array($result)){
+		
+		
+				$skill_values = array(
+		
+						'pano_id' => $row["id"],
+						'img' => $cdn.'/panos/'.$row["id"].'/pano.tiles/thumb100x50.jpg',
+						'fileName' => $row["name"],
+						'resolution' => $row["tilesize"],
+						'uploadDate' => $row["fecha"]
+		
+				);
+		
+				$array_skills[$i] = $skill_values;
+		
+				$i++;
+		
+		
+			};
+		
+		
+			echo json_encode($array_skills);
+		
+		
+			break;			
 	
 	}
 	

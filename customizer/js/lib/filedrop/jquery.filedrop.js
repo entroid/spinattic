@@ -110,7 +110,7 @@
 				});
 
 	function drop(e) {
-		
+					console.log("no soy single")
 					 if(!location.hash.split("/")[1] && !$(".dragger-wrapper .pano-item").size()){ 
 						$.ajax({
 						url:'php/ultour.php',
