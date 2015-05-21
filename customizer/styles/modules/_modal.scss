@@ -871,11 +871,12 @@
     #pano-search-results {
         position: absolute;
         z-index: 1000;
-
         ul{            
             background-color: $black-transparent-65;
             width: 200px;
             box-sizing: border-box;
+            height:330px;
+            overflow:auto;
 
             li{
                 padding:10px;
