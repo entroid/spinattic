@@ -5301,7 +5301,9 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #pano-search-results ul {
   background-color: rgba(0, 0, 0, 0.65);
   width: 200px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  height: 330px;
+  overflow: auto; }
 .overlay #pano-search-results ul li {
   padding: 10px; }
 .overlay #pano-search-results ul li.ui-state-focus {

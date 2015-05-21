@@ -106,7 +106,7 @@ define([
 					}, 
 				select:function(event,ui){
 					var myTitle = ui.item.fileName,
-						panoId = myTitle.split('.')[0];
+						panoId = ui.item.pano_id;
 					$("#pano-search").val(myTitle);
 					$("#"+myid+" .pano-list-ul li").hide()
 					
@@ -219,27 +219,32 @@ define([
 
 		AddPanosToTour:function(){
 			var tourId = location.hash.split("/")[1];
-			var panoId = $("#panoManager .selected-panos li").data("id");
-			$.ajax({
-				url:"php/add_pano_from_collection.php?idtour="+tourId+"&panoid="+panoId,
-				dataType:"json",
-				success: function( data ){
+			var total = $("#panoManager .selected-panos li").size();
+			var counter = 0;
+			var cargarEscenas = function(){
+				var scenes = tourData.krpano.scene;
+				var sceneCollection = new SceneCollection(scenes);
+				var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
+				sceneMenuView.render();
+			}
+			var manageTour = new ManageTour();
 
-					var manageTour = new ManageTour();
+			_.each($("#panoManager .selected-panos li"),function(elem,ind){
+				var panoId = $(elem).data("id");
 
-					var cargarEscenas = function(){
-						console.log("hay scenas")
-						var scenes = tourData.krpano.scene;
-						var sceneCollection = new SceneCollection(scenes);
-						var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
-						sceneMenuView.render();
+				$.ajax({
+					url:"php/add_pano_from_collection.php?idtour="+tourId+"&panoid="+panoId,
+					dataType:"json",
+					success: function( data ){
+						counter ++
+						if(counter == total){
+							manageTour.reloadTour(cargarEscenas);
+						}
+						
 					}
+				})
 
-					manageTour.reloadTour(cargarEscenas);
-
-				}
 			})
-
 
 		}
 
