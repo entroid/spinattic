@@ -3832,14 +3832,13 @@ header.main-header .header-bottom #publishController {
 header.main-header .header-bottom #publishController div {
   float: left;
   border: 1px solid #000;
-  margin-right: 5px;
+  margin-right: 8px;
   height: 37px;
   box-sizing: border-box; }
 header.main-header .header-bottom #publishController #publish {
   color: #666;
   background-color: #333333;
   padding: 10px;
-  cursor: pointer;
   font-size: 1.7rem;
   width: 35px; }
 header.main-header .header-bottom #publishController #publish:hover {
@@ -3882,30 +3881,48 @@ header.main-header .header-bottom #publishController .status .help {
   font-size: 1.3rem; }
 header.main-header .header-bottom #publishController.active #publish {
   color: white;
-  background-color: #4faddf; }
+  background-color: #4faddf;
+  cursor: pointer; }
 header.main-header .header-bottom #publishController.active .date {
   color: #999; }
 header.main-header .header-bottom #publishController.active #live h4 {
   color: #497f3c; }
 header.main-header .header-bottom #publishController.active #draft h4 {
   color: #fad368; }
+header.main-header .header-bottom #publishController.active .onoffswitch-switch {
+  color: white; }
 header.main-header .onoffswitch {
-  width: 74px;
+  width: 120px;
   position: relative;
-  margin-top: 6px; }
+  margin-top: 1px; }
+header.main-header .onoffswitch-label {
+  border-radius: 15px; }
+header.main-header .onoffswitch-inner:before, header.main-header .onoffswitch-inner:after {
+  height: 30px;
+  font-size: 1.3rem;
+  padding-top: 6px; }
 header.main-header .onoffswitch-inner:before {
   content: "LIVE";
   color: #497f3c;
-  padding-left: 20px;
+  padding-left: 30px;
   background-color: #333333; }
 header.main-header .onoffswitch-inner:after {
   content: "OFFLINE";
   color: #d32f31;
-  padding-right: 8px;
-  background-color: #232323;
+  padding-right: 20px;
+  background-color: #333333;
   text-align: right; }
 header.main-header .onoffswitch-switch {
-  right: 52px; }
+  right: 86px;
+  transform: initial;
+  color: #aaa;
+  width: 30px;
+  height: 30px;
+  font-size: 1.5em;
+  font-size: 1.6em;
+  padding-left: 6px;
+  padding-top: 7px;
+  top: 1px; }
 
 .open-live-tour {
   color: #4faddf;
