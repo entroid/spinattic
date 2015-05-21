@@ -3827,7 +3827,7 @@ header.main-header .header-bottom #tourTitleBar {
   display: inline-block;
   padding: 10px; }
 header.main-header .header-bottom #publishController {
-  width: 355px;
+  /*width: 355px;*/
   margin-top: 7px; }
 header.main-header .header-bottom #publishController div {
   float: left;
@@ -3836,10 +3836,10 @@ header.main-header .header-bottom #publishController div {
   height: 37px;
   box-sizing: border-box; }
 header.main-header .header-bottom #publishController #publish {
-  color: white;
+  color: #666;
+  background-color: #333333;
   padding: 10px;
   cursor: pointer;
-  background-color: #232323;
   font-size: 1.7rem;
   width: 35px; }
 header.main-header .header-bottom #publishController #publish:hover {
@@ -3862,7 +3862,8 @@ header.main-header .header-bottom #publishController #publish:active {
   -moz-box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset;
   box-shadow: 1px 1px 3px 0px rgba(10, 10, 10, 0.8) inset; }
 header.main-header .header-bottom #publishController .status {
-  background: #1a1a1a;
+  color: #666;
+  background-color: #333333;
   width: 111px;
   text-align: center;
   padding: 3px 5px;
@@ -3871,7 +3872,6 @@ header.main-header .header-bottom #publishController .status h4 {
   font-weight: bold;
   margin-bottom: 5px; }
 header.main-header .header-bottom #publishController .status .date {
-  color: #999;
   font-style: italic; }
 header.main-header .header-bottom #publishController .status .help {
   position: absolute;
@@ -3879,11 +3879,15 @@ header.main-header .header-bottom #publishController .status .help {
   right: 3px;
   bottom: initial;
   left: initial;
-  color: #999;
-  font-size: 1.2rem; }
-header.main-header .header-bottom #publishController #live h4 {
+  font-size: 1.3rem; }
+header.main-header .header-bottom #publishController.active #publish {
+  color: white;
+  background-color: #4faddf; }
+header.main-header .header-bottom #publishController.active .date {
+  color: #999; }
+header.main-header .header-bottom #publishController.active #live h4 {
   color: #497f3c; }
-header.main-header .header-bottom #publishController #draft h4 {
+header.main-header .header-bottom #publishController.active #draft h4 {
   color: #fad368; }
 header.main-header .onoffswitch {
   width: 74px;
@@ -4694,6 +4698,8 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 50px; }
 #tooltip.open-live-tour-tt {
   margin-top: 40px; }
+#tooltip.publish {
+  margin-top: 50px; }
 #tooltip.panoManager {
   margin-top: -100px;
   text-align: left;

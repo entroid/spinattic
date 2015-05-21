@@ -283,7 +283,7 @@ header.main-header{
         }
 
         #publishController{
-            width: 355px;
+            /*width: 355px;*/
             margin-top: 7px;
 
             div{
@@ -295,10 +295,10 @@ header.main-header{
             }           
 
             #publish{
-                color: white;
+                color: $middle-gray2;
+                background-color: $middle-gray;
                 padding: 10px;
                 cursor: pointer; 
-                background-color: $dark-gray;
                 font-size: 1.7rem;
                 width: 35px;
 
@@ -308,10 +308,13 @@ header.main-header{
                 &:active {
                     @include shadow-btn(1px, 3px, 0.8, "inset");
                 }
+
+                
             }
 
             .status{
-                background: $dark-gray-2; 
+                color: $middle-gray2;
+                background-color: $middle-gray;
                 width: 111px;
                 text-align: center;
                 padding: 3px 5px;
@@ -323,26 +326,35 @@ header.main-header{
                 }
 
                 .date{
-                    color: $light-gray3;
                     font-style: italic;
                 }
 
                 .help {
                     @include absolute (3px, 3px, initial, initial);
+                    font-size: 1.3rem;
+                }
+            }
+
+            &.active{
+                #publish{
+                    color: white;
+                    background-color:$blue;
+                }
+
+                .date{
                     color: $light-gray3;
-                    font-size: 1.2rem;
                 }
-            }
 
-            #live{
-                h4{
-                    color: $green;
+                #live{
+                    h4{
+                        color: $green;
+                    }
                 }
-            }
 
-            #draft{
-                h4{
-                    color: $yellow;
+                #draft{
+                    h4{
+                        color: $yellow;
+                    }
                 }
             }
         }

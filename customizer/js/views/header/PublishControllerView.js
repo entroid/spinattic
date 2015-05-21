@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!templates/header/publishcontrollerview.html',
-    'views/modal/LiveTourView'
+    'views/modal/LiveTourView',
+    'helpers/HelpFunctions'
 
-], function($, _, Backbone, publishcontrollerview, LiveTourView){
+], function($, _, Backbone, publishcontrollerview, LiveTourView, HelpFunctions){
 
     var PublishControllerView = Backbone.View.extend({
 
@@ -21,12 +22,18 @@ define([
 
         render: function(){
             var este = this;
-          var compiledTemplate = _.template(publishcontrollerview);
-           $(this.el).append( compiledTemplate );
+            var compiledTemplate = _.template(publishcontrollerview);
+            var helpFunctions = new HelpFunctions();
 
-           $('header .onoffswitch-label').click(function() {
+            $(this.el).append( compiledTemplate );
+
+            $('header .onoffswitch-label').click(function() {
                 este.openLiveModal();
-           })
+            })
+
+            helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+            helpFunctions.toolTip("#publishController .fa-question-circle", "publish up");
+            helpFunctions.toolTip("#publishController #publish", "publish up");
 
         },
 

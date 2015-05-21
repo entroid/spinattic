@@ -56,8 +56,9 @@ define([
                 rightP =  ($(window).width() - (eleOffset.left + elWidth)) + (elWidth - ttWidth) / 2;
                 arrowRightP = ($(window).width() - (eleOffset.left + elWidth/2))
 
-                //footer thumbs tooltip
-                if ( myclass === 'footer' ) {
+                console.log(myclass)
+                //footer or header thumbs tooltip
+                if ( myclass === 'footer' || myclass === 'publish up') {
                     if (rightP < 0) {
                         console.log('entra');
                         rightP = 10;
