@@ -114,6 +114,7 @@ define([
 					return false;
 				},
 				search:function(event,ui){
+					
 				/*  $("#"+myid+" .skill-list li").hide();
 					$("#"+myid+" .inner-modal h2").hide();*/
 				},
@@ -123,7 +124,19 @@ define([
 						//$("#"+myid+" .skill-list li").show()
 						//$("#"+myid+" .inner-modal h2").show();
 					}                               
-				}
+				},
+				open:function(){
+					$("#pano-search-results ul").mCustomScrollbar({
+						theme:"minimal-dark",
+						scrollInertia:300,
+						});
+				},
+				response:function(){
+					$("#pano-search-results ul").mCustomScrollbar("destroy")
+				},
+				close:function(){
+					$("#pano-search-results ul").mCustomScrollbar("destroy")
+					}
 			}).data("ui-autocomplete")._renderItem = function(ul,item){
 
 				return $( "<li></li>" )
