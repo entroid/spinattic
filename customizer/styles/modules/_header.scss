@@ -311,7 +311,7 @@ header.main-header{
                 &:active {
                     @include shadow-btn(1px, 3px, 0.8, "inset");
                 }
-
+ 
                 
             }
 
@@ -350,8 +350,11 @@ header.main-header{
             }
 
             &.active{
-                
-                
+                #publish{
+                    color: white;
+                    background-color:$blue; 
+                    cursor: pointer; 
+                }
 
                 #live{
                     h4{

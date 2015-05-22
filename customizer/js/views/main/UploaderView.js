@@ -279,7 +279,7 @@ define([
             var compiledTemplate = _.template(uploadProgress,data);
 
             if($(".pano-item-wrapper").length == 0){
-                $('.dragger-wrapper .inner-dragger').append('<div class="scroll-wrapper"><div class="pano-item-wrapper"></div></div><div class="uploader-footer"><span id="cancelUploaded" class="uploader-btn none">Cancel</span><span class="uploader-btn fa fa-clock-o blink"></span><p></p></div>');
+                $('.dragger-wrapper .inner-dragger').append('<div class="scroll-wrapper"><div class="pano-item-wrapper"></div></div><div class="uploader-footer"><span class="uploader-btn fa fa-clock-o blink right"></span><span id="cancelUploaded" class="uploader-btn right none">Cancel</span><p></p></div>');
 
                 //scrollbar
                 $(".scroll-wrapper").mCustomScrollbar({
