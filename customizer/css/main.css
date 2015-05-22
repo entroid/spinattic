@@ -3426,20 +3426,27 @@ textarea {
   background-color: rgba(0, 0, 0, 0.65);
   width: 100%;
   box-sizing: border-box;
-  padding-top: 25px;
   z-index: 10;
   font-size: 1.6rem;
-  min-height: 73px;
-  display: none;
+  height: 100%;
+  /*display: none;*/
+  opacity: 0;
   cursor: pointer;
   color: #fad368;
+  transition: opacity 0.7s ease;
   position: absolute;
   top: 0;
   right: initial;
   bottom: initial;
   left: 0; }
-.editor-img:hover .over-edit {
+.editor-img .over-edit span {
+  position: relative;
+  top: 50%;
+  margin-top: -8px;
+  /* left: 0; */
   display: block; }
+.editor-img:hover .over-edit {
+  opacity: 1; }
 
 .progress {
   height: 7px;

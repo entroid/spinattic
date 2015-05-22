@@ -500,19 +500,28 @@ textarea{
         background-color: $black-transparent-65;
         width: 100%;
         box-sizing: border-box;
-        padding-top: 25px;
         z-index: 10;
         font-size: 1.6rem;
-        min-height: 73px;
-        display: none;
+        height: 100%;
+        /*display: none;*/
+        opacity: 0;
         cursor: pointer;
         color: $yellow;
+        transition: opacity 0.7s ease;
 
         @include absolute(0, initial, initial, 0);
+
+        span{
+            position: relative;
+            top: 50%;
+            margin-top: -8px;
+            /* left: 0; */
+            display: block;
+        }
     }
 
     &:hover .over-edit{
-        display: block;
+        opacity: 1;
     }
 
 }
