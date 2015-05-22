@@ -225,7 +225,10 @@ define([
 			}
 
 			this.saveServer = function(fun,action){
-				$("#serverInfo").text("saving...").fadeIn();
+				if(!$("#publish #draft").hasClass("active")){
+					$("#publish #draft").addClass("active")
+				}
+				$("#draft .date").text("saving...");
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1];
 				var mydata;
@@ -240,10 +243,13 @@ define([
 					type:'POST',
 					data:mydata,
 					success:function(res){
+						var res = JSON.parse(res);
 						if(fun){
 							fun()
 						}
-						$("#serverInfo").text("saved!").delay(1000).fadeOut("slow")
+						var d = new Date();
+
+						$("#draft .date").text(res.date);
 						console.log(res)
 					},
 					error:function(xhr, ajaxOptions, thrownError){
