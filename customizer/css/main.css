@@ -3897,6 +3897,10 @@ header.main-header .header-bottom #publishController #publish {
   padding: 10px;
   font-size: 1.7rem;
   width: 35px; }
+header.main-header .header-bottom #publishController #publish.active {
+  color: white;
+  background-color: #4faddf;
+  cursor: pointer; }
 header.main-header .header-bottom #publishController #publish:hover {
   background-color: #282828;
   /* Fallback Color */
@@ -3935,16 +3939,12 @@ header.main-header .header-bottom #publishController .status .help {
   bottom: initial;
   left: initial;
   font-size: 1.3rem; }
-header.main-header .header-bottom #publishController.active #publish {
-  color: white;
-  background-color: #4faddf;
-  cursor: pointer; }
-header.main-header .header-bottom #publishController.active .date {
+header.main-header .header-bottom #publishController .status.active .date {
   color: #999; }
+header.main-header .header-bottom #publishController .status.active h4 {
+  color: #fad368; }
 header.main-header .header-bottom #publishController.active #live h4 {
   color: #497f3c; }
-header.main-header .header-bottom #publishController.active #draft h4 {
-  color: #fad368; }
 header.main-header .header-bottom #publishController.active .onoffswitch-switch {
   color: white; }
 header.main-header .onoffswitch {

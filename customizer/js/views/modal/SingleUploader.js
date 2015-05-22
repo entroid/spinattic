@@ -50,8 +50,7 @@ define([
             var myid = this.model.get("myid");
             var dropbox = $('#single-drop-zone');
             var tour_id = este.model.get("tour_id");
-            var caso = este.model.get("caso");           
-
+            var caso = este.model.get("caso")
             dropbox.filedropSingle({
                 paramname:'pic',
                 refresh: 100,
@@ -81,7 +80,6 @@ define([
 
                 var template = _.template(singleUploaderUploadingAnimation);
                 $("#"+myid).html(template);
-                $('#image-uploader-wrapper').removeClass('active');
 
                 },
                  progressUpdated: function(i, file, progress) {
@@ -122,11 +120,7 @@ define([
 
                 afterAll : function(){
 
-                },
-
-                docOver : function() {
-                    $('#image-uploader-wrapper').addClass('active');
-                }
+                }  
 
             })
         },
@@ -136,6 +130,7 @@ define([
             $("#"+myid+" .image-uploader-wrapper").remove();
             this.undelegateEvents();
         }
+
         
     });
 

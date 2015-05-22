@@ -300,14 +300,18 @@ header.main-header{
                 padding: 10px;
                 font-size: 1.7rem;
                 width: 35px;
-
+                &.active{
+                    color: white;
+                    background-color:$blue;
+                    cursor: pointer; 
+                }
                 &:hover {
                     @include linear-gradient(#1c1c1c, #282828);
                 }
                 &:active {
                     @include shadow-btn(1px, 3px, 0.8, "inset");
                 }
-
+ 
                 
             }
 
@@ -332,18 +336,22 @@ header.main-header{
                     @include absolute (3px, 3px, initial, initial);
                     font-size: 1.3rem;
                 }
+
+                &.active{
+                    .date{
+                        color: $light-gray3;
+                    }
+
+                    h4{
+                        color: $yellow;
+                    }
+              
+                }
             }
 
             &.active{
-                #publish{
-                    color: white;
-                    background-color:$blue;
-                    cursor: pointer; 
-                }
-
-                .date{
-                    color: $light-gray3;
-                }
+                
+                
 
                 #live{
                     h4{
@@ -351,11 +359,7 @@ header.main-header{
                     }
                 }
 
-                #draft{
-                    h4{
-                        color: $yellow;
-                    }
-                }
+                
 
                 .onoffswitch-switch{
                     color: white;
