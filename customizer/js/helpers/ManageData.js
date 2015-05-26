@@ -228,7 +228,7 @@ define([
 				if(!$("#publishController #draft").hasClass("active")){
 					$("#publishController #draft").addClass("active")
 				}
-				$("#draft .date").text("saving...");
+				$("#draft .loading-wrapper").show();
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1];
 				var mydata;
@@ -248,7 +248,9 @@ define([
 							fun()
 						}
 						var d = new Date();
-
+						$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
+							$("#draft .loading-wrapper").html('<div class="loading"></div>')
+						});
 						$("#draft .date").text(res.date);
 						console.log(res)
 					},

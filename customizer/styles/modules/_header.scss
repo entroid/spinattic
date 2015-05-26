@@ -318,11 +318,41 @@ header.main-header{
             .status{
                 color: $middle-gray2;
                 background-color: $middle-gray;
-                width: 111px;
+                width: 120px;
                 text-align: center;
                 padding: 3px 5px;
                 position: relative;
-
+                
+                .loading-wrapper{
+                    width:100%;
+                    height:40px;
+                    top:0;
+                    left:0;
+                    position:absolute;
+                    background:rgba(0,0,0,0.5);
+                    display:none;
+                    text-align:center;
+                    color:$yellow;
+                    font-weight:bold;
+                    font-size:1.2rem;
+                    line-height:3.5rem;
+                    .loading{
+                        margin-left:35px;
+                        margin-top:2px;
+                        border-bottom: 3px solid #999;
+                        border-left: 3px solid #ffd731;
+                        border-right: 3px solid #999;
+                        border-top: 3px solid #999;
+                        border-radius: 100%;
+                        height: 30px;
+                        width: 30px;
+                        -webkit-animation: spin 2.0s infinite linear;
+                        -moz-animation: spin 2.0s infinite linear;
+                        -ms-animation: spin 2.0s infinite linear;
+                        -o-animation: spin 2.0s infinite linear;
+                        animation: spin 2.0s infinite linear;
+                    }
+                }
                 h4{
                     font-weight: bold;
                     margin-bottom: 5px;
