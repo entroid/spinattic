@@ -4584,7 +4584,7 @@ aside #setStartUpView .innerstarup {
   margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px; }
-aside #startupViewUpdated, aside #serverInfo {
+aside #startupViewUpdated {
   width: 200px;
   position: fixed;
   z-index: 2;
