@@ -5511,9 +5511,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #liveTourModal header .save-and-close {
   display: none; }
 .overlay #liveTourModal .scrollwrapper {
-  max-height: 710px; }
+  max-height: 710px;
+  z-index: 5;
+  height: 550px; }
 .overlay #liveTourModal form {
-  overflow: hidden; }
+  overflow: hidden;
+  height: 650px; }
 .overlay #liveTourModal .row {
   margin-bottom: 20px; }
 .overlay #liveTourModal label {
@@ -5574,6 +5577,13 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 .overlay #liveTourModal .location-txt span {
   font-weight: bold;
   border-bottom: 1px solid #bfbfbf; }
+.overlay #liveTourModal footer {
+  position: absolute;
+  bottom: 0;
+  width: 660px; }
+.overlay #liveTourModal .map_canvas {
+  width: 310px;
+  height: 180px; }
 .overlay #socialModal header .save-and-close, .overlay #socialModal header .fa-close {
   display: none; }
 .overlay #socialModal footer {
@@ -5624,7 +5634,7 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
 
 .col-2 {
   float: left;
-  width: 50%;
+  width: 48%;
   box-sizing: border-box; }
 .col-2.left-col {
   padding-right: 20px;
@@ -5643,7 +5653,12 @@ footer.main-footer menu.right-footer-menu menuitem:hover {
   margin-top: 4px;
   /* box-sizing: border-box; */
   width: 309px;
-  right: -1px; }
+  right: -1px;
+  overflow: auto; }
+.dd-liveTour ul.category {
+  height: 160px; }
+.dd-liveTour ul.privacy {
+  height: 90px; }
 .dd-liveTour ul li {
   border-color: #bfbfbf;
   border-top: none;

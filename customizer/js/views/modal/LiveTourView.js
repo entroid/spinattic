@@ -7,9 +7,10 @@ define([
     'helpers/HelpFunctions',
     'views/modal/SingleUploader',
     'views/sidebar/MapView',
-    'views/modal/SocialModal'
-
-], function($, _, Backbone,Modal,LiveTour, HelpFunctions,SingleUploader,MapView,SocialModal){
+    'views/modal/SocialModal',
+    'lib/tagsinput/tagsinput',
+    'helpers/ManageData'
+], function($, _, Backbone,Modal,LiveTour, HelpFunctions,SingleUploader,MapView,SocialModal,tagsinput,ManageData){
 
     var MapModalView = Modal.extend({
         
@@ -26,29 +27,103 @@ define([
 
             $("#"+myid+" header h2").text("GO LIVE!");
 
-            //$("#"+myid).find(".save-and-close").unbind("click");
-            //$("#"+myid).find(".save-and-close").click(this.doneEdition);            
+            var tourInfo = {
+                settings:tourData.krpano.settings,
+                datatour:tourData.krpano.datatour
+            }
 
             var helpFunctions = new HelpFunctions();
-            var template = _.template(LiveTour);
+            var template = _.template(LiveTour,{tourInfo:tourInfo});
 
             $("#"+myid+" .inner-modal").html(template);         
             
             helpFunctions.checkbox("#"+myid+" .check-group","fa-check-square-o","fa-square-o");
-            helpFunctions.dropDown(".dd-liveTour", "h3");
-
+            
             this.verticalCent();
+            helpFunctions.dropDown("#location-lt","h3");
 
             var SingleUploaderModel = Backbone.Model.extend({});
-            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:"imgUrl",tour_id:"tourId"})
+            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.scene[0]._thumburl,tour_id:"tourId"})
             
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             singleUploader.render();
 
-            /*var MapModel = Backbone.Model.extend({});
-            var mapModel = new MapModel({lat:"data._lat",lng:"data._lng"})            
-            this.mapView = new MapView({model:mapModel});
 
+            $.ajax({
+                    url : 'data/json.php?t=c',
+                    type: 'JSON',
+                    cache : false,
+                    success : function(data){
+                        var data = JSON.parse(data);
+                        _.each(data,function(elem,ind){
+                            $("#category-lt ul.category").append("<li><span>"+elem.category+"</span></li>")
+                        })
+                        helpFunctions.dropDown("#category-lt","h3");
+                        $("#category-lt ul.category").mCustomScrollbar({
+                                theme:"minimal-dark",
+                                scrollInertia:300
+                            });
+
+            
+                    }
+                });
+
+            $.ajax({
+                    url : 'data/json.php?t=p',
+                    type: 'JSON',
+                    cache : false,
+                    success : function(data){
+
+                        var data = JSON.parse(data);
+                        _.each(data,function(elem,ind){
+                            if(tourData.krpano.datatour.privacy == elem.value){
+                                $("#privacy-lt .title").text(elem.privacy);
+                            }
+                            $("#privacy-lt ul.privacy").append('<li id="'+elem.value+'"><span>'+elem.privacy+'</span></li>')
+                        })
+                        helpFunctions.dropDown("#privacy-lt","h3");
+                         $("#privacy-lt ul.privacy").mCustomScrollbar({
+                                theme:"minimal-dark",
+                                scrollInertia:300
+                            });
+            
+                    }
+                });
+            //$("#"+myid).find(".save-and-close").unbind("click");
+            //$("#"+myid).find(".save-and-close").click(this.doneEdition);            
+
+            $('#tagsLiveModal').tagsInput({
+            'width': '265px',
+            'height':'70px',
+            'defaultText':'add a tag',
+            onChange: function(elem, elem_tags)
+            {
+                var manageData = new ManageData();
+                manageData.saveTourData("tags",$("#tagsLiveModal").val())
+            },
+            autocomplete_url:'../php-stubs/tags.php', // jquery ui autocomplete requires a json endpoint
+            autocomplete:{appendTo:"#toAppendTagsModal",
+
+                    open:function(){
+                        $("#toAppendTagsModal .ui-widget-content").mCustomScrollbar({
+                            theme:"minimal-dark",
+                            scrollInertia:300,
+                            });
+                    },
+                    response:function(){
+                        $("#toAppendTagsModal .ui-widget-content").mCustomScrollbar("destroy")
+                    },
+                    close:function(){
+                        $("#toAppendTagsModal .ui-widget-content").mCustomScrollbar("destroy")
+                        }
+                    }
+            });
+
+            var MapModel = Backbone.Model.extend({});
+            var mapModel = new MapModel({lat:tourData.krpano.settings._lat,lng:tourData.krpano.settings._long})            
+            this.mapView = new MapView({model:mapModel});
+            this.mapView.render("liveTourModal","settings");
+             /*   
             var indice = $("#sceneMenu .selected").index();
             var param = "scene";
 

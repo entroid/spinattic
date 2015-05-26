@@ -22,7 +22,7 @@ define([
 			$(this.el).append( $pano_wrapper ); 
 
 			embedpano({
-				swf:"player/tour.swf", 
+				swf:"../player/tour.swf", 
 				xml:xmlpath, 
 				target:"tour", html5:"auto", 
 				wmode:"transparent", 

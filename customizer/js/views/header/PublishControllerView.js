@@ -38,17 +38,8 @@ define([
         },
 
         openLiveModal: function () {
-            var el = $('#publishController'),
-                active = $(el).hasClass('active');
-
-            if( !active ){
                 this.liveTourView = new LiveTourView();
                 this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
-                
-                $(el).addClass('active');
-            } else {
-                $(el).removeClass('active');
-            }
         }    
     });
 

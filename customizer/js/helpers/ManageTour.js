@@ -53,7 +53,7 @@ define([
 										$pano_wrapper = $('<div id="tour"></div>');         
 										$(".main-section .inner").append( $pano_wrapper ); 
 										embedpano({
-											swf:"player/tour.swf", 
+											swf:"../player/tour.swf", 
 											xml:xml2krpano, 
 											target:"tour", html5:"auto", 
 											wmode:"transparent", 
