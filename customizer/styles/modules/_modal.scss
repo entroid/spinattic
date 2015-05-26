@@ -1079,10 +1079,13 @@
 
         .scrollwrapper{
             max-height: 710px;
+            z-index:5;
+            height:550px;
         }
 
         form {
             overflow: hidden;
+            height:650px;
         }
 
         .row {
@@ -1184,6 +1187,17 @@
                 border-bottom: 1px solid $light-gray5;
             }
         }
+
+        footer{
+            position:absolute;
+            bottom:0;
+            width:660px;
+        }
+        
+        .map_canvas{
+            width:310px;
+            height:180px;
+        }
     }
 
     #socialModal{
@@ -1271,7 +1285,7 @@
 
 .col-2{
     float: left;
-    width: 50%;
+    width: 48%;
     box-sizing: border-box;  
 
     &.left-col{
@@ -1296,7 +1310,14 @@
           /* box-sizing: border-box; */
           width: 309px;
           right: -1px;
+          overflow:auto;
+        &.category{
+            height:160px;
+        }
 
+        &.privacy{
+            height:90px;
+        }
         li{
             border-color:$light-gray5;
             border-top: none;

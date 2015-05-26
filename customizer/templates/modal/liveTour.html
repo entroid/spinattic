@@ -1,108 +1,117 @@
-<div class="liveTourModal">
+<div class="liveTourModal" id="liveTourModal">
 <div class="scrollwrapper">
-    <form>
-        <div class="col-2 left-col">
-            <div class="row">
-                <label for="title">Tour title: <i class="help fa fa-question-circle"></i></label>
-                <input id="title" type="text" placeholder="Tour title">
-            </div>
+	<form>
+		<div class="col-2 left-col">
+			<div class="row">
+				<label for="title">Tour title: <i class="help fa fa-question-circle"></i></label>
+				<input id="title" type="text" placeholder="Tour title" value="<%= tourInfo.settings._title%>">
+			</div>
 
-            <div class="row">
-                <label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
-                <div class="url">
-                    <span>http://www.spinattic.com/user/</span>
-                    <input id="firendlyUrl" type="text" placeholder="tourname">
-                </div>
-            </div>
+			<div class="row">
+				<label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
+				<div class="url">
+					<span>http://www.spinattic.com/user/</span>
+					<input id="firendlyUrl" type="text" placeholder="tourname" value="<%= tourInfo.datatour.friendlyURL%>">
+				</div>
+			</div>
 
-            <div class="row">
-                <label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
-                <textarea id="description" type="text" placeholder="Tour description"></textarea> 
-            </div>
+			<div class="row">
+				<label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
+				<textarea id="description" type="text" placeholder="Tour description"><%= tourInfo.settings._description%></textarea> 
+			</div>
 
-            <div class="row">
-                <label for="tags">Tags: <i class="help fa fa-question-circle"></i></label>
-                <textarea id="tags" type="text" placeholder="Separate tags by comma"></textarea> 
-            </div>
+			<div class="row">
+				<label for="tags">Tags: <i class="help fa fa-question-circle"></i></label>
+				<input type="text" value="<%= tourInfo.datatour.tags %>" id="tagsLiveModal2" name="tagsLiveModal">
+				<div id="toAppendTagsModal"></div>
+			</div>
 
-            <div class="row">
-                <label for="category-lt">Category: <i class="help fa fa-question-circle"></i></label>
-                <div id="category-lt" class="dropdown dd-liveTour">
-                    <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
-                    <ul class="category">
-                        <li>Cat 1</li>
-                        <li>Cat 2</li>
-                    </ul>
-                </div>
-            </div>
+			<div class="row">
+				 <%
+					var cat;
+					if(tourInfo.datatour.category == ""){
+						cat = "Choose Category"
+					}else{
+						cat = tourInfo.datatour.category;
+					}
+				%>
+				<label for="category-lt">Category: <i class="help fa fa-question-circle"></i></label>
+				<div id="category-lt" class="dropdown dd-liveTour">
+					<h3><span class="title"><%=cat%></span> <i class="fa fa-caret-down right arrow"></i></h3>
+					<ul class="category">
+					</ul>
+				</div>
+			</div>
 
-            <div class="row">
-                <label for="privacy-lt">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
-                <div id="privacy-lt" class="dropdown dd-liveTour">
-                    <h3><span class="title">Choose a category</span> <i class="fa fa-caret-down right arrow"></i></h3>
-                    <ul class="category">
-                        <li>Cat 1</li>
-                        <li>Cat 2</li>
-                    </ul>
-                </div>
-            </div>
+			<div class="row">
+				<label for="privacy-lt">Privacy configuration: <i class="help fa fa-question-circle"></i></label>
+				<div id="privacy-lt" class="dropdown dd-liveTour">
+					<h3><span class="title"></span> <i class="fa fa-caret-down right arrow"></i></h3>
+					<ul class="privacy">
+					</ul>
+				</div>
+			</div>
 
-            <div class="row">
-                <ul class="check-group">
-                    <li>
-                        <span class="fa fa-square-o fa-lg" id="allow-comments"></span> Allow Comments
-                    </li>
-                    <li>
-                        <span class="fa fa-square-o fa-lg" id="allow-social"></span> Allow Social Sharing
-                    </li>
-                    <li>
-                        <span class="fa fa-square-o fa-lg" id="allow-embed"></span> Allow Embed Code
-                    </li>
-                    <li>
-                        <span class="fa fa-square-o fa-lg" id="allow-votes"></span> Allow User Votes
-                    </li>
-                </ul>
-            </div>
+			<div class="row">
+				<ul class="check-group">
+					<li>
+						<span class="fa fa-<%if( tourInfo.datatour.allow_comments == "on"){%>check-<%}%>square-o fa-lg" id="modal_allow_comments"></span>
+						Allow Comments
+					</li>
+					<li>
+						<span class="fa fa-<%if( tourInfo.datatour.allow_social == "on"){%>check-<%}%>square-o fa-lg" id="modal_allow_social"></span> 
+						Allow Social Sharing
+					</li>
+					<li>
+						<span class="fa fa-<%if( tourInfo.datatour.allow_embed == "on"){%>check-<%}%>square-o fa-lg" id="modal_allow_embed"></span>
+						Allow Embed Code
+					</li>
+					<li>
+						<span class="fa fa-<%if( tourInfo.datatour.allow_votes == "on"){%>check-<%}%>square-o fa-lg" id="modal_allow_votes"></span> 
+						Allow User Votes
+					</li>
+				</ul>
+			</div>
 
-        </div>
+		</div>
 
-        <div class="col-2 right-col">
-            <div class="row">
-                <label for="live-tour-img-uploader">Tour cover image: <i class="help fa fa-question-circle"></i></label>
-                <div id="live-tour-img-uploader" class="editor-img"></div>
-            </div>
+		<div class="col-2 right-col">
+			<div class="row">
+				<label for="live-tour-img-uploader">Tour cover image: <i class="help fa fa-question-circle"></i></label>
+				<div id="live-tour-img-uploader" class="editor-img"></div>
+			</div>
 
-            <div class="row">
-                <label for="location-lt">Tour location: <i class="help fa fa-question-circle"></i></label>
+			<div class="row">
+				<label for="location-lt">Tour location: <i class="help fa fa-question-circle"></i></label>
 
-                <div id="location-lt" class="dropdown dd-liveTour">
-                    <h3><span class="title">Use a single location</span> <i class="fa fa-caret-down right arrow"></i></h3>
-                    <ul class="category">
-                        <li>Use a single location</li>
-                        <li>Indicate each scene's location</li>
-                        <li>Do not display the tour's location on the world map</li></li>
-                    </ul>
-                </div>
+				<div id="location-lt" class="dropdown dd-liveTour">
+					<h3><span class="title">Use a single location</span> <i class="fa fa-caret-down right arrow"></i></h3>
+					<ul class="category">
+						<li>Use a single location</li>
+						<li>Indicate each scene's location</li>
+						<li>Do not display the tour's location on the world map</li></li>
+					</ul>
+				</div>
 
-                <p class="location-txt"><span>Use a single location:</span> A single marker will represent the entire tour on the world map.</p>
-                
-                <div class="gmap-wrapper"></div>
-            </div>
+				<p class="location-txt"><span>Use a single location:</span> A single marker will represent the entire tour on the world map.</p>
+				
+				<div class="gmap-wrapper"></div>
+			</div>
 
-            <div class="row">
-                <label for="headings-lt">Location headings: <i class="help fa fa-question-circle"></i></label>
-                <input id="headings-lt" type="text" placeholder="Providencia, Archipielago, Colombia">
-            </div>
-            
-        </div>
-    </form>
+			<div class="row">
+				<label for="headings-lt">Location headings: <i class="help fa fa-question-circle"></i></label>
+				<input id="headings-lt" type="text" placeholder="Providencia, Archipielago, Colombia">
+			</div>
+			
+		</div>
+	</form>
 </div>
 
 <footer>
-    <span class="cancel uploader-btn red left">Cancel</span>
-    <div class="right">
-        <span>OK I'M DONE</span>
-        <span class="save uploader-btn green inlineBlock">Make My tour Live!</span>
-    </div>
+	<span class="cancel uploader-btn red left">Cancel</span>
+	<div class="right">
+		<span>OK I'M DONE</span>
+		<span class="save uploader-btn green inlineBlock">Make My tour Live!</span>
+	</div>
 </footer>
 </div>

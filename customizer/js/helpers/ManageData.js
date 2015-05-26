@@ -225,8 +225,8 @@ define([
 			}
 
 			this.saveServer = function(fun,action){
-				if(!$("#publish #draft").hasClass("active")){
-					$("#publish #draft").addClass("active")
+				if(!$("#publishController #draft").hasClass("active")){
+					$("#publishController #draft").addClass("active")
 				}
 				$("#draft .date").text("saving...");
 				var jsonstr = JSON.stringify(tourData)

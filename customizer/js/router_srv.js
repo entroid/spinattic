@@ -45,10 +45,10 @@ define([
 		panoMenuFooterView.render();
 	   
 
-		window.onpopstate = function(event)
+		/*window.onpopstate = function(event)
 		{
 			location.reload();
-		};
+		};*/
 		
 		$(window).resize(function(){
 			
