@@ -37,13 +37,13 @@ define([
                 this.dragFile();
             }
             
-            $( "#"+myid+" .image-uploader-wrapper").droppable({
+           /* $( "#"+myid+" .image-uploader-wrapper").droppable({
                 over: function( event, ui ) {$(this).addClass('droppingOver');},
                 out: function( event, ui ) {$(this).removeClass('droppingOver');}
             });
             $( "#"+myid+" .image-uploader-wrapper" ).on( "dropover", function( event, ui ) {
                 
-            } );
+            } );*/
         },
 
         startEditLoader:function(){

@@ -66,7 +66,6 @@ aside{
 
         span.friendlyURL{
             display: inline-block;
-            font-size: 1.1rem;
             padding-right: 0;
         }
 
@@ -122,7 +121,7 @@ aside{
     .land-submenu{
         top: 0;
         height: 100%;
-        width: 350px;
+        width: 500px;
 
         .inner{
             margin-top: $topSideBar;
@@ -412,9 +411,10 @@ aside{
             padding-left: 2px;
         }
         
-        #scenetitle, #mapscene{
+        #scenetitle, #mapscene, textarea{
             padding: 14px;
-            width: 280px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         figure{
@@ -475,8 +475,8 @@ aside{
         }
 
         .over-edit {
-            height: 92px;
-            padding-top: 35px;
+            /*height: 92px;
+            padding-top: 35px;*/
         }
     }
 

@@ -22,6 +22,8 @@ define([
             this.$elem.width(0);
             this.$elem.show();
 
+            console.log($width)
+
             this.$elem.animate({
                 opacity:1,
                 width: $width+"px"

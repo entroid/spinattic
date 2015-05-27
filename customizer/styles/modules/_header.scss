@@ -280,6 +280,10 @@ header.main-header{
         #tourTitleBar {
             display: inline-block;
             padding: 10px;
+
+            #tour-title{
+                background-color: #000;
+            }
         }
 
         #publishController{
@@ -453,4 +457,10 @@ header.main-header{
     cursor: pointer;
     background: none;
   border: none;
+}
+
+#widthTestEl {
+    padding: 4px 6px;
+    font-size: 1.2em;
+    font-weight: bold;
 }
