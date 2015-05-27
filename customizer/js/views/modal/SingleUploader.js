@@ -2,12 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'jqueryui',
     'text!templates/modal/singleUploaderDragArea.html',
     'text!templates/modal/singleUploaderShowing.html',
     'text!templates/modal/singleUploaderUploadingAnimation.html',
     'filedropsingle',
 
-], function($, _, Backbone,singleUploaderDragArea,singleUploaderShowing,singleUploaderUploadingAnimation,filedropsingle){
+], function($, _, Backbone,jqueryui, singleUploaderDragArea,singleUploaderShowing,singleUploaderUploadingAnimation,filedropsingle){
 
     var SingleUploader = Backbone.View.extend({
         CallBack:null,
@@ -35,6 +36,14 @@ define([
                 $("#"+myid).html(template);
                 this.dragFile();
             }
+            
+            $( "#"+myid+" .image-uploader-wrapper").droppable({
+                over: function( event, ui ) {$(this).addClass('droppingOver');},
+                out: function( event, ui ) {$(this).removeClass('droppingOver');}
+            });
+            $( "#"+myid+" .image-uploader-wrapper" ).on( "dropover", function( event, ui ) {
+                
+            } );
         },
 
         startEditLoader:function(){
@@ -50,7 +59,8 @@ define([
             var myid = this.model.get("myid");
             var dropbox = $('#single-drop-zone');
             var tour_id = este.model.get("tour_id");
-            var caso = este.model.get("caso")
+            var caso = este.model.get("caso");
+
             dropbox.filedropSingle({
                 paramname:'pic',
                 refresh: 100,
