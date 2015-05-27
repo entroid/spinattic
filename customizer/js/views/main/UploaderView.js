@@ -127,7 +127,9 @@ define([
 						$(".dragger-wrapper").removeClass("scaling")
 						rollingOver = false;
 					}    
-
+					if($(".inner-dragger .pano-item").length!=0){
+						i = $(".inner-dragger .pano-item").length;
+					}
 					este.createImage(file,i);
 					$(".dragable").addClass("uploading-drop-zone"); 
 					este.verticalCent();   
@@ -151,9 +153,9 @@ define([
 										
 										switch(este.state[i]) {
 										case "-1": //Error
-											console.log("ENTRO: " + state[i]);
-																		
-											
+											console.log("ENTRO ERROR: " + este.state[i]);
+											clearInterval(este.setIntervalID[i]);				
+											$(".inner-dragger #pano-"+i+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us")
 											break;
 											
 										case "1":
@@ -329,7 +331,7 @@ define([
 			}else{
 				$(".fa-clock-o").removeClass('blink').addClass("save").text("CREATE TOUR");
 			}
-
+			$(".save").unbind("click");
 			$(".save").click( function(){
 
 				if(este.addingPane){

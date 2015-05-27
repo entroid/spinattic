@@ -243,6 +243,9 @@
 				boundary = '------multipartformboundary' + (new Date).getTime(),
 				builder;
 				
+			uploader_id++;
+			console.log("UL ID: "+uploader_id);
+			
 			newName = rename(file.name);
 			if (typeof newName === "string") {
 				builder = getBuilder(newName, e.target.result, boundary);
@@ -251,9 +254,9 @@
 			}
 			
 			
-			proc_id[index] =  start_time+'-'+index+'-'+gTour_id;
+			proc_id[uploader_id] =  start_time+'-'+uploader_id+'-'+gTour_id;
 			
-			console.log('START:' + file.name + ' - ' + proc_id[index]);
+			console.log('START:' + file.name + ' - ' + proc_id[uploader_id]);
 			
 			upload.index = index;
 			upload.file = file;
@@ -263,7 +266,7 @@
 			upload.startData = 0;
 			upload.addEventListener("progress", progress, false);
 			
-			xhr.open("POST", opts.url + '?proc_id='+proc_id[index]+'&tour_id='+gTour_id, true);
+			xhr.open("POST", opts.url + '?proc_id='+proc_id[uploader_id]+'&tour_id='+gTour_id, true);
 
 //			xhr.open("POST", opts.url + '?tour_id='+document.getElementById("tour_id").value, true);
 
