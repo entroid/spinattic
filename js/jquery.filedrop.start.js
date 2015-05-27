@@ -7,7 +7,7 @@ var tour_id = new Array();
 var filename = new Array();
 var scene_name = new Array();
 var html_ref_id = new Array();
-
+var uploader_id = 0;
 
 jQuery(document).ready(function(){
 
@@ -28,7 +28,7 @@ jQuery(document).ready(function(){
 		maxfiles: 3,
 		//queuefiles: 2,
         maxfilesize: 200,
-        data: {'proc_id':proc_id},
+        //data: {'proc_id':proc_id},
 		//url: 'php-stubs/upload-files.php',
         url: 'php-stubs/general_process.php',
 		
@@ -74,6 +74,8 @@ jQuery(document).ready(function(){
 		},
 		
 		uploadStarted:function(i, file, len){
+				
+					var this_ul_id = uploader_id;
                     
                     if (rollingOver)
                     { 
@@ -86,72 +88,67 @@ jQuery(document).ready(function(){
 					 $(".wrapper").removeClass("new"); 
 					 jQuery("#drop-zone").addClass("not-new");
 	
-					 
+					  
+
 	                   
-	                   setIntervalID[i] = setInterval(function(){
+	                   setIntervalID[this_ul_id] = setInterval(function(){
 	                	$.ajax({
 	        				type: "POST",
 	        				url: "php-stubs/general_process_state.php",
-	        				data: "proc_id=" + proc_id[i],
+	        				data: "proc_id=" + proc_id[this_ul_id],
 	        				cache: false,
 	        				success: function(response){
 	        					respuesta = JSON.parse(response);
 	        						//console.log("STATE "+i+":"+respuesta.state);
 	        						
-	        						if(state[i] != respuesta.state && respuesta.state != 'w'){
+	        						if(state[this_ul_id] != respuesta.state && respuesta.state != 'w'){
 	        							
-	        							state[i] = respuesta.state;
+	        							state[this_ul_id] = respuesta.state;
 	        							
-	        							switch(state[i]) {
+	        							switch(state[this_ul_id]) {
 	        						    case "-1": //Error
-	        						    	console.log("ENTRO: " + state[i]);
-	             		                	/*
-		        		                	clearInterval(setIntervalID[i]);
+	        						    	console.log("ENTRO ERROR: " + state[this_ul_id]);
+		        		                	clearInterval(setIntervalID[this_ul_id]);
 		        		                	
-		        							if (response.result == 'ERROR'){
-		        								showMsg(response.msg);
-		        							}else{
-		        								showMsg(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us");
-		        								sendReport("1", "<u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
-		        							}
-		        	                        $.data(file).remove();
-		        	                        */	        						        
-	        						    	
+	        								showMsg(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us");
+	        								sendReport("1", respuesta.state_desc+"<br><br><u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
+		        	                        
+											$.data(file).remove();
 	        						        break;
 	        						        
 	        						    case "1":
-	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
-	        						    	//console.log("ACA: " + state[i]);
+	        						    	//console.log("ACA: " + state[this_ul_id]);
 	        						    	
 	        		                        var $success_result = $.data(file).find('.ok');
 	        		                        var $loader_item    = $.data(file).find('.loader-item');
 	        		                        
-	        		                        pano_id[i]         = respuesta.pano_id;
-	        		                        scene_id[i]        = respuesta.scene_id;
-	        		                        tour_id[i]         = respuesta.tour_id;
-	        		                        filename[i]        = respuesta.filename;  
-	        		                        scene_name[i]      = filename[i].replace(/\.jpg|\.jpeg|\.tiff/g, '');
-	        		                        html_ref_id[i]     = 'item-'+ scene_id[i];
+	        		                        pano_id[this_ul_id]         = respuesta.pano_id;
+	        		                        scene_id[this_ul_id]        = respuesta.scene_id;
+	        		                        tour_id[this_ul_id]         = respuesta.tour_id;
+	        		                        filename[this_ul_id]        = respuesta.filename;  
+	        		                        scene_name[this_ul_id]      = filename[this_ul_id].replace(/\.jpg|\.jpeg|\.tiff/g, '');
+	        		                        html_ref_id[this_ul_id]     = 'item-'+ scene_id[this_ul_id];
 	        		                        
 	        		                        $success_result.after( "<p>Processing image (Step 1/2) ...</br><img src=\"images/loading.gif\"></p>" );
 	        		                        
-	        		                        $.data(file).attr('id', html_ref_id[i]);
+	        		                        $.data(file).attr('id', html_ref_id[this_ul_id]);
 	        		
 	        		
 	        		                        $.data(file).find('.loader-item-bg').remove();
 	        		                        $.data(file).find('.uploadind_message').remove();
 	        		                        
-	        		                        $loader_item.children('h3.otf-editable').html(scene_name[i]); 
-	        		                        $loader_item.children('input.scene-field').val(scene_id[i]);                                         
+	        		                        $loader_item.children('h3.otf-editable').html(scene_name[this_ul_id]); 
+	        		                        $loader_item.children('input.scene-field').val(scene_id[this_ul_id]);                                         
 	        		                                 
-	        		                        $loader_item.children('h4.pano-title').html(filename[i]);         
-	        		                        $loader_item.children('input.pano-field').val(pano_id[i]);
+	        		                        $loader_item.children('h4.pano-title').html(filename[this_ul_id]);         
+	        		                        $loader_item.children('input.pano-field').val(pano_id[this_ul_id]);
 	        		                        
-	        		                        $loader_item.children('.cancel-process').data('id', pano_id[i]);
-	        		                        $loader_item.children('.cancel-process').data('scene', scene_id[i]);
+	        		                        $loader_item.children('.cancel-process').data('id', pano_id[this_ul_id]);
+	        		                        $loader_item.children('.cancel-process').data('scene', scene_id[this_ul_id]);
 	        		                        
-	        		                        $loader_item.children('.on-edit').children('form').children('input.scene-id').val(scene_id[i]);
+	        		                        $loader_item.children('.on-edit').children('form').children('input.scene-id').val(scene_id[this_ul_id]);
 	        		                                      
 	        		                 
 	        		                        // Executes image processing script
@@ -160,9 +157,9 @@ jQuery(document).ready(function(){
 	        						        break;
 	        						    
 	        						    case "2":
-	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
-        			            		   var $scene_item    = $('#'+html_ref_id[i]);
+        			            		   var $scene_item    = $('#'+html_ref_id[this_ul_id]);
         				                   var $success_result = $scene_item.find('.ok');
         				                   
         				                   $success_result.next().remove(); // remove processing text
@@ -171,9 +168,9 @@ jQuery(document).ready(function(){
         				                   break;
 	        						    	
 	        						    case "3":
-	        						    	console.log("ENTRO " + i + "(" + filename[i] +"): "+ state[i]);
+	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
-		            	                    var $scene_item     = $('#'+html_ref_id[i]);
+		            	                    var $scene_item     = $('#'+html_ref_id[this_ul_id]);
 		            	                    var $success_result = $scene_item.find('.ok');
 		            	                    var $loader_item    = $scene_item.find('.loader-item');
 		            	                    var $thumb_pano     = $scene_item.find('.thumb-pano').children('img');
@@ -194,7 +191,7 @@ jQuery(document).ready(function(){
 		            	                    
 		            	                    $scene_item.children('.scene-remove').click(function()
 		            	                    {
-		            	                        var data         = 'scene-id='+scene_id[i];
+		            	                        var data         = 'scene-id='+scene_id[this_ul_id];
 		
 		            	                        var container   = jQuery(this).parent();
 		
@@ -233,7 +230,7 @@ jQuery(document).ready(function(){
 		            	                    });       
 		            	                    
 		            	                    mixpanel.track("Pano upload");
-		            	                    clearInterval(setIntervalID[i]);
+		            	                    clearInterval(setIntervalID[this_ul_id]);
 	        						    	break;
 	        							} 
 	        							
@@ -280,7 +277,7 @@ jQuery(document).ready(function(){
                 
                 uploadFinished:function(i, file, response)
                 {        
-                   console.log('STOP:' + proc_id[i] + ' - ' + i + ' - ' + file["name"]);
+                   console.log('STOP:' + proc_id[this_ul_id] + ' - ' + i + ' - ' + file["name"]);
 		},
                 
                 afterAll : function()

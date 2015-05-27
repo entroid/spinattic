@@ -414,7 +414,9 @@
 		} else {
 		  builder = getBuilder(file.name, data, mime, boundary);
 		}
-
+		if($(".inner-dragger .pano-item").length!=0){
+			index = $(".inner-dragger .pano-item").length;
+		}
 		window.proc_id[index] =  start_time+'-'+index+'-'+window.gTour_id;
 	  
 		console.log('START:' + file.name + ' - ' + window.proc_id[index]);

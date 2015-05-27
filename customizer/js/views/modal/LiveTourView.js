@@ -43,7 +43,7 @@ define([
             helpFunctions.dropDown("#location-lt","h3");
 
             var SingleUploaderModel = Backbone.Model.extend({});
-            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.scene[0]._thumburl,tour_id:"tourId"})
+            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.datatour.tour_thumb_path,tour_id:"tourId"})
             
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             singleUploader.render();
