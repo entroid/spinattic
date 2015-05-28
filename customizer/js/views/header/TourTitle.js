@@ -58,14 +58,16 @@ define([
         changeTitleByBlur:function(e){
 
             var helpFunctions = new HelpFunctions();
-
-
-            if($("#virtualTourSettings-menu #friendlyURLTour").val() == ""){
+            var manageData = new ManageData();
+            if(tourData.krpano.datatour.friendlyURL == ""){
                 var textTitle = $("#tour-title").val();
                 var textLug = helpFunctions.slug(textTitle)
-                $("#virtualTourSettings-menu #friendlyURLTour").val(textLug)
+                if( $("#virtualTourSettings-menu").size()){
+                    $("#virtualTourSettings-menu #friendlyURLTour").val(textLug);
+                }
+                manageData.saveTourData("friendlyURL",textLug)
+
             }
-            var manageData = new ManageData();
             manageData.saveSettings(e);
 
             //this.setWidth(e.target);            
