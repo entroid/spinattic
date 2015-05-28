@@ -56,7 +56,18 @@ define([
           });
         },
         changeTitleByBlur:function(e){
+
+            var helpFunctions = new HelpFunctions();
             var manageData = new ManageData();
+            if(tourData.krpano.datatour.friendlyURL == ""){
+                var textTitle = $("#tour-title").val();
+                var textLug = helpFunctions.slug(textTitle)
+                if( $("#virtualTourSettings-menu").size()){
+                    $("#virtualTourSettings-menu #friendlyURLTour").val(textLug);
+                }
+                manageData.saveTourData("friendlyURL",textLug)
+
+            }
             manageData.saveSettings(e);
 
             //this.setWidth(e.target);            
@@ -71,7 +82,7 @@ define([
             $(widthTestEl).html(elText);                
             widthTest = $(widthTestEl).width();
 
-            $(el).width(widthTest);
+            $(el).width(widthTest+5);
         }
 
 
