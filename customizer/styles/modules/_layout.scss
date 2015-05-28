@@ -526,6 +526,11 @@ textarea{
 
 }
 
+.backgroundBlack{
+    background-color: black;
+    transition: background-color 500ms linear;
+}
+
 .progress{
     height: 7px;
     

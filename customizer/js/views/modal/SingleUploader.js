@@ -130,7 +130,14 @@ define([
 
                 afterAll : function(){
 
-                }  
+                },
+
+                docOver: function() {
+                    $("#"+myid+" .image-uploader-wrapper").addClass('backgroundBlack');
+                },
+                docLeave: function() {
+                    $("#"+myid+" .image-uploader-wrapper").removeClass('backgroundBlack');
+                }
 
             })
         },

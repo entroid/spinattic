@@ -3448,6 +3448,10 @@ textarea {
 .editor-img:hover .over-edit {
   opacity: 1; }
 
+.backgroundBlack {
+  background-color: black;
+  transition: background-color 500ms linear; }
+
 .progress {
   height: 7px;
   border-radius: 5px;
