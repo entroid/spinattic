@@ -42,8 +42,11 @@ define([
             this.verticalCent();
             helpFunctions.dropDown("#location-lt","h3");
 
+            var tour_id = location.hash.split("/")[1];
+            var caso = 'tour_thumb';
+            
             var SingleUploaderModel = Backbone.Model.extend({});
-            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.datatour.tour_thumb_path,tour_id:"tourId"})
+            var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.datatour.tour_thumb_path,tour_id:tour_id,caso:caso})
             
             var singleUploader = new SingleUploader({model:singleUploaderModel});
             singleUploader.render();

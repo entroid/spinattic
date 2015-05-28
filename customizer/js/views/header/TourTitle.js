@@ -56,6 +56,15 @@ define([
           });
         },
         changeTitleByBlur:function(e){
+
+            var helpFunctions = new HelpFunctions();
+
+
+            if($("#virtualTourSettings-menu #friendlyURLTour").val() == ""){
+                var textTitle = $("#tour-title").val();
+                var textLug = helpFunctions.slug(textTitle)
+                $("#virtualTourSettings-menu #friendlyURLTour").val(textLug)
+            }
             var manageData = new ManageData();
             manageData.saveSettings(e);
 
@@ -71,7 +80,7 @@ define([
             $(widthTestEl).html(elText);                
             widthTest = $(widthTestEl).width();
 
-            $(el).width(widthTest);
+            $(el).width(widthTest+5);
         }
 
 
