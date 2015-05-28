@@ -21,6 +21,15 @@
                 </div>
             </div>
 
+            <div class="single-input-group">
+                <div class="line-group">
+                    <label for="logo-skill-linkto">Links to:</label>
+                    <% var url = tourSkill.plugin._onclick.replace("openurl(","") %>
+                    <% url = url.replace(",_blank);","") %>
+                    <input type="text" id="logo-skill-linkto" value="<%=url%>" data-prop="onclick"> 
+                </div>
+            </div> 
+
             <div class="editor-group-2col">
                 <div class="line-group">
                     <label for="logo-skill-x">X margin:</label>
@@ -36,16 +45,8 @@
                     <label for="logo-skill-zorder">Z order:</label>
                     <input type="number" id="logo-skill-zorder" value="<%=tourSkill.plugin._zorder%>" data-prop="zorder">
                 </div>
-            </div>
-           
-            <div class="single-input-group">
-                <div class="line-group">
-                    <label for="logo-skill-linkto">Links to:</label>
-                    <% var url = tourSkill.plugin._onclick.replace("openurl(","") %>
-                    <% url = url.replace(",_blank);","") %>
-                    <input type="text" id="logo-skill-linkto" value="<%=url%>" data-prop="onclick"> 
-                </div>
-            </div>           
+            </div>          
+                      
         </fieldset>
     </div>
 

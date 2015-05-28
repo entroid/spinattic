@@ -621,7 +621,7 @@
         }        
 
         .scrollwrapper{
-            height: 350px;
+            max-height: 400px;
             overflow: auto;
             margin-right: -15px;
             padding-right: 15px;
@@ -1343,4 +1343,10 @@
         font-weight: bold;
     }
   }
+}
+
+#Context-menu-add-item{
+    font-size: 1.4rem; 
+    font-weight: bold;
+    cursor: pointer;
 }
