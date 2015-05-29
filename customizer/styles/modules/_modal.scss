@@ -954,6 +954,18 @@
             }
         }
 
+        .cancel-img{
+            display:none;
+        }
+
+        .image-uploader-wrapper.withimage{
+                max-height:300px; 
+
+                 img{
+                    max-width:none;
+                 }
+
+            }
         .hotspotStyleContent{
             overflow: hidden;
 

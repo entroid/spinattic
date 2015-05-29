@@ -258,6 +258,12 @@ define([
 
 		uploadComplete:function(){
 			$("#hotspotStyleEditor .hotspotStyleContent").show();
+			$("#hotspotStyleEditor .image-uploader-wrapper").addClass("withimage");
+			$("#hotspotStyleEditor .image-uploader-wrapper").mCustomScrollbar({
+                    theme:"minimal-dark",
+                    scrollInertia:300,
+                    axis:"yx"
+            });
 			this.verticalCent();
 		},
 
