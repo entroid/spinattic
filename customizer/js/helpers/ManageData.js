@@ -223,7 +223,17 @@ define([
 				}
 				this.saveServer();
 			}
-
+			this.resetThumb = function(){
+				var id = location.hash.split("/")[1];
+				$.ajax({
+					url:'php/updater.php',
+					type:'POST',
+					data:"action=reset_tour_thumb&id="+id,
+					success:function(res){
+						console.log(res)
+					}
+				})
+			}
 			this.saveServer = function(fun,action){
 				if(!$("#publishController #draft").hasClass("active")){
 					$("#publishController #draft").addClass("active")
@@ -244,10 +254,11 @@ define([
 					data:mydata,
 					success:function(res){
 						var res = JSON.parse(res);
+						console.log(res)
+						console.log(fun)
 						if(fun){
 							fun()
 						}
-						var d = new Date();
 						$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
 							$("#draft .loading-wrapper").html('<div class="loading"></div>')
 						});

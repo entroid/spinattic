@@ -95,9 +95,9 @@ define([
                 var thisname = $(this).data("scene")._scene_id;
                 this.remove();
 
-                if($("#tour").data("scene")._scene_id == thisname){
+               /* if($("#tour").data("scene")._scene_id == thisname){
                     $("#sceneMenu li:eq(0) img").trigger("click");
-                }
+                }*/
 
                 var manageData = new ManageData();
                 var manageTour = new ManageTour();

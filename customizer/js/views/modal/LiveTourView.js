@@ -19,6 +19,7 @@ define([
          _.extend(this.events, Modal.prototype.events);
         },
         events:{
+            "click #reset-live-thumb":"resetThumb"
         },
         
         renderExtend:function(){
@@ -145,6 +146,11 @@ define([
             this.socialModal = new SocialModal();
             this.socialModal.render("socialModal",this.socialModal.renderExtend);
         
+        },
+
+        resetThumb:function(){
+            var manageData = new ManageData();
+            manageData.resetThumb();
         }
 
     });

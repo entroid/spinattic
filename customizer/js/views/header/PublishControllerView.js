@@ -17,7 +17,7 @@ define([
         },
 
         events:{  
-            "click header .onoffswitch-label": "openLiveModal"
+            "click #onoffswitchpub": "openLiveModal"
         },
 
         render: function(){
@@ -27,19 +27,18 @@ define([
 
             $(this.el).append( compiledTemplate );
 
-            $('header .onoffswitch-label').click(function() {
-                este.openLiveModal();
-            })
-
             helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
             helpFunctions.toolTip("#publishController .fa-question-circle", "publish up");
             helpFunctions.toolTip("#publishController #publish", "publish up");
 
         },
 
-        openLiveModal: function () {
+        openLiveModal: function(e) {
+            console.log(e)
+            if($(e.target).is(":checked")){
                 this.liveTourView = new LiveTourView();
                 this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
+                }
         }    
     });
 
