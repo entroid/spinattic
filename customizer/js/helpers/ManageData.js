@@ -230,7 +230,9 @@ define([
 					type:'POST',
 					data:"action=reset_tour_thumb&id="+id,
 					success:function(res){
-						console.log(res)
+						res = JSON.parse(res)
+						$("#live-tour-img-uploader img").attr("src",res.path);
+						$("#reset-live-thumb").hide();
 					}
 				})
 			}

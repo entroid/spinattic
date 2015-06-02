@@ -50,7 +50,7 @@ define([
             var singleUploaderModel = new SingleUploaderModel({myid:"live-tour-img-uploader",imgsrc:tourData.krpano.datatour.tour_thumb_path,tour_id:tour_id,caso:caso})
             
             var singleUploader = new SingleUploader({model:singleUploaderModel});
-            singleUploader.render();
+            singleUploader.render(this.changeImage);
 
 
             $.ajax({
@@ -138,6 +138,13 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });
+        },
+
+        changeImage:function(){
+            console.log("a")
+            tourData.krpano.datatour.tour_thumb_custom = "1",
+            $("#reset-live-thumb").show();
+
         },
 
         goLive: function() {

@@ -79,9 +79,7 @@
 			<div class="row">
 				<label for="live-tour-img-uploader">Tour cover image: <i class="help fa fa-question-circle"></i></label>
 				<div id="live-tour-img-uploader" class="editor-img"></div>
-				<%if(tourInfo.datatour.tour_thumb_custom != "0"){%>
-				<span id="reset-live-thumb" class="fa fa-refresh"> reset</span>
-				<%}%>
+				<span id="reset-live-thumb" class="fa fa-refresh" <%if(tourInfo.datatour.tour_thumb_custom == "0"){%>style="display:none"<%}%>> reset</span>
 			</div>
 
 			<div class="row">

@@ -1,143 +1,66 @@
-<krpano onstart="startup();">
-<!-- hotspots actions -->
-<include url="skills/hotspots/hotspots.xml" />
+			<!-- HEAD -->
+			
+				<krpano onstart="startup();">
+			<!-- GENERAL -->
+			
+				<include url="http://dev.spinattic.com/customizer/data/hotspots.xml"></include>
+				
+				<include url="%SWFPATH%/skills/common.xml"></include>
+				
+				<action name="startup"></action>
+				
+				<autorotate accel="1.0" enabled="on" horizon="0.0" speed="10.0" tofov="0.0" waittime="3.0"></autorotate>
+				
+				<control fovfriction="0.8" fovspeed="3.0" mouseaccelerate="1.0" mousefovchange="1.0" mousefriction="0.8" mousespeed="10.0" mousetype="moveto" touchfriction="0.87" zoomoutcursor="off" zoomtocursor="on"></control>
+				
+				<settings description="" lat="" long="" name="toursettings" title="hello"></settings>
+		
+			<!-- SCENES -->
+			
+		<scene name="scene_1086" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/934/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+			<view hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.5" fovmin="60" fovmax="120" limitview="auto"  />
 
-<action name="startup">
-</action>
+			<preview url="http://cdn.dev.spinattic.com/panos/934/pano.tiles/preview.jpg" />
 
+			<image>
 
-<autorotate enabled="true"
-            waittime="3.0"
-            accel="1.0"
-            speed="5.0"
-            horizon="on"
-            tofov="on"
-            />
+				<cube url="http://cdn.dev.spinattic.com/panos/934/pano.tiles/pano_%s.jpg" />
 
-<control mousetype="moveto"
-         zoomtocursor="false"
-         zoomoutcursor="true"
-         mouseaccelerate="1.0"
-         mousespeed="10.0"
-         mousefriction="0.8"
-         mousefovchange="1.0"
-         fovspeed="3.0"
-         fovfriction="0.9"
-         />
+				<mobile>
+					<cube url="http://cdn.dev.spinattic.com/panos/934/pano.tiles/mobile_%s.jpg" />
+				</mobile>
 
-
-<settings name="toursettings"
-	 lat="" long=""
-	 title=""
-	 description=""
-
-/>
-
-
-<!-- DEMO SCENE -->
-<scene name="scene_01" urlname="friendlyURL" title="Scene title" onstart=""  thumburl="http://cdn.spinattic.com/customizer/panos/1/pano.tiles/thumb200x100.jpg"
- lat="" lng="" heading=""
- description=""
->
-		<view hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" fovmin="60" fovmax="120" limitview="auto"  />
-
-		<preview url="panos/1/pano.tiles/preview.jpg" />
-
-		<image>
-			<cube url="panos/1/pano.tiles/pano_%s.jpg" />
-			<mobile>
-				<cube url="panos/1/pano.tiles/mobile_%s.jpg" />
-			</mobile>
-		</image>
-
-<!-- hotspots -->
-	<hotspot style="hotspot_set1_arrow" name="link_1" ath="44" atv="4"
-	linkedscene="scene_02" />
-
-	<hotspot style="hotspot_set1_info" name="info_1" ath="60" atv="-5" 
-	infotitle="info hotspot" infotext="Text info text Text info text" />
-
-	<hotspot style="hotspot_set1_photo" name="media_1" ath="-26" atv="0" 
-	pic="tourpreview.jpg" tooltip="Tomates" />
-
-	<hotspot style="hotspot_set1_link" name="link_1" ath="33" atv="5" 
-	linkurl="http://www.spinattic.com" tooltip="link link" />
-<!-- end hotspots -->
-
-</scene>
-
-
-
-
-
-<!-- SKILLS -->
-
-<!-- context menu -->
-<contextmenu fullscreen="true">
-	<item	name="signature"  caption="Spinattic.com" onclick="openurl(http://www.spinattic.com,_blank); " />
-</contextmenu>
-
-<!-- signature 
-<plugin name="skill_signature" url="graphics/buttons_black.png" align="bottomright" x="5" y="3" keep="true" zorder="102" alpha="0.6" onover="tween(alpha,1)" onout="tween(alpha,0.6)" onclick="openurl(http://www.spinattic.com/,_blank);" />
-
-Logo 
-<plugin name="skill_logo" url="graphics/logo.png" align="topright" x="10" y="10" keep="true" zorder="100" onclick="openurl(http://www.spinattic.com,_blank);" parent="" />
--->
-
-
-
-<!-- Spinattic loading Bar --> 
-	<progress showload="none" showwait="none" showreloads="false" />
-	<events name="loadingbar" keep="true" onxmlcomplete="loadingbar_startloading();" onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );" />
-	<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="top" y="0" width="100%" height="4" enabled="false" visible="false">
-		<layer name="loadingbar_space" type="container" align="left" x="0" width="-1" height="100%">
-			<layer name="loadingbar_fill" type="container" bgcolor="0xd3322a" bgalpha="1.0" align="lefttop" width="0" height="100%" />
-		</layer>
-	</layer>
-	<action name="loadingbar_startloading">
-		set(loadingbar_isloading, true);
-		set(layer[loadingbar_bg].visible, true);		
-		asyncloop(loadingbar_isloading,
-			mul(pv, progress.progress, 100);
-			txtadd(pv, '%');
-			copy(layer[loadingbar_fill].width, pv);
-		  );
-	</action>
-	<action name="loadingbar_stoploading">
-		set(loadingbar_isloading, false); 
-		set(layer[loadingbar_bg].visible, false);
-	</action>
-<!-- end Spinattic loading bar -->
-
-
-
-<!-- Standard loader
-<progress showload="auto"
-          showwait="loopings()"
-          showreloads="false"
-          />
--->
-
-
-
-
-
-<!-- Free hotspots styles set 1 -->
-	<style name="hotspot_set1_arrow" url="skills/hotspots/hotspots_1.png" crop="00|00|32|32" onovercrop="00|32|32|32" ondowncrop="00|64|32|32" onhover=" if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) ); " onloaded="mul(scale,get(device.pixelratio));"
-	onclick=" if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); );" />
-
-	<style name="hotspot_set1_info" zorder="10" url="skills/hotspots/hotspots_1.png" crop="32|00|32|32" onovercrop="32|32|32|32" ondowncrop="32|64|32|32" onhover="if(get(infotitle) == null,,showtext(get(infotitle),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"
-	onclick="showinfo(get(infotitle),get(infotext));" />
-
-	<style name="hotspot_set1_photo" zorder="10" url="skills/hotspots/hotspots_1.png" crop="64|00|32|32" onovercrop="64|32|32|32" ondowncrop="64|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"
-	onclick="showpic(); seewait();" />
-
-	<style name="hotspot_set1_video" zorder="10" url="skills/hotspots/hotspots_1.png" crop="96|00|32|32" onovercrop="96|32|32|32" ondowncrop="96|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"
-	onclick="showpic(); seewait();"  />
-
-	<style name="hotspot_set1_link" zorder="10" url="skills/hotspots/hotspots_1.png" crop="128|00|32|32" onovercrop="128|32|32|32" ondowncrop="128|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"
-	onclick="openurl(get(linkurl),_blank)" />
-
-
-
-</krpano>
+			</image>
+		</scene>
+			<!-- SKILLS -->
+			
+				
+				<plugin align="bottomright" alpha="0.6" keep="true" name="skill_signature" onclick="openurl(http://www.spinattic.com/,_blank);" onout="tween(alpha,0.6)" onover="tween(alpha,1)" url="http://dev.spinattic.com/styles/skills/spinattic_signature.png" x="3" y="5" zorder="102"></plugin>
+		
+				
+				
+				<progress showload="auto" showreloads="false" showwait="loopings()"></progress>
+		
+		
+			<!-- DEFAULT SKILLS -->
+			
+			<!-- FREE HOTSPOTS STYLES -->
+			
+				<style name="hotspot_set1_arrow" url="http://dev.spinattic.com/styles/hotspots/hotspots_1.png" crop="00|00|32|32" onovercrop="00|32|32|32" ondowncrop="00|64|32|32" onhover="if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) );" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set1_info" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_1.png" crop="32|00|32|32" onovercrop="32|32|32|32" ondowncrop="32|64|32|32" onhover="if(get(infotitle) == null,,showtext(get(infotitle),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set1_link" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_1.png" crop="128|00|32|32" onovercrop="128|32|32|32" ondowncrop="128|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set1_photo" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_1.png" crop="64|00|32|32" onovercrop="64|32|32|32" ondowncrop="64|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set1_video" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_1.png" crop="96|00|32|32" onovercrop="96|32|32|32" ondowncrop="96|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set2_arrow" url="http://dev.spinattic.com/styles/hotspots/hotspots_2.png" crop="00|00|32|32" onovercrop="00|32|32|32" ondowncrop="00|64|32|32" onhover="if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) );" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set2_info" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_2.png" crop="32|00|32|32" onovercrop="32|32|32|32" ondowncrop="32|64|32|32" onhover="if(get(infotitle) == null,,showtext(get(infotitle),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set2_link" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_2.png" crop="128|00|32|32" onovercrop="128|32|32|32" ondowncrop="128|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set2_photo" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_2.png" crop="64|00|32|32" onovercrop="64|32|32|32" ondowncrop="64|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set2_video" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_2.png" crop="96|00|32|32" onovercrop="96|32|32|32" ondowncrop="96|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set3_arrow" url="http://dev.spinattic.com/styles/hotspots/hotspots_3.png" crop="00|00|32|32" onovercrop="00|32|32|32" ondowncrop="00|64|32|32" onhover="if(hotspot[get(name)].tooltip === null, showtext(get(scene[get(linkedscene)].title),hotspotTxt), showtext(get(tooltip),hotspotTxt) );" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set3_info" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_3.png" crop="32|00|32|32" onovercrop="32|32|32|32" ondowncrop="32|64|32|32" onhover="if(get(infotitle) == null,,showtext(get(infotitle),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set3_link" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_3.png" crop="128|00|32|32" onovercrop="128|32|32|32" ondowncrop="128|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set3_photo" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_3.png" crop="64|00|32|32" onovercrop="64|32|32|32" ondowncrop="64|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+				<style name="hotspot_set3_video" zorder="10" url="http://dev.spinattic.com/styles/hotspots/hotspots_3.png" crop="96|00|32|32" onovercrop="96|32|32|32" ondowncrop="96|64|32|32" onhover="if(get(tooltip) == null,,showtext(get(tooltip),hotspotTxt);)" onloaded="mul(scale,get(device.pixelratio));"/>
+		
+			<!-- HOTSPOTS STYLES -->
+			</krpano>
