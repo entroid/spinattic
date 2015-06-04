@@ -677,10 +677,11 @@ textarea{
 
 .addStyle{
     background: $middle-gray;
-    border: 1px solid black;
     box-sizing: border-box;
     @include shadow-white(1px, 0, 0.2, inset);
-
+    /*border: 1px solid black;*/
+    outline:1px solid black;
+    
     &:hover{
         background: $middle-gray1;
     }

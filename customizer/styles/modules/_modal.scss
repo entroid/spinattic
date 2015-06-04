@@ -987,7 +987,7 @@
                 cursor: pointer;
 
                 &.selected{
-                    border: 1px solid $green;
+                    outline: 1px solid $green;
                     background-color: $middle-gray1;
                 }
 

@@ -64,10 +64,10 @@ define([
                 var UploaderModel = Backbone.Model.extend({});
                 var cancel = true;
 
-                uploaderModer = new UploaderModel({gNewTour:false,addingPane:true});
+                uploaderModer = new UploaderModel({gNewTour:false,addingPane:true,cancel:true});
 
                 this.uploaderview = new UploaderView({model:uploaderModer});
-                this.uploaderview.render(cancel);
+                this.uploaderview.render();
             }
         },
 

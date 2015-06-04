@@ -28,7 +28,8 @@ define([
             this.verticalCent();
             $("#"+this.myid+" .fa-close").click(this.closeBT);
             $("#"+this.myid+" #cancel-event").click(this.closeBT);
-            $("#"+this.myid+" #ok-event").click(function(){
+            $("#"+this.myid+" #ok-event").click(function(e){
+                e.preventDefault();
                 evt()
             });
         },

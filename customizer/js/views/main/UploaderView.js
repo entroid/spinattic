@@ -45,14 +45,13 @@ define([
 			"click .dragger-wrapper .cancel":"removeView"
 		},
 
-		render: function(cancel){
+		render: function(){
 			este = this;
 			  window.proc_id = new Array();
 	  
 			este.gNew_tour = this.model.get("gNewTour");
-
 			este.addingPane =  this.model.get("addingPane");
-		   
+		   	este.cancel = this.model.get("cancel")
 			if(location.hash.split("/")[1]){
 				este.gTour_id= location.hash.split("/")[1];
 			}
@@ -60,7 +59,7 @@ define([
 			var compiledTemplate = _.template(upload);
 			$(this.el).append( compiledTemplate ); 
 
-			if (cancel) {
+			if (este.cancel) {
 				$('.dragger-wrapper .cancel').removeClass('none');
 			}
 			var helpFunctions = new HelpFunctions();
