@@ -7,6 +7,7 @@ define([
 	'helpers/ManageTour',
 	'models/main/ModalModel',
 	'views/modal/AlertView',
+	'views/modal/ConfirmView',
 	'text!templates/main/upload.html',
 	'filedrop',
 	'text!templates/main/uploadProgress.html',
@@ -20,7 +21,7 @@ define([
 	'mCustomScrollbar'
 
 
-	], function($, _, Backbone,x2js,HelpFunctions, ManageTour, ModalModel, AlertView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
+	], function($, _, Backbone,x2js,HelpFunctions, ManageTour, ModalModel, AlertView,ConfirmView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
 
 	var UploaderView = Backbone.View.extend({
 		el: $("body"),
@@ -136,7 +137,12 @@ define([
 					$(".scroll-wrapper").mCustomScrollbar("scrollTo",$(".pano-item:last-child").offset().top);
 					
 					console.log(i)
-					console.log(file)
+					console.log(file);
+					$("#pano-"+i+" .fa-close").data("myproc",window.proc_id[i]);
+					$("#pano-"+i+" .fa-close").data("cicle",i);
+					$("#pano-"+i+" .fa-close").data("myfile",file.name);
+					$("#pano-"+i+" .fa-close").click(este.removePano)
+
 					este.setIntervalID[i] = setInterval(function(){
 						$.ajax({
 							type: "POST",
@@ -161,7 +167,8 @@ define([
 										case "1":
 											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
 											
-										   este.pano_id[i]         = respuesta.pano_id;
+
+											este.pano_id[i]         = respuesta.pano_id;
 											este.scene_id[i]        = respuesta.scene_id;
 											este.tour_id[i]         = respuesta.tour_id;    
 											este.filename[i]        = respuesta.filename;  
@@ -170,7 +177,7 @@ define([
 											este.html_ref_id[i]     = 'pano-'+respuesta.scene_id;
 														
 											$("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
-
+											$("#pano-"+i+" .fa-close").data("state",este.state[i]);
 											$("#pano-"+i+" .icon-msg img").load(function(){
 												$(this).parent().css("background","#d5ae06");
 											})
@@ -182,9 +189,9 @@ define([
 										
 										case "2":
 											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
-										   
 											$("#"+este.html_ref_id[i]+" .percentage").text("Processing image (2/2)");
-
+											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);
+											
 										   
 										   break;
 											
@@ -198,6 +205,8 @@ define([
 											$("#"+este.html_ref_id[i]+" .icon-msg").html('<span class="fa fa-check"></span>');
 											$("#"+este.html_ref_id[i]+" .icon-msg").css("background","#497f3c");
 											$("#"+este.html_ref_id[i]).data("pano_id",este.pano_id[i]);    
+											$("#"+este.html_ref_id[i]+" .fa-close").data("pano_id",este.pano_id[i]);    
+											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);    
 
 											var completed = 0; 
 
@@ -291,24 +300,7 @@ define([
 			}
 
 			$('.dragger-wrapper .pano-item-wrapper').append(compiledTemplate);
-
-			
-			$(".cancel-process").click(function(){
-				if($(".cancel-process").data('id') != ''){
-
-					$.ajax({
-						url : 'php-stubs/scenes.php?action=remove',
-						type: 'POST',
-						async: true,
-						data: 'pano-id='+$(".cancel-process").data('id'),
-						cache : false,
-						success : function(response){}
-					});
-				}
-
-				$('#proc_cancelled').val('1');
-				$(this).closest('.pano-item').hide();
-			});               
+			 
 		},
 
 		sendReport:function(type, extras){
@@ -341,7 +333,6 @@ define([
 					})
 					var manageTour = new ManageTour();
 					var cargarEscenas = function(){
-						console.log("hay scenas")
 						var scenes = tourData.krpano.scene;
 						var sceneCollection = new SceneCollection(scenes);
 						var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
@@ -451,6 +442,61 @@ define([
 					});
 				}
 			})
+		},
+
+
+		removePano:function(e){
+			var $elem = $(e.target); 
+			var msg = "Are you sure you want delete the Pano with the name "+$elem.data("myfile")+"?";
+			var este = this;
+			var evt=function(){
+				
+					if($elem.data("state") == "3"){
+						var url 	= 'php/updater.php';
+						var type 	= 'POST';
+						var data 	= 'id='+$elem.data('pano_id')+"&action=del_pano";
+					}else{
+
+						var url 	= 'php/general_process.php';
+						var type 	= 'GET';
+						var data 	= 'proc_id='+$elem.data('myproc')+"&c=1";
+						var cicle 	=  parseInt($elem.data("cicle"));
+						clearInterval(este.setIntervalID[cicle]);
+					}
+					$.ajax({
+						url : url,
+						type: type,
+						data: data,
+						success : function(response){
+							$("#confirmDel .fa-close").trigger("click");
+							$elem.parents(".pano-item").css("background","#fad368").fadeOut(function(){
+								$(this).remove();
+								if($(".pano-item").size() == 0){
+									$(".dragger-wrapper").fadeOut(function(){
+									   $(this).remove();
+									   este.render()
+									})
+									
+								}else{
+									var completed = 0;
+									_.each($(".pano-item"),function(elem){
+										if($(elem).find(".fa-close").data("state")== "3"){
+											completed++
+										}
+									})
+									if(completed == $(".pano-item").size()){
+											este.AllUploaded();
+									}
+								}
+								
+							});
+						}
+					});
+					
+				}
+			var modalModel = new ModalModel({msg:msg,evt:evt})
+			var alertView = new ConfirmView({model:modalModel});
+			alertView.render("confirmDel",alertView.renderExtend);
 		},
 
 		removeView:function(){

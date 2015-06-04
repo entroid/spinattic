@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'views/modal/Modal',
-    'text!templates/modal/alert.html',
+    'text!templates/modal/confirm.html',
 
-], function($, _, Backbone,Modal,alert){
+], function($, _, Backbone,Modal,confirm){
 
     var AlertView = Modal.extend({
         
@@ -19,14 +19,18 @@ define([
         renderExtend:function(){
 
             $("#"+this.myid+" header").hide();
-            msg = this.model.get("msg");
-            
-            var template = _.template(alert,msg)
+            var msg = this.model.get("msg");
+            var evt = this.model.get("evt");
+
+            var template = _.template(confirm,{msg:msg})
             $("#"+this.myid+" .inner-modal").html(template)
 
             this.verticalCent();
             $("#"+this.myid+" .fa-close").click(this.closeBT);
-            $("#"+this.myid+" #ok-close").click(this.closeBT);
+            $("#"+this.myid+" #cancel-event").click(this.closeBT);
+            $("#"+this.myid+" #ok-event").click(function(){
+                evt()
+            });
         },
 
         closeBT:function(e){
