@@ -80,3 +80,11 @@
     border-color: $color transparent;
     border-style: solid;
 }
+
+@mixin loaderAnimation ($duration: 0.5s) {
+    -webkit-animation: spin $duration infinite linear;
+    -moz-animation: spin $duration infinite linear;
+    -ms-animation: spin $duration infinite linear;
+    -o-animation: spin $duration infinite linear;
+    animation: spin $duration infinite linear; 
+}

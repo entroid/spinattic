@@ -280,6 +280,7 @@ header.main-header{
         #tourTitleBar {
             display: inline-block;
             padding: 10px;
+            max-width: 55%;
 
             #tour-title{
                 background-color: #000;
@@ -333,28 +334,25 @@ header.main-header{
                     top:0;
                     left:0;
                     position:absolute;
-                    background:rgba(0,0,0,0.5);
+                    background:rgba(0,0,0,0.7);
                     display:none;
                     text-align:center;
                     color:$yellow;
                     font-weight:bold;
                     font-size:1.2rem;
                     line-height:3.5rem;
+
                     .loading{
-                        margin-left:35px;
-                        margin-top:2px;
+                        margin: 10px auto;
+                        float: none;
                         border-bottom: 3px solid #999;
                         border-left: 3px solid #ffd731;
                         border-right: 3px solid #999;
                         border-top: 3px solid #999;
                         border-radius: 100%;
-                        height: 30px;
-                        width: 30px;
-                        -webkit-animation: spin 2.0s infinite linear;
-                        -moz-animation: spin 2.0s infinite linear;
-                        -ms-animation: spin 2.0s infinite linear;
-                        -o-animation: spin 2.0s infinite linear;
-                        animation: spin 2.0s infinite linear;
+                        height: 15px;
+                        width: 15px;
+                        @include loaderAnimation();
                     }
                 }
                 h4{
@@ -461,6 +459,6 @@ header.main-header{
 
 #widthTestEl {
     padding: 4px 6px;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size:2em;
+    font-weight: lighter;
 }

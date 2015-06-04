@@ -141,7 +141,9 @@ textarea{
 .main-input {
     height: 22px;
     padding: 4px 6px;
-    width: 300px;
+    font-size:2em;
+    font-weight: lighter;
+    max-width: 90%;
 }
 
 .double-inputs{
