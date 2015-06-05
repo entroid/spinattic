@@ -6,12 +6,14 @@ define([
 	'x2js',
 	'views/modal/Modal',
 	'text!templates/modal/hotSpotStyleEditor.html',
+	'text!templates/modal/hotSpotStyleEditorEditor.html',
 	'views/modal/SingleUploader',
    'helpers/ManageData',
    'helpers/ManageTour',
+   'helpers/HelpFunctions',
 
 
-], function($, _, Backbone,jqueryui,x2js,Modal,hotSpotStyleEditor,SingleUploader,ManageData,ManageTour){
+], function($, _, Backbone,jqueryui,x2js,Modal,hotSpotStyleEditor,hotSpotStyleEditorEditor,SingleUploader,ManageData,ManageTour,HelpFunctions){
 
 	var HotSpotStyleEditor = Modal.extend({
 		
@@ -43,6 +45,7 @@ define([
 			var este = this;
 			var myid = this.myid;
 			var template = _.template(hotSpotStyleEditor);
+			this.templateEditor = _.template(hotSpotStyleEditorEditor);
 			var deleteSet = '<span class="delete-set modal-bt red"><i class="fa fa-trash"></i> Delete Set</span>'
 
 			$("#"+myid+" .inner-modal").html(template);
@@ -55,6 +58,7 @@ define([
 			var name = this.model.get("name");
 			var styles = [];
 			if(family){
+				$("#"+myid+" .inner-modal .hotspotStyleContent").html(this.templateEditor);
 
 				_.each(tourData.krpano.style,function(el,index){
 					var elemname = el._name;
@@ -65,31 +69,38 @@ define([
 				})
 			
 				_.each(styles,function(elem,ind){
+					var properties = {}
 					var upcrop = elem._crop.split("|")
-					var downcrop = elem._ondowncrop.split("|")
-					var hovercrop = elem._onovercrop.split("|")
-					
-
-					var properties = {
-						up:{
+					var up = {
 							X:upcrop[0],
 							Y:upcrop[1],
 							width:upcrop[2],
 							height:upcrop[3],
-						},
-						over:{
+						}
+					properties.up = up;
+
+					if(elem._ondowncrop){
+						var downcrop = elem._ondowncrop.split("|")
+						var over = {
 							X:hovercrop[0],
 							Y:hovercrop[1],
 							width:hovercrop[2],
 							height:hovercrop[3],
-						},
-						down:{
+						}
+						properties.over = over;
+					}
+					
+					if(elem._onovercrop){
+						var hovercrop = elem._onovercrop.split("|")
+						var down = {
 							X:downcrop[0],
 							Y:downcrop[1],
 							width:downcrop[2],
 							height:downcrop[3],
 						}
-					}
+						properties.down = down;
+					}				
+
 					$("#"+elem._kind+"Tab").data("properties",properties);
 					$("#"+elem._kind+"Tab").find(".icons").removeClass("none");
 
@@ -109,7 +120,7 @@ define([
 						"background-position": properties[prop].X +"px "+ properties[prop].Y+"px",
 						"width":properties.up.width,
 						"height":properties.up.height
-					}).addClass("not-empty");
+					}).addClass("not-empty").find(".fa-plus").remove();
 						
 					}
 					$("#"+elem._kind+"Tab .icons .up .addStyle").addClass("selected")
@@ -125,9 +136,7 @@ define([
 
 			}
 			
-			if(imgsrc == ""){
-				$("#hotspotStyleEditor .hotspotStyleContent").hide()
-			}
+			
 
 
 			tour_id = location.hash.split("/")[1];
@@ -138,6 +147,10 @@ define([
 			var uploadComplete = this.uploadComplete;
 			singleUploader.render(uploadComplete);
 			
+
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
+
 			este.verticalCent();
 			
 			$("#hotspotStyleEditor .save-and-close").unbind("click");
@@ -190,7 +203,7 @@ define([
 
 		},
 
-		addStyles: function(e) {            
+		addStyles: function(e) {
 			var el = $(e.target);
 			var $thistab = $(el).parents(".tab");
 			$(el).parents('.add').addClass('none').siblings('.icons').removeClass('none');
@@ -200,37 +213,38 @@ define([
 			$(".hotsPotStyleSelected .height").val(dfval.height)
 			$(".hotsPotStyleSelected .X").val(dfval.X)
 			$(".hotsPotStyleSelected .Y").val(dfval.Y)
-
-			$thistab.find(".addStyle").css({
-				"width":dfval.width+"px",
-				"height":dfval.height+"px",
-			});
-
-			$thistab.find(".addStyle:eq(0)").css({
-				"background-image":"url("+$("#graphic-hotspot").data("imgsrc")+")",
-				"background-repeat":"no-repeat",
-				"background-position": dfval.X +"px "+ dfval.Y+"px"
-			}).addClass("not-empty");
-
-			var prop = {
-				up:dfval,
-				over:dfval,
-				down:dfval
-			}
-			$thistab.data("properties",prop);
 			$thistab.find(".icons .addStyle:eq(0)").trigger("click")
 			
 		},
 
 		selectAddStyles: function(e){
-			 var el = $(e.target);
+			console.log($(e.target).prop("tagName"))  
+			if($(e.target).prop("tagName") == "SPAN"){
+				var el = $(e.target).parent()
+				console.log("se da");
+				console.log(el)
+			}else{
+				var el = $(e.target);
+			}
 			 var dfval = this.defaultHPValues;
+
+			 
 			 if(!$(el).hasClass("not-empty")){
+			 	$(el).find(".fa-plus").remove();
 				$(el).css({
+					"width":dfval.width+"px",
+					"height":dfval.height+"px",
 					 "background-image":"url("+$("#graphic-hotspot").data("imgsrc")+")",
 					 "background-repeat":"no-repeat",
 					 "background-position": dfval.X +"px "+ dfval.Y+"px"
 			   }).addClass("not-empty");
+				if($(".tab.selected").data("properties")){
+					prop = $(".tab.selected").data("properties");
+				}else{
+					var prop = {};
+				}
+				prop[$(el).data("type")]=dfval;
+			 	$(".tab.selected").data("properties",prop)
 			 }
 
 			 if(!$(el).hasClass('selected')) {
@@ -257,7 +271,8 @@ define([
 		},
 
 		uploadComplete:function(){
-			$("#hotspotStyleEditor .hotspotStyleContent").show();
+			var myid = this.myid;
+			$("#"+myid+" .inner-modal .hotspotStyleContent").html(this.templateEditor);
 			$("#hotspotStyleEditor .image-uploader-wrapper").addClass("withimage");
 			$("#hotspotStyleEditor .image-uploader-wrapper").mCustomScrollbar({
                     theme:"minimal-dark",
@@ -401,16 +416,24 @@ define([
 												var jstring = JSON.stringify(properties)
 												jstring = jstring.replace(/-/g , "")
 												properties = JSON.parse(jstring);
-											   
-												style._crop = properties.up.X+"|"+properties.up.Y+"|"+properties.up.width+"|"+properties.up.height;
+											   style._crop = properties.up.X+"|"+properties.up.Y+"|"+properties.up.width+"|"+properties.up.height;
 												style._name = "hotspot_set"+integer+"_"+$(elem).data("name");
-												style._ondowncrop = properties.down.X+"|"+properties.down.Y+"|"+properties.down.width+"|"+properties.down.height;
-												style._onovercrop = properties.over.X+"|"+properties.over.Y+"|"+properties.over.width+"|"+properties.over.height;
+												if(properties.down){
+													style._ondowncrop = properties.down.X+"|"+properties.down.Y+"|"+properties.down.width+"|"+properties.down.height;
+												}else{
+													delete style._ondowncrop;
+												}
+												if(properties.over){
+													style._onovercrop = properties.over.X+"|"+properties.over.Y+"|"+properties.over.width+"|"+properties.over.height;
+												}else{
+													delete style._onovercrop;
+												}
 												style._url = $("#graphic-hotspot").data("imgsrc");
 												manageData.pushStyle(style)
 												totalsaved++
 												if(totalsaved == total){
 													var manageTour = new ManageTour();
+													console.log(style);
 													manageData.saveServer(manageTour.reloadTour);
 													$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
 
