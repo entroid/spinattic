@@ -138,7 +138,14 @@ define([
 
             _.each(selected,function(elem,ind){ 
                 var crop = elem._crop.split("|")
-                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div style="background-image:url('+elem._url+');background-position:-'+crop[0]+'px 0"></div></div></li>');                    
+                if(elem._scale=="0.5"){
+                    var scaled = "scaled";
+                    var xpos = parseInt(crop[0])*2;
+                }else{
+                    scaled = "";
+                    var xpos = crop[0];
+                }
+                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div class="'+scaled+'" style="background-image:url('+elem._url+');background-position:-'+xpos+'px 0"></div></div></li>');                    
             })
                 
             $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');

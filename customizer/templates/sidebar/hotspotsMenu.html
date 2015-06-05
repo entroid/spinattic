@@ -22,7 +22,14 @@
 					<%if(custom){%><div class="del-row" data-family="<%= set[1]%>"><span class="fa fa-trash-o"></span></div><%}%>
 				<%}%>
 				<div class="row">
-					<div class="rowinrow <%if(custom){%>custom<%}%>" <%if(custom){%>data-url="<%=element._url%>" data-name="<%=element._kind%>" <%}%> data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= crop[0]%>px 0"></div>
+					<%	
+						if(element._scale=="0.5"){
+							var xpos = parseInt(crop[0])*2;
+							}else{
+							var xpos = crop[0];
+							}
+					%>
+					<div class="rowinrow <%if(custom){%>custom<%}%> <%if(element._scale == "0.5"){%>scaled<%}%>" <%if(custom){%>data-url="<%=element._url%>" data-name="<%=element._kind%>" <%}%> data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= xpos%>px 0"></div>
 				</div>
 
 
