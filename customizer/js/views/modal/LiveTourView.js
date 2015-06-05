@@ -36,11 +36,10 @@ define([
             var helpFunctions = new HelpFunctions();
             var template = _.template(LiveTour,{tourInfo:tourInfo});
 
-            $("#"+myid+" .inner-modal").html(template);         
+            $("#"+myid+" .inner-modal").html(template);                   
             
-            helpFunctions.checkbox("#"+myid+" .check-group","fa-check-square-o","fa-square-o");
+            helpFunctions.checkbox("#"+myid+" .check-group","fa-check-square-o","fa-square-o");            
             
-            this.verticalCent();
             helpFunctions.dropDown("#location-lt","h3");
 
             var tour_id = location.hash.split("/")[1];
@@ -138,6 +137,9 @@ define([
                 theme:"minimal-dark",
                 scrollInertia:300
             });
+
+            this.modalHeight(myid);  
+            this.verticalCent();
         },
 
         changeImage:function(){
@@ -158,6 +160,15 @@ define([
         resetThumb:function(){
             var manageData = new ManageData();
             manageData.resetThumb();
+        },
+
+        modalHeight: function(myid){
+
+            var el = $("#"+myid+" .scrollwrapper"),
+                winH = $(window).height();
+console.log(el)
+                $(el).css({'height': (winH - 300) + 'px'})
+
         }
 
     });
