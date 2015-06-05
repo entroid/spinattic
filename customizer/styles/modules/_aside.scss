@@ -278,6 +278,7 @@ aside{
 					margin-right: 5px;
 					margin-bottom: 10px;
                     border: 1px solid black;
+                    cursor: pointer;
                     @include shadow-white(1px, 0, 0.2, inset);
 					
 					.rowinrow{

@@ -1080,7 +1080,7 @@
         }
     }
  
-    #liveTourModal{
+    #liveTourModal{ 
         width: 700px;
 
         header {
@@ -1092,7 +1092,7 @@
         .scrollwrapper{
             max-height: 710px;
             z-index:5;
-            height:550px;
+            min-height:350px;
         }
 
         form {
