@@ -973,6 +973,14 @@
                 box-sizing: border-box;
                 float: left;
             }
+
+            #scale-check-hotspot-editor{
+                margin-bottom:15px;
+
+                span.fa{
+                    margin-right:5px;
+                }
+            }
         }
 
         .hotsPotStyleTabs{
@@ -985,6 +993,9 @@
                 text-align: center;
                 margin: 0 auto;
                 cursor: pointer;
+                &.scaled{
+                    transform:scale(0.5,0.5)
+                }
 
                 &.selected{
                     outline: 1px solid $green;

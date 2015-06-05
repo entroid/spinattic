@@ -150,7 +150,6 @@ define([
         }
 
         this.checkbox = function(elem,firstClass,secClass){
-
                 $(elem+" li").click(function(){
                         $(this).find("span").toggleClass(firstClass).toggleClass(secClass);
                 })

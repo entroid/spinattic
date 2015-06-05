@@ -30,7 +30,8 @@ define([
 			"click .tabContent .icons .addStyle": "selectAddStyles",
 			"click .cancel": "removeModal",
 			"change .absoluteRight":"setProperties",
-			"click .delete-set":"removeSet"
+			"click .delete-set":"removeSet",
+			"click #scale-check-hotspot-editor span":"scale"
 		},
 
 		defaultHPValues:{
@@ -99,6 +100,11 @@ define([
 							height:downcrop[3],
 						}
 						properties.down = down;
+					}
+
+					if(elem._scale == "0.5"){
+						$("#scale-check-hotspot-editor span").data("checked",true)
+						$("#scale-check-hotspot-editor span").removeClass("fa-square").addClass("fa-check-square");
 					}				
 
 					$("#"+elem._kind+"Tab").data("properties",properties);
@@ -134,6 +140,9 @@ define([
 
 				$("#hotspotStyleEditor .menuTabs li."+name+"Tab").trigger("click")
 
+				var helpFunctions = new HelpFunctions();
+				helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
+
 			}
 			
 			
@@ -148,9 +157,7 @@ define([
 			singleUploader.render(uploadComplete);
 			
 
-			var helpFunctions = new HelpFunctions();
-			helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
-
+			
 			este.verticalCent();
 			
 			$("#hotspotStyleEditor .save-and-close").unbind("click");
@@ -221,7 +228,6 @@ define([
 			console.log($(e.target).prop("tagName"))  
 			if($(e.target).prop("tagName") == "SPAN"){
 				var el = $(e.target).parent()
-				console.log("se da");
 				console.log(el)
 			}else{
 				var el = $(e.target);
@@ -280,6 +286,9 @@ define([
                     axis:"yx"
             });
 			this.verticalCent();
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
+
 		},
 
 		setProperties:function(e){
@@ -332,6 +341,17 @@ define([
 				});
 		},
 
+		scale:function(e){
+
+			$(e.target).data("checked",$(e.target).hasClass("fa fa-check-square"))
+			if($(e.target).data("checked")){
+				$("#hotspotStyleEditor .icons .addStyle").addClass("scaled")
+			}else{
+				$("#hotspotStyleEditor .icons .addStyle").removeClass("scaled")
+			}
+			
+		},
+
 		saveAndClose:function(e){
 			var este = this;
 			var family = $("#hotspot-styles .row:last-child .rowinrow").data("family");
@@ -359,6 +379,8 @@ define([
 							properties = JSON.parse(jstring);
 							var valx;
 							var valy;
+							var width;
+							var height;
 							if(properties.up.X != 0){
 								valx = "-"+properties.up.X
 							} else{
@@ -369,8 +391,14 @@ define([
 							}else{
 								valy = properties.up.Y
 							}
-							
-							elemToappend += '<div class="row"><div class="rowinrow custom " data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+valx+'px '+valy+'px"></div></div>';
+							if($("#scale-check-hotspot-editor span").data("checked")){
+								var scaled = "scaled"
+							}else{
+								var scaled = ""
+							}
+							width = properties.up.width;
+							height = properties.up.height;
+							elemToappend += '<div class="row"><div class="rowinrow custom '+scaled+'" data-name="'+$(elem).data("name")+'" data-url="'+$("#graphic-hotspot").data("imgsrc")+'" data-family="set'+integer+'" style="background-image:url('+$("#graphic-hotspot").data("imgsrc")+');background-position: '+valx+'px '+valy+'px;width:'+width+'px;height:'+height+'px"></div></div>';
 							if(!familydata){
 							ableToAppend = true;
 							}
@@ -428,6 +456,11 @@ define([
 												}else{
 													delete style._onovercrop;
 												}
+
+												if(!$("#scale-check-hotspot-editor span").data("checked")){
+													style._scale = "1"
+												}
+
 												style._url = $("#graphic-hotspot").data("imgsrc");
 												manageData.pushStyle(style)
 												totalsaved++

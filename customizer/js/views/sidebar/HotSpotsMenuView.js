@@ -141,11 +141,15 @@ define([
                 if(elem._scale=="0.5"){
                     var scaled = "scaled";
                     var xpos = parseInt(crop[0])*2;
+                    var width = parseInt(crop[2])*2;
+                    var height = parseInt(crop[3])*2;
                 }else{
                     scaled = "";
                     var xpos = crop[0];
+                    var width = crop[2];
+                    var height = crop[3];
                 }
-                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div class="'+scaled+'" style="background-image:url('+elem._url+');background-position:-'+xpos+'px 0"></div></div></li>');                    
+                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div class="'+scaled+'" style="background-image:url('+elem._url+');background-position:-'+xpos+'px 0; width:'+width+'px;height:'+height+'px"></div></div></li>');                    
             })
                 
             $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');
