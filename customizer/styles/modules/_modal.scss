@@ -943,19 +943,29 @@
     /* hotspot styles editor */
     #hotspotStyleEditor{
         width: 560px;
+        
+        .hotspot-style-editor{
+            margin-top:20px;
+        }
 
         .delete-set{
-            @include absolute(13px, 160px,initial, initial);
+            @include absolute(13px, 20px,initial, initial);
+            display:none;
         }
 
         header{
-            .fa-close {
-                display: none;
+            .save-and-close {
+                right: 50px;
+                display:none;
             }
         }
 
         .cancel-img{
             display:none;
+        }
+
+        .has-changed .cancel-img{
+            display:block;
         }
 
         .image-uploader-wrapper.withimage{

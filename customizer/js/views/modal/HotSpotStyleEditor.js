@@ -25,13 +25,14 @@ define([
 
 		events:{
 			/*"click .select-pano": "selectPano",*/
-			"click .menuTabs .modal-bt": "tabs",
+			"click #hotspotStyleEditor .menuTabs .modal-bt": "tabs",
 			"click .tabContent .add .addStyle": "addStyles",
 			"click .tabContent .icons .addStyle": "selectAddStyles",
 			"click .cancel": "removeModal",
 			"change .absoluteRight":"setProperties",
-			"click .delete-set":"removeSet",
-			"click #scale-check-hotspot-editor span":"scale"
+			"click #hotspotStyleEditor .delete-set":"removeSet",
+			"click #scale-check-hotspot-editor span":"scale",
+			"click #hotspotStyleEditor .fa-trash":"removeHP"
 		},
 
 		defaultHPValues:{
@@ -47,12 +48,10 @@ define([
 			var myid = this.myid;
 			var template = _.template(hotSpotStyleEditor);
 			this.templateEditor = _.template(hotSpotStyleEditorEditor);
-			var deleteSet = '<span class="delete-set modal-bt red"><i class="fa fa-trash"></i> Delete Set</span>'
 
 			$("#"+myid+" .inner-modal").html(template);
 			$("#"+myid+" header h2").text("Styles of hotspots set:");
 
-			$("#"+myid+" header").append($(deleteSet));
 
 			var imgsrc = this.model.get("imgsrc")
 			var family = this.model.get("family")
@@ -68,7 +67,6 @@ define([
 						styles.push(el);
 					}
 				})
-			
 				_.each(styles,function(elem,ind){
 					var properties = {}
 					var upcrop = elem._crop.split("|")
@@ -81,7 +79,7 @@ define([
 					properties.up = up;
 
 					if(elem._ondowncrop){
-						var downcrop = elem._ondowncrop.split("|")
+						var hovercrop = elem._ondowncrop.split("|")
 						var over = {
 							X:hovercrop[0],
 							Y:hovercrop[1],
@@ -92,7 +90,7 @@ define([
 					}
 					
 					if(elem._onovercrop){
-						var hovercrop = elem._onovercrop.split("|")
+						var downcrop = elem._onovercrop.split("|")
 						var down = {
 							X:downcrop[0],
 							Y:downcrop[1],
@@ -102,9 +100,12 @@ define([
 						properties.down = down;
 					}
 
+
+
 					if(elem._scale == "0.5"){
 						$("#scale-check-hotspot-editor span").data("checked",true)
 						$("#scale-check-hotspot-editor span").removeClass("fa-square").addClass("fa-check-square");
+						$("#hotspotStyleEditor .icons .addStyle").addClass("scaled");
 					}				
 
 					$("#"+elem._kind+"Tab").data("properties",properties);
@@ -113,17 +114,17 @@ define([
 					for(prop in properties){
 
 						if(properties[prop].X != "0"){
-							properties[prop].X = "-"+ properties[prop].X
+							properties[prop].X = properties[prop].X
 						}
 
 						if(properties[prop].Y != "0"){
-							properties[prop].Y = "-"+ properties[prop].Y
+							properties[prop].Y = properties[prop].Y
 						}
 
 						$("#"+elem._kind+"Tab .icons ."+prop+" .addStyle").css({
 						"background-image":"url("+imgsrc+")",
 						"background-repeat":"no-repeat",
-						"background-position": properties[prop].X +"px "+ properties[prop].Y+"px",
+						"background-position": "-"+properties[prop].X +"px -"+properties[prop].Y+"px",
 						"width":properties.up.width,
 						"height":properties.up.height
 					}).addClass("not-empty").find(".fa-plus").remove();
@@ -142,11 +143,13 @@ define([
 
 				var helpFunctions = new HelpFunctions();
 				helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
-
+				$("#hotspotStyleEditor .delete-set").show();
+				$("#Context-menu-finish").show();
 			}
-			
-			
 
+			if(imgsrc){
+				$("#hotspotStyleEditor #graphic-hotspot").addClass("has-changed");
+			}
 
 			tour_id = location.hash.split("/")[1];
 			var caso = 'hotspot_styles';
@@ -155,8 +158,6 @@ define([
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			var uploadComplete = this.uploadComplete;
 			singleUploader.render(uploadComplete);
-			
-
 			
 			este.verticalCent();
 			
@@ -225,7 +226,6 @@ define([
 		},
 
 		selectAddStyles: function(e){
-			console.log($(e.target).prop("tagName"))  
 			if($(e.target).prop("tagName") == "SPAN"){
 				var el = $(e.target).parent()
 				console.log(el)
@@ -234,7 +234,9 @@ define([
 			}
 			 var dfval = this.defaultHPValues;
 
-			 
+			if(!$("#Context-menu-finish").is(":visible")){
+				$("#Context-menu-finish").show();
+			}	 
 			 if(!$(el).hasClass("not-empty")){
 			 	$(el).find(".fa-plus").remove();
 				$(el).css({
@@ -288,7 +290,7 @@ define([
 			this.verticalCent();
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
-
+			$("#hotspotStyleEditor #graphic-hotspot").addClass("has-changed");
 		},
 
 		setProperties:function(e){
@@ -302,7 +304,7 @@ define([
 			$(".tab.selected .selected").css({
 				"width": $(".hotsPotStyleSelected .width").val()+"px",
 				"height": $(".hotsPotStyleSelected .height").val()+"px",
-				"background-position": $(".hotsPotStyleSelected .X").val() +"px "+ $(".hotsPotStyleSelected .Y").val()+"px" 
+				"background-position":"-"+$(".hotsPotStyleSelected .X").val() +"px -"+ $(".hotsPotStyleSelected .Y").val()+"px" 
 			})
 			var mytype =  $(".tab.selected .selected").data("type");
 			var prop = $(".tab.selected").data("properties")
@@ -350,6 +352,38 @@ define([
 				$("#hotspotStyleEditor .icons .addStyle").removeClass("scaled")
 			}
 			
+		},
+
+		removeHP:function(e){
+			$addStyle = $(e.target).parents(".icons-wrapper").find(".addStyle")
+			if($addStyle.data("type") == "up"){
+				$(".tab.selected .addStyle").removeClass("not-empty").removeAttr("style").html('<span class="fa fa-plus"></span>')
+				$(".tab.selected").removeData("properties")
+				$(".tab.selected .icons-wrapper").removeClass("none");	
+				$(".tab.selected .icons").addClass("none");	
+				$(".hotsPotStyleSelected .width").val("")
+				$(".hotsPotStyleSelected .height").val("")
+				$(".hotsPotStyleSelected .X").val("")
+				$(".hotsPotStyleSelected .Y").val("")
+
+				var total = 0; 
+				_.each($("#hotspotStyleEditor .tab"),function(elem, ind){
+					  if($(elem).data("properties")){
+					  	total++
+					  }
+					})
+				if(total == 0){
+					$("#Context-menu-finish").hide();
+				}
+
+			}else{
+				
+				$addStyle.removeClass("not-empty");
+				$addStyle.removeAttr("style");
+				$addStyle.html('<span class="fa fa-plus"></span>');
+				$(".tab.selected .addStyle:eq(0)").trigger("click");
+				delete $(".tab.selected").data("properties")[$addStyle.data("type")];
+			}
 		},
 
 		saveAndClose:function(e){

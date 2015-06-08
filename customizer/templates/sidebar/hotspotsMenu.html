@@ -25,13 +25,12 @@
 					<%	
 						if(element._scale=="0.5"){
 							var xpos = parseInt(crop[0])*2;
-							var width = parseInt(crop[2])*2;
-							var height = parseInt(crop[3])*2;
 							}else{
 							var xpos = crop[0];
+							}
 							var width = crop[2];
 							var height = crop[3];
-							}
+							
 					%>
 					<div class="rowinrow <%if(custom){%>custom<%}%> <%if(element._scale == "0.5"){%>scaled<%}%>" <%if(custom){%>data-url="<%=element._url%>" data-name="<%=element._kind%>" <%}%> data-family="<%= set[1]%>" style="background-image:url(<%=element._url%>);background-position:-<%= xpos%>px 0;width:<%=width%>px;height:<%=height%>px"></div>
 				</div>
