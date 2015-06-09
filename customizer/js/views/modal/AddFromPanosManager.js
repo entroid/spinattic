@@ -93,6 +93,7 @@ define([
                 id = $(el).siblings('img').attr('data-id');
 
             $(el).parent().remove();
+            $('#tooltip').hide();
             $('.pano-list li').find('a[data-id="' + id + '"]').removeClass('yellow selected').addClass('blue').text('select');
 
         },
