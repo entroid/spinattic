@@ -202,8 +202,6 @@ aside{
                             transform: translate(-50%,-50%);
                             
                             &.scaled{
-                                /*width:64px;
-                                height:64px;*/
                                 transform:scale(0.5, 0.5) translate(-100%,-100%);
                                 top:25%;
                             }
@@ -663,7 +661,7 @@ aside{
 
         .autorotate-settings{
             .input-row{
-                height: 26px;
+                height: 26px; 
                 margin-bottom: 10px;
             }
         }
