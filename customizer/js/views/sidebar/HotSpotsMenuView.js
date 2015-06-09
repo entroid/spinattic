@@ -188,6 +188,9 @@ define([
             manageData.removeStyle(family);
             _.each($("#hotspot-styles .selector"),function(el,ind){
                 if($(el).data("family") == family){
+                    if($(el).find(".fa-circle-o")){
+                        $(".selector:eq(0)").trigger("click")
+                    }
                     $(el).remove()
                 }
             })

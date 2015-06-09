@@ -131,12 +131,8 @@ define([
 						
 					}
 					$("#"+elem._kind+"Tab .icons .up .addStyle").addClass("selected")
-
-
-
+					$("#"+elem._kind+"Tab .icons .up .controls").removeClass("none")
 					$("#"+elem._kind+"Tab").find(".add").addClass("none");
-					window.properties = properties
-					console.log(properties)
 				})
 
 				$("#hotspotStyleEditor .menuTabs li."+name+"Tab").trigger("click")
@@ -460,6 +456,8 @@ define([
 					}
 
 						$("#hotspot-styles .rows").append(elemToappend);
+						 var helpFunctions = new HelpFunctions();
+            			helpFunctions.selectChoice("#hotspot-styles .selector","fa-circle-o","fa-circle");
 						totalsaved = 0
 						_.each($("#hotspotStyleEditor .tab"),function(elem, ind){	
 
