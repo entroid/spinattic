@@ -141,7 +141,9 @@ define([
                     $("#pano-"+i+" .fa-close").data("cicle",i);
                     $("#pano-"+i+" .fa-close").data("myfile",file.name);
                     $("#pano-"+i+" .fa-close").click(este.removePano)
-
+                    if (este.cancel) {
+                        $('.dragger-wrapper .cancel').addClass('none');
+                    }
                     este.setIntervalID[i] = setInterval(function(){
                         $.ajax({
                             type: "POST",
@@ -322,6 +324,7 @@ define([
             }else{
                 $(".fa-clock-o").removeClass('blink').addClass("save").text("CREATE TOUR");
             }
+            $("#cancelUploaded").click(este.cancelUploaded);
             $(".save").unbind("click");
             $(".save").click( function(){
 
@@ -496,6 +499,27 @@ define([
             var modalModel = new ModalModel({msg:msg,evt:evt})
             var alertView = new ConfirmView({model:modalModel});
             alertView.render("confirmDel",alertView.renderExtend);
+        },
+
+        cancelUploaded:function(){
+            var este = this;
+            var total = 0;
+            $("#cancelUploaded").text("Cancelling...");
+            _.each($(".pano-item"),function(elem,ind){
+                var panoid = $(elem).data("pano_id");
+                $.ajax({
+                    url : 'php/updater.php',
+                    type: 'POST',
+                    data: 'id='+panoid+"&action=del_pano",
+                    success : function(response){
+                        console.log(response)
+                        total++
+                        if(total == $(".pano-item").size()){
+                            este.removeView();
+                        }
+                    }
+                })
+            })
         },
 
         removeView:function(){
