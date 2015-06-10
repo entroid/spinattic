@@ -15,7 +15,7 @@
 		
 			<!-- SCENES -->
 			
-		<scene segment="SCENES" scene_id="361" name="scene_361" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/225/pano.tiles/thumb200x100.jpg" lat="37" lng="-95" description="" heading="">
+		<scene segment="SCENES" scene_id="361" scene_filename="index2.jpg" name="scene_361" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/225/pano.tiles/thumb200x100.jpg" lat="37" lng="-95" description="" heading="">
 			<view segment="SCENES" hlookat="1" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="2.1" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/225/pano.tiles/preview.jpg" />
@@ -35,7 +35,7 @@
 			
 		
 		</scene>
-		<scene segment="SCENES" scene_id="362" name="scene_362" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/226/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+		<scene segment="SCENES" scene_id="362" scene_filename="index2.jpg" name="scene_362" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/226/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
 			<view segment="SCENES" hlookat="2" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.6" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/226/pano.tiles/preview.jpg" />
@@ -65,7 +65,7 @@
 
 			</image>
 		</scene>
-		<scene segment="SCENES" scene_id="364" name="scene_364" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/228/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+		<scene segment="SCENES" scene_id="364" scene_filename="index2.jpg" name="scene_364" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/228/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
 			<view segment="SCENES" hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.5" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/228/pano.tiles/preview.jpg" />
@@ -80,7 +80,7 @@
 
 			</image>
 		</scene>
-		<scene segment="SCENES" scene_id="365" name="scene_365" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/229/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+		<scene segment="SCENES" scene_id="365" scene_filename="index2.jpg" name="scene_365" urlname="" title="index2" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/229/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
 			<view segment="SCENES" hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.5" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/229/pano.tiles/preview.jpg" />
@@ -95,7 +95,7 @@
 
 			</image>
 		</scene>
-		<scene segment="SCENES" scene_id="366" name="scene_366" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/230/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
+		<scene segment="SCENES" scene_id="366" scene_filename="index4.jpg" name="scene_366" urlname="" title="sarasa" onstart=""  thumburl="http://cdn.dev.spinattic.com/panos/230/pano.tiles/thumb200x100.jpg" lat="" lng="" description="" heading="">
 			<view segment="SCENES" hlookat="000" vlookat="000" fovtype="MFOV" fov="95.000" maxpixelzoom="1.5" fovmin="60" fovmax="120" limitview="auto"  />
 
 			<preview segment="SCENES" url="http://cdn.dev.spinattic.com/panos/230/pano.tiles/preview.jpg" />
