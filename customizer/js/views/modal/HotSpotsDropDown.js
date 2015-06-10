@@ -17,6 +17,7 @@ define([
 		var urls = [];
 		var pos = [];
 		var names = [];
+		var scales =[];
 		var selectedurl;
 		var selectedPos;
 		var scaled;
@@ -30,6 +31,7 @@ define([
 					urls.push(elem._url);
 					pos.push(elem._crop);
 					names.push(elem._name);
+					scales.push(elem._scale);
 					var name = elem._name;
 	                name = name.split("_");
 	                if(name[1] == selectedset){
@@ -54,8 +56,14 @@ define([
 			
 			_.each(urls,function(elem,ind){
 				var mypos = pos[ind].split("|");
+				var scaled = scales[ind];
+				if(scaled == "0.5"){
+					var scale = "scale";
+				}else{
+					var scale = "not-scale";
+				}
 				var backpos = "-"+mypos[0]+"px "+mypos[1]+"px";
-				var $li = $('<li id="opt'+ind+'" data-name="'+names[ind]+'"><div class="default" style="background-image:url('+elem+');background-position:'+backpos+';width:'+mypos[2]+'px;height:'+mypos[3]+'px;"></div></li>');
+				var $li = $('<li id="opt'+ind+'" data-name="'+names[ind]+'"><div class="default '+scale+'" style="background-image:url('+elem+');background-position:'+backpos+';width:'+mypos[2]+'px;height:'+mypos[3]+'px;"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})
 
