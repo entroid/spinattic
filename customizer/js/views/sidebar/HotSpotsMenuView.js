@@ -138,13 +138,14 @@ define([
 
             _.each(selected,function(elem,ind){ 
                 var crop = elem._crop.split("|")
+                console.log(crop)
                 if(elem._scale=="0.5"){
                     var scaled = "scaled";
-                    var xpos = parseInt(crop[0])*2;
                 }else{
                     scaled = "";
-                    var xpos = crop[0];
                 }
+               var xpos = crop[0];
+               
                 var width = crop[2];
                 var height = crop[3];
                 

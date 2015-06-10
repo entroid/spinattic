@@ -19,6 +19,7 @@ define([
 		var names = [];
 		var selectedurl;
 		var selectedPos;
+		var scaled;
 		var styles = tourData.krpano.style;
 		var kind = 	this.model.get("kind");
 		var elemid = this.model.get("elemid");
@@ -34,20 +35,27 @@ define([
 	                if(name[1] == selectedset){
 	                        selectedurl = elem._url;
 	                    	selectedPos = elem._crop;
+	                    	scaled = elem._scale;
 	                    }
                     }
 			})
-
+			if(scaled == "0.5"){
+				var scale = "scale"
+			}else{
+				var scale = "not-scale"
+			}
 			selPos = selectedPos.split("|");
 			$("#"+elemid+" .dropdown h2 .default").css({
 				"background-image":"url("+selectedurl+")",
-				"background-position": "-"+selPos[0]+"px "+selPos[1]+"px"
-			});
+				"background-position": "-"+selPos[0]+"px "+selPos[1]+"px",
+				"width": selPos[2]+"px",
+				"height": selPos[3]+"px",
+			}).addClass(scale).wrap('<div class="df-wrap"></div>');
 			
 			_.each(urls,function(elem,ind){
 				var mypos = pos[ind].split("|");
 				var backpos = "-"+mypos[0]+"px "+mypos[1]+"px";
-				var $li = $('<li id="opt'+ind+'" data-name="'+names[ind]+'"><div class="default" style="background-image:url('+elem+');background-position:'+backpos+'"></div></li>');
+				var $li = $('<li id="opt'+ind+'" data-name="'+names[ind]+'"><div class="default" style="background-image:url('+elem+');background-position:'+backpos+';width:'+mypos[2]+'px;height:'+mypos[3]+'px;"></div></li>');
 				$("#"+elemid+" .styles-list").append($li);
 			})
 
