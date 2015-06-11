@@ -234,10 +234,11 @@ define([
             $("#"+this.myid+" .pano-list-ul li").show()
         },
 
-        AddPanosToTour:function(){
+        AddPanosToTour:function(e){
             var tourId = location.hash.split("/")[1];
             var total = $("#panoManager .selected-panos li").size();
             var counter = 0;
+            var este = this;
             var cargarEscenas = function(){
                 var scenes = tourData.krpano.scene;
                 var sceneCollection = new SceneCollection(scenes);
@@ -256,6 +257,8 @@ define([
                         counter ++
                         if(counter == total){
                             manageTour.reloadTour(cargarEscenas);
+                                este.removeModal(e);
+                                este.undelegateEvents();
                         }
                         
                     }

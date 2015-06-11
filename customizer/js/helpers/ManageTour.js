@@ -27,6 +27,15 @@ define([
 
 		$("#tour").remove();
 
+		if(!$(".loading-msg").is(":visible")){
+            $(".loading-msg").show();
+        }
+
+        if($(".loading-msg span:eq(0)").hasClass("fa-image")){
+        	$(".loading-msg span:eq(0)").addClass("loading").removeClass("fa-image");
+        	$(".loading-msg span:eq(1)").text("Firing up the engines...")
+        }
+
 		$.ajax({
 				url: xmlpath,
 				type: "GET",
@@ -62,9 +71,8 @@ define([
 
 												var krpano = document.getElementById("krpanoSWFObject");
 												krpano.call("registerattribute(int,0)");
-												krpano.call("loadscene("+tourData.krpano.scene[0]._name+"),null,MERGE,BLEND(1));");
 												$("#tour").data("scene",tourData.krpano.scene[0])
-												
+												$(".loading-msg").hide();
 												helpFunctions.setInnerHeight(".main-section",true);
 
 												if($("#tour").data("scene").hotspot){

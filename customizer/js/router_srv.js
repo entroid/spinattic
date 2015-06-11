@@ -98,30 +98,7 @@ define([
 
 					tourData =  x2js.xml_str2json( data );
 
-					if(tourData.krpano.scene.length == undefined){
-						var escenas = [];
-						escenas[0] = tourData.krpano.scene;
-						tourData.krpano.scene = escenas
-					}
-
-					_.each(tourData.krpano.scene,function(scene,ind){
-						if(scene.hotspot){
-									if(scene.hotspot.length == undefined){
-										var myhp = []
-										myhp[0] = scene.hotspot;
-										tourData.krpano.scene[ind].hotspot = myhp;
-									}
-							}
-					})
-					if(tourData.krpano.skill){
-						if(tourData.krpano.skill.length == undefined){
-							var capacidad = [];
-							var skill = {}
-							skill = tourData.krpano.skill
-							capacidad[0] = skill;
-							tourData.krpano.skill = capacidad
-						}
-					}
+					helpFunctions.prepareConditionsForTour();
 
 					$.ajax({
 						url:  "data/json.php?id="+id+"&d=1&t=t",
