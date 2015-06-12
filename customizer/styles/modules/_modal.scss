@@ -377,10 +377,12 @@
                 .urlLink{
                     height: 40px;
                     clear:both;
-                    margin-bottom:40px;
-
-                    #urllinkhotspot{
-                        width: 85%;
+                    margin-bottom:10px;
+                    padding-top:12px;
+                    
+                    .urllinkhotspot{
+                        width: 82%;
+                        float: right;
                     }
 
                     label[for="urllinkhotspot"]{
@@ -616,9 +618,8 @@
             &:before{
                 content:"TEST MODE";
                 color: $green2;
-            }
+            } 
         }
-
     }
 
     &.skillWindow{

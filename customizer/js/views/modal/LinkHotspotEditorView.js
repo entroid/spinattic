@@ -48,6 +48,11 @@ define([
                 var tooltip = $("#"+myid+" .linkTooltip").val();
                 var target = $("#"+myid+" .dropdowntarget h2 .title").text();
                 var hotspot = allData;
+
+                linkurl = linkurl.split("http://").pop();
+
+                console.log(linkurl)
+
                 hotspot._linkurl = linkurl;
                 hotspot._tooltip = tooltip;
                 hotspot._target = target;
