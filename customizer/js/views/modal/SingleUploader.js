@@ -95,7 +95,7 @@ define([
                  progressUpdated: function(i, file, progress) {
                    
                    $("#"+myid +" .ok-img").hide();
-                    $("#"+myid+ ".progress").width(progress+'%');
+                    $("#"+myid+" .progress").width(progress+'%');
                     $("#"+myid+" .percentage").text('Uploading '+progress+'%');
                 },
 

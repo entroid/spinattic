@@ -143,10 +143,6 @@ define([
 				$("#Context-menu-finish").show();
 			}
 
-			if(imgsrc){
-				$("#hotspotStyleEditor #graphic-hotspot").addClass("has-changed");
-			}
-
 			tour_id = location.hash.split("/")[1];
 			var caso = 'hotspot_styles';
 			var SingleUploaderModel = Backbone.Model.extend({});
@@ -154,6 +150,16 @@ define([
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			var uploadComplete = this.uploadComplete;
 			singleUploader.render(uploadComplete);
+
+			if(imgsrc){
+				$("#hotspotStyleEditor #graphic-hotspot").addClass("has-changed");
+				$("#hotspotStyleEditor .image-uploader-wrapper").addClass("withimage");
+				$("#hotspotStyleEditor .image-uploader-wrapper").mCustomScrollbar({
+						theme:"minimal-dark",
+						scrollInertia:300,
+						axis:"yx"
+				});
+			}
 			
 			este.verticalCent();
 			
@@ -234,7 +240,7 @@ define([
 				$("#Context-menu-finish").show();
 			}	 
 			 if(!$(el).hasClass("not-empty")){
-			 	$(el).find(".fa-plus").remove();
+				$(el).find(".fa-plus").remove();
 				$(el).css({
 					"width":dfval.width+"px",
 					"height":dfval.height+"px",
@@ -248,7 +254,7 @@ define([
 					var prop = {};
 				}
 				prop[$(el).data("type")]=dfval;
-			 	$(".tab.selected").data("properties",prop)
+				$(".tab.selected").data("properties",prop)
 			 }
 
 			 if(!$(el).hasClass('selected')) {
@@ -275,18 +281,27 @@ define([
 		},
 
 		uploadComplete:function(){
+			var este = this;
 			var myid = this.myid;
 			$("#"+myid+" .inner-modal .hotspotStyleContent").html(this.templateEditor);
 			$("#hotspotStyleEditor .image-uploader-wrapper").addClass("withimage");
 			$("#hotspotStyleEditor .image-uploader-wrapper").mCustomScrollbar({
-                    theme:"minimal-dark",
-                    scrollInertia:300,
-                    axis:"yx"
-            });
-			this.verticalCent();
+					theme:"minimal-dark",
+					scrollInertia:300,
+					axis:"yx"
+			});
+			$(".image-uploader-wrapper img").load(function(){
+				console.log("se cargó")
+				este.verticalCent();
+			})
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.checkbox("#scale-check-hotspot-editor","fa-check-square","fa-square");
 			$("#hotspotStyleEditor #graphic-hotspot").addClass("has-changed");
+			
+			if(!$("#Context-menu-finish").is(":hidden")){
+				$("#Context-menu-finish").hide();
+			}
+
 		},
 
 		setProperties:function(e){
@@ -314,21 +329,21 @@ define([
 			if(family){
 				manageData.removeStyle(family);
 				_.each($("#hotspot-styles .selector"),function(el,ind){
-	 				if($(el).data("family") == family){
-		 				$(el).remove()
-		 			}
-		 		})
-		 		_.each($("#hotspot-styles .rowinrow"),function(el,ind){
-		 			if($(el).data("family") == family){
-		 				$(el).parents(".row").remove()
-		 			}
-		 		})
+					if($(el).data("family") == family){
+						$(el).remove()
+					}
+				})
+				_.each($("#hotspot-styles .rowinrow"),function(el,ind){
+					if($(el).data("family") == family){
+						$(el).parents(".row").remove()
+					}
+				})
 
-		 		 _.each($("#hotspot-styles .del-row"),function(el,ind){
-	                if($(el).data("family") == family){
-	                    $(el).remove()
-	                }
-	            })
+				 _.each($("#hotspot-styles .del-row"),function(el,ind){
+					if($(el).data("family") == family){
+						$(el).remove()
+					}
+				})
 
 			}
 				$("#hotspotStyleEditor").parents(".overlay").fadeOut(function(){
@@ -365,7 +380,7 @@ define([
 				var total = 0; 
 				_.each($("#hotspotStyleEditor .tab"),function(elem, ind){
 					  if($(elem).data("properties")){
-					  	total++
+						total++
 					  }
 					})
 				if(total == 0){
@@ -402,9 +417,9 @@ define([
 
 					  if($(elem).data("properties")){
 
-					  		total++
-					  		var properties = $(elem).data("properties");
-					  		var jstring = JSON.stringify(properties)
+							total++
+							var properties = $(elem).data("properties");
+							var jstring = JSON.stringify(properties)
 							var jstring = jstring.replace(/-/g , "")
 							properties = JSON.parse(jstring);
 							var valx;
@@ -437,27 +452,27 @@ define([
 				  })
 
 				 if(!ableToAppend){
-				 			_.each($("#hotspot-styles .selector"),function(el,ind){
-				 				if($(el).data("family") == "set"+integer){
-					 				$(el).remove()
-					 			}
-					 		})
-					 		_.each($("#hotspot-styles .rowinrow"),function(el,ind){
-					 			if($(el).data("family") == "set"+integer){
-					 				$(el).parents(".row").remove()
-					 			}
-					 		})
+							_.each($("#hotspot-styles .selector"),function(el,ind){
+								if($(el).data("family") == "set"+integer){
+									$(el).remove()
+								}
+							})
+							_.each($("#hotspot-styles .rowinrow"),function(el,ind){
+								if($(el).data("family") == "set"+integer){
+									$(el).parents(".row").remove()
+								}
+							})
 
-					 		 _.each($("#hotspot-styles .del-row"),function(el,ind){
-				                if($(el).data("family") == family){
-				                    $(el).remove()
-				                }
-				            })
+							 _.each($("#hotspot-styles .del-row"),function(el,ind){
+								if($(el).data("family") == family){
+									$(el).remove()
+								}
+							})
 					}
 
 						$("#hotspot-styles .rows").append(elemToappend);
 						 var helpFunctions = new HelpFunctions();
-            			helpFunctions.selectChoice("#hotspot-styles .selector","fa-circle-o","fa-circle");
+						helpFunctions.selectChoice("#hotspot-styles .selector","fa-circle-o","fa-circle");
 						totalsaved = 0
 						_.each($("#hotspotStyleEditor .tab"),function(elem, ind){	
 

@@ -19,19 +19,13 @@
 
             <%if(tourData.krpano.scene.length == 1){%>
                 <p>There are no other panoramas in this tour to link to</p>
-            <%}else{%>
-
-            <%if(allData._linkedscene == ""){
-                _linkedscene = "none";
-            }else{
-                _linkedscene = allData._linkedscene;            
-            }%>                
-                    
+            <%}else{%>                
+                
             <div class="scenelist">
-                <h3 class="scenedd dropdown1">
-                    <img class="left" >
-                    <span class="selectedScene left"><%=_linkedscene%></span>
-                    <span class="selectedFile left">filename.jpg</span>
+                <h3 class="scenedd dropdown1" data-name="<%= selectedScene.name %>">
+                    <img class="left" src="<%=selectedScene.thumb%>" >
+                    <span class="selectedScene left"><%=selectedScene.title%></span>
+                    <span class="selectedFile left"><%=selectedScene.filename%></span>
                     <i class="fa fa-caret-down"></i>
                 </h3>
                 
@@ -59,6 +53,9 @@
             <%}%>
 
     </div>
+    <label for="tooltiptext">Tooltip:*</label>
+    <input type="text" id="tooltiptext" name="tooltiptext" value="<%=allData._tooltip%>">
+    <p>*leave empty the linked scene title</p>
 </div>
 <div class="test-mode">
     <p><span>Test mode:</span> click on the hotspot

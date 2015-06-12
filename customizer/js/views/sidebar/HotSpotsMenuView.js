@@ -145,11 +145,11 @@ define([
                     scaled = "";
                 }
                var xpos = crop[0];
-               
+               var ypos = crop[1];
                 var width = crop[2];
                 var height = crop[3];
                 
-                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div class="'+scaled+'" style="background-image:url('+elem._url+');background-position:-'+xpos+'px 0; width:'+width+'px;height:'+height+'px"></div></div></li>');                    
+                $("#hotspots-menu-header ul").append(' <li id="'+elem._kind+'" class="htpt"><div class="selected icons"><div class="'+scaled+'" style="background-image:url('+elem._url+');background-position:-'+xpos+'px -'+ypos+'px; width:'+width+'px;height:'+height+'px"></div></div></li>');                    
             })
                 
             $("#hotspots-menu-header").append('<div id="open-styles">hotspots styles <div class="arrow"></div>');
