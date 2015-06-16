@@ -203,6 +203,34 @@ section.main-section {
                 cursor: pointer;
                 padding: 5px;
             }
+
+            .cancelling{
+                background:rgba(5,5,5,0.8);
+                width: 100%;
+                height: 100%;
+                position:absolute;
+                top: 0;
+                left: 0;
+                
+                p{
+                    color:#FFF;
+                    margin-top:20px;
+                    font-size:1.4rem;
+                }
+
+                .loading{
+                    margin: 10px auto;
+                    float: none;
+                    border-bottom: 3px solid #999;
+                    border-left: 3px solid #ffd731;
+                    border-right: 3px solid #999;
+                    border-top: 3px solid #999;
+                    border-radius: 100%;
+                    height: 15px;
+                    width: 15px;
+                    @include loaderAnimation();
+                    }
+            }
         }
 
         .uploader-footer{
