@@ -94,7 +94,7 @@
                                     <h2><span class="title"><%= textToShow %></span> <span class="fa fa-caret-down fa-lg right arrow"></span></h2>
                                     <ul>
                                         <%_.each(data.mousetypes,function(elem,ind){ %>
-                                                <li><span data-value="<%=elem.value%>" data-obj="control" data-bind="_mousetype"><%=elem.label%></span></li>
+                                                <li data-value="<%=elem.value%>" data-obj="control" data-bind="_mousetype"><%=elem.label%></li>
                                         <% })%>
                                     </ul>
                                 </div>

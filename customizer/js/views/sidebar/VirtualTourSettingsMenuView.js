@@ -31,7 +31,7 @@ define([
             var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
             var friendURl = "keyup #virtualTourSettings-menu #friendlyURLTour";
             this.events[inputs] = 'insertData';
-            this.events[txtarea] = 'saveDDMouse';
+            this.events[txtarea] = 'saveData';
             this.events[inputsChange] = 'insertData';
             this.events[friendURl] = 'saveFriendURL';
 
@@ -285,7 +285,14 @@ define([
             manageData.saveTourData($(e.target).parent().attr("class"),$(e.target).text())
         },
 
+        saveData:function(e){
+            var manageData = new ManageData();
+            manageData.saveSettings(e);
+        },
+
         saveDDMouse:function(e){
+            var krpano = document.getElementById("krpanoSWFObject");
+             krpano.set("control.mousetype",$(e.target).data("value"))
             var manageData = new ManageData();
             manageData.saveSettings(e);
         },

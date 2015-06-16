@@ -30,6 +30,7 @@ define([
             var styles = tourData.krpano.style;
             var compiledTemplate = _.template(hotspotsMenu,{styles:styles});
             $(this.el).append( compiledTemplate ); 
+            $("#hotSpots-menu").append('<div class="pointer-wrapper"><div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div></div>')
             var helpFunctions = new HelpFunctions();
             helpFunctions.selectChoice("#hotspot-styles .selector","fa-circle-o","fa-circle");
             this.$elem = $("#"+this.model.get("elem"));
@@ -85,8 +86,8 @@ define([
                     var x2js = new X2JS({attributePrefix:"_"});
                     var newHotspot =  x2js.xml_str2json( data ).hotspot;
                     var krpano = document.getElementById("krpanoSWFObject");
-                    var __ath   =  krpano.get('view.hlookat')-Math.floor(Math.random() * 45);
-                    var __atv   =  krpano.get('view.vlookat')-Math.floor(Math.random() * 25);
+                    var __ath   =  krpano.get('view.hlookat')//-Math.floor(Math.random() * 45);
+                    var __atv   =  krpano.get('view.vlookat')//-Math.floor(Math.random() * 25);
                     newHotspot._ath = __ath;
                     newHotspot._atv = __atv;
                     newHotspot._style = "hotspot_"+me.selectedset+"_"+myid;
