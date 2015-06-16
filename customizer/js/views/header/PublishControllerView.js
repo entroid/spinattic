@@ -27,18 +27,29 @@ define([
 
             $(this.el).append( compiledTemplate );
 
-            helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+            if ($('#onoffswitchpub').is(":checked")) {
+                helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+            }
             helpFunctions.toolTip("#publishController .fa-question-circle", "publish up");
             helpFunctions.toolTip("#publishController #publish", "publish up");
+
+            //avoid tooltip bubble up
+            $("#publishController .onoffswitch .onoffswitch-inner").mouseenter(function(e){
+                e.stopPropagation();
+            });
 
         },
 
         openLiveModal: function(e) {
-            console.log(e)
+            var helpFunctions = new HelpFunctions();
+
             if($(e.target).is(":checked")){
                 this.liveTourView = new LiveTourView();
                 this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
-                }
+                helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+            } else {
+                $('#publishController .onoffswitch').unbind('mouseenter');
+            }
         }    
     });
 
