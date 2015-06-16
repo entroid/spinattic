@@ -227,6 +227,26 @@
                 margin-bottom: 30px;
             }            
         }
+
+        .hotspotTTip{
+            padding-top: 15px;
+
+            label{
+                margin-top: 10px;
+                display: inline-block;
+            }
+
+            input{
+                width: 84%;
+                float: right;
+                margin-bottom: 5px;
+            }
+
+            p{
+                margin-left: 16%;
+            }
+        }
+
     }
 /** End general modal **/
 
@@ -429,7 +449,7 @@
                 }
 
                 p{
-                    clear: left;
+                    clear: both;
                 }
             }
 
@@ -1424,3 +1444,4 @@
     font-weight: bold;
     cursor: pointer;
 }
+

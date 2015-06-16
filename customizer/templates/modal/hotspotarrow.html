@@ -53,9 +53,12 @@
             <%}%>
 
     </div>
-    <label for="tooltiptext">Tooltip:*</label>
-    <input type="text" id="tooltiptext" name="tooltiptext" value="<%=allData._tooltip%>">
-    <p>*leave empty the linked scene title</p>
+
+    <div class="hotspotTTip clear">
+        <label for="tooltiptext">Tooltip:*</label>
+        <input type="text" id="tooltiptext" name="tooltiptext" value="<%=allData._tooltip%>">
+        <p>*leave empty to show the linked scene title</p>
+    </div>
 </div>
 <div class="test-mode">
     <p><span>Test mode:</span> click on the hotspot
