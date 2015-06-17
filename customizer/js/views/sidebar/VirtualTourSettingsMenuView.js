@@ -26,7 +26,7 @@ define([
             var checkboxesEvent = 'click #'+ this.model.get("elem") +' .checkboxes li';
             this.events[checkboxesEvent] = 'selectCheckboxes';
 
-            var inputs = "keyup #virtualTourSettings-menu .tour-data";
+            var inputs = "change #virtualTourSettings-menu .tour-data";
             var txtarea = "keyup #virtualTourSettings-menu #tour-description";
             var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
             var friendURl = "keyup #virtualTourSettings-menu #friendlyURLTour";
@@ -232,26 +232,32 @@ define([
         },
 
         insertData:function(e){
-
-            var selectedInput = e.target;
-            var krpano = document.getElementById("krpanoSWFObject");
-            var myprop = $(selectedInput).data("bind");
-            myprop = myprop.replace("_","")
-            var dataobj = $(selectedInput).data("obj"); 
-            krpano.set(dataobj+"."+myprop,$(selectedInput).val());
-            
-            var manageData = new ManageData();
-            manageData.saveSettings(e);
+            if(!$(e.target).is(":disabled")){
+                var selectedInput = e.target;
+                var krpano = document.getElementById("krpanoSWFObject");
+                var myprop = $(selectedInput).data("bind");
+                myprop = myprop.replace("_","")
+                var dataobj = $(selectedInput).data("obj"); 
+                krpano.set(dataobj+"."+myprop,$(selectedInput).val());
+                
+                var manageData = new ManageData();
+                manageData.saveSettings(e);
+            }
             
         },
 
         onOffSwitch: function(e) {
             var selectedInput = e.target;
-
+            var manageData = new ManageData();
+            console.log(e)
             if (!$(selectedInput).prop( 'checked' )) {
                 $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', true).addClass('disabled')
+                manageData.saveSettings(e);
             } else {
-                $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', false).removeClass('disabled');
+                $elem = $(selectedInput).parent().siblings('input[type="number"]').prop('disabled', false).removeClass('disabled');
+                var evento = {}
+                evento.target = $elem[0];
+                manageData.saveSettings(evento);
             }
         },
 

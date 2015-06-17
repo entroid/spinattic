@@ -135,7 +135,7 @@ define([
 				}else{
 					valueToInsert = $(e.target).val()
 				}
-				
+				console.log($(e.target))
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=valueToInsert;
 				this.saveServer();
 			},

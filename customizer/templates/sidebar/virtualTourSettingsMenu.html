@@ -194,30 +194,44 @@
                             <label for="move-to-horizon"><span class="help fa fa-question-circle"></span> Move to Horizon</label>
 
                             <div class="onoffswitch middlePosition switchInput">
-                                <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" <% if(data.autorotate._horizon == "on"){ %>checked <%}%> class="tour-data" data-obj="autorotate" data-bind="_horizon">
+                                <input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" <% if(data.autorotate._horizon != "false"){ %>checked <%}%> class="tour-data" data-obj="autorotate" data-bind="_horizon">
 
                                 <label class="onoffswitch-label" for="myonoffswitch4">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
                                 </label>
                             </div>                  
-
-                            <input class="absoluteRight" type="number" id="move-to-horizon" name="move-to-horizon" value="0.0">
+                            <%if(data.autorotate._horizon != "false"){
+                                    tohorizonvalor = data.autorotate._horizon;
+                                    disabledtohorizon = "";
+                                }else{
+                                    tohorizonvalor = "0.0";
+                                    disabledtohorizon = "disabled"
+                                }
+                                %>
+                            <input class="absoluteRight tour-data <%=disabledtohorizon%>" type="number" id="move-to-horizon" data-obj="autorotate" data-bind="_horizon" name="move-to-horizon" value="<%=tohorizonvalor%>" <%=disabledtohorizon%>>
                         </div>
 
                         <div class="input-row positionRelative">
                             <label for="move-to-fov"><span class="help fa fa-question-circle"></span> Move to Fov</label>
 
                             <div class="onoffswitch middlePosition switchInput">
-                                <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" <% if(data.autorotate._tofov == "on"){ %>checked <%}%> class="tour-data" data-obj="autorotate" data-bind="_tofov">
+                                <input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" <% if(data.autorotate._tofov != "false"){ %>checked <%}%> class="tour-data" data-obj="autorotate" data-bind="_tofov">
 
                                 <label class="onoffswitch-label" for="myonoffswitch5">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
                                 </label>
                             </div>
-
-                            <input class="absoluteRight" type="number" id="move-to-fov" name="move-to-fov" value="135.0">
+                            <%if(data.autorotate._tofov != "false"){
+                                    tofovvalor = data.autorotate._tofov;
+                                    disabledtofov = "";
+                                }else{
+                                    tofovvalor = "0.0";
+                                    disabledtofov = "disabled";
+                                }
+                                %>
+                            <input class="absoluteRight tour-data <%=disabledtofov%>" type="number" id="move-to-fov" name="move-to-fov" value="<%=tofovvalor%>" data-obj="autorotate" data-bind="_tofov" <%=disabledtofov%>>
                         </div>
                     </div>
                 </li>
