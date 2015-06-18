@@ -44,7 +44,7 @@ define([
 		var panoMenuFooterView = new PanoMenuFooterView();
 		panoMenuFooterView.render();
 	   
-
+		
 		/*window.onpopstate = function(event)
 		{
 			location.reload();
@@ -81,6 +81,13 @@ define([
 		})
 
 		app_router.on('route:getTour', function (id) {
+
+			jQuery.ajax({
+			type: "GET",
+			url: "php/general_process.php?reset_queue="+id,
+			success: function(res){
+				console.log("reseted")
+			}})
 		// Note the variable in the route definition being passed in here
 			$.ajax({
 		  dataType:"json",

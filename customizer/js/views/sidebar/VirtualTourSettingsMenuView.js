@@ -243,7 +243,7 @@ define([
                 var manageData = new ManageData();
                 manageData.saveSettings(e);
             }
-            
+             
         },
 
         onOffSwitch: function(e) {

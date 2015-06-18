@@ -167,6 +167,11 @@ define([
 											
 										case "1":
 											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+											$("#pano-"+i+" .percentage").text(respuesta.state_desc);
+											
+											break;
+										case "2":
+											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
 											
 
 											este.pano_id[i]         = respuesta.pano_id;
@@ -177,18 +182,18 @@ define([
 											este.scene_name[i]         = este.filename[i].replace(/\.jpg|\.jpeg|\.tiff/g, '');
 											este.html_ref_id[i]     = 'pano-'+respuesta.scene_id;
 														
-											$("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
 											$("#pano-"+i+" .fa-close").data("state",este.state[i]);
+											$("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
 											$("#pano-"+i+" .icon-msg img").load(function(){
 												$(this).parent().css("background","#d5ae06");
-											})
+											})											
 
 											$("#pano-"+i+" .percentage").text("Processing image (1/2)");
 											$("#pano-"+i).attr("id", este.html_ref_id[i]);  
-									 
-											break;
-										
-										case "2":
+											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);
+
+										break;
+										case "3":
 											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
 											$("#"+este.html_ref_id[i]+" .percentage").text("Processing image (2/2)");
 											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);
@@ -196,7 +201,7 @@ define([
 										   
 										   break;
 											
-										case "3":
+										case "4":
 											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
 											
 											$("#"+este.html_ref_id[i]+" .thumb").attr("src",este.thumb_path[i]);
@@ -368,6 +373,13 @@ define([
 						este.gTour_id = window.gTour_id;
 					}
 
+					jQuery.ajax({
+					type: "GET",
+					url: "php/general_process.php?reset_queue="+este.gTour_id,
+					success: function(res){
+						console.log("reseted")
+					}})
+
 					var xmlpath ="data/xml.php?id="+este.gTour_id+"&d=1&c=1";
 					//var xmlpath ="data/xml.php?idtour=9&c=1";
 					
@@ -453,7 +465,7 @@ define([
 			var este = this;
 			var evt=function(){
 				
-					if($elem.data("state") == "3"){
+					if($elem.data("state") == "4"){
 						var url     = 'php/updater.php';
 						var type    = 'POST';
 						var data    = 'id='+$elem.data('pano_id')+"&action=del_pano";
@@ -483,7 +495,7 @@ define([
 								}else{
 									var completed = 0;
 									_.each($(".pano-item"),function(elem){
-										if($(elem).find(".fa-close").data("state")== "3"){
+										if($(elem).find(".fa-close").data("state")== "4"){
 											completed++
 										}
 									})
