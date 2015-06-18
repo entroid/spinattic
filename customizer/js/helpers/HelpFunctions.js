@@ -39,7 +39,9 @@ define([
                     ttWidth,
                     leftP,
                     rightP,
-                    arrowRightP;
+                    arrowRightP,
+                    arrow = $($tooltip).find('.arrow'),
+                    arrowLeft;
 
                 $(el).removeAttr("title");
 
@@ -54,23 +56,31 @@ define([
                 ttWidth = $tooltip.outerWidth();
                 leftP = (eleOffset.left) + (elWidth - ttWidth) / 2;
                 rightP =  ($(window).width() - (eleOffset.left + elWidth)) + (elWidth - ttWidth) / 2;
-                arrowRightP = ($(window).width() - (eleOffset.left + elWidth/2))
+                arrowLeft = eleOffset.left + elWidth/2;
+                arrowRightP = ($(window).width() - arrowLeft);                
 
+                console.log(arrowLeft)
                 //footer or header thumbs tooltip
                 if ( myclass === 'footer' || myclass === 'publish up') {
+
                     if (rightP < 0) {
                         rightP = 10;
                         $tooltip.addClass('rightist').find('.arrow').css({
                             right: arrowRightP-10, left: "initial"
                         });
 
+                        //arrow position
+                        $(arrow).css('right', arrowRightP-20);
+
                         showTT($tooltip, false, rightP, eleOffset.top)
                     } else {
                         if ( leftP < 0 ) {
                             leftP = 10;
                             $tooltip.addClass('leftist');
+                            //arrow position
+                            $(arrow).css('left', arrowLeft-10);
                         }
-
+                        
                         showTT($tooltip, true, leftP, eleOffset.top)
                     }
                 } else {
