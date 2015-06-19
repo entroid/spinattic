@@ -689,7 +689,7 @@ textarea{
 }
 
 .icons-wrapper{
-    width: 60px;
+    min-width: 60px;
     text-align: center;
 
     h4{
@@ -704,7 +704,7 @@ textarea{
 
 .search-btn{
     font-size: 2rem;
-    text-align: center;
+    text-align: center; 
     width: 50px;
     box-sizing: border-box;
     padding: 7px;
