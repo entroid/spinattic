@@ -113,6 +113,7 @@ define([
             $("#tour").data("scene",$thisli.data("scene"))
             helpFunctions.refreshData();
             var customparam = jQuery.extend({},$thisli.data("scene"));
+            console.log(customparam)
             delete customparam.view._segment;
             delete customparam.preview._segment;
             delete customparam.image._segment;
@@ -121,7 +122,7 @@ define([
             var krpano = document.getElementById("krpanoSWFObject");
             var param = helpFunctions.mapJSONToUriParams(customparam);
             param = param.replace(/:_/g,".");
-            krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"');");
+            krpano.call("loadscene('"+$thisli.attr("id")+"','"+param+"',MERGE|KEEPCONTROL,BLEND(1));");
             if($thisli.data("hotspots")){
                 var manageHotSpots = new ManageHotSpots();
                 krpano.set("events.onpreviewcomplete","js(initHotSpots())");

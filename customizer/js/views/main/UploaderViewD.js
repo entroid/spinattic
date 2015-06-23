@@ -9,8 +9,8 @@ define([
 	'views/modal/AlertView',
 	'views/modal/ConfirmView',
 	'text!templates/main/upload.html',
-	'filedrop',
-	'text!templates/main/uploadProgress.html',
+	'lib/dropzone',
+	'text!templates/main/uploadProgressD.html',
 	'views/main/TourView',
 	'views/sidebar/MainMenuView',
 	'models/main/TourModel',
@@ -21,7 +21,7 @@ define([
 	'mCustomScrollbar'
 
 
-	], function($, _, Backbone,x2js,HelpFunctions, ManageTour, ModalModel, AlertView,ConfirmView,upload,filedrop,uploadProgress,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
+	], function($, _, Backbone,x2js,HelpFunctions, ManageTour, ModalModel, AlertView,ConfirmView,upload,dropzone,uploadProgressD,TourView,MainMenuView,TourModel,SceneMenuView,SceneCollection,TourTitle,PublishControllerView, mCustomScrollbar){
 
 	var UploaderView = Backbone.View.extend({
 		el: $("body"),
@@ -55,7 +55,7 @@ define([
 			if(location.hash.split("/")[1]){
 				este.gTour_id= location.hash.split("/")[1];
 			}
-
+			var i = 0;
 			var compiledTemplate = _.template(upload);
 			$(this.el).append( compiledTemplate ); 
 
@@ -66,61 +66,13 @@ define([
 			helpFunctions.dropDown(".dropdown");
 			var last_zindex  = null;
 			var rollingOver = false;
-
-			var dropbox = $('#drop-zone'),
-			message = $('.drop-message', dropbox);
-
 			este.verticalCent();
-			dropbox.filedrop({
-				// The name of the $_FILES entry:
-				paramname:'pic',
-				refresh: 100,
-				maxfiles: 100,
-				//queuefiles: 2,
-				maxfilesize: 200,
-				url: 'php/general_process.php',
-
-			   /* data:{
-				   tour_id:este.gTour_id
-				},
-				*/
-				error: function(err, file) {
-					switch(err) {
-						case 'BrowserNotSupported':
-						este.showMsg('Your browser does not support HTML5 file uploads!');
-						break;
-						case 'TooManyFiles':
-						este.showMsg('Too many files! Please select 3 at most!');
-						break;
-						case 'FileTooLarge':
-						este.showMsg(file.name+' is too large! Please upload files up to 200 mb.');
-						break;
-						default:
-						break;
-					}
-				},
-
-				beforeEach: function(file){    
-
-					if(!file.type.match(/^image\//)){
-						este.showMsg('Only images are allowed!');
-						return false;
-					}
-
-					if(!file.type.match(/jpeg|tiff/)){
-						este.showMsg('Format not supported!');
-						return false;
-					}
-				},
-
+			$('#drop-zone').dropzone({ 
+				url: "php/general_process.php",
+				clickable:"#click-to-select-file",
+				previewTemplate:uploadProgressD,
 				drop:function(){
-					//este.autocreateTour();
-					$('.dragger-wrapper .cancel').addClass('none');
-
-				},
-
-				uploadStarted: function(i, file, len){
-					if (rollingOver) { 
+					/*if (rollingOver) { 
 						$('.main-section').css('z-index', "last_zindex");
 						$("header.main-header").removeClass("bluring")
 						$("footer.main-footer").removeClass("bluring")
@@ -130,21 +82,69 @@ define([
 					if($(".inner-dragger .pano-item").length!=0){
 						i = $(".inner-dragger .pano-item").length;
 					}
-					este.createImage(file,i);
-					$(".dragable").addClass("uploading-drop-zone"); 
-					este.verticalCent();   
-					$(".scroll-wrapper").mCustomScrollbar("scrollTo",$(".pano-item:last-child").offset().top);
+					$(".scroll-wrapper").mCustomScrollbar({
+						theme:"minimal-dark",
+						scrollInertia:300,
+					});*/
 
-					$("#pano-"+i+" .fa-close").data("myproc",window.proc_id[i]);
-					$("#pano-"+i+" .fa-close").data("cicle",i);
-					$("#pano-"+i+" .fa-close").data("myfile",file.name);
-					$("#pano-"+i+" .fa-close").click(este.removePano)
-					if (este.cancel) {
-						$('.dragger-wrapper .cancel').addClass('none');
-					}
-					console.log(i)
-					este.setIntervalID[i] = setInterval(function(){
-						console.log("se tiene que ejecutar")
+					$(".dragable").addClass("uploading-drop-zone");
+					$.ajax({
+							url:'php/ultour.php',
+							type:'POST',
+							data:'autocreate=true',
+							async:false,
+							success:function(response){
+								var parsedObj = jQuery.parseJSON(response);
+								if(!window.gTour_id){
+									window.gTour_id    = parsedObj.params.tour_id;  
+								 }
+								console.log("se ha creado un tour desde autocreateTour") 
+								
+	  
+							}
+						 })
+				},
+				sending:function(file,xhr,formData){
+					var start_time = new Date().getTime();
+					window.proc_id[i] =  start_time+'-'+i+'-'+window.gTour_id;
+					console.log(window.proc_id[i])
+					formData.append("tour_id", window.gTour_id);
+					formData.append("proc_id", window.proc_id[i]);
+				},
+
+				processing:function(file){
+					console.log(file)
+					$(file.previewElement).attr("id","pano-"+i)
+
+					este.processState(i)
+					i++
+					
+				},
+				uploadprogress:function(file,progress){
+					console.log("upload")
+					$("#pano-"+i+" .progress").width(progress+'%');
+					$("#pano-"+i+" .percentage").text('Uploading '+progress+'%');
+				},
+				success:function(){
+					
+					console.log("succes")	
+				
+				}
+			})
+
+		},
+
+		showMsg: function(msg){
+			var modalModel = new ModalModel({msg:msg})
+			var alertView = new AlertView({model:modalModel});
+			alertView.render("alert",alertView.renderExtend);
+		},
+
+
+		processState:function(i){
+			var este = this;
+			este.setIntervalID[i] = setInterval(function(){
+						//console.log("se tiene que ejecutar" + window.proc_id[i])
 						$.ajax({
 							type: "POST",
 							url: "php/general_process_state.php",
@@ -153,14 +153,14 @@ define([
 							success: function(response){
 								var respuesta = JSON.parse(response);
 									//console.log("STATE "+i+":"+respuesta.state);
-									
+									console.log(response)
 									if(este.state[i] != respuesta.state && respuesta.state != 'w'){
 										
 										este.state[i] = respuesta.state;
 										
 										switch(este.state[i]) {
 										case "-1": //Error
-											console.log("ENTRO ERROR: " + este.state[i]);
+											//console.log("ENTRO ERROR: " + este.state[i]);
 											clearInterval(este.setIntervalID[i]);               
 											$(".inner-dragger #pano-"+i+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us")
 											break;
@@ -234,92 +234,7 @@ define([
 									
 								}
 						})}, 500);
-				},
-
-				docOver:function(e){    
-					if (!rollingOver) {    
-						$("header.main-header").addClass("bluring")
-						$(".dragger-wrapper").addClass("scaling")
-						$("footer.main-footer").addClass("bluring")
-
-						var posleft = $(".dragger-wrapper").offset().left;
-
-						rollingOver = true;
-					}    
-				},
-
-				docLeave:function(e){     
-					if (rollingOver) { 
-						last_zindex = $('#drop-zone').css('z-index', last_zindex);
-						$("header.main-header").removeClass("bluring")
-						$(".dragger-wrapper").removeClass("scaling")
-						$("footer.main-footer").removeClass("bluring")
-
-						rollingOver = false;
-					}   
-				},
-
-				progressUpdated: function(i, file, progress) {
-					$(".uploader-footer p").text("uploading or processing panoramas, please don't close this page").siblings('#cancelUploaded').addClass('none');
-					$("#pano-"+i+" .progress").width(progress+'%');
-					$("#pano-"+i+" .percentage").text('Uploading '+progress+'%');
-				},
-
-				uploadFinished:function(i, file, response){  
-					
-					console.log('STOP:' + window.proc_id[i] + ' - ' + i + ' - ' + file["name"]);
-	
-				   
-				},
-
-				afterAll : function(){}  
-
-			}); // end of dropfile
-
-			$("#click-to-select-file").click(function(e){
-				$("#upload_button").trigger("click")
-			})
 		},
-
-		showMsg: function(msg){
-			var modalModel = new ModalModel({msg:msg})
-			var alertView = new AlertView({model:modalModel});
-			alertView.render("alert",alertView.renderExtend);
-		},
-
-		createImage:function(file,i) {
-			data = {
-				filesrc:file.name,
-				ind:i    
-			}
-
-			var compiledTemplate = _.template(uploadProgress,data);
-
-			if($(".pano-item-wrapper").length == 0){
-				$('.dragger-wrapper .inner-dragger').append('<div class="scroll-wrapper"><div class="pano-item-wrapper"></div></div><div class="uploader-footer"><span class="uploader-btn fa fa-clock-o blink right"></span><span id="cancelUploaded" class="uploader-btn right none">Cancel</span><p></p></div>');
-
-				//scrollbar
-				$(".scroll-wrapper").mCustomScrollbar({
-					theme:"minimal-dark",
-					scrollInertia:300,
-				});
-			}
-
-			$('.dragger-wrapper .pano-item-wrapper').append(compiledTemplate);
-			 
-		},
-
-		sendReport:function(type, extras){
-			$.ajax({
-				url : 'php/send_report.php',
-				type: 'POST',
-				async: true,
-				data: 'type='+type+'&extras='+extras,
-				cache : false,
-				success : function(response){}
-			});        
-		},
-
 
 		AllUploaded:function(){
 			$(".uploader-footer").find('#cancelUploaded').removeClass('none').siblings('p').html('All Done <span class="fa fa-smile-o"></span>');            

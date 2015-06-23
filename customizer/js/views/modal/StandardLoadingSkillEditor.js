@@ -27,7 +27,8 @@ define([
 
             var myid = this.myid;
             var tourSkill = this.model.get("tourSkill");
-            var template = _.template(standardLoadingProgress,{tourSkill:tourSkill})
+            console.log(tourSkill)
+           var template = _.template(standardLoadingProgress,{tourSkill:tourSkill})
 
             $("#"+myid+" .inner-modal").html(template);
             $("#"+myid+" header h2").text("Standard Loading Progress Editor")

@@ -10,7 +10,7 @@ define([
 	'collections/header/UserCollection',
 	'views/sidebar/MainMenuView',
 	'views/header/UserView',
-	'views/main/UploaderView',
+	'views/main/UploaderViewD',
 	'helpers/HelpFunctions',
 	'models/main/TourModel',
 	'views/main/TourView',
@@ -68,7 +68,7 @@ define([
 				}else{
 					$.ajax({
 						dataType:"json",
-						url:  "data/json.php?t=u",
+						url:  "data/user.json",
 					}).done(function(obj){
 
 						if(!userCollection.length){
@@ -85,7 +85,7 @@ define([
 		// Note the variable in the route definition being passed in here
 			$.ajax({
 		  dataType:"json",
-		  url:  "data/json.php?t=u",
+		  url:  "data/user.json",
 		 }).done(function(obj){
 			//var xmlpath ="data/tour.xml?id="+id;
 			//var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
