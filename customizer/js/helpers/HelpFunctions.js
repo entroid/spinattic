@@ -59,7 +59,6 @@ define([
                 arrowLeft = eleOffset.left + elWidth/2;
                 arrowRightP = ($(window).width() - arrowLeft);                
 
-                console.log(arrowLeft)
                 //footer or header thumbs tooltip
                 if ( myclass === 'footer' || myclass === 'publish up') {
 
@@ -294,6 +293,8 @@ define([
 
         this.limitInputs = function(el, min, max){
             var val = Number($(el).val());
+
+            max ? max = max : max = 100000;
 
             if(val < min){
                 $(el).val(min);
