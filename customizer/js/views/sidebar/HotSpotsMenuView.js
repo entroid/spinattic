@@ -99,7 +99,6 @@ define([
                     krpano.set("hotspot["+newHotspot._name+"].ath", newHotspot._ath );
                     krpano.set("hotspot["+newHotspot._name+"].atv", newHotspot._atv );
                     krpano.call("hotspot["+newHotspot._name+"].loadStyle(hotspot_"+me.selectedset+"_"+myid+");");
-                    console.log(me.selectedset)
                     krpano.call('set(hotspot['+newHotspot._name+'].ondown, draghotspot() );');
                     krpano.call('set(hotspot['+newHotspot._name+'].onclick, js(openHotspotWindowEditor('+newHotspot._name+')) );');
                     krpano.call('set(hotspot['+newHotspot._name+'].onup, js(regPos('+newHotspot._name+')) );');
@@ -111,13 +110,11 @@ define([
         },
         selectStyleClick:function(ev){
             var obj = ev.currentTarget
-            console.log($(obj))
             if($(obj).data("family")){
                 var set = $(obj).data("family");
             }else{
                 var set = $(obj).next().find(".rowinrow").data("family");
             }
-            console.log(set)
             this.selectStyle(set)
         },
 
@@ -133,13 +130,11 @@ define([
                     selected.push(elem)
                 }
             });
-            console.log(set)
             this.selectedset = set;
             $("#hotspots-menu-header").html("").append('<ul></ul>');
 
             _.each(selected,function(elem,ind){ 
                 var crop = elem._crop.split("|")
-                console.log(crop)
                 if(elem._scale=="0.5"){
                     var scaled = "scaled";
                 }else{

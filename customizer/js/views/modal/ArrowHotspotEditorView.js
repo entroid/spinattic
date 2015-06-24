@@ -174,73 +174,75 @@ define([
         },
 
         autocomplete: function(){
-                var noselect = true;
-                var myid = this.myid;
-                var num = this.myid.replace("spot","");
-                var myscenes = this.scenes;
+            var noselect = true;
+            var myid = this.myid;
+            var num = this.myid.replace("spot","");
+            var myscenes = this.scenes;
 
-                console.log(myscenes)
-                _.each(myscenes,function(elem,ind){
-                    elem.label = elem._title;
-                }) 
+            console.log(myscenes.length)
+            _.each(myscenes,function(elem,ind){
+                elem.label = elem._title;
+            }) 
 
-            $("#"+myid+" .search-scenes").autocomplete({
-                source:myscenes,
-                 appendTo:"#scenes-search-results-"+num,
-                 focus: function( event, ui ) {
-                    $("#"+myid+" .search-scenes").val( ui.item._title );
-                    return false;
-                    }, 
-                select:function(event,ui){
-                    var myTitle = ui.item._title;
-                    $("#"+myid+" .search-scenes").val(myTitle);
-                    /*$("#"+myid+" .inner-modal h2").show();*/
-                     noselect = false;
-                    $("#"+myid+" .scenes-list #"+ui.item._name).show();
-                    
-                    console.log("select")
-                    return false;
-                },
-                search:function(event,ui){
-                 $("#"+myid+" .scenes-list li").hide();
-                },
-                close: function(event,ui){
-                     if(noselect){
-                        $("#"+myid+" .scenes-list li").show();
-                     }
-                }
-            }).data("ui-autocomplete")._renderItem = function(ul,item){
+            if (myscenes.length) {    
+                $("#"+myid+" .search-scenes").autocomplete({
+                    source:myscenes,
+                     appendTo:"#scenes-search-results-"+num,
+                     focus: function( event, ui ) {
+                        $("#"+myid+" .search-scenes").val( ui.item._title );
+                        return false;
+                        }, 
+                    select:function(event,ui){
+                        var myTitle = ui.item._title;
+                        $("#"+myid+" .search-scenes").val(myTitle);
+                        /*$("#"+myid+" .inner-modal h2").show();*/
+                         noselect = false;
+                        $("#"+myid+" .scenes-list #"+ui.item._name).show();
+                        
+                        console.log("select")
+                        return false;
+                    },
+                    search:function(event,ui){
+                     $("#"+myid+" .scenes-list li").hide();
+                    },
+                    close: function(event,ui){
+                         if(noselect){
+                            $("#"+myid+" .scenes-list li").show();
+                         }
+                    }
+                }).data("ui-autocomplete")._renderItem = function(ul,item){
 
-                return $( "<li></li>" )
-                .data( "item.autocomplete", item )
-                .append( "<img src="+item._thumburl+" /><dl><dt>" + item._title + "</dt><dd>" + item._scene_filename + "</dd></dl>" )
-                .appendTo( ul );
-            };
+                    return $( "<li></li>" )
+                    .data( "item.autocomplete", item )
+                    .append( "<img src="+item._thumburl+" /><dl><dt>" + item._title + "</dt><dd>" + item._scene_filename + "</dd></dl>" )
+                    .appendTo( ul );
+                };
 
 
-            /* select */
+                /* select */
 
-            $("#"+myid+" .scenes-list li").click(function(e){
-                noselect = true;
-                $("#"+myid+" .scenes-list li").show();
-                $("#"+myid+" .search-scenes").val("");
-                var name = $(this).attr("id");
-                var panotitle = $(this).find('dt').text();
-                var panoName = $(this).find('dd').text();
+                $("#"+myid+" .scenes-list li").click(function(e){
+                    noselect = true;
+                    $("#"+myid+" .scenes-list li").show();
+                    $("#"+myid+" .search-scenes").val("");
+                    var name = $(this).attr("id");
+                    var panotitle = $(this).find('dt').text();
+                    var panoName = $(this).find('dd').text();
 
-                var imgsrc =  $(this).find("img").attr("src");
+                    var imgsrc =  $(this).find("img").attr("src");
 
-                $("#"+myid+" h3 .selectedScene").text(panotitle);
-                $("#"+myid+" h3 .selectedFile").text(panoName);
-                $("#"+myid+" h3").data("name",name);
-                $("#"+myid+" .list-scene").toggleClass('none');
-                $("#"+myid+" h3.scenedd img").attr("src",imgsrc)
-            })
+                    $("#"+myid+" h3 .selectedScene").text(panotitle);
+                    $("#"+myid+" h3 .selectedFile").text(panoName);
+                    $("#"+myid+" h3").data("name",name);
+                    $("#"+myid+" .list-scene").toggleClass('none');
+                    $("#"+myid+" h3.scenedd img").attr("src",imgsrc)
+                })
 
-            $("#"+myid+" .scenelist .clear-btn").click(function(ev) {                
-                $(ev.target).find('input').val('');
-                $("#"+myid+" .scenes-list li").show()
-            })
+                $("#"+myid+" .scenelist .clear-btn").click(function(ev) {                
+                    $(ev.target).find('input').val('');
+                    $("#"+myid+" .scenes-list li").show()
+                })
+            }
 
         },
 
