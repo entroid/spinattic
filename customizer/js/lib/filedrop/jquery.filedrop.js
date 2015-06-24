@@ -404,6 +404,9 @@
 			newName = rename(file.name),
 			mime = file.type;
 
+			window.uploader_id++;
+			console.log("UL ID: "+window.uploader_id);
+
 		if (opts.withCredentials) {
 		  xhr.withCredentials = opts.withCredentials;
 		}
@@ -414,12 +417,10 @@
 		} else {
 		  builder = getBuilder(file.name, data, mime, boundary);
 		}
-		if($(".inner-dragger .pano-item").length!=0){
-			index = $(".inner-dragger .pano-item").length;
-		}
-		window.proc_id[index] =  start_time+'-'+index+'-'+window.gTour_id;
+		
+		window.proc_id[window.uploader_id] =  start_time+'-'+window.uploader_id+'-'+window.gTour_id;
 	  
-		console.log('START:' + file.name + ' - ' + window.proc_id[index]);
+		console.log('START:' + file.name + ' - ' + window.proc_id[window.uploader_id]);
 		
 		upload.index = index;
 		upload.file = file;
@@ -430,7 +431,7 @@
 		upload.startData = 0;
 		upload.addEventListener("progress", progress, false);
 
-		xhr.open("POST", opts.url + '?proc_id='+window.proc_id[index]+'&tour_id='+window.gTour_id, true);
+		xhr.open("POST", opts.url + '?proc_id='+window.proc_id[window.uploader_id]+'&tour_id='+window.gTour_id, true);
 
 	   /* Allow url to be a method
 		if (jQuery.isFunction(opts.url)) {

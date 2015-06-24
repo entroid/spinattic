@@ -46,8 +46,9 @@ define([
 		},
 
 		render: function(){
-			este = this;
+			var este = this;
 			  window.proc_id = new Array();
+			  window.uploader_id = 0;
 	  
 			este.gNew_tour = this.model.get("gNewTour");
 			este.addingPane =  this.model.get("addingPane");
@@ -75,7 +76,7 @@ define([
 				// The name of the $_FILES entry:
 				paramname:'pic',
 				refresh: 100,
-				maxfiles: 100,
+				//maxfiles: 100,
 				//queuefiles: 2,
 				maxfilesize: 200,
 				url: 'php/general_process.php',
@@ -119,7 +120,8 @@ define([
 
 				},
 
-				uploadStarted: function(i, file, len){
+				uploadStarted: function(e, file, len){
+					var this_ul_id = window.uploader_id;
 					if (rollingOver) { 
 						$('.main-section').css('z-index', "last_zindex");
 						$("header.main-header").removeClass("bluring")
@@ -127,92 +129,97 @@ define([
 						$(".dragger-wrapper").removeClass("scaling")
 						rollingOver = false;
 					}    
-					if($(".inner-dragger .pano-item").length!=0){
-						i = $(".inner-dragger .pano-item").length;
-					}
-					este.createImage(file,i);
+					
+					este.createImage(file,this_ul_id,window.proc_id[this_ul_id]);
 					$(".dragable").addClass("uploading-drop-zone"); 
 					este.verticalCent();   
 					$(".scroll-wrapper").mCustomScrollbar("scrollTo",$(".pano-item:last-child").offset().top);
 
-					$("#pano-"+i+" .fa-close").data("myproc",window.proc_id[i]);
-					$("#pano-"+i+" .fa-close").data("cicle",i);
-					$("#pano-"+i+" .fa-close").data("myfile",file.name);
-					$("#pano-"+i+" .fa-close").click(este.removePano)
+					$("#pano-"+this_ul_id+" .fa-close").data("myproc",window.proc_id[this_ul_id]);
+					$("#pano-"+this_ul_id+" .fa-close").data("cicle",this_ul_id);
+					$("#pano-"+this_ul_id+" .fa-close").data("myfile",file.name);
+					$("#pano-"+this_ul_id+" .fa-close").click(este.removePano)
 					if (este.cancel) {
 						$('.dragger-wrapper .cancel').addClass('none');
 					}
-					console.log(i)
-					este.setIntervalID[i] = setInterval(function(){
-						console.log("se tiene que ejecutar")
+					console.log(this_ul_id)
+					este.setIntervalID[this_ul_id] = setInterval(function(){
 						$.ajax({
 							type: "POST",
 							url: "php/general_process_state.php",
-							data: "proc_id=" + window.proc_id[i],
+							data: "proc_id=" + window.proc_id[this_ul_id],
 							cache: false,
 							success: function(response){
 								var respuesta = JSON.parse(response);
 									//console.log("STATE "+i+":"+respuesta.state);
 									
-									if(este.state[i] != respuesta.state && respuesta.state != 'w'){
+									if(este.state[this_ul_id] != respuesta.state && respuesta.state != 'w'){
 										
-										este.state[i] = respuesta.state;
+										este.state[this_ul_id] = respuesta.state;
 										
-										switch(este.state[i]) {
+										switch(este.state[this_ul_id]) {
 										case "-1": //Error
-											console.log("ENTRO ERROR: " + este.state[i]);
-											clearInterval(este.setIntervalID[i]);               
-											$(".inner-dragger #pano-"+i+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us")
+											console.log("ENTRO ERROR: " + este.state[this_ul_id]);
+											clearInterval(este.setIntervalID[this_ul_id]);               
+											$(".inner-dragger #pano-"+this_ul_id+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us")
 											break;
 											
 										case "1":
-											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
-											$("#pano-"+i+" .percentage").text(respuesta.state_desc);
+											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
+											$("#pano-"+this_ul_id+" .percentage").text(respuesta.state_desc);
 											
 											break;
 										case "2":
-											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
 											
 
-											este.pano_id[i]         = respuesta.pano_id;
-											este.scene_id[i]        = respuesta.scene_id;
-											este.tour_id[i]         = respuesta.tour_id;    
-											este.filename[i]        = respuesta.filename;  
-											este.thumb_path[i]        = respuesta.thumb_path;  
-											este.scene_name[i]         = este.filename[i].replace(/\.jpg|\.jpeg|\.tiff/g, '');
-											este.html_ref_id[i]     = 'pano-'+respuesta.scene_id;
+											este.pano_id[this_ul_id]         = respuesta.pano_id;
+											este.scene_id[this_ul_id]        = respuesta.scene_id;
+											este.tour_id[this_ul_id]         = respuesta.tour_id;    
+											este.filename[this_ul_id]        = respuesta.filename;  
+											este.thumb_path[this_ul_id]        = respuesta.thumb_path;  
+											este.scene_name[this_ul_id]         = este.filename[this_ul_id].replace(/\.jpg|\.jpeg|\.tiff/g, '');
+											este.html_ref_id[this_ul_id]     = 'pano-'+respuesta.scene_id;
 														
-											$("#pano-"+i+" .fa-close").data("state",este.state[i]);
-											$("#pano-"+i+" .icon-msg img").attr("src","images/process.gif");
-											$("#pano-"+i+" .icon-msg img").load(function(){
-												console.log("aca se deberia mostrar la imagen")
-											})											
-											$(this).parent().css("background","#d5ae06");
-											$("#pano-"+i+" .percentage").text("Processing image (1/2)");
-											$("#pano-"+i).attr("id", este.html_ref_id[i]);  
-											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);
+											$("#pano-"+this_ul_id+" .fa-close").data("state",este.state[this_ul_id]);
+											$("#pano-"+this_ul_id+" .percentage").text("Processing image (1/2)");
+											$("#pano-"+this_ul_id+" .icon-msg .processing").removeClass("none");
+											$("#pano-"+this_ul_id+" .icon-msg .wait").addClass("none");
+											$("#pano-"+this_ul_id).attr("id", este.html_ref_id[this_ul_id]);  
+											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("state",este.state[this_ul_id]);
+											
+											/*$('*[data-proc="'+window.proc_id[this_ul_id]+'"]').find(" .icon-msg").css("background","#d5ae06").html('<img src="images/process.gif"/>');
+											
+											
+											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg img").attr("src","images/process.gif");
 
+											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg img").load(function(){
+												console.log("aca se deberia mostrar la imagen");
+												$(this).parent().css("background","#d5ae06");
+											})											
+											*/
+											
 										break;
 										case "3":
-											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
-											$("#"+este.html_ref_id[i]+" .percentage").text("Processing image (2/2)");
-											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);
+											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
+											$("#"+este.html_ref_id[this_ul_id]+" .percentage").text("Processing image (2/2)");
+											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("state",este.state[this_ul_id]);
 											
 										   
 										   break;
 											
 										case "4":
-											console.log("ENTRO " + i + "(" + este.filename[i] +"): "+ este.state[i]);
+											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
 											
-											$("#"+este.html_ref_id[i]+" .thumb").attr("src",este.thumb_path[i]);
+											$("#"+este.html_ref_id[this_ul_id]+" .thumb").attr("src",este.thumb_path[this_ul_id]);
 
-											$("#"+este.html_ref_id[i]+" .progress").css("background","#497f3c");
-											$("#"+este.html_ref_id[i]+" .percentage").text("Upload Complete!");
-											$("#"+este.html_ref_id[i]+" .icon-msg").html('<span class="fa fa-check"></span>');
-											$("#"+este.html_ref_id[i]+" .icon-msg").css("background","#497f3c");
-											$("#"+este.html_ref_id[i]).data("pano_id",este.pano_id[i]);    
-											$("#"+este.html_ref_id[i]+" .fa-close").data("pano_id",este.pano_id[i]);    
-											$("#"+este.html_ref_id[i]+" .fa-close").data("state",este.state[i]);    
+											$("#"+este.html_ref_id[this_ul_id]+" .progress").css("background","#497f3c");
+											$("#"+este.html_ref_id[this_ul_id]+" .percentage").text("Upload Complete!");
+											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg").html('<span class="fa fa-check"></span>');
+											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg").css("background","#497f3c");
+											$("#"+este.html_ref_id[this_ul_id]).data("pano_id",este.pano_id[this_ul_id]);    
+											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("pano_id",este.pano_id[this_ul_id]);    
+											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("state",este.state[this_ul_id]);    
 
 											var completed = 0; 
 
@@ -226,7 +233,7 @@ define([
 												este.AllUploaded();
 											}
 											
-											clearInterval(este.setIntervalID[i]);
+											clearInterval(este.setIntervalID[this_ul_id]);
 											break;
 										} 
 										
@@ -261,13 +268,14 @@ define([
 
 				progressUpdated: function(i, file, progress) {
 					$(".uploader-footer p").text("uploading or processing panoramas, please don't close this page").siblings('#cancelUploaded').addClass('none');
-					$("#pano-"+i+" .progress").width(progress+'%');
-					$("#pano-"+i+" .percentage").text('Uploading '+progress+'%');
+					$('*[data-url="php/panos/'+file.name+'"]').next().find('.progress').width(progress+'%');
+					$('*[data-url="php/panos/'+file.name+'"]').next().find('.percentage').html('Uploading '+progress+'%');
+					//$.data(file).find('.progress').width(progress+'%');
+					//$.data(file).find('.percentage').html('Uploading '+progress+'%');
 				},
 
-				uploadFinished:function(i, file, response){  
-					
-					console.log('STOP:' + window.proc_id[i] + ' - ' + i + ' - ' + file["name"]);
+				uploadFinished:function(e, file, response){  
+					console.log('STOP:' + window.proc_id[window.uploader_id] + ' - ' + window.uploader_id + ' - ' + file["name"]);
 	
 				   
 				},
@@ -287,10 +295,12 @@ define([
 			alertView.render("alert",alertView.renderExtend);
 		},
 
-		createImage:function(file,i) {
+		createImage:function(file,i,proc) {
 			data = {
 				filesrc:file.name,
-				ind:i    
+				ind:i,
+				proc:proc    
+
 			}
 
 			var compiledTemplate = _.template(uploadProgress,data);
@@ -322,6 +332,7 @@ define([
 
 
 		AllUploaded:function(){
+			var este = this;
 			$(".uploader-footer").find('#cancelUploaded').removeClass('none').siblings('p').html('All Done <span class="fa fa-smile-o"></span>');            
 
 			if(este.addingPane){
@@ -537,11 +548,14 @@ define([
 
 		removeView:function(){
 			this.undelegateEvents();            
-
+			var este = this;
 			$(".dragger-wrapper").animate({
 				'top' : '0'
 			}, function(){
 				$('.dragger-wrapper' ).remove();
+				if(!$(".main-footer").is(":visible")){
+								setTimeout(este.render(),1500);
+							}
 			})
 		},
 

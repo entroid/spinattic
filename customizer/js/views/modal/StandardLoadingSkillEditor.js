@@ -28,10 +28,42 @@ define([
             var myid = this.myid;
             var tourSkill = this.model.get("tourSkill");
             console.log(tourSkill)
+            if(tourSkill.progress._showreloads=="false"){
+                tourSkill.selected = "Looping";
+                tourSkill.hiddenBarClass= "none";
+                tourSkill.hiddenloopingClass= "";
+                s=tourSkill.progress._showwait;
+                s= s.split(/[()]/)[1];
+                tourSkill.loopingprop = s.split(",");
+                tourSkill.barprop = ["center","100","10","0","50","solid","0x000000","0xd3322a","0xd3322a","0x000000","1","0xFFFFFF","5"]
+            }else{
+                tourSkill.selected = "Bar";
+                tourSkill.hiddenBarClass= "";
+                tourSkill.hiddenloopingClass= "none";
+                s=tourSkill.progress._showload;
+                s= s.split(/[()]/)[1];
+                tourSkill.loopingprop = ["0xFFFFFF","15","15","0","0","0xFFFFFF","5","0.5","0.5","center"]
+                tourSkill.barprop = s.split(",");
+            }
            var template = _.template(standardLoadingProgress,{tourSkill:tourSkill})
 
             $("#"+myid+" .inner-modal").html(template);
             $("#"+myid+" header h2").text("Standard Loading Progress Editor")
+
+            if( tourSkill.selected == "Bar"){
+                _.each($("#standardLoading-bar-skill-align .fa-circle"),function(elem,ind){
+                    if($(elem).data("pos") == tourSkill.barprop[0]){
+                        $(elem).addClass("selected");
+                    }
+                })
+            }else{
+                _.each($("#standardLoading-looping-skill-align .fa-circle"),function(elem,ind){
+                    if($(elem).data("pos") == tourSkill.barprop[0]){
+                        $(elem).addClass("selected");
+                    }
+                })
+            }
+
             $("#"+myid).find(".save-and-close").unbind("click");
             
             $(".scrollwrapper").mCustomScrollbar({

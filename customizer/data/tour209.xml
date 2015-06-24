@@ -117,7 +117,7 @@
 		</skill>
 				
 				<skill template_id="5" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Standard Loading Progress">
-				<progress template_id="5" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Standard Loading Progress" showload="none" showreloads="false" showwait="loopings()"></progress>
+				<progress template_id="5" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Standard Loading Progress" showload="none" showreloads="false" showwait="loopings(0xFFFFFF,15,15,0,0,0xFFFFFF,5,0.5,0.5,center)"></progress>
 		</skill>	
 		
 			<!-- DEFAULT SKILLS -->

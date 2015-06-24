@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 		// The name of the $_FILES entry:
 		paramname:'pic',
 		refresh: 100,
-		maxfiles: 3,
+		//maxfiles: 4,
 		//queuefiles: 2,
         maxfilesize: 200,
         //data: {'proc_id':proc_id},
@@ -88,9 +88,6 @@ jQuery(document).ready(function(){
 					 $(".wrapper").removeClass("new"); 
 					 jQuery("#drop-zone").addClass("not-new");
 	
-					  
-
-	                   
 	                   setIntervalID[this_ul_id] = setInterval(function(){
 	                	$.ajax({
 	        				type: "POST",
@@ -106,6 +103,34 @@ jQuery(document).ready(function(){
 	        							state[this_ul_id] = respuesta.state;
 	        							
 	        							switch(state[this_ul_id]) {
+	        							
+	        						    case "-3": //Error
+	        						    	console.log("Cancel Completed: " + state[this_ul_id]);
+		        		                	clearInterval(setIntervalID[this_ul_id]);
+		        		                	
+	        								//showMsg(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us");
+	        								//sendReport("1", respuesta.state_desc+"<br><br><u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
+		        	                        
+											$.data(file).remove();
+	        						        break;	
+	        							
+	        						    case "-2": //Cancel Requested
+	        						    	console.log("Cancel Requested: " + state[this_ul_id]);
+	        						    	
+	        						    	html_ref_id[this_ul_id]     = 'item-'+ scene_id[this_ul_id];
+	        						    	var $scene_item    = $('#'+html_ref_id[this_ul_id]);
+	        				                var $success_result = $scene_item.find('.ok');
+	        				                $success_result.next().remove(); // remove processing text
+	        				                $success_result.after( "<p>Canceling process ...</br><img src=\"images/loading.gif\"></p>" );
+	        				                
+		        		                	//clearInterval(setIntervalID[this_ul_id]);
+		        		                	
+	        								//showMsg(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us");
+	        								//sendReport("1", respuesta.state_desc+"<br><br><u>File name</u>:"+file.name+"<br><u>File Size</u>:"+file.size+" Bytes");
+		        	                        
+											//$.data(file).remove();
+	        						        break;	        							
+	        							
 	        						    case "-1": //Error
 	        						    	console.log("ENTRO ERROR: " + state[this_ul_id]);
 		        		                	clearInterval(setIntervalID[this_ul_id]);
@@ -117,6 +142,8 @@ jQuery(document).ready(function(){
 	        						        break;
 	        						        
 	        						    case "1":
+	        						    	//Puede ser Waiting in queue o Slot Found, asique tomo el state_desc desde el php
+	        						    	
 	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
 	        						    	//console.log("ACA: " + state[this_ul_id]);
@@ -131,7 +158,7 @@ jQuery(document).ready(function(){
 	        		                        scene_name[this_ul_id]      = filename[this_ul_id].replace(/\.jpg|\.jpeg|\.tiff/g, '');
 	        		                        html_ref_id[this_ul_id]     = 'item-'+ scene_id[this_ul_id];
 	        		                        
-	        		                        $success_result.after( "<p>Processing image (Step 1/2) ...</br><img src=\"images/loading.gif\"></p>" );
+	        		                        $success_result.after( "<p>"+respuesta.state_desc+" ...</br><img src=\"images/loading.gif\"></p>" );
 	        		                        
 	        		                        $.data(file).attr('id', html_ref_id[this_ul_id]);
 	        		
@@ -145,29 +172,38 @@ jQuery(document).ready(function(){
 	        		                        $loader_item.children('h4.pano-title').html(filename[this_ul_id]);         
 	        		                        $loader_item.children('input.pano-field').val(pano_id[this_ul_id]);
 	        		                        
-	        		                        $loader_item.children('.cancel-process').data('id', pano_id[this_ul_id]);
-	        		                        $loader_item.children('.cancel-process').data('scene', scene_id[this_ul_id]);
-	        		                        
 	        		                        $loader_item.children('.on-edit').children('form').children('input.scene-id').val(scene_id[this_ul_id]);
 	        		                                      
 	        		                 
 	        		                        // Executes image processing script
 	        		                        //launchImageProcessing (filename, pano_id, scene_id, html_ref_id);
 	        		                        verificar(true);
-	        						        break;
-	        						    
+	        						        break;	        						        
+	        						        
+	        						        
 	        						    case "2":
 	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
-        			            		   var $scene_item    = $('#'+html_ref_id[this_ul_id]);
-        				                   var $success_result = $scene_item.find('.ok');
+	        						    	var $scene_item    = $('#'+html_ref_id[this_ul_id]);
+	        						    	var $success_result = $scene_item.find('.ok');
         				                   
-        				                   $success_result.next().remove(); // remove processing text
-        				                   $success_result.after( "<p>Generating scene (Step 2/2) ...</br><img src=\"images/loading.gif\"></p>" );  
+	        						    	$success_result.next().remove(); // remove processing text
+	        						    	$success_result.after( "<p>Processing image (Step 1/2) ...</br><img src=\"images/loading.gif\"></p>" );  
 	        						       
-        				                   break;
-	        						    	
+	        						    	break;
+	        						    
 	        						    case "3":
+	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
+	        						    	
+	        						    	var $scene_item    = $('#'+html_ref_id[this_ul_id]);
+	        						    	var $success_result = $scene_item.find('.ok');
+        				                   
+	        						    	$success_result.next().remove(); // remove processing text
+	        						    	$success_result.after( "<p>Generating scene (Step 2/2) ...</br><img src=\"images/loading.gif\"></p>" );  
+	        						       
+	        						    	break;
+	        						    	
+	        						    case "4":
 	        						    	console.log("ENTRO " + i + "(" + filename[this_ul_id] +"): "+ state[this_ul_id]);
 	        						    	
 		            	                    var $scene_item     = $('#'+html_ref_id[this_ul_id]);
@@ -182,12 +218,12 @@ jQuery(document).ready(function(){
 		            	                    $scene_item.children('a.delete-item').css('display', 'block');
 		            	                    $scene_item.children('a.drag-item').css('display', 'block');
 		            	                    $scene_item.children('a.add-element').css('display', 'block');
-		            	                    $scene_item.children('a.cancel-process').css('display', 'none');
+		            	                    //$scene_item.children('a.cancel-process').css('display', 'none');
 		            	                    
-		            	                    $scene_item.children('a.delete-item').attr('data-id', scene_id);
+		            	                    $scene_item.children('a.delete-item').attr('data-id', scene_id[this_ul_id]);
 		            	                    
-		            	                    $scene_item.children('a.edit-hotspots').attr('data-id', scene_id);
-		            	                    $scene_item.children('a.edit-hotspots').attr('data-thumb', $('#cdn').val()+'/panos/'+pano_id+'/pano.tiles/thumb100x50.jpg');
+		            	                    $scene_item.children('a.edit-hotspots').attr('data-id', scene_id[this_ul_id]);
+		            	                    $scene_item.children('a.edit-hotspots').attr('data-thumb', respuesta.thumb_path);
 		            	                    
 		            	                    $scene_item.children('.scene-remove').click(function()
 		            	                    {
@@ -240,7 +276,7 @@ jQuery(document).ready(function(){
 	                	})}, 500);					 
 					 
 					 
-                    createImage(file);
+                    createImage(file, proc_id[this_ul_id]);
 		},
                 
                 dragOver:function(e){    
@@ -277,7 +313,7 @@ jQuery(document).ready(function(){
                 
                 uploadFinished:function(i, file, response)
                 {        
-                   console.log('STOP:' + proc_id[this_ul_id] + ' - ' + i + ' - ' + file["name"]);
+                   console.log('END:' + file["name"]);
 		},
                 
                 afterAll : function()
@@ -289,16 +325,7 @@ jQuery(document).ready(function(){
                 
     	 
 	});
-	
-	/*var template = '<div class="preview">'+
-						'<span class="imageHolder">'+
-							'<img />'+
-							'<span class="uploaded"></span>'+
-						'</span>'+
-						'<div class="progressHolder">'+
-							'<div class="progress"></div>'+
-						'</div>'+
-					'</div>'; */
+
 	
         
         var template = '<div class="pano-item">' +
@@ -337,16 +364,16 @@ jQuery(document).ready(function(){
          '		      <a href="#" class="add-element border-radius-2 edit-hotspots" data-id="#" data-thumb="#" style="display:none;">' +         
          '	                    Edit hotspots' +
          '	                </a>' +
-//         '		      <a href="#" class="border-radius-2 cancel-process" data-id="" data-scene="">' +         
-//         '	                    Cancel Process' +
-//         '	                </a>' +         
+         '		      <a href="#" class="add-element border-radius-2 cancel-process" data-proc_id="@PROC_ID@">' +         
+         '	                    Cancel Process' +
+         '	                </a>' +         
          '					<a href="#" class="drag-item"  style="display:none;"></a>' +
           '               </div>';
         
      
         
 	
-	function createImage(file)
+	function createImage(file, proc_id)
         {
             
 
@@ -356,6 +383,7 @@ jQuery(document).ready(function(){
             block = template.replace('@SCENE@', scene_name);
             block = block.replace('@PANO@', pano_name);
             block = block.replace('@PANO@', pano_name);
+            block = block.replace('@PROC_ID@', proc_id);
             
 
             var preview = $(block), 
@@ -384,21 +412,30 @@ jQuery(document).ready(function(){
             //message.hide();
             preview.appendTo(dropbox);
             
+          
+          $(".cancel-process").unbind('click');
             
           $(".cancel-process").click(function(){
-          	if($(".cancel-process").data('id') != ''){
+        	  
+        	  cancel_proc_id = $(this).data('proc_id');
+        	  
+        	  //console.log("Cancel proc: " + $(this).data('proc_id'));
+        	  
      		    $.ajax({
-     		        url : 'php-stubs/scenes.php?action=remove',
-     		        type: 'POST',
+     		        url : 'php-stubs/general_process.php?proc_id='+cancel_proc_id+'&c=1',
+     		        type: 'GET',
      		        async: true,
-     		        data: 'pano-id='+$(".cancel-process").data('id'),
+     		        data: '',
      		        cache : false,
      		        success : function(response){}
      		    });
-          	}
- 		    $('#proc_cancelled').val('1');
- 		    $(this).closest('.pano-item').hide();
-     		    //$('#item-' + $(".cancel-process").data('scene')).hide();
+     		
+     		    $(this).html("Cancelling ...");
+     		
+ 		    //$(this).closest('.pano-item').hide();
+
+ 		    //$('#item-' + $(".cancel-process").data('scene')).hide();
+     		    
           });               
 
             // Associating a preview container
@@ -547,7 +584,7 @@ function autocreateTour ()
             
             //jQuery(document.form1).append('<input id="tour_id" name="tour_id" type="hidden" value="'+gTour_id+'"/>');
             $("#tour_id").val(gTour_id);
-            jQuery('#tabs-1 input#title').val('Untitled '+gTour_id);
+            jQuery('#tabs-1 input#title').val('360º Virtual tour created with Spinattic.com');
             jQuery('#tabs').css('display', 'block');
             
             jQuery('.uploading_pano').css('display', 'block'); 
@@ -559,145 +596,4 @@ function autocreateTour ()
     }    
 }
 
-function launchImageProcessing (file_name, pano_id, scene_id, html_ref_id)
-{
-    //Lo hago en 2 etapas para manejar mejor las respuestas y pasos
 
-	if($('#proc_cancelled').val()== 0){ //Verifico que no hayan cancelado el proceso
-	//step 1: generacion de carpeta y thumbs
-		doAjaxRq(
-	            'POST', 
-	            'php-stubs/image-processing.php?step=1', 
-	            'file_name='+file_name+'&pano_id='+pano_id+'&scene_id='+scene_id, 
-	            function()       {}, 
-	            function(response)
-	            {
-	                response = jQuery.parseJSON(response);
-	
-	               if (response.result == 'SUCCESS' && response.num_of_files == "4")  
-		               { 
-	            	   //Step 1 OK, lanzo step 2: generacion de panorámicas e impacto en BD
-	            	   
-	            	   if($('#proc_cancelled').val()== 0){ //Verifico que no hayan cancelado el proceso
-		               
-	            		   var $scene_item    = $('#'+html_ref_id);
-		                   var $success_result = $scene_item.find('.ok');
-		                   
-		                   $success_result.next().remove(); // remove processing text
-		                   $success_result.after( "<p>Generating scene (Step 2/2) ...</br><img src=\"images/loading.gif\"></p>" );            	   
-		            	   
-		            	    doAjaxRq(
-		            	            'POST', 
-		            	            'php-stubs/image-processing.php?step=2', 
-		            	            'file_name='+file_name+'&pano_id='+pano_id+'&scene_id='+scene_id, 
-		            	            function()       {}, 
-		            	            function(response)
-		            	            {
-		            	                response = jQuery.parseJSON(response);
-		
-		            	               if (response.result == 'SUCCESS' && response.num_of_files == "17")  
-		            	               {                    
-		            	            	   //Ok Step 2, seteo contenedor
-		            	            	   
-		            	                    var $scene_item    = $('#'+html_ref_id);
-		            	                    var $success_result = $scene_item.find('.ok');
-		            	                    var $loader_item    = $scene_item.find('.loader-item');
-		            	                    var $thumb_pano     = $scene_item.find('.thumb-pano').children('img');
-		            	                    
-		            	                    $thumb_pano.width = 100;
-		            	                    $thumb_pano.height = 100;
-		            	                    $thumb_pano.attr('src', response.params.thumb_path);
-		            	                    
-		            	                    $scene_item.children('a.delete-item').css('display', 'block');
-		            	                    $scene_item.children('a.drag-item').css('display', 'block');
-		            	                    $scene_item.children('a.add-element').css('display', 'block');
-		            	                    $scene_item.children('a.cancel-process').css('display', 'none');
-		            	                    
-		            	                    $scene_item.children('a.delete-item').attr('data-id', scene_id);
-		            	                    
-		            	                    $scene_item.children('a.edit-hotspots').attr('data-id', scene_id);
-		            	                    $scene_item.children('a.edit-hotspots').attr('data-thumb', $('#cdn').val()+'/panos/'+pano_id+'/pano.tiles/thumb100x50.jpg');
-		            	                    
-		            	                    $scene_item.children('.scene-remove').click(function()
-		            	                    {
-		            	                        var data         = 'scene-id='+scene_id;
-		
-		            	                        var container   = jQuery(this).parent();
-		
-		            	                        var params = {
-		            	                                    container  : container
-		            	                                };
-		
-		            	                        launch_popup('.confirm-action', data, 'sceneRemove', removeCallback, params);                        
-		
-		            	                        return false;
-		
-		
-		            	                        //CoreActions.sceneRemove(data, removeCallback);
-		            	                    });
-		            	                    
-		            	                    $success_result.next().remove(); // remove processing text
-		            	                    $success_result.next().remove(); // remove loading gif
-		            	                    
-		            	                    $success_result.css('display', 'inline-block');
-		            	                    $success_result.after( "<p>Upload complete!</br>Now you can add hotspots to this scene</p>" ); 
-											
-											jQuery( "#scenelist" ).prepend($scene_item);
-											
-		            	                    //Bind Hotspots
-											hs_unbind_all();
-		            	                    hs_bind_all();
-		            	                    
-		            	                    jQuery( "#scenelist" ).sortable('destroy');
-											jQuery( "#scenelist" ).sortable({
-		            	                    	scroll:true,
-		            	                    	stop: function(){
-		            	                    		verificar(true);
-		            	                    		},
-		            	                        placeholder: "pano-item-placeholder",
-		            	                        items: "> div.pano-item" ,
-		            	                        cursor: "move"
-		            	            	
-		            	                    });       
-		            	                    
-		            	                    mixpanel.track("Pano upload");		            	                                        
-		            	 
-		            	               }else{
-		            	            	   //Falló Step 2
-		            	            	   //elimino la pano 
-		            	            	   	sendReport("3", pano_id);
-			            				    $.ajax({
-			            				        url : 'php-stubs/scenes.php?action=remove',
-			            				        type: 'POST',
-			            				        async: false,
-			            				        data: 'pano-id='+pano_id,
-			            				        cache : false,
-			            				        success : function(response){}
-			            				    });			
-		            	            	   $('#item-' + scene_id).hide();
-		            	            	   showMsg("An error occurred while generating scene <br><br> File:" + file_name + "<br><br>Please try again or contact us");            	            	   
-		            	               }
-		            	            }
-		            	        );      
-		
-		            	   
-		            	   }else{
-		            		   //Falló Step 1
-		            		   //Elimino la pano
-		            		   	sendReport("2", pano_id);
-			   				    $.ajax({
-							        url : 'php-stubs/scenes.php?action=remove',
-							        type: 'POST',
-							        async: false,
-							        data: 'pano-id='+pano_id,
-							        cache : false,
-							        success : function(response){}
-							    });	            		   
-		            		   showMsg("An error occurred while processing image <br><br> File:" + file_name + "<br><br>Please try again or contact us");
-		            		   $('#item-' + scene_id).hide();
-		            	   }
-		               }
-	            }
-		);
-	}
-}

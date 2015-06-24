@@ -5,7 +5,7 @@
                 <div class="line-group">
                     <label for="chooseBarDD">Choose loader type:</label>
                     <div title="chooseBarDD" id="chooseBarDD" class="dropdown dd-upload right-el">
-                        <h2><span class="title">Bar</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                        <h2><span class="title"><%=tourSkill.selected%></span> <span class="fa fa-caret-down fa-lg right"></span></h2>
                         <ul>
                             <li data-value="bar">Bar</li>
                             <li data-value="looping">Looping</li> 
@@ -14,11 +14,11 @@
                 </div>
             </div>
 
-            <div class="layer-top bar">
+            <div class="layer-top bar <%=tourSkill.hiddenBarClass%>">
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label class="standardLoading-skill-position" for="standardLoading-skill-align">Origin:</label>
-                        <div class="position" id="standardLoading-skill-align">
+                        <div class="position" id="standardLoading-bar-skill-align">
                             <span class="fa fa-circle" data-pos="topleft"></span>
                             <span class="fa fa-circle" data-pos="top"></span>
                             <span class="fa fa-circle" data-pos="topright"></span>
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="layer-top looping none">
+            <div class="layer-top looping <%=tourSkill.hiddenloopingClass%>">
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="looping-color">Color:</label>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="line-group">
                         <label class="standardLoading-skill-position" for="standardLoading-skill-align">Align:</label>
-                        <div class="position" id="standardLoading-skill-align">
+                        <div class="position" id="standardLoading-looping-skill-align">
                             <span class="fa fa-circle" data-pos="topleft"></span>
                             <span class="fa fa-circle" data-pos="top"></span>
                             <span class="fa fa-circle" data-pos="topright"></span>
