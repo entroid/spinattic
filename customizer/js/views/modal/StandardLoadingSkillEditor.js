@@ -125,7 +125,7 @@ define([
 					var origin 		= $("#standardLoading-bar-skill-align .selected").data("pos");
 					var width 		= $("#widthSLP").val();
 					var height 		= $("#heightSLP").val();
-					var style 		= $("#styleSLP").val();
+					var style 		= $("#styleSLP").data("selected");
 					var backcolor 	= "0x"+$("#backcolor").val();
 					var loadcolor 	= "0x"+$("#loadcolor").val();
 					var decodecolor	= "0x"+$("#decodecolor").val();
