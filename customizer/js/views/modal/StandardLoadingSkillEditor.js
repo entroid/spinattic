@@ -30,7 +30,7 @@ define([
 			var mytourSkill = this.model.get("tourSkill");
 			var tourSkill = mytourSkill;
 			console.log(tourSkill)
-			if(tourSkill.progress._showreloads=="false"){
+			if(tourSkill.progress._showload=="none"){
 				tourSkill.selected = "Looping";
 				tourSkill.hiddenBarClass= "none";
 				tourSkill.hiddenloopingClass= "";
@@ -133,7 +133,7 @@ define([
 					var borderwidth	= $("#borderwidth").val();
 					var glowcolor	= "0x"+$("#glowcolor").val();
 					var glowwidth	= $("#glowwidth").val();
-					mytourSkill.progress._showload = 'bar('+origin+','+width+','+height+','+style+','+backcolor+','+loadcolor+','+decodecolor+','+bordercolor+','+borderwidth+','+glowcolor+','+glowwidth+')';
+					mytourSkill.progress._showload = 'bar('+origin+','+width+','+height+',0,50,'+style+','+backcolor+','+loadcolor+','+decodecolor+','+bordercolor+','+borderwidth+','+glowcolor+','+glowwidth+')';
 				break;
 				case "looping":
 					var color 		= "0x"+$("#looping-color").val();
@@ -147,7 +147,7 @@ define([
 					var ypos		= $("#looping-ypos").val();
 					var align		= $("#standardLoading-skill-position .selected").data("pos");
 					mytourSkill.progress._showwait = 'loopings('+color+','+points+','+size+','+bigpoint+','+smallpoint+','+glowcolor+','+glowwidth+','+xpos+','+ypos+','+align+')';
-					mytourSkill.progress._showload ="none;"
+					mytourSkill.progress._showload ="none";
 				break;
 			}
 

@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-
+<%alert(tourSkill.barprop)%>
                 <div class="editor-group-2col">
                     <div class="line-group">
                         <label for="widthSLP">Width:</label>
@@ -59,7 +59,7 @@
 
                     <div class="line-group">
                         <label for="styleSLP">Style:</label>
-                        <div title="styleSLP" id="styleSLP" class="dropdown right-el" data-selected="<%=tourSkill.barprop[5]%></span>">
+                        <div title="styleSLP" id="styleSLP" class="dropdown right-el" data-selected="<%=tourSkill.barprop[5]%>">
                             <h2><span class="title"><%=tourSkill.barprop[5]%></span> <span class="fa fa-caret-down fa-lg right"></span></h2>
                             <ul>
                                 <li data-value="solid">solid</li>
@@ -76,6 +76,7 @@
                         <label for="backcolor">Backcolor:</label>
                         <input type="text" id="backcolor" value="<%=tourSkill.barprop[6].replace('0x','')%>" >
                     </div>
+
                     <div class="line-group">
                         <label for="loadcolor">Loadcolor:</label>
                         <input type="text" id="loadcolor" value="<%=tourSkill.barprop[7].replace('0x','')%>" >
@@ -84,10 +85,12 @@
                         <label for="decodecolor">Decodecolor:</label>
                         <input type="text" id="decodecolor" value="<%=tourSkill.barprop[8].replace('0x','')%>" >
                     </div>
+
                     <div class="line-group">
                         <label for="bordercolor">Bordercolor:</label>
                         <input type="text" id="bordercolor" value="<%=tourSkill.barprop[9].replace('0x','')%>" >
                     </div>
+
                     <div class="line-group">
                         <label for="borderwidth">Borderwidth:</label>
                         <input type="number" id="borderwidth" value="<%=tourSkill.barprop[10]%>" >
@@ -96,6 +99,8 @@
                         <label for="glowcolor">Glowcolor:</label>
                         <input type="text" id="glowcolor" value="<%=tourSkill.barprop[11].replace('0x','')%>" >
                     </div>
+                    <%alert(tourSkill.loopingprop)%>
+
                     <div class="line-group">
                         <label for="glowwidth">Glowwidth:</label>
                         <input type="number" id="glowwidth" value="<%=tourSkill.barprop[12]%>" >
