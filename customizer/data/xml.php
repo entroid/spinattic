@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 require_once("../php/functions.php");
 
@@ -12,10 +12,9 @@ require_once("../php/functions.php");
 
 
 
-session_start();
-$user_id = $_SESSION['usr'];
-
-$custom_attrs = 0;
+//session_start();
+$user_id = 41;//$_SESSION['usr'];
+//$custom_attrs = 0;
 
 $draft_subscript = '';
 $template_id = '';
@@ -213,6 +212,7 @@ function get_default_elements ($template, $kind, $prev_tag_ident){
 	switch ($template){
 		case 'skills': //levanto los id de los elementos a devolver (son los que no tenga agregados ya al tour)
 			$ssqlp = "SELECT skill_id as template_id FROM customizer_templates_skills where kind not in (select kind from customizer".$draft_subscript." where idtour = '".$id."' and segment = 'SKILLS') and add_by_default = 1 group by skill_id order by skill_id";
+			//echo $ssqlp;
 			break;
 			/*
 			 case 'htspts':
@@ -237,6 +237,7 @@ function get_default_elements ($template, $kind, $prev_tag_ident){
 }
 
 function get_template($template, $kind, $prev_tag_ident){ 
+	
 	global $user_id;
 	global $template_id;
 	global $cdn;
@@ -440,23 +441,27 @@ function get_scenes(){
 
 	//SCENES
 
-	$ssqlp = "SELECT * FROM panosxtour".$draft_subscript." where idtour = ".$id." order by ord";
+	$ssqlp = "SELECT panosxtour".$draft_subscript.".*, panos.name as filename FROM panos, panosxtour".$draft_subscript." where panosxtour".$draft_subscript.".idpano = panos.id and panosxtour".$draft_subscript.".idtour = ".$id." order by ord";
 
+	//echo $ssqlp;
+	
 	$result = mysql_query($ssqlp);
 	while($row = mysql_fetch_array($result)){
 		
 		if($custom_attrs == 1){
 			$segment_html = ' segment="SCENES"';
 			$id_html = ' scene_id="'.$row["id"].'"';
+			$scene_filename = ' scene_filename="'.$row["filename"].'"';
 		}else{
 			$segment_html = '';
 			$id_html = '';
+			$scene_filename = '';
 		}
 		
 		
 		$final_data.= '
-		<scene'.$segment_html.$id_html.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
-			<view'.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" maxpixelzoom="'.$row["maxpixelzoom"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
+		<scene'.$segment_html.$id_html.$scene_filename.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
+			<view'.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
 
 			<preview'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/preview.jpg" />
 
@@ -485,7 +490,7 @@ function get_scenes(){
 	
 				switch ($row_htsp["type"]) {
 					case "arrow":
-						$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" rotate="'.$row_htsp["extra_rotate"].'" />';
+						$final_data.= ' linkedscene="'.$row_htsp["extra_linkedscene"].'" rotate="'.$row_htsp["extra_rotate"].'" tooltip="'.htmlspecialchars($row_htsp["extra_tooltip"], ENT_QUOTES).'"/>';
 						break;
 					case "info":
 						$final_data.= ' infotitle="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotitle"])).'" infotext="'.str_replace("'", "´", htmlspecialchars($row_htsp["extra_infotext"])).'" />';

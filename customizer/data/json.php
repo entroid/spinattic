@@ -28,7 +28,7 @@ require_once("../php/functions.php");
 
 
 session_start();
-$user_id = $_SESSION['usr'];
+$user_id = 41;//$_SESSION['usr'];
 
 if(isset($_GET['t']) && $_GET['t'] != ''){
 	$table = $_GET['t'];

@@ -21,7 +21,8 @@ define([
 		},
 		events:{
 			"click .skillModal #Context-menu-finish":"doneEdition",
-			"click #chooseBarDD li":"toggleDropdown"
+			"click #standard-loading-skill-editor #chooseBarDD li":"toggleDropdown",
+			"click #standard-loading-skill-editor .dropdownSelector li":"dropdownSelector"
 		},
 		
 		renderExtend:function(){
@@ -47,7 +48,21 @@ define([
 				tourSkill.loopingprop = ["0xFFFFFF","15","15","0","0","0xFFFFFF","5","0.5","0.5","center"]
 				tourSkill.barprop = s.split(",");
 			}
-			console.log(tourData.krpano.skill[1])
+
+			if(tourSkill.barprop[1].slice(-1) == "%"){
+				tourSkill.barwidthUnit = "%";
+				tourSkill.barprop[1] = tourSkill.barprop[1].replace("%","")
+			}else{
+				tourSkill.barwidthUnit = "px";
+			}
+
+			if(tourSkill.barprop[2].slice(-1) == "%"){
+				tourSkill.barheighthUnit = "%";
+				tourSkill.barprop[2] = tourSkill.barprop[2].replace("%","")
+			
+			}else{
+				tourSkill.barheighthUnit = "px";
+			}
 
 		   /*var allColors =[
 				{
@@ -120,11 +135,19 @@ define([
 
 			switch($("#chooseBarDD").data("selected")){
 
-				case "bar":
+				case "Bar":
 					mytourSkill.progress._showwait = "none";
 					var origin 		= $("#standardLoading-bar-skill-align .selected").data("pos");
-					var width 		= $("#widthSLP").val();
-					var height 		= $("#heightSLP").val();
+					if($("#unitsW").data("selected") == "%"){
+						var width 		= $("#widthSLP").val()+"%";
+					}else{
+						var width 		= $("#widthSLP").val();
+					}
+					if($("#unitsW").data("selected") == "%"){
+						var height 		= $("#heightSLP").val()+"%";
+					}else{
+						var height 		= $("#heightSLP").val();
+					}
 					var style 		= $("#styleSLP").data("selected");
 					var backcolor 	= "0x"+$("#backcolor").val();
 					var loadcolor 	= "0x"+$("#loadcolor").val();
@@ -135,7 +158,7 @@ define([
 					var glowwidth	= $("#glowwidth").val();
 					mytourSkill.progress._showload = 'bar('+origin+','+width+','+height+',0,50,'+style+','+backcolor+','+loadcolor+','+decodecolor+','+bordercolor+','+borderwidth+','+glowcolor+','+glowwidth+')';
 				break;
-				case "looping":
+				case "Looping":
 					var color 		= "0x"+$("#looping-color").val();
 					var points		= $("#looping-points").val();
 					var size		= $("#looping-size").val();
@@ -145,7 +168,8 @@ define([
 					var glowwidth	= $("#looping-glowwidth").val();
 					var xpos		= $("#looping-xpos").val();
 					var ypos		= $("#looping-ypos").val();
-					var align		= $("#standardLoading-skill-position .selected").data("pos");
+					var align		= $("#standardLoading-looping-skill-align .selected").data("pos");
+					console.log(align)
 					mytourSkill.progress._showwait = 'loopings('+color+','+points+','+size+','+bigpoint+','+smallpoint+','+glowcolor+','+glowwidth+','+xpos+','+ypos+','+align+')';
 					mytourSkill.progress._showload ="none";
 				break;
@@ -182,10 +206,11 @@ define([
 		},
 
 		toggleDropdown : function(e) {
-			var val = $(e.target).attr('data-value'),
-				tab = $('.layer-top.' + val);
-				$("#chooseBarDD").data("selected",val)
-
+			var val = $(e.target).attr('data-value');
+			$("#chooseBarDD").data("selected",val)
+			val = val.toLowerCase();
+			var tab = $('.layer-top.' + val);
+		
 		   if ( $(tab).hasClass('none') ) {
 			console.log('none!')
 				//$(tab).toggleClass('none')
@@ -196,7 +221,10 @@ define([
 		   }
 		},
 
-
+		dropdownSelector:function(e){
+			var val = $(e.target).attr('data-value');
+			$(e.target).parents(".dropdownSelector").data("selected",val)
+		}
 
 
 	});

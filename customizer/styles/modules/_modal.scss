@@ -220,6 +220,11 @@
                 input, .right-el{
                     @include absolute(0,initial,initial, 60%);
                 }
+
+                #unitsW, #unitsH{
+                    margin-left:65px;
+                    width:100px;
+                }
             }
 
             .logo-skill-position{

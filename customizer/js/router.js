@@ -68,7 +68,7 @@ define([
 				}else{
 					$.ajax({
 						dataType:"json",
-						url:  "data/user.json",
+						url:  "data/json.php?t=u",
 					}).done(function(obj){
 
 						if(!userCollection.length){
