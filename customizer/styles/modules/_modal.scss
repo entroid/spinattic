@@ -1371,6 +1371,34 @@
             }
         }
     }
+
+    .simple-control-btns-skill-editor{
+        .menuTabs{
+            li{
+                padding: 10px;
+                width: 30%;
+                background-color: black;
+                font-size: 1.3rem;
+                margin-right: 10px;
+
+                &:last-child{
+                    margin-right: 0;
+                }
+
+                &:hover, &.selected{
+                    background-color:$black-transparent-40;
+                }
+            }
+        }
+
+        .tabContent{
+            background-color: $black-transparent-40;
+            padding:15px;
+
+            section{
+            }
+        }
+    }
 }
 
 #signature-skill-linkto{

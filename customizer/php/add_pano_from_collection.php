@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("../php/functions.php");
 
 	$idtour = $_GET["idtour"];

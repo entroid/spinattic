@@ -1,6 +1,6 @@
-<?
+<?php
 
-$link=mysql_connect("localhost","root","root");
+$link=mysql_connect("localhost","root","");
 
 mysql_select_db("spin_bd");
 
