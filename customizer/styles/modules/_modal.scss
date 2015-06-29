@@ -1396,6 +1396,40 @@
             padding:15px;
 
             section{
+                overflow-y: auto;
+
+                .column1{
+                    width: 65%;
+                    border-right: 1px solid white;
+                    padding-right: 12px;
+                    box-sizing: border-box;
+                }
+                .column2{
+                    width: 33%;
+                }
+            }
+
+            h4{
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 15px;
+                font-size: 1.2em;
+            }
+
+            .scbOrder{
+                width: 50px;
+                margin: 0 auto;
+            }
+
+            .dropdown{
+                h2{
+                    font-size: 1.2em;
+                      min-width: 100px;
+                }
+            }
+
+            .right-el{
+                left: 53%;
             }
         }
     }
@@ -1478,4 +1512,14 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.skills-add-btn{
+    width: 40px;
+    height: 40px;
+    background-color: $dark-gray-2;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+}
+
 

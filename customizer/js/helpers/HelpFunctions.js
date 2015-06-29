@@ -320,6 +320,19 @@ define([
           return str;
         };
 
+        this.skillTabs = function(modalId) {
+            $('.skill-tabs .menuTabs li', '#'+modalId).click(function(){
+                var tabId = $(this).attr('data-content');
+
+                $('.skill-tabs .menuTabs li', '#'+modalId).removeClass('selected');
+                $('.tabContent section').addClass('none');
+                
+                $(this).addClass('selected');
+                $('#'+tabId).removeClass('none');
+                
+            })
+        }
+
 }
 
     return HelpFunctions;
