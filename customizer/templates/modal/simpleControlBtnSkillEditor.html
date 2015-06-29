@@ -10,8 +10,62 @@
             </nav>
 
             <div class="tabContent">
-                <section id="generalSettingsContent" class="none">
-                    generalSettingsContent
+                <section id="generalSettingsContent" >
+                    <div class="column1 left">
+                        <div class="editor-group-2col">
+                            <div class="line-group">
+                                <label for="scbLayout">Layout</label>
+                                <div id="scbLayout" class="dropdown dd-upload right-el" data-selected="Sliced">
+                                    <h2><span class="title">Sliced</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                                    <ul>
+                                        <li data-value="Looping">Sliced</li> 
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="line-group">
+                                <label for="scbPosition">Position</label>
+                                <div id="scbPosition" class="dropdown dd-upload right-el" data-selected="Top-Right">
+                                    <h2><span class="title">Top-Right</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                                    <ul>
+                                        <li data-value="Looping">Top-Right</li> 
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="line-group">
+                                <label for="scbOrientation">Orientation</label>
+                                <div id="scbOrientation" class="dropdown dd-upload right-el" data-selected="Top-Right">
+                                    <h2><span class="title">Vertical</span> <span class="fa fa-caret-down fa-lg right"></span></h2>
+                                    <ul>
+                                        <li data-value="Looping">Vertical</li> 
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="line-group">
+                                <label for="scbXoffset">X offset</label>
+                                <input type="number" min="0" id="scbXoffset" value="30">
+                            </div>
+
+                            <div class="line-group">
+                                <label for="scbYoffset">Y offset</label>
+                                <input type="number" min="0" id="scbYoffset" value="30">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column2 left">
+                        <h4>Order of buttons</h4>
+                        <div class="scbOrder">
+                            <div class="skills-add-btn">
+                            </div>
+                            <div class="skills-add-btn">
+                            </div>
+                            <div class="skills-add-btn">
+                            </div>
+                        </div>
+
+                    </div>
                 </section>
 
                 <section id="stylingContent" class="none">

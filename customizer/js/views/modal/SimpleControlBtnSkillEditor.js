@@ -4,14 +4,14 @@ define([
     'backbone',
     'views/modal/Modal',
     'text!templates/modal/simpleControlBtnSkillEditor.html',
-    /*'helpers/HelpFunctions',
-    'views/modal/SingleUploader',
+    'helpers/HelpFunctions',
+    /*'views/modal/SingleUploader',
     'mCustomScrollbar',
     'helpers/ManageData',
     'helpers/ManageTour',*/
 
 
-], function($, _, Backbone,Modal,simpleControlBtnSkillEditor/*,HelpFunctions,SingleUploader, mCustomScrollbar,ManageData,ManageTour*/){
+], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions/*,SingleUploader, mCustomScrollbar,ManageData,ManageTour*/){
 
     var SimpleControlBtnSkillEditor = Modal.extend({
         
@@ -38,8 +38,11 @@ define([
                 }
             })
 
-            $("#"+myid+" header h2").text("Simple Control Buttons Skill Editor")
-            /*$("#"+myid).find(".save-and-close").unbind("click");*/
+            $("#"+myid+" header h2").text("Simple Control Buttons Skill Editor");
+
+            var helpFunctions = new HelpFunctions();
+            helpFunctions.skillTabs(myid);
+            helpFunctions.dropDown("#"+myid+" .dropdown");
             
             /*$(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
