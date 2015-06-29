@@ -81,6 +81,8 @@ define([
 			}
 		})
 
+		helpFunctions.checkUser();
+
 		app_router.on('route:getTour', function (id) {
 		// Note the variable in the route definition being passed in here
 			$.ajax({

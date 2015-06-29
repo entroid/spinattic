@@ -9,9 +9,9 @@ define([
 	'mCustomScrollbar',
 	'jqueryui',
 	'colorpicker',
-    'helpers/ManageData'
-
-], function($, _, Backbone,Modal,standardLoadingProgress,HelpFunctions,SingleUploader, mCustomScrollbar,jqueryui,colorpicker,ManageData){
+    'helpers/ManageData',
+    'helpers/ManageTour'
+], function($, _, Backbone,Modal,standardLoadingProgress,HelpFunctions,SingleUploader, mCustomScrollbar,jqueryui,colorpicker,ManageData,ManageTour){
 
 	var StandardLoadingProgress = Modal.extend({
 		
@@ -180,6 +180,8 @@ define([
 				delete tourSkill.hiddenloopingClass;
 				delete tourSkill.loopingprop;
 				delete tourSkill.barprop;
+				delete tourSkill.barwidthUnit;
+				delete tourSkill.barheighthUnit;
 			/*
 			mytourSkill._url = $("#signature-skill-editor-img").data("imgsrc");
 			mytourSkill._x = $("#signature-skill-x").val();
@@ -199,8 +201,9 @@ define([
 				})
 			}*/
 			var manageData = new ManageData();
-            manageData.editSkill(mytourSkill)
-			this.removeModal(e);
+			var manageTour = new ManageTour();
+            manageData.editSkill(mytourSkill,manageTour.reloadTour)
+           	this.removeModal(e);
 			this.undelegateEvents();
 		
 		},

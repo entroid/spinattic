@@ -320,6 +320,33 @@ define([
           return str;
         };
 
+        this.checkUser = function(){
+            setInterval(function(){
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/ajax_chk_session.php",
+                    data: "chklogout=true",
+                    cache: false,
+                    success: function(res){
+                        if(res == "1"){
+                            location.href= "http://dev.spinattic.com/index.php?login";
+                        }else{
+                            $.ajax({
+                                dataType:"json",
+                                url:  "data/json.php?t=u",
+                            }).done(function(obj){
+                                if(obj.unread_notifications != 0){
+                                    $(".user-wrapper .notification").html('<span class="counter">'+obj.unread_notifications+'</span><span class="fa fa-bell fa-lg"></span>')
+                                }
+                            })
+                        }
+                    }
+                })
+
+            },2000)
+        }
+
 }
 
     return HelpFunctions;

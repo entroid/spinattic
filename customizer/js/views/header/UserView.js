@@ -75,11 +75,50 @@ define([
                     }
                   }
                 });
+
+                $(".header-side .notifications .delete-item").click(function(e){
+                    este.deleteItem(e);
+                }) 
+
+                $(".header-side .notifications .notif_item").click(function(e){
+                    este.checkNotif(e)
+                })
+
               },
               error:function(xhr, ajaxOptions, thrownError){
               }
           })
 
+    },
+
+    deleteItem:function(e){
+      var $li_item = $(e.target).parents("li.item");
+      var notif_id = $(e.target).attr("rel");
+      e.preventDefault();
+      $.ajax({
+        url:'../ajax_del_item.php?a=notifications&id='+notif_id,
+        type:'GET',
+        success:function(){
+          $li_item.fadeOut(function(){
+            $(this).remove();
+          })
+        }
+      })
+    },
+
+    checkNotif:function(e){
+      var $this_li = $(e.target);
+      var notif_id = $this_li.data("notif_id");
+      if(!$this_li.hasClass("read")){
+        $.ajax({
+          url:'../ajax_check_notif.php?',
+          type:'POST',
+          data:"id="+notif_id,
+          success:function(){
+           $this_li.addClass("read")
+          }
+        })
+      } 
     }
 
     
