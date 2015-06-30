@@ -5,13 +5,13 @@ define([
     'views/modal/Modal',
     'text!templates/modal/simpleControlBtnSkillEditor.html',
     'helpers/HelpFunctions',
-    /*'views/modal/SingleUploader',
-    'mCustomScrollbar',
+    'mCustomScrollbar'
+    /*'views/modal/SingleUploader',    
     'helpers/ManageData',
     'helpers/ManageTour',*/
 
 
-], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions/*,SingleUploader, mCustomScrollbar,ManageData,ManageTour*/){
+], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions, mCustomScrollbar/*SingleUploader, ManageData,ManageTour*/){
 
     var SimpleControlBtnSkillEditor = Modal.extend({
         
@@ -44,10 +44,10 @@ define([
             helpFunctions.skillTabs(myid);
             helpFunctions.dropDown("#"+myid+" .dropdown");
             
-            /*$(".scrollwrapper").mCustomScrollbar({
+            $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
                 scrollInertia:300
-            });*/
+            });
             
             /*var SingleUploaderModel = Backbone.Model.extend({});
             var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
