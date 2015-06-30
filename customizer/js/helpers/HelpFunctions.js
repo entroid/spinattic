@@ -240,7 +240,7 @@ define([
                 $("#sceneSettings-menu").data("scenename",scenedata._name)
                 $("#sceneSettings-menu #scenetitle").val(scenedata._title)
                 $("#sceneSettings-menu #scenetitle").data("obj","_title")
-                $("#sceneSettings-menu #filename").val(scenedata.filename)
+                $("#sceneSettings-menu #filename").val(scenedata._scene_filename)
                 $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
                 $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
                 $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
