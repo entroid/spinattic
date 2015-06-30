@@ -64,6 +64,11 @@ define([
 			}
 
 			var integer = hotspot._name.replace("spot","")
+
+			if($("#spot"+integer).size() == 1){
+				return;
+			}
+
 			var style = hotspot._style;
 			var selectedSet = style.split("_");
 			selectedSet = selectedSet[1]

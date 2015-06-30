@@ -657,6 +657,12 @@
                 color: $green2;
             } 
         }
+
+        .hotspotphoto{
+            ul.styles-list{
+                z-index:50;
+            }
+        }
     }
 
     &.skillWindow{
