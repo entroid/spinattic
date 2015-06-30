@@ -27,7 +27,7 @@ define([
         },
         events:{
             "click #sceneMenu .fa-close":"removeItem",
-            "click #sceneMenu li":"openScene"     
+            "click #sceneMenu li img":"openScene"     
                  },
         render: function(){
             if(this.collection){
@@ -101,7 +101,8 @@ define([
 
                 var manageData = new ManageData();
                 var manageTour = new ManageTour();
-                manageData.deleteScene(manageTour.reloadTour,thisname)
+                manageData.deleteScene(manageTour.reloadTour,thisname);
+                $("#sceneMenu li:eq(0)").addClass("selected")
             })
         },
 
