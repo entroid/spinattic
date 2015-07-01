@@ -26,8 +26,9 @@ define([
             
         },
         events:{
-            "click #sceneMenu .fa-close":"removeItem",
-            "click #sceneMenu li img":"openScene"     
+            "click #sceneMenu .selector-scene":"removeItem",
+            "click #sceneMenu li img":"openScene",
+            "click #remove-selected-scene": "removeSelectedScene"   
                  },
         render: function(){
             if(this.collection){
@@ -91,19 +92,35 @@ define([
         },
 
         removeItem:function(e){
-            $(e.target).parent().fadeOut(function(){
+
+            $(e.target).toggleClass("selected")
+
+            if($("#sceneMenu li .selector-scene").hasClass("selected")){
+                $("#remove-selected-scene").removeClass("none")
+            }else{
+                $("#remove-selected-scene").addClass("none")
+            }
+            /*$(e.target).parent().fadeOut(function(){
                 var thisname = $(this).data("scene")._scene_id;
                 this.remove();
-
-               /* if($("#tour").data("scene")._scene_id == thisname){
-                    $("#sceneMenu li:eq(0) img").trigger("click");
-                }*/
-
                 var manageData = new ManageData();
                 var manageTour = new ManageTour();
                 manageData.deleteScene(manageTour.reloadTour,thisname);
                 $("#sceneMenu li:eq(0)").addClass("selected")
-            })
+            })*/
+        },
+
+        removeSelectedScene:function(){
+            var scenesToDel = []
+                $("#sceneMenu li .selector-scene").hasClass("selected")
+                _.each($("#sceneMenu li"),function(el,i){
+                        if($(el).find(".selector-scene").hasClass("selected")){
+                            scenesToDel.push($(el).attr("id"));
+                        }
+                })
+
+            var manageData = new ManageData();
+            manageData.deleteScene(scenesToDel,manageTour.reloadTour);  
         },
 
         openScene:function(e){

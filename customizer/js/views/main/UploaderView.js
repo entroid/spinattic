@@ -121,6 +121,7 @@ define([
 				},
 
 				uploadStarted: function(e, file, len){
+
 					var this_ul_id = window.uploader_id;
 					if (rollingOver) { 
 						$('.main-section').css('z-index', "last_zindex");
@@ -129,7 +130,7 @@ define([
 						$(".dragger-wrapper").removeClass("scaling")
 						rollingOver = false;
 					}    
-					
+					file.id = this_ul_id;
 					este.createImage(file,this_ul_id,window.proc_id[this_ul_id]);
 					$(".dragable").addClass("uploading-drop-zone"); 
 					este.verticalCent();   
@@ -268,10 +269,8 @@ define([
 
 				progressUpdated: function(i, file, progress) {
 					$(".uploader-footer p").text("uploading or processing panoramas, please don't close this page").siblings('#cancelUploaded').addClass('none');
-					$('*[data-url="php/panos/'+file.name+'"]').next().find('.progress').width(progress+'%');
-					$('*[data-url="php/panos/'+file.name+'"]').next().find('.percentage').html('Uploading '+progress+'%');
-					//$.data(file).find('.progress').width(progress+'%');
-					//$.data(file).find('.percentage').html('Uploading '+progress+'%');
+					$("#pano-"+file.id).find('.progress').width(progress+'%');
+					$("#pano-"+file.id).find('.percentage').html('Uploading '+progress+'%');
 				},
 
 				uploadFinished:function(e, file, response){  
