@@ -1426,7 +1426,7 @@
             }
 
             .scbOrder{
-                width: 50px;
+                width: 80px;
                 margin: 0 auto;
             }
 
@@ -1441,8 +1441,31 @@
                 left: 53%;
             }
 
+            .btnContainer{
+                width: 100%; 
+
+                span {                    
+                    display: none;
+                }
+
+                &:hover span{
+                    display: block;
+                }
+            }
+
             .skills-add-btn{
-                margin-bottom: 5px;
+                margin: 0 auto 5px;
+
+                .fa-trash{
+                    margin: 12px -18px 0 0;
+                    float: right;
+                    font-size: 1.1em;
+                    padding:3px;
+                }
+
+                .sortArrows{
+
+                }
             }
 
             .editor-group-2col{
@@ -1450,7 +1473,7 @@
 
                 .onoffswitch{
                     left: 60%;
-                    
+
                     label {
                         padding:0;
                     }
