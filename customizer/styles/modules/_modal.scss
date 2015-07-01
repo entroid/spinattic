@@ -1447,6 +1447,14 @@
 
             .editor-group-2col{
                 margin-bottom: 0px;
+
+                .onoffswitch{
+                    left: 60%;
+                    
+                    label {
+                        padding:0;
+                    }
+                }
             }
         }
     }
@@ -1541,8 +1549,13 @@
 
 .contentBlock{
     border-bottom: 1px solid white;
-    overflow: auto;
     padding: 10px 0;
+
+    &:after{
+        clear: both;
+        content: "";
+        display: block;
+    }
 }
 
 
