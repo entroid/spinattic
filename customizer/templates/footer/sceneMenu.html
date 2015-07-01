@@ -5,7 +5,7 @@
 		 <% _.each(jsonObj, function(element,ind){ %>
 		    <li id="<%=element._name%>" <%if(ind == 0){%> class="selected"<%}%>>
 		    	<div class="drag-icon"></div>
-		    	<div class="fa fa-close"></div>
+		    	<div class="selector-scene"></div>
 		    	<img src="<%= element._thumburl %>" title="<%= element._title %>">
 		    </li>
 			<% }); %>
