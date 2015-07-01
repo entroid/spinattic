@@ -120,7 +120,23 @@ define([
                 })
 
             var manageData = new ManageData();
-            manageData.deleteScene(scenesToDel,manageTour.reloadTour);  
+            var reloadEverything = function(){
+                        $("#remove-selected-scene").addClass("none")
+                        var manageTour = new ManageTour();
+                        var resetPos = function(){
+                            if(!$("#sceneMenu li:eq(0)").hasClass("selected")){
+                                $("#sceneMenu li").removeClass("selected");
+                                $("#sceneMenu li:eq(0)").addClass("selected");
+                               
+                            }
+                        }
+                        var resetElem = function(){
+                            var helpFunctions = new HelpFunctions();
+                             helpFunctions.refreshData();
+                        }
+                    manageTour.reloadTour(resetPos,resetElem)
+                    }
+            manageData.deleteScene(scenesToDel,reloadEverything);  
         },
 
         openScene:function(e){

@@ -46,30 +46,24 @@ define([
 
 			this.deleteScene = function(scenesToDel,callback){
 
-				var scenes = []
-				_.each($("#sceneMenu li"),function(el,i){
-					if($(el).data("scene")){
-						var scene = $(el).data("scene");
-						if($(el).data("hotspots")){
-							var hotspots = $(el).data("hotspots");
-							scene.hotspots = hotspots;
-						}
-						scenes.push(scene);
-					}
-				})
-				tourData.krpano.scene = scenes;
 				this.deleteSceneFromServer(scenesToDel,0,callback);
 			}
 
 			this.deleteSceneFromServer = function(scenes,int,callB){
+					var este = this;
+					console.log("me ejecuto "+int+" vez")
 					if(!$("#publishController #draft").hasClass("active")){
 						$("#publishController #draft").addClass("active")
 					}
 					$("#draft .loading-wrapper").show();
 					var counter = int;
+					console.log(counter)
+					console.log(scenes.length)
+					
 					var jsonstr = JSON.stringify(tourData)
 					var accion ="del_scene";
-					var scene_id = scenes[int]; 
+					var scenestr = scenes[int];
+					var scene_id = scenestr.replace("scene_",""); 
 					mydata = "json="+jsonstr+"&id="+scene_id+"&action="+accion+"&d=1"
 					
 				$.ajax({
@@ -77,16 +71,36 @@ define([
 					type:'POST',
 					data:mydata,
 					success:function(res){
+						console.log("success")
+						console.log(scene_id)
+						$("#sceneMenu #"+scenes[int]).fadeOut(function(){
+							$(this).remove();
+							var scenestoAdd = []
+							_.each($("#sceneMenu li"),function(el,i){
+								if($(el).data("scene")){
+									var myscene = $(el).data("scene");
+									if($(el).data("hotspots")){
+										var hotspots = $(el).data("hotspots");
+										myscene.hotspots = hotspots;
+									}
+									scenestoAdd.push(myscene);
+								}
+							})
+							tourData.krpano.scene = scenestoAdd;
+						})
+						var res = JSON.parse(res);
+						$("#draft .date").text(res.date);
 						int++;
-						if(int < scenes.length){
-							this.deleteSceneFromServer(scenes,int,callB)
+						if(int <= scenes.length-1){
+							este.deleteSceneFromServer(scenes,int,callB);
+
 						}else{
 							$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
 								$("#draft .loading-wrapper").html('<div class="loading"></div>')
 							});
+							
 							callB();
 						}
-						var res = JSON.parse(res);
 						console.log(res)
 						
 					},
