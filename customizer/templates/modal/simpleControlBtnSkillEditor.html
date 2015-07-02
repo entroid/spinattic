@@ -54,12 +54,12 @@
 
                             <div class="line-group">
                                 <label for="scbXoffset">X offset</label>
-                                <input type="number" min="0" id="scbXoffset" value="<%=tourSkill.skill_controls_settings._x_offset%>">
+                                <input type="number" min="0" id="scbXoffset" class="scb_change" data-param="x_offset" value="<%=tourSkill.skill_controls_settings._x_offset%>">
                             </div>
 
                             <div class="line-group">
                                 <label for="scbYoffset">Y offset</label>
-                                <input type="number" min="0" id="scbYoffset" value="<%=tourSkill.skill_controls_settings._y_offset%>">
+                                <input type="number" min="0" id="scbYoffset" class="scb_change" data-param="y_offset" value="<%=tourSkill.skill_controls_settings._y_offset%>">
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="editor-group-2col">
                             <div class="line-group">
                                 <label for="iconStyles">Icons styles</label>
-                                <div id="iconStyles" class="dropdown dd-upload right-el" data-selected="<%=tourSkill.skill_controls_settings._icons_styles%>">
+                                <div id="iconStyles" class="dropdown bk-image right-el" data-selected="<%=tourSkill.skill_controls_settings._icons_styles%>">
                                     <h2>
                                         <img src="<%=backimage%>">
                                         <span class="fa fa-caret-down fa-lg right"></span>
@@ -130,11 +130,11 @@
                             <div class="editor-group-2col">
                                 <div class="line-group">
                                     <label for="bwidth">Buttons width</label>
-                                    <input type="number" min="0" id="bwidth" value="<%=tourSkill.skill_controls_settings._width%>">
+                                    <input type="number" min="0" id="bwidth" class="scb_change" data-param="width" value="<%=tourSkill.skill_controls_settings._width%>">
                                 </div>
                                 <div class="line-group">
                                     <label for="bheight">Buttons height</label>
-                                    <input type="number" min="0" id="bheight" value="<%=tourSkill.skill_controls_settings._height%>">
+                                    <input type="number" min="0" id="bheight" class="scb_change" data-param="height" value="<%=tourSkill.skill_controls_settings._height%>">
                                 </div>
                             </div>
 
@@ -143,11 +143,11 @@
                             <div class="editor-group-2col">
                                 <div class="line-group">
                                     <label for="bmargin">Buttons margin</label>
-                                    <input type="number" min="0" id="bmargin" value="<%=tourSkill.skill_controls_settings._buttons_margin%>">
+                                    <input type="number" min="0" id="bmargin" class="scb_change" data-param="buttons_margin" value="<%=tourSkill.skill_controls_settings._buttons_margin%>">
                                 </div>
                                 <div class="line-group">
                                     <label for="rEdge">Rounded edges</label>
-                                    <input type="number" min="0" id="rEdge" value="<%=tourSkill.skill_controls_settings._bgroundedge%>">
+                                    <input type="number" min="0" id="rEdge" class="scb_change" data-param="bgroundedge" value="<%=tourSkill.skill_controls_settings._bgroundedge%>">
                                 </div>
                             </div>
                         </div>
@@ -157,11 +157,12 @@
                         <div class="editor-group-2col">
                             <div class="line-group">
                                 <label for="">Background color</label>
-                                <div></div>
+                                <input type="text" class="colorpicker" id="scb-bgcolor" value="<%=tourSkill.skill_controls_settings._bgcolor.replace('0x','')%>" data-param="bgcolor">
+                    
                             </div>
                             <div class="line-group">
                                 <label for="btransparency">Background transparency</label>
-                                <input type="number" min="0" max="1" id="btransparency" value="<%=tourSkill.skill_controls_settings._bgalpha%>">
+                                <input type="number" min="0" max="1" id="btransparency" class="scb_change" data-param="bgalpha" value="<%=tourSkill.skill_controls_settings._bgalpha%>" step="0.1">
                             </div>
                         </div>
                     </div>
@@ -170,15 +171,15 @@
                         <div class="editor-group-2col">
                             <div class="line-group">
                                 <label for="bwidth">Border width</label>
-                                <input type="number" min="0" max="1" id="bwidth" value="<%=borderprop.width%>">
+                                <input type="number" min="0" max="1" id="border-width" class="scb_border_change" value="<%=borderprop.width%>" step="0.1">
                             </div>
                             <div class="line-group">
                                 <label for="">Border color</label>
-                                <div></div>
+                                <input type="text" class="colorpicker" id="scb-border-bgcolor" value="<%=borderprop.color.replace('0x','')%>">
                             </div>
                             <div class="line-group">
                                 <label for="btransparency">Border transparency</label>
-                                <input type="number" min="0" max="1" id="btransparency" value="<%=borderprop.transp%>">
+                                <input type="number" min="0" max="1" id="border-transparency" class="scb_border_change" value="<%=borderprop.transp%>" step="0.1">
                             </div>
                         </div>
                     </div>
@@ -234,19 +235,19 @@
 
                         <div class="line-group">
                             <label for="sbs-xmargin">X margin</label>
-                            <input type="number" min="0" id="sbs-xmargin" value="<%=tourSkill.skill_controls_settings._arrows_x_margin%>">
+                            <input type="number" min="0" id="sbs-xmargin" class="scb_change" data-param="arrows_x_margin" value="<%=tourSkill.skill_controls_settings._arrows_x_margin%>">
                         </div>
                         <div class="line-group">
                             <label for="sbs-ymargin">Y margin</label>
-                            <input type="number" min="0" id="sbs-ymargin" value="<%=tourSkill.skill_controls_settings._arrows_y_margin%>">
+                            <input type="number" min="0" id="sbs-ymargin" class="scb_change" data-param="arrows_y_margin" value="<%=tourSkill.skill_controls_settings._arrows_y_margin%>">
                         </div>
                         <div class="line-group">
                             <label for="sbs-containerSize">Container size</label>
-                            <input type="number" min="0" id="sbs-containerSize" value="<%=tourSkill.skill_controls_settings._arrows_container_size%>">
+                            <input type="number" min="0" id="sbs-containerSize" class="scb_change" data-param="arrows_container_size" value="<%=tourSkill.skill_controls_settings._arrows_container_size%>">
                         </div>
                         <div class="line-group">
                             <label for="sbs-containerRoundEdges">XContainer rounded edges</label>
-                            <input type="number" min="0" id="sbs-containerRoundEdges" value="<%=tourSkill.skill_controls_settings._arrows_container_roundedge%>">
+                            <input type="number" min="0" id="sbs-containerRoundEdges" class="scb_change" data-param="arrows_container_roundedge" value="<%=tourSkill.skill_controls_settings._arrows_container_roundedge%>">
                         </div>
                     </div>
                 </section>

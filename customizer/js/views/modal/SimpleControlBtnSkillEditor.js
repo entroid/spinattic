@@ -5,11 +5,11 @@ define([
     'views/modal/Modal',
     'text!templates/modal/simpleControlBtnSkillEditor.html',
     'helpers/HelpFunctions',
-    'mCustomScrollbar'
+    'mCustomScrollbar',
+    'colorpicker'
     /*'views/modal/SingleUploader',    
     'helpers/ManageData',
     'helpers/ManageTour',*/
-
 
 ], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions, mCustomScrollbar/*SingleUploader, ManageData,ManageTour*/){
 
@@ -20,7 +20,10 @@ define([
          _.extend(this.events, Modal.prototype.events);
         },
         events:{
-            "click .simple-control-btns-skill-editor .dropdown li":"selectDD"
+            "click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
+            "click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
+            "change input.scb_change":"changeValue",
+            "change input.scb_border_change":"setBorderProp",
         },
         
         renderExtend:function(){
@@ -86,6 +89,14 @@ define([
             })
 
             $("#"+myid+" header h2").text("Simple Control Buttons Skill Editor");
+            var este = this;
+             $('#scb-bgcolor').colorpicker({select:function(ev, colorPicker){
+                este.setColor(colorPicker,ev)
+            }});
+
+            $('#scb-border-bgcolor').colorpicker({select:function(ev, colorPicker){
+                este.setBorderProp()
+            }}); 
 
             var helpFunctions = new HelpFunctions();
             helpFunctions.skillTabs(myid);
@@ -115,6 +126,45 @@ define([
             var param = $(e.target).parent().data("param");
             var krpano = document.getElementById("krpanoSWFObject");
             krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+
+        },
+
+        selectDDImage:function(e){
+            if($(e.target).prop("tagName") == "LI"){
+                var myval = $(e.target).data("value");
+                var src = $(e.target).find("img").attr("src");
+            }else{
+               var myval = $(e.target).parent().data("value");
+               var src = $(e.target).attr("src");
+            }
+
+            var param = "icons_styles";
+            var krpano = document.getElementById("krpanoSWFObject");
+            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+            $("#iconStyles h2 img").attr("src",src);
+
+            $("#generalSettingsContent .icon-wrap").css("background-image","url("+src+")");
+        },  
+
+        changeValue:function(e){
+            var myval = $(e.target).val();
+            var param = $(e.target).data("param");            
+            var krpano = document.getElementById("krpanoSWFObject");
+            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+        },
+
+        setColor:function(colorPicker,e){
+            var myval = "0x"+colorPicker.formatted;
+            var param = $(e.target).data("param");  
+            var krpano = document.getElementById("krpanoSWFObject");
+            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+
+        },
+
+        setBorderProp:function(){
+            var myval = $("#border-width").val()+" 0x"+$("#scb-border-bgcolor").val()+" "+$("#border-transparency").val();
+            var krpano = document.getElementById("krpanoSWFObject");
+            krpano.call("set(skill_controls_settings.bgborder,"+myval+"); skill_controls_build();");
 
         }
 
