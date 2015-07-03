@@ -632,13 +632,13 @@
     
         .onoffswitch{
             position:relative;
-            width:70px;
+            width:100px;
             float: right;
             margin: 0 -10px 10px 0;
         }
         
         .onoffswitch-switch{
-            right:50px;
+            right:80px;
         }
 
         .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch{
@@ -647,14 +647,14 @@
 
         .onoffswitch-inner{
 
-            &:after{
-                content:"EDIT MODE";
-                color: $yellow;
+            &:after{                
+                content:"TEST MODE";
+                color: $green2;
             }
 
             &:before{
-                content:"TEST MODE";
-                color: $green2;
+                content:"EDIT MODE";
+                color: $yellow;
             } 
         }
 
