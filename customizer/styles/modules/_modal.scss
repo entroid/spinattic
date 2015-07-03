@@ -1166,15 +1166,15 @@
         }
 
         footer{
-            margin: 0 -20px -20px;
+            margin: 0 -20px -28px;
             padding: 10px 20px;
             background-color:$light-gray6;
             overflow: hidden;
             @include border-radius(0 0 5px 5px);   
         }
     }
- 
-    #liveTourModal{ 
+
+    #liveTourModal{
         width: 700px;
 
         header {
@@ -1256,6 +1256,7 @@
 
         .editor-img{
             padding-top: 0;
+            margin-bottom: 8px;
 
             .image-uploader-wrapper{
                 padding: 0;
@@ -1298,6 +1299,10 @@
         .map_canvas{
             width:310px;
             height:180px;
+        }
+
+        .mCSB_outside+.mCS-minimal-dark.mCSB_scrollTools_vertical{
+            right: -18px;
         }
     }
 
@@ -1490,15 +1495,15 @@
 
 .col-2{
     float: left;
-    width: 48%;
+    width: 50%;
     box-sizing: border-box;  
 
     &.left-col{
-        padding-right: 20px;
-        border-right: 1px solid $light-gray5;
+        padding-right: 20px;        
     }
     &.right-col{
         padding-left: 20px;
+        border-left: 1px solid $light-gray5;
     }
 }
 
@@ -1508,6 +1513,7 @@
     color: $middle-gray;    
     padding: 10px;
     font-size: 1.4rem;
+    min-height: 10px;
 
     ul{
         background-color:white;

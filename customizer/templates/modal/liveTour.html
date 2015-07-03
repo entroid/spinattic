@@ -1,4 +1,4 @@
-<div class="liveTourModal" id="liveTourModal">
+<div class="liveTourModal">
 <div class="scrollwrapper">
 	<form>
 		<div class="col-2 left-col">
@@ -79,7 +79,8 @@
 			<div class="row">
 				<label for="live-tour-img-uploader">Tour cover image: <i class="help fa fa-question-circle"></i></label>
 				<div id="live-tour-img-uploader" class="editor-img"></div>
-				<span id="reset-live-thumb" class="fa fa-refresh" <%if(tourInfo.datatour.tour_thumb_custom == "0"){%>style="display:none"<%}%>> reset</span>
+
+				<span id="reset-live-thumb" class="fa fa-refresh" <%if(tourInfo.datatour.tour_thumb_custom == "0"){%>style="display:none"<%}%>> Reset cover to the first scene's thumbnail</span>
 			</div>
 
 			<div class="row">

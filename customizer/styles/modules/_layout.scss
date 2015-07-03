@@ -469,6 +469,13 @@ textarea{
         .inner-dragger {
             text-align: left;
         }
+
+        .progress-wrapper{
+            width: 90%;
+            padding-top: 25%;
+            margin: -15px auto 0;
+            
+        }
     }
     
     .edit-img, .cancel-img, .ok-img {
@@ -526,7 +533,6 @@ textarea{
     &:hover .over-edit{
         opacity: 1;
     }
-
 }
 
 .backgroundBlack{

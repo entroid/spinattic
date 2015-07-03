@@ -24,7 +24,8 @@ define([
         
         renderExtend:function(){
 
-            var myid = this.myid;
+            var myid = this.myid,
+                este = this;
 
             $("#"+myid+" header h2").text("GO LIVE!");
 
@@ -92,8 +93,16 @@ define([
             
                     }
                 });
-            //$("#"+myid).find(".save-and-close").unbind("click");
-            //$("#"+myid).find(".save-and-close").click(this.doneEdition);            
+
+
+            $("#"+myid).find("header .fa-close").unbind().click( function (e) {
+                este.removeModal(e);
+                este.closePublish();
+            });
+            $("#"+myid).find('footer .cancel').click(function (e) {
+                este.removeModal(e);
+                este.closePublish();
+            });
 
             $('#tagsLiveModal').tagsInput({
             'width': '265px',
@@ -169,6 +178,10 @@ define([
 console.log(el)
                 $(el).css({'height': (winH - 300) + 'px'})
 
+        },
+
+        closePublish: function () {
+            $('header .onoffswitch-inner').click();
         }
 
     });
