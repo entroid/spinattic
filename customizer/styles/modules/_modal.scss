@@ -1384,6 +1384,14 @@
     }
 
     .simple-control-btns-skill-editor{
+
+        .scrollwrapper{
+            height:300px;
+        }
+
+
+
+
         .menuTabs{
             li{
                 padding: 10px;
@@ -1405,7 +1413,7 @@
         .tabContent{
             background-color: $black-transparent-40;
             padding:15px;
-
+            min-height:260px;
             section{
                 overflow-y: hidden;
 
@@ -1421,6 +1429,10 @@
                 .column3{
                     width: 48%;
                 }
+
+               &#generalSettingsContent{
+                height:320px;
+               } 
             }
 
             h4{
@@ -1471,6 +1483,19 @@
                 .sortArrows{
 
                 }
+
+                .icon-wrap{
+                    
+                    transform:scale(0.5,0.5);
+                    margin-left:5px;
+                    margin-top:5px;
+                    background-repeat:no-repeat;
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    margin-top:1px;
+                    margin-left:1px;
+                }
             }
 
             .editor-group-2col{
@@ -1481,6 +1506,75 @@
 
                     label {
                         padding:0;
+                    }
+                }
+            }
+
+            #skill_controls_full{
+
+                .icon-wrap{
+                    width:37px;
+                    height:40px;
+                    background-position:0 0;
+                }
+
+                .second{
+                    display:none;
+                }
+            }
+
+            #skill_controls_autorotate{
+            
+                .icon-wrap{
+                    width:37px;
+                    height:40px;
+                    background-position:-72px 0;
+                }
+
+                .second{
+                    display:none;
+                }
+
+            }
+
+            #skill_controls_zoom{
+
+                .icon-wrap{
+                    width:37px;
+                    height:40px;
+                    background-position:-143px 0;
+                    transform:scale(0.3,0.3);
+                    left:-7px;
+                    &.second{
+                        background-position:-177px 0;
+                        left:7px;
+                        
+                    }
+                }
+
+            }
+
+            #iconStyles{
+                position:absolute;
+                left:100px;
+
+                h2{
+                    width:272px;
+                    height:23px;
+
+                    img{
+                        position:absolute;
+                        top:7px;
+                        left:8px;
+                        width:210px;
+                    }
+                }
+
+                li{
+                    background:#333;
+                    border:1px solid #222;
+                    img{
+                        width:210px;
                     }
                 }
             }
