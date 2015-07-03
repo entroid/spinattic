@@ -26,18 +26,16 @@
 
                             <div class="line-group">
                                 <label for="scbPosition">Position</label>
-                                <div id="scbPosition" class="dropdown dd-upload right-el" data-selected="<%=tourSkill.skill_controls_settings._position%>">
-                                    <h2><span class="title"><%=positionlabel%></span> <span class="fa fa-caret-down fa-lg right"></span></h2>
-                                    <ul data-param="position">
-                                        <li data-value="topright">Top-Right</li> 
-                                        <li data-value="topleft">Top-Left</li> 
-                                        <li data-value="top">Top</li> 
-                                        <li data-value="right">Right</li> 
-                                        <li data-value="left">Left</li> 
-                                        <li data-value="bottom">Bottom</li> 
-                                        <li data-value="bottomright">Bottom-Right</li> 
-                                        <li data-value="bottomleft">Bottom-Left</li> 
-                                    </ul>
+                                <div class="position" id="scbPosition">
+                                    <span class="fa fa-circle" data-pos="topleft"></span>
+                                    <span class="fa fa-circle" data-pos="top"></span>
+                                    <span class="fa fa-circle" data-pos="topright"></span>
+                                    <span class="fa fa-circle" data-pos="left"></span>
+                                    <span class="fa fa-circle" data-pos="center" style="visibility:hidden"></span>
+                                    <span class="fa fa-circle" data-pos="right"></span>
+                                    <span class="fa fa-circle" data-pos="bottomleft"></span>
+                                    <span class="fa fa-circle" data-pos="bottom"></span>
+                                    <span class="fa fa-circle" data-pos="bottomright"></span>
                                 </div>
                             </div>
 
@@ -70,7 +68,10 @@
                                 <div class="skills-add-btn" id="<%=tourSkill.skill_controls_settings._order_1%>">
                                     <div class="icon-wrap" style="background-image:url(<%=backimage%>)"></div>
                                     <div class="icon-wrap second" style="background-image:url(<%=backimage%>)"></div>
-                                    <span class="sortArrows"></span>
+                                    <span class="sortArrows">
+                                        <i class="fa fa-caret-up"></i>
+                                        <i class="fa fa-caret-down"></i>
+                                    </span>
                                     <span class="fa fa-trash"></span>
                                 </div>
                             </div>
@@ -79,7 +80,10 @@
                                 <div class="skills-add-btn" id="<%=tourSkill.skill_controls_settings._order_2%>">
                                     <div class="icon-wrap" style="background-image:url(<%=backimage%>)"></div>
                                     <div class="icon-wrap second" style="background-image:url(<%=backimage%>)"></div>
-                                    <span class="sortArrows"></span>
+                                    <span class="sortArrows">
+                                        <i class="fa fa-caret-up"></i>
+                                        <i class="fa fa-caret-down"></i>
+                                    </span>
                                     <span class="fa fa-trash"></span>
                                 </div>
                             </div>
@@ -88,7 +92,10 @@
                                 <div class="skills-add-btn" id="<%=tourSkill.skill_controls_settings._order_3%>">
                                      <div class="icon-wrap" style="background-image:url(<%=backimage%>)"></div>
                                      <div class="icon-wrap second" style="background-image:url(<%=backimage%>)"></div>
-                                    <span class="sortArrows"></span>
+                                    <span class="sortArrows">
+                                        <i class="fa fa-caret-up"></i>
+                                        <i class="fa fa-caret-down"></i>
+                                    </span>
                                     <span class="fa fa-trash"></span>
                                 </div>
                             </div>
@@ -171,7 +178,7 @@
                         <div class="editor-group-2col">
                             <div class="line-group">
                                 <label for="bwidth">Border width</label>
-                                <input type="number" min="0" max="1" id="border-width" class="scb_border_change" value="<%=borderprop.width%>" step="0.1">
+                                <input type="number" min="0" max="10" id="border-width" class="scb_border_change" value="<%=borderprop.width%>" step="1">
                             </div>
                             <div class="line-group">
                                 <label for="">Border color</label>
@@ -190,7 +197,7 @@
                         <div class="line-group">
                             <label for="">Enable direction arrows</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows == "true"){ %>checked <%}%>>
+                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows == "true"){ %>checked <%}%> data-param="direction_arrows">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch1">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -201,7 +208,7 @@
                         <div class="line-group">
                             <label for="">Enable on mobiles</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile == "true"){ %>checked <%}%>>
+                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile == "true"){ %>checked <%}%> data-param="direction_arrows_mobile">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch2">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -211,22 +218,14 @@
 
                         <div class="line-group">
                             <label for="sbs-position">Position</label>
-                            <div id="sbs-position-vertical" class="dropdown dd-upload right-el <%if(tourSkill.skill_controls_settings._orientation == 'horizontal'){%>none<%}%>" data-selected="<%=tourSkill.skill_controls_settings._arrows_position%>">
+                            <div id="sbs-position-vertical" class="dropdown dd-upload right-el" data-selected="<%=tourSkill.skill_controls_settings._arrows_position%>">
                                 <h2>
                                     <%=arrowPos%>
                                     <span class="fa fa-caret-down fa-lg right"></span>
                                 </h2>
-                                <ul data-param="orientation">
+                                <ul data-param="arrows_position">
                                     <li data-value="bottom">Bottom</li> 
                                     <li data-value="top">Top</li> 
-                                </ul>
-                            </div>
-                            <div id="sbs-position-horizontal" class="dropdown dd-upload right-el <%if(tourSkill.skill_controls_settings._orientation == 'vertical'){%>none<%}%>" data-selected="<%=tourSkill.skill_controls_settings._arrows_position%>">
-                                <h2>
-                                    <%=arrowPos%>
-                                    <span class="fa fa-caret-down fa-lg right"></span>
-                                </h2>
-                                <ul data-param="orientation">
                                     <li data-value="left">Left</li> 
                                     <li data-value="right">Right</li> 
                                 </ul>

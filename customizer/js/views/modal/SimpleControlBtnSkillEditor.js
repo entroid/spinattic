@@ -1,175 +1,212 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'views/modal/Modal',
-    'text!templates/modal/simpleControlBtnSkillEditor.html',
-    'helpers/HelpFunctions',
-    'mCustomScrollbar',
-    'colorpicker'
-    /*'views/modal/SingleUploader',    
-    'helpers/ManageData',
-    'helpers/ManageTour',*/
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/modal/Modal',
+	'text!templates/modal/simpleControlBtnSkillEditor.html',
+	'helpers/HelpFunctions',
+	'mCustomScrollbar',
+	'colorpicker',
+	'helpers/ManageData'
+	/*'views/modal/SingleUploader',    
+	'helpers/ManageData',
+	'helpers/ManageTour',*/
 
-], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions, mCustomScrollbar/*SingleUploader, ManageData,ManageTour*/){
+], function($, _, Backbone,Modal,simpleControlBtnSkillEditor,HelpFunctions, mCustomScrollbar,colorpicker, ManageData){
 
-    var SimpleControlBtnSkillEditor = Modal.extend({
-        
-        initialize: function () {
-        _.bindAll(this);        
-         _.extend(this.events, Modal.prototype.events);
-        },
-        events:{
-            "click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
-            "click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
-            "change input.scb_change":"changeValue",
-            "change input.scb_border_change":"setBorderProp",
-        },
-        
-        renderExtend:function(){
+	var SimpleControlBtnSkillEditor = Modal.extend({
 
-            var myid = this.myid;
-            var tourSkill = this.model.get("tourSkill");
-            switch(tourSkill.skill_controls_settings._position){
-                case "topright":
-                positionlabel = "Top-Right"
-                break;
-                case "topleft":
-                positionlabel = "Top-Left"
-                break;
-                case "top":
-                positionlabel = "Top"
-                break;
-                case "right":
-                positionlabel = "Right"
-                break;
-                case "left":
-                positionlabel = "Left"
-                break;
-                case "bottom":
-                positionlabel = "Bottom"
-                break;
-                case "bottomright":
-                positionlabel = "Bottom-Right"
-                break;
-                case "bottomleft":
-                positionlabel = "Bottom-Left"
-                break;
-            }
+		krpano:null,
+		skill_controls_settings:null,
+		initialize: function () {
+		_.bindAll(this);        
+		 _.extend(this.events, Modal.prototype.events);
+		},
+		events:{
+			"click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
+			"click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
+			"click #scbPosition .selected":"alignSignature",
+			"change input.scb_change":"changeValue",
+			"change input.scb_border_change":"setBorderProp",
+			"click #skillsEditor-7 #Context-menu-finish":"doneEdition",
+			"change .simple-control-btns-skill-editor .onoffswitch-checkbox":"switchBox"
+		},
+		
+		renderExtend:function(){
 
-            var orientationLabel = tourSkill.skill_controls_settings._orientation;
-            orientationLabel = orientationLabel.substring(0,1).toUpperCase()+orientationLabel.substring(1);
+			var myid = this.myid;
+			var tourSkill = this.model.get("tourSkill");
+			this.skill_controls_settings = tourSkill.skill_controls_settings
 
-            var layoutLabel = tourSkill.skill_controls_settings._layout;
-            layoutLabel = layoutLabel.substring(0,1).toUpperCase()+layoutLabel.substring(1);
+			var orientationLabel = tourSkill.skill_controls_settings._orientation;
+			orientationLabel = orientationLabel.substring(0,1).toUpperCase()+orientationLabel.substring(1);
 
-            var backimage = tourSkill.skill_controls_settings._icons_styles;
-            backimage = backimage.replace("%SWFPATH%","../player");
+			var layoutLabel = tourSkill.skill_controls_settings._layout;
+			layoutLabel = layoutLabel.substring(0,1).toUpperCase()+layoutLabel.substring(1);
 
-            var borderproperties = tourSkill.skill_controls_settings._bgborder.split(" ");
+			var backimage = tourSkill.skill_controls_settings._icons_styles;
+			backimage = backimage.replace("%SWFPATH%","../player");
 
-            borderprop = {
-                width: borderproperties[0],
-                color: borderproperties[1],
-                transp: borderproperties[2],
-            }
-            
-            var arrowPos = tourSkill.skill_controls_settings._arrows_position;
-            arrowPos = arrowPos.substring(0,1).toUpperCase()+arrowPos.substring(1);
+			var borderproperties = tourSkill.skill_controls_settings._bgborder.split(" ");
 
-            console.log(tourSkill)
-            var template = _.template(simpleControlBtnSkillEditor,{tourSkill:tourSkill,positionlabel:positionlabel,orientationLabel:orientationLabel,layoutLabel:layoutLabel,backimage:backimage,borderprop:borderprop,arrowPos:arrowPos})
+			borderprop = {
+				width: borderproperties[0],
+				color: borderproperties[1],
+				transp: borderproperties[2],
+			}
+			
+			var arrowPos = tourSkill.skill_controls_settings._arrows_position;
+			arrowPos = arrowPos.substring(0,1).toUpperCase()+arrowPos.substring(1);
 
-            $("#"+myid+" .inner-modal").html(template);
+			console.log(tourSkill)
+			var template = _.template(simpleControlBtnSkillEditor,{tourSkill:tourSkill,orientationLabel:orientationLabel,layoutLabel:layoutLabel,backimage:backimage,borderprop:borderprop,arrowPos:arrowPos})
 
-            _.each($("#signature-skill-align .fa-circle"),function(elem,ind){
-                if($(elem).data("pos") == tourSkill.plugin._align){
-                    $(elem).addClass("selected");
-                }
-            })
+			$("#"+myid+" .inner-modal").html(template);
 
-            $("#"+myid+" header h2").text("Simple Control Buttons Skill Editor");
-            var este = this;
-             $('#scb-bgcolor').colorpicker({select:function(ev, colorPicker){
-                este.setColor(colorPicker,ev)
-            }});
+			_.each($("#signature-skill-align .fa-circle"),function(elem,ind){
+				if($(elem).data("pos") == tourSkill.plugin._align){
+					$(elem).addClass("selected");
+				}
+			})
 
-            $('#scb-border-bgcolor').colorpicker({select:function(ev, colorPicker){
-                este.setBorderProp()
-            }}); 
+			$("#"+myid+" header h2").text("Simple Control Buttons Skill Editor");
+			$("#"+myid).find(".save-and-close").unbind("click");
+			var este = this;
+			 $('#scb-bgcolor').colorpicker({select:function(ev, colorPicker){
+				este.setColor(colorPicker,ev)
+			}});
 
-            var helpFunctions = new HelpFunctions();
-            helpFunctions.skillTabs(myid);
-            helpFunctions.dropDown("#"+myid+" .dropdown");
-            
-            $(".scrollwrapper").mCustomScrollbar({
-                theme:"minimal-dark",
-                scrollInertia:300
-            });
-            
-            /*var SingleUploaderModel = Backbone.Model.extend({});
-            var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
-            
-            var singleUploader = new SingleUploader({model:singleUploaderModel});
-            singleUploader.render(function(){
-                var krpano = document.getElementById("krpanoSWFObject");
-                krpano.set("plugin["+tourSkill.plugin._name+"].url",$("#signature-skill-editor-img").data("imgsrc"));
-            });*/
+			$('#scb-border-bgcolor').colorpicker({select:function(ev, colorPicker){
+				este.setBorderProp()
+			}});
 
-        },
+			_.each($("#scbPosition .fa-circle"),function(elem,ind){
+				if($(elem).data("pos") == tourSkill.skill_controls_settings._position){
+					$(elem).addClass("selected");
+				}
+			})
+
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.skillTabs(myid);
+			helpFunctions.dropDown("#"+myid+" .dropdown");
+			helpFunctions.nineGrillSelector("#"+myid+" .position");
+			
+			$(".scrollwrapper").mCustomScrollbar({
+				theme:"minimal-dark",
+				scrollInertia:300
+			});
+
+			this.krpano = document.getElementById("krpanoSWFObject");
+			var este = this;
+
+			$("#generalSettingsContent .scbOrder").sortable({
+				handle:".sortArrows",
+				beforeStop:function(evt,ui){
+
+				setTimeout(function(){    
+				  
+					var acciones = [];
+					_.each($(".scbOrder .btnContainer"),function(elem,ind){
+						var myval = $(elem).find(".skills-add-btn").attr("id");
+						acciones.push(myval);
+					})
+					este.krpano.call("set(skill_controls_settings.order_1,"+acciones[0]+");set(skill_controls_settings.order_2,"+acciones[1]+");set(skill_controls_settings.order_3,"+acciones[2]+"); skill_controls_build();");
+			   		este.skill_controls_settings._order_1 = acciones[0];
+			   		este.skill_controls_settings._order_2 = acciones[1];
+			   		este.skill_controls_settings._order_3 = acciones[2];
+
+					},200) 
+				}
+			});
+			/*var SingleUploaderModel = Backbone.Model.extend({});
+			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
+			
+			var singleUploader = new SingleUploader({model:singleUploaderModel});
+			singleUploader.render(function(){
+				var krpano = document.getElementById("krpanoSWFObject");
+				krpano.set("plugin["+tourSkill.plugin._name+"].url",$("#signature-skill-editor-img").data("imgsrc"));
+			});*/
+
+		},
 
 
-        selectDD:function(e){
+		selectDD:function(e){
 
-            var myval = $(e.target).data("value");
-            $(e.target).parents(".dropdown").data("selected",myval);
-            var param = $(e.target).parent().data("param");
-            var krpano = document.getElementById("krpanoSWFObject");
-            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+			var myval = $(e.target).data("value");
+			$(e.target).parents(".dropdown").data("selected",myval);
+			var param = $(e.target).parent().data("param");
+			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+			this.skill_controls_settings["_"+param] = myval;
+		},
 
-        },
+		selectDDImage:function(e){
+			if($(e.target).prop("tagName") == "LI"){
+				var myval = $(e.target).data("value");
+				var src = $(e.target).find("img").attr("src");
+			}else{
+			   var myval = $(e.target).parent().data("value");
+			   var src = $(e.target).attr("src");
+			}
+			var param = "icons_styles";
+			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+			this.skill_controls_settings["_"+param] = myval;
+			$("#iconStyles h2 img").attr("src",src);
+			$("#generalSettingsContent .icon-wrap").css("background-image","url("+src+")");
+		},  
 
-        selectDDImage:function(e){
-            if($(e.target).prop("tagName") == "LI"){
-                var myval = $(e.target).data("value");
-                var src = $(e.target).find("img").attr("src");
-            }else{
-               var myval = $(e.target).parent().data("value");
-               var src = $(e.target).attr("src");
-            }
+		changeValue:function(e){
+			var myval = $(e.target).val();
+			var param = $(e.target).data("param");            
+			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+			this.skill_controls_settings["_"+param] = myval;
+		},
 
-            var param = "icons_styles";
-            var krpano = document.getElementById("krpanoSWFObject");
-            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-            $("#iconStyles h2 img").attr("src",src);
+		setColor:function(colorPicker,e){
+			var myval = "0x"+colorPicker.formatted;
+			var param = $(e.target).data("param");  
+			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+			this.skill_controls_settings["_"+param] = myval;
 
-            $("#generalSettingsContent .icon-wrap").css("background-image","url("+src+")");
-        },  
+		},
 
-        changeValue:function(e){
-            var myval = $(e.target).val();
-            var param = $(e.target).data("param");            
-            var krpano = document.getElementById("krpanoSWFObject");
-            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-        },
+		setBorderProp:function(){
+			var myval = $("#border-width").val()+" 0x"+$("#scb-border-bgcolor").val()+" "+$("#border-transparency").val();
+			this.krpano.call("set(skill_controls_settings.bgborder,"+myval+"); skill_controls_build();");
+			this.skill_controls_settings._bgborder = myval;
 
-        setColor:function(colorPicker,e){
-            var myval = "0x"+colorPicker.formatted;
-            var param = $(e.target).data("param");  
-            var krpano = document.getElementById("krpanoSWFObject");
-            krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
+		},
+		switchBox:function(e){
+			var este = this;
+			var param = $(e.target).data("param");
+			
+			if($(e.target).is(':checked')){
+				este.krpano.call("set(skill_controls_settings."+param+",true); skill_controls_build();");
+				este.skill_controls_settings["_"+param] = true;
+			}else{
+				este.krpano.call("set(skill_controls_settings."+param+",false); skill_controls_build();");
+				este.skill_controls_settings["_"+param] = false;
+			}
+		},
 
-        },
+		alignSignature:function(e){
 
-        setBorderProp:function(){
-            var myval = $("#border-width").val()+" 0x"+$("#scb-border-bgcolor").val()+" "+$("#border-transparency").val();
-            var krpano = document.getElementById("krpanoSWFObject");
-            krpano.call("set(skill_controls_settings.bgborder,"+myval+"); skill_controls_build();");
+			var pos = $(e.target).data("pos");
+			this.krpano.call("set(skill_controls_settings.position,"+pos+"); skill_controls_build();");
+			this.skill_controls_settings._position = pos;
+		},
 
-        }
+		doneEdition:function(e){
+			console.log("close")
+			var tourSkill = this.model.get("tourSkill");
+			tourSkill.skill_controls_settings = this.skill_controls_settings;
+			var manageData = new ManageData();
+			manageData.editSkill(tourSkill)
+			this.removeModal(e);
+			this.undelegateEvents();
+		}
 
-    });
+	});
 
-    return SimpleControlBtnSkillEditor;
-    
+	return SimpleControlBtnSkillEditor;
+	
 });

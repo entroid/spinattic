@@ -1432,6 +1432,13 @@
 
                &#generalSettingsContent{
                 height:320px;
+
+                .position{
+                      height: 30px;
+                      width: 50px;
+                      position: relative;
+                      top: -20px;
+                  }
                } 
             }
 
@@ -1481,7 +1488,17 @@
                 }
 
                 .sortArrows{
-
+                  background-color: rgba(0,0,0,0.5);
+                  width: 20px;
+                  height: 32px;
+                  position: absolute;
+                  left: -20px;
+                  top: -1px;
+                  padding-top:10px;  
+                  i.fa{
+                    width:10px;
+                    margin-left:7px;
+                  }
                 }
 
                 .icon-wrap{
@@ -1495,6 +1512,7 @@
                     left:0;
                     margin-top:1px;
                     margin-left:1px;
+
                 }
             }
 
