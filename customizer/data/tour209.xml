@@ -117,7 +117,7 @@
 				<skill template_id="7" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Control Buttons">
 				<include template_id="7" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Control Buttons" url="%SWFPATH%/skills/simple_controls/controls.xml"></include>
 				
-				<skill_controls_settings template_id="7" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Control Buttons" layout="sliced" position="topright" orientation="vertical" x_offset="30" y_offset="20" order_1="skill_controls_full" order_2="skill_controls_autorotate" order_3="skill_controls_zoom" icons_styles="%SWFPATH%/skills/simple_controls/icons_1_w.png" width="30" height="30" buttons_margin="10" bgroundedge="0" bgcolor="0x000000" bgalpha="0.6" bgborder="1 0x000000 1" direction_arrows="false" direction_arrows_mobile="false" arrows_position="bottom" arrows_x_margin="0" arrows_y_margin="10" arrows_container_size="65" arrows_container_roundedge="40"></skill_controls_settings>
+				<skill_controls_settings template_id="7" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Control Buttons" layout="sliced" position="topright" orientation="vertical" x_offset="30" y_offset="20" order_1="false" order_2="skill_controls_autorotate" order_3="skill_controls_zoom" icons_styles="%SWFPATH%/skills/simple_controls/icons_1_w.png" width="30" height="30" buttons_margin="10" bgroundedge="0" bgcolor="0x000000" bgalpha="0.6" bgborder="1 0x000000 1" direction_arrows="false" direction_arrows_mobile="false" arrows_position="bottom" arrows_x_margin="0" arrows_y_margin="10" arrows_container_size="65" arrows_container_roundedge="40"></skill_controls_settings>
 		</skill>
 		
 			<!-- DEFAULT SKILLS -->

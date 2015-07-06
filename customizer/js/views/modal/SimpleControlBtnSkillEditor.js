@@ -25,6 +25,7 @@ define([
 		events:{
 			"click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
 			"click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
+			"click .simple-control-btns-skill-editor .btnContainer .fa-plus":"addButton",
 			"click #scbPosition .selected":"alignSignature",
 			"change input.scb_change":"changeValue",
 			"change input.scb_border_change":"setBorderProp",
@@ -118,14 +119,6 @@ define([
 					},200) 
 				}
 			});
-			/*var SingleUploaderModel = Backbone.Model.extend({});
-			var singleUploaderModel = new SingleUploaderModel({myid:"signature-skill-editor-img",imgsrc:tourSkill.plugin._url,tour_id:tour_id,caso:caso})
-			
-			var singleUploader = new SingleUploader({model:singleUploaderModel});
-			singleUploader.render(function(){
-				var krpano = document.getElementById("krpanoSWFObject");
-				krpano.set("plugin["+tourSkill.plugin._name+"].url",$("#signature-skill-editor-img").data("imgsrc"));
-			});*/
 
 		},
 
@@ -203,6 +196,12 @@ define([
 			manageData.editSkill(tourSkill)
 			this.removeModal(e);
 			this.undelegateEvents();
+		},
+
+		addButton:function(e){
+			$btContainer = '<div class="add-bt-wrap"></div>';
+			$(e.target).parents(".btnContainer").append($btContainer);
+			console.log("agregar bt")
 		}
 
 	});
