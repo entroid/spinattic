@@ -1505,8 +1505,7 @@
                     left:70px;
                     background:#000;
                     width:30px;
-                    height:50px;
-
+                    padding-bottom:-5px;
                     &:after{
                         content: '';
                         position: absolute;
@@ -1573,7 +1572,7 @@
                 }
             }
 
-            #skill_controls_full{
+            #skill_controls_full,#skill_controls_full_bt{
 
                 .icon-wrap{
                     width:37px;
@@ -1584,9 +1583,9 @@
                 .second{
                     display:none;
                 }
-            }
+            }  
 
-            #skill_controls_autorotate{
+            #skill_controls_autorotate, #skill_controls_autorotate_bt{
             
                 .icon-wrap{
                     width:37px;
@@ -1600,7 +1599,7 @@
 
             }
 
-            #skill_controls_zoom{
+            #skill_controls_zoom, #skill_controls_zoom_bt{
 
                 .icon-wrap{
                     width:37px;
@@ -1615,6 +1614,21 @@
                     }
                 }
 
+            }
+    
+            #skill_controls_full_bt,#skill_controls_autorotate_bt,#skill_controls_zoom_bt{
+                transform:scale(0.4,0.4);
+                width:37px;
+                margin-left:-4px;
+                margin-top:-5px;
+                margin-bottom:-10px;
+            }
+            #skill_controls_zoom_bt{
+                .icon-wrap{
+                    width:68px;
+                    transform:scale(0.8,0.8);
+                    margin-left:-12px;
+                }
             }
 
             #iconStyles{

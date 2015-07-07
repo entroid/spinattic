@@ -26,6 +26,7 @@ define([
 			"click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
 			"click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
 			"click .simple-control-btns-skill-editor .btnContainer .fa-plus":"addButton",
+			"click .simple-control-btns-skill-editor .btnContainer .fa-trash":"removeButton",
 			"click #scbPosition .selected":"alignSignature",
 			"change input.scb_change":"changeValue",
 			"change input.scb_border_change":"setBorderProp",
@@ -106,20 +107,28 @@ define([
 
 				setTimeout(function(){    
 				  
-					var acciones = [];
-					_.each($(".scbOrder .btnContainer"),function(elem,ind){
-						var myval = $(elem).find(".skills-add-btn").attr("id");
-						acciones.push(myval);
-					})
-					este.krpano.call("set(skill_controls_settings.order_1,"+acciones[0]+");set(skill_controls_settings.order_2,"+acciones[1]+");set(skill_controls_settings.order_3,"+acciones[2]+"); skill_controls_build();");
-			   		este.skill_controls_settings._order_1 = acciones[0];
-			   		este.skill_controls_settings._order_2 = acciones[1];
-			   		este.skill_controls_settings._order_3 = acciones[2];
+					este.ordericons();
 
 					},200) 
 				}
 			});
 
+		},
+
+		ordericons:function(){
+			var acciones = [];
+			_.each($(".scbOrder .btnContainer"),function(elem,ind){
+				if($(elem).find(".skills-add-btn").attr("id")){
+					var myval = $(elem).find(".skills-add-btn").attr("id");
+				}else{
+					var myval = "false";
+				}
+				acciones.push(myval);
+			})
+			this.krpano.call("set(skill_controls_settings.order_1,"+acciones[0]+");set(skill_controls_settings.order_2,"+acciones[1]+");set(skill_controls_settings.order_3,"+acciones[2]+"); skill_controls_build();");
+	   		this.skill_controls_settings._order_1 = acciones[0];
+	   		this.skill_controls_settings._order_2 = acciones[1];
+	   		this.skill_controls_settings._order_3 = acciones[2];
 		},
 
 
@@ -198,10 +207,47 @@ define([
 			this.undelegateEvents();
 		},
 
+		removeButton:function(){
+
+		},
+
 		addButton:function(e){
-			$btContainer = '<div class="add-bt-wrap"></div>';
+			if($(e.target).parents(".btnContainer").find(".add-bt-wrap").size() != 0){
+				$(e.target).parents(".btnContainer").find(".add-bt-wrap").remove();
+			}else{
+			$btContainer = $('<div class="add-bt-wrap"></div>');
 			$(e.target).parents(".btnContainer").append($btContainer);
-			console.log("agregar bt")
+			var allbts = ["skill_controls_full","skill_controls_autorotate","skill_controls_zoom"];
+			var positions = ["_order_1","_order_2","_order_3"];
+			var este = this;
+			_.each(positions,function(el,ind){
+				_.each(allbts,function(ele,indice){
+					if(este.skill_controls_settings[positions[ind]] == allbts[indice]){
+						allbts.splice(indice,1)
+					}
+				})
+			})
+			var bts = [];
+			$btContainer.html('<ul></ul>')
+			var backimage = este.skill_controls_settings._icons_styles;
+			backimage = backimage.replace("%SWFPATH%","../player");
+			_.each(allbts,function(ele,indice){
+				$btContainer.find("ul").append('<li id="'+ele+'_bt" data-id="'+ele+'"><div class="icon-wrap" style="background-image:url('+backimage+')"></div></li>')
+				})
+			console.log(allbts)
+			$btContainer.find("li").click(function(e){
+					var myid = $(this).data("id");
+					$(this).parents(".btnContainer").find(".skills-add-btn").attr("id",myid);
+					este.ordericons();
+					$btContainer.remove();
+			})
+
+			}
+		},
+
+		removeButton:function(e){
+			$(e.target).parents(".skills-add-btn").removeAttr("id");
+			this.ordericons();	
 		}
 
 	});

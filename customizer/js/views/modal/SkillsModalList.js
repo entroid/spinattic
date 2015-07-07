@@ -34,7 +34,7 @@ define([
             this.verticalCent();
             
             $.ajax({
-                url:"data/json.php?t=s",
+                url:"data/json.php?t=s&d=1&id_tour="+location.hash.split("/")[1],
                 dataType:"json",
                 success:function(data){
 
