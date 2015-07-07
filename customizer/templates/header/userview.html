@@ -19,28 +19,29 @@
     </div>
     <div class="menu-list users">
         <ul class="header-user-menu">
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/user_profile.php";?>' title="Account settings"><span class="fa fa-user"></span>Account settings</a></li>
-            <li class="textRight"> <a href='<?echo "http://".$_SERVER[HTTP_HOST]."/lo.php";?>' title="Log out"><span class="fa fa-sign-out"></span>Log out</a></li>
+            <li><a href="http://www.spinattic.com/user_profile.php" title="Account settings"><span class="fa fa-user"></span>Account settings</a></li>
+
+            <li class="textRight"> <a href="http://www.spinattic.com/lo.php" title="Log out"><span class="fa fa-sign-out"></span>Log out</a></li>
         </ul>
 
         <ul class="main-user-menu">
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/home.php";?>' title="Home">
+            <li><a href="http://www.spinattic.com/home.php" title="Home">
                 <span class="fa fa-home"></span>
                 Home
             </a></li>
 
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/profile.php";?>' title="My profile">
+            <li><a href="http://www.spinattic.com/profile.php" title="My profile">
                 <span class="fa fa-user"></span>
                 My profile
             </a></li>
 
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/profile.php?uid=56&followers";?>' title="Followers">
+            <li><a href="http://www.spinattic.com/profile.php?uid=<%user.id%>&followers" title="Followers">
                 <span class="fa fa-users"></span>
                 Followers
                 <span class="user-count right"><%= user.followers_length %></span>
             </a></li>
 
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/profile.php?uid=56&following";?>' title="Following">
+            <li><a href="http://www.spinattic.com/profile.php?uid=<%user.id%>&following" title="Following">
                 <span class="fa fa-users"></span>
                 Following
                 <span class="user-count right"><%= user.following_length %></span>
@@ -51,18 +52,18 @@
         <h2><span class="fa fa-wrench"></span>Production</h2>
 
         <ul class="production-user-menu">
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/customizer/";?>' title="Create new tour">
+            <li><a href="http://www.spinattic.com/customizer/" title="Create new tour">
                 <span class="fa fa-plus-circle red"></span>
                 Create new tour
             </a></li>
 
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/manager_tour.php";?>' title="Manage tours">
+            <li><a href="http://www.spinattic.com/manager_tour.php" title="Manage tours">
                 <span class="fa fa-picture-o"></span>
                 Manage tours
                 <span class="user-count right"><%= user.tours_length %></span>
             </a></li>
 
-            <li><a href='<?echo "http://".$_SERVER[HTTP_HOST]."/manager_panoramas.php";?>' title="Manage pano files">
+            <li><a href="http://www.spinattic.com/manager_panoramas.php" title="Manage pano files">
                 <span class="fa fa-file-picture-o"></span>
                 Manage pano files
                 <span class="user-count right"><%= user.panos_length %></span>
