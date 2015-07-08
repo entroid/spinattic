@@ -158,7 +158,21 @@ footer.main-footer{
                 border: 1px solid #000;
             }
         }
+    }
 
-       
+    #reloadMsg{
+          background-color: rgba(0,0,0,0.5);
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+
+          p{
+            line-height: 100rem;
+            text-align: center;
+            font-size: 2rem;
+            color: #FFF;
+          }
     }
 }

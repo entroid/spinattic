@@ -16,7 +16,11 @@ define([
 
 		this.reloadTour = function(escenas,secCall){
 
-		console.log(escenas)	
+		var $reloadMsg = $('<div id="reloadMsg"></div>');
+		$reloadMsg.append("<p>Reloading tour, please wait...</p>")
+		$("footer.main-footer").append($reloadMsg);
+
+
 		var tourId = location.hash.split("/")[1];
 		var xmlpath ="data/xml.php?id="+tourId+"&d=1&c=1";
 
@@ -26,9 +30,7 @@ define([
 		})
 
 		$("#tour").remove();
-
 		
-
 		$.ajax({
 				url: xmlpath,
 				type: "GET",
@@ -51,7 +53,7 @@ define([
 										if(escenas != undefined){
 											escenas();
 										}
-										
+										$reloadMsg.remove();
 										$pano_wrapper = $('<div id="tour"></div>');         
 										$(".main-section .inner").append( $pano_wrapper ); 
 										embedpano({
