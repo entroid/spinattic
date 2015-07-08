@@ -27,14 +27,7 @@ define([
 
 		$("#tour").remove();
 
-		if(!$(".loading-msg").is(":visible")){
-            $(".loading-msg").show();
-        }
-
-        if($(".loading-msg span:eq(0)").hasClass("fa-image")){
-        	$(".loading-msg span:eq(0)").addClass("loading").removeClass("fa-image");
-        	$(".loading-msg span:eq(1)").text("Firing up the engines...")
-        }
+		
 
 		$.ajax({
 				url: xmlpath,

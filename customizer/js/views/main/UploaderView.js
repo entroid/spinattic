@@ -135,6 +135,9 @@ define([
 					$(".dragable").addClass("uploading-drop-zone"); 
 					este.verticalCent();   
 					$(".scroll-wrapper").mCustomScrollbar("scrollTo",$(".pano-item:last-child").offset().top);
+					if($(".fa-clock-o").size()){
+					    $(".fa-clock-o").addClass('blink').removeClass("save").text("")    
+					}
 
 					$("#pano-"+this_ul_id+" .fa-close").data("myproc",window.proc_id[this_ul_id]);
 					$("#pano-"+this_ul_id+" .fa-close").data("cicle",this_ul_id);

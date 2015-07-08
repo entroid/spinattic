@@ -241,6 +241,7 @@ define([
             var este = this;
             var cargarEscenas = function(){
                 var scenes = tourData.krpano.scene;
+                console.log(scenes)
                 var sceneCollection = new SceneCollection(scenes);
                 var sceneMenuView = new SceneMenuView({ collection: sceneCollection});
                 sceneMenuView.render();

@@ -113,11 +113,11 @@ define([
                         }
 
                         krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
-                        if($("#"+me.myid+" #tooltiptext").val() == ""){
+                        /*if($("#"+me.myid+" #tooltiptext").val() == ""){
                             krpano.call('set(hotspot['+hpdata._name+'].tooltip,'+$("#"+me.myid+" h3.dropdown1").data("name")+');');
                         }else{
                             krpano.call('set(hotspot['+hpdata._name+'].tooltip, '+$("#"+me.myid+" #tooltiptext").val() +' );');
-                        }
+                        }*/
                         
                         krpano.call('set(hotspot['+hpdata._name+'].onclick,  tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5);js(selectScene('+selectedscene+')) );');
                         $me.find(".hotspotarrow").delay(200).slideUp(function(){

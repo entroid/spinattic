@@ -17,6 +17,9 @@ define([
 
 		},
 		render: function(){
+			if(!tourData.krpano.scene){
+				return;
+			}
 			var xmlpath = this.model.get("xmlpath");
 			$pano_wrapper = $('<div id="tour"></div>');         
 			$(this.el).append( $pano_wrapper ); 

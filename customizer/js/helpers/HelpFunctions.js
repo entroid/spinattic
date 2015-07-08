@@ -271,7 +271,8 @@ define([
                 }
 
                 $(".loading-msg .loading").addClass("fa fa-image").removeClass("loading");
-                $(".loading-msg .fa-image").next().text("The tour has no panos")
+                $(".loading-msg .fa-image").next().text("The tour has no panos");
+                $("#tour").hide();
             }
 
             _.each(tourData.krpano.scene,function(scene,ind){

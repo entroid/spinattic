@@ -65,7 +65,7 @@ define([
                 paramname:'pic',
                 refresh: 100,
                 maxfiles: 1,
-                maxfilesize: 200,
+                maxfilesize: 5,
                 url: 'php/upload-single-file.php',
                 data:{
                     tour_id:tour_id,

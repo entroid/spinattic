@@ -34,11 +34,13 @@ define([
             if(this.collection){
                 var jsonObj = this.collection.toJSON();
                 this.mycollection = this.collection.toJSON();
+
             }else{
                 var jsonObj = [];
             }
 
             if($(".main-footer .scene-wrapper").length){
+                this.undelegateEvents();
                 $(".main-footer .scene-wrapper").remove();
             }
             var compiledTemplate = _.template(bottomMenu,{jsonObj:jsonObj});
@@ -92,13 +94,20 @@ define([
         },
 
         removeItem:function(e){
+            console.log($(e.target));
 
             $(e.target).toggleClass("selected")
 
             if($("#sceneMenu li .selector-scene").hasClass("selected")){
                 $("#remove-selected-scene").removeClass("none")
             }else{
-                $("#remove-selected-scene").addClass("none")
+                $("#remove-selected-scene").addClass("none");
+            }
+
+            if($(e.target).hasClass("selected")){
+                    $(e.target).parent().addClass("ready-to-del")
+            }else{
+                $(e.target).parent().removeClass("ready-to-del")
             }
             /*$(e.target).parent().fadeOut(function(){
                 var thisname = $(this).data("scene")._scene_id;
@@ -115,7 +124,7 @@ define([
                 $("#sceneMenu li .selector-scene").hasClass("selected")
                 _.each($("#sceneMenu li"),function(el,i){
                         if($(el).find(".selector-scene").hasClass("selected")){
-                            scenesToDel.push($(el).attr("id"));
+                            scenesToDel.push($(el).attr("id").replace("scene_",""));
                         }
                 })
 
@@ -136,7 +145,7 @@ define([
                         }
                     manageTour.reloadTour(resetPos,resetElem)
                     }
-            manageData.deleteScene(scenesToDel,reloadEverything);  
+            manageData.deleteSceneFromServer(scenesToDel,reloadEverything);  
         },
 
         openScene:function(e){
