@@ -1257,7 +1257,9 @@
         .editor-img{
             padding-top: 0;
             margin-bottom: 8px;
-
+             .cancel-img{
+                top:-18px;   
+             }
             .image-uploader-wrapper{
                 min-height: 150px;
                 color: white;

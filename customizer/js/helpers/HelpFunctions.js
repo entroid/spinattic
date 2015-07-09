@@ -243,7 +243,7 @@ define([
                 $("#sceneSettings-menu #filename").val(scenedata._scene_filename)
                 $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
                 $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
-                $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
+                $("#sceneSettings-menu #scene-thumbnail-src img").attr("src",scenedata._thumburl);
                 $("#sceneSettings-menu #scene-description").val(scenedata._description);
                 $("#sceneSettings-menu #scene-description").data("obj","_description");
             }
