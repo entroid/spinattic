@@ -367,8 +367,10 @@ define([
         this.showReloadOverlay = function(){
             if(!$("#reloadMsg").size()){
                 var $reloadMsg = $('<div id="reloadMsg"></div>');
+
                 $reloadMsg.append("<p>Reloading tour, please wait...</p>")
-                $("footer.main-footer").append($reloadMsg);
+                /*$("footer.main-footer").append($reloadMsg);*/
+                $("body").append($reloadMsg);
             }   
         }
 
