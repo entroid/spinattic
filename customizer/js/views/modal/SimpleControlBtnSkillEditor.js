@@ -212,9 +212,11 @@ define([
 		},
 
 		addButton:function(e){
-			if($(e.target).parents(".btnContainer").find(".add-bt-wrap").size() != 0){
-				$(e.target).parents(".btnContainer").find(".add-bt-wrap").remove();
-			}else{
+			
+			if($("#generalSettingsContent .scbOrder .add-bt-wrap").size()){
+				$("#generalSettingsContent .scbOrder .add-bt-wrap").remove();
+			}
+			
 			$btContainer = $('<div class="add-bt-wrap"></div>');
 			$(e.target).parents(".btnContainer").append($btContainer);
 			var allbts = ["skill_controls_full","skill_controls_autorotate","skill_controls_zoom"];
@@ -242,7 +244,7 @@ define([
 					$btContainer.remove();
 			})
 
-			}
+			
 		},
 
 		removeButton:function(e){

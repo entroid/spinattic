@@ -200,7 +200,7 @@
                         <div class="line-group">
                             <label for="">Enable direction arrows</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows == "true"){ %>checked <%}%> data-param="direction_arrows">
+                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows != "false"){ %>checked <%}%> data-param="direction_arrows">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch1">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -211,7 +211,7 @@
                         <div class="line-group">
                             <label for="">Enable on mobiles</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile == "true"){ %>checked <%}%> data-param="direction_arrows_mobile">
+                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile != "false"){ %>checked <%}%> data-param="direction_arrows_mobile">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch2">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
