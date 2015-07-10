@@ -64,11 +64,16 @@ define([
 			var mapModel = new MapModel({lat:data._lat,lng:data._lng})
 			
 			this.mapView = new MapView({model:mapModel});
+
+			
 			var indice = $("#sceneMenu .selected").index();
 			var param = "scene";
 
-			this.mapView.render(elem,{param:param,indice:indice});
 			var me = this;
+			this.mapView.render(elem,{param:param,indice:indice});
+			setTimeout(function(){
+				me.mapView.refreshSizeMap()
+			},500)
 				$("#sceneMenu li").click(function(){
 					me.mapView.removeMap();
 					var MapModel = Backbone.Model.extend({});
