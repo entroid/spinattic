@@ -78,7 +78,8 @@ define([
 				refresh: 100,
 				//maxfiles: 100,
 				//queuefiles: 2,
-				maxfilesize: 200,
+				allowedfileextensions: ['.jpg','.jpeg','.png','.tif','.tiff'],
+				maxfilesize: 75,
 				url: 'php/general_process.php',
 
 			   /* data:{
@@ -90,15 +91,18 @@ define([
 						case 'BrowserNotSupported':
 						este.showMsg('Your browser does not support HTML5 file uploads!');
 						break;
-						case 'TooManyFiles':
-						este.showMsg('Too many files! Please select 3 at most!');
+						case 'FileExtensionNotAllowed':
+						este.showMsg('File extension not allowed');
 						break;
 						case 'FileTooLarge':
-						este.showMsg(file.name+' is too large! Please upload files up to 200 mb.');
+						este.showMsg(file.name+' is too large! Please upload files up to 75 mb.');
 						break;
 						default:
 						break;
 					}
+					$("header.main-header").removeClass("bluring")
+					$(".dragger-wrapper").removeClass("scaling")
+					$("footer.main-footer").removeClass("bluring")
 				},
 
 				beforeEach: function(file){    
@@ -165,7 +169,13 @@ define([
 										case "-1": //Error
 											console.log("ENTRO ERROR: " + este.state[this_ul_id]);
 											clearInterval(este.setIntervalID[this_ul_id]);               
-											$(".inner-dragger #pano-"+this_ul_id+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again or contact us")
+											$(".inner-dragger #pano-"+this_ul_id+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again ");
+											$(".inner-dragger #pano-"+this_ul_id+" .progress").css("background","#d32f31");
+											$(".inner-dragger #pano-"+this_ul_id+" .percentage").text("Error");
+
+											if(este.addingPane){
+												$('.dragger-wrapper .cancel').removeClass('none');
+											}
 											break;
 											
 										case "1":
@@ -218,22 +228,25 @@ define([
 											$("#"+este.html_ref_id[this_ul_id]+" .thumb").attr("src",este.thumb_path[this_ul_id]);
 
 											$("#"+este.html_ref_id[this_ul_id]+" .progress").css("background","#497f3c");
+											$("#"+este.html_ref_id[this_ul_id]+" .progress").width("100%");
 											$("#"+este.html_ref_id[this_ul_id]+" .percentage").text("Upload Complete!");
 											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg").html('<span class="fa fa-check"></span>');
 											$("#"+este.html_ref_id[this_ul_id]+" .icon-msg").css("background","#497f3c");
 											$("#"+este.html_ref_id[this_ul_id]).data("pano_id",este.pano_id[this_ul_id]);    
 											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("pano_id",este.pano_id[this_ul_id]);    
 											$("#"+este.html_ref_id[this_ul_id]+" .fa-close").data("state",este.state[this_ul_id]);    
+											$("#"+este.html_ref_id[this_ul_id]).addClass("completed");    
 
 											var completed = 0; 
 
 											$(".pano-item").each(function(index){
 												if($(this).find(".percentage").text() == "Upload Complete!"){
 												   completed++
+												  
 												}
 											})
 
-											if(completed == $(".pano-item").size()){
+											if(completed == $(".pano-item.completed").size()){
 												este.AllUploaded();
 											}
 											
@@ -363,7 +376,7 @@ define([
 
 				}else{
 
-					var myscenes = [];
+					/*var myscenes = [];
 					$(".pano-item-wrapper .pano-item").each(function(ind,elem){
 						var scene = {}
 
@@ -375,7 +388,7 @@ define([
 						scene.thumburl = $(elem).find(".thumb").attr("src");
 						scene.url = sceneid;
 						myscenes.push(scene);
-					})
+					})*/
 
 
 					$(".dragger-wrapper").fadeOut(function(){
@@ -405,27 +418,8 @@ define([
 							var x2js = new X2JS({attributePrefix:"_"});
 							tourData =  x2js.xml_str2json( data );
 
-							if(tourData.krpano.scene.length == undefined){
-								var escenas = [];
-								escenas[0] = tourData.krpano.scene;
-								tourData.krpano.scene = escenas
-							}
-
-							_.each(tourData.krpano.scene,function(scene,ind){
-								if(scene.hotspot){
-											if(scene.hotspot.length == undefined){
-												var myhp = []
-												myhp[0] = scene.hotspot;
-												tourData.krpano.scene[ind].hotspot = myhp;
-											}
-									}
-							})
-
-							if(tourData.krpano.skill.length == undefined){
-								var capacidad = [];
-								capacidad[0] = tourData.krpano.skill;
-								tourData.krpano.skill = capacidad
-							}
+							var helpFunctions = new HelpFunctions();
+							helpFunctions.prepareConditionsForTour();
 
 							$.ajax({
 								url:  "data/json.php?id="+este.gTour_id+"&d=1&t=t",
@@ -507,12 +501,12 @@ define([
 									
 								}else{
 									var completed = 0;
-									_.each($(".pano-item"),function(elem){
+									_.each($(".pano-item.completed"),function(elem){
 										if($(elem).find(".fa-close").data("state")== "4"){
 											completed++
 										}
 									})
-									if(completed == $(".pano-item").size()){
+									if(completed == $(".pano-item.completed").size()){
 											este.AllUploaded();
 									}
 								}
