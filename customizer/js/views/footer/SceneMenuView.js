@@ -59,6 +59,8 @@ define([
             $("#sceneMenu").sortable({
                 beforeStop:function(evt,ui){
 
+                    helpFunctions.showReloadOverlay();
+                    
                     var reloadEverything = function(){
                         var manageTour = new ManageTour();
                         var resetPos = function(){

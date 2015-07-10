@@ -308,6 +308,27 @@ define([
 					}
 				})
 			}
+			this.saveLive = function(callb){
+				var jsonstr = JSON.stringify(tourData)
+				var id = location.hash.split("/")[1];
+				var mydata = "json="+jsonstr+"&id="+id+"&tolive=1";
+				$.ajax({
+					url:'php/updater.php',
+					type:'POST',
+					data:mydata,
+					success:function(res){
+						console.log(res)
+						var res = JSON.parse(res);
+						console.log(res)
+						if(callb){
+							callb()
+						}
+					},
+					error:function(xhr, ajaxOptions, thrownError){
+						console.log(xhr)
+					}
+				})
+			}
 }
 
 	return ManageData;

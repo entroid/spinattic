@@ -16,10 +16,8 @@ define([
 
 		this.reloadTour = function(escenas,secCall){
 
-		var $reloadMsg = $('<div id="reloadMsg"></div>');
-		$reloadMsg.append("<p>Reloading tour, please wait...</p>")
-		$("footer.main-footer").append($reloadMsg);
-
+		var helpFunctions = new HelpFunctions()
+		helpFunctions.showReloadOverlay();
 
 		var tourId = location.hash.split("/")[1];
 		var xmlpath ="data/xml.php?id="+tourId+"&d=1&c=1";
@@ -39,7 +37,7 @@ define([
 				success: function(data) {
 						var x2js = new X2JS({attributePrefix:"_"});
 						tourData =  x2js.xml_str2json( data );
-						var helpFunctions = new HelpFunctions()
+						
 						helpFunctions.prepareConditionsForTour();
 
 						$.ajax({
@@ -53,7 +51,7 @@ define([
 										if(escenas != undefined){
 											escenas();
 										}
-										$reloadMsg.remove();
+										
 										$pano_wrapper = $('<div id="tour"></div>');         
 										$(".main-section .inner").append( $pano_wrapper ); 
 										embedpano({
@@ -80,6 +78,9 @@ define([
 												}
 												if(secCall){
 													secCall();
+													helpFunctions.hideReloadOverlay();
+												}else{
+													helpFunctions.hideReloadOverlay();
 												}
 											}
 

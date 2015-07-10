@@ -8,13 +8,14 @@ define([
 	'views/modal/LogoSkillEditor',
 	'views/modal/SignatureSkillEditor',
 	'views/modal/LoadingBarSkillEditor',
+	'helpers/HelpFunctions',
 	'helpers/ManageData',
 	'helpers/ManageTour',
 	'views/modal/StandardLoadingSkillEditor',
 	'views/modal/SimpleControlBtnSkillEditor'
    
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -91,8 +92,11 @@ define([
 			if($('#skillsEditor-' + tourSkill._template_id ).length){
 				$('#skillsEditor-' + tourSkill._template_id ).find(".save-and-close").trigger("click");
 			}
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.showReloadOverlay();
 			var manageData = new ManageData()
 			var manageTour = new ManageTour();
+
 			manageData.removeSkill(tourSkill._kind,manageTour.reloadTour)
 
 			$('#skill-' + tourSkill._template_id).remove();

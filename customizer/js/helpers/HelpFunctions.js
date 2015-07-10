@@ -362,6 +362,20 @@ define([
 
         }
 
+        this.showReloadOverlay = function(){
+            if(!$("#reloadMsg").size()){
+                var $reloadMsg = $('<div id="reloadMsg"></div>');
+                $reloadMsg.append("<p>Reloading tour, please wait...</p>")
+                $("footer.main-footer").append($reloadMsg);
+            }   
+        }
+
+        this.hideReloadOverlay = function(){
+            if($("#reloadMsg").size()){
+                $("#reloadMsg").remove();
+            }
+        }
+
 }
 
     return HelpFunctions;
