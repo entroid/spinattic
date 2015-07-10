@@ -19,7 +19,8 @@ define([
          _.extend(this.events, Modal.prototype.events);
         },
         events:{
-            "click #reset-live-thumb":"resetThumb"
+            "click #reset-live-thumb":"resetThumb",
+            "click #make-live-bt":"goLive"
         },
         
         renderExtend:function(){
@@ -140,7 +141,7 @@ define([
             var param = "scene";
 
             this.mapView.render("elem",{param:param,indice:indice});*/
-            $("#"+myid).find(".save").click(this.goLive);
+            //$("#"+myid).find(".save").click(this.goLive);
 
             $(".scrollwrapper").mCustomScrollbar({
                 theme:"minimal-dark",
@@ -159,11 +160,14 @@ define([
         },
 
         goLive: function() {
+            var este = this;
+            var callB = function(){
+               socialModal = new SocialModal();
+               socialModal.render("socialModal",socialModal.renderExtend);
+            }
+            var manageData = new ManageData();
+            manageData.saveLive(callB);
             
-            //social share modal
-            this.socialModal = new SocialModal();
-            this.socialModal.render("socialModal",this.socialModal.renderExtend);
-        
         },
 
         resetThumb:function(){
@@ -174,9 +178,8 @@ define([
         modalHeight: function(myid){
 
             var el = $("#"+myid+" .scrollwrapper"),
-                winH = $(window).height();
-console.log(el)
-                $(el).css({'height': (winH - 300) + 'px'})
+            winH = $(window).height();
+            $(el).css({'height': (winH - 300) + 'px'})
 
         },
 

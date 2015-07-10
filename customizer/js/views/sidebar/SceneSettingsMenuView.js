@@ -55,10 +55,11 @@ define([
 
 			var SingleUploaderModel = Backbone.Model.extend({});
 			console.log(data)
+			/*
 			var singleUploaderModel = new SingleUploaderModel({myid:"scene-thumbnail-src",imgsrc:data._thumburl})
 			var singleUploader = new SingleUploader({model:singleUploaderModel});
 			singleUploader.render();
-
+			*/
 			var MapModel = Backbone.Model.extend({});
 			var mapModel = new MapModel({lat:data._lat,lng:data._lng})
 			
@@ -78,11 +79,12 @@ define([
 					me.mapView.render(elem,{param:param,indice:$(this).index()});
 					
 					var thumburl = $(this).data("scene")._thumburl
-					singleUploader.removeThis();
+					
+					/*singleUploader.removeThis();
 					var singleUploaderModel = new SingleUploaderModel({myid:"scene-thumbnail-src",imgsrc:thumburl})
 					singleUploader = new SingleUploader({model:singleUploaderModel});
 					singleUploader.render();
-
+					*/
 
 				})
 			},

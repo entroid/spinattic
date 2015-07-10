@@ -44,65 +44,57 @@ define([
 				this.saveServer(callback);
 			}
 
-			this.deleteScene = function(scenesToDel,callback){
+			
 
-				this.deleteSceneFromServer(scenesToDel,0,callback);
-			}
-
-			this.deleteSceneFromServer = function(scenes,int,callB){
+			this.deleteSceneFromServer = function(scenes,callB){
 					var este = this;
-					console.log("me ejecuto "+int+" vez")
 					if(!$("#publishController #draft").hasClass("active")){
 						$("#publishController #draft").addClass("active")
 					}
 					$("#draft .loading-wrapper").show();
-					var counter = int;
-					console.log(counter)
-					console.log(scenes.length)
 					
+					var scenesDel = scenes.join('|');
 					var jsonstr = JSON.stringify(tourData)
 					var accion ="del_scene";
-					var scenestr = scenes[int];
-					var scene_id = scenestr.replace("scene_",""); 
-					mydata = "json="+jsonstr+"&id="+scene_id+"&action="+accion+"&d=1"
-					
+					var mydata = "json="+jsonstr+"&id="+scenesDel+"&action="+accion+"&d=1"
+				
 				$.ajax({
 					url:'php/updater.php',
 					type:'POST',
 					data:mydata,
 					success:function(res){
 						console.log("success")
-						console.log(scene_id)
-						$("#sceneMenu #"+scenes[int]).fadeOut(function(){
+						var res = res;
+						$("#sceneMenu .ready-to-del").fadeOut(function(){
 							$(this).remove();
-							var scenestoAdd = []
-							_.each($("#sceneMenu li"),function(el,i){
-								if($(el).data("scene")){
-									var myscene = $(el).data("scene");
-									if($(el).data("hotspots")){
-										var hotspots = $(el).data("hotspots");
-										myscene.hotspots = hotspots;
+							if($("#sceneMenu .ready-to-del").size() == 0){
+								var scenestoAdd = []
+								_.each($("#sceneMenu li"),function(el,i){
+									if($(el).data("scene")){
+										var myscene = $(el).data("scene");
+										if($(el).data("hotspots")){
+											var hotspots = $(el).data("hotspots");
+											myscene.hotspots = hotspots;
+										}
+										scenestoAdd.push(myscene);
 									}
-									scenestoAdd.push(myscene);
-								}
-							})
-							tourData.krpano.scene = scenestoAdd;
+								})
+								tourData.krpano.scene = scenestoAdd;
+								console.log(res)
+								callB();
+							}
 						})
-						var res = JSON.parse(res);
-						$("#draft .date").text(res.date);
-						int++;
-						if(int <= scenes.length-1){
-							este.deleteSceneFromServer(scenes,int,callB);
-
+						if(res){
+							var res = JSON.parse(res);
+							var fecha = res.date;
 						}else{
-							$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
-								$("#draft .loading-wrapper").html('<div class="loading"></div>')
-							});
-							
-							callB();
+							fecha = "";
 						}
-						console.log(res)
-						
+						$("#draft .date").text(fecha);
+						$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
+							$("#draft .loading-wrapper").html('<div class="loading"></div>')
+						});
+
 					},
 					error:function(xhr, ajaxOptions, thrownError){
 						console.log(xhr)
@@ -310,6 +302,27 @@ define([
 						});
 						$("#draft .date").text(res.date);
 						console.log(res)
+					},
+					error:function(xhr, ajaxOptions, thrownError){
+						console.log(xhr)
+					}
+				})
+			}
+			this.saveLive = function(callb){
+				var jsonstr = JSON.stringify(tourData)
+				var id = location.hash.split("/")[1];
+				var mydata = "json="+jsonstr+"&id="+id+"&tolive=1";
+				$.ajax({
+					url:'php/updater.php',
+					type:'POST',
+					data:mydata,
+					success:function(res){
+						console.log(res)
+						var res = JSON.parse(res);
+						console.log(res)
+						if(callb){
+							callb()
+						}
 					},
 					error:function(xhr, ajaxOptions, thrownError){
 						console.log(xhr)

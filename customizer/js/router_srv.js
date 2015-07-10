@@ -80,7 +80,7 @@ define([
 			}
 		})
 
-		helpFunctions.checkUser();
+		//helpFunctions.checkUser();
 
 		app_router.on('route:getTour', function (id) {
 

@@ -243,7 +243,7 @@ define([
                 $("#sceneSettings-menu #filename").val(scenedata._scene_filename)
                 $("#sceneSettings-menu #friendlyURL").val(scenedata._urlname)
                 $("#sceneSettings-menu #friendlyURL").data("obj","_urlname")
-                $("#sceneSettings-menu figure img").attr("src",scenedata._thumburl);
+                $("#sceneSettings-menu #scene-thumbnail-src img").attr("src",scenedata._thumburl);
                 $("#sceneSettings-menu #scene-description").val(scenedata._description);
                 $("#sceneSettings-menu #scene-description").data("obj","_description");
             }
@@ -271,7 +271,8 @@ define([
                 }
 
                 $(".loading-msg .loading").addClass("fa fa-image").removeClass("loading");
-                $(".loading-msg .fa-image").next().text("The tour has no panos")
+                $(".loading-msg .fa-image").next().text("The tour has no panos");
+                
             }
 
             _.each(tourData.krpano.scene,function(scene,ind){
@@ -359,6 +360,20 @@ define([
 
             },2000)
 
+        }
+
+        this.showReloadOverlay = function(){
+            if(!$("#reloadMsg").size()){
+                var $reloadMsg = $('<div id="reloadMsg"></div>');
+                $reloadMsg.append("<p>Reloading tour, please wait...</p>")
+                $("footer.main-footer").append($reloadMsg);
+            }   
+        }
+
+        this.hideReloadOverlay = function(){
+            if($("#reloadMsg").size()){
+                $("#reloadMsg").remove();
+            }
         }
 
 }

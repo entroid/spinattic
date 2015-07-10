@@ -16,7 +16,9 @@ define([
 
 		this.reloadTour = function(escenas,secCall){
 
-		console.log(escenas)	
+		var helpFunctions = new HelpFunctions()
+		helpFunctions.showReloadOverlay();
+
 		var tourId = location.hash.split("/")[1];
 		var xmlpath ="data/xml.php?id="+tourId+"&d=1&c=1";
 
@@ -26,16 +28,7 @@ define([
 		})
 
 		$("#tour").remove();
-
-		if(!$(".loading-msg").is(":visible")){
-            $(".loading-msg").show();
-        }
-
-        if($(".loading-msg span:eq(0)").hasClass("fa-image")){
-        	$(".loading-msg span:eq(0)").addClass("loading").removeClass("fa-image");
-        	$(".loading-msg span:eq(1)").text("Firing up the engines...")
-        }
-
+		
 		$.ajax({
 				url: xmlpath,
 				type: "GET",
@@ -44,7 +37,7 @@ define([
 				success: function(data) {
 						var x2js = new X2JS({attributePrefix:"_"});
 						tourData =  x2js.xml_str2json( data );
-						var helpFunctions = new HelpFunctions()
+						
 						helpFunctions.prepareConditionsForTour();
 
 						$.ajax({
@@ -85,6 +78,9 @@ define([
 												}
 												if(secCall){
 													secCall();
+													helpFunctions.hideReloadOverlay();
+												}else{
+													helpFunctions.hideReloadOverlay();
 												}
 											}
 
