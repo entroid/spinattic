@@ -140,11 +140,11 @@
                             <div class="editor-group-2col">
                                 <div class="line-group">
                                     <label for="bwidth">Buttons width</label>
-                                    <input type="number" min="0" id="bwidth" class="scb_change" data-param="width" value="<%=tourSkill.skill_controls_settings._width%>">
+                                    <input type="number" min="20" max="100" id="bwidth" class="scb_change" data-param="width" value="<%=tourSkill.skill_controls_settings._width%>">
                                 </div>
                                 <div class="line-group">
                                     <label for="bheight">Buttons height</label>
-                                    <input type="number" min="0" id="bheight" class="scb_change" data-param="height" value="<%=tourSkill.skill_controls_settings._height%>">
+                                    <input type="number" min="20" max="100" id="bheight" class="scb_change" data-param="height" value="<%=tourSkill.skill_controls_settings._height%>">
                                 </div>
                             </div>
 
@@ -153,11 +153,11 @@
                             <div class="editor-group-2col">
                                 <div class="line-group">
                                     <label for="bmargin">Buttons margin</label>
-                                    <input type="number" min="0" id="bmargin" class="scb_change" data-param="buttons_margin" value="<%=tourSkill.skill_controls_settings._buttons_margin%>">
+                                    <input type="number" min="0" max="50" id="bmargin" class="scb_change" data-param="buttons_margin" value="<%=tourSkill.skill_controls_settings._buttons_margin%>">
                                 </div>
                                 <div class="line-group">
                                     <label for="rEdge">Rounded edges</label>
-                                    <input type="number" min="0" id="rEdge" class="scb_change" data-param="bgroundedge" value="<%=tourSkill.skill_controls_settings._bgroundedge%>">
+                                    <input type="number" min="0" max="50" id="rEdge" class="scb_change" data-param="bgroundedge" value="<%=tourSkill.skill_controls_settings._bgroundedge%>">
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                         <div class="line-group">
                             <label for="">Enable direction arrows</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows == "true"){ %>checked <%}%> data-param="direction_arrows">
+                                <input type="checkbox" name="sbs-onoffswitch1" class="onoffswitch-checkbox" id="sbs-onoffswitch1" <% if(tourSkill.skill_controls_settings._direction_arrows != "false"){ %>checked <%}%> data-param="direction_arrows">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch1">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -211,7 +211,7 @@
                         <div class="line-group">
                             <label for="">Enable on mobiles</label>
                             <div class="onoffswitch absoluteRight">
-                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile == "true"){ %>checked <%}%> data-param="direction_arrows_mobile">
+                                <input type="checkbox" name="sbs-onoffswitch2" class="onoffswitch-checkbox" id="sbs-onoffswitch2" <% if(tourSkill.skill_controls_settings._direction_arrows_mobile != "false"){ %>checked <%}%> data-param="direction_arrows_mobile">
                                 <label class="onoffswitch-label" for="sbs-onoffswitch2">
                                     <span class="onoffswitch-inner"></span>
                                     <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -223,7 +223,7 @@
                             <label for="sbs-position">Position</label>
                             <div id="sbs-position-vertical" class="dropdown dd-upload right-el" data-selected="<%=tourSkill.skill_controls_settings._arrows_position%>">
                                 <h2>
-                                    <%=arrowPos%>
+                                    <span class="title"><%=arrowPos%></span>
                                     <span class="fa fa-caret-down fa-lg right"></span>
                                 </h2>
                                 <ul data-param="arrows_position">
@@ -245,11 +245,11 @@
                         </div>
                         <div class="line-group">
                             <label for="sbs-containerSize">Container size</label>
-                            <input type="number" min="0" id="sbs-containerSize" class="scb_change" data-param="arrows_container_size" value="<%=tourSkill.skill_controls_settings._arrows_container_size%>">
+                            <input type="number" min="50" max="130" id="sbs-containerSize" class="scb_change" data-param="arrows_container_size" value="<%=tourSkill.skill_controls_settings._arrows_container_size%>">
                         </div>
                         <div class="line-group">
-                            <label for="sbs-containerRoundEdges">XContainer rounded edges</label>
-                            <input type="number" min="0" id="sbs-containerRoundEdges" class="scb_change" data-param="arrows_container_roundedge" value="<%=tourSkill.skill_controls_settings._arrows_container_roundedge%>">
+                            <label for="sbs-containerRoundEdges">Container rounded edges</label>
+                            <input type="number" min="0" max="65" id="sbs-containerRoundEdges" class="scb_change" data-param="arrows_container_roundedge" value="<%=tourSkill.skill_controls_settings._arrows_container_roundedge%>">
                         </div>
                     </div>
                 </section>
