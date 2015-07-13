@@ -69,6 +69,7 @@ define([
 						var $bt
 						$bt = $('<a href="" id="add-item-'+elem.id+'" class="add-skill"><i class="fa fa-plus"></i>Add</a>').data("skill",elem);
 						$bt.data("blocked",elem.blocked);
+						$bt.data("no_delete_if_free",elem.no_delete_if_free);
 						$bt.data("blocked_description",elem.blocked_description);
 						var $li = $('<li id="item'+elem.id+'">'+title+descrip+'</li>');
 						$li.append($bt);
@@ -163,6 +164,7 @@ define([
 					var SkillItemModel = Backbone.Model.extend({});
 					var x2js = new X2JS({attributePrefix:"_"});
 					var tourSkill =  x2js.xml_str2json( data );
+					tourSkill.skill._no_delete_if_free = $elem.data("no_delete_if_free");
 					console.log(tourSkill)
 					skillItemModel = new SkillItemModel({tourSkill:tourSkill.skill});
 

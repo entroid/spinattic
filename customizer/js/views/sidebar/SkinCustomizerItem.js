@@ -12,10 +12,13 @@ define([
 	'helpers/ManageData',
 	'helpers/ManageTour',
 	'views/modal/StandardLoadingSkillEditor',
-	'views/modal/SimpleControlBtnSkillEditor'
+	'views/modal/SimpleControlBtnSkillEditor',
+	'models/main/ModalModel',
+	'views/modal/AlertView',
+	'views/modal/ConfirmView',
    
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -89,21 +92,39 @@ define([
 		removeSkill:function(e,v){
 
 			var tourSkill = this.model.get("tourSkill");
-			if($('#skillsEditor-' + tourSkill._template_id ).length){
-				$('#skillsEditor-' + tourSkill._template_id ).find(".save-and-close").trigger("click");
+			console.log(tourSkill)
+			var este = this;
+			if(tourSkill._no_delete_if_free == "1"){
+				este.showMsg("unable to delete");
+				return;
+
 			}
-			var helpFunctions = new HelpFunctions();
-			helpFunctions.showReloadOverlay();
-			var manageData = new ManageData()
-			var manageTour = new ManageTour();
+			var msg = "If you remove this skill, you'll lose the custom configurations associated with it.";
+			evt = function(){
+				if($('#skillsEditor-' + tourSkill._template_id ).length){
+					$('#skillsEditor-' + tourSkill._template_id ).find(".save-and-close").trigger("click");
+				}
+				var helpFunctions = new HelpFunctions();
+				helpFunctions.showReloadOverlay();
+				var manageData = new ManageData()
+				var manageTour = new ManageTour();
+				$("#confirmDel .fa-close").trigger("click");
+				manageData.removeSkill(tourSkill._kind,manageTour.reloadTour)
 
-			manageData.removeSkill(tourSkill._kind,manageTour.reloadTour)
+				$('#skill-' + tourSkill._template_id).remove();
+				v.undelegateEvents();
+				v.remove();
+			}
+			var modalModel = new ModalModel({msg:msg,evt:evt})
+			var alertView = new ConfirmView({model:modalModel});
+			alertView.render("confirmDel",alertView.renderExtend);
+		},
 
-			$('#skill-' + tourSkill._template_id).remove();
-			v.undelegateEvents();
-			v.remove();
-
-		}
+		showMsg: function(msg){
+			var modalModel = new ModalModel({msg:msg})
+			var alertView = new AlertView({model:modalModel});
+			alertView.render("alert",alertView.renderExtend);
+		},
 		
 	});
 

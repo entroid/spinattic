@@ -45,6 +45,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$name = $row["username"];
 					$avatar = $row["avatar"];
 					$nickname = $row["nickname"];
+					$level = $row["level"];
 				};
 			
 				//Followers
@@ -83,6 +84,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'name' => $name,
 						'avatar' => $avatar,
 						'nickname' => $nickname,
+						'level' => $level,
 						'followers_length' => $followers,
 						'following_length' => $following,
 						'unread_notifications' => $unread_notifications,
@@ -179,12 +181,13 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 			$id_tour = $_GET['id_tour'];
 			
 			$i=0;
-			$ssqlp = "SELECT skill_id, kind as title, description, blocked_by, allow_multiple, level FROM customizer_templates_skills group by skill_id, kind, description order by skill_id";
+			$ssqlp = "SELECT skill_id, kind as title, description, blocked_by, allow_multiple, level, no_delete_if_free FROM customizer_templates_skills group by skill_id, kind, description order by skill_id";
 			$result = mysql_query($ssqlp);
 			while($row = mysql_fetch_array($result)){
 				
 				$blocked = 0;
 				$blocked_description = '';
+				
 				
 				if($row["allow_multiple"] == 0){ //Chequeo si ya lo tiene agregado
 					$ssqlp_block = "SELECT * from customizer".$draft_subscript." where idtour = ".$id_tour." and segment = 'SKILLS' and template_id = ".$row["skill_id"];
@@ -225,7 +228,8 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					'description' => $row["description"],
 					'level' => $row["level"],
 					'blocked' => $blocked,
-					'blocked_description' => $blocked_description
+					'blocked_description' => $blocked_description,
+					'no_delete_if_free' => $row["no_delete_if_free"]
 			
 				);
 				
