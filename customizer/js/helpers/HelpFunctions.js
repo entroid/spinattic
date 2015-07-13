@@ -392,7 +392,7 @@ define([
 
 
 
-            if ( require('bowser').chrome && require('bowser').version >= 8 ) {
+            if ( require('bowser').msie && require('bowser').version <= 8 ) {
               this.showMsg(browserMsg);
             } /*else if (bowser.firefox){
               alert('Hello Foxy');
