@@ -176,7 +176,7 @@ define([
 											$(".inner-dragger #pano-"+this_ul_id+" .percentage").text("Error");
 
 											if(este.addingPane){
-												$('.dragger-wrapper .cancel').removeClass('none');
+												$(".uploader-footer #cancelUploaded").removeClass('none');
 											}
 											break;
 											
