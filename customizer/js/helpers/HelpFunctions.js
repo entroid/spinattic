@@ -2,9 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'bowser' 
+    'models/main/ModalModel',
+    'views/modal/AlertView',
+    'bowser'
   
-], function($, _, Backbone){
+], function($, _, Backbone, ModalModel, AlertView){
 
     var HelpFunctions =  function(){
 
@@ -379,11 +381,19 @@ define([
             }
         }
 
+        this.showMsg = function(msg){
+            var modalModel = new ModalModel({msg:msg})
+            var alertView = new AlertView({model:modalModel});
+            alertView.render("alertUploader",alertView.renderExtend);
+        }
+
         this.detectBrowser = function () {
-            var browserMsg = "You're trying to access the Customizer with " + require('bowser').name + " " + require('bowser').version + ". The Spinattic Customizer is not optimized for older browsers. Please install the latest version of your desired Browser.";
+            var browserMsg = "You're trying to access the Customizer with <span>" + require('bowser').name + " " + require('bowser').version + "</span>. <br> <br> The Spinattic Customizer is not optimized for older browsers. Please install the latest version of your desired Browser.";
+
+
 
             if ( require('bowser').msie && require('bowser').version <= 8 ) {
-              alert(browserMsg);
+              this.showMsg(browserMsg);
             } /*else if (bowser.firefox){
               alert('Hello Foxy');
             } else if (bowser.chrome){
