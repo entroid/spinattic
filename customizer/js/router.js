@@ -17,7 +17,7 @@ define([
 	// 'views/users/list'
 	'views/header/TourTitle',
 	'views/header/PublishControllerView',
-	'lib/krpano/embedpano'  
+	'lib/krpano/embedpano' 
 
 
 ], function($, _, Backbone, x2js, SceneMenuView, PanoMenuFooterView, SceneCollection, UserCollection, MainMenuView, 
@@ -82,6 +82,7 @@ define([
 		})
 
 		helpFunctions.checkUser();
+		helpFunctions.detectBrowser();
 
 		app_router.on('route:getTour', function (id) {
 		// Note the variable in the route definition being passed in here
