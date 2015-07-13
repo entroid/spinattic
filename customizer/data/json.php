@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 //require_once("inc/auth.inc");
 //require_once("../../inc/conex.inc");
@@ -10,7 +10,7 @@ require_once("../php/functions.php");
  * t: tipo de data a mostrar
  * "t" para mostrar datos de un tour
  * "u" para mostrar datos de un usuario
- * "s" para mostrar listado de skills
+ * "s" para mostrar listado de skills (recibo d para draft o no y id_tour)
  * "c" para mostrar listado de categorías de tours 
  * "p" para mostrar listado de privacidades para tours
  * "panos" para mostrar listado de panos from collection
@@ -28,7 +28,7 @@ require_once("../php/functions.php");
 
 
 session_start();
-$user_id = 41;//$_SESSION['usr'];
+$user_id = $_SESSION['usr'];
 
 if(isset($_GET['t']) && $_GET['t'] != ''){
 	$table = $_GET['t'];
@@ -44,6 +44,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$id = $row["id"];
 					$name = $row["username"];
 					$avatar = $row["avatar"];
+					$nickname = $row["nickname"];
 				};
 			
 				//Followers
@@ -81,6 +82,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'id' => $id,
 						'name' => $name,
 						'avatar' => $avatar,
+						'nickname' => $nickname,
 						'followers_length' => $followers,
 						'following_length' => $following,
 						'unread_notifications' => $unread_notifications,
@@ -130,6 +132,8 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$thumb_height = $row["thumb_height"];
 					$thumb_margin = $row["thumb_margin"];
 					$state = $row["state"];
+					$tour_thumb_path = $row["tour_thumb_path"].'thumb200x100.jpg';
+					$tour_thumb_custom = $row["tour_thumb_custom"];
 					
 				};
 				
@@ -156,7 +160,9 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'thumb_width' => $thumb_width,
 						'thumb_height' => $thumb_height,
 						'thumb_margin' => $thumb_margin,
-						'state' => $state
+						'state' => $state,
+						'tour_thumb_path' => $tour_thumb_path,
+						'tour_thumb_custom' => $tour_thumb_custom
 						
 				
 				));			
@@ -165,17 +171,61 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 			
 		case 's': //Listado de skills disponibles
 			
+			//Si recibo un 1 en d, chequeo si existe el skill en draft o en published
+			if(isset($_GET['d']) && $_GET['d'] == 1){
+				$draft_subscript = '_draft';
+			}
+			
+			$id_tour = $_GET['id_tour'];
+			
 			$i=0;
-			$ssqlp = "SELECT skill_id, kind as title, description FROM customizer_templates_skills group by skill_id, kind, description order by skill_id";
+			$ssqlp = "SELECT skill_id, kind as title, description, blocked_by, allow_multiple, level FROM customizer_templates_skills group by skill_id, kind, description order by skill_id";
 			$result = mysql_query($ssqlp);
 			while($row = mysql_fetch_array($result)){
+				
+				$blocked = 0;
+				$blocked_description = '';
+				
+				if($row["allow_multiple"] == 0){ //Chequeo si ya lo tiene agregado
+					$ssqlp_block = "SELECT * from customizer".$draft_subscript." where idtour = ".$id_tour." and segment = 'SKILLS' and template_id = ".$row["skill_id"];
+					$result_block = mysql_query($ssqlp_block);
+					if($row_block = mysql_fetch_array($result_block)){
+						$blocked = 1;
+						$blocked_description = "You have already added this skill to your tour";
+					}
+				}
+				
+				
+				if($blocked != 1 && $row["blocked_by"] != ''){ //Chequeo si tiene un skill que bloquee a este
+
+					$blockers = explode('|',$row["blocked_by"]);
+					
+					foreach ($blockers as $blocker) {
+						if($blocker != ''){
+							$ssqlp_block = "SELECT * from customizer".$draft_subscript." where idtour = ".$id_tour." and segment = 'SKILLS' and template_id = ".$blocker;
+							$result_block = mysql_query($ssqlp_block);
+							if($row_block = mysql_fetch_array($result_block)){
+								$blocked = 1;
+								$blocker_desc .= $row_block["kind"].", ";
+							}
+						}
+					}
+					
+					$blocker_desc = substr($blocker_desc,0,-2);
+					if($blocked == 1){
+						$blocked_description = "This skill is blocked by: ".$blocker_desc;
+					}
+				}				
 				
 				
 				$skill_values = array(
 			
 					'id' => $row["skill_id"],
 					'title' => $row["title"],
-					'description' => $row["description"]
+					'description' => $row["description"],
+					'level' => $row["level"],
+					'blocked' => $blocked,
+					'blocked_description' => $blocked_description
 			
 				);
 				
@@ -252,7 +302,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 		case 'panos': //Panos from collection
 		
 			$i=0;
-			$ssqlp = "SELECT *, DATE_FORMAT(date,'%b %d %Y %h:%i %p') as fecha FROM panos where user = '".$_SESSION["usr"]."' ORDER BY id desc";
+			$ssqlp = "SELECT *, DATE_FORMAT(date,'%b %d %Y %h:%i %p') as fecha FROM panos where user = '".$_SESSION["usr"]."' and state = 1 ORDER BY id desc";
 			$result = mysql_query($ssqlp);
 			while($row = mysql_fetch_array($result)){
 		

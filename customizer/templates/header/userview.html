@@ -2,7 +2,6 @@
     <span class="fa fa-plus"></span>
     <i class="fa fa-picture-o"></i>
 </div>
-
 <div class="user">
     <div class="user-wrapper">
         <% user = jsonObj[0] %>
@@ -35,13 +34,13 @@
                 My profile
             </a></li>
 
-            <li><a href="../profile.php?uid=<%user.id%>&followers" title="Followers">
+            <li><a href="../profile.php?uid=<%=user.id%>&followers" title="Followers">
                 <span class="fa fa-users"></span>
                 Followers
                 <span class="user-count right"><%= user.followers_length %></span>
             </a></li>
 
-            <li><a href="../profile.php?uid=<%user.id%>&following" title="Following">
+            <li><a href="../profile.php?uid=<%=user.id%>&following" title="Following">
                 <span class="fa fa-users"></span>
                 Following
                 <span class="user-count right"><%= user.following_length %></span>

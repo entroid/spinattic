@@ -183,7 +183,12 @@ define([
 
 			this.pushSkill = function(skill,callback){
 				myskill = skill;
-				tourData.krpano.skill.push(myskill)
+				if(tourData.krpano.skill){
+					tourData.krpano.skill.push(myskill)
+				}else{
+					tourData.krpano.skill = [];
+					tourData.krpano.skill.push(myskill);					
+				}
 				console.log(tourData.krpano.skill)
 				this.saveServer(callback);
 			}

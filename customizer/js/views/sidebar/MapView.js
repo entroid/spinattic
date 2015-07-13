@@ -82,6 +82,7 @@ define([
 				$("#"+me.myid+" .lngFld").val( me.model.get("lng"));
 				me.placeMarker(latitudLongitud);
 				me.codeLatLng();
+				me.map.setZoom(10)
 			}
 			google.maps.event.addListener(map, "click", function(event)
 			{
