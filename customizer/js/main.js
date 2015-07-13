@@ -12,7 +12,8 @@ require.config({
     filedrop:'lib/filedrop/jquery.filedrop',
     filedropsingle:'lib/filedrop/jquery.filedrop-single',
     colorpicker:'lib/jquery.colorpicker/jquery.colorpicker',
-    socialshare: 'lib/socialShare/jquery.csbuttons'
+    socialshare: 'lib/socialShare/jquery.csbuttons',
+    bowser: 'lib/browserDetect/bowser'
   },
   shim:{
     mCustomScrollbar:['jquery'],

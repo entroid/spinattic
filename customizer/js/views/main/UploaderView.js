@@ -168,8 +168,10 @@ define([
 										switch(este.state[this_ul_id]) {
 										case "-1": //Error
 											console.log("ENTRO ERROR: " + este.state[this_ul_id]);
-											clearInterval(este.setIntervalID[this_ul_id]);               
-											$(".inner-dragger #pano-"+this_ul_id+" h3").html(respuesta.state_desc + " " + file.name + "<br>Please try again ");
+											clearInterval(este.setIntervalID[this_ul_id]);    
+											           
+											$(".inner-dragger #pano-"+this_ul_id+" h3").addClass('error').html(respuesta.state_desc + " <span>- " + file.name + " - Please try again</span>");
+
 											$(".inner-dragger #pano-"+this_ul_id+" .progress").css("background","#d32f31");
 											$(".inner-dragger #pano-"+this_ul_id+" .percentage").text("Error");
 

@@ -2,6 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'bowser' 
   
 ], function($, _, Backbone){
 
@@ -376,6 +377,22 @@ define([
             if($("#reloadMsg").size()){
                 $("#reloadMsg").remove();
             }
+        }
+
+        this.detectBrowser = function () {
+            var browserMsg = "You're trying to access the Customizer with " + require('bowser').name + " " + require('bowser').version + ". The Spinattic Customizer is not optimized for older browsers. Please install the latest version of your desired Browser.";
+
+            if ( require('bowser').msie && require('bowser').version <= 8 ) {
+              alert(browserMsg);
+            } /*else if (bowser.firefox){
+              alert('Hello Foxy');
+            } else if (bowser.chrome){
+              alert('Hello Silicon Valley');
+            } else if (bowser.safari){
+              alert('Hello Apple Fan');
+            } else if(bowser.iphone || bowser.android){
+              alert('Hello mobile');
+            }*/
         }
 
 }

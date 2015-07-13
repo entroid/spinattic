@@ -141,7 +141,7 @@ section.main-section {
 
             .left-uploader{
                 float: left;
-                width: 60%;
+                width: 65%;
                 position: relative;
 
                 h3{
@@ -157,15 +157,24 @@ section.main-section {
                         font-weight: normal;
                         font-size: 1.2rem;
                     }
+
+                    &.error{
+                        line-height: .95em;
+                        color: $red;
+
+                        span{
+                            color: white;
+                        }
+                    }
                 }
 
                 .progress-wrapper{
                     background: $dark-gray;
                     width: 200px;
-                    height: 10px;
+                    height: 12px;
                     float: left;
                     border-radius: 15px;
-                    @include absolute (35px, initial, initial, 10px);
+                    @include absolute (38px, initial, initial, 10px);
 
                     .progress{
                         @include border-radius(4px);
@@ -175,6 +184,7 @@ section.main-section {
 
                     .percentage{
                         @include absolute();
+                        top:1px;
                         width: 100%;
                         font-size: .9em;
                     }
