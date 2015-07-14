@@ -7,7 +7,7 @@
 				
 				<action tag_ident="2" prev_tag_ident="0" segment="GENERAL" kind="" name="startup"></action>
 				
-				<autorotate tag_ident="3" prev_tag_ident="0" segment="GENERAL" kind="" accel="1.0" enabled="true" horizon="0.0" speed="5.0" tofov="0.0" waittime="3.0"></autorotate>
+				<autorotate tag_ident="3" prev_tag_ident="0" segment="GENERAL" kind="" accel="1.0" enabled="true" horizon="0.0" speed="5.0" tofov="off" waittime="3.0"></autorotate>
 				
 				<control tag_ident="4" prev_tag_ident="0" segment="GENERAL" kind="" fovfriction="0.9" fovspeed="3.0" mouseaccelerate="1.0" mousefovchange="1.0" mousefriction="0.8" mousespeed="10.0" mousetype="moveto" touchfriction="0.87" zoomoutcursor="true" zoomtocursor="false"></control>
 				
