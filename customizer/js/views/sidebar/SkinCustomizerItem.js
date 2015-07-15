@@ -92,13 +92,18 @@ define([
 		removeSkill:function(e,v){
 
 			var tourSkill = this.model.get("tourSkill");
+			var no_delete_if_free = this.model.get("no_delete_if_free");
 			console.log(tourSkill)
 			var este = this;
-			if(tourSkill._no_delete_if_free == "1"){
-				este.showMsg("unable to delete");
-				return;
 
+			if($(".main-header .user").data("level") == "FREE"){
+				if(no_delete_if_free == "1"){
+					este.showMsg("We're sorry. You cannot remove this skill because your membership level is set to Basic.");
+					return;
+				}
 			}
+
+
 			var msg = "If you remove this skill, you'll lose the custom configurations associated with it.";
 			evt = function(){
 				if($('#skillsEditor-' + tourSkill._template_id ).length){

@@ -164,9 +164,9 @@ define([
 					var SkillItemModel = Backbone.Model.extend({});
 					var x2js = new X2JS({attributePrefix:"_"});
 					var tourSkill =  x2js.xml_str2json( data );
-					tourSkill.skill._no_delete_if_free = $elem.data("no_delete_if_free");
+					//tourSkill.skill._no_delete_if_free = $elem.data("no_delete_if_free");
 					console.log(tourSkill)
-					skillItemModel = new SkillItemModel({tourSkill:tourSkill.skill});
+					skillItemModel = new SkillItemModel({tourSkill:tourSkill.skill,no_delete_if_free:$elem.data("no_delete_if_free")});
 
 					var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
 					skinCustomizerItem.render();

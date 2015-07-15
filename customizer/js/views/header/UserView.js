@@ -22,7 +22,7 @@ define([
       var data = this.collection.toJSON();
       var compiledTemplate = _.template(userview,{jsonObj:data});
       $(this.el).append( compiledTemplate ); 
-
+      $(".main-header .user").data("level",data[0].level);
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
 

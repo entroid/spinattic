@@ -20,7 +20,8 @@ define([
         },
         events:{
             "click #reset-live-thumb":"resetThumb",
-            "click #make-live-bt":"goLive"
+            "click #make-live-bt":"goLive",
+            "click #location-lt li":"selectLocation",
         },
         
         renderExtend:function(){
@@ -105,14 +106,14 @@ define([
                 este.closePublish();
             });
 
-            $('#tagsLiveModal').tagsInput({
+            $('#tagsLiveModal2').tagsInput({
             'width': '265px',
             'height':'70px',
             'defaultText':'add a tag',
             onChange: function(elem, elem_tags)
             {
                 var manageData = new ManageData();
-                manageData.saveTourData("tags",$("#tagsLiveModal").val())
+                manageData.saveTourData("tags",$("#tagsLiveModal2").val())
             },
             autocomplete_url:'../php-stubs/tags.php', // jquery ui autocomplete requires a json endpoint
             autocomplete:{appendTo:"#toAppendTagsModal",
@@ -169,6 +170,10 @@ define([
             manageData.saveLive(callB);
             
         },
+
+        selectLocation:function(e){
+            
+        }
 
         resetThumb:function(){
             var manageData = new ManageData();

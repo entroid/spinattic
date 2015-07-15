@@ -22,6 +22,7 @@ define([
         render: function(){
 
             var skill = tourData.krpano.skill;
+            var skill_del = tourData.krpano.datatour.skills;
             var compiledTemplate = _.template(skinCustomizerMenu);
 
 
@@ -29,9 +30,16 @@ define([
 
             _.each(skill,function(skl,ind){
 
-                console.log(skl)
+                var no_delete_if_free;
                 var SkillItemModel = Backbone.Model.extend({});
-                skillItemModel = new SkillItemModel({tourSkill:skl});
+                _.each(skill_del,function(elem,indice){
+                    if(elem.skill_id == skl._template_id){
+
+                        no_delete_if_free = elem.no_delete_if_free;
+                    }
+                })
+
+                skillItemModel = new SkillItemModel({tourSkill:skl,no_delete_if_free:no_delete_if_free});
                 var skinCustomizerItem = new SkinCustomizerItem({model:skillItemModel});
                 skinCustomizerItem.render();
 
