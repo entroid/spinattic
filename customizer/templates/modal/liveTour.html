@@ -87,17 +87,24 @@
 				<label for="location-lt">Tour location: <i class="help fa fa-question-circle"></i></label>
 
 				<div id="location-lt" class="dropdown dd-liveTour">
-					<h3><span class="title">Use a single location</span> <i class="fa fa-caret-down right arrow"></i></h3>
+					<h3><span class="title"></span> <i class="fa fa-caret-down right arrow"></i></h3>
 					<ul class="category">
-						<li>Use a single location</li>
-						<li>Indicate each scene's location</li>
-						<li>Do not display the tour's location on the world map</li></li>
+						<li data-loc="tour">Use a single location</li>
+						<li data-loc="scene">Indicate each scene's location</li>
+						<li data-loc="none">Do not display the tour's location on the world map</li>
 					</ul>
 				</div>
 
-				<p class="location-txt"><span>Use a single location:</span> A single marker will represent the entire tour on the world map.</p>
-				
-				<div class="gmap-wrapper"></div>
+				<div id="loc-tour" class="loc-description none">
+					<p class="location-txt"><span>Use a single location:</span> A single marker will represent the entire tour on the world map.</p>
+					<div class="gmap-wrapper"></div>
+				</div>
+				<div id="loc-scene" class="loc-description none">
+					<p class="location-txt">Indicate each scene's location:* Each scene in this tour will be represented with a marker on the world map</p>
+				</div>
+				<div id="loc-none" class="loc-description none">
+					<p class="location-txt">This tour won't be represented on the world map</p>
+				</div>
 			</div>
 
 			<div class="row">

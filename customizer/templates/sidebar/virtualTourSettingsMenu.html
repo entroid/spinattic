@@ -66,12 +66,14 @@
                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></span> Choose how you want to locate your tour on Spinattic's world map</h2>
                         <ul class="checkboxes">
-                            <li data-evt="singleLoc"><span class="fa fa-circle-o fa-lg"></span>Use a single location for the tour on world map.</li>
-                            <li data-evt="eachScene"><span class="fa fa-circle fa-lg"></span>Use each scene's location on world map.</li>
-                            <li data-evt="noMap"><span class="fa fa-circle fa-lg"></span>Do not display the tour's location on the world map.</li>
+                            <li data-evt="singleLoc" data-val="tour"><span class="fa fa-circle<%if( data.datatour.show_lat_lng == "tour"){%>-o<%}%> fa-lg"></span>Use a single location for the tour on world map.</li>
+                            <li data-evt="eachScene" data-val="scene"><span class="fa fa-circle<%if( data.datatour.show_lat_lng == "scene"){%>-o<%}%> fa-lg"></span>Use each scene's location on world map.</li>
+                            <li data-evt="noMap" data-val="none"><span class="fa fa-circle<%if( data.datatour.show_lat_lng == "none"){%>-o<%}%> fa-lg"></span>Do not display the tour's location on the world map.</li>
                         </ul>
-                        <span class="fa fa-search right pointer bigger-map"> Bigger Map</span>
-                        <div class="gmap-wrapper"></div>
+                        
+                        <span class="fa fa-search right pointer bigger-map"<%if( data.datatour.show_lat_lng != "tour"){%>style="display:none"<%}%>> Bigger Map</span>
+
+                        <div class="gmap-wrapper" <%if( data.datatour.show_lat_lng != "tour"){%>style="display:none"<%}%>></div>
                     
                     </div>
                 </li>

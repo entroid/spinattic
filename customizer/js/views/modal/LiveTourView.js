@@ -55,6 +55,8 @@ define([
             singleUploader.render(this.changeImage);
 
 
+            $("#location-lt .title").text($('li[data-loc="'+tourInfo.datatour.show_lat_lng+'"]').text());
+            $(".liveTourModal #loc-"+tourInfo.datatour.show_lat_lng).removeClass("none")
             $.ajax({
                     url : 'data/json.php?t=c',
                     type: 'JSON',
@@ -172,8 +174,11 @@ define([
         },
 
         selectLocation:function(e){
-            
-        }
+            var manageData = new ManageData();
+            manageData.saveTourData("show_lat_lng",$(e.target).data("loc"));
+            $(".loc-description").addClass("none");
+            $("#loc-"+$(e.target).data("loc")).removeClass("none")
+        },
 
         resetThumb:function(){
             var manageData = new ManageData();
