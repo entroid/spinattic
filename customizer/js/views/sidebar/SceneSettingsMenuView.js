@@ -20,9 +20,12 @@ define([
 		},
 		events:{
 
-			"keyup #scenetitle":"changeTitle",
-			"keyup #friendlyURL":"updateData",
-			"keyup #scene-description":"updateData",
+			"focus #scenetitle":"sentEventByEnter",
+			"blur #scenetitle":"changeTitle",
+			"focus #friendlyURL":"sentEventByEnter",
+			"blur #friendlyURL":"updateData",
+			"focus #scene-description":"sentEventByEnter",
+			"blur #scene-description":"updateData",
 			"click #sceneSettings-menu .fa-search":"zoomMap"
 				 },
 		
@@ -96,16 +99,27 @@ define([
 
 		updateData:function(e){
 			var manageData = new ManageData();
-			manageData.saveSceneOnTour( $("#sceneSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val())
+			manageData.saveSceneOnTour( $("#sceneSettings-menu").data("scenename"),$(e.target).data("obj"),$(e.target).val());
+			$(window).unbind("keydown");
 		},
 
+		sentEventByEnter:function(e){
+			$(window).keydown(function(event){
+				if(event.keyCode == 13) {
+					$(e.target).blur();
+					event.preventDefault();
+					$(window).unbind("keydown");
+					return false;
+				}
+			  });
+		},
 		changeTitle:function(e){
 			var scene = $("#tour").data("scene");
 			var title = scene._title;
 			var name = scene._name;
 			$("#"+name+" img").attr("title",title)
 			this.updateData(e);
-
+			$(window).unbind("keydown");
 		},
 
 		zoomMap:function(){

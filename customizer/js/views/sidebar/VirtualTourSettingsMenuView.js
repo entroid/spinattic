@@ -27,9 +27,9 @@ define([
 			this.events[checkboxesEvent] = 'selectCheckboxes';
 
 			var inputs = "change #virtualTourSettings-menu .tour-data";
-			var txtarea = "keyup #virtualTourSettings-menu #tour-description";
+			var txtarea = "blur #virtualTourSettings-menu #tour-description";
 			var inputsChange = "mouseup #virtualTourSettings-menu .tour-data";
-			var friendURl = "keyup #virtualTourSettings-menu #friendlyURLTour";
+			var friendURl = "blur #virtualTourSettings-menu #friendlyURLTour";
 			this.events[inputs] = 'insertData';
 			this.events[txtarea] = 'saveData';
 			this.events[inputsChange] = 'insertData';
@@ -94,7 +94,17 @@ define([
 			$(this.el).append( compiledTemplate ); 
 			var elem = this.model.get("elem");
 			this.$elem = $("#"+elem);
-			
+			$("#virtualTourSettings-menu #tour-description, #virtualTourSettings-menu #friendlyURLTour").focus(function(e){
+
+				$(window).keydown(function(event){
+					if(event.keyCode == 13) {
+						$(e.target).blur();
+						event.preventDefault();
+						$(window).unbind("keydown");
+						return false;
+						}
+				  });
+			})
 			this.model.set("elemWidth",this.$elem.width());
 			
 			var helpFunctions = new HelpFunctions();
@@ -297,6 +307,7 @@ define([
 		saveData:function(e){
 			var manageData = new ManageData();
 			manageData.saveSettings(e);
+			$(window).unbind("keydown");
 		},
 
 		saveDDMouse:function(e){
@@ -314,6 +325,7 @@ define([
 		saveFriendURL:function(e){
 			var manageData = new ManageData();
 			manageData.saveTourData("friendlyURL",$("#friendlyURLTour").val())
+			$(window).unbind("keydown");
 		},
 
 		mouseSettingsChecks:function(e){

@@ -143,7 +143,7 @@ define([
 					}else{
 						var width 		= $("#widthSLP").val();
 					}
-					if($("#unitsW").data("selected") == "%"){
+					if($("#unitsH").data("selected") == "%"){
 						var height 		= $("#heightSLP").val()+"%";
 					}else{
 						var height 		= $("#heightSLP").val();

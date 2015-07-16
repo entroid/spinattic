@@ -80,7 +80,9 @@ define([
 			}
 		})
 
-		//helpFunctions.checkUser();
+		helpFunctions.checkUser();
+		helpFunctions.detectBrowser();
+
 
 		app_router.on('route:getTour', function (id) {
 
