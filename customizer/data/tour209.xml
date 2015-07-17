@@ -114,10 +114,10 @@
 			
 				
 				
-				<skill template_id="7" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Control Buttons">
-				<include template_id="7" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Control Buttons" url="%SWFPATH%/skills/simple_controls/controls.xml"></include>
+				<skill template_id="6" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Menu">
+				<include template_id="6" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" url="%SWFPATH%/skills/simple_menu/simple_menu.xml"></include>
 				
-				<skill_controls_settings template_id="7" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Control Buttons" layout="sliced" position="topright" orientation="vertical" x_offset="30" y_offset="20" order_1="skill_controls_full" order_2="skill_controls_autorotate" order_3="skill_controls_zoom" icons_styles="%SWFPATH%/skills/simple_controls/icons_1_w.png" width="30" height="30" buttons_margin="10" bgroundedge="0" bgcolor="0x000000" bgalpha="0.6" bgborder="1 0x000000 1" direction_arrows="false" direction_arrows_mobile="false" arrows_position="bottom" arrows_x_margin="0" arrows_y_margin="10" arrows_container_size="65" arrows_container_roundedge="40"></skill_controls_settings>
+				<simple_menu_settings template_id="6" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" title="false" thumbs_width="200" thumbs_height="100" thumbs_padding="10" thumbs_opened="true" thumbs_text="false" thumbs_dragging="true" thumbs_onhoverscrolling="false" thumbs_scrollbuttons="true" thumbs_scrollindicator="true" thumbs_y_offset="10" tooltips_thumbs="true" design_bgcolor="0x000000" design_bgalpha="0.6" design_bgborder="1 0x000000 1.0" design_bgroundedge="2" design_thumbborder_bgborder="5 0xFFFFFF 1.0" design_thumbborder_padding="2" design_thumbborder_bgroundedge="0" design_text_css="color:#FFFFFF; font-family:Arial; font-weight:normal;" layout_width="100%" layout_align="right" button_position="left" title_align="left" title_color="#FFFFFF" title_font="sans-serif" title_weight="normal" title_padding="0 0 0 85"></simple_menu_settings>
 		</skill>
 				
 		
