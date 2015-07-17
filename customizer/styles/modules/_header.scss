@@ -321,8 +321,18 @@ header.main-header{
                 &:active {
                     @include shadow-btn(1px, 3px, 0.8, "inset");
                 }
- 
-                
+                .loading{
+                    border: 2px solid;
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    background-color: #4faddf;
+                    top: 7px;
+                    left: 7px;
+                    border-radius: 10px;
+                    border-top: 1px solid #333;
+                    @include loaderAnimation();
+                }
             }
 
             .status{

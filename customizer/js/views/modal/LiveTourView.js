@@ -162,14 +162,17 @@ define([
 
         },
 
-        goLive: function() {
+        goLive: function(e) {
             var este = this;
             var callB = function(){
-               socialModal = new SocialModal();
-               socialModal.render("socialModal",socialModal.renderExtend);
+               //socialModal = new SocialModal();
+               //socialModal.render("socialModal",socialModal.renderExtend);
+               este.removeModal(e);
+                $("#draft").removeClass("active");
+                $("#draft").data("live","published")
             }
             var manageData = new ManageData();
-            manageData.saveLive(callB);
+            manageData.saveLive("live",callB);
             
         },
 
