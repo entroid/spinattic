@@ -1384,7 +1384,7 @@
         }
     }
 
-    .simple-control-btns-skill-editor{
+    .simple-control-btns-skill-editor, .simple-menu-skill-editor{
 
         .scrollwrapper{
             height:300px;
@@ -1413,7 +1413,6 @@
             padding:15px;
             min-height:260px;
             section{
-                overflow-y: hidden;
 
                 .column1{
                     width: 65%;
@@ -1655,6 +1654,19 @@
                     }
                 }
             }
+        } 
+    }
+
+    #skillsEditor-6{
+        header{
+            .fa-close{
+                display: none;
+            }
+        }
+    }
+
+    .simple-menu-skill-editor{
+        .tabContent{
         }
     }
 }
