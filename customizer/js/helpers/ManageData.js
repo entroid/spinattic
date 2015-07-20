@@ -281,6 +281,9 @@ define([
 				if(!$("#publishController #draft").hasClass("active")){
 					$("#publishController #draft").addClass("active")
 				}
+				if($("#draft").data("live") == "published"){
+					$("#publish").addClass("active");
+				}
 				$("#draft .loading-wrapper").show();
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1];
@@ -298,7 +301,6 @@ define([
 					success:function(res){
 						var res = JSON.parse(res);
 						console.log(res)
-						console.log(fun)
 						if(fun){
 							fun()
 						}
@@ -313,10 +315,17 @@ define([
 					}
 				})
 			}
-			this.saveLive = function(callb){
+
+			this.saveLive = function(live,callb){
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1];
-				var mydata = "json="+jsonstr+"&id="+id+"&tolive=1";
+				var toLive;
+				if(live == "live"){
+					toLive = "1";
+				}else{
+					toLive = "-1"
+				}
+				var mydata = "json="+jsonstr+"&id="+id+"&tolive="+toLive;
 				$.ajax({
 					url:'php/updater.php',
 					type:'POST',
