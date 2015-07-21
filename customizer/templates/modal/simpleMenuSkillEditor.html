@@ -1,0 +1,104 @@
+<div class="simple-menu-skill-editor">    
+        <div class="skill-tabs">
+            <nav class="menuTabs">
+                <ul>
+                    <li class="generalSettingsTab selected" data-content="designContent">Design</li>
+                    <li class="stylingTab" data-content="thumbsContent">Thumbs</li>
+                    <li class="directionTab" data-content="sceneTitleContent">Scene title</li>
+                </ul>                
+            </nav>
+
+            <div class="tabContent">
+                
+                    <section id="designContent" >
+                        <div class="scrollwrapper"> 
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label for="alignPosSmSkill">Align</label>
+
+                                    <div id="alignPosSmSkill">
+                                        <span class="leftPos">left</span>
+                                        <span class="middlePos">middle</span>
+                                        <span class="rightPos">right</span>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="widthSmSkill">Width</label>
+
+                                    <input id="widthSmSkill" type="number" value="100">
+
+                                    <div id="iconStyles" class="dropdown  dd-upload right-el">
+                                        <h2>
+                                            <span class="title">%</span>
+                                        </h2>
+                                        <ul>
+                                            <li data-value="%">%</li>
+                                            <li data-value="Px">Px</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label for="bkgColorSmSkill">Backgroun Color</label>
+                                    <input type="" id="bkgColorSmSkill">
+                                </div>
+                                <div class="line-group">
+                                    <label for="bkgAlphaSmSkill">Background Alpha</label>
+                                    <input type="" id="bkgAlphaSmSkill" value="0.6"> 
+                                </div>
+                                <div class="line-group">
+                                    <label>Background Border</label>
+
+                                    <label class="sup" for="bkgWidthSmSkill">width</label><input type="number" id="bkgWidthSmSkill" value="1"> 
+                                    <label class="sup" for="bkgBorderColorSmSkill">color</label><input type="number" id="bkgBorderColorSmSkill" value=""> 
+                                    <label class="sup" for="bkgBorderAlphaSmSkill">alpha</label><input type="number" id="bkgBorderAlphaSmSkill" value="1">
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="roundEdgeSmSkill"></label>
+                                    <input type="number" id ="roundEdgeSmSkill" value="0">
+                                </div>
+                            </div>
+
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Thumb border</label>
+
+                                    <label class="sup" for="thumbWidthSmSkill">width</label><input type="number" id="thumbWidthSmSkill" value="5"> 
+                                    <label class="sup" for="thumbColorSmSkill">color</label><input type="number" id="thumbColorSmSkill" value=""> 
+                                    <label class="sup" for="thumbAlphaSmSkill">alpha</label><input type="number" id="thumbAlphaSmSkill" value="1">
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="thumbBorderPaddingSmSkill"></label>
+                                    <input type="number" id ="thumbBorderPaddingSmSkill" value="2">
+                                </div>
+                                <div class="line-group">
+                                    <label for="thumbBorderEdgeSmSkill"></label>
+                                    <input type="number" id ="thumbBorderEdgeSmSkill" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="thumbsContent" class="none">
+                        <div class="scrollwrapper"> 
+                            section2
+                        </div>
+                    </section>
+
+                    <section id="sceneTitleContent" class="none">
+                        <div class="scrollwrapper"> 
+                            section3
+                        </div>
+                    </section>
+            </div>
+        </div>
+
+    <footer>
+    </footer>
+</div>

@@ -16,9 +16,10 @@ define([
 	'models/main/ModalModel',
 	'views/modal/AlertView',
 	'views/modal/ConfirmView',
+	'views/modal/SimpleMenuSkillEditor'
    
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView,SimpleMenuSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -66,6 +67,9 @@ define([
 				break;
 				case "5":
 				var mview = StandardLoadingSkillEditor;
+				break;
+				case "6":
+				var mview = SimpleMenuSkillEditor;
 				break;
 				case "7":
 				var mview = SimpleControlBtnSkillEditor;
