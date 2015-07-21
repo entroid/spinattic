@@ -3,7 +3,8 @@ define([
 	'underscore',
 	'backbone',
    'helpers/ManageTour',
-], function($, _, Backbone,ManageTour){
+   'helpers/HelpFunctions',
+], function($, _, Backbone,ManageTour,HelpFunctions){
 
 	var ManageData =  function(){
 
@@ -283,6 +284,9 @@ define([
 				}
 				if($("#draft").data("live") == "published"){
 					$("#publish").addClass("active");
+					$("#publish").attr("title","Deploy draft to LIVE version");
+					var helpFunctions = new HelpFunctions();
+					helpFunctions.toolTip("#publishController #publish", "publish up");
 				}
 				$("#draft .loading-wrapper").show();
 				var jsonstr = JSON.stringify(tourData)

@@ -5,9 +5,11 @@ define([
 	'text!templates/header/publishcontrollerview.html',
 	'views/modal/LiveTourView',
 	'helpers/HelpFunctions',
-	'helpers/ManageData'
+	'helpers/ManageData',
+	'models/main/ModalModel',
+	'views/modal/ConfirmView'
 
-], function($, _, Backbone, publishcontrollerview, LiveTourView, HelpFunctions,ManageData){
+], function($, _, Backbone, publishcontrollerview, LiveTourView, HelpFunctions,ManageData,ModalModel,ConfirmView){
 
 	var PublishControllerView = Backbone.View.extend({
 
@@ -33,7 +35,6 @@ define([
 				var updated = new Date(dateupdate);
 				if(updated > published){
 					deploy = true;
-					console.log("a")
 				}
 			}
 			var compiledTemplate = _.template(publishcontrollerview,{datepub:datepub,dateupdate:dateupdate,deploy:deploy});
@@ -41,12 +42,15 @@ define([
 
 			if(datepub!=""){
 				$("#draft").data("live","published")
+				$("#publish").attr("title","Deploy draft to LIVE version");
+				helpFunctions.toolTip("#publishController #publish", "publish up");
+
 			}
 			if ($('#onoffswitchpub').is(":checked")) {
 				helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
 			}
 			helpFunctions.toolTip("#publishController .fa-question-circle", "publish up");
-			helpFunctions.toolTip("#publishController #publish", "publish up");
+			
 
 			//avoid tooltip bubble up
 			$("#publishController .onoffswitch .onoffswitch-inner").mouseenter(function(e){
@@ -63,10 +67,24 @@ define([
 				this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
 				helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
 			} else {
-				var manageData = new ManageData();
-				manageData.saveLive("notlive");
-				 $("#draft").data("live","unpublished")
-				$('#publishController .onoffswitch').unbind('mouseenter');
+
+				var msg = "Are you sure you want to turn your tour Offline?";
+				var evt = function(){
+					var manageData = new ManageData();
+					manageData.saveLive("notlive");
+					 $("#draft").data("live","unpublished")
+					$('#publishController .onoffswitch').unbind('mouseenter');
+					$("#confirmDel .fa-close").trigger("click");
+					$("#onoffswitchpub").prop("checked",false);
+					$("#publish").removeClass("active")
+					$("#publishController #publish").unbind("mouseenter");
+					$("#publishController #publish").removeAttr("title");
+				}
+				$("#onoffswitchpub").prop("checked",true);
+				var modalModel = new ModalModel({msg:msg,evt:evt})
+				var alertView = new ConfirmView({model:modalModel});
+				alertView.render("confirmDel",alertView.renderExtend);
+
 			}
 		},
 
@@ -75,6 +93,8 @@ define([
 					$("#draft").removeClass("active");
 					$("#publish .loading").remove();
 					$("#publish").removeClass("active")
+					$("#publishController #publish").unbind("mouseenter");
+					$("#publishController #publish").removeAttr("title");
 				}
 				$("#publish").html('<div class="loading"></div>')
 				var manageData = new ManageData();
