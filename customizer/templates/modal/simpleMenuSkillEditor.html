@@ -16,7 +16,7 @@
                                 <div class="line-group">
                                     <label for="alignPosSmSkill">Align</label>
 
-                                    <div id="alignPosSmSkill">
+                                    <div id="alignPosSmSkill" class="alignPosSmSkill">
                                         <span class="leftPos">left</span>
                                         <span class="middlePos">middle</span>
                                         <span class="rightPos">right</span>
@@ -26,41 +26,60 @@
                                 <div class="line-group">
                                     <label for="widthSmSkill">Width</label>
 
-                                    <input id="widthSmSkill" type="number" value="100">
+                                    <div>
+                                        <input id="widthSmSkill" type="number" value="100">
 
-                                    <div id="iconStyles" class="dropdown  dd-upload right-el">
-                                        <h2>
-                                            <span class="title">%</span>
-                                        </h2>
-                                        <ul>
-                                            <li data-value="%">%</li>
-                                            <li data-value="Px">Px</li>
-                                        </ul>
+                                        <div class="dropdown  dd-upload">
+                                            <h2>
+                                                <span class="title">%</span><span class="fa fa-caret-down fa-lg right"></span>
+                                            </h2>
+                                            <ul>
+                                                <li data-value="%">%</li>
+                                                <li data-value="Px">Px</li>
+                                            </ul>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         
 
                             <div class="modalSeparator">
                                 <div class="line-group">
-                                    <label for="bkgColorSmSkill">Backgroun Color</label>
-                                    <input type="" id="bkgColorSmSkill">
+                                    <label for="bkgColorSmSkill">Background Color</label>
+                                    <div>
+                                        <input type="" id="bkgColorSmSkill">
+                                    </div>
                                 </div>
                                 <div class="line-group">
                                     <label for="bkgAlphaSmSkill">Background Alpha</label>
-                                    <input type="" id="bkgAlphaSmSkill" value="0.6"> 
+                                    <div>
+                                        <input type="number" id="bkgAlphaSmSkill" value="0.6"> 
+                                    </div>
                                 </div>
                                 <div class="line-group">
                                     <label>Background Border</label>
 
-                                    <label class="sup" for="bkgWidthSmSkill">width</label><input type="number" id="bkgWidthSmSkill" value="1"> 
-                                    <label class="sup" for="bkgBorderColorSmSkill">color</label><input type="number" id="bkgBorderColorSmSkill" value=""> 
-                                    <label class="sup" for="bkgBorderAlphaSmSkill">alpha</label><input type="number" id="bkgBorderAlphaSmSkill" value="1">
+                                    <div>
+                                        <div class="sup">
+                                            <label class="sup" for="bkgWidthSmSkill">width</label><input type="number" id="bkgWidthSmSkill" value="1"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label class="sup" for="bkgBorderColorSmSkill">color</label><input type="number" id="bkgBorderColorSmSkill" value=""> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label class="sup" for="bkgBorderAlphaSmSkill">alpha</label><input type="number" id="bkgBorderAlphaSmSkill" value="1">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="line-group">
                                     <label for="roundEdgeSmSkill"></label>
-                                    <input type="number" id ="roundEdgeSmSkill" value="0">
+                                    <div>
+                                        <input type="number" id ="roundEdgeSmSkill" value="0">
+                                    </div>
                                 </div>
                             </div>
 
@@ -68,18 +87,33 @@
                                 <div class="line-group">
                                     <label>Thumb border</label>
 
-                                    <label class="sup" for="thumbWidthSmSkill">width</label><input type="number" id="thumbWidthSmSkill" value="5"> 
-                                    <label class="sup" for="thumbColorSmSkill">color</label><input type="number" id="thumbColorSmSkill" value=""> 
-                                    <label class="sup" for="thumbAlphaSmSkill">alpha</label><input type="number" id="thumbAlphaSmSkill" value="1">
+                                    <div>
+                                        <div class="sup" >
+                                            <label for="thumbWidthSmSkill">width</label><input type="number" id="thumbWidthSmSkill" value="5"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label class="sup" for="thumbColorSmSkill">color</label><input type="number" id="thumbColorSmSkill" value=""> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label class="sup" for="thumbAlphaSmSkill">alpha</label><input type="number" id="thumbAlphaSmSkill" value="1">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="line-group">
-                                    <label for="thumbBorderPaddingSmSkill"></label>
-                                    <input type="number" id ="thumbBorderPaddingSmSkill" value="2">
+                                    <label for="thumbBorderPaddingSmSkill">Thumb border padding</label>
+                                    
+                                    <div>
+                                        <input type="number" id ="thumbBorderPaddingSmSkill" value="2">
+                                    </div>
                                 </div>
                                 <div class="line-group">
-                                    <label for="thumbBorderEdgeSmSkill"></label>
-                                    <input type="number" id ="thumbBorderEdgeSmSkill" value="0">
+                                    <label for="thumbBorderEdgeSmSkill">Thumb border round edge</label>
+                                    <div>
+                                        <input type="number" id ="thumbBorderEdgeSmSkill" value="0">
+                                    </div>
                                 </div>
                             </div>
                         </div>
