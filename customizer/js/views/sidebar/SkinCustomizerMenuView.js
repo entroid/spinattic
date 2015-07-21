@@ -67,10 +67,17 @@ define([
             $mineSub.slideToggle();
         },
         addStyle:function(e){
-            var skillsModalList = new SkillsModalList();
-            skillsModalList.render("skillsModalList",skillsModalList.renderExtend);
+           var este = this;
+           if(!$("#skillsModalList").size()){
+            este.skillsModalList = new SkillsModalList();
+            este.skillsModalList.render("skillsModalList",este.skillsModalList.renderExtend);
             $("#skillsModalList").addClass("skillModal").parent(".overlay").addClass("skillWindow");
-            skillsModalList.verticalCent();
+            este.skillsModalList.verticalCent();
+            }else{
+                $("#skillsModalList .skill-list").html("");
+                $("#skillsModalList .loading").show("");
+               este.skillsModalList.fullfillSkillList(); 
+            }
         }
 
         

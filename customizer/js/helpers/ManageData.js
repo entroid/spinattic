@@ -308,6 +308,7 @@ define([
 							$("#draft .loading-wrapper").html('<div class="loading"></div>')
 						});
 						$("#draft .date").text(res.date);
+						tourData.krpano.datatour.date_updated = res.date; 
 						console.log(res)
 					},
 					error:function(xhr, ajaxOptions, thrownError){
@@ -331,9 +332,13 @@ define([
 					type:'POST',
 					data:mydata,
 					success:function(res){
-						console.log(res)
 						var res = JSON.parse(res);
 						console.log(res)
+						if(toLive == "1"){
+							tourData.krpano.datatour.date_published = res.date;
+						}else{
+							tourData.krpano.datatour.date_published = "";
+						}
 						if(callb){
 							callb()
 						}

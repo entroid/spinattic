@@ -24,11 +24,24 @@ define([
 
 		render: function(){
 			var este = this;
-			var compiledTemplate = _.template(publishcontrollerview);
 			var helpFunctions = new HelpFunctions();
-
+			var datepub = tourData.krpano.datatour.date_published;
+			var dateupdate = tourData.krpano.datatour.date_updated;
+			var deploy;
+			if(datepub != ""){
+				var published = new Date(datepub);
+				var updated = new Date(dateupdate);
+				if(updated > published){
+					deploy = true;
+					console.log("a")
+				}
+			}
+			var compiledTemplate = _.template(publishcontrollerview,{datepub:datepub,dateupdate:dateupdate,deploy:deploy});
 			$(this.el).append( compiledTemplate );
 
+			if(datepub!=""){
+				$("#draft").data("live","published")
+			}
 			if ($('#onoffswitchpub').is(":checked")) {
 				helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
 			}

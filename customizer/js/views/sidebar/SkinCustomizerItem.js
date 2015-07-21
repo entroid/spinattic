@@ -109,12 +109,22 @@ define([
 				if($('#skillsEditor-' + tourSkill._template_id ).length){
 					$('#skillsEditor-' + tourSkill._template_id ).find(".save-and-close").trigger("click");
 				}
+				
 				var helpFunctions = new HelpFunctions();
 				helpFunctions.showReloadOverlay();
 				var manageData = new ManageData()
-				var manageTour = new ManageTour();
+				
 				$("#confirmDel .fa-close").trigger("click");
-				manageData.removeSkill(tourSkill._kind,manageTour.reloadTour)
+				beforeReload = function(){
+					var manageTour = new ManageTour();
+					manageTour.reloadTour(function(){
+						if($("#skillsModalList").length){
+							$("#skinCustomizer-menu .add-link").trigger("click")
+						}
+					})
+				}
+
+				manageData.removeSkill(tourSkill._kind,beforeReload)
 
 				$('#skill-' + tourSkill._template_id).remove();
 				v.undelegateEvents();

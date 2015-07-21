@@ -1,26 +1,19 @@
 <div id="publishController" class="right">
-    <div class="onoffswitch" title="Published: 05/09/2015 9:00am">
-        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchpub" >
+    <div class="onoffswitch" title=" <%if(datepub!=""){%>Published: <%datepub%><%}%>">
+        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchpub" <%if(datepub!=""){%>checked<%}%> >
         <label class="onoffswitch-label" for="onoffswitchpub">
             <span class="onoffswitch-inner"></span>
             <span class="onoffswitch-switch fa fa-eye fa-lg"></span>
         </label>
     </div>
-
-    <!--<div id="live" class="status">
-        <h4>Live</h4>
-        <span class="date">05/09/2015 9:00am</span>
-        <span class="help fa fa-question-circle" title="Tooltip Text"></span>
-    </div>-->
-
-    <div id="publish" class="fa fa-arrow-circle-left" title="Deploy draft to LIVE version"></div>
+    <div id="publish" class="fa fa-arrow-circle-left<%if(deploy){%> active <%}%>" title="Deploy draft to LIVE version"></div>
     
-    <div id="draft" class="status">
+    <div id="draft" class="status <%if(deploy){%> active <%}%>">
         <div class="loading-wrapper">
             <div class="loading"></div>
         </div>
         <h4>Temp.draft</h4>
-        <span class="date"></span>
+        <span class="date"><%=dateupdate%></span>
         <span class="help fa fa-question-circle" title="Tooltip Text"></span>
     </div>
 </div>

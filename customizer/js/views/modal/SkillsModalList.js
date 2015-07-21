@@ -26,13 +26,16 @@ define([
 				 },
 		
 		renderExtend:function(){
+
+			var este = this;
+
+
 			
 			var myid = this.myid;
 			var compiledTemplate = _.template(skilllist);
 			$("#"+myid+" .inner-modal").html(compiledTemplate);
 
-			var este = this;
-
+			
 			this.verticalCent();
 			this.fullfillSkillList();
 			
@@ -67,10 +70,15 @@ define([
 						var descrip = "<p>"+elem.description+"</p>";
 						elem.label = elem.title+" "+elem.description;
 						var $bt
-						$bt = $('<a href="" id="add-item-'+elem.id+'" class="add-skill"><i class="fa fa-plus"></i>Add</a>').data("skill",elem);
-						$bt.data("blocked",elem.blocked);
-						$bt.data("no_delete_if_free",elem.no_delete_if_free);
-						$bt.data("blocked_description",elem.blocked_description);
+						if(elem.blocked_description == "added"){
+							$bt =$('<span class="added-skill">Added</span>')
+						}else{
+							$bt = $('<a href="" id="add-item-'+elem.id+'" class="add-skill"><i class="fa fa-plus"></i>Add</a>').data("skill",elem);
+							$bt.data("blocked",elem.blocked);
+							$bt.data("no_delete_if_free",elem.no_delete_if_free);
+							$bt.data("blocked_description",elem.blocked_description);
+						}
+						
 						var $li = $('<li id="item'+elem.id+'">'+title+descrip+'</li>');
 						$li.append($bt);
 						if(elem.level == "FREE"){
