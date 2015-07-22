@@ -1410,8 +1410,9 @@
 
         .tabContent{
             background-color: $black-transparent-40;
-            padding:15px;
+            padding:15px 15px 0;
             min-height:260px;
+            
             section{
 
                 .column1{
@@ -1658,6 +1659,8 @@
     }
 
     #skillsEditor-6{
+        width: 565px;
+
         header{
             .fa-close{
                 display: none;
@@ -1666,7 +1669,11 @@
 
         .modalSeparator{
             border-bottom: 1px solid white;
-              margin-bottom: 20px;
+            margin-bottom: 20px;
+
+            &:last-child{
+                border-bottom:none;
+            }
 
             .line-group{
                 min-height: 33px;
@@ -1711,6 +1718,7 @@
 
                         .fa-caret-down{
                             margin-top: 3px;
+                            margin-left: 10px;
                         }
                     }
                 }
@@ -1728,8 +1736,56 @@
     span{
         display: inline-block;
         width: 15px;
-        height: 10px;
+        height: 13px;
         cursor: pointer;
+        white-space: nowrap;
+        text-indent: 100%;
+        overflow: hidden;
+        margin-right: 7px;
+        background: url('../images/icons/align_tool.png') no-repeat;
+
+        &.leftPos{
+            background-position:0 -15px;
+            &.selected{
+                background-position: left top;
+            }
+        }
+        &.middlePos{
+            background-position:-19px -15px;
+            &.selected{
+                background-position: -19px top;
+            }
+        }
+        &.rightPos{
+            background-position:-36px -15px;
+            &.selected{
+                background-position: -36px top;
+            }
+        }
+
+    }
+
+    &.textAlign{
+        span {
+            &.leftPos{
+                background-position:-57px -15px;
+                &.selected{
+                    background-position: -57px top;
+                }
+            }
+            &.middlePos{
+                background-position:-75px -15px;
+                &.selected{
+                    background-position: -75px top;
+                }
+            }
+            &.rightPos{
+                background-position:-92px -15px;
+                &.selected{
+                    background-position: -92px top;
+                }
+            }
+        }
     }
 }
 

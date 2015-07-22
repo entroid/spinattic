@@ -18,7 +18,7 @@
 
                                     <div id="alignPosSmSkill" class="alignPosSmSkill">
                                         <span class="leftPos">left</span>
-                                        <span class="middlePos">middle</span>
+                                        <span class="middlePos selected">middle</span>
                                         <span class="rightPos">right</span>
                                     </div>
                                 </div>
@@ -62,15 +62,15 @@
 
                                     <div>
                                         <div class="sup">
-                                            <label class="sup" for="bkgWidthSmSkill">width</label><input type="number" id="bkgWidthSmSkill" value="1"> 
+                                            <label for="bkgWidthSmSkill">width</label><input type="number" id="bkgWidthSmSkill" value="1"> 
                                         </div>
 
                                         <div class="sup">
-                                            <label class="sup" for="bkgBorderColorSmSkill">color</label><input type="number" id="bkgBorderColorSmSkill" value=""> 
+                                            <label for="bkgBorderColorSmSkill">color</label><input type="number" id="bkgBorderColorSmSkill" value=""> 
                                         </div>
 
                                         <div class="sup">
-                                            <label class="sup" for="bkgBorderAlphaSmSkill">alpha</label><input type="number" id="bkgBorderAlphaSmSkill" value="1">
+                                            <label for="bkgBorderAlphaSmSkill">alpha</label><input type="number" id="bkgBorderAlphaSmSkill" value="1">
                                         </div>
                                     </div>
                                 </div>
@@ -93,11 +93,11 @@
                                         </div>
 
                                         <div class="sup">
-                                            <label class="sup" for="thumbColorSmSkill">color</label><input type="number" id="thumbColorSmSkill" value=""> 
+                                            <label for="thumbColorSmSkill">color</label><input type="number" id="thumbColorSmSkill" value=""> 
                                         </div>
 
                                         <div class="sup">
-                                            <label class="sup" for="thumbAlphaSmSkill">alpha</label><input type="number" id="thumbAlphaSmSkill" value="1">
+                                            <label for="thumbAlphaSmSkill">alpha</label><input type="number" id="thumbAlphaSmSkill" value="1">
                                         </div>
                                     </div>
                                 </div>
@@ -121,13 +121,227 @@
 
                     <section id="thumbsContent" class="none">
                         <div class="scrollwrapper"> 
-                            section2
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Open by default</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Thumbs size</label>
+
+                                    <div>
+                                        <div class="sup" >
+                                            <label for="thumbSizeWidthSmSkill">Width</label><input type="number" id="thumbSizeWidthSmSkill" value="200"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label for="thumbSizeHeightSmSkill">Height</label><input type="number" id="thumbSizeHeightSmSkill" value="100"> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="thumbsPaddingSmSkill">Thumbs padding</label>
+                                    <div>
+                                        <input type="number" id ="thumbsPaddingSmSkill" value="10">
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="thumbsBottomOffsetSmSkill">Bottom offset</label>
+                                    <div>
+                                        <input type="number" id ="thumbsBottomOffsetSmSkill" value="5">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Tooltip on mouse over</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchTTSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchTTSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Text overlay</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchTxtOverlaySmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchTxtOverlaySmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Thumbs dragging</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchThmbsDragginSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchThmbsDragginSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Mouse over scrolling</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchMOScrollingSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchMOScrollingSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Scroll buttons</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollBtnsSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchscrollBtnsSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Scroll indicator</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollIndicatorSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchscrollIndicatorSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
                     <section id="sceneTitleContent" class="none">
                         <div class="scrollwrapper"> 
-                            section3
+                            <div class="modalSeparator">
+                                <div class="line-group">
+                                    <label>Enable scene title</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscenettleSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchscenettleSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Enable on mobiles</label>
+
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchmobileSmSkill" >
+                                        <label class="onoffswitch-label" for="onoffswitchmobileSmSkill">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="alignPosSmSkill">Text align</label>
+
+                                    <div id="alignPosSmSkill" class="alignPosSmSkill textAlign">
+                                        <span class="leftPos selected">left</span>
+                                        <span class="middlePos">middle</span>
+                                        <span class="rightPos">right</span>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Font family</label>
+
+                                    <div>
+                                        <div class="dropdown  dd-upload">
+                                            <h2>
+                                                <span class="title">Arial</span><span class="fa fa-caret-down fa-lg right"></span>
+                                            </h2>
+                                            <ul>
+                                                <li data-value="Arial">Arial</li>
+                                                <li data-value="futura">Futura sans</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Font weight</label>
+
+                                    <div>
+                                        <div class="dropdown  dd-upload">
+                                            <h2>
+                                                <span class="title">Normal</span><span class="fa fa-caret-down fa-lg right"></span>
+                                            </h2>
+                                            <ul>
+                                                <li data-value="Normal">Normal</li>
+                                                <li data-value="Bold">Bold</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Text color</label>
+
+                                    <div>
+                                        <input type="" value="" class="colorpicker">
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label>Text padding</label>
+
+                                    <div>
+                                        <div class="sup" >
+                                            <label for="txtPaddingTopSmSkill">Top</label><input type="number" id="txtPaddingTopSmSkill" value="0"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label for="txtPaddingRightSmSkill">Right</label><input type="number" id="txtPaddingRightSmSkill" value="0"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label for="txtPaddingBottomSmSkill">Bottom</label><input type="number" id="txtPaddingBottomSmSkill" value="0"> 
+                                        </div>
+
+                                        <div class="sup">
+                                            <label for="txtPaddingLeftSmSkill">Left</label><input type="number" id="txtPaddingLeftSmSkill" value="0"> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
             </div>
