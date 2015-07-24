@@ -143,13 +143,19 @@ textarea{
     padding: 4px 6px;
     font-size:1.6em;
     font-weight: lighter;
-    max-width: 90%;
+    max-width: 90%; 
     min-width: 100px;
-}
+} 
 
 .double-inputs{
     display: inline-block;
     margin-right: 10px;
+    width: 47%;
+    margin-top: 15px;
+
+    &:last-child{
+        margin-right: 0;
+    }
 
     input{
         width: 110px;
