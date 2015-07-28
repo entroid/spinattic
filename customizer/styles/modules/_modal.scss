@@ -1190,8 +1190,7 @@
         }
 
         form {
-            overflow: hidden;
-            height:650px;
+            /*height:650px;*/
         }
 
         .row {
@@ -1800,7 +1799,9 @@
     box-sizing: border-box;
 
     &.left-col{
-        padding-right: 20px;        
+        padding-right: 20px; 
+        border-right: 1px solid #bfbfbf;
+        margin-right: -1px; 
     }
     &.right-col{
         padding-left: 20px;
@@ -1824,7 +1825,7 @@
           right: -1px;
           overflow:auto;
         &.category{
-            height:160px;
+            /*height:160px;*/
         }
 
         &.privacy{
