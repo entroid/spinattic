@@ -117,9 +117,10 @@
 				<skill template_id="6" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Menu">
 				<include template_id="6" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" url="%SWFPATH%/skills/simple_menu/simple_menu.xml"></include>
 				
-				<simple_menu_settings template_id="6" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" title="false" thumbs_width="200" thumbs_height="100" thumbs_padding="10" thumbs_opened="true" thumbs_text="false" thumbs_dragging="true" thumbs_onhoverscrolling="false" thumbs_scrollbuttons="true" thumbs_scrollindicator="true" thumbs_y_offset="10" tooltips_thumbs="true" design_bgcolor="0x000000" design_bgalpha="0.6" design_bgborder="1 0x000000 1.0" design_bgroundedge="2" design_thumbborder_bgborder="5 0xFFFFFF 1.0" design_thumbborder_padding="2" design_thumbborder_bgroundedge="0" design_text_css="color:#FFFFFF; font-family:Arial; font-weight:normal;" layout_width="100%" layout_align="right" button_position="left" title_align="left" title_color="#FFFFFF" title_font="sans-serif" title_weight="normal" title_padding="0 0 0 85"></simple_menu_settings>
-		</skill>
 				
+				<simple_menu_settings template_id="6" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" title="false" thumbs_width="200" thumbs_height="100" thumbs_padding="10" thumbs_opened="true" thumbs_text="false" thumbs_dragging="true" thumbs_onhoverscrolling="false" thumbs_scrollbuttons="true" thumbs_scrollindicator="true" thumbs_y_offset="10" tooltips_thumbs="true" design_bgcolor="0x000000" design_bgalpha="0.6" design_bgborder="1 0x000000 1.0" design_bgroundedge="2" design_thumbborder_bgborder="5 0xFFFFFF 1.0" design_thumbborder_padding="2" design_thumbborder_bgroundedge="0" title_mobiles="false" layout_width="100%" layout_align="right"  title_align="left" title_color="#FFFFFF" title_font="sans-serif" title_weight="normal" title_padding="0 0 0 85" button_position="left" button_x="10"></simple_menu_settings>
+		</skill>
+		
 		
 			<!-- DEFAULT SKILLS -->
 			

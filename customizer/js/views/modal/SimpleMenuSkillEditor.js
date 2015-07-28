@@ -6,87 +6,72 @@ define([
 	'text!templates/modal/simpleMenuSkillEditor.html',
 	'helpers/HelpFunctions',
 	'mCustomScrollbar',
-	/*'colorpicker',
-	'helpers/ManageData',
-	'views/modal/SingleUploader',
-	'helpers/ManageData',
-	'helpers/ManageTour',*/
+	'colorpicker',
+	'helpers/ManageData'
 
-], function($, _, Backbone,Modal,simpleMenuSkillEditor,HelpFunctions, mCustomScrollbar/*,colorpicker, ManageData*/){
+], function($, _, Backbone,Modal,simpleMenuSkillEditor,HelpFunctions, mCustomScrollbar,colorpicker, ManageData){
 
 	var SimpleMenuSkillEditor = Modal.extend({
 
 		krpano:null,
-		skill_controls_settings:null,
+		simple_menu_settings:null,
 		initialize: function () {
 		_.bindAll(this);        
 		 _.extend(this.events, Modal.prototype.events);
 		},
 		events:{
-			/*"click .simple-control-btns-skill-editor .dd-upload li":"selectDD",
-			"click .simple-control-btns-skill-editor .bk-image li":"selectDDImage",
-			"click .simple-control-btns-skill-editor .btnContainer .fa-plus":"addButton",
-			"click .simple-control-btns-skill-editor .btnContainer .fa-trash":"removeButton",
-			"click #scbPosition .selected":"alignSignature",
-			"change input.scb_change":"changeValue",
-			"change input.scb_border_change":"setBorderProp",
-			"click #skillsEditor-7 #Context-menu-finish":"doneEdition",
-			"change .simple-control-btns-skill-editor .onoffswitch-checkbox":"switchBox"*/
+			'change .simple-menu-skill-editor .single-int':"setProperties",
+			'change .simple-menu-skill-editor .multiple-int':"setMultipleProperties",
+			'change #widthSmSkill':'setWidth',
+			'click #widthSmSkillDD li':'setUnit',
+			'click #alignPosSmSkill':'alignlayout',
+			'click #alignPosSmSkillText':'alignText',
+			'change input[type="checkbox"]':'checkboxChange',
+			'click #fontFamilyDD li':'selectFontFamily',
+			'click #fontweightdd li':'selectFontWeight',
+			'change #textpaddingsm input':'changeTextPadding',
+			"click #skillsEditor-6 #Context-menu-finish":"doneEdition",
 		},
 		
 		renderExtend:function(){
 
 			var myid = this.myid;
 			var tourSkill = this.model.get("tourSkill");
-			/*this.skill_controls_settings = tourSkill.skill_controls_settings
+			this.simple_menu_settings = tourSkill.simple_menu_settings
 
-			var orientationLabel = tourSkill.skill_controls_settings._orientation;
-			orientationLabel = orientationLabel.substring(0,1).toUpperCase()+orientationLabel.substring(1);
+			tour_width_unit = tourSkill.simple_menu_settings._layout_width.slice(-1);
+			tour_width = tourSkill.simple_menu_settings._layout_width.split("%")[0];
+			if(tour_width_unit != "%")tour_width_unit = "px";
+			backborder = tourSkill.simple_menu_settings._design_bgborder.split(" ")
+			thumbborder = tourSkill.simple_menu_settings._design_thumbborder_bgborder.split(" ")
+			titlePadding = tourSkill.simple_menu_settings._title_padding.split(" ")
 
-			var layoutLabel = tourSkill.skill_controls_settings._layout;
-			layoutLabel = layoutLabel.substring(0,1).toUpperCase()+layoutLabel.substring(1);
 
-			var backimage = tourSkill.skill_controls_settings._icons_styles;
-			backimage = backimage.replace("%SWFPATH%","../player");
-
-			var borderproperties = tourSkill.skill_controls_settings._bgborder.split(" ");
-
-			borderprop = {
-				width: borderproperties[0],
-				color: borderproperties[1],
-				transp: borderproperties[2],
+			customprop = {
+				tour_width:tour_width,
+				tour_width_unit:tour_width_unit,
+				backborder:backborder,
+				thumbborder:thumbborder,
+				titlePadding:titlePadding,
 			}
-			
-			var arrowPos = tourSkill.skill_controls_settings._arrows_position;
-			arrowPos = arrowPos.substring(0,1).toUpperCase()+arrowPos.substring(1);*/
 
-			console.log(tourSkill)
-			var template = _.template(simpleMenuSkillEditor,{tourSkill:tourSkill/*,orientationLabel:orientationLabel,layoutLabel:layoutLabel,backimage:backimage,borderprop:borderprop,arrowPos:arrowPos*/})
-
+			var template = _.template(simpleMenuSkillEditor,{tourSkill:tourSkill,customprop:customprop})
 			$("#"+myid+" .inner-modal").html(template);
 
-			/*_.each($("#signature-skill-align .fa-circle"),function(elem,ind){
-				if($(elem).data("pos") == tourSkill.plugin._align){
-					$(elem).addClass("selected");
-				}
-			})*/
+			$("#alignPosSmSkill span[data-align="+tourSkill.simple_menu_settings._layout_align+"]").addClass("selected")
+			$("#alignPosSmSkillText span[data-align="+tourSkill.simple_menu_settings._title_align+"]").addClass("selected")
 
 			$("#"+myid+" header h2").text("Simple Menu Skill Editor");
 			$("#"+myid).find(".save-and-close").unbind("click");
 			var este = this;
-			/* $('#scb-bgcolor').colorpicker({select:function(ev, colorPicker){
-				este.setColor(colorPicker,ev)
+			
+			 $('#bkgColorSmSkill,#textcolorsm').colorpicker({select:function(ev, colorPicker){
+				este.setProperties(ev)
 			}});
 
-			$('#scb-border-bgcolor').colorpicker({select:function(ev, colorPicker){
-				este.setBorderProp()
+			$("#thumbColorSmSkill,#bkgBorderColorSmSkill").colorpicker({select:function(ev, colorPicker){
+				este.setMultipleProperties(ev)
 			}});
-
-			_.each($("#scbPosition .fa-circle"),function(elem,ind){
-				if($(elem).data("pos") == tourSkill.skill_controls_settings._position){
-					$(elem).addClass("selected");
-				}
-			})*/
 
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.skillTabs(myid);
@@ -101,161 +86,120 @@ define([
 			this.krpano = document.getElementById("krpanoSWFObject");
 			var este = this;
 
-			/*$("#generalSettingsContent .scbOrder").sortable({
-				handle:".sortArrows",
-				beforeStop:function(evt,ui){
-
-				setTimeout(function(){    
-				  
-					este.ordericons();
-
-					},200) 
-				}
-			});*/
-
 		},
 
-		/*ordericons:function(){
-			var acciones = [];
-			_.each($(".scbOrder .btnContainer"),function(elem,ind){
-				if($(elem).find(".skills-add-btn").attr("id")){
-					var myval = $(elem).find(".skills-add-btn").attr("id");
+		setWidth:function(){
+
+			var unit =  ($("#widthSmSkillDD").data("value")=="%") ? "%":"";
+			var value = $("#widthSmSkill").val()+unit;
+			this.krpano.call("set(simple_menu_settings.layout_width,"+value+");	simple_menu_design();");
+			this.simple_menu_settings._layout_width=value;
+		},
+
+		setUnit:function(e){
+			var value = $(e.target).data("value");
+			$("#widthSmSkillDD").data("value",value);
+			if(value == "%"){
+				$("#widthSmSkill").attr("min","10");
+				$("#widthSmSkill").attr("max","100");
+				if($("#widthSmSkill").val() == "50"){
+					$("#widthSmSkill").val("10")
+				}else if($("#widthSmSkill").val() > "100"){
+					$("#widthSmSkill").val("100")
+				}
+			}else{
+				$("#widthSmSkill").attr("min","50");
+				$("#widthSmSkill").attr("max","1000");
+				if($("#widthSmSkill").val() == "10"){
+					$("#widthSmSkill").val("50")
+				}
+			}
+		this.setWidth();
+		},
+
+		alignlayout:function(e){
+			$("#alignPosSmSkill span").removeClass("selected");
+			$(e.target).addClass("selected");
+			var value = $(e.target).data("align");
+			this.krpano.call("set(simple_menu_settings.layout_align,"+value+");simple_menu_design();");
+			this.simple_menu_settings._layout_align=value;
+		},
+
+		alignText:function(e){
+			$("#alignPosSmSkillText span").removeClass("selected");
+			$(e.target).addClass("selected");
+			var value = $(e.target).data("align");
+			this.krpano.call("set(simple_menu_settings.title_align,"+value+");simple_menu_title_styles();");
+			this.simple_menu_settings._title_align=value;
+		},
+
+		setProperties:function(e){
+			var prop = $(e.target).data("prop");
+			if($(e.target).attr("type") == "text"){
+				if($(e.target).attr("id") == "textcolorsm"){
+					var value = "#"+$(e.target).val();
 				}else{
-					var myval = "false";
+				var value = "0x"+$(e.target).val();
 				}
-				acciones.push(myval);
-			})
-			this.krpano.call("set(skill_controls_settings.order_1,"+acciones[0]+");set(skill_controls_settings.order_2,"+acciones[1]+");set(skill_controls_settings.order_3,"+acciones[2]+"); skill_controls_build();");
-	   		this.skill_controls_settings._order_1 = acciones[0];
-	   		this.skill_controls_settings._order_2 = acciones[1];
-	   		this.skill_controls_settings._order_3 = acciones[2];
-		},
-
-
-		selectDD:function(e){
-
-			var myval = $(e.target).data("value");
-			$(e.target).parents(".dropdown").data("selected",myval);
-			var param = $(e.target).parent().data("param");
-			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-			this.skill_controls_settings["_"+param] = myval;
-		},
-
-		selectDDImage:function(e){
-			if($(e.target).prop("tagName") == "LI"){
-				var myval = $(e.target).data("value");
-				var src = $(e.target).find("img").attr("src");
 			}else{
-			   var myval = $(e.target).parent().data("value");
-			   var src = $(e.target).attr("src");
+				var value = $(e.target).val();
 			}
-			var param = "icons_styles";
-			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-			this.skill_controls_settings["_"+param] = myval;
-			$("#iconStyles h2 img").attr("src",src);
-			$("#generalSettingsContent .icon-wrap").css("background-image","url("+src+")");
-		},  
-
-		changeValue:function(e){
-			var myval = $(e.target).val();
-			var param = $(e.target).data("param");            
-			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-			this.skill_controls_settings["_"+param] = myval;
+			var finalFun = $(e.target).data("finalfun");
+			this.simple_menu_settings["_"+prop]=value;
+			this.krpano.call("set(simple_menu_settings."+prop+","+value+");	"+finalFun+"();");
 		},
 
-		setColor:function(colorPicker,e){
-			var myval = "0x"+colorPicker.formatted;
-			var param = $(e.target).data("param");  
-			this.krpano.call("set(skill_controls_settings."+param+","+myval+"); skill_controls_build();");
-			this.skill_controls_settings["_"+param] = myval;
-
+		setMultipleProperties:function(e){
+			var group = $(e.target).data("group");
+			console.log(group)
+			var val1 = $('input[data-group="'+group+'"]:eq(0)').val();
+			var val2 = $('input[data-group="'+group+'"]:eq(1)').val();
+			var val3 = $('input[data-group="'+group+'"]:eq(2)').val();
+			var prop = $(e.target).data("prop");
+			var totalVal = val1+" 0x"+val2+" "+val3;
+			this.simple_menu_settings["_"+prop]=totalVal;
+			this.krpano.call("set(simple_menu_settings."+prop+","+totalVal+");simple_menu_startup();");
 		},
 
-		setBorderProp:function(){
-			var myval = $("#border-width").val()+" 0x"+$("#scb-border-bgcolor").val()+" "+$("#border-transparency").val();
-			this.krpano.call("set(skill_controls_settings.bgborder,"+myval+"); skill_controls_build();");
-			this.skill_controls_settings._bgborder = myval;
-
-		},
-		switchBox:function(e){
-			var este = this;
-			var param = $(e.target).data("param");
-			
-			if($(e.target).is(':checked')){
-				este.krpano.call("set(skill_controls_settings."+param+",true); skill_controls_build();");
-				este.skill_controls_settings["_"+param] = true;
+		checkboxChange:function(e){
+			if($(e.target).is(":checked")){
+				var value="true";
 			}else{
-				este.krpano.call("set(skill_controls_settings."+param+",false); skill_controls_build();");
-				este.skill_controls_settings["_"+param] = false;
+				var value="false";
 			}
+			var prop = $(e.target).data("prop");
+			var finalfun = $(e.target).data("finalfun");
+			this.krpano.call("set(simple_menu_settings."+prop+","+value+");"+finalfun+"();");
+			this.simple_menu_settings["_"+prop]=value;
 		},
 
-		alignSignature:function(e){
+		selectFontFamily:function(e){
+			var value= $(e.target).data("value");
+			this.krpano.call("set(simple_menu_settings.title_font,"+value+");simple_menu_title_styles();");
+			this.simple_menu_settings._title_font=value;
+		},
+		selectFontWeight:function(e){
+			var value= $(e.target).data("value");
+			this.krpano.call("set(simple_menu_settings.title_weight,"+value+");simple_menu_title_styles();");
+			this.simple_menu_settings._title_weight=value;
+		},
 
-			var pos = $(e.target).data("pos");
-			this.krpano.call("set(skill_controls_settings.position,"+pos+"); skill_controls_build();");
-			this.skill_controls_settings._position = pos;
+		changeTextPadding:function(e){
+			var value = $("#textpaddingsm input:eq(0)").val()+" "+$("#textpaddingsm input:eq(1)").val()+" "+$("#textpaddingsm input:eq(2)").val()+" "+$("#textpaddingsm input:eq(3)").val();
+			console.log(value)
+			this.krpano.call("set(simple_menu_settings.title_padding,"+value+");simple_menu_title_styles();");
+			this.simple_menu_settings._title_padding=value;
 		},
 
 		doneEdition:function(e){
 			console.log("close")
 			var tourSkill = this.model.get("tourSkill");
-			tourSkill.skill_controls_settings = this.skill_controls_settings;
+			tourSkill.simple_menu_settings = this.simple_menu_settings;
 			var manageData = new ManageData();
 			manageData.editSkill(tourSkill)
 			this.removeModal(e);
 			this.undelegateEvents();
-		},
-
-		removeButton:function(){
-
-		},
-
-		addButton:function(e){
-			
-			if($(e.target).parents(".btnContainer").find(".add-bt-wrap").size()){
-				$(e.target).parents(".btnContainer").find(".add-bt-wrap").remove();
-				return;
-			}
-			
-			if($("#generalSettingsContent .scbOrder .add-bt-wrap").size()){
-				$("#generalSettingsContent .scbOrder .add-bt-wrap").remove();
-			}
-
-			$btContainer = $('<div class="add-bt-wrap"></div>');
-			$(e.target).parents(".btnContainer").append($btContainer);
-			var allbts = ["skill_controls_full","skill_controls_autorotate","skill_controls_zoom"];
-			var positions = ["_order_1","_order_2","_order_3"];
-			var este = this;
-			_.each(positions,function(el,ind){
-				_.each(allbts,function(ele,indice){
-					if(este.skill_controls_settings[positions[ind]] == allbts[indice]){
-						allbts.splice(indice,1)
-					}
-				})
-			})
-			var bts = [];
-			$btContainer.html('<ul></ul>')
-			var backimage = este.skill_controls_settings._icons_styles;
-			backimage = backimage.replace("%SWFPATH%","../player");
-			_.each(allbts,function(ele,indice){
-				$btContainer.find("ul").append('<li id="'+ele+'_bt" data-id="'+ele+'"><div class="icon-wrap" style="background-image:url('+backimage+')"></div></li>')
-				})
-			console.log(allbts)
-			$btContainer.find("li").click(function(e){
-					var myid = $(this).data("id");
-					$(this).parents(".btnContainer").find(".skills-add-btn").attr("id",myid);
-					este.ordericons();
-					$btContainer.remove();
-			})
-
-			
-		},
-
-		removeButton:function(e){
-			$(e.target).parents(".skills-add-btn").removeAttr("id");
-			this.ordericons();	
-		}*/
+		}
 
 	});
 
