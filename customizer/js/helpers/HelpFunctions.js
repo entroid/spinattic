@@ -299,8 +299,11 @@ define([
 
         this.limitInputs = function(el, min, max){
             var val = Number($(el).val());
+          
+            var min = $(el).attr("min")
 
-            max ? max = max : max = 100000;
+            max ? max = max : max = $(el).attr("max");
+            min ? min = min : min = $(el).attr("min");
 
             if(val < min){
                 $(el).val(min);

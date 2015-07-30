@@ -21,7 +21,9 @@ define([
 
 		events:{  
 			"click #onoffswitchpub": "openLiveModal",
-			"click #publish.active":"sendToLive"
+			"click #publish.active":"sendToLive",
+			"savingtour #publishController":"savingTour",
+			"savedtour #publishController":"savedTour"
 		},
 
 		render: function(){
@@ -48,6 +50,7 @@ define([
 			}
 			if ($('#onoffswitchpub').is(":checked")) {
 				helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+				$("#tourTitleBar").trigger("updatepublish",["on"])
 			}
 			helpFunctions.toolTip("#publishController .fa-question-circle", "publish up");
 			
@@ -65,20 +68,22 @@ define([
 			if($(e.target).is(":checked")){
 				this.liveTourView = new LiveTourView();
 				this.liveTourView.render("liveTourModal",this.liveTourView.renderExtend);
-				helpFunctions.toolTip("#publishController .onoffswitch", "publish up");
+			
 			} else {
-
 				var msg = "Are you sure you want to turn your tour Offline?";
 				var evt = function(){
 					var manageData = new ManageData();
 					manageData.saveLive("notlive");
 					 $("#draft").data("live","unpublished")
 					$('#publishController .onoffswitch').unbind('mouseenter');
+					$('#publishController .onoffswitch').removeAttr('title');
 					$("#confirmDel .fa-close").trigger("click");
 					$("#onoffswitchpub").prop("checked",false);
 					$("#publish").removeClass("active")
 					$("#publishController #publish").unbind("mouseenter");
 					$("#publishController #publish").removeAttr("title");
+					$("#tourTitleBar").trigger("updatepublish",["off"])
+			
 				}
 				$("#onoffswitchpub").prop("checked",true);
 				var modalModel = new ModalModel({msg:msg,evt:evt})
@@ -99,7 +104,26 @@ define([
 				$("#publish").html('<div class="loading"></div>')
 				var manageData = new ManageData();
 				manageData.saveLive("live",callB);
-			}    
+			},
+
+		savingTour:function(){
+			if(!$("#publishController #draft").hasClass("active")){
+					$("#publishController #draft").addClass("active")
+				}
+				if($("#draft").data("live") == "published"){
+					$("#publish").addClass("active");
+					$("#publish").attr("title","Deploy draft to LIVE version");
+					var helpFunctions = new HelpFunctions();
+					helpFunctions.toolTip("#publishController #publish", "publish up");
+				}
+				$("#draft .loading-wrapper").show();
+		},
+		savedTour:function(evt,text){
+			$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
+							$("#draft .loading-wrapper").html('<div class="loading"></div>')
+						});
+						$("#draft .date").text(text);
+		} 
 	});
 
 	return PublishControllerView;  

@@ -89,8 +89,8 @@ define([
 				mousetypes:mousetypes
 			}
 
-			
-			var compiledTemplate = _.template(virtualTourSettingsMenu,{data:data});
+			var usernick = $(".main-header .user").data("nickname");
+			var compiledTemplate = _.template(virtualTourSettingsMenu,{data:data,usernick:usernick});
 			$(this.el).append( compiledTemplate ); 
 			var elem = this.model.get("elem");
 			this.$elem = $("#"+elem);
@@ -323,8 +323,23 @@ define([
 		},
 
 		saveFriendURL:function(e){
-			var manageData = new ManageData();
-			manageData.saveTourData("friendlyURL",$("#friendlyURLTour").val())
+			var urlname = $("#friendlyURLTour").val();
+			var tourid = location.hash.split("/")[1];
+			$.ajax({
+				url:'data/json.php?t=chk_friendly&id='+tourid+'&friendly='+urlname,
+					type:'GET',
+					success:function(res){
+						res = JSON.parse(res);
+						var finalfriendlyURL = res.friendly_URL;
+						$("#friendlyURLTour").val(finalfriendlyURL);
+						var manageData = new ManageData();
+						manageData.saveTourData("friendlyURL",finalfriendlyURL);
+						},
+					error:function(xhr, ajaxOptions, thrownError){
+						console.log(xhr)
+					}
+				})	
+			
 			$(window).unbind("keydown");
 		},
 

@@ -279,16 +279,7 @@ define([
 				})
 			}
 			this.saveServer = function(fun,action){
-				if(!$("#publishController #draft").hasClass("active")){
-					$("#publishController #draft").addClass("active")
-				}
-				if($("#draft").data("live") == "published"){
-					$("#publish").addClass("active");
-					$("#publish").attr("title","Deploy draft to LIVE version");
-					var helpFunctions = new HelpFunctions();
-					helpFunctions.toolTip("#publishController #publish", "publish up");
-				}
-				$("#draft .loading-wrapper").show();
+				$("#publishController").trigger("savingtour");
 				var jsonstr = JSON.stringify(tourData)
 				var id = location.hash.split("/")[1];
 				var mydata;
@@ -308,10 +299,7 @@ define([
 						if(fun){
 							fun()
 						}
-						$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
-							$("#draft .loading-wrapper").html('<div class="loading"></div>')
-						});
-						$("#draft .date").text(res.date);
+						$("#publishController").trigger("savedtour",[res.date])
 						tourData.krpano.datatour.date_updated = res.date; 
 						console.log(res)
 					},

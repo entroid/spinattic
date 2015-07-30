@@ -98,7 +98,7 @@ define([
 		  url:  "data/json.php?t=u",
 		 }).done(function(obj){
 			//var xmlpath ="data/tour.xml?id="+id;
-			var xmlpath ="data/xml.php?id="+id+"&d=1&c=1";
+			var xmlpath ="data/xml.php?id="+id+"&d=1&c=1&customizer=1";
 			$.ajax({
 			 url: xmlpath,
 				type: "GET",

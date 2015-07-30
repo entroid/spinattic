@@ -1,5 +1,5 @@
 <div id="publishController" class="right">
-    <div class="onoffswitch" title=" <%if(datepub!=""){%>Published: <%datepub%><%}%>">
+    <div class="onoffswitch" <%if(datepub!=""){%>title=" Last update: <%=datepub%>"<%}%>>
         <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchpub" <%if(datepub!=""){%>checked<%}%> >
         <label class="onoffswitch-label" for="onoffswitchpub">
             <span class="onoffswitch-inner"></span>

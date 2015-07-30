@@ -28,7 +28,8 @@ define([
         events:{
             "click #sceneMenu .selector-scene":"removeItem",
             "click #sceneMenu li img":"openScene",
-            "click #remove-selected-scene": "removeSelectedScene"   
+            "click #remove-selected-scene": "removeSelectedScene",
+            "refreshtitlefromscenemenu #sceneMenu": "refreshTitleFromSceneMenu"   
                  },
         render: function(){
             if(this.collection){
@@ -93,6 +94,15 @@ define([
                             scrollInertia:300,
                             horizontalScroll: true,
                     });
+
+            window.cargarEscenasGlobal = function(sceneName){
+                console.log(sceneName)
+                if(window.desdeMenu){
+                    delete window.desdeMenu;
+                }else{
+                    $("#"+sceneName+" img").trigger("click");
+                }
+            }
         },
 
         removeItem:function(e){
@@ -151,7 +161,9 @@ define([
         },
 
         openScene:function(e){
-
+           
+           window.desdeMenu = true;
+            
             var helpFunctions = new HelpFunctions();
 
             $thisli = $(e.target).parent();
@@ -177,6 +189,7 @@ define([
             $thisli.addClass("selected")
 
             $(".hotspotwindow .save-and-close").trigger("click");
+
             this.openAsideMenu();
 
         },
@@ -187,6 +200,17 @@ define([
             if( !$(btn).hasClass('selected') ) {
                 $(btn).click();
             }
+        },
+
+        refreshTitleFromSceneMenu:function(){
+            var scene = $("#tour").data("scene");
+            var title = scene._title;
+            var name = scene._name;
+            $("#"+name+" img").unbind("mouseenter")
+            $("#"+name+" img").unbind("mouseleave")
+            $("#"+name+" img").attr("title",title);
+            var helpFunctions = new HelpFunctions();
+            helpFunctions.toolTip("#"+name+" img","footer");
         }
         
     });

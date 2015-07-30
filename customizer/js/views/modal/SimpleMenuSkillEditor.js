@@ -88,11 +88,13 @@ define([
 
 		},
 
-		setWidth:function(){
-
+		setWidth:function(e){
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.limitInputs($("#widthSmSkill"));
 			var unit =  ($("#widthSmSkillDD").data("value")=="%") ? "%":"";
 			var value = $("#widthSmSkill").val()+unit;
 			this.krpano.call("set(simple_menu_settings.layout_width,"+value+");	simple_menu_design();");
+			console.log("krpano.call: "+"set(simple_menu_settings.layout_width,"+value+");simple_menu_design();")
 			this.simple_menu_settings._layout_width=value;
 		},
 
@@ -122,6 +124,7 @@ define([
 			$(e.target).addClass("selected");
 			var value = $(e.target).data("align");
 			this.krpano.call("set(simple_menu_settings.layout_align,"+value+");simple_menu_design();");
+			console.log("krpano.call: "+"set(simple_menu_settings.layout_align,"+value+");simple_menu_design();")
 			this.simple_menu_settings._layout_align=value;
 		},
 
@@ -130,10 +133,13 @@ define([
 			$(e.target).addClass("selected");
 			var value = $(e.target).data("align");
 			this.krpano.call("set(simple_menu_settings.title_align,"+value+");simple_menu_title_styles();");
+			console.log("krpano.call: "+"set(simple_menu_settings.title_align,"+value+");simple_menu_title_styles();")
 			this.simple_menu_settings._title_align=value;
 		},
 
 		setProperties:function(e){
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.limitInputs($(e.target));
 			var prop = $(e.target).data("prop");
 			if($(e.target).attr("type") == "text"){
 				if($(e.target).attr("id") == "textcolorsm"){
@@ -147,10 +153,14 @@ define([
 			var finalFun = $(e.target).data("finalfun");
 			this.simple_menu_settings["_"+prop]=value;
 			this.krpano.call("set(simple_menu_settings."+prop+","+value+");	"+finalFun+"();");
+			console.log("krpano call: "+"set(simple_menu_settings."+prop+","+value+");	"+finalFun+"();")
 		},
 
 		setMultipleProperties:function(e){
+			var helpFunctions = new HelpFunctions();
 			var group = $(e.target).data("group");
+			helpFunctions.limitInputs($('input[data-group="'+group+'"]:eq(0)'));
+			helpFunctions.limitInputs($('input[data-group="'+group+'"]:eq(2)'));
 			console.log(group)
 			var val1 = $('input[data-group="'+group+'"]:eq(0)').val();
 			var val2 = $('input[data-group="'+group+'"]:eq(1)').val();
@@ -159,6 +169,7 @@ define([
 			var totalVal = val1+" 0x"+val2+" "+val3;
 			this.simple_menu_settings["_"+prop]=totalVal;
 			this.krpano.call("set(simple_menu_settings."+prop+","+totalVal+");simple_menu_startup();");
+			console.log("krpano call: "+"set(simple_menu_settings."+prop+","+totalVal+");simple_menu_startup();")
 		},
 
 		checkboxChange:function(e){
@@ -170,29 +181,31 @@ define([
 			var prop = $(e.target).data("prop");
 			var finalfun = $(e.target).data("finalfun");
 			this.krpano.call("set(simple_menu_settings."+prop+","+value+");"+finalfun+"();");
+			console.log("krpano call: "+"set(simple_menu_settings."+prop+","+value+");"+finalfun+"();")
 			this.simple_menu_settings["_"+prop]=value;
 		},
 
 		selectFontFamily:function(e){
 			var value= $(e.target).data("value");
 			this.krpano.call("set(simple_menu_settings.title_font,"+value+");simple_menu_title_styles();");
+			console.log("krpano call: "+"set(simple_menu_settings.title_font,"+value+");simple_menu_title_styles();")
 			this.simple_menu_settings._title_font=value;
 		},
 		selectFontWeight:function(e){
 			var value= $(e.target).data("value");
 			this.krpano.call("set(simple_menu_settings.title_weight,"+value+");simple_menu_title_styles();");
+			console.log("krpano call: "+"set(simple_menu_settings.title_weight,"+value+");simple_menu_title_styles();")
 			this.simple_menu_settings._title_weight=value;
 		},
 
 		changeTextPadding:function(e){
 			var value = $("#textpaddingsm input:eq(0)").val()+" "+$("#textpaddingsm input:eq(1)").val()+" "+$("#textpaddingsm input:eq(2)").val()+" "+$("#textpaddingsm input:eq(3)").val();
-			console.log(value)
 			this.krpano.call("set(simple_menu_settings.title_padding,"+value+");simple_menu_title_styles();");
+			console.log("krpano call: "+"set(simple_menu_settings.title_padding,"+value+");simple_menu_title_styles();")
 			this.simple_menu_settings._title_padding=value;
 		},
 
 		doneEdition:function(e){
-			console.log("close")
 			var tourSkill = this.model.get("tourSkill");
 			tourSkill.simple_menu_settings = this.simple_menu_settings;
 			var manageData = new ManageData();

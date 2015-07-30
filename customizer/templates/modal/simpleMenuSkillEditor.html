@@ -63,7 +63,7 @@
                                     <div>
                                         <div class="sup">
                                             <label for="bkgWidthSmSkill">width</label>
-                                            <input type="number" data-group="backborder" data-prop="design_bgborder" class="multiple-int" id="bkgWidthSmSkill" value="<%=customprop.backborder[0]%>"> 
+                                            <input type="number" data-group="backborder" data-prop="design_bgborder" class="multiple-int" id="bkgWidthSmSkill" value="<%=customprop.backborder[0]%>" min="-10" max="10"> 
                                         </div>
 
                                         <div class="sup">
@@ -81,7 +81,7 @@
                                 <div class="line-group">
                                     <label for="roundEdgeSmSkill">Background Round Edge</label>
                                     <div>
-                                        <input type="number" id ="roundEdgeSmSkill" value="<%=tourSkill.simple_menu_settings._design_bgroundedge%>" class="single-int" data-prop="design_bgroundedge" data-finalFun="simple_menu_design">
+                                        <input type="number" min="0" max="100" id="roundEdgeSmSkill" value="<%=tourSkill.simple_menu_settings._design_bgroundedge%>" class="single-int" data-prop="design_bgroundedge" data-finalFun="simple_menu_design">
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                     <div>
                                         <div class="sup" >
                                             <label for="thumbWidthSmSkill">width</label>
-                                            <input class="multiple-int" data-group="thumborder" data-prop="design_thumbborder_bgborder" type="number" id="thumbWidthSmSkill" value="<%=customprop.thumbborder[0]%>"> 
+                                            <input class="multiple-int" data-group="thumborder" data-prop="design_thumbborder_bgborder" type="number" id="thumbWidthSmSkill" min="0" max="10" value="<%=customprop.thumbborder[0]%>"> 
                                         </div>
 
                                         <div class="sup">
@@ -112,13 +112,13 @@
                                     <label for="thumbBorderPaddingSmSkill">Thumb border padding</label>
                                     
                                     <div>
-                                        <input type="number" class="single-int" id ="thumbBorderPaddingSmSkill" value="<%=tourSkill.simple_menu_settings._design_thumbborder_padding%>" data-prop="design_thumbborder_padding" data-finalFun="simple_menu_design">
+                                        <input type="number" min="0" max="50" class="single-int" id ="thumbBorderPaddingSmSkill" value="<%=tourSkill.simple_menu_settings._design_thumbborder_padding%>" data-prop="design_thumbborder_padding" data-finalFun="simple_menu_design">
                                     </div>
                                 </div>
                                 <div class="line-group">
                                     <label for="thumbBorderEdgeSmSkill">Thumb border round edge</label>
                                     <div>
-                                        <input type="number" class="single-int" id ="thumbBorderEdgeSmSkill" value="<%=tourSkill.simple_menu_settings._design_thumbborder_bgroundedge%>" data-prop="design_thumbborder_bgroundedge" data-finalFun="simple_menu_design">
+                                        <input type="number" min="0" max="20" class="single-int" id ="thumbBorderEdgeSmSkill" value="<%=tourSkill.simple_menu_settings._design_thumbborder_bgroundedge%>" data-prop="design_thumbborder_bgroundedge" data-finalFun="simple_menu_design">
                                     </div>
                                 </div>
                             </div>
@@ -148,12 +148,12 @@
                                     <div>
                                         <div class="sup" >
                                             <label for="thumbSizeWidthSmSkill">Width</label>
-                                            <input type="number" class="single-int" id="thumbSizeWidthSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_width%>" data-prop="thumbs_width" data-finalFun="simple_menu_startup"> 
+                                            <input type="number" min="20" max="1000" class="single-int" id="thumbSizeWidthSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_width%>" data-prop="thumbs_width" data-finalFun="simple_menu_startup"> 
                                         </div>
 
                                         <div class="sup">
                                             <label for="thumbSizeHeightSmSkill">Height</label>
-                                            <input type="number" class="single-int" id="thumbSizeHeightSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_height%>" data-prop="_thumbs_height" data-finalFun="simple_menu_startup"> 
+                                            <input type="number" class="single-int" min="50" max="500" id="thumbSizeHeightSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_height%>" data-prop="thumbs_height" data-finalFun="simple_menu_startup"> 
                                         </div>
                                     </div>
                                 </div>
@@ -161,14 +161,14 @@
                                 <div class="line-group">
                                     <label for="thumbsPaddingSmSkill">Thumbs padding</label>
                                     <div>
-                                        <input type="number" class="single-int" id ="thumbsPaddingSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_padding%>" data-prop="thumbs_padding" data-finalFun="simple_menu_startup">
+                                        <input type="number" class="single-int" id ="thumbsPaddingSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_padding%>" data-prop="thumbs_padding" data-finalFun="simple_menu_startup" max="100" min="0">
                                     </div>
                                 </div>
 
                                 <div class="line-group">
                                     <label for="thumbsBottomOffsetSmSkill">Bottom offset</label>
                                     <div>
-                                        <input type="number" class="single-int" id="thumbsBottomOffsetSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_y_offset%>" data-prop="thumbs_y_offset" data-finalFun="simple_menu_startup">
+                                        <input type="number" min="0" max="50" class="single-int" id="thumbsBottomOffsetSmSkill" value="<%=tourSkill.simple_menu_settings._thumbs_y_offset%>" data-prop="thumbs_y_offset" data-finalFun="simple_menu_startup">
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                                     <label>Text overlay</label>
 
                                     <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchTxtOverlaySmSkill" >
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchTxtOverlaySmSkill" data-prop="thumbs_text" data-finalfun="simple_menu_startup">
                                         <label class="onoffswitch-label" for="onoffswitchTxtOverlaySmSkill"<%if(tourSkill.simple_menu_settings._thumbs_text=="true"){%>checked<%}%> data-prop="thumbs_text" data-finalfun="simple_menu_startup">
                                             <span class="onoffswitch-inner"></span>
                                             <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -228,7 +228,7 @@
                                     <label>Scroll buttons</label>
 
                                     <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollBtnsSmSkill" <%if(tourSkill.simple_menu_settings._thumbs_scrollbuttons=="true"){%>checked<%}%> data-prop="thumbs_scrollbuttons" data-finalfun="simple_menu_startup">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollBtnsSmSkill" <%if(tourSkill.simple_menu_settings._thumbs_scrollbuttons=="true"){%>checked<%}%> data-prop="thumbs_scrollbuttons" data-finalfun="simple_menu_updatethumbscroll">
                                         <label class="onoffswitch-label" for="onoffswitchscrollBtnsSmSkill">
                                             <span class="onoffswitch-inner"></span>
                                             <span class="onoffswitch-switch fa fa-bars fa-lg"></span>
@@ -240,7 +240,7 @@
                                     <label>Scroll indicator</label>
 
                                     <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollIndicatorSmSkill" <%if(tourSkill.simple_menu_settings._thumbs_scrollindicator=="true"){%>checked<%}%> data-prop="thumbs_scrollindicator" data-finalfun="simple_menu_startup">
+                                        <input type="checkbox" name="onoffswitchpub" class="onoffswitch-checkbox" id="onoffswitchscrollIndicatorSmSkill" <%if(tourSkill.simple_menu_settings._thumbs_scrollindicator=="true"){%>checked<%}%> data-prop="thumbs_scrollindicator" data-finalfun="simple_menu_updatethumbscroll">
                                         <label class="onoffswitch-label" for="onoffswitchscrollIndicatorSmSkill">
                                             <span class="onoffswitch-inner"></span>
                                             <span class="onoffswitch-switch fa fa-bars fa-lg"></span>

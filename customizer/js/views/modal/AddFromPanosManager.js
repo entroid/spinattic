@@ -250,7 +250,7 @@ define([
 
             _.each($("#panoManager .selected-panos li"),function(elem,ind){
                 var panoId = $(elem).data("id");
-
+                $("#publishController").trigger("savingtour");
                 $.ajax({
                     url:"php/add_pano_from_collection.php?idtour="+tourId+"&panoid="+panoId,
                     dataType:"json",
@@ -260,6 +260,7 @@ define([
                             manageTour.reloadTour(cargarEscenas);
                                 este.removeModal(e);
                                 este.undelegateEvents();
+                                $("#publishController").trigger("savedtour",[data.date])
                         }
                         
                     }

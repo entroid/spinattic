@@ -10,14 +10,14 @@
 			<div class="row">
 				<label for="firendlyUrl">Friendly URL: <i class="help fa fa-question-circle"></i></label>
 				<div class="url">
-					<span>http://www.spinattic.com/user/</span>
+					<span>http://www.spinattic.com/<%=tourInfo.usernick%>/</span>
 					<input id="firendlyUrl" type="text" placeholder="tourname" value="<%= tourInfo.datatour.friendlyURL%>">
 				</div>
 			</div>
 
 			<div class="row">
 				<label for="description">Tour description: <i class="help fa fa-question-circle"></i></label>
-				<textarea id="description" type="text" placeholder="Tour description"><%= tourInfo.settings._description%></textarea> 
+				<textarea id="description" type="text" placeholder="Tour description" data-obj="settings" data-bind="_description"><%= tourInfo.settings._description%></textarea> 
 			</div>
 
 			<div class="row">

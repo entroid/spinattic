@@ -114,12 +114,12 @@ define([
 			  });
 		},
 		changeTitle:function(e){
-			var scene = $("#tour").data("scene");
-			var title = scene._title;
-			var name = scene._name;
-			$("#"+name+" img").attr("title",title)
+
 			this.updateData(e);
 			$(window).unbind("keydown");
+			var krpano = document.getElementById("krpanoSWFObject");
+			krpano.set("scene["+$("#tour").data("scene")._name+"].title",$(e.target).val());
+			$("#sceneMenu").trigger("refreshtitlefromscenemenu");
 		},
 
 		zoomMap:function(){

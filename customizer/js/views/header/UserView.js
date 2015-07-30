@@ -23,6 +23,7 @@ define([
       var compiledTemplate = _.template(userview,{jsonObj:data});
       $(this.el).append( compiledTemplate ); 
       $(".main-header .user").data("level",data[0].level);
+      $(".main-header .user").data("nickname",data[0].nickname);
       var helpFunctions = new HelpFunctions();
       helpFunctions.toolTip("header .new-tour","new-tour-tt up");
 

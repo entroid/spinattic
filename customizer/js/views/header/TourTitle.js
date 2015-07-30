@@ -1,93 +1,112 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'text!templates/header/tourtitle.html',
-    'helpers/ManageData',
-    'helpers/HelpFunctions'
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!templates/header/tourtitle.html',
+	'helpers/ManageData',
+	'helpers/HelpFunctions'
   
 
 ], function($, _, Backbone, tourtitle,ManageData, HelpFunctions){
 
-    var TourTitle = Backbone.View.extend({
+	var TourTitle = Backbone.View.extend({
 
-        el: $(".header-bottom"),
+		el: $(".header-bottom"),
 
-        initialize: function () {
-          
-        },
+		initialize: function () {
+		  
+		},
 
-        events:{
-            "focus #tour-title":"changeTitleByEnter",
-            "blur #tour-title":"changeTitleByBlur",
-            "keyup #tour-title":"setWidth"
-        },
+		events:{
+			"focus #tour-title":"changeTitleByEnter",
+			"blur #tour-title":"changeTitleByBlur",
+			"keyup #tour-title":"setWidth"
+		},
 
-        render: function(){
+		render: function(){
 
-            var title = tourData.krpano.settings._title,
-                widthTestElHtml = "<span id='widthTestEl' class='none'></span>",
-                widthEl = $("#widthTestEl");
+			var title = tourData.krpano.settings._title,
+				widthTestElHtml = "<span id='widthTestEl' class='none'></span>",
+				widthEl = $("#widthTestEl");
 
-            var compiledTemplate = _.template(tourtitle,{title:title});
-            $(this.el).append( compiledTemplate );           
-            $("#tour-title").data("obj","settings");
-            $("#tour-title").data("bind","_title");
+			var compiledTemplate = _.template(tourtitle,{title:title});
+			$(this.el).append( compiledTemplate );           
+			$("#tour-title").data("obj","settings");
+			$("#tour-title").data("bind","_title");
 
-            //width del input
-            if(!widthEl.lenght) {
-                $('body').append(widthTestElHtml);
-            } 
-            this.setWidth();       
+			//width del input
+			if(!widthEl.lenght) {
+				$('body').append(widthTestElHtml);
+			} 
+			this.setWidth();       
 
-            var helpFunctions = new HelpFunctions();
-            helpFunctions.toolTip("header .open-live-tour","open-live-tour-tt up");
-        },
+			var helpFunctions = new HelpFunctions();
+			helpFunctions.toolTip("header .open-live-tour","open-live-tour-tt up");
 
-        changeTitleByEnter:function(e){
+			var este = this;
+			$("#tourTitleBar").on("updatepublish",function(ev,param){
+				este.showButton(ev,param);
+			})
 
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                $("#tour-title").blur();
-              event.preventDefault();
-              $(window).unbind("keydown");
-              return false;
-            }
-          });
-        },
-        changeTitleByBlur:function(e){
+		},
 
-            var helpFunctions = new HelpFunctions();
-            var manageData = new ManageData();
-            if(tourData.krpano.datatour.friendlyURL == ""){
-                var textTitle = $("#tour-title").val();
-                var textLug = helpFunctions.slug(textTitle)
-                if( $("#virtualTourSettings-menu").size()){
-                    $("#virtualTourSettings-menu #friendlyURLTour").val(textLug);
-                }
-                manageData.saveTourData("friendlyURL",textLug)
+		changeTitleByEnter:function(e){
 
-            }
-            manageData.saveSettings(e);
+		$(window).keydown(function(event){
+			if(event.keyCode == 13) {
+				$("#tour-title").blur();
+			  event.preventDefault();
+			  $(window).unbind("keydown");
+			  return false;
+			}
+		  });
+		},
+		changeTitleByBlur:function(e){
 
-            //this.setWidth(e.target);            
+			var helpFunctions = new HelpFunctions();
+			var manageData = new ManageData();
+			if(tourData.krpano.datatour.friendlyURL == ""){
+				var textTitle = $("#tour-title").val();
+				var textLug = helpFunctions.slug(textTitle)
+				if( $("#virtualTourSettings-menu").size()){
+					$("#virtualTourSettings-menu #friendlyURLTour").val(textLug);
+				}
+				manageData.saveTourData("friendlyURL",textLug)
 
-        },
-        setWidth : function() {
-            var el = $("#tour-title"),
-                elText = $(el).val(),
-                widthTestEl = $('#widthTestEl'),                
-                widthTest;
+			}
+			manageData.saveSettings(e);
 
-            $(widthTestEl).html(elText);                
-            widthTest = $(widthTestEl).width();
+			//this.setWidth(e.target);            
 
-            $(el).width(widthTest+5);
-        }
+		},
+		setWidth : function() {
+			var el = $("#tour-title"),
+				elText = $(el).val(),
+				widthTestEl = $('#widthTestEl'),                
+				widthTest;
+
+			$(widthTestEl).html(elText);                
+			widthTest = $(widthTestEl).width();
+
+			$(el).width(widthTest+5);
+		},
+
+		showButton:function(evt,param){
+			if(param=="on"){
+				var $bt = $('<button class="open-live-tour" title="Open live tour page"><i class="fa fa-external-link"></i></button>');
+				$("#tourTitleBar form").append($bt)
+				$bt.click(function(e){
+					e.preventDefault();
+					window.open("http://"+location.host+"/"+$(".user").data("nickname")+"/"+tourData.krpano.datatour.friendlyURL,'_blank');
+				})
+			}else{
+				$("#tourTitleBar .open-live-tour").remove();
+			}
+		}
 
 
-    });
+	});
 
-    return TourTitle;
+	return TourTitle;
   
 });
