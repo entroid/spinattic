@@ -90,7 +90,8 @@ define([
                     var __atv   =  krpano.get('view.vlookat')//-Math.floor(Math.random() * 25);
                     newHotspot._ath = __ath;
                     newHotspot._atv = __atv;
-                    newHotspot._style = "hotspot_"+me.selectedset+"_"+myid;
+                    var oldstyle=newHotspot._style.replace("[style]","hotspot_"+me.selectedset+"_"+myid)
+                    newHotspot._style = oldstyle;
                     newHotspot._name = "spot"+me.hotspotCount;
 
                     var manageHotSpots = new ManageHotSpots();

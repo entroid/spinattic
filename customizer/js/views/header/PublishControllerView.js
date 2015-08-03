@@ -107,14 +107,11 @@ define([
 			},
 
 		savingTour:function(){
+			$("#publish").removeClass("active");
+			$("#publishController #publish").unbind("mouseenter");
+			$("#publishController #publish").removeAttr("title");
 			if(!$("#publishController #draft").hasClass("active")){
 					$("#publishController #draft").addClass("active")
-				}
-				if($("#draft").data("live") == "published"){
-					$("#publish").addClass("active");
-					$("#publish").attr("title","Deploy draft to LIVE version");
-					var helpFunctions = new HelpFunctions();
-					helpFunctions.toolTip("#publishController #publish", "publish up");
 				}
 				$("#draft .loading-wrapper").show();
 		},
@@ -122,6 +119,12 @@ define([
 			$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
 							$("#draft .loading-wrapper").html('<div class="loading"></div>')
 						});
+			if($("#draft").data("live") == "published"){
+					$("#publish").addClass("active");
+					$("#publish").attr("title","Deploy draft to LIVE version");
+					var helpFunctions = new HelpFunctions();
+					helpFunctions.toolTip("#publishController #publish", "publish up");
+				}
 						$("#draft .date").text(text);
 		} 
 	});

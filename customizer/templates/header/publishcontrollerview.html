@@ -8,7 +8,7 @@
     </div>
     <div id="publish" class="fa fa-arrow-circle-left<%if(deploy){%> active <%}%>"></div>
     
-    <div id="draft" class="status <%if(deploy){%> active <%}%>">
+    <div id="draft" class="status <%if(deploy || datepub==""){%> active <%}%>">
         <div class="loading-wrapper">
             <div class="loading"></div>
         </div>

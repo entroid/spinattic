@@ -49,10 +49,7 @@ define([
 
 			this.deleteSceneFromServer = function(scenes,callB){
 					var este = this;
-					if(!$("#publishController #draft").hasClass("active")){
-						$("#publishController #draft").addClass("active")
-					}
-					$("#draft .loading-wrapper").show();
+					$("#publishController").trigger("savingtour");
 					
 					var scenesDel = scenes.join('|');
 					var jsonstr = JSON.stringify(tourData)
@@ -91,10 +88,7 @@ define([
 						}else{
 							fecha = "";
 						}
-						$("#draft .date").text(fecha);
-						$("#draft .loading-wrapper").html('<i class="fa fa-check"></i> Draft Saved').delay(1000).fadeOut(function(){
-							$("#draft .loading-wrapper").html('<div class="loading"></div>')
-						});
+						$("#publishController").trigger("savedtour",[fecha])
 
 					},
 					error:function(xhr, ajaxOptions, thrownError){
@@ -252,16 +246,19 @@ define([
 				this.saveServer();	
 			}
 
-			this.mapData = function(lat, lng, sceneIndex){
+			this.mapData = function(lat, lng,heading,sceneIndex){
 				console.log(sceneIndex)
-				if(sceneIndex != undefined){
-					tourData.krpano.scene[sceneIndex]._lat = lat;
-					tourData.krpano.scene[sceneIndex]._lng = lng;
-					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lat = lat;
-					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lng = lng;
-				}else{
+				if(sceneIndex == "settings"){
 					tourData.krpano.settings._lat = lat;
 					tourData.krpano.settings._long = lng;
+					tourData.krpano.settings._location_heading = heading;
+				}else{
+					tourData.krpano.scene[sceneIndex]._lat = lat;
+					tourData.krpano.scene[sceneIndex]._lng = lng;
+					tourData.krpano.scene[sceneIndex]._heading = heading;
+					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lat = lat;
+					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lng = lng;
+					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._heading = heading;
 				}
 				this.saveServer();
 			}

@@ -32,9 +32,15 @@ define([
 	   },
 		
 		render:function(){
-			
+			var disable = false;
+			var no_delete_if_free = this.model.get("no_delete_if_free");
+			if($(".main-header .user").data("level") == "FREE"){
+				if(no_delete_if_free == "1"){
+					var disable = true;
+				}
+			}
 			var tourSkill = this.model.get("tourSkill");
-			var compiledTemplate = _.template(skincustomizeritem,{tourSkill:tourSkill});
+			var compiledTemplate = _.template(skincustomizeritem,{tourSkill:tourSkill,disable:disable});
 
 			$("#skinCustomizer-menu .skill-list").append(compiledTemplate);
 			$('#skill-' + tourSkill._template_id ).data("skill",tourSkill);
@@ -52,6 +58,17 @@ define([
 		editSkill:function(e){
 			var skill = $(e.target).parents("li").data("skill");
 			var tourSkill = this.model.get("tourSkill");
+
+			var no_delete_if_free = this.model.get("no_delete_if_free");
+			var este = this;
+
+			if($(".main-header .user").data("level") == "FREE"){
+				if(no_delete_if_free == "1"){
+					este.showMsg("We're sorry. You cannot modify this skill because your membership level is set to Basic.");
+					return;
+				}
+			}
+
 			switch(tourSkill._template_id){
 				case "1":
 				var mview = ContextMenuSkillEditor;

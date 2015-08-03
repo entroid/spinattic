@@ -82,7 +82,7 @@ define([
                     krpano.call("addhotspot("+hpdata._name +")");
                     
                     krpano.call('set(hotspot['+hpdata._name+'].ondown, null );');
-                    krpano.call('set(hotspot['+hpdata._name+'].onclick, showinfo('+infoTitle+','+infoText+') );');
+                    krpano.call('set(hotspot['+hpdata._name+'].onclick, showinfo('+escape(infoTitle)+','+escape(infoText)+') );');
                     $me.find(".hotspotinfo").delay(200).slideUp(function(){
                        $me.find(".test-mode").fadeIn(); 
                     });

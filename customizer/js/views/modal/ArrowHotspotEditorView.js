@@ -107,6 +107,7 @@ define([
                         var krpano = document.getElementById("krpanoSWFObject");
                         krpano.call("addhotspot("+hpdata._name +")");
                         window.selectScene = function(selectedscene){
+                            console.log("a")
                             setTimeout(function(){
                                 $("#"+selectedscene+" img").trigger("click")
                             },500)

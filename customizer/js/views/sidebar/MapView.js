@@ -119,14 +119,17 @@ define([
 				if(this.param.param == "scene"){
 					setTimeout(function(){
 					var indice = $("#sceneMenu li.selected").index();
-					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val(),indice)
-					},500)
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val(),$("#"+myid+" .location").val(),indice)
+					},900)
 				//tourData.krpano.scene[this.param.indice]._lat = $("#"+this.myid+" .latFld").val();
 				//tourData.krpano.scene[this.param.indice]._lng = $("#"+this.myid+" .lngFld").val();
 				}else{
-					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val())
+					setTimeout(function(){
+					console.log($("#"+myid+" .location").val())
+					manageData.mapData($("#"+myid+" .latFld").val(),$("#"+myid+" .lngFld").val(),$("#"+myid+" .location").val(),"settings")
 					//tourData.krpano.settings._lat = $("#"+this.myid+" .latFld").val()
 					//tourData.krpano.settings._long = $("#"+this.myid+" .lngFld").val()
+				},900)
 				}
 			}
 			//map.setCenter(location);
