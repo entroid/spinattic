@@ -3,20 +3,20 @@ define([
 	'underscore',
 	'backbone',
 	'text!templates/sidebar/skincustomizeritem.html',
-	'views/modal/SkillEditor',
-	'views/modal/ContextMenuSkillEditor',
-	'views/modal/LogoSkillEditor',
-	'views/modal/SignatureSkillEditor',
-	'views/modal/LoadingBarSkillEditor',
+	'views/modal/skills/SkillEditor',
+	'views/modal/skills/ContextMenuSkillEditor',
+	'views/modal/skills/LogoSkillEditor',
+	'views/modal/skills/SignatureSkillEditor',
+	'views/modal/skills/LoadingBarSkillEditor',
 	'helpers/HelpFunctions',
 	'helpers/ManageData',
 	'helpers/ManageTour',
-	'views/modal/StandardLoadingSkillEditor',
-	'views/modal/SimpleControlBtnSkillEditor',
+	'views/modal/skills/StandardLoadingSkillEditor',
+	'views/modal/skills/SimpleControlBtnSkillEditor',
 	'models/main/ModalModel',
 	'views/modal/AlertView',
 	'views/modal/ConfirmView',
-	'views/modal/SimpleMenuSkillEditor'
+	'views/modal/skills/SimpleMenuSkillEditor'
    
 
 ], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView,SimpleMenuSkillEditor){

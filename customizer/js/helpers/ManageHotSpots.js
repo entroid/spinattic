@@ -3,11 +3,11 @@ define([
 	'underscore',
 	'backbone',
 	'helpers/ManageData',
-   'views/modal/LinkHotspotEditorView',
-	'views/modal/InfoHotspotEditorView',
-	'views/modal/PhotoHotspotEditorView',
-	'views/modal/VideoHotspotEditorView',
-	'views/modal/ArrowHotspotEditorView',
+   'views/modal/hotspotseditor/LinkHotspotEditorView',
+	'views/modal/hotspotseditor/InfoHotspotEditorView',
+	'views/modal/hotspotseditor/PhotoHotspotEditorView',
+	'views/modal/hotspotseditor/VideoHotspotEditorView',
+	'views/modal/hotspotseditor/ArrowHotspotEditorView',
  
 ], function($, _, Backbone,ManageData,LinkHotspotEditorView,InfoHotspotEditorView,PhotoHotspotEditorView,VideoHotspotEditorView,ArrowHotspotEditorView){
 

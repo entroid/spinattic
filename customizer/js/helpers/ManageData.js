@@ -248,19 +248,28 @@ define([
 
 			this.mapData = function(lat, lng,heading,sceneIndex){
 				console.log(sceneIndex)
+				var shouldChange = false;
 				if(sceneIndex == "settings"){
-					tourData.krpano.settings._lat = lat;
-					tourData.krpano.settings._long = lng;
-					tourData.krpano.settings._location_heading = heading;
+					if(lat!=tourData.krpano.settings._lat||lng!=tourData.krpano.settings._long){
+						tourData.krpano.settings._lat = lat;
+						tourData.krpano.settings._long = lng;
+						tourData.krpano.settings._location_heading = heading;
+						shouldChange = true;
+					}
 				}else{
-					tourData.krpano.scene[sceneIndex]._lat = lat;
-					tourData.krpano.scene[sceneIndex]._lng = lng;
-					tourData.krpano.scene[sceneIndex]._heading = heading;
-					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lat = lat;
-					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lng = lng;
-					$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._heading = heading;
+					if(lat!=tourData.krpano.scene[sceneIndex]._lat || lng!=tourData.krpano.scene[sceneIndex]._lng){
+						tourData.krpano.scene[sceneIndex]._lat = lat;
+						tourData.krpano.scene[sceneIndex]._lng = lng;
+						tourData.krpano.scene[sceneIndex]._heading = heading;
+						$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lat = lat;
+						$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._lng = lng;
+						$("#sceneMenu li:eq("+sceneIndex+")").data("scene")._heading = heading;
+						shouldChange = true;
+					}
 				}
-				this.saveServer();
+				if(shouldChange){
+					this.saveServer();
+				}
 			}
 			this.resetThumb = function(){
 				var id = location.hash.split("/")[1];

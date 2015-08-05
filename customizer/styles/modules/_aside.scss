@@ -865,6 +865,9 @@ aside{
                             margin-right: 2px;
                             vertical-align: middle;
                         }
+                        &.disable{
+                            color:$middle-gray2;
+                        }
                     }
 
                     .fa-close{

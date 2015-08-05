@@ -161,8 +161,15 @@ define([
 					position: latlng,
 					map: me.map
 				});
-			   me.infowindow.setContent(results[1].formatted_address);
-			   me.infowindow.open(me.map, me.marker);
+				me.infowindow.setContent(results[1].formatted_address);
+				me.infowindow.open(me.map, me.marker);
+
+				var myid = me.myid;
+				console.log(myid)
+				if(myid == "liveTourModal"){
+					 $('#liveTourModal .gm-style-iw').parent().css({'display':'none'});
+					}
+
 
 				for (var ind=7;ind>=0;ind--)
 				{
@@ -232,7 +239,9 @@ define([
 		removeMap:function(){
 			$("#"+this.myid+" .map-wrapper").remove();
 			this.undelegateEvents();
-		}
+		},
+
+	
 		
 	});
 
