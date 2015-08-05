@@ -114,12 +114,10 @@
 			
 				
 				
-				<skill template_id="6" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Simple Menu">
-				<include template_id="6" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" url="%SWFPATH%/skills/simple_menu/simple_menu.xml"></include>
-				
-				
-				<simple_menu_settings template_id="6" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Simple Menu" title="false" thumbs_width="200" thumbs_height="100" thumbs_padding="10" thumbs_opened="true" thumbs_text="false" thumbs_dragging="true" thumbs_onhoverscrolling="false" thumbs_scrollbuttons="true" thumbs_scrollindicator="true" thumbs_y_offset="10" tooltips_thumbs="true" design_bgcolor="0x000000" design_bgalpha="0.6" design_bgborder="1 0x000000 1.0" design_bgroundedge="2" design_thumbborder_bgborder="5 0xFFFFFF 1.0" design_thumbborder_padding="2" design_thumbborder_bgroundedge="0" title_mobiles="false" layout_width="100%" layout_align="right"  title_align="left" title_color="#FFFFFF" title_font="sans-serif" title_weight="normal" title_padding="0 0 0 85" button_position="left" button_x="10"></simple_menu_settings>
-		</skill>
+				<skill template_id="8" tag_ident="1" prev_tag_ident="0" segment="SKILLS" kind="Top avatar and title">
+				<include template_id="8" tag_ident="2" prev_tag_ident="1" segment="SKILLS" kind="Top avatar and title" url="%SWFPATH%/skills/avatar_title/avatar_title.xml" />
+				<skill_avatar_title template_id="8" tag_ident="3" prev_tag_ident="1" segment="SKILLS" kind="Top avatar and title" position="topleft" padding="20 20 20 100" width="100" width_type="fluid" xl="5" xr="100" y="5" background="false" backgroundcolor="0x000000" backgroundalpha="0.6" roundedge="0" border="false" bordercolor="0x000000" borderalpha="1.0" borderwidth="1.0" avatar="true" avatar_image="avatar.jpg" avatar_align="left" avatar_x="10" username="Ariel Micheletti" userprofile="http://www.spinattic.com/profile.php?uid=2" tour_title="true" scene_name="true" text_align="left" text_color="#ffffff" textshadow="1" textshadowrange="5" textshadowangle="45" textshadowcolor="0x000000" textshadowalpha="10" />
+				</skill>
 		
 		
 			<!-- DEFAULT SKILLS -->
