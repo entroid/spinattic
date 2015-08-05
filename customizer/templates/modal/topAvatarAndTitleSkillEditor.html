@@ -1,0 +1,98 @@
+<div class="top-avatar-and-titles-skill-editor">    
+        <div class="skill-tabs">
+            <nav class="menuTabs">
+                <ul>
+                    <li class="generalAvatarTab selected" data-content="generalAvatarContent">General</li>
+                    <li class="avatarTab" data-content="avatarContent">Avatar</li>
+                    <li class="titlesAvatarTab" data-content="titlesAvatarContent">Titles</li>
+                    <li class="backgroundAvatarTab" data-content="backgroundAvatarContent">Background</li>
+                </ul>                
+            </nav>
+
+            <div class="tabContent">
+                
+                    <section id="generalAvatarContent" >
+                        <div class="scrollwrapper"> 
+                            <div class="modalSeparator">
+
+                                <div class="line-group">
+                                    <label for="positionAvatarSkill">Position</label>
+
+                                    <div>
+                                        <div id="positionAvatarSkill" class="positionAvatarSkill posSelectors">
+                                            <span class="topLeftPos selected" data-align="topleft">top left</span>
+                                            <span class="topRightPos" data-align="topright">top right</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="widthAvatarSkill">Width</label>
+
+                                    <div>
+                                        <div class="dropdown  dd-upload" id="avatarWidthDD">
+                                            <h2>
+                                                <span class="title">Fluid</span><span class="fa fa-caret-down fa-lg right"></span>
+                                            </h2>
+                                            <ul>
+                                                <li data-value="normal">Fluid</li>
+                                                <li data-value="bold">Opcion 2</li>
+                                            </ul>
+                                        </div>
+
+                                        <input type="number" id="widthAvatarSkill" value="10" min="0" max="200"> 
+                                    </div>
+                                </div>
+
+                                <div class="line-group">
+                                    <label for="marginLeftAvatarSkill">Margin Left</label>
+                                    <div>
+                                        <input type="number" id="marginLeftAvatarSkill" value="5" min="0" max="200">
+                                    </div>
+                                </div>
+                                <div class="line-group">
+                                    <label for="marginRightAvatarSkill">Margin Right</label>
+                                    <div>
+                                        <input type="number" id="marginRightAvatarSkill" value="100" min="0" max="200">
+                                    </div>
+                                </div>
+                                <div class="line-group">
+                                    <label for="marginTopAvatarSkill">Margin Top</label>
+                                    <div>
+                                        <input type="number" id="marginTopAvatarSkill" value="100" min="0" max="200">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="avatarContent" class="none">
+                        <div class="scrollwrapper"> 
+                            <div class="modalSeparator">
+                               tab 2
+                            </div>   
+                        </div>
+                    </section>
+
+                    <section id="titlesAvatarContent" class="none">
+                        <div class="scrollwrapper"> 
+                            <div class="modalSeparator">
+                               tab 3
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="backgroundAvatarContent" class="none">
+                        <div class="scrollwrapper"> 
+                            <div class="modalSeparator">
+                               tab 4
+                            </div>
+                        </div>
+                    </section>
+            </div>
+        </div>
+
+    <footer>
+    </footer>
+</div>
