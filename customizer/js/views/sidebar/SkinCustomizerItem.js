@@ -16,10 +16,11 @@ define([
 	'models/main/ModalModel',
 	'views/modal/AlertView',
 	'views/modal/ConfirmView',
-	'views/modal/skills/SimpleMenuSkillEditor'
+	'views/modal/skills/SimpleMenuSkillEditor',
+	'views/modal/skills/TopAvatarAndTitleSkillEditor'
    
 
-], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView,SimpleMenuSkillEditor){
+], function($, _, Backbone,skincustomizeritem,SkillEditor,ContextMenuSkillEditor,LogoSkillEditor,SignatureSkillEditor,LoadingBarSkillEditor,HelpFunctions,ManageData,ManageTour, StandardLoadingSkillEditor, SimpleControlBtnSkillEditor,ModalModel,AlertView,ConfirmView,SimpleMenuSkillEditor,TopAvatarAndTitleSkillEditor){
 
 	var SkinCustomizerItem = Backbone.View.extend({
 
@@ -92,6 +93,9 @@ define([
 				break;
 				case "7":
 				var mview = SimpleControlBtnSkillEditor;
+				break;
+				case "8":
+				var mview = TopAvatarAndTitleSkillEditor;
 				break;
 				default:
 				var mview = SkillEditor

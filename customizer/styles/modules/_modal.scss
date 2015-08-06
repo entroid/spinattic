@@ -1383,7 +1383,7 @@
         }
     }
 
-    .simple-control-btns-skill-editor, .simple-menu-skill-editor{
+    .simple-control-btns-skill-editor, .simple-menu-skill-editor, .top-avatar-and-titles-skill-editor{
 
         .scrollwrapper{
             height:300px;
@@ -1559,6 +1559,10 @@
                 }
             }
 
+            .onoffswitch {
+                margin-top: 4px;
+            }
+
             .editor-group-2col{
                 margin-bottom: 0px;
 
@@ -1657,82 +1661,81 @@
         } 
     }
 
-    #skillsEditor-6{
-        width: 565px;
-
-        header{
-            .fa-close{
-                display: none;
-            }
-        }
-
-        .modalSeparator{
-            border-bottom: 1px solid white;
-            margin-bottom: 20px;
-
-            &:last-child{
-                border-bottom:none;
-            }
-
-            .line-group{
-                min-height: 33px;
-                margin-bottom: 20px;
-                display: table;
-
-                & > label {
-                    font-size: 1.3rem;
-                    font-weight: bold;
-                    margin-top: 10px;
-                    display: inline-block;
-                    width: 170px;
-                    float: left;
-                }
-
-                & > div {
-                    /*@include absolute(0, initial,initial, initial);*/
-                    
-                    float: left;
-
-                    div.sup{
-                        width: 61px;
-                        display: inline-block;
-                        margin-right: 10px;
-                        text-align: center;
-                    }
-                }
-
-                input{
-                    width: 60px;
-                    border: 1px solid $middle-gray;
-                    margin-bottom:0;
-                }
-
-                .dropdown{
-                    display: inline-block;
-                    min-width: 60px;
-
-                    h2 {
-                        min-width: 0;
-                          padding: 7px;
-
-                        .fa-caret-down{
-                            margin-top: 3px;
-                            margin-left: 10px;
-                        }
-                    }
-                }
-            }
-        }
+    #skillsEditor-6, #skillsEditor-8{
+        width: 565px;        
     }
 
-    .simple-menu-skill-editor{
-        .tabContent{
+    .top-avatar-and-titles-skill-editor{
+        .menuTabs{
+            li{
+                width: 23%;
+            }
         }
     }
 }
 
-.alignPosSmSkill{
-    span{
+.modalSeparator{
+    border-bottom: 1px solid white;
+    margin-bottom: 20px;
+
+    &:last-child{
+        border-bottom:none;
+    }
+
+    .line-group{
+        min-height: 33px;
+        margin-bottom: 20px;
+        display: table;
+
+        & > label {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            width: 170px;
+            float: left;
+        }
+
+        & > div {
+            /*@include absolute(0, initial,initial, initial);*/
+            
+            float: left;
+
+            div.sup{
+                width: 61px;
+                display: inline-block;
+                margin-right: 10px;
+                text-align: center;
+            }
+        }
+
+        input{
+            width: 60px;
+            border: 1px solid $middle-gray;
+            margin-bottom:0;
+        }
+
+        .dropdown{
+            display: inline-block;
+            min-width: 60px;
+
+            h2 {
+                min-width: 0;
+                  padding: 7px;
+
+                .fa-caret-down{
+                    margin-top: 3px;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.posSelectors{  
+    margin-top: 10px;
+
+    span{     
         display: inline-block;
         width: 15px;
         height: 13px;
@@ -1741,52 +1744,67 @@
         text-indent: 100%;
         overflow: hidden;
         margin-right: 7px;
-        background: url('../images/icons/align_tool.png') no-repeat;
+        background: url('../images/icons/align_tool.gif') no-repeat;   
 
-        &.leftPos{
-            background-position:0 -15px;
+        &.topLeftPos{
+            background-position:-53px 0;
             &.selected{
-                background-position: left top;
+                background-position: 0 0 ;
+            }
+        }
+        &.leftPos{
+            background-position:-53px -13px;
+            &.selected{
+                background-position: 0 -13px;
+            }
+        }
+        &.bottomLeftPos{
+            background-position:-53px -27px;
+            &.selected{
+                background-position: 0 -27px;
+            }
+        }
+
+        &.topMiddlePos{
+            background-position: -71px 0;
+            &.selected{
+                background-position: -18px 00;
             }
         }
         &.middlePos{
-            background-position:-19px -15px;
+            background-position: -71px -13px;
             &.selected{
-                background-position: -19px top;
+                background-position: -18px -13px;
+            }
+        }
+        &.bottomMiddlePos{
+            background-position: -71px -27px;
+            &.selected{
+                background-position: -18px -27px;
+            }
+        }
+
+        &.topRightPos{
+            background-position: -88px 0;
+            &.selected{
+                background-position: -35px 0;
             }
         }
         &.rightPos{
-            background-position:-36px -15px;
+            background-position:-88px -13px;
             &.selected{
-                background-position: -36px top;
+                background-position: -35px -13px;
             }
         }
-
-    }
-
-    &.textAlign{
-        span {
-            &.leftPos{
-                background-position:-57px -15px;
-                &.selected{
-                    background-position: -57px top;
-                }
-            }
-            &.middlePos{
-                background-position:-75px -15px;
-                &.selected{
-                    background-position: -75px top;
-                }
-            }
-            &.rightPos{
-                background-position:-92px -15px;
-                &.selected{
-                    background-position: -92px top;
-                }
+        &.bottomRightPos{
+            background-position:-88px -27px;
+            &.selected{
+                background-position: -35px -27px;
             }
         }
     }
-}
+} 
+
 
 #signature-skill-linkto{
     width: 86%;
