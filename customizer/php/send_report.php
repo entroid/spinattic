@@ -1,4 +1,4 @@
-<?php
+<?
 //require("../inc/conex.inc");
 session_start();
 $type = $_POST["type"];

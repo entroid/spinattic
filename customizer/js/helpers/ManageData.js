@@ -61,7 +61,6 @@ define([
 					type:'POST',
 					data:mydata,
 					success:function(res){
-						console.log("success")
 						var res = res;
 						$("#sceneMenu .ready-to-del").fadeOut(function(){
 							$(this).remove();
@@ -78,7 +77,6 @@ define([
 									}
 								})
 								tourData.krpano.scene = scenestoAdd;
-								console.log(res)
 								callB();
 							}
 						})
@@ -166,7 +164,6 @@ define([
 				}else{
 					valueToInsert = $(e.target).val()
 				}
-				console.log($(e.target))
 				tourData.krpano[$(e.target).data("obj")][$(e.target).data("bind")]=valueToInsert;
 				this.saveServer();
 			},
@@ -184,7 +181,6 @@ define([
 					tourData.krpano.skill = [];
 					tourData.krpano.skill.push(myskill);					
 				}
-				console.log(tourData.krpano.skill)
 				this.saveServer(callback);
 			}
 
@@ -214,7 +210,6 @@ define([
 				var equal = false;
 				_.each(tourData.krpano.style,function(elem,ind){
 					if(elem._name == json._name){
-						console.log("se da la condicion")
 						tourData.krpano.style[ind] = json;
 						equal = true;
 					}
@@ -226,7 +221,6 @@ define([
 
 			this.removeStyle = function(name){
 
-				console.log(name)
 				indexToremove = [];
 				_.each(tourData.krpano.style,function(elem,ind){
 
@@ -247,7 +241,6 @@ define([
 			}
 
 			this.mapData = function(lat, lng,heading,sceneIndex){
-				console.log(sceneIndex)
 				var shouldChange = false;
 				if(sceneIndex == "settings"){
 					if(lat!=tourData.krpano.settings._lat||lng!=tourData.krpano.settings._long){
@@ -301,13 +294,11 @@ define([
 					data:mydata,
 					success:function(res){
 						var res = JSON.parse(res);
-						console.log(res)
 						if(fun){
 							fun()
 						}
 						$("#publishController").trigger("savedtour",[res.date])
 						tourData.krpano.datatour.date_updated = res.date; 
-						console.log(res)
 					},
 					error:function(xhr, ajaxOptions, thrownError){
 						console.log(xhr)
@@ -331,7 +322,6 @@ define([
 					data:mydata,
 					success:function(res){
 						var res = JSON.parse(res);
-						console.log(res)
 						if(toLive == "1"){
 							tourData.krpano.datatour.date_published = res.date;
 						}else{

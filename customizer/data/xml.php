@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 require_once("../php/functions.php");
 
@@ -8,13 +8,15 @@ require_once("../php/functions.php");
  * h = 0 oculta los hotspots
  * t (nombre) muestra un template particular
  * id el id del tour o del template
+ * customizer (1/0) me dice si se esta llamando desde el customizer o desde el front
  */
 
 
 
-//session_start();
-$user_id = 41;//$_SESSION['usr'];
-//$custom_attrs = 0;
+session_start();
+$user_id = $_SESSION['usr'];
+
+$custom_attrs = 0;
 
 $draft_subscript = '';
 $template_id = '';
@@ -29,9 +31,13 @@ if(isset($_GET['d']) && $_GET['d'] == 1){
 	$draft_subscript = '_draft';
 }
 
- 
+$customizer = 0;
+if(isset($_GET['customizer']) && $_GET['customizer'] == 1){
+	$customizer = 1;
+}
 
-if($user_id != ''){
+
+if($customizer == 1 && $user_id != '' || $customizer == 0){ //Si es llamado desde customizer, chequeo que esté logueado para poder segurizar el usuario en el select del tour
 
 	//Si recibo un objeto específico, devuelvo el template, sino, el xml de un tour (agregar case para nuevos templates dentro de la funcion)
 	switch ($_GET['t']){
@@ -77,6 +83,14 @@ if($user_id != ''){
 			';
 			$print_xml .= get_xml($segment, '',$prev_tag_ident);
 			
+
+			//DATOS PARTICULARES PARA EL XML EN CUSTOMIZER (Si recibo un 1 en customizer) NO SE INSERTA EN CUSTOMIZER_DRAFT CUANDO SE MANDA EL JSON A UPDATER.PHP POR NO TENER SEGMENT
+			if($customizer == 1){
+				$print_xml .= '<include url="%CURRENTXML%/customizerGlobals.xml" />';
+			}
+			
+			
+			
 			//Toma de scenes y hotspots
 			$segment = 'SCENES';
 			$print_xml .= '
@@ -92,13 +106,15 @@ if($user_id != ''){
 			';
 			$print_xml .= get_xml($segment, '', $prev_tag_ident);
 			
-			//Toma de default skills
+			//Toma de default skills (ELIMINADO, SE CARGAN AL CREARSE EL TOUR Y TIENE POSIBILIDAD DE ELIMINARLO)
+			/*
 			$prev_tag_ident = 0;
 			$segment = 'DEFAULT SKILLS';
 			$print_xml .= '
 			<!-- '.$segment.' -->
 			';
 			$print_xml .= get_default_elements('skills', '', $prev_tag_ident);
+			*/
 			
 			//Toma de free hotspots styles
 			$prev_tag_ident = 0;
@@ -132,6 +148,7 @@ if($user_id != ''){
 	}
 
 	$print_xml = str_replace('#env#', $environment, $print_xml);
+	$print_xml = str_replace('#user_id#', $user_id, $print_xml);
 	
 	
 	//Fin modificaciones particulares
@@ -203,6 +220,7 @@ function get_free_htpts_styles(){
 	
 }
 
+/* SOLO ERA PARA TRAER LOS SKILLS POR DEFECTO, PERO EL USUARIO PUEDE BORRARLOS ASIQUE SE INSERTAN EN LA CREACIÓN DEL TOUR Y NO LOS FORZAMOS MAS ACA
 function get_default_elements ($template, $kind, $prev_tag_ident){
 	global $id;
 	global $template_id;
@@ -212,16 +230,8 @@ function get_default_elements ($template, $kind, $prev_tag_ident){
 	switch ($template){
 		case 'skills': //levanto los id de los elementos a devolver (son los que no tenga agregados ya al tour)
 			$ssqlp = "SELECT skill_id as template_id FROM customizer_templates_skills where kind not in (select kind from customizer".$draft_subscript." where idtour = '".$id."' and segment = 'SKILLS') and add_by_default = 1 group by skill_id order by skill_id";
-			//echo $ssqlp;
 			break;
-			/*
-			 case 'htspts':
-			$ssqlp = "SELECT * FROM customizer_templates_htspts where htspt_id = ".$id." and prev_tag_ident = ".$prev_tag_ident." order by tag_ident";
-			break;
-			case 'htspts_styles':
-			$ssqlp = "SELECT * FROM customizer_free_htspts_styles where style_id = ".$id." and prev_tag_ident = ".$prev_tag_ident;
-			break;
-			*/
+
 	}
 	
 	$result = mysql_query($ssqlp);
@@ -235,9 +245,9 @@ function get_default_elements ($template, $kind, $prev_tag_ident){
 
 	return $final_xml;
 }
+*/
 
 function get_template($template, $kind, $prev_tag_ident){ 
-	
 	global $user_id;
 	global $template_id;
 	global $cdn;
@@ -347,6 +357,7 @@ function get_xml($segment, $kind, $prev_tag_ident){
 	global $segment;
 	global $cdn;
 	global $custom_attrs;
+	global $customizer;
 	
 	$final_xml = '';
 	$tag_ident = '';
@@ -359,10 +370,12 @@ function get_xml($segment, $kind, $prev_tag_ident){
 	
 	if ($kind != ''){$kind_condition = " kind = '".$kind."' and ";}
 	
-	//$ssqlp = "SELECT * FROM customizer".$draft_subscript." where segment = '".$segment."' and idtour = '".$id."' and user_id = ".$user_id." and prev_tag_ident = ".$prev_tag_ident." order by segment_ord, ord";
-	$ssqlp = "SELECT * FROM customizer".$draft_subscript." where ".$kind_condition." segment = '".$segment."' and idtour = '".$id."' and user_id = ".$user_id." and prev_tag_ident = ".$prev_tag_ident." order by kind, tag_ident";
-	//echo $ssqlp.'<br>';
-	
+	if($customizer == 1){ //Si es llamado desde el front, no segurizo el usuario
+		$ssqlp = "SELECT * FROM customizer".$draft_subscript." where ".$kind_condition." segment = '".$segment."' and idtour = '".$id."' and user_id = ".$user_id." and prev_tag_ident = ".$prev_tag_ident." order by kind, tag_ident";
+	}else{
+		$ssqlp = "SELECT * FROM customizer".$draft_subscript." where ".$kind_condition." segment = '".$segment."' and idtour = '".$id."' and prev_tag_ident = ".$prev_tag_ident." order by kind, tag_ident";
+	}	
+
 	$result = mysql_query($ssqlp);
 
 	
@@ -460,7 +473,7 @@ function get_scenes(){
 		
 		
 		$final_data.= '
-		<scene'.$segment_html.$id_html.$scene_filename.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
+		<scene'.$segment_html.$id_html.$scene_filename.' name="scene_'.$row["id"].'" urlname="'.htmlspecialchars($row["urlname"]).'" title="'.htmlspecialchars($row["name"]).'" onstart=""  thumburl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb200x100.jpg" thumbBigUrl="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/thumb500x250.jpg" lat="'.htmlspecialchars($row["lat"]).'" lng="'.htmlspecialchars($row["lng"]).'" description="'.htmlspecialchars($row["description"]).'" heading="'.htmlspecialchars($row["heading"]).'">
 			<view'.$segment_html.' hlookat="'.$row["hlookat"].'" vlookat="'.$row["vlookat"].'" fovtype="'.$row["fovtype"].'" fov="'.$row["fov"].'" fovmin="'.$row["fovmin"].'" fovmax="'.$row["fovmax"].'" limitview="'.$row["limitview"].'"  />
 
 			<preview'.$segment_html.' url="'.$cdn.'/panos/'.$row["idpano"].'/pano.tiles/preview.jpg" />

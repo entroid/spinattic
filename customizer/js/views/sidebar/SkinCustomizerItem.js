@@ -30,6 +30,8 @@ define([
 
 		   _.bindAll(this);
 	   },
+
+	   disableMessage:'Sorry! You can\'t customize or remove this Skill because your account level is "Free user". This Skill is only for "Basic" and "Pro" users.',
 		
 		render:function(){
 			var disable = false;
@@ -64,7 +66,7 @@ define([
 
 			if($(".main-header .user").data("level") == "FREE"){
 				if(no_delete_if_free == "1"){
-					este.showMsg("We're sorry. You cannot modify this skill because your membership level is set to Basic.");
+					este.showMsg(este.disableMessage);
 					return;
 				}
 			}
@@ -119,7 +121,7 @@ define([
 
 			if($(".main-header .user").data("level") == "FREE"){
 				if(no_delete_if_free == "1"){
-					este.showMsg("We're sorry. You cannot remove this skill because your membership level is set to Basic.");
+					este.showMsg(este.disableMessage);
 					return;
 				}
 			}

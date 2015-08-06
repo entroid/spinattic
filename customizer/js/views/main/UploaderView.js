@@ -100,9 +100,9 @@ define([
 						default:
 						break;
 					}
-					$("header.main-header").removeClass("bluring")
+					//$("header.main-header").removeClass("bluring")
 					$(".dragger-wrapper").removeClass("scaling")
-					$("footer.main-footer").removeClass("bluring")
+					//$("footer.main-footer").removeClass("bluring")
 				},
 
 				beforeEach: function(file){    
@@ -129,8 +129,8 @@ define([
 					var this_ul_id = window.uploader_id;
 					if (rollingOver) { 
 						$('.main-section').css('z-index', "last_zindex");
-						$("header.main-header").removeClass("bluring")
-						$("footer.main-footer").removeClass("bluring")
+						//$("header.main-header").removeClass("bluring")
+						//$("footer.main-footer").removeClass("bluring")
 						$(".dragger-wrapper").removeClass("scaling")
 						rollingOver = false;
 					}    
@@ -264,9 +264,9 @@ define([
 
 				docOver:function(e){    
 					if (!rollingOver) {    
-						$("header.main-header").addClass("bluring")
+						//$("header.main-header").addClass("bluring")
 						$(".dragger-wrapper").addClass("scaling")
-						$("footer.main-footer").addClass("bluring")
+						//$("footer.main-footer").addClass("bluring")
 
 						var posleft = $(".dragger-wrapper").offset().left;
 
@@ -277,9 +277,9 @@ define([
 				docLeave:function(e){     
 					if (rollingOver) { 
 						last_zindex = $('#drop-zone').css('z-index', last_zindex);
-						$("header.main-header").removeClass("bluring")
+						//$("header.main-header").removeClass("bluring")
 						$(".dragger-wrapper").removeClass("scaling")
-						$("footer.main-footer").removeClass("bluring")
+						//$("footer.main-footer").removeClass("bluring")
 
 						rollingOver = false;
 					}   

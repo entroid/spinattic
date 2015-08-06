@@ -26,7 +26,8 @@ define([
 			"blur #friendlyURL":"updateData",
 			"focus #scene-description":"sentEventByEnter",
 			"blur #scene-description":"updateData",
-			"click #sceneSettings-menu .fa-search":"zoomMap"
+			"click #sceneSettings-menu .fa-search":"zoomMap",
+			"refreshmapposition #sceneSettings-menu":"refreshMapPosition"
 				 },
 		
 		render: function(){
@@ -41,9 +42,7 @@ define([
 			var helpFunctions = new HelpFunctions();
 			helpFunctions.setInnerHeight(elem);
 			$(window).resize(function(){
-			
 					helpFunctions.setInnerHeight(elem);
-
 			});
 			
 			$("#sceneSettings-menu .inner").mCustomScrollbar({
@@ -55,7 +54,6 @@ define([
 
 			helpFunctions.refreshData();
 
-
 			var SingleUploaderModel = Backbone.Model.extend({});
 			console.log(data)
 			/*
@@ -65,36 +63,15 @@ define([
 			*/
 			var MapModel = Backbone.Model.extend({});
 			var mapModel = new MapModel({lat:data._lat,lng:data._lng})
-			
 			this.mapView = new MapView({model:mapModel});
-
-			
 			var indice = $("#sceneMenu .selected").index();
 			var param = "scene";
-
 			var me = this;
 			this.mapView.render(elem,{param:param,indice:indice});
 			setTimeout(function(){
 				me.mapView.refreshSizeMap()
 			},500)
-				$("#sceneMenu li").click(function(){
-					me.mapView.removeMap();
-					var MapModel = Backbone.Model.extend({});
-					console.log($(this).data("scene")._lat)
-					console.log($(this).data("scene")._lng)
-					var mapModel = new MapModel({lat:$(this).data("scene")._lat,lng:$(this).data("scene")._lng})
-					me.mapView = new MapView({model:mapModel});
-					me.mapView.render(elem,{param:param,indice:$(this).index()});
-					
-					var thumburl = $(this).data("scene")._thumburl
-					
-					/*singleUploader.removeThis();
-					var singleUploaderModel = new SingleUploaderModel({myid:"scene-thumbnail-src",imgsrc:thumburl})
-					singleUploader = new SingleUploader({model:singleUploaderModel});
-					singleUploader.render();
-					*/
-
-				})
+			
 			},
 
 		updateData:function(e){
@@ -130,6 +107,17 @@ define([
 			var mapModalView = new MapModalView({model:mapModel});
 			mapModalView.render("mapModal",mapModalView.renderExtend);
 			this.mapView.removeMap();
+		},
+
+		refreshMapPosition:function(evt,elem){
+			this.mapView.removeMap();
+			var MapModel = Backbone.Model.extend({});
+			var mapModel = new MapModel({lat:$(elem).data("scene")._lat,lng:$(elem).data("scene")._lng})
+			this.mapView = new MapView({model:mapModel});
+			var param = "scene";
+			var myelem = this.model.get("elem")
+			this.mapView.render(myelem,{param:param,indice:$(elem).index()});
+			var thumburl = $(elem).data("scene")._thumburl
 		}
 
 		

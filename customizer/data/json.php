@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 0);
 //require_once("inc/auth.inc");
 //require_once("../../inc/conex.inc");
@@ -13,6 +13,7 @@ require_once("../php/functions.php");
  * "s" para mostrar listado de skills (recibo d para draft o no y id_tour)
  * "c" para mostrar listado de categorías de tours 
  * "p" para mostrar listado de privacidades para tours
+ * "chk_friendly" para ver si existe esa friendly para ese usuario 
  * "panos" para mostrar listado de panos from collection
  * 
  * Para tour:
@@ -24,17 +25,19 @@ require_once("../php/functions.php");
  * 
  * Para skills:
  * No se mandan otros valores, devuelve el listado de skills con su ID y descripcion
+ * 
+ * Para Friendly URL:
+ * id el id del tour
+ * friendly lo que ingresó como friendly
  */
 
-
-session_start();
 $user_id = $_SESSION['usr'];
 
 if(isset($_GET['t']) && $_GET['t'] != ''){
 	$table = $_GET['t'];
-
 	switch ($table){
-		case 'u': 								//Datos del usuario
+		case 'u': 		
+						//Datos del usuario
 			if($user_id != ''){
 		
 				//Datos generales
@@ -47,6 +50,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$nickname = $row["nickname"];
 					$level = $row["level"];
 				};
+
 			
 				//Followers
 				$ssqlp = "SELECT count(*) as cuenta FROM follows, users where id_following = ".$user_id." and id_follower = users.id and users.status = 1";
@@ -112,8 +116,12 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 				$result = mysql_query($ssqlp);
 				if($row = mysql_fetch_array($result)){
 					
-					
+					/*Pasados al xml , tag settings
 					$title = $row["title"];
+					$lat = $row["lat"];
+					$lon = $row["lon"];
+					*/
+					
 					$category = $row["category"];
 					$tags = $row["tags"];
 					$allow_comments = $row["allow_comments"];
@@ -125,8 +133,6 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$likes = $row["likes"];
 					$views = $row["views"];
 					$comments = $row["comments"];
-					$lat = $row["lat"];
-					$lon = $row["lon"];
 					$skin_id = $row["skin_id"];
 					$enable_title = $row["enable_title"];
 					$enable_avatar = $row["enable_avatar"];
@@ -136,13 +142,51 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$state = $row["state"];
 					$tour_thumb_path = $row["tour_thumb_path"].'thumb200x100.jpg';
 					$tour_thumb_custom = $row["tour_thumb_custom"];
+					$show_lat_lng = $row["show_lat_lng"];
+					$date_updated = $row["date_updated"];
 					
 				};
+				
+				//Fecha de published, si lo tiene
+				$date_published = '';
+				$ssqlp = "SELECT * FROM tours where id = '".$id."' and iduser = ".$user_id;
+				$result = mysql_query($ssqlp);
+				if($row = mysql_fetch_array($result)){
+
+					$date_published = $row["date_updated"];
+				
+				};				
+				
+				//Skills que tiene incluido el tour:
+				$i=0;
+				$ssqlp = "SELECT skill_id, no_delete_if_free FROM customizer_templates_skills where skill_id in (select template_id from customizer".$draft_subscript." where segment = 'skills' and idtour = '".$id."') group by skill_id, no_delete_if_free";
+				$result = mysql_query($ssqlp);
+				while($row = mysql_fetch_array($result)){
+				
+					$skill_id = $row["skill_id"];
+					
+					$skills = array(
+					
+							'skill_id' => $row["skill_id"],
+							'no_delete_if_free' => $row["no_delete_if_free"]
+					
+					);
+					
+					$array_skills[$i] = $skills;
+					
+					$i++;					
+					
+				};				
+				
 				
 				echo json_encode(array(
 						
 						'segment' => 'DATATOUR',
+						/*Pasados al xml, tag settings
 						'title' => $title,
+						'lat' => $lat,
+						'lon' => $lon,					
+						*/	
 						'category' => $category,
 						'tags' => $tags,
 						'allow_comments' => $allow_comments,
@@ -154,8 +198,6 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'likes' => $likes,
 						'views' => $views,
 						'comments' => $comments,
-						'lat' => $lat,
-						'lon' => $lon,
 						'skin_id' => $skin_id,
 						'enable_title' => $enable_title,
 						'enable_avatar' => $enable_avatar,
@@ -164,7 +206,11 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 						'thumb_margin' => $thumb_margin,
 						'state' => $state,
 						'tour_thumb_path' => $tour_thumb_path,
-						'tour_thumb_custom' => $tour_thumb_custom
+						'tour_thumb_custom' => $tour_thumb_custom,
+						'show_lat_lng' => $show_lat_lng,
+						'skills' => $array_skills,
+						'date_updated' => $date_updated,
+						'date_published' => $date_published
 						
 				
 				));			
@@ -194,7 +240,7 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 					$result_block = mysql_query($ssqlp_block);
 					if($row_block = mysql_fetch_array($result_block)){
 						$blocked = 1;
-						$blocked_description = "You have already added this skill to your tour";
+						$blocked_description = "added";
 					}
 				}
 				
@@ -330,6 +376,43 @@ if(isset($_GET['t']) && $_GET['t'] != ''){
 		
 		
 			echo json_encode($array_skills);
+		
+		
+			break;		
+
+		case 'chk_friendly': //Friendly de tour para usuario
+			
+			if($user_id != ''){
+				$friendly_URL = "";
+				
+				if($_GET["friendly"] == ''){
+					$friendly_URL = $_GET["id"]; //Si llega vacío devuelvo el id del tour
+				}else{
+					//Si no, chequeo que no exista para este usuario
+					$try_friendly = $_GET["friendly"];
+					$underscore = "_";
+					
+					while($friendly_URL == ""){
+						$ssqlp = "SELECT * from tours_draft where iduser = '".$user_id."' and friendly_url = '".$try_friendly.$i."' and id <> ".$_GET["id"];
+						$result = mysql_query($ssqlp);
+						if(!($row = mysql_fetch_array($result))){
+							$friendly_URL = $try_friendly.$i;
+						}else{
+							$try_friendly = $try_friendly.$underscore;
+							$underscore = "";
+							$i++;
+						}
+					}
+				}
+				
+				
+				
+				echo json_encode(array(
+						'friendly_URL' => $friendly_URL
+				));				
+			}
+			
+
 		
 		
 			break;			

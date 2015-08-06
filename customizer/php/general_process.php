@@ -78,12 +78,8 @@ if(isset($_GET["c"]) && $_GET["c"] == 1){
 	
 }else{
 	
-	// If you want to ignore the uploaded files,
-	// set $demo_mode to true;
-	
 	check_for_cancel($proc_id);
 	
-	$demo_mode = false;
 	
 	$allowed_ext = array('tif', 'tiff','jpg', 'jpeg', 'png');
 	
@@ -109,7 +105,8 @@ if(isset($_GET["c"]) && $_GET["c"] == 1){
 		{
 	
 			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$pic['name']."', -1, 'ERROR: File Ext not allowed', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
-	
+			mysql_query("update general_process_log set process_finished = 1 where proc_id = '".$proc_id."'");
+			
 			exit_status(array(
 					'result' => 'ERROR',
 					'msg' => 'Only '.implode(',',$allowed_ext).' files are allowed!'
@@ -122,6 +119,7 @@ if(isset($_GET["c"]) && $_GET["c"] == 1){
 		{
 	
 			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$pic['name']."', -1, 'ERROR: Image Ratio incorrect (2x1)', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
+			mysql_query("update general_process_log set process_finished = 1 where proc_id = '".$proc_id."'");
 	
 			exit_status(array(
 					'result' => 'ERROR',
@@ -129,38 +127,43 @@ if(isset($_GET["c"]) && $_GET["c"] == 1){
 			));
 		}
 	
-	
-		if($demo_mode)
+		
+		if($image_size[0] > 30000 || $image_size[1] > 30000)
 		{
-			// File uploads are ignored. We only log them.
-	
-			$line = implode('		', array( date('r'), $_SERVER['REMOTE_ADDR'], $pic['size'], $pic['name']));
-			file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);
-	
+		
+			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$pic['name']."', -1, 'ERROR: Max Image Size: 30000 px', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
+			mysql_query("update general_process_log set process_finished = 1 where proc_id = '".$proc_id."'");
+		
 			exit_status(array(
 					'result' => 'ERROR',
-					'msg' => 'Uploads are ignored in demo mode.'
+					'msg' => 'Can\'t upload this image. Aspect ratio required: 2x1.'
 			));
-		}
+		}		
 	
-	
+
+		//Check if has lat and long
+		$exif = exif_read_data($pic['tmp_name']);
+		
+		$lon = '';
+		$lat = '';
+		
+		if(isset($exif["GPSLongitude"]) && isset($exif["GPSLongitudeRef"]) && isset($exif["GPSLatitude"]) && isset($exif["GPSLatitudeRef"])){
+			$lon = getGps($exif["GPSLongitude"], $exif['GPSLongitudeRef']);
+			$lat = getGps($exif["GPSLatitude"], $exif['GPSLatitudeRef']);
+		}		
 		
 		// Move the uploaded file from the temporary
-		// directory to the uploads folder:
 	
-	
-		$ssqlp1 = "insert into panos (state, user, date, name) values (0, '".$_SESSION['usr']."', now(), '".mysql_real_escape_string($pic['name'])."')";
+		$ssqlp1 = "insert into panos (state, user, date, name, image_lat, image_lng) values (0, '".$_SESSION['usr']."', now(), '".mysql_real_escape_string($pic['name'])."', '".$lat."', '".$lon."')";
 		mysql_query($ssqlp1);
 		$ssqlp = "SELECT max(id) as elid FROM panos where user = '".$_SESSION['usr']."'";
 		$result = mysql_query($ssqlp);
 		$row = mysql_fetch_array($result);
 		$pano_id = $row["elid"];
 	
-
-		
 		
 		$scene_name = str_replace('.'.$ext, '', $pic['name']);
-		$ssqlp1 = "insert into panosxtour_draft (idpano, state, idtour, name) values (".$pano_id.", 0, ".$tour_id.", '".  mysql_real_escape_string($scene_name)."')";
+		$ssqlp1 = "insert into panosxtour_draft (idpano, state, idtour, name, lat, lng, urlname) values (".$pano_id.", 0, ".$tour_id.", '".  mysql_real_escape_string($scene_name)."', '".$lat."', '".$lon."', '".  mysql_real_escape_string($scene_name)."')";
 		mysql_query($ssqlp1);
 		$ssqlp = "SELECT max(id) as elid FROM panosxtour_draft where idpano = '".$pano_id."'";
 		$result = mysql_query($ssqlp) or die(mysql_error());
@@ -192,12 +195,12 @@ if(isset($_GET["c"]) && $_GET["c"] == 1){
 	mysql_query("delete from panos where id = ".$pano_id);
 	mysql_query("delete from panosxtour where id = ".$scene_id);
 	mysql_query("delete from panosxtour_draft where id = ".$scene_id);
-	
-	$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
-	
-	//DEBUG
-	mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$pic['name']."', -1, 'DEBBUG ENTRY 1: '.'rm -r ' . $upload_dir . $pano_id, now(), '".$_SERVER['HTTP_USER_AGENT']."')");
-	
+
+	if($pano_id != '' && $pano_id != 0){
+		$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
+		//DEBUG
+		mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$pic['name']."', -1, 'DEBBUG ENTRY 1: rm -r ".$upload_dir.$pano_id."', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
+	}
 	
 	mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$pic['name']."', -1, 'ERROR: Something went wrong with your upload', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
 	
@@ -332,10 +335,12 @@ function image_processing($tour_id, $pano_id, $scene_id, $file_name, $step){
 			}
 		}
 
-		$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
+		if($pano_id != '' && $pano_id != 0){
+			$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
 
-		//DEBBUG
-		mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$file_name."', ".$step.", 'DEBBUG ENTRY 2: '.'rm -r ' . $upload_dir . $pano_id, now(), '".$_SERVER['HTTP_USER_AGENT']."')");
+			//DEBBUG
+			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$file_name."', ".$step.", 'DEBBUG ENTRY 2: rm -r ".$upload_dir.$pano_id."', now(), '".$_SERVER['HTTP_USER_AGENT']."')");
+		}
 		
 		$step = 4;
 
@@ -397,10 +402,10 @@ function check_for_cancel($proc_id){
 		if($scene_id != 0){mysql_query("delete from panosxtour where id = ".$scene_id);}
 		if($scene_id != 0){mysql_query("delete from panosxtour_draft where id = ".$scene_id);}
 		
-		if($pano_id != 0){
+		if($pano_id != '' && $pano_id != 0){
 			$salida = shell_exec('rm -r ' . $upload_dir . $pano_id);
 			//DEBUG
-			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent, cancel_requested) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$filename."', -3, 'DEBBUG ENTRY 3: '.'rm -r ' . $upload_dir . $pano_id, now(), '".$_SERVER['HTTP_USER_AGENT']."', 1)");
+			mysql_query("insert into general_process_log (proc_id, user_id, tour_id, scene_id, pano_id, filename, step, step_desc, date, agent, cancel_requested) values ('".$proc_id."', '".$_SESSION['usr']."', '".$tour_id."', '".$scene_id."', '".$pano_id."', '".$filename."', -3, 'DEBBUG ENTRY 3: rm -r ".$upload_dir.$pano_id."', now(), '".$_SERVER['HTTP_USER_AGENT']."', 1)");
 			
 			//Borro cloud
 			$salida = shell_exec('s3cmd -c /var/www/'.$bucket_config_file.' del s3://'.$cdn_string.'/panos/'.$pano_id.' --recursive 2>&1');
@@ -538,6 +543,32 @@ function check_for_slots(){
 		
 	}	
 
+}
+
+//Funciones para obtener formato de GPS
+function getGps($exifCoord, $hemi) {
+
+	$degrees = count($exifCoord) > 0 ? gps2Num($exifCoord[0]) : 0;
+	$minutes = count($exifCoord) > 1 ? gps2Num($exifCoord[1]) : 0;
+	$seconds = count($exifCoord) > 2 ? gps2Num($exifCoord[2]) : 0;
+
+	$flip = ($hemi == 'W' or $hemi == 'S') ? -1 : 1;
+
+	return $flip * ($degrees + $minutes / 60 + $seconds / 3600);
+
+}
+
+function gps2Num($coordPart) {
+
+	$parts = explode('/', $coordPart);
+
+	if (count($parts) <= 0)
+		return 0;
+
+	if (count($parts) == 1)
+		return $parts[0];
+
+	return floatval($parts[0]) / floatval($parts[1]);
 }
 
 
