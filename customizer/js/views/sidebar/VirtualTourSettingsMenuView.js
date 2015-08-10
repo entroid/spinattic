@@ -74,10 +74,10 @@ define([
 						label:"Smooth Drag 2D",
 						value:"drag2dsmooth"
 					},
-					{
+					/*{
 						label:"Drag 3D",
 						value:"drag3d"
-					},
+					},*/
 				]
 
 			var data = {
