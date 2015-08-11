@@ -142,7 +142,8 @@ define([
 					if($(".fa-clock-o").size()){
 					    $(".fa-clock-o").addClass('blink').removeClass("save").text("")    
 					}
-
+										
+					$("#pano-"+this_ul_id).addClass("readytogo");
 					$("#pano-"+this_ul_id+" .fa-close").data("myproc",window.proc_id[this_ul_id]);
 					$("#pano-"+this_ul_id+" .fa-close").data("cicle",this_ul_id);
 					$("#pano-"+this_ul_id+" .fa-close").data("myfile",file.name);
@@ -174,6 +175,7 @@ define([
 
 											$(".inner-dragger #pano-"+this_ul_id+" .progress").css("background","#d32f31");
 											$(".inner-dragger #pano-"+this_ul_id+" .percentage").text("Error");
+											$(".inner-dragger #pano-"+this_ul_id).removeClass("readytogo");
 
 											if(este.addingPane){
 												$(".uploader-footer #cancelUploaded").removeClass('none');
@@ -183,7 +185,6 @@ define([
 										case "1":
 											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
 											$("#pano-"+this_ul_id+" .percentage").text(respuesta.state_desc);
-											
 											break;
 										case "2":
 											console.log("ENTRO " + this_ul_id + "(" + este.filename[this_ul_id] +"): "+ este.state[this_ul_id]);
@@ -248,7 +249,7 @@ define([
 												}
 											})
 
-											if(completed == $(".pano-item.completed").size()){
+											if(completed == $(".pano-item.readytogo").size()){
 												este.AllUploaded();
 											}
 											

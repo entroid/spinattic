@@ -25,8 +25,11 @@ define([
 
 		render: function(){
 
-			var title = tourData.krpano.settings._title,
-				widthTestElHtml = "<span id='widthTestEl' class='none'></span>",
+			var title = tourData.krpano.settings._title
+			if(title ==  "360º Virtual tour created with Spinattic.com"){
+				title = ""
+			}
+			var widthTestElHtml = "<span id='widthTestEl' class='none'></span>",
 				widthEl = $("#widthTestEl");
 
 			var compiledTemplate = _.template(tourtitle,{title:title});

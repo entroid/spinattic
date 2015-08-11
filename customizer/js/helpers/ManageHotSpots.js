@@ -26,8 +26,12 @@ define([
 					if(elem._rotate){
 						krpano.set("hotspot["+elem._name+"].rotate", elem._rotate);
 					}
-					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._style+");");
-					
+					krpano.call("hotspot["+elem._name+"].loadStyle("+elem._style+"|hotspot_tooltips);");
+					if(elem._tooltip){
+						 if(elem._tooltip!="" ||elem._tooltip!="none"){
+							krpano.call('set(hotspot['+elem._name+'].tooltip,'+elem._tooltip+' );');
+						 }
+					}
 					krpano.call('set(hotspot['+elem._name+'].ondown, draghotspot() );');
 					krpano.call('set(hotspot['+elem._name+'].onclick, js(openHotspotWindowEditor('+elem._name+')) );');
 					krpano.call('set(hotspot['+elem._name+'].onup, js(regPos('+elem._name+')) );');
